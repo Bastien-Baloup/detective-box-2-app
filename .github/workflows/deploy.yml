@@ -19,9 +19,12 @@ jobs:
 
       - name: Install dependencies
         uses: bahmutov/npm-install@v1
+        
+      - name: Create .env
+        run: echo "VITE_API_URL=${{env.API_URL}}" > .env
 
       - name: Build project
-        run: VITE_API_URL=${{env.API_URL}} npm run build
+        run: npm run build
 
       - name: Upload production-ready build files
         uses: actions/upload-artifact@v3
