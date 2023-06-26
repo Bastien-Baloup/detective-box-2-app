@@ -36,7 +36,12 @@ jobs:
     if: github.ref == 'refs/heads/main'
 
     steps:
-      - name: Deploy to Staging server
+      - name: Download Artifact
+        uses: actions/download-artifact@master
+        with:
+          name: production-files
+          path: dist
+      - name: Deploy to server
         uses: easingthemes/ssh-deploy@main
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
@@ -44,3 +49,4 @@ jobs:
           REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
           REMOTE_USER: ${{ secrets.REMOTE_USER }}
           TARGET: "/data/detective-box/app"
+          SOURCE: "/dist/"
