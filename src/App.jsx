@@ -2,6 +2,8 @@ import {useEffect, useState} from 'react'
 import './App.css'
 import Api from "./api.js";
 
+import Modal from './components/Modal.js'
+
 const api = new Api()
 
 function App() {
@@ -15,8 +17,7 @@ function App() {
 
     return (
         <>
-            <h1>Detective Box!!!</h1>
-            <p>API Status: {status}</p>
+            <Modal />
         </>
     )
 }
