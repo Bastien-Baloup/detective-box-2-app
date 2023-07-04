@@ -15,7 +15,7 @@ function App() {
 
     return (
         <>
-            <h1>Detective Box</h1>
+            <h1>Detective Box!!!</h1>
             <p>API Status: {status}</p>
         </>
     )
