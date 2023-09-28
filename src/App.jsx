@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
-import "./App.css";
 import Api from "./api.js";
 
 import Audio from "./components/Audio.js";
 import Card from "./components/Card.js";
 import Document from "./components/Document.js";
-import Loader from "./components/Loader.js";
+import Loader from "./components/Loader.jsx";
 import Nappe from "./components/Nappe.js";
 import Nav from "./components/Nav.js";
 import Objectif from "./components/Objectif";
