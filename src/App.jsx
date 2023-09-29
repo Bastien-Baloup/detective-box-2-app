@@ -9,7 +9,7 @@ import Nappe from "./components/Nappe.js";
 import Nav from "./components/Nav.js";
 import Objectif from "./components/Objectif";
 import Preuve from "./components/Preuve.js";
-import Progression from "./components/Progression.js";
+import Progression from "./components/Progression.jsx";
 import Quizz from "./components/Quizz";
 import Slider from "./components/Slider.js";
 import Tutoriel from "./components/Tutoriel.js";
