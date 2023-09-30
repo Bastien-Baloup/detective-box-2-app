@@ -1,0 +1,34 @@
+.ProgressBar {
+	display: flex;
+	flex-wrap: nowrap;
+	&_Box {
+		display: flex;
+		align-items: end;
+		&_Steps {
+			flex: none;
+		}
+		&_Icons {
+			display: flex;
+			flex-wrap: nowrap;
+			padding: 0.4rem 0;
+		}
+	}
+}
+
+.ProgressBar_Box_Icon {
+	&-small {
+		padding: 0 0.2rem;
+	}
+	&-main {
+		padding: 0 0.5rem;
+	}
+}
+
+.ProgressBar_Box_Title {
+	color: $tertiary-color;
+	font-family: "Gabriele";
+	&-played {
+		font-family: "Gabriele";
+		color: $secondary-color;
+	}
+}
