@@ -5,17 +5,17 @@ import Audio from "./components/Audio.js";
 import Card from "./components/Card.js";
 import Document from "./components/Document.js";
 import Loader from "./components/Loader.jsx";
-import Nappe from "./components/Nappe.js";
+import Nappe from "./components/Nappe.jsx";
 import Nav from "./components/Nav.js";
-import Objectif from "./components/Objectif";
+import Objectif from "./components/Objectif.js";
 import Preuve from "./components/Preuve.js";
 import Progression from "./components/Progression.jsx";
-import Quizz from "./components/Quizz";
+import Quizz from "./components/Quizz.js";
 import Slider from "./components/Slider.js";
 import Tutoriel from "./components/Tutoriel.js";
 import Video from "./components/Video.js";
-import Input from "./components/Input";
-import Filter from "./components/Filter";
+import Input from "./components/Input.jsx";
+import Filter from "./components/Filter.js";
 
 const api = new Api();
 
@@ -32,6 +32,27 @@ function App() {
 
 	// These are the const for the button to display or hide the components
 	const [showComponent, setShowComponent] = useState(false);
+	const [valueInputTexte, setValueInputTexte] = useState("");
+	const [valueInputRadio, setValueInputRadio] = useState("");
+	console.log(valueInputTexte, valueInputRadio);
+
+	// functions to test the Input component
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		alert(valueInputTexte + " et " + valueInputRadio);
+	};
+	const displayInputForm = () => {
+		return (
+			<form onSubmit={handleSubmit}>
+				<Input type="texte" name="essai" label="votre réponse" setValue={setValueInputTexte} />
+				<Input type="radio" name="essai" label="choix 1" setValue={setValueInputRadio} />
+				<Input type="radio" name="essai" label="choix 2" setValue={setValueInputRadio} />
+				<button type="submit">Afficher la réponse</button>
+			</form>
+		);
+	};
+
+	// functions to test the Nappe modale component
 
 	return (
 		<>
@@ -56,7 +77,7 @@ function App() {
 			{showComponent == "card" ? <Card /> : null}
 			{showComponent == "document" ? <Document /> : null}
 			{showComponent == "loader" ? <Loader /> : null}
-			{showComponent == "nappe" ? <Nappe /> : null}
+			{showComponent == "nappe" ? <Nappe activateNappe={activateNappe} /> : null}
 			{showComponent == "nav" ? <Nav /> : null}
 			{showComponent == "objectif" ? <Objectif /> : null}
 			{showComponent == "preuve" ? <Preuve /> : null}
@@ -65,7 +86,7 @@ function App() {
 			{showComponent == "slider" ? <Slider /> : null}
 			{showComponent == "tutoriel" ? <Tutoriel /> : null}
 			{showComponent == "video" ? <Video /> : null}
-			{showComponent == "input" ? <Input /> : null}
+			{showComponent == "input" ? displayInputForm() : null}
 			{showComponent == "filter" ? <Filter /> : null}
 		</>
 	);

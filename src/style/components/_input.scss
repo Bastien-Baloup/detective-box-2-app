@@ -1,0 +1,16 @@
+.input-texte {
+	width: 100%;
+	padding: 0.4rem;
+	border: 1px solid $secondary-color;
+	background-color: rgba(255, 255, 255, 0.2);
+	color: $secondary-color;
+	outline: none;
+	transition: background-color 0.2s ease-in-out;
+	&:focus {
+		// border: 1px solid $secondary-color;
+		background-color: $primary-color;
+	}
+	&::placeholder{
+		color: rgba(255, 255, 255, 0.6);
+	}
+}
