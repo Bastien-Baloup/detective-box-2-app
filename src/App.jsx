@@ -39,12 +39,20 @@ function App() {
 	// functions to test the Input component
 	const handleSubmit = (e) => {
 		e.preventDefault();
+		setValueInputTexte("");
 		alert(valueInputTexte + " et " + valueInputRadio);
 	};
 	const displayInputForm = () => {
 		return (
 			<form onSubmit={handleSubmit}>
-				<Input type="texte" name="essai" label="votre réponse" setValue={setValueInputTexte} />
+				<Input
+					type="texte"
+					name="essai"
+					label="votre réponse"
+					placeholder="Ecrivez votre réponse ici"
+					value={valueInputTexte}
+					setValue={setValueInputTexte}
+				/>
 				<Input type="radio" name="essai" label="choix 1" setValue={setValueInputRadio} />
 				<Input type="radio" name="essai" label="choix 2" setValue={setValueInputRadio} />
 				<button type="submit">Afficher la réponse</button>
@@ -53,6 +61,8 @@ function App() {
 	};
 
 	// functions to test the Nappe modale component
+	const activateNappe = () => {};
+	const desactivateNappe = () => {};
 
 	return (
 		<>
@@ -77,7 +87,7 @@ function App() {
 			{showComponent == "card" ? <Card /> : null}
 			{showComponent == "document" ? <Document /> : null}
 			{showComponent == "loader" ? <Loader /> : null}
-			{showComponent == "nappe" ? <Nappe activateNappe={activateNappe} /> : null}
+			{showComponent == "nappe" ? <Nappe activateNappe={activateNappe} desactivateNappe={desactivateNappe} /> : null}
 			{showComponent == "nav" ? <Nav /> : null}
 			{showComponent == "objectif" ? <Objectif /> : null}
 			{showComponent == "preuve" ? <Preuve /> : null}

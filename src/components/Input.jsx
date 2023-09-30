@@ -1,25 +1,27 @@
-const Input = ({ type, label, name, placeholder, setValue }) => {
+const Input = ({ type, label, name, value, placeholder, setValue }) => {
+	//Penser à rajouter pattern ?
 	return (
-		<div className="input-wrapper">
+		<>
 			{type == "texte" ? (
-				<label>
-					{label}
+				<div className="input-wrapper-text">
+					<label className="input-wrapper__label">{label}</label>
 					<input
 						className="input-texte"
 						type="texte"
 						name={name}
+						value={value}
 						maxLength="60"
 						placeholder={placeholder}
 						onChange={(e) => setValue(e.target.value)}
 					/>
-				</label>
+				</div>
 			) : (
-				<label>
+				<div className="input-wrapper-radio">
 					<input className="input-radio" type="radio" value={label} name={name} onChange={(e) => setValue(e.target.value)} />
-					{label}
-				</label>
+					<label className="input-wrapper__label">{label}</label>
+				</div>
 			)}
-		</div>
+		</>
 	);
 };
 
