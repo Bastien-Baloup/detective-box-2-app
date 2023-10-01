@@ -34,10 +34,11 @@ function App() {
 
 	// These are the const for the button to display or hide the components
 	const [showComponent, setShowComponent] = useState(false);
+
+	// functions to test the Input component
 	const [valueInputTexte, setValueInputTexte] = useState("");
 	const [valueInputRadio, setValueInputRadio] = useState("");
 
-	// functions to test the Input component
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		setValueInputTexte("");
@@ -65,6 +66,7 @@ function App() {
 	// la nappe est différente en fonction des boîtes
 	const [isMuted, setIsMuted] = useState(true);
 	const audioElem = useRef();
+
 	useEffect(() => {
 		if (isMuted) {
 			audioElem.current.pause();
@@ -73,11 +75,15 @@ function App() {
 			audioElem.current.play();
 		}
 	}, [isMuted]);
+
 	const activateNappe = () => {
 		setIsMuted(false);
+		setShowComponent(false);
 	};
+
 	const desactivateNappe = () => {
 		setIsMuted(true);
+		setShowComponent(false);
 	};
 	console.log(isMuted);
 
