@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Api from "./api.js";
 
 import Audio from "./components/Audio.js";
@@ -17,6 +17,8 @@ import Video from "./components/Video.js";
 import Input from "./components/Input.jsx";
 import Filter from "./components/Filter.js";
 
+import Ambiance from "./assets/media/Musiques DB S2 - Thème Tueur.wav";
+
 const api = new Api();
 
 function App() {
@@ -34,7 +36,6 @@ function App() {
 	const [showComponent, setShowComponent] = useState(false);
 	const [valueInputTexte, setValueInputTexte] = useState("");
 	const [valueInputRadio, setValueInputRadio] = useState("");
-	console.log(valueInputTexte, valueInputRadio);
 
 	// functions to test the Input component
 	const handleSubmit = (e) => {
@@ -61,8 +62,24 @@ function App() {
 	};
 
 	// functions to test the Nappe modale component
-	const activateNappe = () => {};
-	const desactivateNappe = () => {};
+	// la nappe est différente en fonction des boîtes
+	const [isMuted, setIsMuted] = useState(true);
+	const audioElem = useRef();
+	useEffect(() => {
+		if (isMuted) {
+			audioElem.current.pause();
+			audioElem.current.fastSeek(0);
+		} else {
+			audioElem.current.play();
+		}
+	}, [isMuted]);
+	const activateNappe = () => {
+		setIsMuted(false);
+	};
+	const desactivateNappe = () => {
+		setIsMuted(true);
+	};
+	console.log(isMuted);
 
 	return (
 		<>
@@ -82,12 +99,19 @@ function App() {
 				<button onClick={() => setShowComponent("video")}>Video</button>
 				<button onClick={() => setShowComponent("input")}>Input</button>
 				<button onClick={() => setShowComponent("filter")}>Filter</button>
+				{/* ceci est l'audio pour la musique d'ambiance qui doit s'afficher sur toutes les pages*/}
+				<audio loop preload="auto" ref={audioElem}>
+					<source src={Ambiance} type="audio/wav" />
+					Votre navigateur ne prend pas en charge ce format
+				</audio>
 			</header>
 			{showComponent == "audio" ? <Audio /> : null}
 			{showComponent == "card" ? <Card /> : null}
 			{showComponent == "document" ? <Document /> : null}
 			{showComponent == "loader" ? <Loader /> : null}
-			{showComponent == "nappe" ? <Nappe activateNappe={activateNappe} desactivateNappe={desactivateNappe} /> : null}
+			{showComponent == "nappe" ? (
+				<Nappe src={Ambiance} activateNappe={activateNappe} desactivateNappe={desactivateNappe} />
+			) : null}
 			{showComponent == "nav" ? <Nav /> : null}
 			{showComponent == "objectif" ? <Objectif /> : null}
 			{showComponent == "preuve" ? <Preuve /> : null}
