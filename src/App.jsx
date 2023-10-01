@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import Api from "./api.js";
 
-import Audio from "./components/Audio.js";
+import Audio from "./components/Audio.jsx";
 import Card from "./components/Card.js";
 import Document from "./components/Document.js";
 import Loader from "./components/Loader.jsx";
@@ -17,7 +17,9 @@ import Video from "./components/Video.js";
 import Input from "./components/Input.jsx";
 import Filter from "./components/Filter.js";
 
+//Here are assets used to test components
 import Ambiance from "./assets/media/Musiques DB S2 - Thème Tueur.wav";
+import Image from "./assets/img/LAUREN_DARK.png";
 
 const api = new Api();
 
@@ -32,7 +34,7 @@ function App() {
 		});
 	}, []);
 
-	// These are the const for the button to display or hide the components
+	// These are the const for the buttons to display or hide the components for test
 	const [showComponent, setShowComponent] = useState(false);
 
 	// functions to test the Input component
@@ -44,6 +46,7 @@ function App() {
 		setValueInputTexte("");
 		alert(valueInputTexte + " et " + valueInputRadio);
 	};
+
 	const displayInputForm = () => {
 		return (
 			<form onSubmit={handleSubmit}>
@@ -63,33 +66,75 @@ function App() {
 	};
 
 	// functions to test the Nappe modale component
-	// la nappe est différente en fonction des boîtes
-	const [isMuted, setIsMuted] = useState(true);
+	// la nappe sera différente en fonction des boîtes
+	const [ambianceMute, setAmbianceMute] = useState(true);
+	const [ispreviouslyMuted, setIsPreviouslyMuted] = useState(true);
 	const audioElem = useRef();
 
 	useEffect(() => {
-		if (isMuted) {
+		if (ambianceMute) {
 			audioElem.current.pause();
 			audioElem.current.currentTime = 0;
 		} else {
 			audioElem.current.play();
 		}
-	}, [isMuted]);
+	}, [ambianceMute]);
 
 	const activateNappe = () => {
-		setIsMuted(false);
+		setAmbianceMute(false);
 		setShowComponent(false);
 	};
 
 	const desactivateNappe = () => {
-		setIsMuted(true);
+		setAmbianceMute(true);
 		setShowComponent(false);
+	};
+
+	//functions to test the modal audio component
+
+	const handleModalAudio = () => {
+		if (ispreviouslyMuted) {
+			setShowComponent(false);
+		} else {
+			setAmbianceMute(false);
+			setShowComponent(false);
+		}
+	};
+
+	const setPreviousStateAmbiance = () => {
+		if (ambianceMute) {
+			setIsPreviouslyMuted(true);
+		} else {
+			setIsPreviouslyMuted(false);
+		}
+		setAmbianceMute(true);
+		console.log(ambianceMute, ispreviouslyMuted);
+	};
+
+	const displayModalAudio = () => {
+		return (
+			<Audio
+				title="Interrogatoire de Machin et Bidule"
+				srcImg1={Image}
+				srcImg2={Image}
+				srcTranscription={Image}
+				handleModalAudio={handleModalAudio}
+				url={Ambiance}
+			/>
+		);
 	};
 
 	return (
 		<>
 			<header>
-				<button onClick={() => setShowComponent("audio")}>Audio</button>
+				<button
+					onClick={() => {
+						setPreviousStateAmbiance();
+						setShowComponent("audio");
+					}}
+				>
+					Audio
+				</button>
 				<button onClick={() => setShowComponent("card")}>Card</button>
 				<button onClick={() => setShowComponent("document")}>Document</button>
 				<button onClick={() => setShowComponent("loader")}>Loader</button>
@@ -110,7 +155,7 @@ function App() {
 					Votre navigateur ne prend pas en charge ce format
 				</audio>
 			</header>
-			{showComponent == "audio" ? <Audio /> : null}
+			{showComponent == "audio" ? displayModalAudio() : null}
 			{showComponent == "card" ? <Card /> : null}
 			{showComponent == "document" ? <Document /> : null}
 			{showComponent == "loader" ? <Loader /> : null}
