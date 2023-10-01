@@ -5,10 +5,10 @@ const Nappe = ({ activateNappe, desactivateNappe }) => {
 			<div className="modal-nappe__box">
 				<p className="modal-nappe__text">Voulez-vous lancer la musique d'ambiance pour rendre votre jeu plus immersif ?</p>
 				<div className="modal-nappe__buttons">
-					<button className="modal-nappe__button button" onClick={activateNappe}>
+					<button className="modal-nappe__button button--red" onClick={activateNappe}>
 						Oui
 					</button>
-					<button className="modal-nappe__button button" onClick={desactivateNappe}>
+					<button className="modal-nappe__button button--red" onClick={desactivateNappe}>
 						Non
 					</button>
 				</div>

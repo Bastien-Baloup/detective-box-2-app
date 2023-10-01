@@ -25,19 +25,3 @@
 		gap: 2rem;
 	}
 }
-
-.button {
-	cursor: pointer;
-	min-width: 10rem;
-	padding: 1rem;
-	background-color: $tertiary-color;
-	border: solid 1px $tertiary-color;
-	color: $secondary-color;
-	font-family: "Gabriele";
-	margin: 0 2rem;
-	&:hover {
-		color: $tertiary-color;
-		background-color: $secondary-color;
-		border: solid 1px $tertiary-color;
-	}
-}
