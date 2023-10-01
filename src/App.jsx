@@ -70,7 +70,7 @@ function App() {
 	useEffect(() => {
 		if (isMuted) {
 			audioElem.current.pause();
-			audioElem.current.fastSeek(0);
+			audioElem.current.currentTime = 0;
 		} else {
 			audioElem.current.play();
 		}
@@ -85,7 +85,6 @@ function App() {
 		setIsMuted(true);
 		setShowComponent(false);
 	};
-	console.log(isMuted);
 
 	return (
 		<>
