@@ -60,12 +60,14 @@ const Audio = ({ title, srcImg1, srcImg2, srcTranscription, handleModalAudio, ur
 					{isPlaying ? "play" : "stop"}
 				</button>
 				<div className="modal-audio__waveform-container" ref={containerRef}></div>
-				<button className="modal-audio__button button--red" onClick={handleModalAudio}>
-					Reprendre l'enquête
-				</button>
-				<button className="modal-audio__button button--white" onClick={openInNewTab}>
-					Transcription
-				</button>
+				<div className="modal-audio__buttons">
+					<button className="modal-audio__button button--red" onClick={handleModalAudio}>
+						Reprendre l'enquête
+					</button>
+					<button className="modal-audio__button button--white" onClick={openInNewTab}>
+						Transcription
+					</button>
+				</div>
 			</div>
 		</div>
 	);
