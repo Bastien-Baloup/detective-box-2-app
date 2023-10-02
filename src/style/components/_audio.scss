@@ -1,28 +1,9 @@
 .modal-audio {
 	&__background {
-		position: fixed;
-		z-index: 1;
-		left: 0;
-		top: 0;
-		height: 100%;
-		width: 100%;
-		background-color: rgba(255, 255, 255, 0.3);
-		overflow: auto;
-		display: flex;
+		@include modaleBackground;
 	}
 	&__box {
-		z-index: 10;
-		margin: auto;
-		padding: 2rem;
-		width: 80%;
-		max-width: 1280px;
-		background: $primary-color;
-		border: solid 1px $secondary-color;
-		position: relative;
-		box-shadow: -5px 10px 30px 0px rgba(0, 0, 0, 0.4);
-		@include flex-center;
-		flex-direction: column;
-		gap: 2rem;
+		@include modaleBox(80%);
 	}
 	&__portraits {
 		display: flex;
