@@ -36,7 +36,7 @@ const BoxChoice = ({ boxNumber, cover, state }) => {
 		if (state == "done") {
 			return (
 				<>
-					<article className="Boxchoice--done" onClick={handleModal}>
+					<article className="Boxchoice--done" >
 						<div className="Boxchoice__picture-wrapper">
 							<img src={cover} className="Boxchoice__picture" />
 						</div>
@@ -71,7 +71,7 @@ const BoxChoice = ({ boxNumber, cover, state }) => {
 		if (state == "closed") {
 			return (
 				<>
-					<article className="Boxchoice--closed">
+					<article className="Boxchoice--closed" onClick={handleModal}>
 						<div className="Boxchoice__picture-wrapper">
 							<img src={cover} className="Boxchoice__picture" />
 						</div>
