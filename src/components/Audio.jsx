@@ -4,10 +4,10 @@
 import WaveSurfer from "wavesurfer.js";
 import { useEffect, useState, useRef } from "react";
 
-const Audio = ({ title, srcImg1, srcImg2, srcTranscription, handleModalAudio, url }) => {
+const Audio = ({ title, srcImg1, srcImg2, srcTranscription, handleModalAudio, srcAudio }) => {
 	const containerRef = useRef();
 	const waveSurferRef = useRef(false);
-	const [isPlaying, toggleIsPlaying] = useState(false);
+	const [isPlaying, setIsPlaying] = useState(false);
 
 	useEffect(() => {
 		const waveSurfer = WaveSurfer.create({
@@ -24,7 +24,7 @@ const Audio = ({ title, srcImg1, srcImg2, srcTranscription, handleModalAudio, ur
 			autoplay: true,
 			dragToSeek: true,
 		});
-		waveSurfer.load(url);
+		waveSurfer.load(srcAudio);
 		waveSurfer.on("ready", () => {
 			waveSurferRef.current = waveSurfer;
 		});
@@ -32,7 +32,7 @@ const Audio = ({ title, srcImg1, srcImg2, srcTranscription, handleModalAudio, ur
 		return () => {
 			waveSurfer.destroy();
 		};
-	}, [url]);
+	}, [srcAudio]);
 
 	const openInNewTab = () => {
 		window.open(srcTranscription, "_blank");
@@ -52,7 +52,7 @@ const Audio = ({ title, srcImg1, srcImg2, srcTranscription, handleModalAudio, ur
 				</div>
 				<button
 					onClick={() => {
-						toggleIsPlaying(!isPlaying);
+						setIsPlaying(!isPlaying);
 						waveSurferRef.current.playPause();
 					}}
 					type="button"

@@ -3,7 +3,8 @@
 		@include modaleBackground;
 	}
 	&__box {
-		@include modaleBox(50%);
+		@include modaleBox;
+		width: 60%;
 	}
 	&__buttons {
 		display: flex;

@@ -1,4 +1,4 @@
-// Pop-up document
+// When document seen, update state to put it into historique
 const Document = ({ title, srcElement, handleModalDocument }) => {
 	const openInNewTab = () => {
 		window.open(srcElement, "_blank");

@@ -3,7 +3,8 @@
 		@include modaleBackground;
 	}
 	&__box {
-		@include modaleBox(80%);
+		@include modaleBox;
+		width: 80%;
 	}
 	&__portraits {
 		display: flex;
