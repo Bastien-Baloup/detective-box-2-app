@@ -13,7 +13,7 @@ import Progression from "./components/Progression.jsx";
 import Quizz from "./components/Quizz.js";
 import Slider from "./components/Slider.js";
 import Tutoriel from "./components/Tutoriel.js";
-import Video from "./components/Video.js";
+import Video from "./components/Video.jsx";
 import Input from "./components/Input.jsx";
 import Filter from "./components/Filter.js";
 import Compte from "./components/Compte.js";
@@ -25,6 +25,7 @@ import Image from "./assets/img/LAUREN_DARK.png";
 import Saison1 from "./assets/img/Facing-episode1.png";
 import Saison2 from "./assets/img/Facing-episode2.png";
 import Saison3 from "./assets/img/Facing-episode3.png";
+import News from "./assets/media/DB_S02_203_v4_2-test.mp4";
 
 const api = new Api();
 
@@ -125,10 +126,15 @@ function App() {
 		);
 	};
 
-// These are the functions to test and display Document modal
-const handleModalDocument =()=>{
-	setShowComponent(false);
-}
+	// These are the functions to test and display Document modal
+	const handleModalDocument = () => {
+		setShowComponent(false);
+	};
+
+	// These are the functions to test and display Video modal
+	const handleModalVideo = () => {
+		setShowComponent(false);
+	};
 
 	return (
 		<>
@@ -170,15 +176,13 @@ const handleModalDocument =()=>{
 					srcImg2={Image}
 					srcTranscription={Image}
 					handleModalAudio={handleModalAudio}
-					url={Ambiance}
+					srcAudio={Ambiance}
 				/>
 			) : null}
 			{showComponent == "card" ? <Card /> : null}
-			{showComponent == "document" ? 				<Document
-					title="Document machin truc"
-					srcElement={Image}
-					handleModalDocument={handleModalDocument}
-				/> : null}
+			{showComponent == "document" ? (
+				<Document title="Document machin truc" srcElement={Image} handleModalDocument={handleModalDocument} />
+			) : null}
 			{showComponent == "loader" ? <Loader /> : null}
 			{showComponent == "nappe" ? (
 				<Nappe src={Ambiance} activateNappe={activateNappe} desactivateNappe={desactivateNappe} />
@@ -192,7 +196,9 @@ const handleModalDocument =()=>{
 			{showComponent == "quizz" ? <Quizz /> : null}
 			{showComponent == "slider" ? <Slider /> : null}
 			{showComponent == "tutoriel" ? <Tutoriel /> : null}
-			{showComponent == "video" ? <Video /> : null}
+			{showComponent == "video" ? (
+				<Video title="Video Breaking News" srcVideo={News} handleModalVideo={handleModalVideo} />
+			) : null}
 			{showComponent == "input" ? displayInputForm() : null}
 			{showComponent == "filter" ? <Filter /> : null}
 		</>

@@ -1,0 +1,25 @@
+.modal-video {
+	&__background {
+		@include modaleBackground;
+	}
+	&__box {
+		@include modaleBox;
+		width: 80%;
+	}
+}
+
+.modal-video__video {
+	height: 100%;
+	width: 100%;
+	&-container {
+		height: 100%;
+		width: 100%;
+	}
+}
+
+.modal-video__button {
+	visibility: hidden;
+	&-show {
+		visibility: visible;
+	}
+}
