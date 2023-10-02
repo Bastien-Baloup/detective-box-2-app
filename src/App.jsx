@@ -16,10 +16,15 @@ import Tutoriel from "./components/Tutoriel.js";
 import Video from "./components/Video.js";
 import Input from "./components/Input.jsx";
 import Filter from "./components/Filter.js";
+import Compte from "./components/Compte.js";
+import Boxchoice from "./components/Boxchoice.jsx";
 
 //Here are assets used to test components
 import Ambiance from "./assets/media/Musiques DB S2 - Thème Tueur.wav";
 import Image from "./assets/img/LAUREN_DARK.png";
+import Saison1 from "./assets/img/Facing-episode1.png";
+import Saison2 from "./assets/img/Facing-episode2.png";
+import Saison3 from "./assets/img/Facing-episode3.png";
 
 const api = new Api();
 
@@ -37,7 +42,7 @@ function App() {
 	// These are the const for the buttons to display or hide the components for test
 	const [showComponent, setShowComponent] = useState(false);
 
-	// functions to test the Input component
+	// These are the functions to test the Input component
 	const [valueInputTexte, setValueInputTexte] = useState("");
 	const [valueInputRadio, setValueInputRadio] = useState("");
 
@@ -65,8 +70,7 @@ function App() {
 		);
 	};
 
-	// functions to test the Nappe modale component
-	// la nappe sera différente en fonction des boîtes
+	// These are the functions to test the Nappe modale component
 	const [ambianceMute, setAmbianceMute] = useState(true);
 	const [ispreviouslyMuted, setIsPreviouslyMuted] = useState(true);
 	const audioElem = useRef();
@@ -90,8 +94,7 @@ function App() {
 		setShowComponent(false);
 	};
 
-	//functions to test the modal audio component
-
+	// These are the functions to test the modal Audio component
 	const handleModalAudio = () => {
 		if (ispreviouslyMuted) {
 			setShowComponent(false);
@@ -124,6 +127,17 @@ function App() {
 		);
 	};
 
+	//These are the functions to test and display Boxchoice component
+	const displayBoxChoice = () => {
+		return (
+			<div className="Boxchoice__wrapper">
+				<Boxchoice boxNumber="1" cover={Saison1} state="done" />
+				<Boxchoice boxNumber="2" cover={Saison2} state="open" />
+				<Boxchoice boxNumber="3" cover={Saison3} state="closed" />
+			</div>
+		);
+	};
+
 	return (
 		<>
 			<header>
@@ -135,6 +149,8 @@ function App() {
 				>
 					Audio
 				</button>
+				<button onClick={() => setShowComponent("compte")}>Compte</button>
+				<button onClick={() => setShowComponent("boxchoice")}>Box Choice</button>
 				<button onClick={() => setShowComponent("card")}>Card</button>
 				<button onClick={() => setShowComponent("document")}>Document</button>
 				<button onClick={() => setShowComponent("loader")}>Loader</button>
@@ -162,6 +178,8 @@ function App() {
 			{showComponent == "nappe" ? (
 				<Nappe src={Ambiance} activateNappe={activateNappe} desactivateNappe={desactivateNappe} />
 			) : null}
+			{showComponent == "compte" ? <Compte /> : null}
+			{showComponent == "boxchoice" ? displayBoxChoice() : null}
 			{showComponent == "nav" ? <Nav /> : null}
 			{showComponent == "objectif" ? <Objectif /> : null}
 			{showComponent == "preuve" ? <Preuve /> : null}

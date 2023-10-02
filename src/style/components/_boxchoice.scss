@@ -1,0 +1,91 @@
+.modal-boxdone {
+	&__background {
+		position: fixed;
+		z-index: 1;
+		left: 0;
+		top: 0;
+		height: 100%;
+		width: 100%;
+		background-color: rgba(255, 255, 255, 0.3);
+		overflow: auto;
+		display: flex;
+	}
+	&__box {
+		z-index: 10;
+		margin: auto;
+		padding: 2rem;
+		width: 50%;
+		max-width: 1280px;
+		background: $primary-color;
+		border: solid 1px $secondary-color;
+		position: relative;
+		box-shadow: -5px 10px 30px 0px rgba(0, 0, 0, 0.4);
+		flex-direction: column;
+		@include flex-center;
+		gap: 2rem;
+	}
+	&__icon {
+		width: 2.5rem;
+		align-self: self-end;
+		cursor: pointer;
+	}
+}
+
+.Boxchoice__wrapper {
+	display: flex;
+	gap: 2rem;
+}
+
+.Boxchoice--done,
+.Boxchoice--open,
+.Boxchoice--closed {
+	background-color: $secondary-color;
+	padding: 1rem;
+	width: 15rem;
+	height: 15rem;
+	position: relative;
+	cursor: pointer;
+	transition: transform 1s ease;
+	&:hover {
+		transform: scale(1.1);
+	}
+}
+
+.Boxchoice__greyFilter {
+	background-color: $primary-color;
+	opacity: 50%;
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+}
+
+.Boxchoice__picture-wrapper {
+	height: 80%;
+	border: solid 2px $secondary-color;
+	overflow: hidden;
+}
+
+.Boxchoice {
+	&__picture {
+		@include img-max;
+	}
+	&__info {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		height: 20%;
+		&__title {
+			font-family: "Fixture";
+			font-size: 2.5rem;
+			color: red;
+		}
+		&__icon-wrapper {
+			height: 2.5rem;
+		}
+		&__icon {
+			@include img-max;
+		}
+	}
+}
