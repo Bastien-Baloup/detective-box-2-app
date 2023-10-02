@@ -3,7 +3,7 @@ import Api from "./api.js";
 
 import Audio from "./components/Audio.jsx";
 import Card from "./components/Card.js";
-import Document from "./components/Document.js";
+import Document from "./components/Document.jsx";
 import Loader from "./components/Loader.jsx";
 import Nappe from "./components/Nappe.jsx";
 import Nav from "./components/Nav.js";
@@ -114,19 +114,6 @@ function App() {
 		console.log(ambianceMute, ispreviouslyMuted);
 	};
 
-	const displayModalAudio = () => {
-		return (
-			<Audio
-				title="Interrogatoire de Machin et Bidule"
-				srcImg1={Image}
-				srcImg2={Image}
-				srcTranscription={Image}
-				handleModalAudio={handleModalAudio}
-				url={Ambiance}
-			/>
-		);
-	};
-
 	//These are the functions to test and display Boxchoice component
 	const displayBoxChoice = () => {
 		return (
@@ -137,6 +124,11 @@ function App() {
 			</div>
 		);
 	};
+
+// These are the functions to test and display Document modal
+const handleModalDocument =()=>{
+	setShowComponent(false);
+}
 
 	return (
 		<>
@@ -171,9 +163,22 @@ function App() {
 					Votre navigateur ne prend pas en charge ce format
 				</audio>
 			</header>
-			{showComponent == "audio" ? displayModalAudio() : null}
+			{showComponent == "audio" ? (
+				<Audio
+					title="Interrogatoire de Machin et Bidule"
+					srcImg1={Image}
+					srcImg2={Image}
+					srcTranscription={Image}
+					handleModalAudio={handleModalAudio}
+					url={Ambiance}
+				/>
+			) : null}
 			{showComponent == "card" ? <Card /> : null}
-			{showComponent == "document" ? <Document /> : null}
+			{showComponent == "document" ? 				<Document
+					title="Document machin truc"
+					srcElement={Image}
+					handleModalDocument={handleModalDocument}
+				/> : null}
 			{showComponent == "loader" ? <Loader /> : null}
 			{showComponent == "nappe" ? (
 				<Nappe src={Ambiance} activateNappe={activateNappe} desactivateNappe={desactivateNappe} />
