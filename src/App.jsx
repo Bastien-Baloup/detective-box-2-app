@@ -6,7 +6,7 @@ import Card from "./components/Card.js";
 import Document from "./components/Document.jsx";
 import Loader from "./components/Loader.jsx";
 import Nappe from "./components/Nappe.jsx";
-import Nav from "./components/Nav.js";
+import Nav from "./components/Nav.jsx";
 import Objectif from "./components/Objectif.js";
 import Preuve from "./components/Preuve.js";
 import Progression from "./components/Progression.jsx";

@@ -1,0 +1,32 @@
+.nav {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	align-items: flex-end;
+	max-width: 100rem;
+	height: 2.5rem;
+	margin: 2rem;
+}
+.nav__container {
+	color: $secondary-color;
+	border: solid 1px $secondary-color;
+	display: flex;
+	gap: 2rem;
+	align-items: center;
+	padding: 1rem;
+	height: inherit;
+	font-size: 1rem;
+}
+.nav__icon {
+	// @include img-max;
+	height: 100%;
+	&__container {
+		height: 100%;
+	}
+}
+
+.nav--active {
+	height: 4rem;
+	border-bottom: solid 1px $primary-color;
+	font-size: 1.5rem;
+	font-weight: 400;
+}
