@@ -1,15 +1,15 @@
-.ProgressBar {
+.progressBar {
 	// display: grid;
 	// grid-template-columns: 1fr 1fr 1fr;
 	display: flex;
 	flex-wrap: nowrap;
-	&_Box {
+	&__box {
 		display: flex;
 		align-items: end;
-		&_Steps {
+		&__steps {
 			flex: none;
 		}
-		&_Icons {
+		&__icons {
 			display: flex;
 			flex-wrap: nowrap;
 			padding: 0.4rem 0;
@@ -17,7 +17,7 @@
 	}
 }
 
-.ProgressBar_Box_Icon {
+.progressBar__box__icon {
 	&-small {
 		padding: 0 0.2rem;
 	}
@@ -26,7 +26,7 @@
 	}
 }
 
-.ProgressBar_Box_Title {
+.progressBar__box__title {
 	color: $tertiary-color;
 	font-family: "Gabriele";
 	&-played {
