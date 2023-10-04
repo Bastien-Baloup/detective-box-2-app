@@ -1,0 +1,14 @@
+.modal-nappe {
+	&__background {
+		@include modaleBackground;
+	}
+	&__box {
+		@include modaleBox;
+		width: 60%;
+	}
+	&__buttons {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+	}
+}
