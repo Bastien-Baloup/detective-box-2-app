@@ -1,28 +1,9 @@
 .modal-boxdone {
 	&__background {
-		position: fixed;
-		z-index: 1;
-		left: 0;
-		top: 0;
-		height: 100%;
-		width: 100%;
-		background-color: rgba(255, 255, 255, 0.3);
-		overflow: auto;
-		display: flex;
+		@include modaleBackground;
 	}
 	&__box {
-		z-index: 10;
-		margin: auto;
-		padding: 2rem;
-		width: 50%;
-		max-width: 1280px;
-		background: $primary-color;
-		border: solid 1px $secondary-color;
-		position: relative;
-		box-shadow: -5px 10px 30px 0px rgba(0, 0, 0, 0.4);
-		flex-direction: column;
-		@include flex-center;
-		gap: 2rem;
+		@include modaleBox;
 	}
 	&__icon {
 		width: 2.5rem;
@@ -31,27 +12,32 @@
 	}
 }
 
-.Boxchoice__wrapper {
+.boxchoice__wrapper {
 	display: flex;
 	gap: 2rem;
 }
 
-.Boxchoice--done,
-.Boxchoice--open,
-.Boxchoice--closed {
-	background-color: $secondary-color;
-	padding: 1rem;
+.boxchoice {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+	background-image: url("./../assets/img/DB-papier-froisse.jpg");
+	background-size: cover;
+	padding: 1rem 0.5rem;
 	width: 15rem;
 	height: 15rem;
 	position: relative;
 	cursor: pointer;
-	transition: transform 1s ease;
-	&:hover {
-		transform: scale(1.1);
+	// transition: transform 1s ease;
+	animation: float 6s ease-in-out infinite;
+	@for $i from 1 through 3 {
+		&:nth-child(#{$i}) {
+			animation-delay: $i * 1.5s;
+		}
 	}
 }
 
-.Boxchoice__greyFilter {
+.boxchoice__greyFilter {
 	background-color: $primary-color;
 	opacity: 50%;
 	height: 100%;
@@ -61,35 +47,48 @@
 	left: 0px;
 }
 
-.Boxchoice__picture-wrapper {
-	height: 80%;
-	border: solid 2px $secondary-color;
-	overflow: hidden;
+.boxchoice__picture {
+	@include img-max;
+	&-wrapper {
+		// height: 80%;
+		border: solid 1px lightgray;
+		overflow: hidden;
+	}
 }
 
-.Boxchoice {
-	&__picture {
+.boxchoice__info {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	// height: 20%;
+	&__title {
+		font-family: "Fixture";
+		font-size: 2.5rem;
+		color: red;
+	}
+	&__icon-wrapper {
+		height: 2.5rem;
+	}
+	&__icon {
 		@include img-max;
 	}
-	&__info {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		height: 20%;
-		&__title {
-			font-family: "Fixture";
-			font-size: 2.5rem;
-			color: red;
-		}
-		&__icon-wrapper {
-			height: 2.5rem;
-		}
-		&__icon {
-			@include img-max;
-		}
+}
+
+.boxchoice--closed {
+	cursor: not-allowed;
+	.boxchoice__info__title {
+		color: $primary-color;
 	}
 }
 
-.Boxchoice--closed .Boxchoice__info__title{
-	color: $primary-color;
+@keyframes float {
+	0% {
+		transform: translatey(0px);
+	}
+	50% {
+		transform: translatey(-5px);
+	}
+	100% {
+		transform: translatey(0px);
+	}
 }

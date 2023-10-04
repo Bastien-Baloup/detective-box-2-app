@@ -36,14 +36,14 @@ const BoxChoice = ({ boxNumber, cover, state }) => {
 		if (state == "done") {
 			return (
 				<>
-					<article className="Boxchoice--done" onClick={handleModal}>
-						<div className="Boxchoice__picture-wrapper">
-							<img src={cover} className="Boxchoice__picture" />
+					<article className="boxchoice boxchoice--done" onClick={handleModal}>
+						<div className="boxchoice__picture-wrapper">
+							<img src={cover} className="boxchoice__picture" />
 						</div>
-						<div className="Boxchoice__info">
-							<h2 className="Boxchoice__info__title">Box {boxNumber}</h2>
-							<div className="Boxchoice__info__icon-wrapper">
-								<img src={Check} className="Boxchoice__info__icon" />
+						<div className="boxchoice__info">
+							<h2 className="boxchoice__info__title">Box {boxNumber}</h2>
+							<div className="boxchoice__info__icon-wrapper">
+								<img src={Check} className="boxchoice__info__icon" />
 							</div>
 						</div>
 					</article>
@@ -54,14 +54,14 @@ const BoxChoice = ({ boxNumber, cover, state }) => {
 			// This should be a Link
 			return (
 				<>
-					<article className="Boxchoice--open">
-						<div className="Boxchoice__picture-wrapper">
-							<img src={cover} className="Boxchoice__picture" />
+					<article className="boxchoice boxchoice--open">
+						<div className="boxchoice__picture-wrapper">
+							<img src={cover} className="boxchoice__picture" />
 						</div>
-						<div className="Boxchoice__info">
-							<h2 className="Boxchoice__info__title">Box {boxNumber}</h2>
-							<div className="Boxchoice__info__icon-wrapper">
-								<img src={Lockopen} className="Boxchoice__info__icon" />
+						<div className="boxchoice__info">
+							<h2 className="boxchoice__info__title">Box {boxNumber}</h2>
+							<div className="boxchoice__info__icon-wrapper">
+								<img src={Lockopen} className="boxchoice__info__icon" />
 							</div>
 						</div>
 					</article>
@@ -71,17 +71,17 @@ const BoxChoice = ({ boxNumber, cover, state }) => {
 		if (state == "closed") {
 			return (
 				<>
-					<article className="Boxchoice--closed" >
-						<div className="Boxchoice__picture-wrapper">
-							<img src={cover} className="Boxchoice__picture" />
+					<article className="boxchoice boxchoice--closed" >
+						<div className="boxchoice__picture-wrapper">
+							<img src={cover} className="boxchoice__picture" />
 						</div>
-						<div className="Boxchoice__info">
-							<h2 className="Boxchoice__info__title">Box {boxNumber}</h2>
-							<div className="Boxchoice__info__icon-wrapper">
-								<img src={Lockclosed} className="Boxchoice__info__icon" />
+						<div className="boxchoice__info">
+							<h2 className="boxchoice__info__title">Box {boxNumber}</h2>
+							<div className="boxchoice__info__icon-wrapper">
+								<img src={Lockclosed} className="boxchoice__info__icon" />
 							</div>
 						</div>
-						<div className="Boxchoice__greyFilter"></div>
+						<div className="boxchoice__greyFilter"></div>
 					</article>
 				</>
 			);
