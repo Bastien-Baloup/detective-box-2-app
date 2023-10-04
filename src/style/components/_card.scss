@@ -1,0 +1,18 @@
+.card {
+	width: 15rem;
+	height: 30rem;
+	position: relative;
+	cursor: pointer;
+	transition: width 1s ease;
+	border: solid 1px $secondary-color;
+	&:hover {
+		width: 20rem;
+	}
+	&__contentImg {
+		height: 100%;
+		width: 100%;
+	}
+	&__portrait {
+		@include img-max;
+	}
+}

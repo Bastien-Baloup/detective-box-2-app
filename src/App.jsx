@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import Api from "./api.js";
 
 import Audio from "./components/Audio.jsx";
-import Card from "./components/Card.js";
+import Card from "./components/Card.jsx";
 import Document from "./components/Document.jsx";
 import Loader from "./components/Loader.jsx";
 import Nappe from "./components/Nappe.jsx";
@@ -10,7 +10,7 @@ import Nav from "./components/Nav.jsx";
 import Objectif from "./components/Objectif.js";
 import Preuve from "./components/Preuve.js";
 import Progression from "./components/Progression.jsx";
-import Quizz from "./components/Quizz.js";
+import Quizz from "./components/Quizz.js"; 
 import Slider from "./components/Slider.js";
 import Tutoriel from "./components/Tutoriel.js";
 import Video from "./components/Video.jsx";
@@ -26,6 +26,7 @@ import Saison1 from "./assets/img/Facing-episode1.png";
 import Saison2 from "./assets/img/Facing-episode2.png";
 import Saison3 from "./assets/img/Facing-episode3.png";
 import News from "./assets/media/DB_S02_203_v4_2-test.mp4";
+import IconLauren from "./assets/icons/Logo_Lauren.svg";
 
 const api = new Api();
 
@@ -118,7 +119,7 @@ function App() {
 	//These are the functions to test and display Boxchoice component
 	const displayBoxChoice = () => {
 		return (
-			<div className="Boxchoice__wrapper">
+			<div className="boxchoice__wrapper">
 				<Boxchoice boxNumber="1" cover={Saison1} state="done" />
 				<Boxchoice boxNumber="2" cover={Saison2} state="open" />
 				<Boxchoice boxNumber="3" cover={Saison3} state="closed" />
@@ -179,7 +180,7 @@ function App() {
 					srcAudio={Ambiance}
 				/>
 			) : null}
-			{showComponent == "card" ? <Card /> : null}
+			{showComponent == "card" ? <Card srcImg ={Image} srcIcon={IconLauren} name="Lauren Fraser" contentButton="Faire un interrogatoire"/> : null}
 			{showComponent == "document" ? (
 				<Document title="Document machin truc" srcElement={Image} handleModalDocument={handleModalDocument} />
 			) : null}
