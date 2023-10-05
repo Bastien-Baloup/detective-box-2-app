@@ -80,7 +80,7 @@ function App() {
 	useEffect(() => {
 		if (ambianceMute) {
 			audioElem.current.pause();
-			audioElem.current.currentTime = 0;
+			// audioElem.current.currentTime = 0;
 		} else {
 			audioElem.current.play();
 		}
