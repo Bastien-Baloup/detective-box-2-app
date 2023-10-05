@@ -1,3 +1,9 @@
+.card__wrapper{
+	display: flex;
+	gap: 2rem;
+}
+
+
 .card {
 	width: 15rem;
 	height: 30rem;
@@ -5,14 +11,65 @@
 	cursor: pointer;
 	transition: width 1s ease;
 	border: solid 1px $secondary-color;
+	overflow: hidden;
 	&:hover {
 		width: 20rem;
+	}
+	&:hover .card__icon {
+		opacity: 0;
+	}
+	&:hover .card__button {
+		// opacity: 1;
+		transform: translateY(0);
+	}
+	&:hover .card__name {
+		transform: translateY(0);
+	}
+	&:hover .card__contentImg {
+		filter: grayscale(0%);
 	}
 	&__contentImg {
 		height: 100%;
 		width: 100%;
+		filter: grayscale(100%);
+		transition: filter 500ms ease-in-out;
+	}
+	&__contentImg--unavailable{
+		height: 100%;
+		width: 100%;
+		filter: grayscale(100%) blur(0.5rem);
+		// transition: filter 500ms ease-in-out;
 	}
 	&__portrait {
 		@include img-max;
+	}
+	&__contentText {
+		height: 50%;
+		width: 100%;
+		max-width: 100%;
+		position: absolute;
+		top: 45%;
+		left: 0px;
+
+		// display: flex;
+		// flex-direction: column;
+		// justify-content: space-between;
+	}
+	&__icon {
+		padding: 0 2rem;
+		transition: opacity 500ms ease-in-out;
+		height: inherit;
+	}
+	&__name {
+		margin: 1rem;
+		font-family: "Gabriele";
+		transform: translateY(500%);
+		transition: transform 500ms ease-in-out;
+	}
+	&__button {
+		// opacity: 0;
+		transform: translateY(500%);
+		// transition: opacity 300ms ease-in-out, transform 800ms ease-in-out;
+		transition: transform 800ms ease-in-out;
 	}
 }

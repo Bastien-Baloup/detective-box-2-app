@@ -10,7 +10,7 @@ import Nav from "./components/Nav.jsx";
 import Objectif from "./components/Objectif.js";
 import Preuve from "./components/Preuve.js";
 import Progression from "./components/Progression.jsx";
-import Quizz from "./components/Quizz.js"; 
+import Quizz from "./components/Quizz.js";
 import Slider from "./components/Slider.js";
 import Tutoriel from "./components/Tutoriel.js";
 import Video from "./components/Video.jsx";
@@ -137,6 +137,64 @@ function App() {
 		setShowComponent(false);
 	};
 
+	//These are the functions to test and display Card component
+	const displayCard = () => {
+		return (
+			<div className="card__wrapper">
+				<Card
+					srcImg={Image}
+					srcIcon={IconLauren}
+					name="Lauren Fraser"
+					contentButton="Faire un interrogatoire"
+					actionButton={normalCardAction}
+					state=""
+				/>
+				<Card
+					srcImg={Image}
+					srcIcon={IconLauren}
+					name="Lauren Fraser"
+					contentButton="Faire un interrogatoire"
+					actionButton={normalCardAction}
+					state=""
+				/>
+				<Card
+					srcImg={Image}
+					srcIcon={IconLauren}
+					name="Lauren Fraser"
+					contentButton="Faire un interrogatoire"
+					actionButton={specificCardAction}
+					state="unavailable"
+				/>
+			</div>
+		);
+	};
+
+	const normalCardAction = () => {
+		alert("vous vous rendez sur la page du membre");
+	};
+
+	const [modalCard, setModal] = useState(false);
+
+	const specificCardAction = () => {
+		console.log("ça marche");
+		setModal(!modalCard);
+	};
+
+	const displayModalCard = () => {
+		return (
+			<div className="modal-boxdone__background">
+				<div className="modal-boxdone__box">
+					<p className="modal-boxdone__text">
+						Oh non ! <br></br> Quelque chose est arrivée à Lauren. Rendez-vous à l'agence !
+					</p>
+					<button className="modal-boxdone__button button--red" onClick={specificCardAction}>
+						Continuer l'enquête.
+					</button>
+				</div>
+			</div>
+		);
+	};
+
 	return (
 		<>
 			<header>
@@ -170,38 +228,41 @@ function App() {
 					Votre navigateur ne prend pas en charge ce format
 				</audio>
 			</header>
-			{showComponent == "audio" ? (
-				<Audio
-					title="Interrogatoire de Machin et Bidule"
-					srcImg1={Image}
-					srcImg2={Image}
-					srcTranscription={Image}
-					handleModalAudio={handleModalAudio}
-					srcAudio={Ambiance}
-				/>
-			) : null}
-			{showComponent == "card" ? <Card srcImg ={Image} srcIcon={IconLauren} name="Lauren Fraser" contentButton="Faire un interrogatoire"/> : null}
-			{showComponent == "document" ? (
-				<Document title="Document machin truc" srcElement={Image} handleModalDocument={handleModalDocument} />
-			) : null}
-			{showComponent == "loader" ? <Loader /> : null}
-			{showComponent == "nappe" ? (
-				<Nappe src={Ambiance} activateNappe={activateNappe} desactivateNappe={desactivateNappe} />
-			) : null}
-			{showComponent == "compte" ? <Compte /> : null}
-			{showComponent == "boxchoice" ? displayBoxChoice() : null}
-			{showComponent == "nav" ? <Nav /> : null}
-			{showComponent == "objectif" ? <Objectif /> : null}
-			{showComponent == "preuve" ? <Preuve /> : null}
-			{showComponent == "progression" ? <Progression /> : null}
-			{showComponent == "quizz" ? <Quizz /> : null}
-			{showComponent == "slider" ? <Slider /> : null}
-			{showComponent == "tutoriel" ? <Tutoriel /> : null}
-			{showComponent == "video" ? (
-				<Video title="Video Breaking News" srcVideo={News} handleModalVideo={handleModalVideo} />
-			) : null}
-			{showComponent == "input" ? displayInputForm() : null}
-			{showComponent == "filter" ? <Filter /> : null}
+			<main>
+				{modalCard ? displayModalCard() : null}
+				{showComponent == "audio" ? (
+					<Audio
+						title="Interrogatoire de Machin et Bidule"
+						srcImg1={Image}
+						srcImg2={Image}
+						srcTranscription={Image}
+						handleModalAudio={handleModalAudio}
+						srcAudio={Ambiance}
+					/>
+				) : null}
+				{showComponent == "card" ? displayCard() : null}
+				{showComponent == "document" ? (
+					<Document title="Document machin truc" srcElement={Image} handleModalDocument={handleModalDocument} />
+				) : null}
+				{showComponent == "loader" ? <Loader /> : null}
+				{showComponent == "nappe" ? (
+					<Nappe src={Ambiance} activateNappe={activateNappe} desactivateNappe={desactivateNappe} />
+				) : null}
+				{showComponent == "compte" ? <Compte /> : null}
+				{showComponent == "boxchoice" ? displayBoxChoice() : null}
+				{showComponent == "nav" ? <Nav /> : null}
+				{showComponent == "objectif" ? <Objectif /> : null}
+				{showComponent == "preuve" ? <Preuve /> : null}
+				{showComponent == "progression" ? <Progression /> : null}
+				{showComponent == "quizz" ? <Quizz /> : null}
+				{showComponent == "slider" ? <Slider /> : null}
+				{showComponent == "tutoriel" ? <Tutoriel /> : null}
+				{showComponent == "video" ? (
+					<Video title="Video Breaking News" srcVideo={News} handleModalVideo={handleModalVideo} />
+				) : null}
+				{showComponent == "input" ? displayInputForm() : null}
+				{showComponent == "filter" ? <Filter /> : null}
+			</main>
 		</>
 	);
 }
