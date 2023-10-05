@@ -1,7 +1,10 @@
 import RoundWhite from "../assets/icons/Icon_Round-white.svg";
 import RoundRed from "../assets/icons/Icon_Round-red.svg";
-import LineWhite from "../assets/icons/Icon_Line-white.svg";
-import LineRed from "../assets/icons/Icon_Line-red.svg";
+import LineMediumWhite from "../assets/icons/Icon_Line_Medium-white.svg";
+import LineSmallWhite from "../assets/icons/Icon_Line_Small-white.svg";
+import LineBigRed from "../assets/icons/Icon_Line_Big-red.svg";
+import LineMediumRed from "../assets/icons/Icon_Line_Medium-red.svg";
+import LineSmallRed from "../assets/icons/Icon_Line_Small-red.svg";
 import CheckWhite from "../assets/icons/Icon_Check-white.svg";
 import CrossRed from "../assets/icons/Icon_Cross-red.svg";
 import Flag from "../assets/icons/Icon_Flag.svg";
@@ -31,11 +34,11 @@ const Progression = () => {
 			return (
 				<>
 					<img className="progressBar__box__icon-small" src={RoundWhite} />
-					<img className="progressBar__box__icon-small" src={LineWhite} />
+					<img className="progressBar__box__icon-small" src={LineMediumWhite} />
 					<img className="progressBar__box__icon-small" src={RoundWhite} />
-					<img className="progressBar__box__icon-small" src={LineWhite} />
+					<img className="progressBar__box__icon-small" src={LineSmallWhite} />
 					<img className="progressBar__box__icon-small" src={RoundWhite} />
-					<img className="progressBar__box__icon-small" src={LineWhite} />
+					<img className="progressBar__box__icon-small" src={LineSmallWhite} />
 					<img className="progressBar__box__icon-small" src={RoundWhite} />
 				</>
 			);
@@ -43,11 +46,11 @@ const Progression = () => {
 		return (
 			<>
 				<img className="progressBar__box__icon-small" src={currentStep < 1 ? RoundRed : RoundWhite} />
-				<img className="progressBar__box__icon-small" src={currentStep < 2 ? LineRed : LineWhite} />
+				<img className="progressBar__box__icon-small" src={currentStep < 2 ? LineMediumRed : LineMediumWhite} />
 				<img className="progressBar__box__icon-small" src={currentStep < 2 ? RoundRed : RoundWhite} />
-				<img className="progressBar__box__icon-small" src={currentStep < 3 ? LineRed : LineWhite} />
+				<img className="progressBar__box__icon-small" src={currentStep < 3 ? LineSmallRed : LineSmallWhite} />
 				<img className="progressBar__box__icon-small" src={currentStep < 3 ? RoundRed : RoundWhite} />
-				<img className="progressBar__box__icon-small" src={currentStep < 4 ? LineRed : LineWhite} />
+				<img className="progressBar__box__icon-small" src={currentStep < 4 ? LineSmallRed : LineSmallWhite} />
 				<img className="progressBar__box__icon-small" src={currentStep < 4 ? RoundRed : RoundWhite} />
 			</>
 		);
@@ -57,7 +60,7 @@ const Progression = () => {
 		return (
 			<>
 				<img className="progressBar__box__icon-small" src={RoundRed} />
-				<img className="progressBar__box__icon-small" src={LineRed} />
+				<img className="progressBar__box__icon-small" src={LineBigRed} />
 				<img className="progressBar__box__icon-small" src={RoundRed} />
 			</>
 		);
