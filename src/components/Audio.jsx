@@ -1,6 +1,8 @@
 // When audio done, update state to put it into historique
 //https://wavesurfer.xyz/
 
+import Play from "../assets/icons/Icon_Play.svg";
+import Pause from "../assets/icons/Icon_Pause.svg";
 import WaveSurfer from "wavesurfer.js";
 import { useEffect, useState, useRef } from "react";
 
@@ -50,21 +52,23 @@ const Audio = ({ title, srcImg1, srcImg2, srcTranscription, handleModalAudio, sr
 						<img className="modal-audio__portrait" src={srcImg2} />
 					</div>
 				</div>
-				<button
-					onClick={() => {
-						setIsPlaying(!isPlaying);
-						waveSurferRef.current.playPause();
-					}}
-					type="button"
-				>
-					{isPlaying ? "play" : "stop"}
-				</button>
-				<div className="modal-audio__waveform-container" ref={containerRef}></div>
+				<div className="modal-audio__player">
+					<button
+						className="modal-audio__player__button"
+						onClick={() => {
+							setIsPlaying(!isPlaying);
+							waveSurferRef.current.playPause();
+						}}
+					>
+						<img className="modal-audio__player__icon" src={isPlaying ? Play : Pause} />
+					</button>
+					<div className="modal-audio__player__waveform-container" ref={containerRef}></div>
+				</div>
 				<div className="modal-audio__buttons">
-					<button className="modal-audio__button button--red" onClick={handleModalAudio}>
+					<button className="modal-audio__button--resume button--red" onClick={handleModalAudio}>
 						Reprendre l'enquête
 					</button>
-					<button className="modal-audio__button button--white" onClick={openInNewTab}>
+					<button className="modal-audio__button--display button--white" onClick={openInNewTab}>
 						Transcription
 					</button>
 				</div>
