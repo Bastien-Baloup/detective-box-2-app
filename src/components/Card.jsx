@@ -1,18 +1,5 @@
 // Cartes d'accès aux pages des différents membres
 const Card = ({ srcImg, srcIcon, name, contentButton, actionButton, state }) => {
-	// const isAvailable = () => {
-	// 	if (state == "available") {
-	// 		return (
-	// 			<div className="card__contentImg">
-	// 				<img className="card__portrait" src={srcImg} />
-	// 			</div>
-	// 		);
-	// 	} else {
-	// 		<div className="card__contentImg--unavailable">
-	// 			<img className="card__portrait" src={srcImg} />
-	// 		</div>;
-	// 	}
-	// };
 
 	return (
 		<div className="card">

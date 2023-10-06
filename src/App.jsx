@@ -16,7 +16,7 @@ import Tutoriel from "./components/Tutoriel.js";
 import Video from "./components/Video.jsx";
 import Input from "./components/Input.jsx";
 import Filter from "./components/Filter.js";
-import Compte from "./components/Compte.js";
+import Compte from "./components/Compte.jsx";
 import Boxchoice from "./components/Boxchoice.jsx";
 
 //Here are assets used to test components
@@ -188,7 +188,7 @@ function App() {
 						Oh non ! <br></br> Quelque chose est arrivée à Lauren. Rendez-vous à l'agence !
 					</p>
 					<button className="modal-boxdone__button button--red" onClick={specificCardAction}>
-						Continuer l'enquête.
+						Continuer l'enquête
 					</button>
 				</div>
 			</div>
