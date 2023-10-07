@@ -4,21 +4,21 @@ import Interrogation from "../assets/icons/Icon_mini_Interrogation.svg";
 import Location from "../assets/icons/Icon_mini_Location.svg";
 import Video from "../assets/icons/Icon_mini_Video.svg";
 
-const Preuve = ({ title, type, detail, cover, handleModal }) => {
+const Preuve = ({ title, category, detail, cover, handleModal }) => {
 	const findIcon = () => {
-		if (type == "archive") {
+		if (category == "Archive") {
 			return Archive;
 		}
-		if (type == "document") {
+		if (category == "Document") {
 			return Document;
 		}
-		if (type == "audio") {
+		if (category == "Interrogatoire") {
 			return Interrogation;
 		}
-		if (type == "location") {
+		if (category == "Lieu") {
 			return Location;
 		}
-		if (type == "video") {
+		if (category == "Vidéo") {
 			return Video ;
 		}
 	};
