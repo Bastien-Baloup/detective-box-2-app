@@ -7,7 +7,7 @@ import Document from "./components/Document.jsx";
 import Loader from "./components/Loader.jsx";
 import Nappe from "./components/Nappe.jsx";
 import Nav from "./components/Nav.jsx";
-import Objectif from "./components/Objectif.js";
+import Objectif from "./components/Objectif.jsx";
 import Preuve from "./components/Preuve.js";
 import Progression from "./components/Progression.jsx";
 import Quizz from "./components/Quizz.js";
@@ -195,6 +195,28 @@ function App() {
 		);
 	};
 
+	//These are the functions to test and display Objectif component
+
+	const displayObjectif = () => {
+		return (
+			<div className="objectif__wrapper">
+				<Objectif
+					title="Remonter la piste trouvée par Lauren"
+					subtitle="Où le tueur avait emmené Annina ?"
+					detail=""
+					state="done"
+				/>
+				<Objectif
+					title="Remonter la piste trouvée par Lauren"
+					subtitle="Où le tueur avait emmené Annina ?"
+					detail="Voici le détail de l'objectif, il va donner plus d'informations aux joueurs sur ce qu'il faut faire"
+					state="open"
+				/>
+				<Objectif title="Ceci est un objectif qui est fermé" detail="" state="closed" />
+			</div>
+		);
+	};
+
 	return (
 		<>
 			<header>
@@ -251,7 +273,7 @@ function App() {
 				{showComponent == "compte" ? <Compte /> : null}
 				{showComponent == "boxchoice" ? displayBoxChoice() : null}
 				{showComponent == "nav" ? <Nav /> : null}
-				{showComponent == "objectif" ? <Objectif /> : null}
+				{showComponent == "objectif" ? displayObjectif() : null}
 				{showComponent == "preuve" ? <Preuve /> : null}
 				{showComponent == "progression" ? <Progression /> : null}
 				{showComponent == "quizz" ? <Quizz /> : null}
