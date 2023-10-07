@@ -8,7 +8,7 @@ import Loader from "./components/Loader.jsx";
 import Nappe from "./components/Nappe.jsx";
 import Nav from "./components/Nav.jsx";
 import Objectif from "./components/Objectif.jsx";
-import Preuve from "./components/Preuve.js";
+import Preuve from "./components/Preuve.jsx";
 import Progression from "./components/Progression.jsx";
 import Quizz from "./components/Quizz.js";
 import Slider from "./components/Slider.js";
@@ -196,7 +196,6 @@ function App() {
 	};
 
 	//These are the functions to test and display Objectif component
-
 	const displayObjectif = () => {
 		return (
 			<div className="objectif__wrapper">
@@ -213,6 +212,49 @@ function App() {
 					state="open"
 				/>
 				<Objectif title="Ceci est un objectif qui est fermé" detail="" state="closed" />
+			</div>
+		);
+	};
+
+	//These are the functions to test and display Preuve component
+	const displayPreuve = () => {
+		return (
+			<div className="clue__wrapper">
+				<Preuve
+					title=" Poème de Garraud"
+					type="archive"
+					detail="Ceci est une description pour voir à quoi ressemblerai cet élément"
+					cover={Saison1}
+					handleModal=""
+				/>
+				<Preuve
+					title=" Poème de Garraud"
+					type="document"
+					detail="Ceci est une description pour voir à quoi ressemblerai cet élément"
+					cover={Saison1}
+					handleModal=""
+				/>
+				<Preuve
+					title=" Poème de Garraud"
+					type="video"
+					detail="Ceci est une description pour voir à quoi ressemblerai cet élément"
+					cover={Saison1}
+					handleModal=""
+				/>
+				<Preuve
+					title=" Poème de Garraud"
+					type="audio"
+					detail="Ceci est une description pour voir à quoi ressemblerai cet élément"
+					cover={Saison1}
+					handleModal=""
+				/>
+				<Preuve
+					title=" Poème de Garraud"
+					type="location"
+					detail="Ceci est une description pour voir à quoi ressemblerai cet élément"
+					cover={Saison1}
+					handleModal=""
+				/>
 			</div>
 		);
 	};
@@ -274,7 +316,7 @@ function App() {
 				{showComponent == "boxchoice" ? displayBoxChoice() : null}
 				{showComponent == "nav" ? <Nav /> : null}
 				{showComponent == "objectif" ? displayObjectif() : null}
-				{showComponent == "preuve" ? <Preuve /> : null}
+				{showComponent == "preuve" ? displayPreuve() : null}
 				{showComponent == "progression" ? <Progression /> : null}
 				{showComponent == "quizz" ? <Quizz /> : null}
 				{showComponent == "slider" ? <Slider /> : null}
