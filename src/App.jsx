@@ -12,10 +12,9 @@ import Preuve from "./components/Preuve.jsx";
 import Progression from "./components/Progression.jsx";
 import Quizz from "./components/Quizz.js";
 import Slider from "./components/Slider.js";
-import Tutoriel from "./components/Tutoriel.js";
 import Video from "./components/Video.jsx";
 import Input from "./components/Input.jsx";
-import Filter from "./components/Filter.js";
+import Filter from "./components/Filter.jsx";
 import Compte from "./components/Compte.jsx";
 import Boxchoice from "./components/Boxchoice.jsx";
 
@@ -222,40 +221,74 @@ function App() {
 			<div className="clue__wrapper">
 				<Preuve
 					title=" Poème de Garraud"
-					type="archive"
+					category="Archive"
 					detail="Ceci est une description pour voir à quoi ressemblerai cet élément"
 					cover={Saison1}
 					handleModal=""
 				/>
 				<Preuve
 					title=" Poème de Garraud"
-					type="document"
+					category="Document"
 					detail="Ceci est une description pour voir à quoi ressemblerai cet élément"
 					cover={Saison1}
 					handleModal=""
 				/>
 				<Preuve
 					title=" Poème de Garraud"
-					type="video"
+					category="Vidéo"
 					detail="Ceci est une description pour voir à quoi ressemblerai cet élément"
 					cover={Saison1}
 					handleModal=""
 				/>
 				<Preuve
 					title=" Poème de Garraud"
-					type="audio"
+					category="Interrogatoire"
 					detail="Ceci est une description pour voir à quoi ressemblerai cet élément"
 					cover={Saison1}
 					handleModal=""
 				/>
 				<Preuve
 					title=" Poème de Garraud"
-					type="location"
+					category="Lieu"
 					detail="Ceci est une description pour voir à quoi ressemblerai cet élément"
 					cover={Saison1}
 					handleModal=""
 				/>
 			</div>
+		);
+	};
+
+	//These are the functions to test and display Filter component
+	const filtersType = ["Archives", "Document", "Vidéo", "Interrogatoire", "Lieu"];
+	const filterBox = ["Box 1", "Box 2", "Box 3"];
+	const [selectedFilters, setSelectedFilters] = useState([]);
+	console.log(selectedFilters);
+
+	const handleFilter = (selectedCategory) => {
+		if (selectedFilters.includes(selectedCategory)) {
+			let filters = selectedFilters.filter((element) => element !== selectedCategory);
+			setSelectedFilters(filters);
+		} else {
+			setSelectedFilters([...selectedFilters, selectedCategory]);
+		}
+	};
+
+	const displayFilter = () => {
+		return (
+			<>
+				<div className="filter__container">
+					<div className="filter--type__container">
+						{filtersType.map((category, index) => (
+							<Filter category={category} key={`filterType-${index}`} handleSearch={() => handleFilter(category)} />
+						))}
+					</div>
+					<div className="filter--box__container">
+						{filterBox.map((category, index) => (
+							<Filter category={category} key={`filterBox-${index}`} handleSearch={() => handleFilter(category)} />
+						))}
+					</div>
+				</div>
+			</>
 		);
 	};
 
@@ -282,7 +315,6 @@ function App() {
 				<button onClick={() => setShowComponent("progression")}>Progression</button>
 				<button onClick={() => setShowComponent("quizz")}>Quizz</button>
 				<button onClick={() => setShowComponent("slider")}>Slider</button>
-				<button onClick={() => setShowComponent("tutoriel")}>Tutoriel</button>
 				<button onClick={() => setShowComponent("video")}>Video</button>
 				<button onClick={() => setShowComponent("input")}>Input</button>
 				<button onClick={() => setShowComponent("filter")}>Filter</button>
@@ -320,12 +352,11 @@ function App() {
 				{showComponent == "progression" ? <Progression /> : null}
 				{showComponent == "quizz" ? <Quizz /> : null}
 				{showComponent == "slider" ? <Slider /> : null}
-				{showComponent == "tutoriel" ? <Tutoriel /> : null}
 				{showComponent == "video" ? (
 					<Video title="Video Breaking News" srcVideo={News} handleModalVideo={handleModalVideo} />
 				) : null}
 				{showComponent == "input" ? displayInputForm() : null}
-				{showComponent == "filter" ? <Filter /> : null}
+				{showComponent == "filter" ? displayFilter() : null}
 			</main>
 		</>
 	);
