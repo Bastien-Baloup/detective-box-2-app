@@ -298,8 +298,12 @@ function App() {
 		{ title: "item2", detail: "detail2" },
 		{ title: "item3", detail: "detail3" },
 	];
+	const handleCloseSlider = () => {
+		alert("Vous fermez le slider");
+	};
+
 	const displaySlider = () => {
-		return <Slider data={dataTest} />;
+		return <Slider data={dataTest} handleModal={handleCloseSlider} />;
 	};
 
 	return (

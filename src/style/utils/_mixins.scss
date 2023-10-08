@@ -40,7 +40,7 @@
 	max-width: 1224px;
 	background: $primary-color;
 	border: solid 1px $secondary-color;
-	position: relative;
+	// position: relative;
 	box-shadow: -5px 10px 30px 0px rgba(0, 0, 0, 0.4);
 	@include flex-center;
 	flex-direction: column;
