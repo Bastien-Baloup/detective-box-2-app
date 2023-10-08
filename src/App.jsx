@@ -11,7 +11,7 @@ import Objectif from "./components/Objectif.jsx";
 import Preuve from "./components/Preuve.jsx";
 import Progression from "./components/Progression.jsx";
 import Quizz from "./components/Quizz.js";
-import Slider from "./components/Slider.js";
+import Slider from "./components/Slider.jsx";
 import Video from "./components/Video.jsx";
 import Input from "./components/Input.jsx";
 import Filter from "./components/Filter.jsx";
@@ -292,6 +292,16 @@ function App() {
 		);
 	};
 
+	//These are the functions to test and display Slider component
+	const dataTest = [
+		{ title: "item1", detail: "detail1" },
+		{ title: "item2", detail: "detail2" },
+		{ title: "item3", detail: "detail3" },
+	];
+	const displaySlider = () => {
+		return <Slider data={dataTest} />;
+	};
+
 	return (
 		<>
 			<header>
@@ -351,7 +361,7 @@ function App() {
 				{showComponent == "preuve" ? displayPreuve() : null}
 				{showComponent == "progression" ? <Progression /> : null}
 				{showComponent == "quizz" ? <Quizz /> : null}
-				{showComponent == "slider" ? <Slider /> : null}
+				{showComponent == "slider" ? displaySlider() : null}
 				{showComponent == "video" ? (
 					<Video title="Video Breaking News" srcVideo={News} handleModalVideo={handleModalVideo} />
 				) : null}
