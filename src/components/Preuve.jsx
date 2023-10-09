@@ -1,44 +1,67 @@
+import PropTypes from "prop-types";
 import Archive from "../assets/icons/Icon_mini_Archive.svg";
 import Document from "../assets/icons/Icon_mini_Document.svg";
 import Interrogation from "../assets/icons/Icon_mini_Interrogation.svg";
 import Location from "../assets/icons/Icon_mini_Location.svg";
 import Video from "../assets/icons/Icon_mini_Video.svg";
 
-const Preuve = ({ title, category, detail, cover, handleModal }) => {
+const Preuve = ({ data }) => {
 	const findIcon = () => {
-		if (category == "Archive") {
+		if (data.category == "Archive") {
 			return Archive;
 		}
-		if (category == "Document") {
+		if (data.category == "Document") {
 			return Document;
 		}
-		if (category == "Interrogatoire") {
+		if (data.category == "Interrogatoire") {
 			return Interrogation;
 		}
-		if (category == "Lieu") {
+		if (data.category == "Lieu") {
 			return Location;
 		}
-		if (category == "Vidéo") {
-			return Video ;
+		if (data.category == "Vidéo") {
+			return Video;
+		}
+	};
+
+	const displayCorrespondingModal = () => {
+		if (data.category == "Archive") {
+			alert("vous ouvrez une archive");
+		}
+		if (data.category == "Document") {
+			alert("vous ouvrez un document");
+		}
+		if (data.category == "Interrogatoire") {
+			alert("vous ouvrez un interrogatoire");
+		}
+		if (data.category == "Lieu") {
+			alert("vous ouvrez un lieu");
+		}
+		if (data.category == "Vidéo") {
+			alert("vous ouvrez une vidéo");
 		}
 	};
 
 	return (
-		<article className="clue" onClick={handleModal}>
+		<article className="clue" onClick={displayCorrespondingModal}>
 			<div className="clue__picture-wrapper">
-				<img src={cover} className="clue__picture" />
+				<img src={data.poster} className="clue__picture" />
 			</div>
 			<div className="clue__info">
 				<div className="clue__info--main">
-					<h2 className="clue__main__title">{title}</h2>
+					<h2 className="clue__main__title">{data.title}</h2>
 					<div className="clue__main__icon-wrapper">
 						<img src={findIcon()} className="clue__main__icon" />
 					</div>
 				</div>
-				<div className="clue__info--detail">{detail}</div>
+				<div className="clue__info--detail">{data.detail}</div>
 			</div>
 		</article>
 	);
+};
+
+Preuve.propTypes = {
+	data: PropTypes.object,
 };
 
 export default Preuve;

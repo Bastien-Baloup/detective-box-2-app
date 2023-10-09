@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { useState } from "react";
 import Empty from "../assets/icons/Icon_Cercle-empty.svg";
 import Cross from "../assets/icons/Icon_Cross-white.svg";
@@ -88,6 +89,11 @@ const Slider = ({ data, handleModal }) => {
 			</div>
 		</section>
 	);
+};
+
+Slider.propTypes = {
+	data: PropTypes.array,
+	handleModal: PropTypes.func,
 };
 
 export default Slider;

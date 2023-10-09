@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { useState, useEffect } from "react";
 
 const Timer = ({ initialMinute, initialSecond, timerEndedFunction }) => {
@@ -39,6 +40,12 @@ const Timer = ({ initialMinute, initialSecond, timerEndedFunction }) => {
 			)}
 		</div>
 	);
+};
+
+Timer.propTypes = {
+	initialMinute: PropTypes.number,
+	initialSecond: PropTypes.number,
+	timerEndedFunction: PropTypes.func,
 };
 
 export default Timer;

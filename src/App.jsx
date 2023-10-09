@@ -116,12 +116,30 @@ function App() {
 	};
 
 	//These are the functions to test and display Boxchoice component
+	const dataBoxChoiceTest = [
+		{
+			boxNumber: 1,
+			cover: Saison1,
+			state: "done",
+		},
+		{
+			boxNumber: 2,
+			cover: Saison2,
+			state: "open",
+		},
+		{
+			boxNumber: 3,
+			cover: Saison3,
+			state: "closed",
+		},
+	];
+
 	const displayBoxChoice = () => {
 		return (
 			<div className="boxchoice__wrapper">
-				<Boxchoice boxNumber="1" cover={Saison1} state="done" />
-				<Boxchoice boxNumber="2" cover={Saison2} state="open" />
-				<Boxchoice boxNumber="3" cover={Saison3} state="closed" />
+				{dataBoxChoiceTest.map((box, index) => (
+					<Boxchoice data={box} key={`boxChoiceKey-${index}`} />
+				))}
 			</div>
 		);
 	};
@@ -189,10 +207,10 @@ function App() {
 			<div className="modal-boxdone__background">
 				<div className="modal-boxdone__box">
 					<p className="modal-boxdone__text">
-						Oh non ! <br></br> Quelque chose est arrivée à Lauren. Rendez-vous à l'agence !
+						Oh non ! <br></br> Quelque chose est arrivée à Lauren. Rendez-vous à l&apos;agence !
 					</p>
 					<button className="modal-boxdone__button button--red" onClick={specificCardAction}>
-						Continuer l'enquête
+						Continuer l&apos;enquête
 					</button>
 				</div>
 			</div>
@@ -200,65 +218,77 @@ function App() {
 	};
 
 	//These are the functions to test and display Objectif component
+	const dataObjectifTest = [
+		{
+			title: "Remonter la piste trouvée par Lauren",
+			subtitle: "Où le tueur avait emmené Annina ?",
+			detail: "",
+			state: "done",
+		},
+		{
+			title: "Remonter la piste trouvée par Lauren",
+			subtitle: "Où le tueur avait emmené Annina ?",
+			detail: "Voici le détail de l'objectif, il va donner plus d'informations aux joueurs sur ce qu'il faut faire",
+			state: "open",
+		},
+		{
+			title: "Remonter la piste trouvée par Lauren",
+			subtitle: "Où le tueur avait emmené Annina ?",
+			detail: "",
+			state: "closed",
+		},
+	];
+
 	const displayObjectif = () => {
 		return (
 			<div className="objectif__wrapper">
-				<Objectif
-					title="Remonter la piste trouvée par Lauren"
-					subtitle="Où le tueur avait emmené Annina ?"
-					detail=""
-					state="done"
-				/>
-				<Objectif
-					title="Remonter la piste trouvée par Lauren"
-					subtitle="Où le tueur avait emmené Annina ?"
-					detail="Voici le détail de l'objectif, il va donner plus d'informations aux joueurs sur ce qu'il faut faire"
-					state="open"
-				/>
-				<Objectif title="Ceci est un objectif qui est fermé" detail="" state="closed" />
+				{dataObjectifTest.map((objectif, index) => (
+					<Objectif data={objectif} key={`objectifKey-${index}`} />
+				))}
 			</div>
 		);
 	};
 
 	//These are the functions to test and display Preuve component
+	const dataPreuveTest = [
+		{
+			title: "Poème de Garraud",
+			category: "Archive",
+			detail: "Ceci est une description pour voir à quoi ressemblerai cet élément",
+			poster: Saison1,
+		},
+		{
+			title: "Poème de Garraud",
+			category: "Document",
+			detail: "Ceci est une description pour voir à quoi ressemblerai cet élément",
+			poster: Saison1,
+		},
+		{
+			title: "Poème de Garraud",
+			category: "Vidéo",
+			detail: "Ceci est une description pour voir à quoi ressemblerai cet élément",
+			poster: Saison1,
+		},
+		{
+			title: "Poème de Garraud",
+			category: "Interrogatoire",
+			detail: "Ceci est une description pour voir à quoi ressemblerai cet élément",
+			poster: Saison1,
+		},
+		{
+			title: "Poème de Garraud",
+			category: "Lieu",
+			detail: "Ceci est une description pour voir à quoi ressemblerai cet élément",
+			poster: Saison1,
+		},
+	];
+
 	const displayPreuve = () => {
 		return (
 			<div className="clue__wrapper">
-				<Preuve
-					title=" Poème de Garraud"
-					category="Archive"
-					detail="Ceci est une description pour voir à quoi ressemblerai cet élément"
-					cover={Saison1}
-					handleModal=""
-				/>
-				<Preuve
-					title=" Poème de Garraud"
-					category="Document"
-					detail="Ceci est une description pour voir à quoi ressemblerai cet élément"
-					cover={Saison1}
-					handleModal=""
-				/>
-				<Preuve
-					title=" Poème de Garraud"
-					category="Vidéo"
-					detail="Ceci est une description pour voir à quoi ressemblerai cet élément"
-					cover={Saison1}
-					handleModal=""
-				/>
-				<Preuve
-					title=" Poème de Garraud"
-					category="Interrogatoire"
-					detail="Ceci est une description pour voir à quoi ressemblerai cet élément"
-					cover={Saison1}
-					handleModal=""
-				/>
-				<Preuve
-					title=" Poème de Garraud"
-					category="Lieu"
-					detail="Ceci est une description pour voir à quoi ressemblerai cet élément"
-					cover={Saison1}
-					handleModal=""
-				/>
+				{dataPreuveTest.map((clue, index) => (
+					<Preuve data={clue} key={`clueKey-${index}`} />
+				))}
 			</div>
 		);
 	};
@@ -267,7 +297,6 @@ function App() {
 	const filtersType = ["Archives", "Document", "Vidéo", "Interrogatoire", "Lieu"];
 	const filterBox = ["Box 1", "Box 2", "Box 3"];
 	const [selectedFilters, setSelectedFilters] = useState([]);
-	console.log(selectedFilters);
 
 	const handleFilter = (selectedCategory) => {
 		if (selectedFilters.includes(selectedCategory)) {

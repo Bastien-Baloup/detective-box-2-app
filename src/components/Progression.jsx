@@ -1,3 +1,4 @@
+import { useState } from "react";
 import RoundWhite from "../assets/icons/Icon_Round-white.svg";
 import RoundRed from "../assets/icons/Icon_Round-red.svg";
 import LineMediumWhite from "../assets/icons/Icon_Line_Medium-white.svg";
@@ -8,7 +9,6 @@ import LineSmallRed from "../assets/icons/Icon_Line_Small-red.svg";
 import CheckWhite from "../assets/icons/Icon_Check-white.svg";
 import CrossRed from "../assets/icons/Icon_Cross-red.svg";
 import Flag from "../assets/icons/Icon_Flag.svg";
-import { useState } from "react";
 
 const Progression = () => {
 	// Here we will get the current Box with Context <=> DBB

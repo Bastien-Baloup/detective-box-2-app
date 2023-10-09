@@ -1,6 +1,7 @@
+import PropTypes from "prop-types";
+
 import { useState } from "react";
 // A modifier une fois les JSON créés
-//https://codesandbox.io/s/multifilters-t8vb0r?file=/src/MultiFilters.js
 
 const Filter = ({ category, handleSearch }) => {
 	const [isActive, setIsActive] = useState(false);
@@ -17,6 +18,11 @@ const Filter = ({ category, handleSearch }) => {
 			</button>
 		</>
 	);
+};
+
+Filter.propTypes = {
+	category: PropTypes.string,
+	handleSearch: PropTypes.func,
 };
 
 export default Filter;

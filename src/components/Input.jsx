@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 const Input = ({ type, label, name, placeholder, setValue }) => {
 	//Penser à rajouter pattern ?
 	return (
@@ -22,6 +24,14 @@ const Input = ({ type, label, name, placeholder, setValue }) => {
 			)}
 		</>
 	);
+};
+
+Input.propTypes = {
+	type: PropTypes.string,
+	label: PropTypes.string,
+	name: PropTypes.string,
+	placeholder: PropTypes.string,
+	setValue: PropTypes.func,
 };
 
 export default Input;

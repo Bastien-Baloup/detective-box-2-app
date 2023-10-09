@@ -1,16 +1,8 @@
-/**
- * Loader Component
- * @returns {JSX} React component
- */
-
-// import Logo from "../assets/icons/DB-Logo-DetectiveBox.svg";
-
 const Loader = () => {
 	return (
 		<>
 			<div className="loader">
 				<div className="loader__container">
-					{/* <img className="loader__logo" src={Logo} alt="Logo Detective Box" /> */}
 					<svg
 						className="loader__svg"
 						width="448"
