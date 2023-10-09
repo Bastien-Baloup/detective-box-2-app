@@ -12,6 +12,7 @@
 		align-items: center;
 		&__icon {
 			cursor: pointer;
+			width: 2.5rem;
 		}
 		&__title {
 			padding: 1rem;
@@ -32,12 +33,12 @@
 		flex-direction: column;
 		padding: 1rem;
 		gap: 1rem;
-	}
-	&__img--container {
-		max-width: 80%;
-	}
-	&__img {
-		@include img-max;
+		&__img--container {
+			max-width: 80%;
+		}
+		&__img {
+			@include img-max;
+		}
 	}
 
 	&__pagination {

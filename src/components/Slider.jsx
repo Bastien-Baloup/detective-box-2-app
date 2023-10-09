@@ -34,7 +34,7 @@ const Slider = ({ data, handleModal }) => {
 
 	const renderArrowLeft = () => {
 		return (
-			<div className="slider__arrow__container">
+			<div className="slider__arrow">
 				{index === 0 ? (
 					""
 				) : (
@@ -46,7 +46,7 @@ const Slider = ({ data, handleModal }) => {
 
 	const renderArrowRight = () => {
 		return (
-			<div className="slider__arrow__container">
+			<div className="slider__arrow">
 				{index === totalItems - 1 ? (
 					""
 				) : (
