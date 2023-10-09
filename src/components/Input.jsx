@@ -1,4 +1,4 @@
-const Input = ({ type, label, name, value, placeholder, setValue }) => {
+const Input = ({ type, label, name, placeholder, setValue }) => {
 	//Penser à rajouter pattern ?
 	return (
 		<>
@@ -9,7 +9,6 @@ const Input = ({ type, label, name, value, placeholder, setValue }) => {
 						className="input-texte"
 						type="texte"
 						name={name}
-						value={value}
 						maxLength="60"
 						placeholder={placeholder}
 						onChange={(e) => setValue(e.target.value)}

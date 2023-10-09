@@ -10,7 +10,7 @@ import Nav from "./components/Nav.jsx";
 import Objectif from "./components/Objectif.jsx";
 import Preuve from "./components/Preuve.jsx";
 import Progression from "./components/Progression.jsx";
-import Quizz from "./components/Quizz.js";
+import Quizz from "./components/Quizz.jsx";
 import Slider from "./components/Slider.jsx";
 import Video from "./components/Video.jsx";
 import Input from "./components/Input.jsx";
@@ -61,7 +61,6 @@ function App() {
 					name="essai"
 					label="votre réponse"
 					placeholder="Ecrivez votre réponse ici"
-					value={valueInputTexte}
 					setValue={setValueInputTexte}
 				/>
 				<Input type="radio" name="essai" label="choix 1" setValue={setValueInputRadio} />
@@ -293,17 +292,57 @@ function App() {
 	};
 
 	//These are the functions to test and display Slider component
-	const dataTest = [
-		{ title: "item1", detail: "detail1" },
-		{ title: "item2", detail: "detail2" },
-		{ title: "item3", detail: "detail3" },
+	const dataSliderTest = [
+		{ title: "item1", detail: "detail1", image: Saison1 },
+		{ title: "item2", detail: "detail2", image: Saison1, },
+		{ title: "item3", detail: "detail3", image: null, },
 	];
 	const handleCloseSlider = () => {
 		alert("Vous fermez le slider");
 	};
 
 	const displaySlider = () => {
-		return <Slider data={dataTest} handleModal={handleCloseSlider} />;
+		return <Slider data={dataSliderTest} handleModal={handleCloseSlider} />;
+	};
+
+	//These are the functions to test and display Quizz component
+	const dataQuizzTest = {
+		questions: [
+			{
+				id: 1,
+				question: "Quelle est la réponse à cette première question ?",
+				choices: ["answer", "choix 2", "mauvais choix"],
+				image: Saison1,
+			},
+			{
+				id: 2,
+				question: "Quelle est la réponse à cette seconde question ?",
+				choices: ["answer", "choix 2", "mauvais choix"],
+				image: null,
+			},
+		],
+		answers: [
+			{
+				id: 1,
+				answer: "answer",
+				explanation: "Voici l'explication de la première question",
+				image: Saison1,
+			},
+			{
+				id: 2,
+				answer: "answer",
+				explanation: "Voici l'explication de la seconde question",
+				image: null,
+			},
+		],
+	};
+
+	const displayQuizz = () => {
+		return <Quizz data={dataQuizzTest} handleEndQuizz={handleCloseQuizz} />;
+	};
+
+	const handleCloseQuizz = () => {
+		setShowComponent(false);
 	};
 
 	return (
@@ -364,7 +403,7 @@ function App() {
 				{showComponent == "objectif" ? displayObjectif() : null}
 				{showComponent == "preuve" ? displayPreuve() : null}
 				{showComponent == "progression" ? <Progression /> : null}
-				{showComponent == "quizz" ? <Quizz /> : null}
+				{showComponent == "quizz" ? displayQuizz() : null}
 				{showComponent == "slider" ? displaySlider() : null}
 				{showComponent == "video" ? (
 					<Video title="Video Breaking News" srcVideo={News} handleModalVideo={handleModalVideo} />
