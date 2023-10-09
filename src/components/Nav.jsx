@@ -4,7 +4,7 @@ import Help from "../assets/icons/Icon_Help.svg";
 import Clue from "../assets/icons/Icon_Clue.svg";
 
 const Nav = () => {
-	const [isActive, setIsActive] = useState("Home");
+	const [isActive, setIsActive] = useState("home");
 
 	const handleActiveHome = () => {
 		setIsActive("home");

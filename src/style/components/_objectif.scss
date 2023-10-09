@@ -1,0 +1,138 @@
+.modal-objectif {
+	&__background {
+		@include modaleBackground;
+	}
+	&__box {
+		@include modaleBox;
+	}
+	&__icon {
+		width: 2.5rem;
+		align-self: self-end;
+		cursor: pointer;
+	}
+}
+
+.objectif__wrapper {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.objectif {
+	cursor: pointer;
+	width: 20rem;
+	height: 3rem;
+	padding: 1rem;
+	margin: 1rem;
+	overflow: hidden;
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	&__mainInfo {
+		display: grid;
+		grid-template-columns: 10% 80%;
+		justify-content: center;
+		align-items: center;
+		gap: 1rem;
+	}
+	&__icon-wrapper {
+		max-width: 100%;
+		max-height: 100%;
+	}
+	&__icon {
+		width: 100%;
+		height: 100%;
+	}
+	&__title {
+		text-align: left;
+	}
+	&__subInfo {
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		top: 0;
+		right: 0;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		background-color: inherit;
+		opacity: 0;
+		transition: opacity 500ms ease-in-out;
+	}
+	&__subtitle {
+		text-align: left;
+	}
+	&:hover .objectif__subInfo {
+		opacity: 1;
+	}
+}
+
+.objectif--done {
+	background-color: $primary-color;
+	border: solid 1px $validated-color;
+	color: $validated-color;
+}
+
+.objectif--open {
+	background-color: $secondary-color;
+	border: solid 1px $primary-color;
+	color: $primary-color;
+}
+
+.objectif--closed {
+	background-color: $primary-color;
+	border: solid 1px $tertiary-color;
+	color: $tertiary-color;
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	&:hover {
+		animation: shake 800ms ease;
+	}
+}
+
+.objectif__icon-wrapper--closed {
+	position: absolute;
+	width: 2rem;
+	top: 25%;
+	left: 45%;
+}
+
+.objectif__title--closed {
+	text-shadow: 0 0 10px $tertiary-color;
+	color: transparent;
+}
+
+@keyframes shake {
+	// 10%, 90% {
+	//   transform: translate3d(-1px, 0, 0);
+	// }
+	// 20%, 80% {
+	//   transform: translate3d(2px, 0, 0);
+	// }
+	// 30%, 50%, 70% {
+	//   transform: translate3d(-2px, 0, 0);
+	// }
+	// 40%, 60% {
+	//   transform: translate3d(2px, 0, 0);
+	// }
+	0% {
+		transform: skewX(-10deg);
+	}
+	5% {
+		transform: skewX(10deg);
+	}
+	10% {
+		transform: skewX(-10deg);
+	}
+	15% {
+		transform: skewX(10deg);
+	}
+	20% {
+		transform: skewX(0deg);
+	}
+	100% {
+		transform: skewX(0deg);
+	}
+}

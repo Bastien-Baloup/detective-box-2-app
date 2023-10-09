@@ -7,17 +7,17 @@ import Document from "./components/Document.jsx";
 import Loader from "./components/Loader.jsx";
 import Nappe from "./components/Nappe.jsx";
 import Nav from "./components/Nav.jsx";
-import Objectif from "./components/Objectif.js";
-import Preuve from "./components/Preuve.js";
+import Objectif from "./components/Objectif.jsx";
+import Preuve from "./components/Preuve.jsx";
 import Progression from "./components/Progression.jsx";
-import Quizz from "./components/Quizz.js"; 
-import Slider from "./components/Slider.js";
-import Tutoriel from "./components/Tutoriel.js";
+import Quizz from "./components/Quizz.jsx";
+import Slider from "./components/Slider.jsx";
 import Video from "./components/Video.jsx";
 import Input from "./components/Input.jsx";
-import Filter from "./components/Filter.js";
-import Compte from "./components/Compte.js";
+import Filter from "./components/Filter.jsx";
+import Compte from "./components/Compte.jsx";
 import Boxchoice from "./components/Boxchoice.jsx";
+import Timer from "./components/Timer.jsx";
 
 //Here are assets used to test components
 import Ambiance from "./assets/media/Musiques DB S2 - Thème Tueur.wav";
@@ -62,7 +62,6 @@ function App() {
 					name="essai"
 					label="votre réponse"
 					placeholder="Ecrivez votre réponse ici"
-					value={valueInputTexte}
 					setValue={setValueInputTexte}
 				/>
 				<Input type="radio" name="essai" label="choix 1" setValue={setValueInputRadio} />
@@ -80,7 +79,7 @@ function App() {
 	useEffect(() => {
 		if (ambianceMute) {
 			audioElem.current.pause();
-			audioElem.current.currentTime = 0;
+			// audioElem.current.currentTime = 0;
 		} else {
 			audioElem.current.play();
 		}
@@ -134,7 +133,227 @@ function App() {
 
 	// These are the functions to test and display Video modal
 	const handleModalVideo = () => {
+		if (ispreviouslyMuted) {
+			setShowComponent(false);
+		} else {
+			setAmbianceMute(false);
+			setShowComponent(false);
+		}
+	};
+
+	//These are the functions to test and display Card component
+	const displayCard = () => {
+		return (
+			<div className="card__wrapper">
+				<Card
+					srcImg={Image}
+					srcIcon={IconLauren}
+					name="Lauren Fraser"
+					contentButton="Faire un interrogatoire"
+					actionButton={normalCardAction}
+					state=""
+				/>
+				<Card
+					srcImg={Image}
+					srcIcon={IconLauren}
+					name="Lauren Fraser"
+					contentButton="Faire un interrogatoire"
+					actionButton={normalCardAction}
+					state=""
+				/>
+				<Card
+					srcImg={Image}
+					srcIcon={IconLauren}
+					name="Lauren Fraser"
+					contentButton="Faire un interrogatoire"
+					actionButton={specificCardAction}
+					state="unavailable"
+				/>
+			</div>
+		);
+	};
+
+	const normalCardAction = () => {
+		alert("vous vous rendez sur la page du membre");
+	};
+
+	const [modalCard, setModal] = useState(false);
+
+	const specificCardAction = () => {
+		console.log("ça marche");
+		setModal(!modalCard);
+	};
+
+	const displayModalCard = () => {
+		return (
+			<div className="modal-boxdone__background">
+				<div className="modal-boxdone__box">
+					<p className="modal-boxdone__text">
+						Oh non ! <br></br> Quelque chose est arrivée à Lauren. Rendez-vous à l'agence !
+					</p>
+					<button className="modal-boxdone__button button--red" onClick={specificCardAction}>
+						Continuer l'enquête
+					</button>
+				</div>
+			</div>
+		);
+	};
+
+	//These are the functions to test and display Objectif component
+	const displayObjectif = () => {
+		return (
+			<div className="objectif__wrapper">
+				<Objectif
+					title="Remonter la piste trouvée par Lauren"
+					subtitle="Où le tueur avait emmené Annina ?"
+					detail=""
+					state="done"
+				/>
+				<Objectif
+					title="Remonter la piste trouvée par Lauren"
+					subtitle="Où le tueur avait emmené Annina ?"
+					detail="Voici le détail de l'objectif, il va donner plus d'informations aux joueurs sur ce qu'il faut faire"
+					state="open"
+				/>
+				<Objectif title="Ceci est un objectif qui est fermé" detail="" state="closed" />
+			</div>
+		);
+	};
+
+	//These are the functions to test and display Preuve component
+	const displayPreuve = () => {
+		return (
+			<div className="clue__wrapper">
+				<Preuve
+					title=" Poème de Garraud"
+					category="Archive"
+					detail="Ceci est une description pour voir à quoi ressemblerai cet élément"
+					cover={Saison1}
+					handleModal=""
+				/>
+				<Preuve
+					title=" Poème de Garraud"
+					category="Document"
+					detail="Ceci est une description pour voir à quoi ressemblerai cet élément"
+					cover={Saison1}
+					handleModal=""
+				/>
+				<Preuve
+					title=" Poème de Garraud"
+					category="Vidéo"
+					detail="Ceci est une description pour voir à quoi ressemblerai cet élément"
+					cover={Saison1}
+					handleModal=""
+				/>
+				<Preuve
+					title=" Poème de Garraud"
+					category="Interrogatoire"
+					detail="Ceci est une description pour voir à quoi ressemblerai cet élément"
+					cover={Saison1}
+					handleModal=""
+				/>
+				<Preuve
+					title=" Poème de Garraud"
+					category="Lieu"
+					detail="Ceci est une description pour voir à quoi ressemblerai cet élément"
+					cover={Saison1}
+					handleModal=""
+				/>
+			</div>
+		);
+	};
+
+	//These are the functions to test and display Filter component
+	const filtersType = ["Archives", "Document", "Vidéo", "Interrogatoire", "Lieu"];
+	const filterBox = ["Box 1", "Box 2", "Box 3"];
+	const [selectedFilters, setSelectedFilters] = useState([]);
+	console.log(selectedFilters);
+
+	const handleFilter = (selectedCategory) => {
+		if (selectedFilters.includes(selectedCategory)) {
+			let filters = selectedFilters.filter((element) => element !== selectedCategory);
+			setSelectedFilters(filters);
+		} else {
+			setSelectedFilters([...selectedFilters, selectedCategory]);
+		}
+	};
+
+	const displayFilter = () => {
+		return (
+			<>
+				<div className="filter__container">
+					<div className="filter--type__container">
+						{filtersType.map((category, index) => (
+							<Filter category={category} key={`filterType-${index}`} handleSearch={() => handleFilter(category)} />
+						))}
+					</div>
+					<div className="filter--box__container">
+						{filterBox.map((category, index) => (
+							<Filter category={category} key={`filterBox-${index}`} handleSearch={() => handleFilter(category)} />
+						))}
+					</div>
+				</div>
+			</>
+		);
+	};
+
+	//These are the functions to test and display Slider component
+	const dataSliderTest = [
+		{ title: "item1", detail: "detail1", image: Saison1 },
+		{ title: "item2", detail: "detail2", image: Saison1 },
+		{ title: "item3", detail: "detail3", image: null },
+	];
+	const handleCloseSlider = () => {
+		alert("Vous fermez le slider");
+	};
+
+	const displaySlider = () => {
+		return <Slider data={dataSliderTest} handleModal={handleCloseSlider} />;
+	};
+
+	//These are the functions to test and display Quizz component
+	const dataQuizzTest = {
+		questions: [
+			{
+				id: 1,
+				question: "Quelle est la réponse à cette première question ?",
+				choices: ["answer", "choix 2", "mauvais choix"],
+				image: Saison1,
+			},
+			{
+				id: 2,
+				question: "Quelle est la réponse à cette seconde question ?",
+				choices: ["answer", "choix 2", "mauvais choix"],
+				image: null,
+			},
+		],
+		answers: [
+			{
+				id: 1,
+				answer: "answer",
+				explanation: "Voici l'explication de la première question",
+				image: Saison1,
+			},
+			{
+				id: 2,
+				answer: "answer",
+				explanation: "Voici l'explication de la seconde question",
+				image: null,
+			},
+		],
+	};
+
+	const displayQuizz = () => {
+		return <Quizz data={dataQuizzTest} handleEndQuizz={handleCloseQuizz} />;
+	};
+
+	const handleCloseQuizz = () => {
 		setShowComponent(false);
+	};
+
+	//These are the functions to test and display Timer component
+	const handleTimer = () => {
+		console.log("time is up");
 	};
 
 	return (
@@ -160,48 +379,58 @@ function App() {
 				<button onClick={() => setShowComponent("progression")}>Progression</button>
 				<button onClick={() => setShowComponent("quizz")}>Quizz</button>
 				<button onClick={() => setShowComponent("slider")}>Slider</button>
-				<button onClick={() => setShowComponent("tutoriel")}>Tutoriel</button>
-				<button onClick={() => setShowComponent("video")}>Video</button>
+				<button
+					onClick={() => {
+						setPreviousStateAmbiance();
+						setShowComponent("video");
+					}}
+				>
+					Video
+				</button>
 				<button onClick={() => setShowComponent("input")}>Input</button>
 				<button onClick={() => setShowComponent("filter")}>Filter</button>
+				<button onClick={() => setShowComponent("timer")}>Timer</button>
 				{/* ceci est l'audio pour la musique d'ambiance qui doit s'afficher sur toutes les pages*/}
 				<audio loop preload="auto" ref={audioElem}>
 					<source src={Ambiance} type="audio/wav" />
 					Votre navigateur ne prend pas en charge ce format
 				</audio>
 			</header>
-			{showComponent == "audio" ? (
-				<Audio
-					title="Interrogatoire de Machin et Bidule"
-					srcImg1={Image}
-					srcImg2={Image}
-					srcTranscription={Image}
-					handleModalAudio={handleModalAudio}
-					srcAudio={Ambiance}
-				/>
-			) : null}
-			{showComponent == "card" ? <Card srcImg ={Image} srcIcon={IconLauren} name="Lauren Fraser" contentButton="Faire un interrogatoire"/> : null}
-			{showComponent == "document" ? (
-				<Document title="Document machin truc" srcElement={Image} handleModalDocument={handleModalDocument} />
-			) : null}
-			{showComponent == "loader" ? <Loader /> : null}
-			{showComponent == "nappe" ? (
-				<Nappe src={Ambiance} activateNappe={activateNappe} desactivateNappe={desactivateNappe} />
-			) : null}
-			{showComponent == "compte" ? <Compte /> : null}
-			{showComponent == "boxchoice" ? displayBoxChoice() : null}
-			{showComponent == "nav" ? <Nav /> : null}
-			{showComponent == "objectif" ? <Objectif /> : null}
-			{showComponent == "preuve" ? <Preuve /> : null}
-			{showComponent == "progression" ? <Progression /> : null}
-			{showComponent == "quizz" ? <Quizz /> : null}
-			{showComponent == "slider" ? <Slider /> : null}
-			{showComponent == "tutoriel" ? <Tutoriel /> : null}
-			{showComponent == "video" ? (
-				<Video title="Video Breaking News" srcVideo={News} handleModalVideo={handleModalVideo} />
-			) : null}
-			{showComponent == "input" ? displayInputForm() : null}
-			{showComponent == "filter" ? <Filter /> : null}
+			<main>
+				{modalCard ? displayModalCard() : null}
+				{showComponent == "audio" ? (
+					<Audio
+						title="Interrogatoire de Machin et Bidule"
+						srcImg1={Image}
+						srcImg2={Image}
+						srcTranscription={Image}
+						handleModalAudio={handleModalAudio}
+						srcAudio={Ambiance}
+					/>
+				) : null}
+				{showComponent == "card" ? displayCard() : null}
+				{showComponent == "document" ? (
+					<Document title="Document machin truc" srcElement={Image} handleModalDocument={handleModalDocument} />
+				) : null}
+				{showComponent == "loader" ? <Loader /> : null}
+				{showComponent == "nappe" ? (
+					<Nappe src={Ambiance} activateNappe={activateNappe} desactivateNappe={desactivateNappe} />
+				) : null}
+				{showComponent == "compte" ? <Compte /> : null}
+				{showComponent == "boxchoice" ? displayBoxChoice() : null}
+				{showComponent == "nav" ? <Nav /> : null}
+				{showComponent == "objectif" ? displayObjectif() : null}
+				{showComponent == "preuve" ? displayPreuve() : null}
+				{showComponent == "progression" ? <Progression /> : null}
+				{showComponent == "quizz" ? displayQuizz() : null}
+				{showComponent == "slider" ? displaySlider() : null}
+				{showComponent == "video" ? (
+					<Video title="Video Breaking News" srcVideo={News} handleModalVideo={handleModalVideo} />
+				) : null}
+				{showComponent == "input" ? displayInputForm() : null}
+				{showComponent == "filter" ? displayFilter() : null}
+				{showComponent == "timer" ? <Timer initialMinute={0} initialSecond={15} timerEndedFunction={handleTimer} /> : null}
+			</main>
 		</>
 	);
 }

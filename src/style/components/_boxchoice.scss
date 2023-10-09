@@ -15,6 +15,7 @@
 .boxchoice__wrapper {
 	display: flex;
 	gap: 2rem;
+	flex-wrap: wrap;
 }
 
 .boxchoice {
@@ -30,9 +31,9 @@
 	cursor: pointer;
 	// transition: transform 1s ease;
 	animation: float 6s ease-in-out infinite;
-	@for $i from 1 through 3 {
+	@for $i from 2 through 3 {
 		&:nth-child(#{$i}) {
-			animation-delay: $i * 1.5s;
+			animation-delay: $i * 1s;
 		}
 	}
 }
