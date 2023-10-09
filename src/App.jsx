@@ -133,7 +133,12 @@ function App() {
 
 	// These are the functions to test and display Video modal
 	const handleModalVideo = () => {
-		setShowComponent(false);
+		if (ispreviouslyMuted) {
+			setShowComponent(false);
+		} else {
+			setAmbianceMute(false);
+			setShowComponent(false);
+		}
 	};
 
 	//These are the functions to test and display Card component
@@ -374,7 +379,14 @@ function App() {
 				<button onClick={() => setShowComponent("progression")}>Progression</button>
 				<button onClick={() => setShowComponent("quizz")}>Quizz</button>
 				<button onClick={() => setShowComponent("slider")}>Slider</button>
-				<button onClick={() => setShowComponent("video")}>Video</button>
+				<button
+					onClick={() => {
+						setPreviousStateAmbiance();
+						setShowComponent("video");
+					}}
+				>
+					Video
+				</button>
 				<button onClick={() => setShowComponent("input")}>Input</button>
 				<button onClick={() => setShowComponent("filter")}>Filter</button>
 				<button onClick={() => setShowComponent("timer")}>Timer</button>
