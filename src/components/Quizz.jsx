@@ -5,9 +5,9 @@ import { useState } from "react";
 import Empty from "../assets/icons/Icon_Cercle-empty.svg";
 import Full from "../assets/icons/Icon_Cercle-full.svg";
 import Input from "./Input.jsx";
+import Timer from "./Timer.jsx";
 
 const Quizz = ({ data, handleEndQuizz }) => {
-	// faire l'array et si question, timer. Si Array finit, display, résultat
 	const [instructionActive, setInstructionActive] = useState(true);
 	const [resultActive, setResultActive] = useState(false);
 	const [gameActive, setGameActive] = useState(false);
@@ -115,7 +115,9 @@ const Quizz = ({ data, handleEndQuizz }) => {
 	const renderQuestion = () => {
 		return (
 			<div className="quizz__question">
-				<div className="quizz__question__timer"></div>
+				<div className="quizz__question__timer">
+					<Timer initialMinute={0} initialSecond={30} timerEndedFunction={handleQuestionForm} />
+				</div>
 				<p className="quizz__question__title">Question n°{data.questions[index].id} :</p>
 				<p className="quizz__question__subtitle">{data.questions[index].question}</p>
 				<div className="quizz__question__choices">{renderChoices()}</div>
