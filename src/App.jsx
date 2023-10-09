@@ -17,6 +17,7 @@ import Input from "./components/Input.jsx";
 import Filter from "./components/Filter.jsx";
 import Compte from "./components/Compte.jsx";
 import Boxchoice from "./components/Boxchoice.jsx";
+import Timer from "./components/Timer.jsx";
 
 //Here are assets used to test components
 import Ambiance from "./assets/media/Musiques DB S2 - Thème Tueur.wav";
@@ -294,8 +295,8 @@ function App() {
 	//These are the functions to test and display Slider component
 	const dataSliderTest = [
 		{ title: "item1", detail: "detail1", image: Saison1 },
-		{ title: "item2", detail: "detail2", image: Saison1, },
-		{ title: "item3", detail: "detail3", image: null, },
+		{ title: "item2", detail: "detail2", image: Saison1 },
+		{ title: "item3", detail: "detail3", image: null },
 	];
 	const handleCloseSlider = () => {
 		alert("Vous fermez le slider");
@@ -345,6 +346,11 @@ function App() {
 		setShowComponent(false);
 	};
 
+	//These are the functions to test and display Timer component
+	const handleTimer = () => {
+		console.log("time is up");
+	};
+
 	return (
 		<>
 			<header>
@@ -371,6 +377,7 @@ function App() {
 				<button onClick={() => setShowComponent("video")}>Video</button>
 				<button onClick={() => setShowComponent("input")}>Input</button>
 				<button onClick={() => setShowComponent("filter")}>Filter</button>
+				<button onClick={() => setShowComponent("timer")}>Timer</button>
 				{/* ceci est l'audio pour la musique d'ambiance qui doit s'afficher sur toutes les pages*/}
 				<audio loop preload="auto" ref={audioElem}>
 					<source src={Ambiance} type="audio/wav" />
@@ -410,6 +417,7 @@ function App() {
 				) : null}
 				{showComponent == "input" ? displayInputForm() : null}
 				{showComponent == "filter" ? displayFilter() : null}
+				{showComponent == "timer" ? <Timer initialMinute={0} initialSecond={15} timerEndedFunction={handleTimer} /> : null}
 			</main>
 		</>
 	);
