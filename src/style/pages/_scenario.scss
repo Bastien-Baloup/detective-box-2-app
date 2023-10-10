@@ -5,8 +5,8 @@
 		font-family: "Gabriele";
 	}
 	&__choice {
-		gap: 2rem;
-		padding-top: 2rem;
+		// gap: 2rem;
+		// padding-top: 2rem;
 		display: flex;
 		justify-content: center;
 		flex-direction: column;
@@ -17,6 +17,7 @@
 	position: relative;
 	height: 20vh;
 	border: 2px solid $secondary-color;
+	margin: 1rem;
 	cursor: pointer;
 	transition: all 300ms ease-in-out;
 	&__poster {
@@ -48,7 +49,8 @@
 .scenario {
 	&:hover {
 		border: 2px solid $tertiary-color;
-		height: 15rem;
+		height: 25vh;
+		margin: 0.5rem 0;
 	}
 	&:hover .scenario__title__container {
 		background-color: transparent;
