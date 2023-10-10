@@ -14,7 +14,7 @@ const Video = ({ title, srcVideo, handleModalVideo }) => {
 			<div className="modal-video__box">
 				<p className="modal-video__title">{title}</p>
 				<div className="modal-video__video-container">
-					<video className={"modal-video__video"} width="320" height="240" controls onEnded={handleVideoEnded}>
+					<video className={"modal-video__video"} width="320" height="240" controls controlsList="nodownload" onContextMenu="return false" onEnded={handleVideoEnded}>
 						<source src={srcVideo} type="video/mp4" />
 					</video>
 				</div>
