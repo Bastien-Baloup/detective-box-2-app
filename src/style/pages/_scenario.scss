@@ -1,0 +1,59 @@
+.scenarios {
+	&__title {
+		padding: 2rem 0;
+		font-size: 2rem;
+		font-family: "Gabriele";
+	}
+	&__choice {
+		gap: 2rem;
+		padding: 2rem 0;
+		display: flex;
+		justify-content: center;
+		flex-direction: column;
+	}
+}
+
+.scenario {
+	position: relative;
+	height: 10rem;
+	border: 2px solid $secondary-color;
+	cursor: pointer;
+	transition: all 300ms ease-in-out;
+	&__poster {
+		@include img-max;
+		&__container {
+			height: 100%;
+		}
+	}
+	&__title {
+		font-size: 3.5rem;
+		font-family: "Fixture";
+		color: $secondary-color;
+		transition: color 300ms ease-in-out;
+		&__container {
+			position: absolute;
+			top: 0;
+			left: 0;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			width: 100%;
+			height: 100%;
+			background-color: rgba(0, 0, 0, 0.5);
+			transition: background-color 300ms ease-in-out;
+		}
+	}
+}
+
+.scenario {
+	&:hover {
+		border: 2px solid $tertiary-color;
+		height: 15rem;
+	}
+	&:hover .scenario__title__container {
+		background-color: transparent;
+	}
+	&:hover .scenario__title {
+		color: $tertiary-color;
+	}
+}
