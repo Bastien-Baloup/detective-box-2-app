@@ -17,6 +17,8 @@ function App() {
 		});
 	}, []);
 
+// Fonctionnement : si pas connecté > Page connection, sinon, page Home.
+
 	return (
 		<Router>
 			<Routes>
