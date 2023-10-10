@@ -1,12 +1,12 @@
 .scenarios {
 	&__title {
-		padding: 2rem 0;
-		font-size: 2rem;
+		padding: 1.5rem 0;
+		font-size: 1.5rem;
 		font-family: "Gabriele";
 	}
 	&__choice {
 		gap: 2rem;
-		padding: 2rem 0;
+		padding-top: 2rem;
 		display: flex;
 		justify-content: center;
 		flex-direction: column;
@@ -15,7 +15,7 @@
 
 .scenario {
 	position: relative;
-	height: 10rem;
+	height: 20vh;
 	border: 2px solid $secondary-color;
 	cursor: pointer;
 	transition: all 300ms ease-in-out;
@@ -26,7 +26,7 @@
 		}
 	}
 	&__title {
-		font-size: 3.5rem;
+		font-size: 3rem;
 		font-family: "Fixture";
 		color: $secondary-color;
 		transition: color 300ms ease-in-out;
@@ -55,5 +55,15 @@
 	}
 	&:hover .scenario__title {
 		color: $tertiary-color;
+	}
+}
+
+@include responsive(laptop) {
+	.scenarios__title {
+		font-size: 2rem;
+		padding: 2rem 0;
+	}
+	.scenario__title {
+		font-size: 5em;
 	}
 }

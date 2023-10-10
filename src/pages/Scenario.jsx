@@ -1,7 +1,7 @@
 import Saison1 from "../assets/img/encart_saison1.jpg";
 import Saison2 from "../assets/img/encart_saison2.jpg";
 import Paper from "../assets/img/DB-papier-froisse.jpg";
-import { Link, Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function Scenario() {
 	const openApp1 = () => {
@@ -23,6 +23,7 @@ function Scenario() {
 						<p className="scenario__title">Woodlock</p>
 					</div>
 				</article>
+
 				<Link to="/*">
 					<article className="scenario">
 						<div className="scenario__poster__container">
