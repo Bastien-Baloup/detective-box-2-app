@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import Check from "../assets/icons/Icon_Check-red.svg";
 import Lockopen from "../assets/icons/Icon_Lock-open-red.svg";
 import Lockclosed from "../assets/icons/Icon_Lock-closed-black.svg";
@@ -22,7 +23,7 @@ const BoxChoice = ({ data }) => {
 				<div className="modal-boxdone__box">
 					<img className="modal-boxdone__icon" src={Cross} onClick={handleModal} />
 					<p className="modal-boxdone__text">
-						Vous avez déjà finit cette boîte. <br></br> Continuez votre enquête ou rendez-vous sur notre site pour être les
+						Vous avez déjà fini cette boîte. <br></br> Continuez votre enquête ou rendez-vous sur notre site pour être les
 						premiers avertis de nos nouvelles aventures
 					</p>
 					<button className="modal-boxdone__button button--red" onClick={openWebsite}>
@@ -52,9 +53,8 @@ const BoxChoice = ({ data }) => {
 			);
 		}
 		if (data.state == "open") {
-			// This should be a Link
 			return (
-				<>
+				<Link to="/home">
 					<article className="boxchoice boxchoice--open">
 						<div className="boxchoice__picture-wrapper">
 							<img src={data.cover} className="boxchoice__picture" />
@@ -66,7 +66,7 @@ const BoxChoice = ({ data }) => {
 							</div>
 						</div>
 					</article>
-				</>
+				</Link>
 			);
 		}
 		if (data.state == "closed") {

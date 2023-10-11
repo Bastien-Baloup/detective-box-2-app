@@ -6,6 +6,7 @@ import Error from "./pages/Error.jsx";
 import Login from "./pages/Login.jsx";
 import Credits from "./pages/Credits.jsx";
 import Choice from "./pages/Choice.jsx";
+import Legales from "./pages/Legales.jsx";
 
 const api = new Api();
 
@@ -24,9 +25,10 @@ function App() {
 		<Router>
 			<Routes>
 				<Route path="/*" element={<Error />} />
+				<Route path="/credits" element={<Credits />} />
+				<Route path="/legales" element={<Legales />} />
 				<Route path="/" element={<Scenario />} />
 				<Route path="/sign-in" element={<Login />} />
-				<Route path="/credits" element={<Credits />} />
 				<Route path="/box-choice" element={<Choice />} />
 			</Routes>
 		</Router>
