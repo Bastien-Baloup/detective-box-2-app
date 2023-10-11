@@ -54,19 +54,18 @@ const BoxChoice = ({ data }) => {
 		}
 		if (data.state == "open") {
 			return (
-				<Link to="/home">
-					<article className="boxchoice boxchoice--open">
-						<div className="boxchoice__picture-wrapper">
-							<img src={data.cover} className="boxchoice__picture" />
+				<article className="boxchoice boxchoice--open">
+					<Link to={"/home"} className="boxchoice__link"></Link>
+					<div className="boxchoice__picture-wrapper">
+						<img src={data.cover} className="boxchoice__picture" />
+					</div>
+					<div className="boxchoice__info">
+						<h2 className="boxchoice__info__title">Box {data.boxNumber}</h2>
+						<div className="boxchoice__info__icon-wrapper">
+							<img src={Lockopen} className="boxchoice__info__icon" />
 						</div>
-						<div className="boxchoice__info">
-							<h2 className="boxchoice__info__title">Box {data.boxNumber}</h2>
-							<div className="boxchoice__info__icon-wrapper">
-								<img src={Lockopen} className="boxchoice__info__icon" />
-							</div>
-						</div>
-					</article>
-				</Link>
+					</div>
+				</article>
 			);
 		}
 		if (data.state == "closed") {
