@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 function Credits() {
 	return (
 		<main className="credits">
-			<Link className="credits__link" to="/">
+			<Link className="credits__link" to="/home">
 				&lt; Retour à l&apos;enquête
 			</Link>
 			<h1 className="credits__title">Crédits</h1>
