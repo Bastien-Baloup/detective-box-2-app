@@ -24,7 +24,7 @@ function Scenario() {
 					</div>
 				</article>
 
-				<Link to="/*">
+				<Link to="/sign-in">
 					<article className="scenario">
 						<div className="scenario__poster__container">
 							<img className="scenario__poster" src={Saison2} />
