@@ -1,7 +1,8 @@
 import PropTypes from "prop-types";
 
-const Input = ({ type, label, name, placeholder, setValue }) => {
+const Input = ({ type, label, name, placeholder, setValue, value }) => {
 	//Penser à rajouter pattern ?
+	// Au clic du label sur radio : changer input
 	return (
 		<>
 			{type == "texte" ? (
@@ -13,6 +14,7 @@ const Input = ({ type, label, name, placeholder, setValue }) => {
 						name={name}
 						maxLength="60"
 						placeholder={placeholder}
+						value={value}
 						onChange={(e) => setValue(e.target.value)}
 					/>
 				</div>
@@ -32,6 +34,7 @@ Input.propTypes = {
 	name: PropTypes.string,
 	placeholder: PropTypes.string,
 	setValue: PropTypes.func,
+	value: PropTypes.string,
 };
 
 export default Input;
