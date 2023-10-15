@@ -2,7 +2,7 @@
 	max-width: 1440px;
 	margin: 0 auto;
 	padding: 1rem;
-	min-height: calc(100vh - 4rem);
+	min-height: calc(100vh - 2rem);
 	text-align: center;
 	font-family: "Din", Arial, Helvetica, sans-serif;
 	font-weight: 400;
@@ -16,5 +16,6 @@
 @include responsive(mobile) {
 	#root{
 		padding: 2rem;
+		min-height: calc(100vh - 4rem);
 	}
 }

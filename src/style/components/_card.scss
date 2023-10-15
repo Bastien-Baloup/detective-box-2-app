@@ -1,18 +1,21 @@
-.card__wrapper{
+.card__wrapper {
 	display: flex;
 	gap: 2rem;
+	justify-content: center;
 }
 
 .card {
-	width: 15rem;
+	min-width: 5rem;
+	max-width: 15rem;
+	width: 100%;
 	height: 30rem;
 	position: relative;
 	cursor: pointer;
-	transition: width 1s ease;
+	transition: all 1s ease;
 	border: solid 1px $secondary-color;
 	overflow: hidden;
 	&:hover {
-		width: 20rem;
+		min-width: 20rem;
 	}
 	&:hover .card__icon {
 		opacity: 0;
@@ -33,7 +36,7 @@
 		filter: grayscale(100%);
 		transition: filter 500ms ease-in-out;
 	}
-	&__contentImg--unavailable{
+	&__contentImg--unavailable {
 		height: 100%;
 		width: 100%;
 		filter: grayscale(100%) blur(0.5rem);
@@ -52,12 +55,14 @@
 
 		// display: flex;
 		// flex-direction: column;
-		// justify-content: space-between;
 	}
 	&__icon {
-		padding: 0 2rem;
+		height: 100%;
 		transition: opacity 500ms ease-in-out;
-		height: inherit;
+		&--container {
+			// padding: 0 2rem;
+			height: inherit;
+		}
 	}
 	&__name {
 		margin: 1rem;
