@@ -3,7 +3,7 @@ import Input from "../components/Input.jsx";
 import Cross from "../assets/icons/Icon_Cross-white.svg";
 import PropTypes from "prop-types";
 
-const Lauren = ({ valueUsername, setValueUsername, closeAgentPage }) => {
+const Lauren = ({ value, setValue, closeAgentPage }) => {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		console.log("ça fait quelque chose");
@@ -24,8 +24,8 @@ const Lauren = ({ valueUsername, setValueUsername, closeAgentPage }) => {
 						label="Nom et prénom"
 						name="lauren"
 						placeholder="Ce champ est vide"
-						value={valueUsername}
-						setValue={setValueUsername}
+						value={value}
+						setValue={setValue}
 					/>
 					<button className="agent__form__button button--red">Valider</button>
 				</form>
@@ -38,8 +38,8 @@ const Lauren = ({ valueUsername, setValueUsername, closeAgentPage }) => {
 };
 
 Lauren.propTypes = {
-	setValueUsername: PropTypes.func,
-	valueUsername: PropTypes.string,
+	setValue: PropTypes.func,
+	value: PropTypes.string,
 	closeAgentPage: PropTypes.func,
 };
 

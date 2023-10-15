@@ -113,28 +113,38 @@ function Home() {
 		);
 	};
 
-	const backToHome = () =>{
+	const backToHome = () => {
 		setCharacterDisplayed(null);
-	}
+	};
 
 	const displayLauren = () => {
-		return <Lauren valueUsername="" setValueUsername="" closeAgentPage={backToHome}/>;
+		return <Lauren value="" setValue="" closeAgentPage={backToHome} />;
 	};
 
 	const displayRaphaelle = () => {
-		return <Raphaelle valueUsername="" setValueUsername="" closeAgentPage={backToHome}/>;
+		return (
+			<Raphaelle
+				valueAdresse=""
+				setValueAdresse=""
+				valueLatitude=""
+				setValueLatitude=""
+				valueLongitude=""
+				setValueLongitude=""
+				closeAgentPage={backToHome}
+			/>
+		);
 	};
 
 	const displayCeline = () => {
-		return <Celine valueUsername="" setValueUsername="" closeAgentPage={backToHome}/>;
+		return <Celine value="" setValue="" closeAgentPage={backToHome} />;
 	};
 
 	const displayTim = () => {
-		return <Tim valueUsername="" setValueUsername="" closeAgentPage={backToHome}/>;
+		return <Tim value="" setValue="" closeAgentPage={backToHome} />;
 	};
 
 	const displayAdele = () => {
-		return <Adele valueUsername="" setValueUsername="" closeAgentPage={backToHome}/>;
+		return <Adele value="" setValue="" closeAgentPage={backToHome} />;
 	};
 
 	return (

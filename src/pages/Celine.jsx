@@ -3,7 +3,7 @@ import Input from "../components/Input.jsx";
 import Cross from "../assets/icons/Icon_Cross-white.svg";
 import PropTypes from "prop-types";
 
-const Celine = ({ valueUsername, setValueUsername, closeAgentPage }) => {
+const Celine = ({ value, setValue, closeAgentPage }) => {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		console.log("ça fait quelque chose");
@@ -16,16 +16,16 @@ const Celine = ({ valueUsername, setValueUsername, closeAgentPage }) => {
 			</div>
 			<div className="agent__main">
 				<div className="agent__title--container">
-					<p className="agent__title">Que souhaitez vous analyser ?</p>
+					<p className="agent__title">Quel dossier des archives souhaitez vous voir ?</p>
 				</div>
 				<form className="agent__form" onSubmit={handleSubmit}>
 					<Input
 						type="texte"
 						label="Nom et prénom"
-						name="lauren"
+						name="celine"
 						placeholder="Ce champ est vide"
-						value={valueUsername}
-						setValue={setValueUsername}
+						value={value}
+						setValue={setValue}
 					/>
 					<button className="agent__form__button button--red">Valider</button>
 				</form>
@@ -38,8 +38,8 @@ const Celine = ({ valueUsername, setValueUsername, closeAgentPage }) => {
 };
 
 Celine.propTypes = {
-	setValueUsername: PropTypes.func,
-	valueUsername: PropTypes.string,
+	setValue: PropTypes.func,
+	value: PropTypes.string,
 	closeAgentPage: PropTypes.func,
 };
 

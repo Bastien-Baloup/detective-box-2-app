@@ -3,7 +3,15 @@ import Input from "../components/Input.jsx";
 import Cross from "../assets/icons/Icon_Cross-white.svg";
 import PropTypes from "prop-types";
 
-const Raphaelle = ({ valueUsername, setValueUsername, closeAgentPage }) => {
+const Raphaelle = ({
+	valueAdresse,
+	setValueAdresse,
+	valueLatitude,
+	setValueLatitude,
+	valueLongitude,
+	setValueLongitude,
+	closeAgentPage,
+}) => {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		console.log("ça fait quelque chose");
@@ -16,16 +24,33 @@ const Raphaelle = ({ valueUsername, setValueUsername, closeAgentPage }) => {
 			</div>
 			<div className="agent__main">
 				<div className="agent__title--container">
-					<p className="agent__title">Que souhaitez vous analyser ?</p>
+					<p className="agent__title">Où souhaitez-vous aller ?</p>
 				</div>
 				<form className="agent__form" onSubmit={handleSubmit}>
 					<Input
 						type="texte"
-						label="Nom et prénom"
-						name="lauren"
+						label="Adresse"
+						name="adresse"
 						placeholder="Ce champ est vide"
-						value={valueUsername}
-						setValue={setValueUsername}
+						value={valueAdresse}
+						setValue={setValueAdresse}
+					/>
+					<p>OU</p>
+					<Input
+						type="texte"
+						label="Coordonnées GPS - latitude"
+						name="gps"
+						placeholder="Ce champ est vide"
+						value={valueLatitude}
+						setValue={setValueLatitude}
+					/>
+					<Input
+						type="texte"
+						label="Coordonnées GPS - longitude"
+						name="gps"
+						placeholder="Ce champ est vide"
+						value={valueLongitude}
+						setValue={setValueLongitude}
 					/>
 					<button className="agent__form__button button--red">Valider</button>
 				</form>
@@ -38,10 +63,13 @@ const Raphaelle = ({ valueUsername, setValueUsername, closeAgentPage }) => {
 };
 
 Raphaelle.propTypes = {
-	setValueUsername: PropTypes.func,
-	valueUsername: PropTypes.string,
+	setValueAdresse: PropTypes.func,
+	valueAdresse: PropTypes.string,
+	setValueLatitude: PropTypes.func,
+	valueLatitude: PropTypes.string,
+	setValueLongitude: PropTypes.func,
+	valueLongitude: PropTypes.string,
 	closeAgentPage: PropTypes.func,
 };
 
 export default Raphaelle;
-
