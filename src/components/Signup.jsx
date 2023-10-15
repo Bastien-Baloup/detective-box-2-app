@@ -1,7 +1,7 @@
 import Input from "./Input";
 import PropTypes from "prop-types";
 
-function Signup({ handleSubmitSignup, errorMessageSignup, setValueUsername, valueUsername, setValuePassword, valuePassword, switchToSignin }) {
+const Signup = ({ handleSubmitSignup, errorMessageSignup, setValueUsername, valueUsername, setValuePassword, valuePassword, switchToSignin }) => {
 	return (
 		<>
 			<section className="signup">

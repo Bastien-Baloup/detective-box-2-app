@@ -6,6 +6,8 @@ import Full from "../assets/icons/Icon_Cercle-full.svg";
 import Input from "./Input.jsx";
 import Timer from "./Timer.jsx";
 
+//Mettre des boutons carrés quant multi choice
+
 const Quizz = ({ data, handleEndQuizz }) => {
 	const [instructionActive, setInstructionActive] = useState(true);
 	const [resultActive, setResultActive] = useState(false);

@@ -3,7 +3,7 @@ import Input from "./Input";
 import Cross from "../assets/icons/Icon_Cross-white.svg";
 import PropTypes from "prop-types";
 
-function Signin({
+const Signin = ({
 	handleSubmitSignin,
 	errorMessageSignin,
 	errorMessageForgot,
@@ -15,7 +15,7 @@ function Signin({
 	valueEmail,
 	setValueEmail,
 	switchToSignup,
-}) {
+}) => {
 	const [modalActive, setModalActive] = useState(false);
 
 	const displayModalForgotPassword = () => {
@@ -74,7 +74,7 @@ function Signin({
 			{modalActive ? displayModalForgotPassword() : ""}
 		</>
 	);
-}
+};
 
 Signin.propTypes = {
 	handleSubmitSignin: PropTypes.func,

@@ -14,7 +14,7 @@ import { useEffect, useState, useRef } from "react";
 // Put Timer end box 3 here
 // Ne mettre le quizz que si box 2 ou 3
 
-function Header() {
+const Header = () => {
 	const [nappeMute, setNappeMute] = useState(true);
 	// const [ispreviouslyMuted, setIsPreviouslyMuted] = useState(true);
 	const [tutorialModalIsActive, setTutorialModalIsActive] = useState(true);

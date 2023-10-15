@@ -5,6 +5,9 @@ import LockClosed from "../assets/icons/Icon_Lock-closed-red.svg";
 import LockOpen from "../assets/icons/Icon_Lock-open-black.svg";
 import Cross from "../assets/icons/Icon_Cross-white.svg";
 
+// Rendre l'objectif finit cliquable (en fait non le temps des tests)
+// Changer le weight sur le sous titre
+
 const Objectif = ({ data }) => {
 	const [modal, setModal] = useState(false);
 

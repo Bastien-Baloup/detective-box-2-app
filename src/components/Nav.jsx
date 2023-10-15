@@ -4,20 +4,6 @@ import Clue from "../assets/icons/Icon_Clue.svg";
 import { NavLink } from "react-router-dom";
 
 const Nav = () => {
-	// const [isActive, setIsActive] = useState("home");
-
-	// const handleActiveHome = () => {
-	// 	setIsActive("home");
-	// };
-
-	// const handleActiveClue = () => {
-	// 	setIsActive("clue");
-	// };
-
-	// const handleActiveHelp = () => {
-	// 	setIsActive("help");
-	// };
-
 	return (
 		<nav className="nav">
 			<NavLink className={"nav__container"} to="/home">
