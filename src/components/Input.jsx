@@ -20,8 +20,8 @@ const Input = ({ type, label, name, placeholder, setValue, value }) => {
 				</div>
 			) : (
 				<div className="input-wrapper-radio">
-					<input className="input-radio" type="radio" value={label} name={name} onChange={(e) => setValue(e.target.value)} />
-					<label className="input-wrapper__label">{label}</label>
+					<input className="input-radio" type="radio" value={label} name={name} id={label} onChange={(e) => setValue(e.target.value)} />
+					<label className="input-wrapper__label" htmlFor={label}>{label}</label>
 				</div>
 			)}
 		</>
