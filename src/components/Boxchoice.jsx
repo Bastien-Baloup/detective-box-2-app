@@ -1,9 +1,9 @@
 import PropTypes from "prop-types";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import Check from "../assets/icons/Icon_Check-red.svg";
-import Lockopen from "../assets/icons/Icon_Lock-open-red.svg";
-import Lockclosed from "../assets/icons/Icon_Lock-closed-black.svg";
+import Check from "../assets/icons/Icon_Check-black.svg";
+import Lockopen from "../assets/icons/Icon_Lock-open-black.svg";
+import Lockclosed from "../assets/icons/Icon_Lock-closed-red.svg";
 import Cross from "../assets/icons/Icon_Cross-white.svg";
 
 const BoxChoice = ({ data }) => {
@@ -23,8 +23,9 @@ const BoxChoice = ({ data }) => {
 				<div className="modal-boxdone__box">
 					<img className="modal-boxdone__icon" src={Cross} onClick={handleModal} />
 					<p className="modal-boxdone__text">
-						Vous avez déjà fini cette boîte. <br></br> Continuez votre enquête ou rendez-vous sur notre site pour être les
-						premiers avertis de nos nouvelles aventures
+						Vous avez déjà terminé cette partie de l&apos;enquête. <br></br>
+						Passez à la box suivante pour continuer et démasquer le tueur ou rendez-vous sur notre site pour découvrir nos
+						autres enquêtes
 					</p>
 					<button className="modal-boxdone__button button--red" onClick={openWebsite}>
 						Se rendre sur le site
