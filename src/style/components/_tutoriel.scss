@@ -1,0 +1,7 @@
+.tutorial {
+	@include modaleBox;
+	width: 60%;
+	&__background {
+		@include modaleBackground;
+	}
+}
