@@ -1,8 +1,8 @@
 import Paper from "../assets/img/Paper.png";
 import Objectif from "./Objectif";
-import { dataObjectifTest } from "../utils/const/datatObjectif.js";
+import { dataObjectifTest } from "../utils/const/dataObjectif.js";
 
-function Footer() {
+const Footer = () => {
 	return (
 		<footer>
 			<div className="footer__topSection">
