@@ -39,6 +39,9 @@
 		&__img {
 			@include img-max;
 		}
+		// &__text{
+		// 	white-space: pre;
+		// }
 	}
 
 	&__pagination {

@@ -10,7 +10,7 @@ export const dataHelp = {
 				{
 					id: 1,
 					text:
-						"Tout d'abord, regardons si on ne pourrait pas relier un paragraphe du poème à un dossier particulier. Celui-là parle d'une femme et d'un billet de loterie.",
+						"Tout d'abord, regardons si on ne pourrait pas relier un paragraphe du poème à un dossier particulier. \nCelui-là parle d'une femme et d'un billet de loterie.",
 					image: null,
 				},
 				{
@@ -77,7 +77,7 @@ export const dataHelp = {
 				{
 					id: 13,
 					text:
-						"Le type de tueur… C’est du travail de profiler, ça. Pensez à consulter le Guide du profiler fourni par Lauren.",
+						"Le type de tueur… C'est du travail de profiler, ça. Pensez à consulter le Guide du profiler fourni par Lauren.",
 					image: null,
 				},
 			],

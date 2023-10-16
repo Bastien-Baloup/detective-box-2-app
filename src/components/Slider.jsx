@@ -8,7 +8,7 @@ import ArrowRight from "../assets/icons/Icon_Arrow-right.svg";
 
 const Slider = ({ data, handleModal }) => {
 	const [index, setIndex] = useState(0);
-	const totalItems = data.length;
+	const totalItems = data.hints.length;
 	const pagination = [];
 
 	const renderPagination = () => {
@@ -62,7 +62,7 @@ const Slider = ({ data, handleModal }) => {
 			<div className="slider__header">
 				<div className="slider__header__title">
 					Objectif: <br></br>
-					{data[index].title}
+					{data.title}
 				</div>
 				<img className="slider__header__icon" src={Cross} onClick={handleModal} />
 			</div>
@@ -70,10 +70,10 @@ const Slider = ({ data, handleModal }) => {
 			<div className="slider__main">
 				{renderArrowLeft()}
 				<div className="slider__content">
-					<div className="slider__content__text">{data[index].detail}</div>
+					<div className="slider__content__text">{data.hints[index].text}</div>
 					<div className="slider__content__img--container">
-						{data[index].image != null ? (
-							<img className="slider__content__img" src={data[index].image} />
+						{data.hints[index].image != null ? (
+							<img className="slider__content__img" src={data.hints[index].image} />
 						) : (
 							"Pas d'image à afficher"
 						)}
