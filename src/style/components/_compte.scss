@@ -39,9 +39,12 @@
 }
 
 .dropdown__child {
+	border: none;
+	font: inherit;
 	color: $primary-color;
 	background-color: $secondary-color;
 	padding: 1rem;
+	cursor: pointer;
 	&:hover {
 		color: $secondary-color;
 		background-color: $tertiary-color;

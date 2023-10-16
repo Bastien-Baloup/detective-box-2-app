@@ -1,8 +1,7 @@
 .progressBar {
-	// display: grid;
-	// grid-template-columns: 1fr 1fr 1fr;
 	display: flex;
 	flex-wrap: nowrap;
+
 	&__box {
 		display: flex;
 		align-items: end;
@@ -18,18 +17,19 @@
 }
 
 .progressBar__box__icon {
-	&-small {
+	&--small {
 		padding: 0 0.2rem;
 	}
-	&-main {
-		padding: 0 0.5rem;
+	&--main {
+		padding:0 0.5rem;
 	}
 }
 
 .progressBar__box__title {
 	color: $tertiary-color;
 	font-family: "Gabriele";
-	&-played {
+	
+	&--played {
 		font-family: "Gabriele";
 		color: $secondary-color;
 	}

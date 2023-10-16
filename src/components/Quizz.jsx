@@ -1,11 +1,12 @@
 // Quizz n'apparait qu'à la première ouverture de la box. Penser à mettre un état done = true dans la BDD
-//https://stackoverflow.com/questions/4021374/how-to-know-if-a-timer-is-cleared-or-timed-out-in-javascript
-
+import PropTypes from "prop-types";
 import { useState } from "react";
 import Empty from "../assets/icons/Icon_Cercle-empty.svg";
 import Full from "../assets/icons/Icon_Cercle-full.svg";
 import Input from "./Input.jsx";
 import Timer from "./Timer.jsx";
+
+//Mettre des boutons carrés quant multi choice
 
 const Quizz = ({ data, handleEndQuizz }) => {
 	const [instructionActive, setInstructionActive] = useState(true);
@@ -62,7 +63,7 @@ const Quizz = ({ data, handleEndQuizz }) => {
 				<p className="quizz__results__text--2">bonnes réponses.</p>
 				<p className="quizz__results__comment">{displayComment()}</p>
 				<button className="quizz__instructions__button button--red" onClick={handleEndQuizz}>
-					Reprendre l'enquête
+					Reprendre l&apos;enquête
 				</button>
 			</div>
 		);
@@ -184,6 +185,11 @@ const Quizz = ({ data, handleEndQuizz }) => {
 			</div>
 		</div>
 	);
+};
+
+Quizz.propTypes = {
+	data: PropTypes.object,
+	handleEndQuizz: PropTypes.func,
 };
 
 export default Quizz;

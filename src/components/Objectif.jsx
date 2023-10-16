@@ -1,10 +1,14 @@
+import PropTypes from "prop-types";
+import { useState } from "react";
 import Check from "../assets/icons/Icon_Check-green.svg";
 import LockClosed from "../assets/icons/Icon_Lock-closed-red.svg";
 import LockOpen from "../assets/icons/Icon_Lock-open-black.svg";
 import Cross from "../assets/icons/Icon_Cross-white.svg";
-import { useState } from "react";
 
-const Objectif = ({ title, subtitle, detail, state }) => {
+// Rendre l'objectif finit cliquable (en fait non le temps des tests)
+// Changer le weight sur le sous titre
+
+const Objectif = ({ data }) => {
 	const [modal, setModal] = useState(false);
 
 	const handleModal = () => {
@@ -22,9 +26,9 @@ const Objectif = ({ title, subtitle, detail, state }) => {
 				<div className="modal-objectif__box">
 					<img className="modal-objectif__icon" src={Cross} onClick={handleModal} />
 					<h2 className="modal-objectif__title">
-						Objectif : <br></br> {title}
+						Objectif : <br></br> {data.title}
 					</h2>
-					<p className="modal-objectif__title">{detail}</p>
+					<p className="modal-objectif__title">{data.detail}</p>
 					<button className="modal-objectif__button button--red" onClick={validateModal}>
 						Valider
 					</button>
@@ -34,7 +38,7 @@ const Objectif = ({ title, subtitle, detail, state }) => {
 	};
 
 	const renderObjectif = () => {
-		if (state == "done") {
+		if (data.state == "done") {
 			return (
 				<>
 					<article className="objectif objectif--done">
@@ -42,16 +46,16 @@ const Objectif = ({ title, subtitle, detail, state }) => {
 							<div className="objectif__icon-wrapper">
 								<img src={Check} className="objectif__icon" />
 							</div>
-							<h3 className="objectif__title">{title}</h3>
+							<h3 className="objectif__title">{data.title}</h3>
 						</div>
 						<div className="objectif__subInfo">
-							<p className="objectif__subtitle">{subtitle}</p>
+							<p className="objectif__subtitle">{data.subtitle}</p>
 						</div>
 					</article>
 				</>
 			);
 		}
-		if (state == "open") {
+		if (data.state == "open") {
 			return (
 				<>
 					<article className="objectif objectif--open" onClick={handleModal}>
@@ -59,16 +63,16 @@ const Objectif = ({ title, subtitle, detail, state }) => {
 							<div className="objectif__icon-wrapper">
 								<img src={LockOpen} className="objectif__icon" />
 							</div>
-							<h3 className="objectif__title">{title}</h3>
+							<h3 className="objectif__title">{data.title}</h3>
 						</div>
 						<div className="objectif__subInfo">
-							<p className="objectif__subtitle">{subtitle}</p>
+							<p className="objectif__subtitle">{data.subtitle}</p>
 						</div>
 					</article>
 				</>
 			);
 		}
-		if (state == "closed") {
+		if (data.state == "closed") {
 			return (
 				<>
 					<article className="objectif objectif--closed">
@@ -88,6 +92,10 @@ const Objectif = ({ title, subtitle, detail, state }) => {
 			{modal ? renderModal() : ""}
 		</>
 	);
+};
+
+Objectif.propTypes = {
+	data: PropTypes.object,
 };
 
 export default Objectif;

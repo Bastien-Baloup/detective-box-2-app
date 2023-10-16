@@ -1,1 +1,0 @@
-// Ici c'est la page où les joueurs peuvent demander du renfort.

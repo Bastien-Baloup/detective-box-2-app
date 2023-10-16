@@ -1,6 +1,8 @@
 .input-texte {
-	width: 100%;
+	width: -webkit-fill-available;
+	width: -moz-available;
 	padding: 0.4rem;
+	margin: 1rem 0;
 	border: 1px solid $secondary-color;
 	background-color: rgba(255, 255, 255, 0.2);
 	color: $secondary-color;
@@ -22,6 +24,7 @@
 	color: $secondary-color;
 	width: 1rem;
 	height: 1rem;
+	margin: 1rem;
 	border: 0.1rem solid $secondary-color;
 	border-radius: 50%;
 	display: grid;
@@ -44,12 +47,13 @@
 
 .input-wrapper__label {
 	font-family: "Gabriele";
-	margin: 0.2rem;
 	flex: none;
+	font-size: 1.25rem;
 }
 
 .input-wrapper-radio {
 	display: flex;
+	align-items: center;
 }
 
 // A mettre dans la bonne page

@@ -1,0 +1,49 @@
+.modal-forgot {
+	&__background {
+		@include modaleBackground;
+	}
+	&__box {
+		@include modaleBox;
+		width: 80%;
+	}
+	&__icon {
+		width: 2.5rem;
+		align-self: self-end;
+		cursor: pointer;
+	}
+	&__title {
+		color: $secondary-color;
+		line-height: 1.25rem;
+		font-size: 1.25rem;
+	}
+}
+
+.signin {
+	width: 100%;
+	max-width: 50rem;
+	&__forget {
+		cursor: pointer;
+		color: $secondary-color;
+		font-size: 1rem;
+		line-height: 1.25rem;
+		padding: 5vh 0 0.5rem 0;
+		font-family: "Gabriele";
+		text-decoration: underline;
+		&:hover {
+			color: $tertiary-color;
+		}
+	}
+	&__form .input-wrapper-text {
+		margin-bottom: 2rem;
+	}
+	&__errorMessage {
+		padding: 1rem;
+	}
+}
+
+.signin__errorMessage,
+.modal-forgot__errorMessage {
+	color: $tertiary-color;
+	line-height: 1.25rem;
+	font-size: 1.25rem;
+}

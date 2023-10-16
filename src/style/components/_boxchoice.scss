@@ -10,12 +10,17 @@
 		align-self: self-end;
 		cursor: pointer;
 	}
+	&__text{
+		font-size: 1rem;
+		line-height: 1.5rem;
+	}
 }
 
 .boxchoice__wrapper {
 	display: flex;
 	gap: 2rem;
 	flex-wrap: wrap;
+	justify-content: space-evenly;
 }
 
 .boxchoice {
@@ -36,6 +41,14 @@
 			animation-delay: $i * 1s;
 		}
 	}
+}
+
+.boxchoice__link {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
 }
 
 .boxchoice__greyFilter {
@@ -65,7 +78,7 @@
 	&__title {
 		font-family: "Fixture";
 		font-size: 2.5rem;
-		color: red;
+		color: $primary-color;
 	}
 	&__icon-wrapper {
 		height: 2.5rem;
@@ -78,7 +91,7 @@
 .boxchoice--closed {
 	cursor: not-allowed;
 	.boxchoice__info__title {
-		color: $primary-color;
+		color: $tertiary-color;
 	}
 }
 

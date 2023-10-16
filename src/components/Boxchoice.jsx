@@ -1,10 +1,12 @@
-import Check from "../assets/icons/Icon_Check-red.svg";
-import Lockopen from "../assets/icons/Icon_Lock-open-red.svg";
-import Lockclosed from "../assets/icons/Icon_Lock-closed-black.svg";
-import Cross from "../assets/icons/Icon_Cross-white.svg";
+import PropTypes from "prop-types";
 import { useState } from "react";
+import { Link } from "react-router-dom";
+import Check from "../assets/icons/Icon_Check-black.svg";
+import Lockopen from "../assets/icons/Icon_Lock-open-black.svg";
+import Lockclosed from "../assets/icons/Icon_Lock-closed-red.svg";
+import Cross from "../assets/icons/Icon_Cross-white.svg";
 
-const BoxChoice = ({ boxNumber, cover, state }) => {
+const BoxChoice = ({ data }) => {
 	const [modal, setModal] = useState(false);
 
 	const handleModal = () => {
@@ -21,8 +23,9 @@ const BoxChoice = ({ boxNumber, cover, state }) => {
 				<div className="modal-boxdone__box">
 					<img className="modal-boxdone__icon" src={Cross} onClick={handleModal} />
 					<p className="modal-boxdone__text">
-						Vous avez déjà finit cette boîte. <br></br> Continuez votre enquête ou rendez-vous sur notre site pour être les
-						premiers avertis de nos nouvelles aventures
+						Vous avez déjà terminé cette partie de l&apos;enquête. <br></br>
+						Passez à la box suivante pour continuer et démasquer le tueur ou rendez-vous sur notre site pour découvrir nos
+						autres enquêtes
 					</p>
 					<button className="modal-boxdone__button button--red" onClick={openWebsite}>
 						Se rendre sur le site
@@ -33,15 +36,15 @@ const BoxChoice = ({ boxNumber, cover, state }) => {
 	};
 
 	const renderBox = () => {
-		if (state == "done") {
+		if (data.state == "done") {
 			return (
 				<>
 					<article className="boxchoice boxchoice--done" onClick={handleModal}>
 						<div className="boxchoice__picture-wrapper">
-							<img src={cover} className="boxchoice__picture" />
+							<img src={data.cover} className="boxchoice__picture" />
 						</div>
 						<div className="boxchoice__info">
-							<h2 className="boxchoice__info__title">Box {boxNumber}</h2>
+							<h2 className="boxchoice__info__title">Box {data.boxNumber}</h2>
 							<div className="boxchoice__info__icon-wrapper">
 								<img src={Check} className="boxchoice__info__icon" />
 							</div>
@@ -50,33 +53,31 @@ const BoxChoice = ({ boxNumber, cover, state }) => {
 				</>
 			);
 		}
-		if (state == "open") {
-			// This should be a Link
+		if (data.state == "open") {
 			return (
-				<>
-					<article className="boxchoice boxchoice--open">
-						<div className="boxchoice__picture-wrapper">
-							<img src={cover} className="boxchoice__picture" />
+				<article className="boxchoice boxchoice--open">
+					<Link to={"/home"} className="boxchoice__link"></Link>
+					<div className="boxchoice__picture-wrapper">
+						<img src={data.cover} className="boxchoice__picture" />
+					</div>
+					<div className="boxchoice__info">
+						<h2 className="boxchoice__info__title">Box {data.boxNumber}</h2>
+						<div className="boxchoice__info__icon-wrapper">
+							<img src={Lockopen} className="boxchoice__info__icon" />
 						</div>
-						<div className="boxchoice__info">
-							<h2 className="boxchoice__info__title">Box {boxNumber}</h2>
-							<div className="boxchoice__info__icon-wrapper">
-								<img src={Lockopen} className="boxchoice__info__icon" />
-							</div>
-						</div>
-					</article>
-				</>
+					</div>
+				</article>
 			);
 		}
-		if (state == "closed") {
+		if (data.state == "closed") {
 			return (
 				<>
-					<article className="boxchoice boxchoice--closed" >
+					<article className="boxchoice boxchoice--closed">
 						<div className="boxchoice__picture-wrapper">
-							<img src={cover} className="boxchoice__picture" />
+							<img src={data.cover} className="boxchoice__picture" />
 						</div>
 						<div className="boxchoice__info">
-							<h2 className="boxchoice__info__title">Box {boxNumber}</h2>
+							<h2 className="boxchoice__info__title">Box {data.boxNumber}</h2>
 							<div className="boxchoice__info__icon-wrapper">
 								<img src={Lockclosed} className="boxchoice__info__icon" />
 							</div>
@@ -94,6 +95,10 @@ const BoxChoice = ({ boxNumber, cover, state }) => {
 			{modal ? renderModal() : ""}
 		</>
 	);
+};
+
+BoxChoice.propTypes = {
+	data: PropTypes.object,
 };
 
 export default BoxChoice;

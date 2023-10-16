@@ -1,10 +1,11 @@
 // When audio done, update state to put it into historique
-//https://wavesurfer.xyz/
-
+import PropTypes from "prop-types";
+import { useEffect, useState, useRef } from "react";
 import Play from "../assets/icons/Icon_Play.svg";
 import Pause from "../assets/icons/Icon_Pause.svg";
 import WaveSurfer from "wavesurfer.js";
-import { useEffect, useState, useRef } from "react";
+
+// Augmenter la taille des photos
 
 const Audio = ({ title, srcImg1, srcImg2, srcTranscription, handleModalAudio, srcAudio }) => {
 	const containerRef = useRef();
@@ -66,7 +67,7 @@ const Audio = ({ title, srcImg1, srcImg2, srcTranscription, handleModalAudio, sr
 				</div>
 				<div className="modal-audio__buttons">
 					<button className="modal-audio__button--resume button--red" onClick={handleModalAudio}>
-						Reprendre l'enquête
+						Reprendre l&apos;enquête
 					</button>
 					<button className="modal-audio__button--display button--white" onClick={openInNewTab}>
 						Transcription
@@ -75,6 +76,15 @@ const Audio = ({ title, srcImg1, srcImg2, srcTranscription, handleModalAudio, sr
 			</div>
 		</div>
 	);
+};
+
+Audio.propTypes = {
+	title: PropTypes.string,
+	srcImg1: PropTypes.string,
+	srcImg2: PropTypes.string,
+	srcTranscription: PropTypes.string,
+	handleModalAudio: PropTypes.func,
+	srcAudio: PropTypes.string,
 };
 
 export default Audio;

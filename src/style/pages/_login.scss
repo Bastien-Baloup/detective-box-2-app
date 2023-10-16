@@ -1,0 +1,30 @@
+.login {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	&__logo {
+		max-width: 50%;
+		min-width: 15rem;
+		margin: 5vh 0;
+	}
+	&__link {
+		color: $secondary-color;
+		font-size: 1rem;
+		line-height: 1.25rem;
+		align-self: flex-start;
+		font-family: "Gabriele";
+		&:hover {
+			color: $tertiary-color;
+			text-decoration: underline;
+		}
+	}
+}
+
+@include responsive(laptop) {
+	.login__link {
+		font-size: 1.25rem;
+	}
+	.login__logo {
+		margin: 10vh 0;
+	}
+}
