@@ -7,8 +7,12 @@
 	}
 	&__icon {
 		width: 2.5rem;
-		align-self: self-end;
-		cursor: pointer;
+		&--container {
+			background-color: transparent;
+			border: none;
+			align-self: self-end;
+			cursor: pointer;
+		}
 	}
 }
 
@@ -21,7 +25,7 @@
 .objectif {
 	cursor: pointer;
 	width: 20rem;
-	height: 3rem;
+	height: 5rem;
 	padding: 1rem;
 	margin: 1rem;
 	overflow: hidden;
@@ -46,6 +50,8 @@
 	}
 	&__title {
 		text-align: left;
+		font-family: inherit;
+		font-size: 1rem;
 	}
 	&__subInfo {
 		width: 100%;
@@ -85,9 +91,6 @@
 	border: solid 1px $tertiary-color;
 	color: $tertiary-color;
 	position: relative;
-	display: flex;
-	justify-content: center;
-	align-items: center;
 	&:hover {
 		animation: shake 800ms ease;
 	}

@@ -43,7 +43,7 @@ const Preuve = ({ data }) => {
 	};
 
 	return (
-		<article className="clue" onClick={displayCorrespondingModal}>
+		<article className="clue" onClick={displayCorrespondingModal} tabIndex="0">
 			<div className="clue__picture-wrapper">
 				<img src={data.poster} className="clue__picture" />
 			</div>

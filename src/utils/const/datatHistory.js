@@ -1,4 +1,4 @@
-import Saison1 from "../../assets/img/Facing-episode1.png";
+import Saison1 from "../../assets/img/Facing-episode1.jpg";
 
 export const dataPreuveTest = [
 	{

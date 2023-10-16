@@ -2,9 +2,9 @@
 // Changer le Context avec la box sélectionnée
 import Logo from "../assets/img/DB-Logo-DetectiveBox_AgenceDetectiveBlanc.png";
 import Boxchoice from "../components/Boxchoice.jsx";
-import Saison1 from "../assets/img/Facing-episode1.png";
-import Saison2 from "../assets/img/Facing-episode2.png";
-import Saison3 from "../assets/img/Facing-episode3.png";
+import Saison1 from "../assets/img/Facing-episode1.jpg";
+import Saison2 from "../assets/img/Facing-episode2.jpg";
+import Saison3 from "../assets/img/Facing-episode3.jpg";
 
 function Choice() {
 	const dataBoxChoiceTest = [

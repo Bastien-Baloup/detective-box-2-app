@@ -1,4 +1,4 @@
-import PhotoAdele from "../assets/img/ADELE_DARK.png";
+import PhotoAdele from "../assets/img/Agent_adele.jpg";
 import Input from "../components/Input.jsx";
 import Cross from "../assets/icons/Icon_Cross-white.svg";
 import PropTypes from "prop-types";
@@ -30,9 +30,9 @@ const Adele = ({ value, setValue, closeAgentPage }) => {
 					<button className="agent__form__button button--red">Valider</button>
 				</form>
 			</div>
-			<div className="agent__closeButton--container" onClick={closeAgentPage}>
+			<button className="agent__closeButton--container" onClick={closeAgentPage}>
 				<img src={Cross} className="agent__closeButton" />
-			</div>
+			</button>
 		</div>
 	);
 };

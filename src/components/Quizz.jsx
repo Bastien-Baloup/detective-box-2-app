@@ -42,16 +42,16 @@ const Quizz = ({ data, handleEndQuizz }) => {
 
 	const displayComment = () => {
 		if (score === 0) {
-			return "C’est pas terrible tout ça, j’espère que vous avez plus de capacité de déduction que de mémoire…";
+			return "C'est pas terrible tout ça, j'espère que vous avez plus de capacité de déduction que de mémoire…";
 		}
 		if (score >= 1 && score <= 4) {
-			return "Oula, mais vous avez tout oublié ! J’espère que ça va vous revenir petit à petit.";
+			return "Oula, mais vous avez tout oublié ! J'espère que ça va vous revenir petit à petit.";
 		}
 		if (score >= 5 && score <= 8) {
-			return "Pas mal, comme on pouvait l’attendre de nos meilleurs agents !";
+			return "Pas mal, comme on pouvait l'attendre de nos meilleurs agents !";
 		}
 		if (score === 9 || score === 10) {
-			return "Je le savais, vous êtes les meilleurs !";
+			return "Je le savais, vous êtes les meilleurs !";
 		}
 	};
 

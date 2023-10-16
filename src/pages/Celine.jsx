@@ -1,4 +1,4 @@
-import PhotoCeline from "../assets/img/CELINE_DARK.png";
+import PhotoCeline from "../assets/img/Agent_celine.jpg";
 import Input from "../components/Input.jsx";
 import Cross from "../assets/icons/Icon_Cross-white.svg";
 import PropTypes from "prop-types";

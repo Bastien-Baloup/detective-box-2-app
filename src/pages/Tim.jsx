@@ -1,4 +1,4 @@
-import PhotoTim from "../assets/img/TIM_DARK.png";
+import PhotoTim from "../assets/img/Agent_tim.jpg";
 import Input from "../components/Input.jsx";
 import Cross from "../assets/icons/Icon_Cross-white.svg";
 import PropTypes from "prop-types";

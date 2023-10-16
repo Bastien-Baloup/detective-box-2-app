@@ -27,16 +27,17 @@ function Renfort() {
 	};
 
 	const displayMenu = () => {
-		dataHelp.box1.map((help, index) => {
+		const menuChoices = dataHelp.box1.map((help, index) => {
+			console.log(help);
 			if (help.status == "done") {
 				return (
 					<>
-						<button className="objectif objectif--done" key={`helpKey-${index}`}>
-							<div className="objectif__mainInfo">
-								<div className="objectif__icon-wrapper">
-									<img src={Check} className="objectif__icon" />
+						<button className="menu__choice menu__choice--done" key={`helpKey-${index}`}>
+							<div className="menu__choice__content">
+								<div className="menu__choice__icon-wrapper">
+									<img src={Check} className="menu__choice__icon" />
 								</div>
-								<h3 className="objectif__title">{help.title}</h3>
+								<h3 className="menu__choice__title">{help.title}</h3>
 							</div>
 						</button>
 					</>
@@ -45,12 +46,12 @@ function Renfort() {
 			if (help.status == "open") {
 				return (
 					<>
-						<button className="objectif objectif--open" onClick={() => openSlider(help)} key={`helpKey-${index}`}>
-							<div className="objectif__mainInfo">
-								<div className="objectif__icon-wrapper">
-									<img src={LockOpen} className="objectif__icon" />
+						<button className="menu__choice menu__choice--open" onClick={() => openSlider(help)} key={`helpKey-${index}`}>
+							<div className="menu__choice__content">
+								<div className="menu__choice__icon-wrapper">
+									<img src={LockOpen} className="menu__choice__icon" />
 								</div>
-								<h3 className="objectif__title">{help.title}</h3>
+								<h3 className="menu__choice__title">{help.title}</h3>
 							</div>
 						</button>
 					</>
@@ -59,21 +60,23 @@ function Renfort() {
 			if (help.status == "closed") {
 				return (
 					<>
-						<article className="objectif objectif--closed" key={`helpKey-${index}`}>
-							<div className="objectif__icon-wrapper--closed">
-								<img src={LockClosed} className="objectif__icon" />
+						<button className="menu__choice menu__choice--closed" key={`helpKey-${index}`}>
+							<div className="menu__choice__icon-wrapper--closed">
+								<img src={LockClosed} className="menu__choice__icon" />
 							</div>
-							<h3 className="objectif__title--closed">Ce renfort est bloqué pour le moment</h3>
-						</article>
+							<h3 className="menu__choice__title--closed">Ce renfort est bloqué pour le moment</h3>
+						</button>
 					</>
 				);
 			}
 		});
+		return menuChoices;
 	};
 
 	return (
 		<div className="main__help">
-			{menuActivated ? displayMenu() : null}
+			<p className="help__title"> Choisissez le sujet sur lequel vous avez besoin de renfort :</p>
+			<div className="help__menu">{menuActivated ? displayMenu() : null}</div>
 			{sliderActivated ? displaySlider(helpSelected) : null}
 		</div>
 	);

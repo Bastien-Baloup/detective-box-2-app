@@ -1,4 +1,4 @@
-import PhotoRaphaelle from "../assets/img/RAPHAELLE_DARK.png";
+import PhotoRaphaelle from "../assets/img/Agent_raphaelle.jpg";
 import Input from "../components/Input.jsx";
 import Cross from "../assets/icons/Icon_Cross-white.svg";
 import PropTypes from "prop-types";

@@ -1,4 +1,4 @@
-import PhotoLauren from "../assets/img/LAUREN_DARK.png";
+import PhotoLauren from "../assets/img/Agent_lauren.jpg";
 import Input from "../components/Input.jsx";
 import Cross from "../assets/icons/Icon_Cross-white.svg";
 import PropTypes from "prop-types";

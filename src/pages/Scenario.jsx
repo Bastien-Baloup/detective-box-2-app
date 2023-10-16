@@ -4,9 +4,9 @@ import Paper from "../assets/img/DB-papier-froisse.jpg";
 import { Link } from "react-router-dom";
 
 function Scenario() {
-	const openApp1 = () => {
-		window.open("https://app.detectivebox.fr/connexion", "_blank");
-	};
+	// const openApp1 = () => {
+	// 	window.open("https://app.detectivebox.fr/connexion", "_blank");
+	// };
 	const openWebsite = () => {
 		window.open("https://detectivebox.fr/", "_blank");
 	};
@@ -15,14 +15,16 @@ function Scenario() {
 		<main className="scenarios">
 			<h1 className="scenarios__title">Choisissez votre scénario</h1>
 			<div className="scenarios__choice">
-				<article className="scenario" onClick={openApp1}>
-					<div className="scenario__poster__container">
-						<img className="scenario__poster" src={Saison1} />
-					</div>
-					<div className="scenario__title__container">
-						<p className="scenario__title">Woodlock</p>
-					</div>
-				</article>
+				<a href="https://app.detectivebox.fr/connexion" target="_blank" rel="noopener noreferrer">
+					<article className="scenario">
+						<div className="scenario__poster__container">
+							<img className="scenario__poster" src={Saison1} />
+						</div>
+						<div className="scenario__title__container">
+							<p className="scenario__title">Woodlock</p>
+						</div>
+					</article>
+				</a>
 
 				<Link to="/sign-in">
 					<article className="scenario">
@@ -35,14 +37,16 @@ function Scenario() {
 					</article>
 				</Link>
 
-				<article className="scenario" onClick={openWebsite}>
-					<div className="scenario__poster__container">
-						<img className="scenario__poster" src={Paper} />
-					</div>
-					<div className="scenario__title__container">
-						<p className="scenario__title">Prochainement</p>
-					</div>
-				</article>
+				<a href="https://detectivebox.fr/" target="_blank" rel="noopener noreferrer">
+					<article className="scenario" onClick={openWebsite}>
+						<div className="scenario__poster__container">
+							<img className="scenario__poster" src={Paper} />
+						</div>
+						<div className="scenario__title__container">
+							<p className="scenario__title">Prochainement</p>
+						</div>
+					</article>
+				</a>
 			</div>
 		</main>
 	);

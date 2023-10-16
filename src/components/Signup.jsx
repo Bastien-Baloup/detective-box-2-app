@@ -1,7 +1,17 @@
 import Input from "./Input";
 import PropTypes from "prop-types";
 
-const Signup = ({ handleSubmitSignup, errorMessageSignup, setValueUsername, valueUsername, setValuePassword, valuePassword, switchToSignin }) => {
+const Signup = ({
+	handleSubmitSignup,
+	errorMessageSignup,
+	setValueUsername,
+	valueUsername,
+	valueEmail,
+	setValueEmail,
+	setValuePassword,
+	valuePassword,
+	switchToSignin,
+}) => {
 	return (
 		<>
 			<section className="signup">
@@ -9,13 +19,28 @@ const Signup = ({ handleSubmitSignup, errorMessageSignup, setValueUsername, valu
 				<form className="signup__form" onSubmit={handleSubmitSignup}>
 					<Input
 						type="texte"
-						label="Adresse email"
+						label="Nom d'agent"
 						name="signup"
-						placeholder="agent@detectivebox.fr"
+						placeholder="Raphaëlle Sanchez"
 						value={valueUsername}
 						setValue={setValueUsername}
 					/>
-					<Input type="texte" label="Mot de passe" name="signup" placeholder="********" value={valuePassword} setValue={setValuePassword} />
+					<Input
+						type="texte"
+						label="Adresse email"
+						name="signup"
+						placeholder="agent@detectivebox.fr"
+						value={valueEmail}
+						setValue={setValueEmail}
+					/>
+					<Input
+						type="texte"
+						label="Mot de passe"
+						name="signup"
+						placeholder="********"
+						value={valuePassword}
+						setValue={setValuePassword}
+					/>
 					<button className="signup__form__button button--red">Valider</button>
 				</form>
 				<button className="signup__button__signin button--white" onClick={switchToSignin}>
@@ -24,7 +49,7 @@ const Signup = ({ handleSubmitSignup, errorMessageSignup, setValueUsername, valu
 			</section>
 		</>
 	);
-}
+};
 
 Signup.propTypes = {
 	handleSubmitSignup: PropTypes.func,
@@ -33,6 +58,8 @@ Signup.propTypes = {
 	setValueUsername: PropTypes.func,
 	valuePassword: PropTypes.string,
 	setValuePassword: PropTypes.func,
+	valueEmail: PropTypes.string,
+	setValueEmail: PropTypes.func,
 	switchToSignin: PropTypes.func,
 };
 

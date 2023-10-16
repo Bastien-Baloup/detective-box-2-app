@@ -24,7 +24,9 @@ const Objectif = ({ data }) => {
 		return (
 			<div className="modal-objectif__background">
 				<div className="modal-objectif__box">
-					<img className="modal-objectif__icon" src={Cross} onClick={handleModal} />
+					<button className="modal-objectif__icon--container">
+						<img className="modal-objectif__icon" src={Cross} onClick={handleModal} />
+					</button>
 					<h2 className="modal-objectif__title">
 						Objectif : <br></br> {data.title}
 					</h2>
@@ -38,10 +40,10 @@ const Objectif = ({ data }) => {
 	};
 
 	const renderObjectif = () => {
-		if (data.state == "done") {
+		if (data.status == "done") {
 			return (
 				<>
-					<article className="objectif objectif--done">
+					<button className="objectif objectif--done">
 						<div className="objectif__mainInfo">
 							<div className="objectif__icon-wrapper">
 								<img src={Check} className="objectif__icon" />
@@ -51,14 +53,14 @@ const Objectif = ({ data }) => {
 						<div className="objectif__subInfo">
 							<p className="objectif__subtitle">{data.subtitle}</p>
 						</div>
-					</article>
+					</button>
 				</>
 			);
 		}
-		if (data.state == "open") {
+		if (data.status == "open") {
 			return (
 				<>
-					<article className="objectif objectif--open" onClick={handleModal}>
+					<button className="objectif objectif--open" onClick={handleModal}>
 						<div className="objectif__mainInfo">
 							<div className="objectif__icon-wrapper">
 								<img src={LockOpen} className="objectif__icon" />
@@ -68,19 +70,19 @@ const Objectif = ({ data }) => {
 						<div className="objectif__subInfo">
 							<p className="objectif__subtitle">{data.subtitle}</p>
 						</div>
-					</article>
+					</button>
 				</>
 			);
 		}
-		if (data.state == "closed") {
+		if (data.status == "closed") {
 			return (
 				<>
-					<article className="objectif objectif--closed">
+					<button className="objectif objectif--closed">
 						<div className="objectif__icon-wrapper--closed">
 							<img src={LockClosed} className="objectif__icon" />
 						</div>
 						<h3 className="objectif__title--closed">Cet objectif est bloqué pour le moment</h3>
-					</article>
+					</button>
 				</>
 			);
 		}

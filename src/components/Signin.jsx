@@ -7,11 +7,11 @@ const Signin = ({
 	handleSubmitSignin,
 	errorMessageSignin,
 	errorMessageForgot,
-	valueUsername,
-	setValueUsername,
+	valueEmailForgot,
+	setValueEmailForgot,
 	valuePassword,
 	setValuePassword,
-	handleSubmitEmail,
+	handleSubmitEmailForgot,
 	valueEmail,
 	setValueEmail,
 	switchToSignup,
@@ -22,17 +22,19 @@ const Signin = ({
 		return (
 			<div className="modal-forgot__background">
 				<div className="modal-forgot__box">
-					<img className="modal-forgot__icon" src={Cross} onClick={() => setModalActive(false)} />
+					<button className="modal-forgot__icon--container">
+						<img className="modal-forgot__icon" src={Cross} onClick={() => setModalActive(false)} />
+					</button>
 					<h2 className="modal-forgot__title">Renseignez votre adresse email pour changer votre mot de passe</h2>
 					<div className="modal-forgot__errorMessage">{errorMessageForgot}</div>
-					<form className="modal-forgot__form" onSubmit={handleSubmitEmail}>
+					<form className="modal-forgot__form" onSubmit={handleSubmitEmailForgot}>
 						<Input
 							type="texte"
 							label="Adresse email"
 							name="forgot"
 							placeholder="agent@detectivebox.fr"
-							value={valueEmail}
-							setValue={setValueEmail}
+							value={valueEmailForgot}
+							setValue={setValueEmailForgot}
 						/>
 						<button className="modal-password__button button--red">Valider</button>
 					</form>
@@ -51,8 +53,8 @@ const Signin = ({
 						label="Identifiant"
 						name="signin"
 						placeholder="agent@detectivebox.fr"
-						value={valueUsername}
-						setValue={setValueUsername}
+						value={valueEmail}
+						setValue={setValueEmail}
 					/>
 					<Input
 						type="texte"
@@ -64,9 +66,9 @@ const Signin = ({
 					/>
 					<button className="signin__form__button button--red">Connexion</button>
 				</form>
-				<div className="signin__forget" onClick={() => setModalActive(true)}>
+				<button className="signin__forget" onClick={() => setModalActive(true)}>
 					Mot de passe oublié ?
-				</div>
+				</button>
 				<button className="signin__button__signup button--white" onClick={switchToSignup}>
 					Créer un compte
 				</button>
@@ -80,13 +82,13 @@ Signin.propTypes = {
 	handleSubmitSignin: PropTypes.func,
 	errorMessageSignin: PropTypes.string,
 	errorMessageForgot: PropTypes.string,
-	setValueUsername: PropTypes.func,
-	valueUsername: PropTypes.string,
 	setValuePassword: PropTypes.func,
 	valuePassword: PropTypes.string,
-	handleSubmitEmail: PropTypes.func,
+	handleSubmitEmailForgot: PropTypes.func,
 	setValueEmail: PropTypes.func,
 	valueEmail: PropTypes.string,
+	setValueEmailForgot: PropTypes.func,
+	valueEmailForgot: PropTypes.string,
 	switchToSignup: PropTypes.func,
 };
 
