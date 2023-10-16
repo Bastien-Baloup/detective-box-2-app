@@ -5,7 +5,7 @@ export const dataHelp = {
 		{
 			id: 1,
 			title: "La menteuse",
-			status: "closed",
+			status: "done",
 			hints: [
 				{
 					id: 1,
@@ -85,7 +85,7 @@ export const dataHelp = {
 		{
 			id: 2,
 			title: "L'oublié",
-			status: "closed",
+			status: "open",
 			hints: [
 				{
 					id: 1,

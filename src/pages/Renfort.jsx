@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { dataHelp } from "../utils/const/dataHelp";
 import Slider from "../components/Slider";
+import Check from "../assets/icons/Icon_Check-green.svg";
+import LockClosed from "../assets/icons/Icon_Lock-closed-red.svg";
+import LockOpen from "../assets/icons/Icon_Lock-open-black.svg";
 
 function Renfort() {
 	// if not logged, redirect to Page de connexion
@@ -22,12 +25,50 @@ function Renfort() {
 	const displaySlider = (data) => {
 		return <Slider data={data} handleModal={backToHome} />;
 	};
+
 	const displayMenu = () => {
-		return dataHelp.box1.map((help, index) => (
-			<button onClick={() => openSlider(help)} key={`helpKey-${index}`}>
-				{help.title}
-			</button>
-		));
+		dataHelp.box1.map((help, index) => {
+			if (help.status == "done") {
+				return (
+					<>
+						<button className="objectif objectif--done" key={`helpKey-${index}`}>
+							<div className="objectif__mainInfo">
+								<div className="objectif__icon-wrapper">
+									<img src={Check} className="objectif__icon" />
+								</div>
+								<h3 className="objectif__title">{help.title}</h3>
+							</div>
+						</button>
+					</>
+				);
+			}
+			if (help.status == "open") {
+				return (
+					<>
+						<button className="objectif objectif--open" onClick={() => openSlider(help)} key={`helpKey-${index}`}>
+							<div className="objectif__mainInfo">
+								<div className="objectif__icon-wrapper">
+									<img src={LockOpen} className="objectif__icon" />
+								</div>
+								<h3 className="objectif__title">{help.title}</h3>
+							</div>
+						</button>
+					</>
+				);
+			}
+			if (help.status == "closed") {
+				return (
+					<>
+						<article className="objectif objectif--closed" key={`helpKey-${index}`}>
+							<div className="objectif__icon-wrapper--closed">
+								<img src={LockClosed} className="objectif__icon" />
+							</div>
+							<h3 className="objectif__title--closed">Ce renfort est bloqué pour le moment</h3>
+						</article>
+					</>
+				);
+			}
+		});
 	};
 
 	return (
