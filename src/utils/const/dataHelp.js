@@ -3,7 +3,7 @@ export const dataHelp = {
 
 	box1: [
 		{
-			id: 1,
+			id: "box1help1",
 			title: "La menteuse",
 			status: "done",
 			hints: [
@@ -28,13 +28,13 @@ export const dataHelp = {
 				{
 					id: 4,
 					text: "Voici la résolution du carré :",
-					image: null,
+					image: "assets/renforts/box1_menteuse_renfort4_carre_magique.jpg",
 				},
 				{
 					id: 5,
 					text:
 						"Voici ce qu'on obtenait en résolvant le carré. On pourrait aller là-bas. Vous avez interrogé le mari de Rebecca au fait ? Son nom est sur le billet d'avion.",
-					image: null,
+					image: "assets/renforts/box1_menteuse_renfort5_adresse.jpg",
 				},
 				{
 					id: 6,
@@ -71,7 +71,8 @@ export const dataHelp = {
 				},
 				{
 					id: 12,
-					text: "On a trouvé un médaillon et un enregistrement dans la malle. Voici le script de l'enregistrement :",
+					text:
+						"On a trouvé un médaillon et un enregistrement dans la malle. Vous trouverez la transcription dans l'historique.",
 					image: null,
 				},
 				{
@@ -83,7 +84,7 @@ export const dataHelp = {
 			],
 		},
 		{
-			id: 2,
+			id: "box1help2",
 			title: "L'oublié",
 			status: "open",
 			hints: [
@@ -131,7 +132,7 @@ export const dataHelp = {
 					id: 8,
 					text:
 						"Je lis 'Xavier Monrency' et vous ? On devrait consulter les archives sur cette personne grâce à Céline maintenant qu'on sait qui c'est.",
-					image: null,
+					image: "assets/renforts/box1_oublie_renfort8_lettre_cryptee.jpg",
 				},
 				{
 					id: 9,
@@ -141,7 +142,7 @@ export const dataHelp = {
 			],
 		},
 		{
-			id: 3,
+			id: "box1help3",
 			title: "L'orgeuilleux",
 			status: "closed",
 			hints: [
@@ -179,7 +180,7 @@ export const dataHelp = {
 					id: 6,
 					text:
 						"Je pense que la personne qui n'a pas pu téléphoner, c'est Marianne Chauve, regardez le rapport, ça dit que le téléphone était coupé. Toujours d'après le rapport, elle est morte le 28/02/1992 à 2h10. Si on positionne le calque des heures sur celui de la date, on obtient cela. Il faut qu'on regarde dans l'espace vide maintenant pour savoir ce qu'elle regardait.",
-					image: null,
+					image: "assets/renforts/box1_orgueilleux_renfort6_carte_ciel.jpg",
 				},
 				{
 					id: 7,
@@ -219,7 +220,7 @@ export const dataHelp = {
 			],
 		},
 		{
-			id: 4,
+			id: "box1help4",
 			title: "Le chemin de la vérité",
 			status: "closed",
 			hints: [
@@ -272,7 +273,7 @@ export const dataHelp = {
 
 	box2: [
 		{
-			id: 1,
+			id: "box2help1",
 			title: "Premier tri de la liste des victimes",
 			status: "closed",
 			hints: [
@@ -289,7 +290,7 @@ export const dataHelp = {
 				},
 				{
 					id: 3,
-					text: "Il y a vraiment beaucoup de fautes d’orthographe…",
+					text: "Il y a vraiment beaucoup de fautes d'orthographe…",
 					image: null,
 				},
 				{
@@ -325,7 +326,7 @@ export const dataHelp = {
 			],
 		},
 		{
-			id: 2,
+			id: "box2help2",
 			title: "Le secret de Garraud",
 			status: "closed",
 			hints: [
@@ -343,7 +344,7 @@ export const dataHelp = {
 					id: 3,
 					text:
 						"Ce forum, c'est 'fan des constellations cachées'. Il faudrait qu'on se connecte aux messages privés de Garraud. Il a sûrement dû nous communiquer son pseudo et son mot-de-passe avant de se suicider.",
-					image: null,
+					image: "assets/renforts/box2_secret_renfort3_forum.jpg",
 				},
 				{
 					id: 4,
@@ -376,19 +377,18 @@ export const dataHelp = {
 					id: 9,
 					text:
 						"Sur le forum, le tueur parle de 'la théorie de Lilith équilibrée'. Il me semble que c'est le nom d'un des paragraphes du livre…",
-					image: null,
+					image: "assets/renforts/box2_secret_renfort9_lilith_balance.jpg",
 				},
 				{
 					id: 10,
 					text:
 						"Il semblerait donc que le tueur choisisse ses victimes lorsque Lilith est en balance. Ça devrait nous permettre d'éliminer de nouvelles victimes de la liste.",
 					image: null,
-					// Photo du thème astral du livre
 				},
 			],
 		},
 		{
-			id: 3,
+			id: "box2help3",
 			title: "Modus Operandi",
 			status: "closed",
 			hints: [
@@ -406,7 +406,7 @@ export const dataHelp = {
 			],
 		},
 		{
-			id: 4,
+			id: "box2help4",
 			title: "Le meurtre de Mason Reynolds",
 			status: "closed",
 			hints: [
@@ -446,7 +446,7 @@ export const dataHelp = {
 			],
 		},
 		{
-			id: 5,
+			id: "box2help5",
 			title: "Trouver Stella",
 			status: "closed",
 			hints: [
@@ -474,7 +474,7 @@ export const dataHelp = {
 			],
 		},
 		{
-			id: 6,
+			id: "box2help6",
 			title: "Dernière épreuve",
 			status: "closed",
 			hints: [
@@ -497,7 +497,7 @@ export const dataHelp = {
 
 	box3: [
 		{
-			id: 1,
+			id: "box3help1",
 			title: "Remonter la piste de Lauren",
 			status: "closed",
 			hints: [
@@ -550,7 +550,7 @@ export const dataHelp = {
 			],
 		},
 		{
-			id: 2,
+			id: "box3help2",
 			title: "Localiser l'échantillon",
 			status: "closed",
 			hints: [
@@ -593,7 +593,7 @@ export const dataHelp = {
 					id: 7,
 					text:
 						"Le briquet s'ouvre et il y a les notes de Lauren à l'intérieur. Cela parle d'Annina et du lieu qui lui rappelle sa jeunesse. Vous devriez résoudre l'objectif 'Remonter la piste de Lauren' pour aller plus loin.",
-					image: null,
+					image: "assets/renforts/box3_echantillon_renfort7_papier_briquet.jpg",
 				},
 				{
 					id: 8,
@@ -606,10 +606,31 @@ export const dataHelp = {
 					text: "Sur Google Maps, je trouve le Dolmen d'Ité. C'est probablement là-bas qu'il faut se rendre.",
 					image: null,
 				},
+				{
+					id: 10,
+					text: "Nous voici dans la forêt des Arbailles. Avez-vous vu l'inscription dans la ruine ?",
+					image: null,
+				},
+				{
+					id: 11,
+					text:
+						"Vous avez vu le poème d'Albert Samain récupéré dans la planque de la tueuse ? On y voit toute une série de constellations : le pégase, le dragon, Cassiopée, Andromède, la lyre, la Vierge, le cygne et enfin le Chariot.",
+					image: null,
+				},
+				{
+					id: 12,
+					text: "Vous avez vu sur les arbres ? Ce sont des constellations qui sont gravées.",
+					image: null,
+				},
+				{
+					id: 13,
+					text: "Suivons ces symboles et creusons au pied du signe du chariot pour découvrir ce qu'il y a de caché ici…",
+					image: "assets/renforts/box3_foret_renfort4_all_signs.jpg",
+				},
 			],
 		},
 		{
-			id: 3,
+			id: "box3help3",
 			title: "Localiser les potentielles cibles restantes",
 			status: "closed",
 			hints: [
@@ -666,7 +687,7 @@ export const dataHelp = {
 				},
 				{
 					id: 10,
-					text: "Vous n’avez pas trouvé ? Son adresse est 8 rue des Lilas à Bordeaux.",
+					text: "Vous n'avez pas trouvé ? Son adresse est 8 rue des Lilas à Bordeaux.",
 					image: null,
 				},
 				{
@@ -694,7 +715,7 @@ export const dataHelp = {
 			],
 		},
 		{
-			id: 4,
+			id: "box3help4",
 			title: "La prochaine victime",
 			status: "closed",
 			hints: [
@@ -728,7 +749,7 @@ export const dataHelp = {
 			],
 		},
 		{
-			id: 5,
+			id: "box3help5",
 			title: "Dernière épreuve",
 			status: "closed",
 			hints: [
@@ -792,7 +813,7 @@ export const dataHelp = {
 			],
 		},
 		{
-			id: 6,
+			id: "box3help6",
 			title: "Identifier le tueur",
 			status: "closed",
 			hints: [
