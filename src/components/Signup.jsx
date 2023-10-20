@@ -19,6 +19,7 @@ const Signup = ({
 				<form className="signup__form" onSubmit={handleSubmitSignup}>
 					<Input
 						type="texte"
+						pattern="\S(.*\S)?"
 						label="Nom d'agent"
 						name="signup"
 						placeholder="Raphaëlle Sanchez"
@@ -26,7 +27,7 @@ const Signup = ({
 						setValue={setValueUsername}
 					/>
 					<Input
-						type="texte"
+						type="email"
 						label="Adresse email"
 						name="signup"
 						placeholder="agent@detectivebox.fr"
@@ -34,7 +35,7 @@ const Signup = ({
 						setValue={setValueEmail}
 					/>
 					<Input
-						type="texte"
+						type="password"
 						label="Mot de passe"
 						name="signup"
 						placeholder="********"

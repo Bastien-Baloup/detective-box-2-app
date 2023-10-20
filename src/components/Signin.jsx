@@ -29,7 +29,7 @@ const Signin = ({
 					<div className="modal-forgot__errorMessage">{errorMessageForgot}</div>
 					<form className="modal-forgot__form" onSubmit={handleSubmitEmailForgot}>
 						<Input
-							type="texte"
+							type="email"
 							label="Adresse email"
 							name="forgot"
 							placeholder="agent@detectivebox.fr"
@@ -49,7 +49,7 @@ const Signin = ({
 				<div className="signin__errorMessage">{errorMessageSignin}</div>
 				<form className="signin__form" onSubmit={handleSubmitSignin}>
 					<Input
-						type="texte"
+						type="email"
 						label="Identifiant"
 						name="signin"
 						placeholder="agent@detectivebox.fr"
@@ -57,7 +57,7 @@ const Signin = ({
 						setValue={setValueEmail}
 					/>
 					<Input
-						type="texte"
+						type="password"
 						label="Mot de passe"
 						name="signin"
 						placeholder="********"

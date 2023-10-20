@@ -1,10 +1,8 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import Signin from "../components/Signin";
 import Signup from "../components/Signup";
 import Logo from "../assets/img/DB-Logo-DetectiveBox_DetectiveBlanc.png";
 import { useNavigate } from "react-router-dom";
-// Help Rémi. Connecter l'api à tout ça...
 
 function Login() {
 	const [isSigninActive, setIsSigninActive] = useState(true);
@@ -16,9 +14,12 @@ function Login() {
 	const [email, setEmail] = useState("");
 	const [emailForgot, setEmailForgot] = useState("");
 	const navigate = useNavigate();
-	// if (isLogged) {
-	// 	return <Navigate to="/home" />;
-	// }
+
+	// API A METTRE EN PLACE POUR CONNECTER LE COMPTE
+	if (isLogged) {
+		navigate("/box-choice");
+		return;
+	}
 
 	const handleSubmitSignin = (e) => {
 		e.preventDefault();
@@ -53,7 +54,7 @@ function Login() {
 		}
 		setEmailForgot("");
 		setErrorMessageForgot("");
-		alert("Vérifiez votre boite mail !");
+		alert("Compte créé avec succès !");
 	};
 
 	const switchToSignup = () => {
@@ -78,9 +79,9 @@ function Login() {
 
 	return (
 		<main className="login">
-			<Link className="login__link" to="/">
+			<a className="login__link" href="https://app.detectivebox.fr/connexion">
 				&lt; Retour aux choix des scénarios
-			</Link>
+			</a>
 			<img className="login__logo" src={Logo} />
 			{isSigninActive ? (
 				<Signin
