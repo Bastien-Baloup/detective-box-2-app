@@ -8,7 +8,7 @@ import Timer from "./Timer.jsx";
 
 //Mettre des boutons carrés quant multi choice
 
-const Quizz = ({ data, handleEndQuizz }) => {
+const Quizz = ({ data, handleEndQuizz, url }) => {
 	const [instructionActive, setInstructionActive] = useState(true);
 	const [resultActive, setResultActive] = useState(false);
 	const [gameActive, setGameActive] = useState(false);
@@ -124,10 +124,8 @@ const Quizz = ({ data, handleEndQuizz }) => {
 				<div className="quizz__question__choices">{renderChoices()}</div>
 				<div className="quizz__question__img--container">
 					{data.questions[index].image != null ? (
-						<img className="quizz__question__img" src={data.questions[index].image} />
-					) : (
-						"Pas d'image à afficher"
-					)}
+						<img className="quizz__question__img" src={url + data.questions[index].image} />
+					) : null}
 				</div>
 				<button className="quizz__question__button button--red" onClick={handleQuestionForm}>
 					Valider
@@ -149,10 +147,8 @@ const Quizz = ({ data, handleEndQuizz }) => {
 				<p className="quizz__answer__subtitle">{data.answers[index].explanation}</p>
 				<div className="quizz__answer__img--container">
 					{data.answers[index].image != null ? (
-						<img className="quizz__answer__img" src={data.answers[index].image} />
-					) : (
-						"Pas d'image à afficher"
-					)}
+						<img className="quizz__answer__img" src={url + data.answers[index].image} />
+					) : null}
 				</div>
 				<button className="quizz__question__button button--red" onClick={handleAnswerForm}>
 					Suivant

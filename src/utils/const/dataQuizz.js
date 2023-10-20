@@ -41,7 +41,7 @@ export const dataQuizz = {
 					"Un mot du tueur destiné aux enquêteurs",
 				],
 				image: null,
-				// image : "box2_malle_quiz_question_5.jpg",
+				// image : "assets/quiz/box2_malle_quiz_question_5.jpg",
 			},
 			{
 				id: 5,
@@ -51,7 +51,6 @@ export const dataQuizz = {
 					"En décodant la grille, grâce au site du fan du tueur, qui montrait un décryptage de l'alphabet du tueur.",
 				],
 				image: null,
-				// image : "box2_lettres_decryptees_quiz_reponse_6.jpg"
 			},
 			{
 				id: 6,
@@ -92,7 +91,7 @@ export const dataQuizz = {
 				explanation:
 					"Le tueur, suspecté d'avoir commis trois meurtres en 1992, 1993 et 1998, est connu sous le nom du tueur au Tarot. Ce nom fait référence à la demi-carte qu'il laisse à côté de ses victimes après avoir envoyé la première à la police. En 2023, un nouveau corps a été découvert, faisant ressurgir l'affaire. Au cours de vos enquêtes, vous avez découvert que le meurtre de 1998 n'était pas lié au tueur au Tarot. Cependant, vous avez identifié une victime qui n'avait pas été reliée à lui jusqu'à présent.",
 				image: null,
-				// image: "box2_victimesbox1_quiz_reponse_2.jpg",
+				// image: "assets/quiz/box2_victimesbox1_quiz_reponse_2.jpg",
 			},
 			{
 				id: 2,
@@ -115,7 +114,7 @@ export const dataQuizz = {
 				explanation:
 					"La malle contenait la rate de Rebecca Dumont, ainsi que ses derniers mots laissant entendre qu'elle regrettait de ne pas avoir fait quelque chose pour le tueur. De plus, nous avons découvert un message crypté qui nous a permis de localiser la planque du tueur. Enfin, un médaillon a également été découvert dans la malle. Nous allons vous le transmettre dans cette box.",
 				image: null,
-				// image: "box2_malle_quiz_reponse_5.jpg"
+				// image: "assets/quiz/box2_malle_quiz_reponse_5.jpg"
 			},
 			{
 				id: 5,
@@ -123,7 +122,7 @@ export const dataQuizz = {
 				explanation:
 					"En superposant les grilles, il était possible de retrouver l'emplacement de l'oublié. Nous avons découvert un indice, une lettre transcrite du tueur, sur le site du fan qui suggérait de « garder les vides ». L'alphabet découvert sur le site était en effet utilisé pour décoder les lettres. Cependant, ces dernières avaient déjà été déchiffrées sur le site du fan.",
 				image: null,
-				// image: "box2_lettres_cryptees_quiz_reponse_6.jpg",
+				// image: "assets/quiz/box2_lettres_cryptees_quiz_reponse_6.jpg",
 			},
 			{
 				id: 6,
