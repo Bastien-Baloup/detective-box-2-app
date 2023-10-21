@@ -1,10 +1,8 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import Signin from "../components/Signin";
 import Signup from "../components/Signup";
 import Logo from "../assets/img/DB-Logo-DetectiveBox_DetectiveBlanc.png";
 import { useNavigate } from "react-router-dom";
-// Help Rémi. Connecter l'api à tout ça...
 
 function Login() {
 	const [isSigninActive, setIsSigninActive] = useState(true);
@@ -13,45 +11,53 @@ function Login() {
 	const [errorMessageSignin, setErrorMessageSignin] = useState("");
 	const [errorMessageSignup, setErrorMessageSignup] = useState("");
 	const [errorMessageForgot, setErrorMessageForgot] = useState("");
-	const [valueEmail, setValueEmail] = useState("");
+	const [email, setEmail] = useState("");
+	const [emailForgot, setEmailForgot] = useState("");
 	const navigate = useNavigate();
+
+	// API A METTRE EN PLACE POUR CONNECTER LE COMPTE
 	// if (isLogged) {
-	// 	return <Navigate to="/home" />;
+	// 	navigate("/box-choice");
+	// 	return;
 	// }
 
 	const handleSubmitSignin = (e) => {
 		e.preventDefault();
-		if (username === "" || password === "") {
+		if (email === "" || password === "") {
 			setErrorMessageSignin("Merci de remplir le formulaire pour vous connecter");
 			return;
 		}
-		setUsername("");
+		setEmail("");
 		setPassword("");
 		setErrorMessageSignin("");
+		localStorage.setItem("email", JSON.stringify(email));
+		localStorage.setItem("password", JSON.stringify(password));
+		console.log(localStorage);
 		navigate("/box-choice");
 	};
 
 	const handleSubmitSignup = (e) => {
 		e.preventDefault();
-		if (username === "" || password === "") {
+		if (email === "" || password === "" || username === "") {
 			setErrorMessageSignup("Merci de remplir le formulaire pour créer un compte");
 			return;
 		}
 		setUsername("");
+		setEmail("");
 		setPassword("");
 		setErrorMessageSignup("");
-		navigate("/box-choice");
+		alert("Compte bien créé, merci de vous connecter à présent");
 	};
 
-	const handleSubmitEmail = (e) => {
+	const handleSubmitEmailForgot = (e) => {
 		e.preventDefault();
-		if (valueEmail === "") {
+		if (emailForgot === "") {
 			setErrorMessageForgot("Merci de rentrer une adresse mail");
 			return;
 		}
-		setValueEmail("");
+		setEmailForgot("");
 		setErrorMessageForgot("");
-		alert("Vérifiez votre boite mail !");
+		alert("Votre mot de passe vous a été envoyé par mail !");
 	};
 
 	const switchToSignup = () => {
@@ -59,6 +65,9 @@ function Login() {
 		setErrorMessageSignin("");
 		setErrorMessageSignup("");
 		setIsSigninActive(false);
+		setUsername("");
+		setEmail("");
+		setPassword("");
 	};
 
 	const switchToSignin = () => {
@@ -66,26 +75,29 @@ function Login() {
 		setErrorMessageSignin("");
 		setErrorMessageSignup("");
 		setIsSigninActive(true);
+		setUsername("");
+		setEmail("");
+		setPassword("");
 	};
 
 	return (
 		<main className="login">
-			<Link className="login__link" to="/">
+			<a className="login__link" href="https://app.detectivebox.fr/connexion">
 				&lt; Retour aux choix des scénarios
-			</Link>
+			</a>
 			<img className="login__logo" src={Logo} />
 			{isSigninActive ? (
 				<Signin
 					handleSubmitSignin={handleSubmitSignin}
 					errorMessageSignin={errorMessageSignin}
 					errorMessageForgot={errorMessageForgot}
-					setValueUsername={setUsername}
-					valueUsername={username}
+					setValueEmail={setEmail}
+					valueEmail={email}
 					setValuePassword={setPassword}
 					valuePassword={password}
-					handleSubmitEmail={handleSubmitEmail}
-					valueEmail={valueEmail}
-					setValueEmail={setValueEmail}
+					handleSubmitEmailForgot={handleSubmitEmailForgot}
+					valueEmailForgot={emailForgot}
+					setValueEmailForgot={setEmailForgot}
 					switchToSignup={switchToSignup}
 				/>
 			) : (
@@ -94,6 +106,8 @@ function Login() {
 					errorMessageSignup={errorMessageSignup}
 					valueUsername={username}
 					setValueUsername={setUsername}
+					valueEmail={email}
+					setValueEmail={setEmail}
 					valuePassword={password}
 					setValuePassword={setPassword}
 					switchToSignin={switchToSignin}

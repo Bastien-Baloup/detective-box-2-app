@@ -16,6 +16,10 @@ const Compte = ({ handleNappe }) => {
 		window.open("https://app.detectivebox.fr/politique-de-confidentialite.html", "_blank");
 	};
 
+	const clearStorage = () => {
+		localStorage.clear();
+	};
+
 	return (
 		<div className="dropdown">
 			<button className="dropdown__icon-container" onClick={activeDrop}>
@@ -34,7 +38,9 @@ const Compte = ({ handleNappe }) => {
 				<Link className="dropdown__child" to="/credits">
 					Crédits
 				</Link>
-				<button className="dropdown__child">Déconnexion</button>
+				<button className="dropdown__child" onClick={clearStorage}>
+					Déconnexion
+				</button>
 			</div>
 		</div>
 	);

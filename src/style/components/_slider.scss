@@ -13,6 +13,12 @@
 		&__icon {
 			cursor: pointer;
 			width: 2.5rem;
+			&--container {
+				cursor: pointer;
+				background-color: transparent;
+				border: none;
+				height: max-content;
+			}
 		}
 		&__title {
 			padding: 1rem;
@@ -42,6 +48,13 @@
 		// &__text{
 		// 	white-space: pre;
 		// }
+	}
+
+	&__arrow {
+		cursor: pointer;
+		background-color: transparent;
+		border: none;
+		height: max-content;
 	}
 
 	&__pagination {

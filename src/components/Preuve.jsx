@@ -1,51 +1,34 @@
 import PropTypes from "prop-types";
-import Archive from "../assets/icons/Icon_mini_Archive.svg";
-import Document from "../assets/icons/Icon_mini_Document.svg";
-import Interrogation from "../assets/icons/Icon_mini_Interrogation.svg";
-import Location from "../assets/icons/Icon_mini_Location.svg";
-import Video from "../assets/icons/Icon_mini_Video.svg";
+import Archiveicon from "../assets/icons/Icon_mini_Archive.svg";
+import Documenticon from "../assets/icons/Icon_mini_Document.svg";
+import Interrogationicon from "../assets/icons/Icon_mini_Interrogation.svg";
+import Locationicon from "../assets/icons/Icon_mini_Location.svg";
+import Videoicon from "../assets/icons/Icon_mini_Video.svg";
+import { urlApi } from "../utils/const/urlApi";
 
-const Preuve = ({ data }) => {
+const Preuve = ({ data, openModal }) => {
 	const findIcon = () => {
 		if (data.category == "Archive") {
-			return Archive;
+			return Archiveicon;
 		}
 		if (data.category == "Document") {
-			return Document;
+			return Documenticon;
 		}
-		if (data.category == "Interrogatoire") {
-			return Interrogation;
-		}
-		if (data.category == "Lieu") {
-			return Location;
-		}
-		if (data.category == "Vidéo") {
-			return Video;
-		}
-	};
-
-	const displayCorrespondingModal = () => {
-		if (data.category == "Archive") {
-			alert("vous ouvrez une archive");
-		}
-		if (data.category == "Document") {
-			alert("vous ouvrez un document");
-		}
-		if (data.category == "Interrogatoire") {
-			alert("vous ouvrez un interrogatoire");
+		if (data.category == "Audio") {
+			return Interrogationicon;
 		}
 		if (data.category == "Lieu") {
-			alert("vous ouvrez un lieu");
+			return Locationicon;
 		}
-		if (data.category == "Vidéo") {
-			alert("vous ouvrez une vidéo");
+		if (data.category == "Video") {
+			return Videoicon;
 		}
 	};
 
 	return (
-		<article className="clue" onClick={displayCorrespondingModal}>
+		<article className="clue" onClick={openModal} tabIndex="0">
 			<div className="clue__picture-wrapper">
-				<img src={data.poster} className="clue__picture" />
+				<img src={urlApi.apiRemi() + data.poster} className="clue__picture" />
 			</div>
 			<div className="clue__info">
 				<div className="clue__info--main">
@@ -62,6 +45,7 @@ const Preuve = ({ data }) => {
 
 Preuve.propTypes = {
 	data: PropTypes.object,
+	openModal: PropTypes.func,
 };
 
 export default Preuve;

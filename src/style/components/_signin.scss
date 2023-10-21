@@ -8,8 +8,12 @@
 	}
 	&__icon {
 		width: 2.5rem;
-		align-self: self-end;
-		cursor: pointer;
+		&--container {
+			align-self: self-end;
+			cursor: pointer;
+			background-color: transparent;
+			border: none;
+		}
 	}
 	&__title {
 		color: $secondary-color;
@@ -21,6 +25,7 @@
 .signin {
 	width: 100%;
 	max-width: 50rem;
+
 	&__forget {
 		cursor: pointer;
 		color: $secondary-color;
@@ -29,6 +34,8 @@
 		padding: 5vh 0 0.5rem 0;
 		font-family: "Gabriele";
 		text-decoration: underline;
+		background-color: transparent;
+		border: none;
 		&:hover {
 			color: $tertiary-color;
 		}

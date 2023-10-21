@@ -7,10 +7,14 @@
 	}
 	&__icon {
 		width: 2.5rem;
-		align-self: self-end;
-		cursor: pointer;
+		&--container {
+			align-self: self-end;
+			cursor: pointer;
+			background-color: transparent;
+			border: none;
+		}
 	}
-	&__text{
+	&__text {
 		font-size: 1rem;
 		line-height: 1.5rem;
 	}

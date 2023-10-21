@@ -1,26 +1,37 @@
 import Card from "../components/Card";
 import IconLauren from "../assets/icons/Logo_Lauren.svg";
-import PhotoLauren from "../assets/img/LAUREN_DARK.png";
+import PhotoLauren from "../assets/img/Agent_lauren.jpg";
 import IconRaphaelle from "../assets/icons/Logo_Raphaelle.svg";
-import PhotoRaphaelle from "../assets/img/RAPHAELLE_DARK.png";
+import PhotoRaphaelle from "../assets/img/Agent_raphaelle.jpg";
 import IconCeline from "../assets/icons/Logo_Celine.svg";
-import PhotoCeline from "../assets/img/CELINE_DARK.png";
+import PhotoCeline from "../assets/img/Agent_celine.jpg";
 import IconTim from "../assets/icons/Logo_Tim.svg";
-import PhotoTim from "../assets/img/TIM_DARK.png";
+import PhotoTim from "../assets/img/Agent_tim.jpg";
 import IconAdele from "../assets/icons/Logo_Adele.svg";
-import PhotoAdele from "../assets/img/ADELE_DARK.png";
+import PhotoAdele from "../assets/img/Agent_adele.jpg";
 import Tim from "./Tim";
 import Adele from "./Adele";
 import Lauren from "./Lauren";
 import Raphaelle from "./Raphaelle";
 import Celine from "./Celine";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Home() {
-	// if not logged, redirect to Page de connexion
 	const [characterDisplayed, setCharacterDisplayed] = useState(null);
 	const [modalLaurenGone, setModalLaurenGone] = useState(false);
 	const [modalCelineGone, setModalCelineGone] = useState(false);
+
+	// if not logged, redirect to Page de connexion
+	const navigate = useNavigate();
+	if (localStorage == 0) {
+		navigate("/sign-in");
+		return;
+	}
+	// SI contexte vide alors navigate("box-choice");
+
+	// A RECUPERER DU CONTEXTE
+	const currentBox = "box1";
 
 	const specificCardActionLauren = () => {
 		setModalLaurenGone(!modalLaurenGone);
@@ -63,6 +74,7 @@ function Home() {
 	};
 
 	const displayAllCharacters = () => {
+		// ICI RETRAVAILLER LES STATE AVEC UNE FONCTION IF (EVENT == TRUE) ALORS UNAVAILABLE ...//
 		return (
 			<>
 				<div className="card__wrapper">
@@ -72,7 +84,7 @@ function Home() {
 						name="Lauren Fraser"
 						contentButton="Faire un interrogatoire"
 						actionButton={() => setCharacterDisplayed("lauren")}
-						state=""
+						state={currentBox == "box3" ? "unavailable" : ""}
 					/>
 					<Card
 						srcImg={PhotoRaphaelle}
@@ -104,7 +116,7 @@ function Home() {
 						name="Adèle Leinu"
 						contentButton="Demander une analyse"
 						actionButton={() => setCharacterDisplayed("adele")}
-						state="unavailable"
+						state={currentBox == "box1" ? "unavailable" : ""}
 					/>
 				</div>
 				{modalLaurenGone ? displayModalLaurenGone() : null}

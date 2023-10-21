@@ -4,15 +4,13 @@ import Compte from "../components/Compte.jsx";
 import Nav from "../components/Nav.jsx";
 import Nappe from "../components/Nappe.jsx";
 import Quizz from "../components/Quizz.jsx";
-import Ambiance from "../assets/media/Musiques DB S2 - Thème Tueur.wav";
-import { dataQuizzTest } from "../utils/const/dataQuizz";
-import News from "../assets/media/DB_S02_203_v4_2-test.mp4";
+import { dataQuizz } from "../utils/const/dataQuizz";
 import Video from "../components/Video.jsx";
 import { Link } from "react-router-dom";
+import { urlApi } from "../utils/const/urlApi";
 
 import { useEffect, useState, useRef } from "react";
-// Put Timer end box 3 here
-// Ne mettre le quizz que si box 2 ou 3
+// PUT TIMER END BOX 3 HERE //
 
 const Header = () => {
 	const [nappeMute, setNappeMute] = useState(true);
@@ -22,12 +20,14 @@ const Header = () => {
 	const [quizzIsActive, setQuizzIsActive] = useState(false);
 	const [nappeModalIsActive, setNappeModalIsActive] = useState(false);
 
+	// A RECUPERER DU CONTEXTE
+	const currentBox = "box2";
+
 	const audioElem = useRef();
 
 	useEffect(() => {
 		if (nappeMute) {
 			audioElem.current.pause();
-			// audioElem.current.currentTime = 0;
 		} else {
 			audioElem.current.play();
 		}
@@ -43,8 +43,25 @@ const Header = () => {
 		setNappeModalIsActive(false);
 	};
 
+	const displayQuizz = () => {
+		if (currentBox == "box1") {
+			handleCloseQuizz();
+			return <></>;
+		}
+		if (currentBox == "box2" || currentBox == "box3") {
+			if (dataQuizz[currentBox].status == true) {
+				handleCloseQuizz();
+				return <></>;
+			}
+			if (dataQuizz[currentBox].status == false) {
+				return <Quizz data={dataQuizz[currentBox]} handleEndQuizz={handleCloseQuizz} url={urlApi.apiRemi()} />;
+			}
+		}
+	};
+
 	const handleCloseQuizz = () => {
 		setQuizzIsActive(false);
+		// API PUT METHOD TO UPDATE dataQuizz[currentBox].status = true //
 		setNappeModalIsActive(true);
 	};
 
@@ -81,22 +98,48 @@ const Header = () => {
 		setQuizzIsActive(true);
 	};
 
+	const displayAudio = () => {
+		if (currentBox == "box1") {
+			return (
+				<audio loop preload="auto" ref={audioElem}>
+					<source src={urlApi.apiRemi + "sounds/musiques-db-s2-nappe-1.wav"} type="audio/wav" />
+					Votre navigateur ne prend pas en charge ce format
+				</audio>
+			);
+		}
+		if (currentBox == "box2") {
+			return (
+				<audio loop preload="auto" ref={audioElem}>
+					<source src={urlApi.apiRemi + "sounds/musiques-db-s2-nappe-2.wav"} type="audio/wav" />
+					Votre navigateur ne prend pas en charge ce format
+				</audio>
+			);
+		}
+		if (currentBox == "box3") {
+			return (
+				<audio loop preload="auto" ref={audioElem}>
+					<source src={urlApi.apiRemi + "sounds/musiques-db-s2-nappe-3.wav"} type="audio/wav" />
+					Votre navigateur ne prend pas en charge ce format
+				</audio>
+			);
+		}
+	};
+
+	// Il manque ici la vidéo du TUTORIEL !! //
+
 	return (
 		<header>
 			{tutorialModalIsActive ? displayTutorial() : <></>}
 			{tutorialIsActive ? (
-				<Video title="Vidéo du tutoriel" srcVideo={News} handleModalVideo={handleCloseTutorial} />
+				<Video title="Vidéo du tutoriel" srcVideo={null} handleModalVideo={handleCloseTutorial} />
 			) : (
 				<></>
 			)}
-			{quizzIsActive ? <Quizz data={dataQuizzTest} handleEndQuizz={handleCloseQuizz} /> : <></>}
+			{quizzIsActive ? displayQuizz() : <></>}
 			{nappeModalIsActive ? <Nappe activateNappe={activateNappe} desactivateNappe={desactivateNappe} /> : <></>}
-			<audio loop preload="auto" ref={audioElem}>
-				<source src={Ambiance} type="audio/wav" />
-				Votre navigateur ne prend pas en charge ce format
-			</audio>
+			{displayAudio()}
 			<div className="header__topSection">
-				<Link className="header__logo--container" to="/home">
+				<Link className="header__logo--container" to="/">
 					<img className="header__logo" src={Logo} />
 				</Link>
 				<Progression />
@@ -107,5 +150,5 @@ const Header = () => {
 			</div>
 		</header>
 	);
-}
+};
 export default Header;

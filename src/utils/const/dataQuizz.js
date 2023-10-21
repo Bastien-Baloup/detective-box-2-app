@@ -1,42 +1,9 @@
-import Saison1 from "../../assets/img/Facing-episode1.png";
-
-export const dataQuizzTest = {
-	questions: [
-		{
-			id: 1,
-			question: "Quelle est la réponse à cette première question ?",
-			choices: ["answer", "choix 2", "mauvais choix"],
-			image: Saison1,
-		},
-		{
-			id: 2,
-			question: "Quelle est la réponse à cette seconde question ?",
-			choices: ["answer", "choix 2", "mauvais choix"],
-			image: null,
-		},
-	],
-	answers: [
-		{
-			id: 1,
-			answer: "answer",
-			explanation: "Voici l'explication de la première question",
-			image: Saison1,
-		},
-		{
-			id: 2,
-			answer: "answer",
-			explanation: "Voici l'explication de la seconde question",
-			image: null,
-		},
-	],
-};
-
 // These are the data that we are gonna fetch to display in the Quizz component.
 // The quizz must only be played once ever
 
 export const dataQuizz = {
 	box2: {
-		status: "open",
+		status: false,
 		questions: [
 			{
 				id: 1,
@@ -54,7 +21,6 @@ export const dataQuizz = {
 					"Une victime du tueur au Tarot",
 				],
 				image: null,
-				// Photo de Charles garraud
 			},
 			{
 				id: 3,
@@ -75,6 +41,7 @@ export const dataQuizz = {
 					"Un mot du tueur destiné aux enquêteurs",
 				],
 				image: null,
+				// image : "assets/quiz/box2_malle_quiz_question_5.jpg",
 			},
 			{
 				id: 5,
@@ -84,7 +51,6 @@ export const dataQuizz = {
 					"En décodant la grille, grâce au site du fan du tueur, qui montrait un décryptage de l'alphabet du tueur.",
 				],
 				image: null,
-				// Photo lettres cryptées
 			},
 			{
 				id: 6,
@@ -104,8 +70,7 @@ export const dataQuizz = {
 					"Un message de moquerie du tueur, qui dévoile cependant des éléments de son identité",
 					"Le lieu du prochain meurtre",
 				],
-				image: null,
-				// Photo d'un des message codés du tueur
+				image: "assets/quiz/box2_la_source_quiz_question_8.jpg",
 			},
 			{
 				id: 8,
@@ -116,8 +81,7 @@ export const dataQuizz = {
 					"Il a tué pendant des années dans toute l'Europe",
 					"Garraud donne des papiers aux enquêteurs pendant son interrogatoire.",
 				],
-				image: null,
-				// Miniature de la vidéo de l'interrogatoire de Garraud
+				image: "assets/quiz/box2_interrogatoire_quiz_question_9.jpg",
 			},
 		],
 		answers: [
@@ -127,23 +91,21 @@ export const dataQuizz = {
 				explanation:
 					"Le tueur, suspecté d'avoir commis trois meurtres en 1992, 1993 et 1998, est connu sous le nom du tueur au Tarot. Ce nom fait référence à la demi-carte qu'il laisse à côté de ses victimes après avoir envoyé la première à la police. En 2023, un nouveau corps a été découvert, faisant ressurgir l'affaire. Au cours de vos enquêtes, vous avez découvert que le meurtre de 1998 n'était pas lié au tueur au Tarot. Cependant, vous avez identifié une victime qui n'avait pas été reliée à lui jusqu'à présent.",
 				image: null,
+				// image: "assets/quiz/box2_victimesbox1_quiz_reponse_2.jpg",
 			},
-			// Screenshot de l'app box 1 quand on identifie les 4 victimes du tueur
 			{
 				id: 2,
 				answer: "Un meurtrier actuellement en prison, copycat qui s'est fait passer pour le tueur au Tarot",
 				explanation:
 					"Charles Garraud était un imitateur du tueur au Tarot. Vous avez découvert qu'il se serait rendu à sa place sous la pression du vrai tueur.",
 				image: null,
-				// Photo de Charles garraud
 			},
 			{
 				id: 3,
 				answer: "La menteuse, l'oublié, l'orgueilleux, le chemin de la vérité",
 				explanation:
 					"Le poème possédait bien quatre paragraphes et quatre pistes. Les trois premières nous ramenaient à des victimes du tueur, la dernière une piste qui nous dirigeait vers une de ses planques.",
-				image: null,
-				// Photo du poème
+				image: "assets/quiz/box2_poem_quiz_reponse_4.jpg",
 			},
 			{
 				id: 4,
@@ -152,7 +114,7 @@ export const dataQuizz = {
 				explanation:
 					"La malle contenait la rate de Rebecca Dumont, ainsi que ses derniers mots laissant entendre qu'elle regrettait de ne pas avoir fait quelque chose pour le tueur. De plus, nous avons découvert un message crypté qui nous a permis de localiser la planque du tueur. Enfin, un médaillon a également été découvert dans la malle. Nous allons vous le transmettre dans cette box.",
 				image: null,
-				// Photo de la malle ouverte
+				// image: "assets/quiz/box2_malle_quiz_reponse_5.jpg"
 			},
 			{
 				id: 5,
@@ -160,23 +122,21 @@ export const dataQuizz = {
 				explanation:
 					"En superposant les grilles, il était possible de retrouver l'emplacement de l'oublié. Nous avons découvert un indice, une lettre transcrite du tueur, sur le site du fan qui suggérait de « garder les vides ». L'alphabet découvert sur le site était en effet utilisé pour décoder les lettres. Cependant, ces dernières avaient déjà été déchiffrées sur le site du fan.",
 				image: null,
-				// Photo de la lettre décryptée
+				// image: "assets/quiz/box2_lettres_cryptees_quiz_reponse_6.jpg",
 			},
 			{
 				id: 6,
 				answer: "Charles Garraud, car il avait voulu faire comme le tueur au Tarot",
 				explanation:
 					"Charles Garraud est l'orgueilleux, il a tué Nicolas Chaussée pour imiter le tueur. Le vrai tueur n'avait pas apprécié son intervention dans son « grand œuvre » et l'avait forcé à se rendre à sa place, en tuant sa mère et en le menaçant d'être le prochain.",
-				image: null,
-				// Photo retrouvée chez Jacqueline Houdin
+				image: "assets/quiz/box2_lettre_garraud_quiz_reponse_7.jpg",
 			},
 			{
 				id: 7,
 				answer: "Une adresse, qui menait jusqu'à une planque sordide du tueur, avec de nouvelles cartes de tarot",
 				explanation:
 					"Les messages permettaient de trouver une planque du tueur. Les cartes de tarot que nous avons récoltées là-bas vous sont envoyées dans cette nouvelle box. Elles laissent présager qu'il y a plus de meurtres que ceux qu'on connaissait jusque-là.",
-				image: null,
-				// Photo de la planque
+				image: "assets/quiz/box2_planque_quiz_reponse_8.png",
 			},
 			{
 				id: 8,
@@ -188,13 +148,15 @@ export const dataQuizz = {
 				],
 				explanation:
 					"Pendant son interrogatoire, Garraud a révélé qu'il avait eu des discussions avec le tueur sur un forum via des messages privés. De plus, il a avoué que le tueur avait continué ses meurtres sans interruption pendant toutes ces années et qu'il avait commis des meurtres dans différents pays d'Europe. Finalement, Garraud a fourni des documents aux enquêteurs pendant son interrogatoire. Nous vous avons mis dans la box ces documents, il s'agit de deux papiers étranges en noir et blanc et des lettres de correspondance avec un de ses fans.",
-				image: null,
-				// Photo de l'origami et de la lettre de correspondance
+				image: "assets/quiz/box2_origami_quiz_reponse_9.jpg",
 			},
 		],
 	},
+
+	// --- BOX 3 --- //
+
 	box3: {
-		status: "open",
+		status: false,
 		questions: [
 			{
 				id: 1,
@@ -204,7 +166,7 @@ export const dataQuizz = {
 					"Il enlève des organes selon l'homme zodiacal",
 					"Il enlève des organes d'après les cartes de tarot qu'il laisse",
 				],
-				image: null,
+				image: "assets/quiz/box3_organes_quiz_question_1.jpg",
 			},
 			{
 				id: 2,
@@ -258,35 +220,35 @@ export const dataQuizz = {
 				answer: "Stella Louiseberg",
 				explanation:
 					"Dans les messages privés du forum donné par Charles Garraud, on apprend que le tueur choisit ses victimes selon la théorie d'un livre « Lilith et la guérison des maux », écrit par Stella Louiseberg.",
-				image: null,
+				image: "assets/quiz/box3_lilith_quiz_reponse_2.jpg",
 			},
 			{
 				id: 3,
 				answer: "Les victimes ont toutes Lilith, la lune noire, en balance dans leur thème astral",
 				explanation:
 					"D'après la théorie de Lilith équilibrée qui inspire le tueur, les personnes présentant Lilith en balance ont plus de chance d'être de bonnes donneuses d'organes pour les greffes. Les victimes que nous avons retrouvées avaient toutes ce point commun.",
-				image: null,
+				image: "assets/quiz/box3_balance_quiz_reponse_3.jpg",
 			},
 			{
 				id: 4,
 				answer: "Un réfrigérateur renfermant les organes des victimes ainsi que des photos de Lauren",
 				explanation:
 					"Il y avait en effet un réfrigérateur avec tous les organes des victimes du tueur et des photos de Lauren, avec des notes qui semblaient suivre ses progrès. Sur le forum, le tueur dit à Garraud que les cartes de tarot représentent une expression de sa colère, un jeu qu'on lui a imposé trop longtemps",
-				image: null,
+				image: "assets/quiz/box3_notes_Lauren_quiz_reponse_4.png",
 			},
 			{
 				id: 5,
 				answer: "Lauren Fraser",
 				explanation:
 					"Le tueur a enlevé Lauren, la profileuse. Nous comptons sur vous pour la retrouver avant qu'il ne lui arrive quelque chose.",
-				image: null,
+				image: "assets/quiz/box3_photo_lauren_quiz_reponse_5.jpg",
 			},
 			{
 				id: 6,
 				answer: "Le pape",
 				explanation:
 					"Le pape était la demi-carte posée sur le corps de Mason. Nous avions reçu l'autre moitié par avance, comme d'habitude. Et nous avons reçu deux nouvelles demi-cartes, accompagnées d'une nouvelle lettre, je vous laisse regarder.",
-				image: null,
+				image: "assets/quiz/box3_pape_quiz_reponse_6.jpg",
 			},
 		],
 	},

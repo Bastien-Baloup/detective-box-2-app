@@ -21,7 +21,9 @@ const BoxChoice = ({ data }) => {
 		return (
 			<div className="modal-boxdone__background">
 				<div className="modal-boxdone__box">
-					<img className="modal-boxdone__icon" src={Cross} onClick={handleModal} />
+					<button className="modal-boxdone__icon--container">
+						<img className="modal-boxdone__icon" src={Cross} onClick={handleModal} />
+					</button>
 					<p className="modal-boxdone__text">
 						Vous avez déjà terminé cette partie de l&apos;enquête. <br></br>
 						Passez à la box suivante pour continuer et démasquer le tueur ou rendez-vous sur notre site pour découvrir nos
@@ -56,7 +58,7 @@ const BoxChoice = ({ data }) => {
 		if (data.state == "open") {
 			return (
 				<article className="boxchoice boxchoice--open">
-					<Link to={"/home"} className="boxchoice__link"></Link>
+					<Link to={"/"} className="boxchoice__link"></Link>
 					<div className="boxchoice__picture-wrapper">
 						<img src={data.cover} className="boxchoice__picture" />
 					</div>
