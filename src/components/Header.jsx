@@ -5,15 +5,14 @@ import Nav from "../components/Nav.jsx";
 import Nappe from "../components/Nappe.jsx";
 import Quizz from "../components/Quizz.jsx";
 import { dataQuizz } from "../utils/const/dataQuizz";
-import News from "../assets/media/DB_S02_203_v4_2-test.mp4";
 import Video from "../components/Video.jsx";
 import { Link } from "react-router-dom";
+import { urlApi } from "../utils/const/urlApi";
 
 import { useEffect, useState, useRef } from "react";
-// Put Timer end box 3 here
-// Ne mettre le quizz que si box 2 ou 3
+// PUT TIMER END BOX 3 HERE //
 
-const Header = ({ url }) => {
+const Header = () => {
 	const [nappeMute, setNappeMute] = useState(true);
 	// const [ispreviouslyMuted, setIsPreviouslyMuted] = useState(true);
 	const [tutorialModalIsActive, setTutorialModalIsActive] = useState(true);
@@ -55,13 +54,12 @@ const Header = ({ url }) => {
 				return <></>;
 			}
 			if (dataQuizz[currentBox].status == false) {
-				return <Quizz data={dataQuizz[currentBox]} handleEndQuizz={handleCloseQuizz} url={url} />;
+				return <Quizz data={dataQuizz[currentBox]} handleEndQuizz={handleCloseQuizz} url={urlApi.apiRemi()} />;
 			}
 		}
 	};
 
 	const handleCloseQuizz = () => {
-		console.log("ça va");
 		setQuizzIsActive(false);
 		// API PUT METHOD TO UPDATE dataQuizz[currentBox].status = true //
 		setNappeModalIsActive(true);
@@ -104,7 +102,7 @@ const Header = ({ url }) => {
 		if (currentBox == "box1") {
 			return (
 				<audio loop preload="auto" ref={audioElem}>
-					<source src={url + "sounds/musiques-db-s2-nappe-1.wav"} type="audio/wav" />
+					<source src={urlApi.apiRemi + "sounds/musiques-db-s2-nappe-1.wav"} type="audio/wav" />
 					Votre navigateur ne prend pas en charge ce format
 				</audio>
 			);
@@ -112,7 +110,7 @@ const Header = ({ url }) => {
 		if (currentBox == "box2") {
 			return (
 				<audio loop preload="auto" ref={audioElem}>
-					<source src={url + "sounds/musiques-db-s2-nappe-2.wav"} type="audio/wav" />
+					<source src={urlApi.apiRemi + "sounds/musiques-db-s2-nappe-2.wav"} type="audio/wav" />
 					Votre navigateur ne prend pas en charge ce format
 				</audio>
 			);
@@ -120,18 +118,20 @@ const Header = ({ url }) => {
 		if (currentBox == "box3") {
 			return (
 				<audio loop preload="auto" ref={audioElem}>
-					<source src={url + "sounds/musiques-db-s2-nappe-3.wav"} type="audio/wav" />
+					<source src={urlApi.apiRemi + "sounds/musiques-db-s2-nappe-3.wav"} type="audio/wav" />
 					Votre navigateur ne prend pas en charge ce format
 				</audio>
 			);
 		}
 	};
 
+	// Il manque ici la vidéo du TUTORIEL !! //
+
 	return (
 		<header>
 			{tutorialModalIsActive ? displayTutorial() : <></>}
 			{tutorialIsActive ? (
-				<Video title="Vidéo du tutoriel" srcVideo={News} handleModalVideo={handleCloseTutorial} />
+				<Video title="Vidéo du tutoriel" srcVideo={null} handleModalVideo={handleCloseTutorial} />
 			) : (
 				<></>
 			)}

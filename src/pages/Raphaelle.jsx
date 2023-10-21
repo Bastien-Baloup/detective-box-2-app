@@ -11,7 +11,6 @@ const Raphaelle = ({
 	valueLongitude,
 	setValueLongitude,
 	closeAgentPage,
-	url
 }) => {
 	const handleSubmit = (e) => {
 		e.preventDefault();

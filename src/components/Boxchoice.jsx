@@ -58,7 +58,7 @@ const BoxChoice = ({ data }) => {
 		if (data.state == "open") {
 			return (
 				<article className="boxchoice boxchoice--open">
-					<Link to={"/home"} className="boxchoice__link"></Link>
+					<Link to={"/"} className="boxchoice__link"></Link>
 					<div className="boxchoice__picture-wrapper">
 						<img src={data.cover} className="boxchoice__picture" />
 					</div>

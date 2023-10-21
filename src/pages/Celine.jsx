@@ -3,7 +3,7 @@ import Input from "../components/Input.jsx";
 import Cross from "../assets/icons/Icon_Cross-white.svg";
 import PropTypes from "prop-types";
 
-const Celine = ({ value, setValue, closeAgentPage, url }) => {
+const Celine = ({ value, setValue, closeAgentPage}) => {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		console.log("ça fait quelque chose");
