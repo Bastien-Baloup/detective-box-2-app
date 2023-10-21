@@ -15,12 +15,23 @@ import Lauren from "./Lauren";
 import Raphaelle from "./Raphaelle";
 import Celine from "./Celine";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Home() {
-	// if not logged, redirect to Page de connexion
 	const [characterDisplayed, setCharacterDisplayed] = useState(null);
 	const [modalLaurenGone, setModalLaurenGone] = useState(false);
 	const [modalCelineGone, setModalCelineGone] = useState(false);
+
+	// if not logged, redirect to Page de connexion
+	const navigate = useNavigate();
+	if (localStorage == 0) {
+		navigate("/sign-in");
+		return;
+	}
+	// SI contexte vide alors navigate("box-choice");
+
+	// A RECUPERER DU CONTEXTE
+	const currentBox = "box1";
 
 	const specificCardActionLauren = () => {
 		setModalLaurenGone(!modalLaurenGone);
@@ -63,6 +74,7 @@ function Home() {
 	};
 
 	const displayAllCharacters = () => {
+		// ICI RETRAVAILLER LES STATE AVEC UNE FONCTION IF (EVENT == TRUE) ALORS UNAVAILABLE ...//
 		return (
 			<>
 				<div className="card__wrapper">
@@ -72,7 +84,7 @@ function Home() {
 						name="Lauren Fraser"
 						contentButton="Faire un interrogatoire"
 						actionButton={() => setCharacterDisplayed("lauren")}
-						state=""
+						state={currentBox == "box3" ? "unavailable" : ""}
 					/>
 					<Card
 						srcImg={PhotoRaphaelle}
@@ -104,7 +116,7 @@ function Home() {
 						name="Adèle Leinu"
 						contentButton="Demander une analyse"
 						actionButton={() => setCharacterDisplayed("adele")}
-						state="unavailable"
+						state={currentBox == "box1" ? "unavailable" : ""}
 					/>
 				</div>
 				{modalLaurenGone ? displayModalLaurenGone() : null}

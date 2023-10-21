@@ -6,7 +6,7 @@ import Full from "../assets/icons/Icon_Cercle-full.svg";
 import ArrowLeft from "../assets/icons/Icon_Arrow-left.svg";
 import ArrowRight from "../assets/icons/Icon_Arrow-right.svg";
 
-const Slider = ({ data, handleModal }) => {
+const Slider = ({ data, handleModal, url }) => {
 	const [index, setIndex] = useState(0);
 	const totalItems = data.hints.length;
 	const pagination = [];
@@ -35,25 +35,25 @@ const Slider = ({ data, handleModal }) => {
 
 	const renderArrowLeft = () => {
 		return (
-			<div className="slider__arrow">
+			<button className="slider__arrow">
 				{index === 0 ? (
 					""
 				) : (
 					<img className="slider__arrow-left" src={ArrowLeft} alt="arrow previous" onClick={previousItem} />
 				)}
-			</div>
+			</button>
 		);
 	};
 
 	const renderArrowRight = () => {
 		return (
-			<div className="slider__arrow">
+			<button className="slider__arrow">
 				{index === totalItems - 1 ? (
 					""
 				) : (
 					<img className="slider__arrow-right" src={ArrowRight} alt="arrow next" onClick={nextItem} />
 				)}
-			</div>
+			</button>
 		);
 	};
 
@@ -64,7 +64,9 @@ const Slider = ({ data, handleModal }) => {
 					Objectif: <br></br>
 					{data.title}
 				</div>
-				<img className="slider__header__icon" src={Cross} onClick={handleModal} />
+				<button className="slider__header__icon--container">
+					<img className="slider__header__icon" src={Cross} onClick={handleModal} />
+				</button>
 			</div>
 
 			<div className="slider__main">
@@ -73,10 +75,8 @@ const Slider = ({ data, handleModal }) => {
 					<div className="slider__content__text">{data.hints[index].text}</div>
 					<div className="slider__content__img--container">
 						{data.hints[index].image != null ? (
-							<img className="slider__content__img" src={data.hints[index].image} />
-						) : (
-							"Pas d'image à afficher"
-						)}
+							<img className="slider__content__img" src={url + data.hints[index].image} />
+						) : null}
 					</div>
 					<div className="slider__pagination">
 						<div className="slider__pagination__tracker">{renderPagination()}</div>
@@ -94,6 +94,7 @@ const Slider = ({ data, handleModal }) => {
 Slider.propTypes = {
 	data: PropTypes.array,
 	handleModal: PropTypes.func,
+	url: PropTypes.string,
 };
 
 export default Slider;

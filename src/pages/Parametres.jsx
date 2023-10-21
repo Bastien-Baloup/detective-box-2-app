@@ -9,10 +9,10 @@ function Parametres() {
 	const [errorMessage, setErrorMessage] = useState("");
 	const navigate = useNavigate();
 
-	// if (!isLogged) {
-	// 	navigate("/sign-in");
-	// 	return;
-	// }
+	if (localStorage == 0) {
+		navigate("/sign-in");
+		return;
+	}
 
 	const handleSubmitChange = (e) => {
 		e.preventDefault();

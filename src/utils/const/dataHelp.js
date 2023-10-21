@@ -5,7 +5,7 @@ export const dataHelp = {
 		{
 			id: "box1help1",
 			title: "La menteuse",
-			status: "done",
+			status: "open",
 			hints: [
 				{
 					id: 1,
@@ -144,7 +144,7 @@ export const dataHelp = {
 		{
 			id: "box1help3",
 			title: "L'orgeuilleux",
-			status: "closed",
+			status: "open",
 			hints: [
 				{
 					id: 1,
@@ -222,7 +222,7 @@ export const dataHelp = {
 		{
 			id: "box1help4",
 			title: "Le chemin de la vérité",
-			status: "closed",
+			status: "open",
 			hints: [
 				{
 					id: 1,
@@ -275,7 +275,7 @@ export const dataHelp = {
 		{
 			id: "box2help1",
 			title: "Premier tri de la liste des victimes",
-			status: "closed",
+			status: "open",
 			hints: [
 				{
 					id: 1,
@@ -328,7 +328,7 @@ export const dataHelp = {
 		{
 			id: "box2help2",
 			title: "Le secret de Garraud",
-			status: "closed",
+			status: "open",
 			hints: [
 				{
 					id: 1,
@@ -390,7 +390,7 @@ export const dataHelp = {
 		{
 			id: "box2help3",
 			title: "Modus Operandi",
-			status: "closed",
+			status: "open",
 			hints: [
 				{
 					id: 1,
@@ -408,7 +408,7 @@ export const dataHelp = {
 		{
 			id: "box2help4",
 			title: "Le meurtre de Mason Reynolds",
-			status: "closed",
+			status: "open",
 			hints: [
 				{
 					id: 1,
@@ -448,7 +448,7 @@ export const dataHelp = {
 		{
 			id: "box2help5",
 			title: "Trouver Stella",
-			status: "closed",
+			status: "open",
 			hints: [
 				{
 					id: 1,
@@ -476,7 +476,7 @@ export const dataHelp = {
 		{
 			id: "box2help6",
 			title: "Dernière épreuve",
-			status: "closed",
+			status: "open",
 			hints: [
 				{
 					id: 1,
@@ -499,7 +499,7 @@ export const dataHelp = {
 		{
 			id: "box3help1",
 			title: "Remonter la piste de Lauren",
-			status: "closed",
+			status: "open",
 			hints: [
 				{
 					id: 1,
@@ -552,7 +552,7 @@ export const dataHelp = {
 		{
 			id: "box3help2",
 			title: "Localiser l'échantillon",
-			status: "closed",
+			status: "open",
 			hints: [
 				{
 					id: 1,
@@ -632,7 +632,7 @@ export const dataHelp = {
 		{
 			id: "box3help3",
 			title: "Localiser les potentielles cibles restantes",
-			status: "closed",
+			status: "open",
 			hints: [
 				{
 					id: 1,
@@ -717,7 +717,7 @@ export const dataHelp = {
 		{
 			id: "box3help4",
 			title: "La prochaine victime",
-			status: "closed",
+			status: "open",
 			hints: [
 				{
 					id: 1,
@@ -751,7 +751,7 @@ export const dataHelp = {
 		{
 			id: "box3help5",
 			title: "Dernière épreuve",
-			status: "closed",
+			status: "open",
 			hints: [
 				{
 					id: 1,

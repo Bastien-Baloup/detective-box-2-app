@@ -16,10 +16,10 @@ function Login() {
 	const navigate = useNavigate();
 
 	// API A METTRE EN PLACE POUR CONNECTER LE COMPTE
-	if (isLogged) {
-		navigate("/box-choice");
-		return;
-	}
+	// if (isLogged) {
+	// 	navigate("/box-choice");
+	// 	return;
+	// }
 
 	const handleSubmitSignin = (e) => {
 		e.preventDefault();
@@ -30,6 +30,9 @@ function Login() {
 		setEmail("");
 		setPassword("");
 		setErrorMessageSignin("");
+		localStorage.setItem("email", JSON.stringify(email));
+		localStorage.setItem("password", JSON.stringify(password));
+		console.log(localStorage);
 		navigate("/box-choice");
 	};
 
@@ -43,7 +46,7 @@ function Login() {
 		setEmail("");
 		setPassword("");
 		setErrorMessageSignup("");
-		navigate("/box-choice");
+		alert("Compte bien créé, merci de vous connecter à présent");
 	};
 
 	const handleSubmitEmailForgot = (e) => {
@@ -54,7 +57,7 @@ function Login() {
 		}
 		setEmailForgot("");
 		setErrorMessageForgot("");
-		alert("Compte créé avec succès !");
+		alert("Votre mot de passe vous a été envoyé par mail !");
 	};
 
 	const switchToSignup = () => {

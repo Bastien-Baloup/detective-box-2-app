@@ -4,10 +4,12 @@
 	width: 100%;
 	gap: 1rem;
 	justify-content: center;
+	max-height: 60vh;
+	overflow: auto;
 }
 
 .clue {
-	max-height: 19rem;
+	height: 19rem;
 	overflow: hidden;
 	position: relative;
 	cursor: pointer;
@@ -19,7 +21,7 @@
 		@include img-max;
 	}
 	&__info {
-		// width: 100%;
+		width: 100%;
 		position: absolute;
 		bottom: 0;
 		background-color: rgba(0, 0, 0, 0.5);

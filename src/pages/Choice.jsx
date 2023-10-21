@@ -5,8 +5,20 @@ import Boxchoice from "../components/Boxchoice.jsx";
 import Saison1 from "../assets/img/Facing-episode1.jpg";
 import Saison2 from "../assets/img/Facing-episode2.jpg";
 import Saison3 from "../assets/img/Facing-episode3.jpg";
+import { useNavigate } from "react-router-dom";
+import { BoxContext } from "../utils/context/fetchContext.jsx";
+
+// ICI METTRE UN CALL API POUR RECUPERER STATE DES BOXS ? ou juste avec url ? //
 
 function Choice() {
+
+	// if not logged, redirect to Page de connexion
+	const navigate = useNavigate();
+	if (localStorage == 0) {
+		navigate("/sign-in");
+		return;
+	}
+
 	const dataBoxChoiceTest = [
 		{
 			boxNumber: 1,

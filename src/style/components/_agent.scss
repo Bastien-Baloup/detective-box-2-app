@@ -42,12 +42,13 @@
 			}
 		}
 	}
-	&__closeButton{
+	&__closeButton {
 		width: 2.5rem;
 		&--container {
 			cursor: pointer;
 			background-color: transparent;
 			border: none;
+			height: max-content;
 		}
 	}
 }
