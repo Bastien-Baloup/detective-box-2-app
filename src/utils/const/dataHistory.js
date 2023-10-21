@@ -6,6 +6,7 @@ export const dataHistory = {
 
 		{
 			id: "box1archive1",
+			box: "Box 1",
 			title: "Archives Alphonse StYves",
 			category: "Archive",
 			detail: "",
@@ -15,6 +16,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box1archive2",
+			box: "Box 1",
 			title: "Archives Armand Beaux",
 			category: "Archive",
 			detail: "",
@@ -24,6 +26,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box1archive3",
+			box: "Box 1",
 			title: "Archives Axelle Charpentier",
 			category: "Archive",
 			detail: "",
@@ -33,6 +36,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box1archive4",
+			box: "Box 1",
 			title: "Archives Camille Michaux",
 			category: "Archive",
 			detail: "",
@@ -42,6 +46,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box1archive5",
+			box: "Box 1",
 			title: "Archives Charles Garraud",
 			category: "Archive",
 			detail: "",
@@ -51,6 +56,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box1archive6",
+			box: "Box 1",
 			title: "Archives Christian Patenaud",
 			category: "Archive",
 			detail: "",
@@ -60,6 +66,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box1archive7",
+			box: "Box 1",
 			title: "Archives Christophe Brunelle",
 			category: "Archive",
 			detail: "",
@@ -69,6 +76,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box1archive8",
+			box: "Box 1",
 			title: "Archives Didier Rodin",
 			category: "Archive",
 			detail: "",
@@ -78,6 +86,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box1archive9",
+			box: "Box 1",
 			title: "Archives Elisabeth Monrency",
 			category: "Archive",
 			detail: "",
@@ -87,6 +96,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box1archive10",
+			box: "Box 1",
 			title: "Archives Elodie Bouchard",
 			category: "Archive",
 			detail: "",
@@ -96,6 +106,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box1archive11",
+			box: "Box 1",
 			title: "Archives Emmanuel Deslauriers",
 			category: "Archive",
 			detail: "",
@@ -105,6 +116,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box1archive12",
+			box: "Box 1",
 			title: "Archives Eugenie Courbis",
 			category: "Archive",
 			detail: "",
@@ -114,6 +126,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box1archive13",
+			box: "Box 1",
 			title: "Archives Frederic Masse",
 			category: "Archive",
 			detail: "",
@@ -123,6 +136,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box1archive14",
+			box: "Box 1",
 			title: "Archives Jacqueline Houdin",
 			category: "Archive",
 			detail: "",
@@ -132,6 +146,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box1archive15",
+			box: "Box 1",
 			title: "Archives Johanna Lesbourg",
 			category: "Archive",
 			detail: "",
@@ -141,6 +156,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box1archive16",
+			box: "Box 1",
 			title: "Archives Marianne Chauve",
 			category: "Archive",
 			detail: "",
@@ -150,6 +166,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box1archive17",
+			box: "Box 1",
 			title: "Archives Marie Marquis",
 			category: "Archive",
 			detail: "",
@@ -159,6 +176,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box1archive18",
+			box: "Box 1",
 			title: "Archives Maxence Maret",
 			category: "Archive",
 			detail: "",
@@ -168,6 +186,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box1archive19",
+			box: "Box 1",
 			title: "Archives Nicolas Chaussee",
 			category: "Archive",
 			detail: "",
@@ -177,6 +196,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box1archive20",
+			box: "Box 1",
 			title: "Archives Patrick O'Neil",
 			category: "Archive",
 			detail: "",
@@ -186,6 +206,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box1archive21",
+			box: "Box 1",
 			title: "Archives Robert Dumont",
 			category: "Archive",
 			detail: "",
@@ -195,6 +216,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box1archive22",
+			box: "Box 1",
 			title: "Archives Violaine Celier",
 			category: "Archive",
 			detail: "",
@@ -204,6 +226,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box1archive23",
+			box: "Box 1",
 			title: "Archives Xavier Monrency",
 			category: "Archive",
 			detail: "",
@@ -213,6 +236,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box1archive24",
+			box: "Box 1",
 			title: "Archives Yannick Becot",
 			category: "Archive",
 			detail: "",
@@ -225,6 +249,7 @@ export const dataHistory = {
 
 		{
 			id: "box1document1",
+			box: "Box 1",
 			title: "Malle ouverte",
 			category: "Document",
 			detail: "Malle retrouvée sur le chantier où s'était rendue Rebecca Dumont",
@@ -234,6 +259,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box1document2",
+			box: "Box 1",
 			title: "Carte lieu final",
 			category: "Document",
 			detail: "Une vue satellite d'un lieu et un étrange signe",
@@ -243,6 +269,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box1document3",
+			box: "Box 1",
 			title: "Guide du profiler",
 			category: "Document",
 			detail: "Guide écrit par Lauren Fraser et François Duchamp",
@@ -252,6 +279,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box1document4",
+			box: "Box 1",
 			title: "Rapport légiste Xavier Monrency",
 			category: "Document",
 			detail: "La victime 'oubliée' du Tueur au Tarot",
@@ -261,6 +289,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box1document5",
+			box: "Box 1",
 			title: "Email tueur",
 			category: "Document",
 			detail: "Email reçu du Tueur au Tarot après avoir retrouvé 'l'oublié'",
@@ -270,6 +299,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box1document6",
+			box: "Box 1",
 			title: "Message planque tueur",
 			category: "Document",
 			detail: "Message affiché au mur dans la planque du tueur",
@@ -279,6 +309,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box1document7",
+			box: "Box 1",
 			title: "Lettre pour Garraud",
 			category: "Document",
 			detail: "Lettre retrouvée dans une boîte en métal avec la VHS",
@@ -290,6 +321,7 @@ export const dataHistory = {
 		// ---- INTERROGATOIRES ---- //
 		{
 			id: "box1audio1",
+			box: "Box 1",
 			title: "Derniers mots de Rebecca",
 			category: "Audio",
 			detail: "Attention, contenu pouvant marquer les personnes les plus sensibles",
@@ -302,6 +334,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box1audio2",
+			box: "Box 1",
 			title: "Interrogatoire Adèle Leinu",
 			category: "Audio",
 			detail: "Médecin légiste sur l'affaire Rebecca Dumont",
@@ -314,6 +347,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box1audio3",
+			box: "Box 1",
 			title: "Interrogatoire Alphonse St-Yves",
 			category: "Audio",
 			detail: "Voyant ayant eu une correspondance avec Rebecca Dumont",
@@ -326,6 +360,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box1audio4",
+			box: "Box 1",
 			title: "Interrogatoire Armand Beaux",
 			category: "Audio",
 			detail: "Juge sur le procès de Charles Garraud",
@@ -338,6 +373,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box1audio5",
+			box: "Box 1",
 			title: "Interrogatoire Axelle Charpentier",
 			category: "Audio",
 			detail: "Interrogatoire datant de 1999 d'Axelle Charpentier : Astronome",
@@ -350,6 +386,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box1audio6",
+			box: "Box 1",
 			title: "Interrogatoire Camille Michaux",
 			category: "Audio",
 			detail: "Elle a décrypté les lettres du tueur",
@@ -362,6 +399,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box1audio7",
+			box: "Box 1",
 			title: "Interrogatoire Christian Patenaude",
 			category: "Audio",
 			detail: "Interrogatoire datant de 1993 d'Elisabeth Monrency : épouse de Xavier Monrency",
@@ -374,6 +412,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box1audio8",
+			box: "Box 1",
 			title: "Interrogatoire Emmanuel Deslauriers",
 			category: "Audio",
 			detail: "Inspecteur sur l'affaire Marianne Chauve",
@@ -386,6 +425,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box1audio9",
+			box: "Box 1",
 			title: "Interrogatoire Eugénie Courbis",
 			category: "Audio",
 			detail: "Inspectrice sur l'affaire Rebecca Dumont",
@@ -398,6 +438,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box1audio10",
+			box: "Box 1",
 			title: "Interrogatoire Maxence Maret",
 			category: "Audio",
 			detail: "Légiste sur le dossier Xavier Monrency",
@@ -410,6 +451,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box1audio11",
+			box: "Box 1",
 			title: "Interrogatoire Robert Dumont",
 			category: "Audio",
 			detail: "Epoux de Rebecca Dumont",
@@ -422,6 +464,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box1audio12",
+			box: "Box 1",
 			title: "Interrogatoire Patrick O'Neil",
 			category: "Audio",
 			detail: "Barman à l'Irish Bar de Mulhouse",
@@ -434,6 +477,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box1audio13",
+			box: "Box 1",
 			title: "Interrogatoire Violaine Celier",
 			category: "Audio",
 			detail: "Journaliste ayant suivi l'affaire du Tueur au Tarot",
@@ -446,6 +490,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box1audio14",
+			box: "Box 1",
 			title: "Interrogatoire Yannick Bécot",
 			category: "Audio",
 			detail: "Légiste sur le dossier de Nicolas Chaussée",
@@ -461,6 +506,7 @@ export const dataHistory = {
 
 		{
 			id: "box1video1",
+			box: "Box 1",
 			title: "Introduction Box 1",
 			category: "Video",
 			detail: "Une vieille affaire ressurgit ",
@@ -470,6 +516,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box1video2",
+			box: "Box 1",
 			title: "Fouille terrain",
 			category: "Video",
 			detail: "Sanchez et Valluy fouillent la cave de la maison abandonnée",
@@ -479,6 +526,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box1video3",
+			box: "Box 1",
 			title: "VHS",
 			category: "Video",
 			detail: "Une vieille VHS de Garraud",
@@ -488,6 +536,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box1video4",
+			box: "Box 1",
 			title: "Interrogatoire de Garraud",
 			category: "Video",
 			detail: "Sanchez et Fraser interrogent Garraud en prison",
@@ -500,6 +549,7 @@ export const dataHistory = {
 
 		{
 			id: "box1lieu1",
+			box: "Box 1",
 			title: "Lieu de fouille Chantier",
 			category: "Lieu",
 			detail: "Un chantier pour récupérer un gain de loterie ?! Curieux !",
@@ -509,6 +559,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box1lieu2",
+			box: "Box 1",
 			title: "Lieu de fouille Terrain",
 			category: "Lieu",
 			detail: "A qui appartenait cette vieille maison avandonnée ?",
@@ -518,6 +569,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box1lieu3",
+			box: "Box 1",
 			title: "Lieu de fouille Planque",
 			category: "Lieu",
 			detail: "Une planque sordide du Tueur au Tarot",
@@ -534,6 +586,7 @@ export const dataHistory = {
 
 		{
 			id: "box2archive1",
+			box: "Box 2",
 			title: "Archives Aaron King",
 			category: "Archive",
 			detail: "",
@@ -543,6 +596,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box2archive2",
+			box: "Box 2",
 			title: "Archives Ainmir Oconradh",
 			category: "Archive",
 			detail: "",
@@ -552,6 +606,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box2archive3",
+			box: "Box 2",
 			title: "Archives Annelijn Dikboom",
 			category: "Archive",
 			detail: "",
@@ -561,6 +616,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box2archive4",
+			box: "Box 2",
 			title: "Archives Annina Kurschner",
 			category: "Archive",
 			detail: "",
@@ -570,6 +626,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box2archive5",
+			box: "Box 2",
 			title: "Archives Augustas Alsys",
 			category: "Archive",
 			detail: "",
@@ -579,6 +636,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box2archive6",
+			box: "Box 2",
 			title: "Archives Bogdana Nikol",
 			category: "Archive",
 			detail: "",
@@ -588,6 +646,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box2archive7",
+			box: "Box 2",
 			title: "Archives Daisy Vandenbulcke",
 			category: "Archive",
 			detail: "",
@@ -597,6 +656,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box2archive8",
+			box: "Box 2",
 			title: "Archives Dimosthenis Rigas",
 			category: "Archive",
 			detail: "",
@@ -606,6 +666,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box2archive9",
+			box: "Box 2",
 			title: "Archives Dominik Jele",
 			category: "Archive",
 			detail: "",
@@ -615,6 +676,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box2archive10",
+			box: "Box 2",
 			title: "Archives Edvard Kallio",
 			category: "Archive",
 			detail: "",
@@ -624,6 +686,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box2archive11",
+			box: "Box 2",
 			title: "Archives Elias Varelas",
 			category: "Archive",
 			detail: "",
@@ -633,6 +696,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box2archive13",
+			box: "Box 2",
 			title: "Archives Elimena Furino",
 			category: "Archive",
 			detail: "",
@@ -642,6 +706,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box2archive14",
+			box: "Box 2",
 			title: "Archives Eliza Gaewska",
 			category: "Archive",
 			detail: "",
@@ -651,6 +716,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box2archive15",
+			box: "Box 2",
 			title: "Archives Ere Jakobson",
 			category: "Archive",
 			detail: "",
@@ -660,6 +726,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box2archive16",
+			box: "Box 2",
 			title: "Archives Francois Duchamp",
 			category: "Archive",
 			detail: "",
@@ -669,6 +736,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box2archive17",
+			box: "Box 2",
 			title: "Archives Horasiu Prunea",
 			category: "Archive",
 			detail: "",
@@ -678,6 +746,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box2archive18",
+			box: "Box 2",
 			title: "Archives Imelda Tuzzolino",
 			category: "Archive",
 			detail: "",
@@ -687,6 +756,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box2archive19",
+			box: "Box 2",
 			title: "Archives Ivar Mortensen",
 			category: "Archive",
 			detail: "",
@@ -696,6 +766,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box2archive20",
+			box: "Box 2",
 			title: "Archives James Chambers",
 			category: "Archive",
 			detail: "",
@@ -705,6 +776,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box2archive21",
+			box: "Box 2",
 			title: "Archives Janina Muster",
 			category: "Archive",
 			detail: "",
@@ -714,6 +786,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box2archive22",
+			box: "Box 2",
 			title: "Archives Jorn Frenzel",
 			category: "Archive",
 			detail: "",
@@ -723,6 +796,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box2archive23",
+			box: "Box 2",
 			title: "Archives Karina Galicka",
 			category: "Archive",
 			detail: "",
@@ -732,6 +806,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box2archive24",
+			box: "Box 2",
 			title: "Archives Konstantin Wallner",
 			category: "Archive",
 			detail: "",
@@ -741,6 +816,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box2archive25",
+			box: "Box 2",
 			title: "Archives Laura Tavernier",
 			category: "Archive",
 			detail: "",
@@ -750,6 +826,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box2archive26",
+			box: "Box 2",
 			title: "Archives Lina Syren",
 			category: "Archive",
 			detail: "",
@@ -759,6 +836,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box2archive27",
+			box: "Box 2",
 			title: "Archives Linda Reynolds",
 			category: "Archive",
 			detail: "",
@@ -768,6 +846,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box2archive28",
+			box: "Box 2",
 			title: "Archives Marian Bilek",
 			category: "Archive",
 			detail: "",
@@ -777,6 +856,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box2archive29",
+			box: "Box 2",
 			title: "Archives Marike Vonbraun",
 			category: "Archive",
 			detail: "",
@@ -786,6 +866,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box2archive30",
+			box: "Box 2",
 			title: "Archives Martin Richard",
 			category: "Archive",
 			detail: "",
@@ -795,6 +876,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box2archive31",
+			box: "Box 2",
 			title: "Archives Mason Reynolds",
 			category: "Archive",
 			detail: "",
@@ -804,6 +886,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box2archive32",
+			box: "Box 2",
 			title: "Archives Petar Cojocaru",
 			category: "Archive",
 			detail: "",
@@ -813,6 +896,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box2archive33",
+			box: "Box 2",
 			title: "Archives Riano Della Valle",
 			category: "Archive",
 			detail: "",
@@ -822,6 +906,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box2archive33",
+			box: "Box 2",
 			title: "Archives Samuel Perry",
 			category: "Archive",
 			detail: "",
@@ -831,6 +916,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box2archive34",
+			box: "Box 2",
 			title: "Archives Taneli Tuominen",
 			category: "Archive",
 			detail: "",
@@ -840,6 +926,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box2archive35",
+			box: "Box 2",
 			title: "Archives Timo Sladie",
 			category: "Archive",
 			detail: "",
@@ -852,6 +939,7 @@ export const dataHistory = {
 
 		{
 			id: "box2document1",
+			box: "Box 2",
 			title: "Planque du tueur",
 			category: "Document",
 			detail: "Planque du tueur où des 'cadeaux' nous attendaient",
@@ -861,6 +949,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box2document2",
+			box: "Box 2",
 			title: "Livre ''Lilith et la guérison des maux''",
 			category: "Document",
 			detail: "Curieux livre écrit par une certaine Stella Louiseberg",
@@ -870,6 +959,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box2document3",
+			box: "Box 2",
 			title: "Livre ''Je commence l'Origami''",
 			category: "Document",
 			detail: "Livre 'Je commence l'origami' donné par Martin Richard dans la prison",
@@ -879,6 +969,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box2document4",
+			box: "Box 2",
 			title: "Papier avalé par Garraud",
 			category: "Document",
 			detail: "Papier retrouvé dans le corps de Garraud après autopsie d'Adèle Leinu",
@@ -888,6 +979,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box2document5",
+			box: "Box 2",
 			title: "Lettre de Stella",
 			category: "Document",
 			detail: "Lettre de Stella Louiseberg retrouvée chez Mason Reynolds",
@@ -897,6 +989,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box2document6",
+			box: "Box 2",
 			title: "Notes sur Lauren Fraser",
 			category: "Document",
 			detail: "De curieuses notes du tueur sur Lauren Fraser et son mentor François Duchamp",
@@ -906,6 +999,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box2document7",
+			box: "Box 2",
 			title: "Poster Rabid Star Slayer",
 			category: "Document",
 			detail: "Poster d'un groupe de métal dans la celulle de Charles Garraud",
@@ -915,6 +1009,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box2document8",
+			box: "Box 2",
 			title: "Email Lauren #1",
 			category: "Document",
 			detail: "Quelque chose ne tourne pas rond",
@@ -924,6 +1019,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box2document9",
+			box: "Box 2",
 			title: "Email Lauren #2",
 			category: "Document",
 			detail: "Lauren enquête de son côté",
@@ -933,6 +1029,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box2document10",
+			box: "Box 2",
 			title: "Photo Jacqueline Houdin",
 			category: "Document",
 			detail: "Photo de la mère de Charles Garraud retrouvée dans sa cellule ",
@@ -945,6 +1042,7 @@ export const dataHistory = {
 
 		{
 			id: "box2audio1",
+			box: "Box 2",
 			title: "Interrogatoire Martin Richard",
 			category: "Audio",
 			detail: "Gardien de la prison de Charles Garraud",
@@ -957,6 +1055,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box2audio2",
+			box: "Box 2",
 			title: "Interrogatoire Linda Reynolds",
 			category: "Audio",
 			detail: "Epouse de Mason Reynolds",
@@ -969,6 +1068,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box2audio3",
+			box: "Box 2",
 			title: "Echanges Samuel Perry & Raphaëlle Sanchez",
 			category: "Audio",
 			detail: "Echanges entre Sanchez et Samuel Perry, agent de liaison d'Eurocrim",
@@ -981,6 +1081,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box2audio4",
+			box: "Box 2",
 			title: "Echange Alphonse St-Yves",
 			category: "Audio",
 			detail: "Voyant spécialiste en taromantie",
@@ -996,6 +1097,7 @@ export const dataHistory = {
 
 		{
 			id: "box2video1",
+			box: "Box 2",
 			title: "Introduction Box 2",
 			category: "Video",
 			detail: "C'est plus grave qu'on ne le pensait. Le tueur a de nouveau frappé",
@@ -1005,6 +1107,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box2video2",
+			box: "Box 2",
 			title: "Webcam Mason",
 			category: "Video",
 			detail: "La victime a réussi à filmer sa mort sans que le tueur ne s'en rende compte",
@@ -1014,6 +1117,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box2video3",
+			box: "Box 2",
 			title: "Breaking News",
 			category: "Video",
 			detail: "Charles Garraud vient d'être retrouvé pendu dans sa cellule ",
@@ -1023,6 +1127,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box2video4",
+			box: "Box 2",
 			title: "Frigo",
 			category: "Video",
 			detail: "Sanchez a fait un sordide découverte dans la planque du tueur",
@@ -1032,6 +1137,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box2video5",
+			box: "Box 2",
 			title: "Fin Box 2",
 			category: "Video",
 			detail: "Le tueur s'est introduit dans l'agence et a enlevé Lauren Fraser !",
@@ -1044,6 +1150,7 @@ export const dataHistory = {
 
 		{
 			id: "box2lieu1",
+			box: "Box 2",
 			title: "Lieu de fouille Chez Mason",
 			category: "Lieu",
 			detail: "Fouille de la scène de crime de Mason Reynolds",
@@ -1053,6 +1160,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box2lieu2",
+			box: "Box 2",
 			title: "Lieu de fouille cellule Garraud",
 			category: "Lieu",
 			detail: "Voilà donc où Garraud a passé les 20 dernières années de sa vie",
@@ -1062,6 +1170,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box2lieu3",
+			box: "Box 2",
 			title: "Lieu de fouille appartement Stella",
 			category: "Lieu",
 			detail: "Une nouvelle planque de notre tueur, tout aussi accueillante ",
@@ -1078,6 +1187,7 @@ export const dataHistory = {
 
 		{
 			id: "box3archive1",
+			box: "Box 3",
 			title: "Archives Agnes Vouchiar",
 			category: "Archive",
 			detail: "",
@@ -1087,6 +1197,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box3archive2",
+			box: "Box 3",
 			title: "Archives Giuseppe Rossi",
 			category: "Archive",
 			detail: "",
@@ -1096,6 +1207,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box3archive3",
+			box: "Box 3",
 			title: "Archives Leonie Brugmann",
 			category: "Archive",
 			detail: "",
@@ -1105,6 +1217,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box3archive4",
+			box: "Box 3",
 			title: "Archives Maria Gruber",
 			category: "Archive",
 			detail: "",
@@ -1114,6 +1227,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box3archive5",
+			box: "Box 3",
 			title: "Archives Yann Lacroix",
 			category: "Archive",
 			detail: "",
@@ -1126,6 +1240,7 @@ export const dataHistory = {
 
 		{
 			id: "box3document1",
+			box: "Box 3",
 			title: "Post-it bureau Lauren",
 			category: "Document",
 			detail: "Un post-it écrit par le tueur et retrouvé dans le bureau de Lauren Fraser",
@@ -1135,6 +1250,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box3document2",
+			box: "Box 3",
 			title: "Photo squelette forêt",
 			category: "Document",
 			detail: "Un squelette déterré dans la forêt des Arbailles",
@@ -1144,6 +1260,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box3document3",
+			box: "Box 3",
 			title: "Photo hôpital",
 			category: "Document",
 			detail: "Une photo de personnes inconnues à l'hôpital",
@@ -1153,6 +1270,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box3document4",
+			box: "Box 3",
 			title: "Photo Loic Valluy",
 			category: "Document",
 			detail: "Photo de Loic Valluy trouvée par Tim",
@@ -1162,6 +1280,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box3document5",
+			box: "Box 3",
 			title: "Dossier médical Céline",
 			category: "Document",
 			detail: "Dossier médical de Céline Valluy retrouvé chez elle",
@@ -1171,6 +1290,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box3document6",
+			box: "Box 3",
 			title: "Dossier médical Estelle",
 			category: "Document",
 			detail: "Dossier médical d'Estelle Barloigus récupéré sur le site d'ASCLEA",
@@ -1180,6 +1300,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box3document7",
+			box: "Box 3",
 			title: "Dossier médical Estelle",
 			category: "Document",
 			detail: "Version complète du livre 'Lilith et la guérison des maux' retrouvé chez Céline",
@@ -1189,6 +1310,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box3document8",
+			box: "Box 3",
 			title: "Reçu de la poste",
 			category: "Document",
 			detail: "La box a été envoyée par Céline, on dirait",
@@ -1198,6 +1320,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box3document9",
+			box: "Box 3",
 			title: "Carnet d'Estelle",
 			category: "Document",
 			detail: "Carnet d'Estelle Barloigus retrouvé dans la cave de Céline Valluy",
@@ -1207,6 +1330,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box3document10",
+			box: "Box 3",
 			title: "Tableau des victimes",
 			category: "Document",
 			detail: "",
@@ -1216,6 +1340,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box3document11",
+			box: "Box 3",
 			title: "Arbre généalogique",
 			category: "Document",
 			detail: "Sordide tableau de chasse du Tueur au Tarot avec le détail des victimes",
@@ -1225,6 +1350,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box3document12",
+			box: "Box 3",
 			title: "Liste des donneurs potentiels",
 			category: "Document",
 			detail: "L'arbre généalogique de la famille Valluy-Barloigus trouvé chez Céline Valluy",
@@ -1237,6 +1363,7 @@ export const dataHistory = {
 
 		{
 			id: "box3audio1",
+			box: "Box 3",
 			title: "Débrief Lauren",
 			category: "Audio",
 			detail: "Lauren nous raconte son enlèvement",
@@ -1249,6 +1376,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box3audio2",
+			box: "Box 3",
 			title: "Interrogatoire Leonie Brugmann",
 			category: "Audio",
 			detail: "Amie de Bebekka Auer",
@@ -1261,6 +1389,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box3audio3",
+			box: "Box 3",
 			title: "Interrogatoire Yann Lacroix",
 			category: "Audio",
 			detail: "Médecin en charge de la greffe d'Estelle Barloigus",
@@ -1273,6 +1402,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box3audio4",
+			box: "Box 3",
 			title: "Interrogatoire François Duchamp",
 			category: "Audio",
 			detail: "Profiler mentor de Lauren Fraser",
@@ -1288,6 +1418,7 @@ export const dataHistory = {
 
 		{
 			id: "box3video1",
+			box: "Box 3",
 			title: "Introduction Box 3",
 			category: "Video",
 			detail: "Il y a urgence, il faut retrouver Lauren et coincer le tueur !",
@@ -1297,6 +1428,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box3video2",
+			box: "Box 3",
 			title: "Retrouver Lauren",
 			category: "Video",
 			detail: "On a retrouvé Lauren saine et sauve",
@@ -1306,6 +1438,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box3video2",
+			box: "Box 3",
 			title: "Fin Box 3",
 			category: "Video",
 			detail: "L'affaire du Tueur au Tarot est enfin classée",
@@ -1318,6 +1451,7 @@ export const dataHistory = {
 
 		{
 			id: "box3lieu1",
+			box: "Box 3",
 			title: "Lieu de fouille Forêt",
 			category: "Lieu",
 			detail: "Une escapade dans la forêt des Arbailles ",
@@ -1327,6 +1461,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box3lieu2",
+			box: "Box 3",
 			title: "Lieu de fouille chez Céline",
 			category: "Lieu",
 			detail: "https://www.ah-widemedia.com/app-detectivebox/fouille/celine/index.php",
@@ -1336,6 +1471,7 @@ export const dataHistory = {
 		},
 		{
 			id: "box3lieu3",
+			box: "Box 3",
 			title: "Lieu de fouille Cave",
 			category: "Lieu",
 			detail: "Que cache Céline dans sa cave ?",
