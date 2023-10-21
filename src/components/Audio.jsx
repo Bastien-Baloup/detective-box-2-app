@@ -5,10 +5,8 @@ import Play from "../assets/icons/Icon_Play.svg";
 import Pause from "../assets/icons/Icon_Pause.svg";
 import WaveSurfer from "wavesurfer.js";
 
-// Augmenter la taille des photos
-
 const Audio = ({ title, srcImg1, srcImg2, srcTranscription, handleModalAudio, srcAudio }) => {
-	const containerRef = useRef();
+	const containerRef = useRef(undefined);
 	const waveSurferRef = useRef(false);
 	const [isPlaying, setIsPlaying] = useState(false);
 
