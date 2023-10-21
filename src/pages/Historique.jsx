@@ -9,6 +9,11 @@ import Filter from "../components/Filter";
 import Preuve from "../components/Preuve";
 import { dataHistory } from "../utils/const/dataHistory";
 import { useNavigate } from "react-router-dom";
+import Document from "../components/Document";
+import Audio from "../components/Audio";
+import Video from "../components/Video";
+import { urlApi } from "../utils/const/urlApi";
+import Cross from "../assets/icons/Icon_Cross-white.svg";
 
 function Historique() {
 	const filtersType = ["Archive", "Document", "Video", "Audio", "Lieu"];
@@ -17,12 +22,15 @@ function Historique() {
 	const [selectedCategory, setSelectedCategory] = useState([]);
 	const [selectedBox, setselectedBox] = useState([]);
 
+	const [modal, setModal] = useState(false);
+	const [selectedClue, setSelectedClue] = useState("");
+
 	// if not logged, redirect to Page de connexion
 	const navigate = useNavigate();
-	// if (!isLogged) {
-	// 	navigate("/sign-in");
-	// 	return;
-	// }
+	if (localStorage == 0) {
+		navigate("/sign-in");
+		return;
+	}
 	// SI contexte vide alors navigate("box-choice");
 
 	// A RECUPERER VIA CONTEXT
@@ -36,7 +44,6 @@ function Historique() {
 			setSelectedCategory([...selectedCategory, selectedFilter]);
 		}
 	};
-	console.log(selectedCategory);
 
 	const handleFilterBox = (selectedFilter) => {
 		if (selectedBox.includes(selectedFilter)) {
@@ -46,26 +53,25 @@ function Historique() {
 			setselectedBox([...selectedBox, selectedFilter]);
 		}
 	};
-	console.log(selectedBox);
 
 	const filterClues = (data) => {
 		if (selectedCategory.length == 0 && selectedBox.length == 0) {
-			return data.map((clue, index) => <Preuve data={clue} key={`clueKey2-${index}`} />);
+			return data.map((clue, index) => <Preuve data={clue} key={`clueKey2-${index}`} openModal={() => openModal(clue)} />);
 		}
 		if (selectedCategory.length == 0 && selectedBox.length != 0) {
 			return data
 				.filter((clue) => selectedBox.includes(clue.box))
-				.map((clue, index) => <Preuve data={clue} key={`clueKey2-${index}`} />);
+				.map((clue, index) => <Preuve data={clue} key={`clueKey2-${index}`} openModal={() => openModal(clue)} />);
 		}
 		if (selectedBox.length == 0 && selectedCategory.length != 0) {
 			return data
 				.filter((clue) => selectedCategory.includes(clue.category))
-				.map((clue, index) => <Preuve data={clue} key={`clueKey2-${index}`} />);
+				.map((clue, index) => <Preuve data={clue} key={`clueKey2-${index}`} openModal={() => openModal(clue)} />);
 		}
 		return data
 			.filter((clue) => selectedCategory.includes(clue.category))
 			.filter((clue) => selectedBox.includes(clue.box))
-			.map((clue, index) => <Preuve data={clue} key={`clueKey2-${index}`} />);
+			.map((clue, index) => <Preuve data={clue} key={`clueKey2-${index}`} openModal={() => openModal(clue)} />);
 	};
 
 	const displayClue = () => {
@@ -83,8 +89,57 @@ function Historique() {
 		}
 	};
 
+	const openModal = (clue) => {
+		setModal(true);
+		setSelectedClue(clue);
+	};
+
+	const displayCorrespondingModal = (clue) => {
+		if (clue.category == "Archive") {
+			return (
+				<Document title={clue.title} srcElement={urlApi.apiRemi() + clue.src} handleModalDocument={() => setModal(false)} />
+			);
+		}
+		if (clue.category == "Document") {
+			return (
+				<Document title={clue.title} srcElement={urlApi.apiRemi() + clue.src} handleModalDocument={() => setModal(false)} />
+			);
+		}
+		if (clue.category == "Audio") {
+			return (
+				<Audio
+					title={clue.title}
+					srcImg1={urlApi.apiRemi() + clue.img1}
+					srcImg2={urlApi.apiRemi() + clue.img2}
+					srcTranscription={urlApi.apiRemi() + clue.srcTranscript}
+					srcAudio={urlApi.apiRemi() + clue.srcAudio}
+					handleModalAudio={() => setModal(false)}
+				/>
+			);
+		}
+		if (clue.category == "Lieu") {
+			return (
+				<div className="modal-objectif__background">
+					<div className="modal-objectif__box">
+						<button className="modal-objectif__icon--container">
+							<img className="modal-objectif__icon" src={Cross} onClick={() => setModal(false)} />
+						</button>
+						<p className="modal-objectif__title">Vous vous êtes sur de vouloir retourner sur le {clue.title} ?</p>
+						<button className="modal-objectif__button button--red" onClick={() => window.open(clue.src, "_blank")}>
+							Explorer de nouveau
+						</button>
+					</div>
+				</div>
+			);
+		}
+		if (clue.category == "Video") {
+			return <Video title={clue.title} srcVideo={urlApi.apiRemi() + clue.src} handleModalVideo={() => setModal(false)} />;
+		}
+	};
+
 	return (
 		<main className="main__history">
+			{modal ? displayCorrespondingModal(selectedClue) : null}
 			<div className="filter__wrapper">
 				<div className="filter--type__container">
 					{filtersType.map((category, index) => (
