@@ -27,7 +27,7 @@ function Historique() {
 
 	// if not logged, redirect to Page de connexion
 	const navigate = useNavigate();
-	if (localStorage == 0) {
+	if (localStorage.length == 0) {
 		navigate("/sign-in");
 		return;
 	}
