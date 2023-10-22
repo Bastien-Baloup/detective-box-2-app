@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 function Legales() {
 	const navigate = useNavigate();
 
-	if (localStorage == 0) {
+	if (localStorage.length == 0) {
 		navigate("/sign-in");
 		return;
 	}

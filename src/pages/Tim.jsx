@@ -2,6 +2,7 @@ import PhotoTim from "../assets/img/Agent_tim.jpg";
 import Input from "../components/Input.jsx";
 import Cross from "../assets/icons/Icon_Cross-white.svg";
 import PropTypes from "prop-types";
+import { urlApi } from "../utils/const/urlApi";
 
 const Tim = ({ value, setValue, closeAgentPage }) => {
 	const handleSubmit = (e) => {
@@ -24,7 +25,7 @@ const Tim = ({ value, setValue, closeAgentPage }) => {
 	return (
 		<>
 			<audio autoPlay>
-				<source src={url + catchphrase[randomNumber]} type="audio/wav" />
+				<source src={urlApi.apiRemi() + catchphrase[randomNumber]} type="audio/wav" />
 				Votre navigateur ne prend pas en charge ce format
 			</audio>
 			<div className="agent">

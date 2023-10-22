@@ -9,7 +9,7 @@ function Parametres() {
 	const [errorMessage, setErrorMessage] = useState("");
 	const navigate = useNavigate();
 
-	if (localStorage == 0) {
+	if (localStorage.length == 0) {
 		navigate("/sign-in");
 		return;
 	}

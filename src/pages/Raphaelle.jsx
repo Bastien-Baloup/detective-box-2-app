@@ -2,6 +2,7 @@ import PhotoRaphaelle from "../assets/img/Agent_raphaelle.jpg";
 import Input from "../components/Input.jsx";
 import Cross from "../assets/icons/Icon_Cross-white.svg";
 import PropTypes from "prop-types";
+import { urlApi } from "../utils/const/urlApi";
 
 const Raphaelle = ({
 	valueAdresse,
@@ -32,7 +33,7 @@ const Raphaelle = ({
 	return (
 		<>
 			<audio autoPlay>
-				<source src={url + catchphrase[randomNumber]} type="audio/wav" />
+				<source src={urlApi.apiRemi() + catchphrase[randomNumber]} type="audio/wav" />
 				Votre navigateur ne prend pas en charge ce format
 			</audio>
 			<div className="agent">
