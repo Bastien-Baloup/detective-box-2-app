@@ -21,6 +21,7 @@ export const dataQuizz = {
 					"Une victime du tueur au Tarot",
 				],
 				image: null,
+				// image : Photo de Charles Garraud,
 			},
 			{
 				id: 3,
@@ -99,12 +100,13 @@ export const dataQuizz = {
 				explanation:
 					"Charles Garraud était un imitateur du tueur au Tarot. Vous avez découvert qu'il se serait rendu à sa place sous la pression du vrai tueur.",
 				image: null,
+				// image : Photo de Charles Garraud,
 			},
 			{
 				id: 3,
 				answer: "La menteuse, l'oublié, l'orgueilleux, le chemin de la vérité",
 				explanation:
-					"Le poème possédait bien quatre paragraphes et quatre pistes. Les trois premières nous ramenaient à des victimes du tueur, la dernière une piste qui nous dirigeait vers une de ses planques.",
+					"Le poème possédait bien quatre paragraphes et quatre pistes. Les trois premières nous ramenaient à des victimes du tueur, la dernière à une piste qui nous dirigeait vers une de ses planques.",
 				image: "assets/quiz/box2_poem_quiz_reponse_4.jpg",
 			},
 			{
@@ -128,7 +130,7 @@ export const dataQuizz = {
 				id: 6,
 				answer: "Charles Garraud, car il avait voulu faire comme le tueur au Tarot",
 				explanation:
-					"Charles Garraud est l'orgueilleux, il a tué Nicolas Chaussée pour imiter le tueur. Le vrai tueur n'avait pas apprécié son intervention dans son « grand œuvre » et l'avait forcé à se rendre à sa place, en tuant sa mère et en le menaçant d'être le prochain.",
+					"Charles Garraud est l'orgueilleux, il a tué Nicolas Chaussée pour imiter le tueur. Le vrai tueur n'avait pas apprécié son intervention dans son « Grand Œuvre » et l'avait forcé à se rendre à sa place, en tuant sa mère et en le menaçant d'être le prochain.",
 				image: "assets/quiz/box2_lettre_garraud_quiz_reponse_7.jpg",
 			},
 			{
@@ -146,8 +148,7 @@ export const dataQuizz = {
 					"Il a tué pendant des années dans toute l'Europe",
 					"Garraud donne des papiers aux enquêteurs pendant son interrogatoire.",
 				],
-				explanation:
-					"Pendant son interrogatoire, Garraud a révélé qu'il avait eu des discussions avec le tueur sur un forum via des messages privés. De plus, il a avoué que le tueur avait continué ses meurtres sans interruption pendant toutes ces années et qu'il avait commis des meurtres dans différents pays d'Europe. Finalement, Garraud a fourni des documents aux enquêteurs pendant son interrogatoire. Nous vous avons mis dans la box ces documents, il s'agit de deux papiers étranges en noir et blanc et des lettres de correspondance avec un de ses fans.",
+				explanation: "Il s'agit de deux papiers brillants étranges et des lettres de correspondances avec un de ses fans.",
 				image: "assets/quiz/box2_origami_quiz_reponse_9.jpg",
 			},
 		],
