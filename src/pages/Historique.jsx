@@ -1,9 +1,3 @@
-// Mettre ici la liste des preuves dont l'état VU = TRUE
-// Récupérer via le Context le numéro de la box pour afficher les preuves de la bonne liste correspondante
-// --> Q : Afficher tout les assets de toutes les listes dont état VU = TRUE
-// ou fonction qui affiche tout les assets des boxs n-1 et n-2 ? <--
-// if not logged, redirect to Page de connexion
-
 import { useState } from "react";
 import Filter from "../components/Filter";
 import Preuve from "../components/Preuve";
@@ -36,6 +30,7 @@ function Historique() {
 	// A RECUPERER VIA CONTEXT
 	const currentBox = "box3";
 
+	// EXPLICATION : cette fonction va créer un nouvel array avec l'ensemble des filtres de catégorie
 	const handleFilterCategory = (selectedFilter) => {
 		if (selectedCategory.includes(selectedFilter)) {
 			let filters = selectedCategory.filter((element) => element !== selectedFilter);
@@ -45,6 +40,7 @@ function Historique() {
 		}
 	};
 
+	// EXPLICATION : cette fonction va créer un nouvel array avec l'ensemble des filtres de box
 	const handleFilterBox = (selectedFilter) => {
 		if (selectedBox.includes(selectedFilter)) {
 			let filters = selectedBox.filter((element) => element !== selectedFilter);
@@ -54,37 +50,43 @@ function Historique() {
 		}
 	};
 
+	// EXPLICATION : cette fonction va filtrer les data en fonction des arrays filtres créés plus haut
 	const filterClues = (data) => {
 		if (selectedCategory.length == 0 && selectedBox.length == 0) {
-			return data.map((clue, index) => <Preuve data={clue} key={`clueKey2-${index}`} openModal={() => openModal(clue)} />);
+			return data.map((clue, index) => <Preuve data={clue} key={`clueKey-${index}`} openModal={() => openModal(clue)} />);
 		}
 		if (selectedCategory.length == 0 && selectedBox.length != 0) {
 			return data
 				.filter((clue) => selectedBox.includes(clue.box))
-				.map((clue, index) => <Preuve data={clue} key={`clueKey2-${index}`} openModal={() => openModal(clue)} />);
+				.map((clue, index) => <Preuve data={clue} key={`clueKey-${index}`} openModal={() => openModal(clue)} />);
 		}
 		if (selectedBox.length == 0 && selectedCategory.length != 0) {
 			return data
 				.filter((clue) => selectedCategory.includes(clue.category))
-				.map((clue, index) => <Preuve data={clue} key={`clueKey2-${index}`} openModal={() => openModal(clue)} />);
+				.map((clue, index) => <Preuve data={clue} key={`clueKey-${index}`} openModal={() => openModal(clue)} />);
 		}
 		return data
 			.filter((clue) => selectedCategory.includes(clue.category))
 			.filter((clue) => selectedBox.includes(clue.box))
-			.map((clue, index) => <Preuve data={clue} key={`clueKey2-${index}`} openModal={() => openModal(clue)} />);
+			.map((clue, index) => <Preuve data={clue} key={`clueKey-${index}`} openModal={() => openModal(clue)} />);
 	};
 
+	// EXPLICATION : cette fonction indique quelle data utiliser en fonction de la current box PUIS elle appelle la fonction filter pour display les bonnes preuves
+	// Les preuves des boxs précédentes sont toujours toutes affichées. En revanche, seulement celles dont status = true de la current box sont affichées
 	const displayClue = () => {
 		if (currentBox == "box1") {
-			let allClues = [dataHistory["box1"]].flat();
+			let cluesCurrentBoxTrue = dataHistory["box1"].filter((clue) => clue.status == true);
+			let allClues = [cluesCurrentBoxTrue].flat();
 			return filterClues(allClues);
 		}
 		if (currentBox == "box2") {
-			let allClues = [dataHistory["box1"], dataHistory["box2"]].flat();
+			let cluesCurrentBoxTrue = dataHistory["box2"].filter((clue) => clue.status == true);
+			let allClues = [dataHistory["box1"], cluesCurrentBoxTrue].flat();
 			return filterClues(allClues);
 		}
 		if (currentBox == "box3") {
-			let allClues = [dataHistory["box1"], dataHistory["box2"], dataHistory["box3"]].flat();
+			let cluesCurrentBoxTrue = dataHistory["box3"].filter((clue) => clue.status == true);
+			let allClues = [dataHistory["box1"], dataHistory["box2"], cluesCurrentBoxTrue].flat();
 			return filterClues(allClues);
 		}
 	};
@@ -94,6 +96,7 @@ function Historique() {
 		setSelectedClue(clue);
 	};
 
+	// EXPLICATION : cette fonction indique quelle modale afficher au clic d'une preuve en fonction de sa catégorie
 	const displayCorrespondingModal = (clue) => {
 		if (clue.category == "Archive") {
 			return (
@@ -124,7 +127,7 @@ function Historique() {
 						<button className="modal-objectif__icon--container">
 							<img className="modal-objectif__icon" src={Cross} onClick={() => setModal(false)} />
 						</button>
-						<p className="modal-objectif__title">Vous vous êtes sur de vouloir retourner sur le {clue.title} ?</p>
+						<p className="modal-objectif__title">Vous êtes sur de vouloir retourner sur le lieu {clue.title} ?</p>
 						<button className="modal-objectif__button button--red" onClick={() => window.open(clue.src, "_blank")}>
 							Explorer de nouveau
 						</button>
@@ -133,7 +136,14 @@ function Historique() {
 			);
 		}
 		if (clue.category == "Video") {
-			return <Video title={clue.title} srcVideo={urlApi.apiRemi() + clue.src} handleModalVideo={() => setModal(false)} />;
+			return (
+				<Video
+					title={clue.title}
+					srcVideo={urlApi.apiRemi() + clue.src}
+					handleModalVideo={() => setModal(false)}
+					delayedButton={false}
+				/>
+			);
 		}
 	};
 
