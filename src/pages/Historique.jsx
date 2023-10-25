@@ -2,7 +2,6 @@ import { useState } from "react";
 import Filter from "../components/Filter";
 import Preuve from "../components/Preuve";
 import { dataHistory } from "../utils/const/dataHistory";
-import { useNavigate } from "react-router-dom";
 import Document from "../components/Document";
 import Audio from "../components/Audio";
 import Video from "../components/Video";
@@ -19,12 +18,6 @@ function Historique() {
 	const [modal, setModal] = useState(false);
 	const [selectedClue, setSelectedClue] = useState("");
 
-	// if not logged, redirect to Page de connexion
-	const navigate = useNavigate();
-	if (localStorage == 0) {
-		navigate("/sign-in");
-		return;
-	}
 	// SI contexte vide alors navigate("box-choice");
 
 	// A RECUPERER VIA CONTEXT

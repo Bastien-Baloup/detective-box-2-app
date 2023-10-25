@@ -1,14 +1,6 @@
 import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 
 function Credits() {
-	const navigate = useNavigate();
-
-	if (localStorage == 0) {
-		navigate("/sign-in");
-		return;
-	}
-
 	return (
 		<main className="credits">
 			<Link className="credits__link" to="/">

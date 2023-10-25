@@ -15,19 +15,12 @@ import Lauren from "./Lauren";
 import Raphaelle from "./Raphaelle";
 import Celine from "./Celine";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 function Home() {
 	const [characterDisplayed, setCharacterDisplayed] = useState(null);
 	const [modalLaurenGone, setModalLaurenGone] = useState(false);
 	const [modalCelineGone, setModalCelineGone] = useState(false);
 
-	// if not logged, redirect to Page de connexion
-	const navigate = useNavigate();
-	if (localStorage == 0) {
-		navigate("/sign-in");
-		return;
-	}
 	// SI contexte vide alors navigate("box-choice");
 
 	// A RECUPERER DU CONTEXTE
