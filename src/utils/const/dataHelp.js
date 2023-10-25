@@ -10,7 +10,7 @@ export const dataHelp = {
 				{
 					id: 1,
 					text:
-						"Tout d'abord, regardons si on ne pourrait pas relier un paragraphe du poème à un dossier particulier. \nCelui-là parle d'une femme et d'un billet de loterie.",
+						"Tout d'abord, regardons si on ne pourrait pas relier un paragraphe du poème à un dossier en particulier. \nCelui-là parle d'une femme et d'un billet de loterie.",
 					image: null,
 				},
 				{
@@ -91,7 +91,7 @@ export const dataHelp = {
 				{
 					id: 1,
 					text:
-						"Tout d'abord, regardons si on ne pourrait pas relier un paragraphe du poème à un dossier particulier. Celui-ci parle de lettres cryptées.",
+						"Tout d'abord, regardons si on ne pourrait pas relier un paragraphe du poème à un dossier en particulier. Celui-ci parle de lettres cryptées.",
 					image: null,
 				},
 				{
@@ -114,7 +114,7 @@ export const dataHelp = {
 				{
 					id: 5,
 					text:
-						"J'ai reçu un mail automatique de réponse en envoyant le mail. Le fan dit qu'il ne répond plus aux mails mais qu'il a gardé un site web sur le tueur au tarot : www.fan-tueur-tarot.com",
+						"J'ai reçu un mail automatique de réponse en envoyant le mail. Le fan dit qu'il ne répond plus aux mails mais qu'il a gardé un site web sur le tueur au tarot : www.fan-tueur-tarot.fr",
 					image: null,
 				},
 				{
@@ -149,7 +149,7 @@ export const dataHelp = {
 				{
 					id: 1,
 					text:
-						"Tout d'abord, regardons si on ne pourrait pas relier un paragraphe du poème à un dossier particulier. Celui-ci parle de constellations.",
+						"Tout d'abord, regardons si on ne pourrait pas relier un paragraphe du poème à un dossier en particulier. Celui-ci parle de constellations.",
 					image: null,
 				},
 				{
@@ -179,7 +179,7 @@ export const dataHelp = {
 				{
 					id: 6,
 					text:
-						"Je pense que la personne qui n'a pas pu téléphoner, c'est Marianne Chauve, regardez le rapport, ça dit que le téléphone était coupé. Toujours d'après le rapport, elle est morte le 28/02/1992 à 2h10. Si on positionne le calque des heures sur celui de la date, on obtient cela. Il faut qu'on regarde dans l'espace vide maintenant pour savoir ce qu'elle regardait.",
+						"Je pense que la personne qui n'a pas pu téléphoner, c'est Marianne Chauve. Regardez le rapport, ça dit que le téléphone était coupé. Toujours d'après le rapport, elle est morte le 28/02/1992 à 2h10. Si on positionne le calque des heures sur celui de la date, on obtient cela. Il faut qu'on regarde dans l'espace vide maintenant pour savoir ce qu'elle regardait.",
 					image: "assets/renforts/box1_orgueilleux_renfort6_carte_ciel.jpg",
 				},
 				{
@@ -250,7 +250,7 @@ export const dataHelp = {
 				{
 					id: 5,
 					text:
-						"Je crois qu'il nous a laissé un indice à chaque fois avec un symbole et un triangle. On a donc une carte, une ville et une zone. Ces symboles, il me semble les avoir vu quelque part. Ce serait pas son alphabet codé ?",
+						"Je crois qu'il nous a laissé un indice à chaque fois avec un symbole et un triangle. On a donc une carte et 2 mots cryptés. Ces symboles, il me semble les avoir vu quelque part. Ce serait pas son alphabet codé ?",
 					image: null,
 				},
 				{
