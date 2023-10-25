@@ -22,7 +22,7 @@ const Document = ({ title, srcElement, handleModalDocument }) => {
 				<div className="modal-document__element-container">{mediaFactory(srcElement)}</div>
 				<div className="modal-document__buttons">
 					<button className="modal-document__button button--red" onClick={handleModalDocument}>
-						Reprendre l&apos;enquête
+						Continuer l&apos;enquête
 					</button>
 					<button className="modal-document__button button--white" onClick={openInNewTab}>
 						Ouvrir

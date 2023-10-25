@@ -65,7 +65,7 @@ const Audio = ({ title, srcImg1, srcImg2, srcTranscription, handleModalAudio, sr
 				</div>
 				<div className="modal-audio__buttons">
 					<button className="modal-audio__button--resume button--red" onClick={handleModalAudio}>
-						Reprendre l&apos;enquête
+						Continuer l&apos;enquête
 					</button>
 					<button className="modal-audio__button--display button--white" onClick={openInNewTab}>
 						Transcription
