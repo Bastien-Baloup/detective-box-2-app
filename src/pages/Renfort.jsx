@@ -8,6 +8,10 @@ import { urlApi } from "../utils/const/urlApi";
 import { useNavigate } from "react-router-dom";
 
 function Renfort() {
+
+	const [sliderActivated, setSliderActivated] = useState(false);
+	const [menuActivated, setmenuActivated] = useState(true);
+	const [helpSelected, setHelpSelected] = useState(null);
 	// if not logged, redirect to Page de connexion
 
 	// if not logged, redirect to Page de connexion
@@ -17,10 +21,6 @@ function Renfort() {
 		return;
 	}
 	// SI contexte vide alors navigate("box-choice");
-
-	const [sliderActivated, setSliderActivated] = useState(false);
-	const [menuActivated, setmenuActivated] = useState(true);
-	const [helpSelected, setHelpSelected] = useState(null);
 
 	// A RECUPERER DU CONTEXTE
 	const currentBox = "box1";
@@ -45,7 +45,7 @@ function Renfort() {
 			if (help.status == "done") {
 				return (
 					<>
-						<button className="menu__choice menu__choice--done" key={`helpKey-${index}`}>
+						<button className="menu__choice menu__choice--done" key={`helpKey1-${index}`}>
 							<div className="menu__choice__content">
 								<div className="menu__choice__icon-wrapper">
 									<img src={Check} className="menu__choice__icon" />
@@ -59,7 +59,7 @@ function Renfort() {
 			if (help.status == "open") {
 				return (
 					<>
-						<button className="menu__choice menu__choice--open" onClick={() => openSlider(help)} key={`helpKey-${index}`}>
+						<button className="menu__choice menu__choice--open" onClick={() => openSlider(help)} key={`helpKey2-${index}`}>
 							<div className="menu__choice__content">
 								<div className="menu__choice__icon-wrapper">
 									<img src={LockOpen} className="menu__choice__icon" />
@@ -73,7 +73,7 @@ function Renfort() {
 			if (help.status == "closed") {
 				return (
 					<>
-						<button className="menu__choice menu__choice--closed" key={`helpKey-${index}`}>
+						<button className="menu__choice menu__choice--closed" key={`helpKey3-${index}`}>
 							<div className="menu__choice__icon-wrapper--closed">
 								<img src={LockClosed} className="menu__choice__icon" />
 							</div>
