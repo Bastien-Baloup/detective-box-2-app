@@ -5,21 +5,12 @@ import Check from "../assets/icons/Icon_Check-green.svg";
 import LockClosed from "../assets/icons/Icon_Lock-closed-red.svg";
 import LockOpen from "../assets/icons/Icon_Lock-open-black.svg";
 import { urlApi } from "../utils/const/urlApi";
-import { useNavigate } from "react-router-dom";
 
 function Renfort() {
 
 	const [sliderActivated, setSliderActivated] = useState(false);
 	const [menuActivated, setmenuActivated] = useState(true);
 	const [helpSelected, setHelpSelected] = useState(null);
-	// if not logged, redirect to Page de connexion
-
-	// if not logged, redirect to Page de connexion
-	const navigate = useNavigate();
-	if (localStorage == 0) {
-		navigate("/sign-in");
-		return;
-	}
 	// SI contexte vide alors navigate("box-choice");
 
 	// A RECUPERER DU CONTEXTE

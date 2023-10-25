@@ -186,6 +186,7 @@ const Quizz = ({ data, handleEndQuizz, url }) => {
 Quizz.propTypes = {
 	data: PropTypes.object,
 	handleEndQuizz: PropTypes.func,
+	url: PropTypes.string,
 };
 
 export default Quizz;

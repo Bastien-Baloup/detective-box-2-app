@@ -1,14 +1,6 @@
 import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 
 function Legales() {
-	const navigate = useNavigate();
-
-	if (localStorage == 0) {
-		navigate("/sign-in");
-		return;
-	}
-
 	return (
 		<main className="legales">
 			<Link className="legales__link" to="/">

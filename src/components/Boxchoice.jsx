@@ -5,9 +5,17 @@ import Check from "../assets/icons/Icon_Check-black.svg";
 import Lockopen from "../assets/icons/Icon_Lock-open-black.svg";
 import Lockclosed from "../assets/icons/Icon_Lock-closed-red.svg";
 import Cross from "../assets/icons/Icon_Cross-white.svg";
+import { AuthContext } from "../utils/context/fetchContext.jsx";
+import { useContext } from "react";
+import { Navigate } from "react-router-dom";
 
 const BoxChoice = ({ data }) => {
+	const { loggedIn } = useContext(AuthContext);
 	const [modal, setModal] = useState(false);
+
+	if (!loggedIn) {
+		return <Navigate to="/sign-in" />;
+	}
 
 	const handleModal = () => {
 		setModal(!modal);

@@ -1,8 +1,10 @@
 import { useState } from "react";
+import { AuthContext } from "../utils/context/fetchContext.jsx";
+import { useContext } from "react";
 import Signin from "../components/Signin";
 import Signup from "../components/Signup";
 import Logo from "../assets/img/DB-Logo-DetectiveBox_DetectiveBlanc.png";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 
 function Login() {
 	const [isSigninActive, setIsSigninActive] = useState(true);
@@ -13,13 +15,13 @@ function Login() {
 	const [errorMessageForgot, setErrorMessageForgot] = useState("");
 	const [email, setEmail] = useState("");
 	const [emailForgot, setEmailForgot] = useState("");
+	const credentials = { email: email, password: password };
+	const { login, loggedIn } = useContext(AuthContext);
 	const navigate = useNavigate();
 
-	// API A METTRE EN PLACE POUR CONNECTER LE COMPTE
-	// if (isLogged) {
-	// 	navigate("/box-choice");
-	// 	return;
-	// }
+	if (loggedIn) {
+		return <Navigate to="/box-choice" />;
+	}
 
 	const handleSubmitSignin = (e) => {
 		e.preventDefault();
@@ -30,10 +32,32 @@ function Login() {
 		setEmail("");
 		setPassword("");
 		setErrorMessageSignin("");
-		localStorage.setItem("email", JSON.stringify(email));
-		localStorage.setItem("password", JSON.stringify(password));
-		console.log(localStorage);
+		login(credentials);
 		navigate("/box-choice");
+
+		// const handleSubmit = async (e) => {
+		// 	e.preventDefault();
+		// 	setErrorMessage("");
+		// 	if (username === "" || password === "") {
+		// 		setErrorMessage("Please fill the form to connect");
+		// 		return;
+		// 	}
+
+		// 	const credentials = { email: username, password: password };
+
+		// 	const dataToken = await getToken(credentials);
+		// 	if (dataToken.status === 200) {
+		// 		localStorage.setItem("token", dataToken.body.token);
+		// 	} else {
+		// 		setErrorMessage(dataToken.message);
+		// 	}
+		// 	const token = localStorage.getItem("token");
+		// 	if (token) {
+		// 		dispatch(logIn());
+		// 		const dataUser = await getUser(token);
+		// 		dispatch(getName(dataUser.body.firstName, dataUser.body.lastName));
+		// 	}
+		// };
 	};
 
 	const handleSubmitSignup = (e) => {
@@ -46,7 +70,7 @@ function Login() {
 		setEmail("");
 		setPassword("");
 		setErrorMessageSignup("");
-		alert("Compte bien créé, merci de vous connecter à présent");
+		alert("Compte bien créé Agent ");
 	};
 
 	const handleSubmitEmailForgot = (e) => {

@@ -1,18 +1,11 @@
 import { Link } from "react-router-dom";
 import Input from "../components/Input";
-import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 function Parametres() {
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
 	const [errorMessage, setErrorMessage] = useState("");
-	const navigate = useNavigate();
-
-	if (localStorage == 0) {
-		navigate("/sign-in");
-		return;
-	}
 
 	const handleSubmitChange = (e) => {
 		e.preventDefault();
