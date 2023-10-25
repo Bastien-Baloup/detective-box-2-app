@@ -79,20 +79,20 @@ function Home() {
 			<>
 				<div className="card__wrapper">
 					<Card
-						srcImg={PhotoLauren}
-						srcIcon={IconLauren}
-						name="Lauren Fraser"
-						contentButton="Faire un interrogatoire"
-						actionButton={() => setCharacterDisplayed("lauren")}
-						state={currentBox == "box3" ? "unavailable" : ""}
-					/>
-					<Card
 						srcImg={PhotoRaphaelle}
 						srcIcon={IconRaphaelle}
 						name="Raphaëlle Sanchez"
 						contentButton="Explorer un lieu"
 						actionButton={() => setCharacterDisplayed("raphaelle")}
 						state=""
+					/>
+					<Card
+						srcImg={PhotoLauren}
+						srcIcon={IconLauren}
+						name="Lauren Fraser"
+						contentButton="Demander un interrogatoire"
+						actionButton={() => setCharacterDisplayed("lauren")}
+						state={currentBox == "box3" ? "unavailable" : ""}
 					/>
 					<Card
 						srcImg={PhotoCeline}
@@ -106,7 +106,7 @@ function Home() {
 						srcImg={PhotoTim}
 						srcIcon={IconTim}
 						name="Tim Lonewood"
-						contentButton="Demander une analyse"
+						contentButton="Demander une analyse informatique"
 						actionButton={() => setCharacterDisplayed("tim")}
 						state=""
 					/>
@@ -114,7 +114,7 @@ function Home() {
 						srcImg={PhotoAdele}
 						srcIcon={IconAdele}
 						name="Adèle Leinu"
-						contentButton="Demander une analyse"
+						contentButton="Demander une analyse scientifique"
 						actionButton={() => setCharacterDisplayed("adele")}
 						state={currentBox == "box1" ? "unavailable" : ""}
 					/>
