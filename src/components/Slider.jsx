@@ -57,6 +57,13 @@ const Slider = ({ data, handleModal, url }) => {
 		);
 	};
 
+	const renderText = () => {
+		const text = data.hints[index].text.map((el, i) => {
+			return <p key={i}>{el}</p>;
+		});
+		return text;
+	};
+
 	return (
 		<section className="slider">
 			<div className="slider__header">
@@ -72,7 +79,7 @@ const Slider = ({ data, handleModal, url }) => {
 			<div className="slider__main">
 				{renderArrowLeft()}
 				<div className="slider__content">
-					<div className="slider__content__text">{data.hints[index].text}</div>
+					<div className="slider__content__text">{renderText()}</div>
 					<div className="slider__content__img--container">
 						{data.hints[index].image != null ? (
 							<img className="slider__content__img" src={url + data.hints[index].image} />

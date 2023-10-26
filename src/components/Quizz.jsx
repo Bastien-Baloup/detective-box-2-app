@@ -66,12 +66,10 @@ const Quizz = ({ data, handleEndQuizz, url }) => {
 
 	const setMultiValueInput = (value) => {
 		setValueInput((previousValueInput) => [...previousValueInput, value]);
-		console.log(valueInput);
 	};
 
 	const renderChoices = () => {
 		if (data.questions[index].multi) {
-			console.log("multichoice !");
 			const inputs = data.questions[index].choices.map((el, i) => {
 				return <Input type="checkbox" name={el} label={el} setValue={setMultiValueInput} key={i} />;
 			});
@@ -84,6 +82,13 @@ const Quizz = ({ data, handleEndQuizz, url }) => {
 		}
 	};
 
+	const renderQuestionText = () => {
+		const text = data.questions[index].question.map((el, i) => {
+			return <p key={i}>{el}</p>;
+		});
+		return text;
+	};
+
 	const renderQuestion = () => {
 		return (
 			<div className="quizz__question">
@@ -91,7 +96,7 @@ const Quizz = ({ data, handleEndQuizz, url }) => {
 					<Timer initialMinute={0} initialSecond={30} timerEndedFunction={handleQuestionForm} />
 				</div>
 				<p className="quizz__question__title">Question n°{data.questions[index].id} :</p>
-				<p className="quizz__question__subtitle">{data.questions[index].question}</p>
+				<div className="quizz__question__subtitle">{renderQuestionText()}</div>
 				<div className="quizz__question__choices">{renderChoices()}</div>
 				<div className="quizz__question__img--container">
 					{data.questions[index].image != null ? (
@@ -111,6 +116,13 @@ const Quizz = ({ data, handleEndQuizz, url }) => {
 		);
 	};
 
+	const renderAnswerText = () => {
+		const text = data.answers[index].explanation.map((el, i) => {
+			return <p key={i}>{el}</p>;
+		});
+		return text;
+	};
+
 	const renderAsnwer = () => {
 		return (
 			<div className="quizz__answer">
@@ -118,7 +130,7 @@ const Quizz = ({ data, handleEndQuizz, url }) => {
 				<p className={`quizz__answer__validation${validationQuestion ? "--true" : "--false"}`}>
 					{validationQuestion ? "Bonne réponse" : "Mauvaise Réponse"}
 				</p>
-				<p className="quizz__answer__subtitle">{data.answers[index].explanation}</p>
+				<div className="quizz__answer__subtitle">{renderAnswerText()}</div>
 				<div className="quizz__answer__img--container">
 					{data.answers[index].image != null ? (
 						<img className="quizz__answer__img" src={url + data.answers[index].image} />
