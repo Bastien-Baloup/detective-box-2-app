@@ -1,4 +1,3 @@
-import { useState } from "react";
 import RoundWhite from "../assets/icons/Icon_Round-white.svg";
 import RoundRed from "../assets/icons/Icon_Round-red.svg";
 import LineMediumWhite from "../assets/icons/Icon_Line_Medium-white.svg";
@@ -11,24 +10,14 @@ import CrossRed from "../assets/icons/Icon_Cross-red.svg";
 import Flag from "../assets/icons/Icon_Flag.svg";
 import { BoxContext } from "../utils/context/fetchContext";
 import { useContext } from "react";
+import { dataObjectif } from "../utils/const/dataObjectif";
 
 // rendre les points équidistants dans la box 3
 
 const Progression = () => {
 	const { currentBox } = useContext(BoxContext);
-	// This const is to test the componant. We will get the current step with DBB
-	const [currentStep, setCurrentStep] = useState(0);
 
-	//This const is to test the component only
-	// const addAStep = () => {
-	// 	const stepMax = 4;
-	// 	if (currentStep < stepMax) {
-	// 		setCurrentStep(currentStep + 1);
-	// 	}
-	// 	if (currentStep === stepMax) {
-	// 		setCurrentStep(0);
-	// 	}
-	// };
+	const currentStep = dataObjectif[currentBox].filter((element) => element.status == "done").length;
 
 	const trackBox = (box) => {
 		const boxPlayed = box < currentBox;

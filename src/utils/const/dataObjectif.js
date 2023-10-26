@@ -42,7 +42,7 @@ export const dataObjectif = {
 			subtitle: "Trouver le nom de la théorie du tueur",
 			detail:
 				"Avez-vous eu l'occasion d'observer le portrait de la mère de Garraud dans sa cellule ? Il y mentionne l'existence d'une théorie, présentée comme son secret que lui seul connaissait en plus du tueur. C'est surement important pour découvrir le modus operandi du tueur. Trouvons de quelle théorie il s'agit !",
-			status: "open",
+			status: "done",
 		},
 		{
 			title: "Modus opérandi",
