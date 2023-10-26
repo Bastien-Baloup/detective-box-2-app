@@ -15,16 +15,15 @@ import Lauren from "./Lauren";
 import Raphaelle from "./Raphaelle";
 import Celine from "./Celine";
 import { useState } from "react";
+import { BoxContext } from "../utils/context/fetchContext";
+import { useContext } from "react";
 
 function Home() {
 	const [characterDisplayed, setCharacterDisplayed] = useState(null);
 	const [modalLaurenGone, setModalLaurenGone] = useState(false);
 	const [modalCelineGone, setModalCelineGone] = useState(false);
 
-	// SI contexte vide alors navigate("box-choice");
-
-	// A RECUPERER DU CONTEXTE
-	const currentBox = "box1";
+	const { currentBox } = useContext(BoxContext);
 
 	const specificCardActionLauren = () => {
 		setModalLaurenGone(!modalLaurenGone);

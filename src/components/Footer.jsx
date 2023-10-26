@@ -1,11 +1,11 @@
 import Paper from "../assets/img/Paper.png";
 import Objectif from "./Objectif";
 import { dataObjectif } from "../utils/const/dataObjectif.js";
+import { BoxContext } from "../utils/context/fetchContext.jsx";
+import { useContext } from "react";	
 
 const Footer = () => {
-
-	// A RECUPERER VIA CONTEXT
-	const currentBox = "box2";
+	const { currentBox } = useContext(BoxContext);
 
 	return (
 		<footer>

@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 
 const Input = ({ label, name, placeholder, setValue, value, pattern, type }) => {
-	//Penser à rajouter pattern ?
+
 	return (
 		<>
 			{type == "radio" ? (
@@ -20,10 +20,11 @@ const Input = ({ label, name, placeholder, setValue, value, pattern, type }) => 
 				</div>
 			) : (
 				<div className="input-wrapper-text">
-					<label className="input-wrapper__label">{label}</label>
+					<label className="input-wrapper__label" htmlFor={label}>{label}</label>
 					<input
 						className="input-texte"
 						name={name}
+						id={label}
 						maxLength="60"
 						placeholder={placeholder}
 						value={value}

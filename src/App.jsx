@@ -12,7 +12,7 @@ import Renfort from "./pages/Renfort.jsx";
 import Historique from "./pages/Historique.jsx";
 import Layout from "./components/Layout.jsx";
 import Restrictedaccess from "./components/Restrictedaccess.jsx";
-import { BoxProvider, AuthProvider } from "./utils/context/fetchContext.jsx";
+import { BoxProvider, AuthProvider, AmbianceProvider } from "./utils/context/fetchContext.jsx";
 
 const api = new Api();
 
@@ -30,23 +30,25 @@ function App() {
 	return (
 		<BoxProvider>
 			<AuthProvider>
-				<Router>
-					<Routes>
-						<Route path="/*" element={<Error />} />
-						<Route path="/sign-in" element={<Login />} />
-						<Route path="/box-choice" element={<Choice />} />
-						<Route element={<Restrictedaccess />}>
-							<Route element={<Layout />}>
-								<Route path="/" element={<Home />} />
-								<Route path="/history" element={<Historique />} />
-								<Route path="/help" element={<Renfort />} />
+				<AmbianceProvider>
+					<Router>
+						<Routes>
+							<Route path="/*" element={<Error />} />
+							<Route path="/sign-in" element={<Login />} />
+							<Route path="/box-choice" element={<Choice />} />
+							<Route element={<Restrictedaccess />}>
+								<Route element={<Layout />}>
+									<Route path="/" element={<Home />} />
+									<Route path="/history" element={<Historique />} />
+									<Route path="/help" element={<Renfort />} />
+								</Route>
+								<Route path="/credits" element={<Credits />} />
+								<Route path="/legales" element={<Legales />} />
+								<Route path="/parametres" element={<Parametres />} />
 							</Route>
-							<Route path="/credits" element={<Credits />} />
-							<Route path="/legales" element={<Legales />} />
-							<Route path="/parametres" element={<Parametres />} />
-						</Route>
-					</Routes>
-				</Router>
+						</Routes>
+					</Router>
+				</AmbianceProvider>
 			</AuthProvider>
 		</BoxProvider>
 	);

@@ -5,16 +5,15 @@ import Check from "../assets/icons/Icon_Check-green.svg";
 import LockClosed from "../assets/icons/Icon_Lock-closed-red.svg";
 import LockOpen from "../assets/icons/Icon_Lock-open-black.svg";
 import { urlApi } from "../utils/const/urlApi";
+import { BoxContext } from "../utils/context/fetchContext";
+import { useContext } from "react";
 
 function Renfort() {
-
 	const [sliderActivated, setSliderActivated] = useState(false);
 	const [menuActivated, setmenuActivated] = useState(true);
 	const [helpSelected, setHelpSelected] = useState(null);
-	// SI contexte vide alors navigate("box-choice");
 
-	// A RECUPERER DU CONTEXTE
-	const currentBox = "box1";
+	const { currentBox } = useContext(BoxContext);
 
 	const backToHome = () => {
 		setSliderActivated(false);

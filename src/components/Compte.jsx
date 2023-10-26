@@ -2,22 +2,30 @@ import { useState } from "react";
 import PropTypes from "prop-types";
 import IconAccount from "../assets/icons/Icon_Account.svg";
 import { Link } from "react-router-dom";
+import { AuthContext, AmbianceContext } from "../utils/context/fetchContext.jsx";
+import { useContext } from "react";
 
-// Rajouter une fonction pour la déconnexion !!
-
-const Compte = ({ handleNappe }) => {
+const Compte = () => {
 	const [active, setActive] = useState(false);
+	const { logout } = useContext(AuthContext);
+	const { fetchNappeMute, nappeMute } = useContext(AmbianceContext);
 
 	const activeDrop = () => {
 		setActive(!active);
 	};
 
+	const handleNappe = () =>{
+		fetchNappeMute(!nappeMute);
+		activeDrop();
+	}
+
+	const hangleLogout = () =>{
+		logout();
+		activeDrop();
+	}
+
 	const openWebsite = () => {
 		window.open("https://app.detectivebox.fr/politique-de-confidentialite.html", "_blank");
-	};
-
-	const clearStorage = () => {
-		localStorage.clear();
 	};
 
 	return (
@@ -29,7 +37,7 @@ const Compte = ({ handleNappe }) => {
 				<button className="dropdown__child" onClick={handleNappe}>
 					Nappe d&apos;ambiance
 				</button>
-				<Link className="dropdown__child" to="/legales">
+				<Link className="dropdown__child" to="/parametres">
 					Paramètres
 				</Link>
 				<button className="dropdown__child" onClick={openWebsite}>
@@ -38,7 +46,7 @@ const Compte = ({ handleNappe }) => {
 				<Link className="dropdown__child" to="/credits">
 					Crédits
 				</Link>
-				<button className="dropdown__child" onClick={clearStorage}>
+				<button className="dropdown__child" onClick={hangleLogout}>
 					Déconnexion
 				</button>
 			</div>

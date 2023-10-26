@@ -7,6 +7,8 @@ import Audio from "../components/Audio";
 import Video from "../components/Video";
 import { urlApi } from "../utils/const/urlApi";
 import Cross from "../assets/icons/Icon_Cross-white.svg";
+import { BoxContext } from "../utils/context/fetchContext";
+import { useContext } from "react";
 
 function Historique() {
 	const filtersType = ["Archive", "Document", "Video", "Audio", "Lieu"];
@@ -18,10 +20,7 @@ function Historique() {
 	const [modal, setModal] = useState(false);
 	const [selectedClue, setSelectedClue] = useState("");
 
-	// SI contexte vide alors navigate("box-choice");
-
-	// A RECUPERER VIA CONTEXT
-	const currentBox = "box3";
+	const { currentBox } = useContext(BoxContext);
 
 	// EXPLICATION : cette fonction va créer un nouvel array avec l'ensemble des filtres de catégorie
 	const handleFilterCategory = (selectedFilter) => {

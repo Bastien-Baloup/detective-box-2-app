@@ -6,10 +6,9 @@ import { useState, createContext, useEffect } from "react";
 export const BoxContext = createContext("");
 
 export const BoxProvider = ({ children }) => {
-	const [currentBox, setCurrentBox] = useState(1);
+	const [currentBox, setCurrentBox] = useState(null);
 	const fetchCurrentBox = (value) => {
 		setCurrentBox(value);
-		console.log(value);
 	};
 
 	return <BoxContext.Provider value={{ fetchCurrentBox, currentBox }}>{children}</BoxContext.Provider>;
@@ -20,6 +19,7 @@ export const BoxProvider = ({ children }) => {
 export const AuthContext = createContext("");
 
 const getInitialState = () => {
+	console.log("on passe par là");
 	const credentials = localStorage.getItem("credentials");
 	return credentials ? JSON.parse(credentials) : null;
 };
@@ -45,14 +45,15 @@ export const AuthProvider = ({ children }) => {
 	// }, []);
 
 	useEffect(() => {
-		localStorage.getItem("credentials", JSON.stringify(credentials));
-		console.log(credentials);
+		localStorage.setItem("credentials", JSON.stringify(credentials));
+		// console.log(credentials);
 		if (credentials) {
 			setLoggedIn(true);
 		}
 	}, [credentials]);
 
 	const login = (credentials) => {
+		// console.log(credentials);
 		setCredentials(credentials);
 		setLoggedIn(true);
 	};
@@ -70,9 +71,47 @@ export const AuthProvider = ({ children }) => {
 	);
 };
 
+// EXPLICATION : Context pour activer et désactiver la nappe d'ambiance
+
+export const AmbianceContext = createContext("");
+
+export const AmbianceProvider = ({ children }) => {
+	const [nappeMute, setNappeMute] = useState(true);
+	const [ispreviouslyMuted, setIsPreviouslyMuted] = useState(true);
+	// console.log(nappeMute);
+
+	const fetchNappeMute = (value) => {
+		setNappeMute(value);
+	};
+
+	const fetchPreviousStateNappe = () => {
+		if (nappeMute) {
+			setIsPreviouslyMuted(true);
+		} else {
+			setIsPreviouslyMuted(false);
+		}
+		setNappeMute(true);
+	};
+
+	const fetchResumeNappe = () => {
+		if (!ispreviouslyMuted) {
+			setNappeMute(false);
+		}
+	};
+
+	return (
+		<AmbianceContext.Provider value={{ fetchNappeMute, fetchPreviousStateNappe, fetchResumeNappe, nappeMute }}>
+			{children}
+		</AmbianceContext.Provider>
+	);
+};
+
 BoxProvider.propTypes = {
 	children: PropTypes.any,
 };
 AuthProvider.propTypes = {
+	children: PropTypes.any,
+};
+AmbianceProvider.propTypes = {
 	children: PropTypes.any,
 };

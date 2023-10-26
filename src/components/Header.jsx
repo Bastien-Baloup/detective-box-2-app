@@ -8,20 +8,17 @@ import { dataQuizz } from "../utils/const/dataQuizz";
 import Video from "../components/Video.jsx";
 import { Link } from "react-router-dom";
 import { urlApi } from "../utils/const/urlApi";
-
-import { useEffect, useState, useRef } from "react";
+import { AmbianceContext, BoxContext } from "../utils/context/fetchContext.jsx";
+import { useEffect, useState, useRef, useContext } from "react";
 // PUT TIMER END BOX 3 HERE //
 
 const Header = () => {
-	const [nappeMute, setNappeMute] = useState(true);
-	// const [ispreviouslyMuted, setIsPreviouslyMuted] = useState(true);
+	const { fetchNappeMute, nappeMute } = useContext(AmbianceContext);
+	const { currentBox } = useContext(BoxContext);
 	const [tutorialModalIsActive, setTutorialModalIsActive] = useState(true);
 	const [tutorialIsActive, setTutorialIsActive] = useState(false);
 	const [quizzIsActive, setQuizzIsActive] = useState(false);
 	const [nappeModalIsActive, setNappeModalIsActive] = useState(false);
-
-	// A RECUPERER DU CONTEXTE
-	const currentBox = "box2";
 
 	const audioElem = useRef();
 
@@ -34,12 +31,12 @@ const Header = () => {
 	}, [nappeMute]);
 
 	const activateNappe = () => {
-		setNappeMute(false);
+		fetchNappeMute(false);
 		setNappeModalIsActive(false);
 	};
 
 	const desactivateNappe = () => {
-		setNappeMute(true);
+		fetchNappeMute(true);
 		setNappeModalIsActive(false);
 	};
 
@@ -102,7 +99,7 @@ const Header = () => {
 		if (currentBox == "box1") {
 			return (
 				<audio loop preload="auto" ref={audioElem}>
-					<source src={urlApi.apiRemi + "sounds/musiques-db-s2-nappe-1.wav"} type="audio/wav" />
+					<source src={urlApi.apiRemi() + "sounds/musiques-db-s2-nappe-1.wav"} type="audio/wav" />
 					Votre navigateur ne prend pas en charge ce format
 				</audio>
 			);
@@ -110,7 +107,7 @@ const Header = () => {
 		if (currentBox == "box2") {
 			return (
 				<audio loop preload="auto" ref={audioElem}>
-					<source src={urlApi.apiRemi + "sounds/musiques-db-s2-nappe-2.wav"} type="audio/wav" />
+					<source src={urlApi.apiRemi() + "sounds/musiques-db-s2-nappe-2.wav"} type="audio/wav" />
 					Votre navigateur ne prend pas en charge ce format
 				</audio>
 			);
@@ -118,7 +115,7 @@ const Header = () => {
 		if (currentBox == "box3") {
 			return (
 				<audio loop preload="auto" ref={audioElem}>
-					<source src={urlApi.apiRemi + "sounds/musiques-db-s2-nappe-3.wav"} type="audio/wav" />
+					<source src={urlApi.apiRemi() + "sounds/musiques-db-s2-nappe-3.wav"} type="audio/wav" />
 					Votre navigateur ne prend pas en charge ce format
 				</audio>
 			);

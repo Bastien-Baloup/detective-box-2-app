@@ -29,9 +29,9 @@ function Login() {
 			setErrorMessageSignin("Merci de remplir le formulaire pour vous connecter");
 			return;
 		}
-		setEmail("");
-		setPassword("");
-		setErrorMessageSignin("");
+		// setEmail("");
+		// setPassword("");
+		// setErrorMessageSignin("");
 		login(credentials);
 		navigate("/box-choice");
 

@@ -5,17 +5,13 @@ import Check from "../assets/icons/Icon_Check-black.svg";
 import Lockopen from "../assets/icons/Icon_Lock-open-black.svg";
 import Lockclosed from "../assets/icons/Icon_Lock-closed-red.svg";
 import Cross from "../assets/icons/Icon_Cross-white.svg";
-import { AuthContext } from "../utils/context/fetchContext.jsx";
+import { BoxContext } from "../utils/context/fetchContext.jsx";
 import { useContext } from "react";
-import { Navigate } from "react-router-dom";
 
 const BoxChoice = ({ data }) => {
-	const { loggedIn } = useContext(AuthContext);
-	const [modal, setModal] = useState(false);
+	const { fetchCurrentBox } = useContext(BoxContext);
 
-	if (!loggedIn) {
-		return <Navigate to="/sign-in" />;
-	}
+	const [modal, setModal] = useState(false);
 
 	const handleModal = () => {
 		setModal(!modal);
@@ -65,7 +61,7 @@ const BoxChoice = ({ data }) => {
 		}
 		if (data.state == "open") {
 			return (
-				<article className="boxchoice boxchoice--open">
+				<article className="boxchoice boxchoice--open" onClick={() => fetchCurrentBox(`box${data.boxNumber}`)}>
 					<Link to={"/"} className="boxchoice__link"></Link>
 					<div className="boxchoice__picture-wrapper">
 						<img src={data.cover} className="boxchoice__picture" />
