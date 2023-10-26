@@ -11,6 +11,7 @@ import { urlApi } from "../utils/const/urlApi";
 import { AmbianceContext, BoxContext } from "../utils/context/fetchContext.jsx";
 import { useEffect, useState, useRef, useContext } from "react";
 // PUT TIMER END BOX 3 HERE //
+// REDUIRE LA TAILLE DU LOGO //
 
 const Header = () => {
 	const { fetchNappeMute, nappeMute } = useContext(AmbianceContext);

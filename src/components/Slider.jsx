@@ -92,7 +92,7 @@ const Slider = ({ data, handleModal, url }) => {
 };
 
 Slider.propTypes = {
-	data: PropTypes.array,
+	data: PropTypes.object,
 	handleModal: PropTypes.func,
 	url: PropTypes.string,
 };

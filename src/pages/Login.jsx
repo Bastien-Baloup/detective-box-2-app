@@ -73,6 +73,8 @@ function Login() {
 		alert("Compte bien créé Agent ");
 	};
 
+	// si email exist, renvoyer "Votre compte existe déjà, merci de vous connecter"
+
 	const handleSubmitEmailForgot = (e) => {
 		e.preventDefault();
 		if (emailForgot === "") {
