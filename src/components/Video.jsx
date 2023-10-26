@@ -20,11 +20,11 @@ const Video = ({ title, srcVideo, handleModalVideo, delayedButton }) => {
 						height="240"
 						controls
 						controlsList="nodownload"
-						onContextMenu="return false"
+						onContextMenu={e => e.preventDefault()}
 						onLoadStart={delayedButton == false ? handleVideoEnded : null}
 						onEnded={delayedButton == true ? handleVideoEnded : null}
 					>
-						<source src={srcVideo} type="video/mp4" />
+						<source src={srcVideo} type="video/mp4"  />
 					</video>
 				</div>
 				<button className={"modal-video__button" + (isDone ? "-show" : "") + " button--red"} onClick={handleModalVideo}>
