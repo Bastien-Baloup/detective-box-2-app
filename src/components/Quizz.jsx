@@ -15,6 +15,7 @@ const Quizz = ({ data, handleEndQuizz, url }) => {
 	const [questionDisplayed, setQuestionDisplayed] = useState(false);
 	const [answerDisplayed, setAnswerDisplayed] = useState(false);
 	const [score, setScore] = useState(0);
+	const [validationQuestion, setvalidationQuestion] = useState(false);
 	const [index, setIndex] = useState(0);
 	const [valueInput, setValueInput] = useState("");
 	const totalQuestions = data.questions.length;
@@ -86,6 +87,7 @@ const Quizz = ({ data, handleEndQuizz, url }) => {
 	const handleQuestionForm = () => {
 		if (valueInput === data.answers[index].answer) {
 			setScore(score + 1);
+			setvalidationQuestion(true);
 		}
 		setQuestionDisplayed(false);
 		setAnswerDisplayed(true);
@@ -98,6 +100,7 @@ const Quizz = ({ data, handleEndQuizz, url }) => {
 			setIndex(index + 1);
 			setQuestionDisplayed(true);
 			setAnswerDisplayed(false);
+			setvalidationQuestion(false);
 		}
 	};
 
@@ -144,6 +147,9 @@ const Quizz = ({ data, handleEndQuizz, url }) => {
 		return (
 			<div className="quizz__answer">
 				<p className="quizz__answer__title">Question n°{data.questions[index].id} :</p>
+				<p className={`quizz__answer__validation${validationQuestion ? "--true" : "--false"}`}>
+					{validationQuestion ? "Bonne réponse" : "Mauvaise Réponse"}
+				</p>
 				<p className="quizz__answer__subtitle">{data.answers[index].explanation}</p>
 				<div className="quizz__answer__img--container">
 					{data.answers[index].image != null ? (

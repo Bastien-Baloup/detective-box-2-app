@@ -28,6 +28,19 @@
 	}
 }
 
+.quizz__answer {
+	&__validation {
+		&--true {
+			color: $validated-color;
+			font-size: 2rem;
+		}
+		&--false {
+			color: $tertiary-color;
+			font-size: 2rem;
+		}
+	}
+}
+
 .quizz {
 	&__pagination {
 		&__tracker {
