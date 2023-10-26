@@ -4,11 +4,11 @@ const Input = ({ label, name, placeholder, setValue, value, pattern, type }) => 
 
 	return (
 		<>
-			{type == "radio" ? (
+			{type == "radio" || type == "checkbox" ? (
 				<div className="input-wrapper-radio">
 					<input
 						className="input-radio"
-						type="radio"
+						type={type}
 						value={label}
 						name={name}
 						id={label}

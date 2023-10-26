@@ -76,6 +76,7 @@ export const dataQuizz = {
 			{
 				id: 8,
 				question: "Qu'apprend-on de l'interrogatoire de Charles Garraud ? Cochez toutes les bonnes réponses.",
+				multi: true,
 				choices: [
 					"Garraud discutait avec le tueur sur un forum par messages privés",
 					"Le tueur ne s'est jamais arrêté pendant toutes ces années",
@@ -142,6 +143,7 @@ export const dataQuizz = {
 			},
 			{
 				id: 8,
+				multi: true,
 				answer: [
 					"Garraud discutait avec le tueur sur un forum par messages privés",
 					"Le tueur ne s'est jamais arrêté pendant toutes ces années",

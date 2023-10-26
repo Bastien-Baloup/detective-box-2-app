@@ -21,12 +21,6 @@ const Quizz = ({ data, handleEndQuizz, url }) => {
 	const totalQuestions = data.questions.length;
 	const pagination = [];
 
-	const endInstructions = () => {
-		setInstructionActive(false);
-		setGameActive(true);
-		setQuestionDisplayed(true);
-	};
-
 	const displayInstructions = () => {
 		return (
 			<div className="quizz__instructions">
@@ -41,32 +35,18 @@ const Quizz = ({ data, handleEndQuizz, url }) => {
 		);
 	};
 
-	const displayComment = () => {
-		if (score === 0) {
-			return "C'est pas terrible tout ça, j'espère que vous avez plus de capacité de déduction que de mémoire…";
-		}
-		if (score >= 1 && score <= 4) {
-			return "Oula, mais vous avez tout oublié ! J'espère que ça va vous revenir petit à petit.";
-		}
-		if (score >= 5 && score <= 8) {
-			return "Pas mal, comme on pouvait l'attendre de nos meilleurs agents !";
-		}
-		if (score === 9 || score === 10) {
-			return "Je le savais, vous êtes les meilleurs !";
-		}
+	const endInstructions = () => {
+		setInstructionActive(false);
+		setGameActive(true);
+		setQuestionDisplayed(true);
 	};
 
-	const displayResults = () => {
+	const displayGame = () => {
 		return (
-			<div className="quizz__results">
-				<p className="quizz__results__text--1">Vous avez:</p>
-				<p className="quizz__results__text--score">{score}</p>
-				<p className="quizz__results__text--2">bonnes réponses.</p>
-				<p className="quizz__results__comment">{displayComment()}</p>
-				<button className="quizz__instructions__button button--red" onClick={handleEndQuizz}>
-					Reprendre l&apos;enquête
-				</button>
-			</div>
+			<>
+				{questionDisplayed ? renderQuestion() : ""}
+				{answerDisplayed ? renderAsnwer() : ""}
+			</>
 		);
 	};
 
@@ -84,36 +64,24 @@ const Quizz = ({ data, handleEndQuizz, url }) => {
 		return pagination;
 	};
 
-	const handleQuestionForm = () => {
-		if (valueInput === data.answers[index].answer) {
-			setScore(score + 1);
-			setvalidationQuestion(true);
-		}
-		setQuestionDisplayed(false);
-		setAnswerDisplayed(true);
-	};
-
-	const handleAnswerForm = () => {
-		if (index === totalQuestions - 1) {
-			endGame();
-		} else {
-			setIndex(index + 1);
-			setQuestionDisplayed(true);
-			setAnswerDisplayed(false);
-			setvalidationQuestion(false);
-		}
-	};
-
-	const endGame = () => {
-		setGameActive(false);
-		setResultActive(true);
+	const setMultiValueInput = (value) => {
+		setValueInput((previousValueInput) => [...previousValueInput, value]);
+		console.log(valueInput);
 	};
 
 	const renderChoices = () => {
-		const inputs = data.questions[index].choices.map((el, i) => {
-			return <Input type="radio" name="essai" label={el} setValue={setValueInput} key={i} />;
-		});
-		return inputs;
+		if (data.questions[index].multi) {
+			console.log("multichoice !");
+			const inputs = data.questions[index].choices.map((el, i) => {
+				return <Input type="checkbox" name={el} label={el} setValue={setMultiValueInput} key={i} />;
+			});
+			return inputs;
+		} else {
+			const inputs = data.questions[index].choices.map((el, i) => {
+				return <Input type="radio" name="essai" label={el} setValue={setValueInput} key={i} />;
+			});
+			return inputs;
+		}
 	};
 
 	const renderQuestion = () => {
@@ -169,12 +137,68 @@ const Quizz = ({ data, handleEndQuizz, url }) => {
 		);
 	};
 
-	const displayGame = () => {
+	const handleQuestionForm = () => {
+		console.log(valueInput);
+		console.log(data.answers[index].answer);
+		if (data.answers[index].multi) {
+			if (data.answers[index].answer.every((answer) => valueInput.includes(answer))) {
+				setScore(score + 1);
+				setvalidationQuestion(true);
+			}
+		}
+		if (valueInput == data.answers[index].answer) {
+			setScore(score + 1);
+			setvalidationQuestion(true);
+		}
+		setQuestionDisplayed(false);
+		setAnswerDisplayed(true);
+	};
+
+	const handleAnswerForm = () => {
+		if (index === totalQuestions - 1) {
+			endGame();
+		} else {
+			setIndex(index + 1);
+			setQuestionDisplayed(true);
+			setAnswerDisplayed(false);
+			setvalidationQuestion(false);
+			setValueInput("");
+		}
+	};
+
+	const endGame = () => {
+		setGameActive(false);
+		setResultActive(true);
+	};
+
+	const displayComment = () => {
+		if (score === 0) {
+			return "C'est pas terrible tout ça, j'espère que vous avez plus de capacité de déduction que de mémoire…";
+		}
+		if (score >= 1 && score <= 4) {
+			return "Oula, mais vous avez tout oublié ! J'espère que ça va vous revenir petit à petit.";
+		}
+		if (score >= 5 && score <= 8) {
+			return "Pas mal, comme on pouvait l'attendre de nos meilleurs agents !";
+		}
+		if (score === 9 || score === 10) {
+			return "Je le savais, vous êtes les meilleurs !";
+		}
+	};
+
+	const displayResults = () => {
 		return (
-			<>
-				{questionDisplayed ? renderQuestion() : ""}
-				{answerDisplayed ? renderAsnwer() : ""}
-			</>
+			<div className="quizz__results">
+				<p className="quizz__results__text--1">Vous avez:</p>
+				<p className="quizz__results__text--score">
+					{score} / {totalQuestions}
+				</p>
+				<p className="quizz__results__text--2">bonnes réponses.</p>
+				<p className="quizz__results__comment">{displayComment()}</p>
+				<button className="quizz__instructions__button button--red" onClick={handleEndQuizz}>
+					Reprendre l&apos;enquête
+				</button>
+			</div>
 		);
 	};
 
