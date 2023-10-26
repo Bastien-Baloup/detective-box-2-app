@@ -73,13 +73,17 @@ function Renfort() {
 				);
 			}
 		});
-		return menuChoices;
+		return (
+			<>
+				<p className="help__title"> Choisissez le sujet sur lequel vous avez besoin de renfort :</p>
+				<div className="help__menu">{menuChoices}</div>
+			</>
+		);
 	};
 
 	return (
 		<div className="main__help">
-			<p className="help__title"> Choisissez le sujet sur lequel vous avez besoin de renfort :</p>
-			<div className="help__menu">{menuActivated ? displayMenu() : null}</div>
+			{menuActivated ? displayMenu() : null}
 			{sliderActivated ? displaySlider(helpSelected) : null}
 		</div>
 	);
