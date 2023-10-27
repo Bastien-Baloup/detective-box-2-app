@@ -5,21 +5,16 @@ import { Navigate } from "react-router-dom";
 
 const Restrictedaccess = () => {
 	const { loggedIn } = useContext(AuthContext);
-	// const { currentBox } = useContext(BoxContext);
 
 	if (!loggedIn) {
 		return <Navigate to="/sign-in" />;
 	}
-	// if (currentBox == null) {
-	// 	return <Navigate to="/box-choice" />;
-	// }
-	else {
-		return (
-			<>
-				<Outlet />
-			</>
-		);
-	}
+
+	return (
+		<>
+			<Outlet />
+		</>
+	);
 };
 
 export default Restrictedaccess;

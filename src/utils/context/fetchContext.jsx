@@ -33,6 +33,42 @@ export const AuthProvider = ({ children }) => {
 	const [loggedIn, setLoggedIn] = useState(getInitialLogin);
 	const [credentials, setCredentials] = useState(getInitialState);
 
+	// useEffect(() => {
+	// 	const existingCredentials = localStorage.getItem("credentials");
+	// 	if (existingCredentials) {
+	// 		setLoggedIn(true);
+	// 		setCredentials(JSON.parse(existingCredentials));
+	// 	} else {
+	// 		setLoggedIn(false);
+	// 		setCredentials(null);
+	// 	}
+	// }, []);
+
+	// useEffect(() => {
+	// 	const checkExistingData = () => {
+	// 		const existingcrednetials = localStorage.getItem("credentials");
+	// 		// console.log(credentials);
+	// 		if (existingcrednetials) {
+	// 			setLoggedIn(true);
+	// 			setCredentials(existingcrednetials);
+	// 		}
+	// 	};
+	// 	window.addEventListener("storage", checkExistingData);
+
+	// 	return () => {
+	// 		// When the component unmounts remove the event listener
+	// 		window.removeEventListener("storage", checkExistingData);
+	// 	};
+	// }, []);
+
+	// useEffect(() => {
+	// 	const existingcrednetials = localStorage.getItem("credentials");
+	// 	// console.log(credentials);
+	// 	if (existingcrednetials) {
+	// 		setLoggedIn(true);
+	// 	}
+	// }, [credentials]);
+
 	const login = (credentials) => {
 		// console.log(credentials);
 		localStorage.setItem("credentials", JSON.stringify(credentials));
