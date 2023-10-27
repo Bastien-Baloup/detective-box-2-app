@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { useState, createContext, useEffect } from "react";
+import { useState, createContext } from "react";
 
 // EXPLICATION : Context pour avoir la bonne boîte utilisée
 
@@ -19,7 +19,7 @@ export const BoxProvider = ({ children }) => {
 export const AuthContext = createContext("");
 
 const getInitialState = () => {
-	console.log("on passe par là");
+	// console.log("on passe par là");
 	const credentials = localStorage.getItem("credentials");
 	return credentials ? JSON.parse(credentials) : null;
 };
@@ -33,27 +33,9 @@ export const AuthProvider = ({ children }) => {
 	const [loggedIn, setLoggedIn] = useState(getInitialLogin);
 	const [credentials, setCredentials] = useState(getInitialState);
 
-	// useEffect(() => {
-	// 	const existingCredentials = localStorage.getItem("credentials");
-	// 	if (existingCredentials) {
-	// 		setLoggedIn(true);
-	// 		setCredentials(JSON.parse(existingCredentials));
-	// 	} else {
-	// 		setLoggedIn(false);
-	// 		setCredentials(null);
-	// 	}
-	// }, []);
-
-	useEffect(() => {
-		localStorage.setItem("credentials", JSON.stringify(credentials));
-		// console.log(credentials);
-		if (credentials) {
-			setLoggedIn(true);
-		}
-	}, [credentials]);
-
 	const login = (credentials) => {
 		// console.log(credentials);
+		localStorage.setItem("credentials", JSON.stringify(credentials));
 		setCredentials(credentials);
 		setLoggedIn(true);
 	};
@@ -61,7 +43,6 @@ export const AuthProvider = ({ children }) => {
 	const logout = () => {
 		localStorage.clear();
 		setLoggedIn(false);
-		setCredentials(null);
 	};
 
 	return (

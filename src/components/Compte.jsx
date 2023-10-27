@@ -14,15 +14,15 @@ const Compte = () => {
 		setActive(!active);
 	};
 
-	const handleNappe = () =>{
+	const handleNappe = () => {
 		fetchNappeMute(!nappeMute);
 		activeDrop();
-	}
+	};
 
-	const hangleLogout = () =>{
+	const hangleLogout = () => {
 		logout();
 		activeDrop();
-	}
+	};
 
 	const openWebsite = () => {
 		window.open("https://app.detectivebox.fr/politique-de-confidentialite.html", "_blank");

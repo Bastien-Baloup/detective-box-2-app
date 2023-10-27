@@ -150,8 +150,6 @@ const Quizz = ({ data, handleEndQuizz, url }) => {
 	};
 
 	const handleQuestionForm = () => {
-		console.log(valueInput);
-		console.log(data.answers[index].answer);
 		if (data.answers[index].multi) {
 			if (data.answers[index].answer.every((answer) => valueInput.includes(answer))) {
 				setScore(score + 1);
