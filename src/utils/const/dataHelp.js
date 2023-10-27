@@ -368,9 +368,9 @@ export const dataHelp = {
 				{
 					id: 6,
 					text: [
-						"J'ai décodé",
+						"J'ai décodé...",
 						"'Orléans' et 'la Source'",
-						"avec l'alphabet trouvé sur le site du fan.",
+						"...avec l'alphabet trouvé sur le site du fan.",
 						"Avec Google map, si je rentre l'adresse, je tombe sur un quartier.",
 						"Il ne me reste plus qu'à trouver le lieu précis grâce à la carte qu'on a récupérée, ça ne doit pas être très loin.",
 					],

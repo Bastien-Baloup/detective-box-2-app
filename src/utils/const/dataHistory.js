@@ -695,7 +695,7 @@ export const dataHistory = {
 			status: false,
 		},
 		{
-			id: "box2archive13",
+			id: "box2archive12",
 			box: "Box 2",
 			title: "Archives Elimena Furino",
 			category: "Archive",
@@ -705,7 +705,7 @@ export const dataHistory = {
 			status: false,
 		},
 		{
-			id: "box2archive14",
+			id: "box2archive13",
 			box: "Box 2",
 			title: "Archives Eliza Gaewska",
 			category: "Archive",
@@ -715,7 +715,7 @@ export const dataHistory = {
 			status: false,
 		},
 		{
-			id: "box2archive15",
+			id: "box2archive14",
 			box: "Box 2",
 			title: "Archives Ere Jakobson",
 			category: "Archive",
@@ -725,7 +725,7 @@ export const dataHistory = {
 			status: false,
 		},
 		{
-			id: "box2archive16",
+			id: "box2archive15",
 			box: "Box 2",
 			title: "Archives Francois Duchamp",
 			category: "Archive",
@@ -735,7 +735,7 @@ export const dataHistory = {
 			status: false,
 		},
 		{
-			id: "box2archive17",
+			id: "box2archive16",
 			box: "Box 2",
 			title: "Archives Horasiu Prunea",
 			category: "Archive",
@@ -745,7 +745,7 @@ export const dataHistory = {
 			status: false,
 		},
 		{
-			id: "box2archive18",
+			id: "box2archive17",
 			box: "Box 2",
 			title: "Archives Imelda Tuzzolino",
 			category: "Archive",
@@ -755,7 +755,7 @@ export const dataHistory = {
 			status: false,
 		},
 		{
-			id: "box2archive19",
+			id: "box2archive18",
 			box: "Box 2",
 			title: "Archives Ivar Mortensen",
 			category: "Archive",
@@ -765,7 +765,7 @@ export const dataHistory = {
 			status: false,
 		},
 		{
-			id: "box2archive20",
+			id: "box2archive19",
 			box: "Box 2",
 			title: "Archives James Chambers",
 			category: "Archive",
@@ -775,7 +775,7 @@ export const dataHistory = {
 			status: false,
 		},
 		{
-			id: "box2archive21",
+			id: "box2archive20",
 			box: "Box 2",
 			title: "Archives Janina Muster",
 			category: "Archive",
@@ -785,7 +785,7 @@ export const dataHistory = {
 			status: false,
 		},
 		{
-			id: "box2archive22",
+			id: "box2archive21",
 			box: "Box 2",
 			title: "Archives Jorn Frenzel",
 			category: "Archive",
@@ -795,7 +795,7 @@ export const dataHistory = {
 			status: false,
 		},
 		{
-			id: "box2archive23",
+			id: "box2archive22",
 			box: "Box 2",
 			title: "Archives Karina Galicka",
 			category: "Archive",
@@ -805,7 +805,7 @@ export const dataHistory = {
 			status: false,
 		},
 		{
-			id: "box2archive24",
+			id: "box2archive23",
 			box: "Box 2",
 			title: "Archives Konstantin Wallner",
 			category: "Archive",
@@ -815,7 +815,7 @@ export const dataHistory = {
 			status: false,
 		},
 		{
-			id: "box2archive25",
+			id: "box2archive24",
 			box: "Box 2",
 			title: "Archives Laura Tavernier",
 			category: "Archive",
@@ -825,7 +825,7 @@ export const dataHistory = {
 			status: false,
 		},
 		{
-			id: "box2archive26",
+			id: "box2archive25",
 			box: "Box 2",
 			title: "Archives Lina Syren",
 			category: "Archive",
@@ -835,7 +835,7 @@ export const dataHistory = {
 			status: false,
 		},
 		{
-			id: "box2archive27",
+			id: "box2archive26",
 			box: "Box 2",
 			title: "Archives Linda Reynolds",
 			category: "Archive",
@@ -845,7 +845,7 @@ export const dataHistory = {
 			status: false,
 		},
 		{
-			id: "box2archive28",
+			id: "box2archive27",
 			box: "Box 2",
 			title: "Archives Marian Bilek",
 			category: "Archive",
@@ -855,7 +855,7 @@ export const dataHistory = {
 			status: false,
 		},
 		{
-			id: "box2archive29",
+			id: "box2archive28",
 			box: "Box 2",
 			title: "Archives Marike Vonbraun",
 			category: "Archive",
@@ -865,7 +865,7 @@ export const dataHistory = {
 			status: false,
 		},
 		{
-			id: "box2archive30",
+			id: "box2archive29",
 			box: "Box 2",
 			title: "Archives Martin Richard",
 			category: "Archive",
@@ -875,7 +875,7 @@ export const dataHistory = {
 			status: false,
 		},
 		{
-			id: "box2archive31",
+			id: "box2archive30",
 			box: "Box 2",
 			title: "Archives Mason Reynolds",
 			category: "Archive",
@@ -885,7 +885,7 @@ export const dataHistory = {
 			status: false,
 		},
 		{
-			id: "box2archive32",
+			id: "box2archive31",
 			box: "Box 2",
 			title: "Archives Petar Cojocaru",
 			category: "Archive",
@@ -895,7 +895,7 @@ export const dataHistory = {
 			status: false,
 		},
 		{
-			id: "box2archive33",
+			id: "box2archive32",
 			box: "Box 2",
 			title: "Archives Riano Della Valle",
 			category: "Archive",
@@ -1048,7 +1048,7 @@ export const dataHistory = {
 			detail: "Gardien de la prison de Charles Garraud",
 			poster: "assets/photos-personnages/Martin Richard.jpg",
 			img1: "assets/photos-personnages/Martin Richard.jpg",
-			img2: "",
+			// img2: "assets/photos-personnages/lauren.jpg",
 			srcAudio: "sounds/205-interrogatoire-martin-richard-lauren.wav",
 			srcTranscript: "assets/transcripts/205_Interrogatoire_Martin_Richard-Lauren_transcript.pdf",
 			status: false,
@@ -1074,7 +1074,7 @@ export const dataHistory = {
 			detail: "Echanges entre Sanchez et Samuel Perry, agent de liaison d'Eurocrim",
 			// poster: "assets/photos-personnages/Samuel Perry.jpg",
 			// img1: "assets/photos-personnages/Samuel Perry.jpg",
-			img2: "",
+			// img2: "assets/photos-personnages/raphaelle.jpg",
 			srcAudio: "sounds/207-echanges-samuel-perry-raphaelle.wav",
 			srcTranscript: "assets/transcripts/207_Echanges_Samuel_Perry-RaphaeÌˆlle_transcript.pdf",
 			status: false,
@@ -1087,7 +1087,7 @@ export const dataHistory = {
 			detail: "Voyant spécialiste en taromantie",
 			poster: "assets/photos-personnages/Alphonse Saint-Yves.jpg",
 			img1: "assets/photos-personnages/Alphonse Saint-Yves.jpg",
-			img2: "",
+			// img2: "assets/photos-personnages/lauren.jpg",
 			srcAudio: "sounds/208-interrogatoire-alphonse-saint-yves-lauren.wav",
 			srcTranscript: "assets/transcripts/208_Interrogatoire_Alphonse_Saint-Yves-Lauren_transcript.pdf",
 			status: false,
@@ -1437,7 +1437,7 @@ export const dataHistory = {
 			status: false,
 		},
 		{
-			id: "box3video2",
+			id: "box3video3",
 			box: "Box 3",
 			title: "Interrogatoire de Céline Valluy",
 			category: "Video",
