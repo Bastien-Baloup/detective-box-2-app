@@ -139,7 +139,7 @@ export const dataLauren = {
 			// img2: "assets/photos-personnages/lauren.jpg",
 			srcAudio: "sounds/106-interrogatoire-adele-lauren.wav",
 			srcTranscript: "assets/transcripts/106_Interrogatoire_AdeÌ€le-Lauren_transcript.pdf",
-			status: false,
+			status: true,
 		},
 		{
 			ask: "Alphonse St Yves",

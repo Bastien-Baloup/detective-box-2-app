@@ -3,11 +3,71 @@ import Input from "../components/Input.jsx";
 import Cross from "../assets/icons/Icon_Cross-white.svg";
 import PropTypes from "prop-types";
 import { urlApi } from "../utils/const/urlApi";
+import { BoxContext } from "../utils/context/fetchContext";
+import { useContext, useState } from "react";
+import { dataTim } from "../utils/const/dataTim";
 
-const Tim = ({ value, setValue, closeAgentPage }) => {
+const Tim = ({ closeAgentPage }) => {
+	const { currentBox } = useContext(BoxContext);
+	const [value, setValue] = useState("");
+	const [errorMessage, setErrorMessage] = useState("");
+
+	const slugify = (input) => {
+		let inputSlugified = input
+			.replace(/\s/g, "")
+			.toLowerCase()
+			.normalize("NFD")
+			.replace(/[\u0300-\u036f]/g, "")
+			.replace(/[^a-z0-9]/g, "");
+		return inputSlugified;
+	};
+
 	const handleSubmit = (e) => {
+		const answerInThisBox = dataTim[currentBox].find((element) => element.ask.includes(slugify(value)));
+		const previouslyAnsweredInThisBox = answerInThisBox && answerInThisBox.status;
+		// const answerInFailedInterview = dataAdele["generic"].find((element) => slugify(element.ask) == slugify(value));
+		const answerInBox1 = dataTim["box1"].some((element) => element.ask.includes(slugify(value)));
+		const answerInBox2 = dataTim["box2"].some((element) => element.ask.includes(slugify(value)));
 		e.preventDefault();
-		console.log("ça fait quelque chose");
+		if (value == "") {
+			setErrorMessage("Vous n'avez rien à me faire analyser ? Je retourne gamer alors.");
+			return;
+		}
+		if (previouslyAnsweredInThisBox) {
+			console.log("Vous m'avez dejà demandé d'analyser cet élément.");
+			setValue("");
+			setErrorMessage("");
+			return;
+		}
+		if (answerInThisBox) {
+			console.log(answerInThisBox);
+			setValue("");
+			setErrorMessage("");
+			return;
+		}
+		// if (answerInFailedInterview) {
+		// 	console.log(answerInFailedInterview);
+		// 	setValue("");
+		// 	setErrorMessage("");
+		// 	return;
+		// }
+		if (currentBox == "box2" && answerInBox1) {
+			console.log(
+				"Vous avez déjà analysé cet élément lors d'une box précédente. Rendez-vous dans l'Historique pour revoir les résultats."
+			);
+			setValue("");
+			setErrorMessage("");
+			return;
+		}
+		if (currentBox == "box3" && (answerInBox2 || answerInBox1)) {
+			console.log(
+				"Vous avez déjà analysé cet élément lors d'une box précédente. Rendez-vous dans l'Historique pour revoir les résultats."
+			);
+			setValue("");
+			setErrorMessage("");
+			return;
+		}
+		console.log("Nan, j'ai rien sur ce que vous me demandez.");
 	};
 
 	const catchphrase = [
@@ -36,6 +96,7 @@ const Tim = ({ value, setValue, closeAgentPage }) => {
 					<div className="agent__title--container">
 						<p className="agent__title">Que souhaitez vous analyser ?</p>
 					</div>
+					<div className="agent__errorMessage">{errorMessage}</div>
 					<form className="agent__form" onSubmit={handleSubmit}>
 						<Input
 							type="texte"
@@ -57,8 +118,6 @@ const Tim = ({ value, setValue, closeAgentPage }) => {
 };
 
 Tim.propTypes = {
-	setValue: PropTypes.func,
-	value: PropTypes.string,
 	closeAgentPage: PropTypes.func,
 };
 

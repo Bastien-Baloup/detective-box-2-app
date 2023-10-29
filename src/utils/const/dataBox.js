@@ -6,7 +6,7 @@ export const dataBox = [
 	{
 		boxNumber: 1,
 		cover: Saison1,
-		state: "done",
+		state: "open",
 	},
 	{
 		boxNumber: 2,
@@ -16,6 +16,6 @@ export const dataBox = [
 	{
 		boxNumber: 3,
 		cover: Saison3,
-		state: "closed",
+		state: "open",
 	},
 ];

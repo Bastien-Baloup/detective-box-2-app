@@ -12,7 +12,7 @@ export const dataAdele = {
 			id: "box2document4",
 			title: "Papier avalé par Garraud",
 			src: "assets/document/215_Papier_avaleÌ.jpg",
-			status: false,
+			status: true,
 		},
 		{
 			ask: ["b759030", "echantillonb759030", "analysesang", "echantillonsang"],
@@ -43,13 +43,12 @@ export const dataAdele = {
 	box3: [
 		{
 			ask: [
-				"corps",
 				"squelette",
 				"foret",
 				"analysecorps",
 				"corpsdeterre",
 				"corpsdetere",
-				"squelette",
+				"squellette",
 				"corpsdelaforet",
 				"corpsforet",
 				"squeletteforet",
@@ -65,7 +64,7 @@ export const dataAdele = {
 				"Ah, et c'est un homme, enfin c'était...",
 			],
 			srcComment: "sounds/301-commentaire-adele-sur-corps-1.wav",
-			status: false,
+			status: true,
 		},
 		{
 			ask: ["loicvalluy"],

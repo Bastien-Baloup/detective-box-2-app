@@ -218,7 +218,7 @@ export const dataQuizz = {
 			},
 			{
 				id: 3,
-				question: "Quel est le point commun des victimes que l'on peut trouver dans le livre ?",
+				question: ["Quel est le point commun des victimes que l'on peut trouver dans le livre ?"],
 				choices: [
 					"Les victimes ont toutes Lilith, la lune noire, en balance dans leur thème astral",
 					"Les victimes sont toutes ascendantes cancer",

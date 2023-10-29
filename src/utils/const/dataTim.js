@@ -139,7 +139,7 @@ export const dataTim = {
 			id: "box2video2",
 			title: "Webcam Mason Reynolds",
 			src: "videos/db-s02-202-webcam-mason-v1.mp4",
-			status: false,
+			status: true,
 		},
 		{
 			ask: [
@@ -188,7 +188,7 @@ export const dataTim = {
 				"Alors, c'est qui le meilleur ?",
 			],
 			srcComment: "sounds/302-commentaires-tim-1.wav",
-			status: false,
+			status: true,
 		},
 		{
 			ask: ["loicvalluy"],
