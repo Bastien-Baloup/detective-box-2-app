@@ -78,14 +78,26 @@ function Home() {
 						actionButton={() => setCharacterDisplayed("raphaelle")}
 						state=""
 					/>
-					<Card
-						srcImg={PhotoLauren}
-						srcIcon={IconLauren}
-						name="Lauren Fraser"
-						contentButton="Demander un interrogatoire"
-						actionButton={() => setCharacterDisplayed("lauren")}
-						state={currentBox == "box3" ? "unavailable" : ""}
-					/>
+					{currentBox == "box3" ? (
+						<Card
+							srcImg={PhotoRaphaelle}
+							srcIcon={IconLauren}
+							name="Raphaëlle Sanchez"
+							contentButton="Demander un interrogatoire"
+							actionButton={() => setCharacterDisplayed("lauren")}
+							state=""
+						/>
+					) : (
+						<Card
+							srcImg={PhotoLauren}
+							srcIcon={IconLauren}
+							name="Lauren Fraser"
+							contentButton="Demander un interrogatoire"
+							actionButton={() => setCharacterDisplayed("lauren")}
+							state=""
+							// state={"eventmachin" == "done" ? "unavailable" : ""}
+						/>
+					)}
 					<Card
 						srcImg={PhotoCeline}
 						srcIcon={IconCeline}
@@ -93,6 +105,7 @@ function Home() {
 						contentButton="Demander un dossier de police"
 						actionButton={() => setCharacterDisplayed("celine")}
 						state=""
+						// state={"eventmachin" == "done" ? "unavailable" : ""}
 					/>
 					<Card
 						srcImg={PhotoTim}
@@ -122,33 +135,23 @@ function Home() {
 	};
 
 	const displayLauren = () => {
-		return <Lauren value="" setValue="" closeAgentPage={backToHome} />;
+		return <Lauren closeAgentPage={backToHome} />;
 	};
 
 	const displayRaphaelle = () => {
-		return (
-			<Raphaelle
-				valueAdresse=""
-				setValueAdresse=""
-				valueLatitude=""
-				setValueLatitude=""
-				valueLongitude=""
-				setValueLongitude=""
-				closeAgentPage={backToHome}
-			/>
-		);
+		return <Raphaelle closeAgentPage={backToHome} />;
 	};
 
 	const displayCeline = () => {
-		return <Celine value="" setValue="" closeAgentPage={backToHome} />;
+		return <Celine closeAgentPage={backToHome} />;
 	};
 
 	const displayTim = () => {
-		return <Tim value="" setValue="" closeAgentPage={backToHome} />;
+		return <Tim closeAgentPage={backToHome} />;
 	};
 
 	const displayAdele = () => {
-		return <Adele value="" setValue="" closeAgentPage={backToHome} />;
+		return <Adele closeAgentPage={backToHome} />;
 	};
 
 	return (
