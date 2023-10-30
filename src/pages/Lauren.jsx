@@ -32,6 +32,7 @@ const Lauren = ({ closeAgentPage }) => {
 		e.preventDefault();
 		if (value == "") {
 			setErrorMessage("Il me faut l'identité de la personne à interroger");
+			setValue("");
 			return;
 		}
 		if (previouslyAnsweredInThisBox) {
@@ -71,6 +72,8 @@ const Lauren = ({ closeAgentPage }) => {
 			return;
 		}
 		console.log("Je n'ai pas pu joindre la personne dont vous me parlez.");
+		setValue("");
+		setErrorMessage("");
 	};
 
 	const catchphraseLauren = [

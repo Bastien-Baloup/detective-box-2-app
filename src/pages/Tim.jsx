@@ -25,12 +25,12 @@ const Tim = ({ closeAgentPage }) => {
 	const handleSubmit = (e) => {
 		const answerInThisBox = dataTim[currentBox].find((element) => element.ask.includes(slugify(value)));
 		const previouslyAnsweredInThisBox = answerInThisBox && answerInThisBox.status;
-		// const answerInFailedInterview = dataAdele["generic"].find((element) => slugify(element.ask) == slugify(value));
 		const answerInBox1 = dataTim["box1"].some((element) => element.ask.includes(slugify(value)));
 		const answerInBox2 = dataTim["box2"].some((element) => element.ask.includes(slugify(value)));
 		e.preventDefault();
 		if (value == "") {
 			setErrorMessage("Vous n'avez rien à me faire analyser ? Je retourne gamer alors.");
+			setValue("");
 			return;
 		}
 		if (previouslyAnsweredInThisBox) {
@@ -45,12 +45,6 @@ const Tim = ({ closeAgentPage }) => {
 			setErrorMessage("");
 			return;
 		}
-		// if (answerInFailedInterview) {
-		// 	console.log(answerInFailedInterview);
-		// 	setValue("");
-		// 	setErrorMessage("");
-		// 	return;
-		// }
 		if (currentBox == "box2" && answerInBox1) {
 			console.log(
 				"Vous avez déjà analysé cet élément lors d'une box précédente. Rendez-vous dans l'Historique pour revoir les résultats."
@@ -68,6 +62,8 @@ const Tim = ({ closeAgentPage }) => {
 			return;
 		}
 		console.log("Nan, j'ai rien sur ce que vous me demandez.");
+		setValue("");
+		setErrorMessage("");
 	};
 
 	const catchphrase = [

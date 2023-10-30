@@ -47,6 +47,7 @@ const Header = () => {
 			return <></>;
 		}
 		if (currentBox == "box2" || currentBox == "box3") {
+			// ICI CALL API POUR STATUS BOX
 			if (dataQuizz[currentBox].status == true) {
 				handleCloseQuizz();
 				return <></>;

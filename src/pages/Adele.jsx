@@ -25,11 +25,11 @@ const Adele = ({ closeAgentPage }) => {
 	const handleSubmit = (e) => {
 		const answerInThisBox = dataAdele[currentBox].find((element) => element.ask.includes(slugify(value)));
 		const previouslyAnsweredInThisBox = answerInThisBox && answerInThisBox.status;
-		// const answerInFailedInterview = dataAdele["generic"].find((element) => slugify(element.ask) == slugify(value));
 		const answerInBox2 = dataAdele["box2"].some((element) => element.ask.includes(slugify(value)));
 		e.preventDefault();
 		if (value == "") {
 			setErrorMessage("Je dois bien analyser quelque chose !");
+			setValue("");
 			return;
 		}
 		if (previouslyAnsweredInThisBox) {
@@ -44,12 +44,6 @@ const Adele = ({ closeAgentPage }) => {
 			setErrorMessage("");
 			return;
 		}
-		// if (answerInFailedInterview) {
-		// 	console.log(answerInFailedInterview);
-		// 	setValue("");
-		// 	setErrorMessage("");
-		// 	return;
-		// }
 		if (currentBox == "box3" && answerInBox2) {
 			console.log("Vous avez déjà analysé cet élément lors d'une box précédente.");
 			setValue("");

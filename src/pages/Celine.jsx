@@ -31,6 +31,7 @@ const Celine = ({ closeAgentPage }) => {
 		e.preventDefault();
 		if (value == "") {
 			setErrorMessage("Je ne peux pas fouiller les archives sans un nom !");
+			setValue("");
 			return;
 		}
 		if (previouslyAnsweredInThisBox) {
