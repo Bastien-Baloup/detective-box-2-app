@@ -39,13 +39,11 @@ const Tim = ({ closeAgentPage }) => {
 			return;
 		}
 		if (previouslyAnsweredInThisBox) {
-			console.log("Vous m'avez dejà demandé d'analyser cet élément.");
 			setValue("");
-			setErrorMessage("");
+			setErrorMessage("Vous m'avez dejà demandé d'analyser cet élément.");
 			return;
 		}
 		if (answerInThisBox) {
-			console.log(answerInThisBox);
 			setAnswer(answerInThisBox);
 			setModal(true);
 			setValue("");
@@ -53,24 +51,21 @@ const Tim = ({ closeAgentPage }) => {
 			return;
 		}
 		if (currentBox == "box2" && answerInBox1) {
-			console.log(
+			setValue("");
+			setErrorMessage(
 				"Vous avez déjà analysé cet élément lors d'une box précédente. Rendez-vous dans l'Historique pour revoir les résultats."
 			);
-			setValue("");
-			setErrorMessage("");
 			return;
 		}
 		if (currentBox == "box3" && (answerInBox2 || answerInBox1)) {
-			console.log(
+			setValue("");
+			setErrorMessage(
 				"Vous avez déjà analysé cet élément lors d'une box précédente. Rendez-vous dans l'Historique pour revoir les résultats."
 			);
-			setValue("");
-			setErrorMessage("");
 			return;
 		}
-		console.log("Nan, j'ai rien sur ce que vous me demandez.");
 		setValue("");
-		setErrorMessage("");
+		setErrorMessage("Nan, j'ai rien sur ce que vous me demandez.");
 	};
 
 	const renderModal = () => {
@@ -85,9 +80,9 @@ const Tim = ({ closeAgentPage }) => {
 					) : (
 						""
 					)}
-					<p className="modal-objectif__subtitle">{answer.text}</p>
+					<div>{renderText()}</div>
 					{answer.id ? (
-						<button className="modal-objectif__button button--red" onClick={openMedia(answer)}>
+						<button className="modal-objectif__button button--red" onClick={openMedia}>
 							Voir l&apos;élément
 						</button>
 					) : (
@@ -100,9 +95,20 @@ const Tim = ({ closeAgentPage }) => {
 		);
 	};
 
+	const renderText = () => {
+		const text = answer.text.map((el, i) => {
+			return (
+				<p className="modal-objectif__subtitle" key={i}>
+					{el}
+				</p>
+			);
+		});
+		return text;
+	};
+
 	const validateModal = () => {
 		setModal(false);
-		// Mettre à jour le status de cette réponse de FALSE à TRUE
+		// API Mettre à jour le status de cette réponse de FALSE à TRUE
 	};
 
 	const openMedia = () => {
@@ -112,16 +118,25 @@ const Tim = ({ closeAgentPage }) => {
 
 	const renderModalMedia = () => {
 		if (answer.id.includes("document")) {
-			return <Document title={answer.title} srcElement={answer.src} handleModalDocument={closeModalMedia} />;
+			return (
+				<Document title={answer.title} srcElement={urlApi.apiRemi() + answer.src} handleModalDocument={closeModalMedia} />
+			);
 		}
-		if (answer.id.includes("document")) {
-			return <Video title={answer.title} srcVideo={answer.src} handleModalVideo={closeModalMedia} delayedButton={true} />;
+		if (answer.id.includes("video")) {
+			return (
+				<Video
+					title={answer.title}
+					srcVideo={urlApi.apiRemi() + answer.src}
+					handleModalVideo={closeModalMedia}
+					delayedButton={true}
+				/>
+			);
 		}
 	};
 
 	const closeModalMedia = () => {
-		setModalMedia(true);
-		// Mettre à jour le status de cet élément dans l'Historique avec l'id
+		setModalMedia(false);
+		// API Mettre à jour le status de cet élément dans l'Historique avec l'id
 	};
 
 	const catchphrase = [

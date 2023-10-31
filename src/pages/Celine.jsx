@@ -1,5 +1,6 @@
 import PhotoCeline from "../assets/img/Agent_celine.jpg";
 import Input from "../components/Input.jsx";
+import Document from "../components/Document.jsx";
 import Cross from "../assets/icons/Icon_Cross-white.svg";
 import PropTypes from "prop-types";
 import { urlApi } from "../utils/const/urlApi";
@@ -11,6 +12,9 @@ const Celine = ({ closeAgentPage }) => {
 	const { currentBox } = useContext(BoxContext);
 	const [value, setValue] = useState("");
 	const [errorMessage, setErrorMessage] = useState("");
+	const [modal, setModal] = useState(false);
+	const [modalMedia, setModalMedia] = useState(false);
+	const [answer, setAnswer] = useState("");
 
 	const slugify = (input) => {
 		let inputSlugified = input
@@ -35,44 +39,101 @@ const Celine = ({ closeAgentPage }) => {
 			return;
 		}
 		if (previouslyAnsweredInThisBox) {
-			console.log(
+			setValue("");
+			setErrorMessage(
 				"Vous m'avez dejà demandé le dossier cette personne. Rendez-vous dans l'Historique pour le consulter de nouveau."
 			);
-			setValue("");
-			setErrorMessage("");
 			return;
 		}
 		if (answerInThisBox) {
-			console.log(answerInThisBox);
+			setAnswer(answerInThisBox);
+			setModal(true);
 			setValue("");
 			setErrorMessage("");
 			return;
 		}
 		if (answerInFailedInterview) {
-			console.log(answerInFailedInterview);
+			setAnswer(answerInFailedInterview);
+			setModal(true);
 			setValue("");
 			setErrorMessage("");
 			return;
 		}
 		if (currentBox == "box2" && answerInBox1) {
-			console.log(
+			setValue("");
+			setErrorMessage(
 				"Vous avez déjà demandé le dossier de cette personne lors d'une box précédente. Rendez-vous dans l'Historique pour le consulter de nouveau."
 			);
-			setValue("");
-			setErrorMessage("");
 			return;
 		}
 		if (currentBox == "box3" && (answerInBox2 || answerInBox1)) {
-			console.log(
+			setValue("");
+			setErrorMessage(
 				"Vous avez déjà demandé le dossier de cette personne lors d'une box précédente. Rendez-vous dans l'Historique pour le consulter de nouveau."
 			);
-			setValue("");
-			setErrorMessage("");
 			return;
 		}
-		console.log("Je ne trouve pas cette personne.");
 		setValue("");
-		setErrorMessage("");
+		setErrorMessage("Je ne trouve pas cette personne.");
+	};
+
+	const renderModal = () => {
+		return (
+			<div className="modal-objectif__background">
+				<div className="modal-objectif__box">
+					{answer.srcComment ? (
+						<audio autoPlay>
+							<source src={urlApi.apiRemi() + answer.srcComment} type="audio/wav" />
+							Votre navigateur ne prend pas en charge ce format
+						</audio>
+					) : (
+						""
+					)}
+					<p className="modal-objectif__subtitle">{answer.text}</p>
+					{answer.id ? (
+						<button className="modal-objectif__button button--red" onClick={openMedia}>
+							Voir l&apos;élément
+						</button>
+					) : (
+						<button className="modal-objectif__button button--red" onClick={validateModal}>
+							Nouvelle requête
+						</button>
+					)}
+				</div>
+			</div>
+		);
+	};
+
+	// const renderText = () => {
+	// 	const text = answer.text.map((el, i) => {
+	// 		return (
+	// 			<p className="modal-objectif__subtitle" key={i}>
+	// 				{el}
+	// 			</p>
+	// 		);
+	// 	});
+	// 	return text;
+	// };
+
+	const validateModal = () => {
+		setModal(false);
+		// API Mettre à jour le status de cette réponse de FALSE à TRUE
+	};
+
+	const openMedia = () => {
+		validateModal();
+		setModalMedia(true);
+	};
+
+	const renderModalMedia = () => {
+		return (
+			<Document title={answer.title} srcElement={urlApi.apiRemi() + answer.src} handleModalDocument={closeModalMedia} />
+		);
+	};
+
+	const closeModalMedia = () => {
+		setModalMedia(false);
+		// API Mettre à jour le status de cet élément dans l'Historique avec l'id
 	};
 
 	const catchphrase = [
@@ -89,6 +150,8 @@ const Celine = ({ closeAgentPage }) => {
 
 	return (
 		<>
+			{modal ? renderModal() : ""}
+			{modalMedia ? renderModalMedia() : ""}
 			<audio autoPlay>
 				<source src={urlApi.apiRemi() + catchphrase[randomNumber]} type="audio/wav" />
 				Votre navigateur ne prend pas en charge ce format

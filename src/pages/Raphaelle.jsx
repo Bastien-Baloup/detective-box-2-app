@@ -13,6 +13,8 @@ const Raphaelle = ({ closeAgentPage }) => {
 	const [valueLatitude, setValueLatitude] = useState("");
 	const [valueLongitude, setValueLongitude] = useState("");
 	const [errorMessage, setErrorMessage] = useState("");
+	const [modal, setModal] = useState(false);
+	const [answer, setAnswer] = useState("");
 
 	const slugifyAdresse = (input) => {
 		let inputSlugified = input
@@ -59,7 +61,6 @@ const Raphaelle = ({ closeAgentPage }) => {
 			return;
 		}
 		if (valueAdresse != "" && valueLatitude == "" && valueLongitude == "") {
-			console.log("on créé une adresse");
 			let slugifiedAdresse = slugifyAdresse(valueAdresse);
 			let regex = /[a-zA-Z]/;
 			const doesItHaveLetters = regex.test(slugifiedAdresse);
@@ -71,15 +72,15 @@ const Raphaelle = ({ closeAgentPage }) => {
 				return;
 			}
 			if (previouslyAnsweredInThisBox(slugifiedAdresse)) {
-				console.log("Vous m'avez dejà demandé d'explorer ce lieu.");
 				setValueAdresse("");
 				setValueLongitude("");
 				setValueLatitude("");
-				setErrorMessage("");
+				setErrorMessage("Vous m'avez dejà demandé d'explorer ce lieu.");
 				return;
 			}
 			if (answerInThisBox(slugifiedAdresse)) {
-				console.log(answerInThisBox(slugifiedAdresse));
+				setAnswer(answerInThisBox(slugifiedAdresse));
+				setModal(true);
 				setValueAdresse("");
 				setValueLongitude("");
 				setValueLatitude("");
@@ -87,41 +88,38 @@ const Raphaelle = ({ closeAgentPage }) => {
 				return;
 			}
 			if (currentBox == "box2" && answerInBox1(slugifiedAdresse)) {
-				console.log(
-					"Vous avez déjà visité ce lieu lors d'une box précédente. Rendez-vous dans l'Historique pour le visiter de nouveau."
-				);
 				setValueAdresse("");
 				setValueLongitude("");
 				setValueLatitude("");
-				setErrorMessage("");
+				setErrorMessage(
+					"Vous avez déjà visité ce lieu lors d'une box précédente. Rendez-vous dans l'Historique pour le visiter de nouveau."
+				);
 				return;
 			}
 			if (currentBox == "box3" && (answerInBox2(slugifiedAdresse) || answerInBox1(slugifiedAdresse))) {
-				console.log(
-					"Vous avez déjà visité ce lieu lors d'une box précédente. Rendez-vous dans l'Historique pour le visiter de nouveau."
-				);
 				setValueAdresse("");
 				setValueLongitude("");
 				setValueLatitude("");
-				setErrorMessage("");
+				setErrorMessage(
+					"Vous avez déjà visité ce lieu lors d'une box précédente. Rendez-vous dans l'Historique pour le visiter de nouveau."
+				);
 				return;
 			}
 		}
 
 		if ((valueLatitude != "" || valueLongitude != "") && valueAdresse == "") {
-			console.log("on créé une GPS");
 			let GPS = valueLatitude.concat(valueLongitude);
 			let slugifiedGPS = slugifyGPS(GPS);
 			if (previouslyAnsweredInThisBox(slugifiedGPS)) {
-				console.log("Vous m'avez dejà demandé d'explorer ce lieu.");
 				setValueAdresse("");
 				setValueLongitude("");
 				setValueLatitude("");
-				setErrorMessage("");
+				setErrorMessage("Vous m'avez dejà demandé d'explorer ce lieu.");
 				return;
 			}
 			if (answerInThisBox(slugifiedGPS)) {
-				console.log(answerInThisBox(slugifiedGPS));
+				setAnswer(answerInThisBox(slugifiedGPS));
+				setModal(true);
 				setValueAdresse("");
 				setValueLongitude("");
 				setValueLatitude("");
@@ -129,32 +127,68 @@ const Raphaelle = ({ closeAgentPage }) => {
 				return;
 			}
 			if (currentBox == "box2" && answerInBox1(slugifiedGPS)) {
-				console.log(
-					"Vous avez déjà visité ce lieu lors d'une box précédente. Rendez-vous dans l'Historique pour le visiter de nouveau."
-				);
 				setValueAdresse("");
 				setValueLongitude("");
 				setValueLatitude("");
-				setErrorMessage("");
+				setErrorMessage(
+					"Vous avez déjà visité ce lieu lors d'une box précédente. Rendez-vous dans l'Historique pour le visiter de nouveau."
+				);
 				return;
 			}
 			if (currentBox == "box3" && (answerInBox2(slugifiedGPS) || answerInBox1(slugifiedGPS))) {
-				console.log(
-					"Vous avez déjà visité ce lieu lors d'une box précédente. Rendez-vous dans l'Historique pour le visiter de nouveau."
-				);
 				setValueAdresse("");
 				setValueLongitude("");
 				setValueLatitude("");
-				setErrorMessage("");
+				setErrorMessage(
+					"Vous avez déjà visité ce lieu lors d'une box précédente. Rendez-vous dans l'Historique pour le visiter de nouveau."
+				);
 				return;
 			}
 		}
-
-		console.log("Hmm, cet endroit ne me semble pas pertinent.");
 		setValueAdresse("");
 		setValueLongitude("");
 		setValueLatitude("");
-		setErrorMessage("");
+		setErrorMessage("Hmm, cet endroit ne me semble pas pertinent.");
+	};
+
+	const renderModal = () => {
+		return (
+			<div className="modal-objectif__background">
+				<div className="modal-objectif__box">
+					<div>{renderText()}</div>
+					{answer.id ? (
+						<button className="modal-objectif__button button--red" onClick={openLieu}>
+							Explorer le lieu
+						</button>
+					) : (
+						<button className="modal-objectif__button button--red" onClick={validateModal}>
+							Nouvelle requête
+						</button>
+					)}
+				</div>
+			</div>
+		);
+	};
+
+	const openLieu = () => {
+		window.open(answer.src, "_blank");
+		validateModal();
+	};
+
+	const renderText = () => {
+		const text = answer.text.map((el, i) => {
+			return (
+				<p className="modal-objectif__subtitle" key={i}>
+					{el}
+				</p>
+			);
+		});
+		return text;
+	};
+
+	const validateModal = () => {
+		setModal(false);
+		// API Mettre à jour le status de cette réponse de FALSE à TRUE
 	};
 
 	const catchphrase = [
@@ -171,6 +205,7 @@ const Raphaelle = ({ closeAgentPage }) => {
 
 	return (
 		<>
+			{modal ? renderModal() : ""}
 			<audio autoPlay>
 				<source src={urlApi.apiRemi() + catchphrase[randomNumber]} type="audio/wav" />
 				Votre navigateur ne prend pas en charge ce format

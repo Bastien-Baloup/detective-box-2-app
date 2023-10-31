@@ -36,10 +36,6 @@ export const dataCeline = {
 		},
 	],
 	box1: [
-		// {
-		// 	ask: "Jacqueline Garraud",
-		// 	text: "Je ne la trouve pas, est-ce qu'elle n'est pas connue sous un autre nom ?",
-		// },
 		{
 			ask: "Alphonse St-Yves",
 			text: "Voilà ce que j'ai trouvé :",
