@@ -11,8 +11,8 @@ export const dataAdele = {
 			srcComment: "sounds/202-commentaires-adele-1.wav",
 			id: "box2document4",
 			title: "Papier avalé par Garraud",
-			src: "assets/document/215_Papier_avaleÌ.jpg",
-			status: true,
+			src: "assets/document/215_Papier_avale.jpg",
+			status: false,
 		},
 		{
 			ask: ["b759030", "echantillonb759030", "analysesang", "echantillonsang"],
@@ -64,7 +64,7 @@ export const dataAdele = {
 				"Ah, et c'est un homme, enfin c'était...",
 			],
 			srcComment: "sounds/301-commentaire-adele-sur-corps-1.wav",
-			status: true,
+			status: false,
 		},
 		{
 			ask: ["loicvalluy"],

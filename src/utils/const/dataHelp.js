@@ -314,7 +314,7 @@ export const dataHelp = {
 		{
 			id: "box1help4",
 			title: "Le chemin de la vérité",
-			status: "open",
+			status: "closed",
 			hints: [
 				{
 					id: 1,
@@ -482,7 +482,7 @@ export const dataHelp = {
 		{
 			id: "box2help2",
 			title: "Le secret de Garraud",
-			status: "open",
+			status: "closed",
 			hints: [
 				{
 					id: 1,
@@ -562,7 +562,7 @@ export const dataHelp = {
 		{
 			id: "box2help3",
 			title: "Modus Operandi",
-			status: "open",
+			status: "closed",
 			hints: [
 				{
 					id: 1,
@@ -591,7 +591,7 @@ export const dataHelp = {
 		{
 			id: "box2help4",
 			title: "Le meurtre de Mason Reynolds",
-			status: "open",
+			status: "closed",
 			hints: [
 				{
 					id: 1,
@@ -639,7 +639,7 @@ export const dataHelp = {
 		{
 			id: "box2help5",
 			title: "Trouver Stella",
-			status: "open",
+			status: "closed",
 			hints: [
 				{
 					id: 1,
@@ -669,7 +669,7 @@ export const dataHelp = {
 		{
 			id: "box2help6",
 			title: "Dernière épreuve",
-			status: "open",
+			status: "closed",
 			hints: [
 				{
 					id: 1,
@@ -889,7 +889,7 @@ export const dataHelp = {
 		{
 			id: "box3help3",
 			title: ["Localiser les potentielles cibles restantes"],
-			status: "open",
+			status: "closed",
 			hints: [
 				{
 					id: 1,
@@ -1012,7 +1012,7 @@ export const dataHelp = {
 		{
 			id: "box3help4",
 			title: "La prochaine victime",
-			status: "open",
+			status: "closed",
 			hints: [
 				{
 					id: 1,
@@ -1050,7 +1050,7 @@ export const dataHelp = {
 		{
 			id: "box3help5",
 			title: "Dernière épreuve",
-			status: "open",
+			status: "closed",
 			hints: [
 				{
 					id: 1,

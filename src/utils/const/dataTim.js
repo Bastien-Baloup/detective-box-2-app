@@ -16,13 +16,13 @@ export const dataTim = {
 			text: [
 				"Punaise ça faisait longtemps que je n'en avais pas vu !",
 				"Alors, ne me demandez pas comment j'ai fait, mais j'ai découvert que la vidéo a été enregistrée le 17 janvier 1999.",
-				"Le passage intéressant est à 15 minutes, puis il y en a un autre à la fin.",
 				"C'était cinq jours avant que Garraud ne se rende...",
+				"Le passage intéressant est à 15 minutes, puis il y en a un autre à la fin, vers 20 minutes.",
 			],
 			srcComment: "sounds/101-commentaires-tim-1.wav",
 			id: "box1video3",
 			title: "VHS",
-			src: "videos/db-s02-103-def-1.mp4",
+			src: "videos/db-s02-103-def.mp4",
 			status: false,
 		},
 		{
@@ -139,7 +139,7 @@ export const dataTim = {
 			id: "box2video2",
 			title: "Webcam Mason Reynolds",
 			src: "videos/db-s02-202-webcam-mason-v1.mp4",
-			status: true,
+			status: false,
 		},
 		{
 			ask: [
@@ -188,7 +188,7 @@ export const dataTim = {
 				"Alors, c'est qui le meilleur ?",
 			],
 			srcComment: "sounds/302-commentaires-tim-1.wav",
-			status: true,
+			status: false,
 		},
 		{
 			ask: ["loicvalluy"],

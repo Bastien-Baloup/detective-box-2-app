@@ -5,7 +5,7 @@
  */
 
 export const getToken = (credentials) => {
-	return fetch("http://localhost:3001/api/v1/user/login", {
+	return fetch("", {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
@@ -61,3 +61,4 @@ export const putUser = (token, credentials) => {
 // create one service to update data from Event
 // create one service to update data from Box
 // create one service to update data from Objectifs
+// create one service for Reset

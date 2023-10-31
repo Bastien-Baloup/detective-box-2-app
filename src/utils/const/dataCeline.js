@@ -46,7 +46,7 @@ export const dataCeline = {
 			id: "box1archive1",
 			title: "Archives Alphonse StYves",
 			src: "assets/archive/1_Archives_Alphonse_StYves.jpg",
-			status: true,
+			status: false,
 		},
 		{
 			ask: "Armand Beaux",

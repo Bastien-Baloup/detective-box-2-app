@@ -1,5 +1,7 @@
 import PhotoTim from "../assets/img/Agent_tim.jpg";
 import Input from "../components/Input.jsx";
+import Document from "../components/Document.jsx";
+import Video from "../components/Video.jsx";
 import Cross from "../assets/icons/Icon_Cross-white.svg";
 import PropTypes from "prop-types";
 import { urlApi } from "../utils/const/urlApi";
@@ -11,6 +13,9 @@ const Tim = ({ closeAgentPage }) => {
 	const { currentBox } = useContext(BoxContext);
 	const [value, setValue] = useState("");
 	const [errorMessage, setErrorMessage] = useState("");
+	const [modal, setModal] = useState(false);
+	const [modalMedia, setModalMedia] = useState(false);
+	const [answer, setAnswer] = useState("");
 
 	const slugify = (input) => {
 		let inputSlugified = input
@@ -41,6 +46,8 @@ const Tim = ({ closeAgentPage }) => {
 		}
 		if (answerInThisBox) {
 			console.log(answerInThisBox);
+			setAnswer(answerInThisBox);
+			setModal(true);
 			setValue("");
 			setErrorMessage("");
 			return;
@@ -66,6 +73,57 @@ const Tim = ({ closeAgentPage }) => {
 		setErrorMessage("");
 	};
 
+	const renderModal = () => {
+		return (
+			<div className="modal-objectif__background">
+				<div className="modal-objectif__box">
+					{answer.srcComment ? (
+						<audio autoPlay>
+							<source src={urlApi.apiRemi() + answer.srcComment} type="audio/wav" />
+							Votre navigateur ne prend pas en charge ce format
+						</audio>
+					) : (
+						""
+					)}
+					<p className="modal-objectif__subtitle">{answer.text}</p>
+					{answer.id ? (
+						<button className="modal-objectif__button button--red" onClick={openMedia(answer)}>
+							Voir l&apos;élément
+						</button>
+					) : (
+						<button className="modal-objectif__button button--red" onClick={validateModal}>
+							Nouvelle requête
+						</button>
+					)}
+				</div>
+			</div>
+		);
+	};
+
+	const validateModal = () => {
+		setModal(false);
+		// Mettre à jour le status de cette réponse de FALSE à TRUE
+	};
+
+	const openMedia = () => {
+		validateModal();
+		setModalMedia(true);
+	};
+
+	const renderModalMedia = () => {
+		if (answer.id.includes("document")) {
+			return <Document title={answer.title} srcElement={answer.src} handleModalDocument={closeModalMedia} />;
+		}
+		if (answer.id.includes("document")) {
+			return <Video title={answer.title} srcVideo={answer.src} handleModalVideo={closeModalMedia} delayedButton={true} />;
+		}
+	};
+
+	const closeModalMedia = () => {
+		setModalMedia(true);
+		// Mettre à jour le status de cet élément dans l'Historique avec l'id
+	};
+
 	const catchphrase = [
 		"sounds/404-repliques-tim-1.wav",
 		"sounds/404-repliques-tim-2.wav",
@@ -80,6 +138,8 @@ const Tim = ({ closeAgentPage }) => {
 
 	return (
 		<>
+			{modal ? renderModal() : ""}
+			{modalMedia ? renderModalMedia() : ""}
 			<audio autoPlay>
 				<source src={urlApi.apiRemi() + catchphrase[randomNumber]} type="audio/wav" />
 				Votre navigateur ne prend pas en charge ce format

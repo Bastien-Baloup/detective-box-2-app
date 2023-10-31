@@ -42,7 +42,7 @@ const BoxChoice = ({ data }) => {
 	};
 
 	const renderBox = () => {
-		if (data.state == "done") {
+		if (data.status == "done") {
 			return (
 				<>
 					<article className="boxchoice boxchoice--done" onClick={handleModal}>
@@ -59,7 +59,7 @@ const BoxChoice = ({ data }) => {
 				</>
 			);
 		}
-		if (data.state == "open") {
+		if (data.status == "open") {
 			return (
 				<article className="boxchoice boxchoice--open" onClick={() => fetchCurrentBox(`box${data.boxNumber}`)}>
 					<Link to={"/"} className="boxchoice__link"></Link>
@@ -75,7 +75,7 @@ const BoxChoice = ({ data }) => {
 				</article>
 			);
 		}
-		if (data.state == "closed") {
+		if (data.status == "closed") {
 			return (
 				<>
 					<article className="boxchoice boxchoice--closed">

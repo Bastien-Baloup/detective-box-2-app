@@ -120,7 +120,7 @@ function Home() {
 						srcIcon={IconAdele}
 						name="Adèle Leinu"
 						contentButton="Demander une analyse scientifique"
-						actionButton={() => setCharacterDisplayed("adele")}
+						actionButton={currentBox == "box1" ? null : () => setCharacterDisplayed("adele")}
 						state={currentBox == "box1" ? "unavailable" : ""}
 					/>
 				</div>

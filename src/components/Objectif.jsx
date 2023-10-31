@@ -30,7 +30,7 @@ const Objectif = ({ data }) => {
 					<h2 className="modal-objectif__title">
 						Objectif : <br></br> {data.title}
 					</h2>
-					<p className="modal-objectif__title">{data.detail}</p>
+					<p className="modal-objectif__subtitle">{data.detail}</p>
 					<button className="modal-objectif__button button--red" onClick={validateModal}>
 						Valider
 					</button>

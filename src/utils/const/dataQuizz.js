@@ -23,7 +23,6 @@ export const dataQuizz = {
 					"Une victime du tueur au Tarot",
 				],
 				image: null,
-				// image : Photo de Charles Garraud,
 			},
 			{
 				id: 3,
@@ -50,8 +49,7 @@ export const dataQuizz = {
 					"Un médaillon appartenant à Rebecca Dumont, la dernière victime, sa rate et l'enregistrement de ses derniers mots, un papier crypté",
 					"Un mot du tueur destiné aux enquêteurs",
 				],
-				image: null,
-				// image : "assets/quiz/box2_malle_quiz_question_5.jpg",
+				image: "assets/quiz/box2_malle_quiz_question_5.jpg",
 			},
 			{
 				id: 5,
@@ -64,7 +62,7 @@ export const dataQuizz = {
 					"En superposant les grilles, on coloriait les blancs pour avoir le nom de la victime",
 					"En décodant la grille, grâce au site du fan du tueur, qui montrait un décryptage de l'alphabet du tueur.",
 				],
-				image: null,
+				image: "assets/quiz/box2_lettres_cryptees_quiz_question_6.jpg",
 			},
 			{
 				id: 6,
@@ -112,8 +110,7 @@ export const dataQuizz = {
 					"Au cours de vos enquêtes, vous avez découvert que le meurtre de 1998 n'était pas lié au tueur au Tarot.",
 					"Cependant, vous avez identifié une victime qui n'avait pas été reliée à lui jusqu'à présent.",
 				],
-				image: null,
-				// image: "assets/quiz/box2_victimesbox1_quiz_reponse_2.jpg",
+				image: "assets/quiz/box2_victimesbox1_quiz_reponse_2.jpg",
 			},
 			{
 				id: 2,
@@ -122,8 +119,7 @@ export const dataQuizz = {
 					"Charles Garraud était un imitateur du tueur au Tarot.",
 					"Vous avez découvert qu'il se serait rendu à sa place sous la pression du vrai tueur.",
 				],
-				image: null,
-				// image : Photo de Charles Garraud,
+				image: "assets/quiz/box2_garraud_quiz_reponse_2.jpg",
 			},
 			{
 				id: 3,
@@ -144,8 +140,7 @@ export const dataQuizz = {
 					"Enfin, un médaillon a également été découvert dans la malle.",
 					"Nous allons vous le transmettre dans cette box.",
 				],
-				image: null,
-				// image: "assets/quiz/box2_malle_quiz_reponse_5.jpg"
+				image: "assets/quiz/box2_malle_quiz_reponse_5.jpg",
 			},
 			{
 				id: 5,
@@ -156,8 +151,7 @@ export const dataQuizz = {
 					"L'alphabet découvert sur le site était en effet utilisé pour décoder les lettres.",
 					"Cependant, ces dernières avaient déjà été déchiffrées sur le site du fan.",
 				],
-				image: null,
-				// image: "assets/quiz/box2_lettres_cryptees_quiz_reponse_6.jpg",
+				image: "assets/quiz/box2_lettresdecryptees_quiz_response-6.jpg",
 			},
 			{
 				id: 6,
