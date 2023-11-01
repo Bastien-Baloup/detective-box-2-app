@@ -173,6 +173,7 @@ const Raphaelle = ({ closeAgentPage }) => {
 	const openLieu = () => {
 		window.open(answer.src, "_blank");
 		validateModal();
+		// API Mettre ce lieu de fouille dans l'Historique
 	};
 
 	const renderText = () => {

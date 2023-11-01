@@ -28,11 +28,11 @@ const Lauren = ({ closeAgentPage }) => {
 	};
 
 	const handleSubmit = (e) => {
-		const answerInThisBox = dataLauren[currentBox].find((element) => slugify(element.ask) == slugify(value));
+		const answerInThisBox = dataLauren[currentBox].find((element) => element.ask.includes(slugify(value)));
 		const previouslyAnsweredInThisBox = answerInThisBox && answerInThisBox.status;
-		const answerInFailedInterview = dataLauren["generic"].find((element) => slugify(element.ask) == slugify(value));
-		const answerInBox1 = dataLauren["box1"].some((element) => slugify(element.ask) == slugify(value));
-		const answerInBox2 = dataLauren["box2"].some((element) => slugify(element.ask) == slugify(value));
+		const answerInFailedInterview = dataLauren["generic"].find((element) => element.ask.includes(slugify(value)));
+		const answerInBox1 = dataLauren["box1"].some((element) => element.ask.includes(slugify(value)));
+		const answerInBox2 = dataLauren["box2"].some((element) => element.ask.includes(slugify(value)));
 		e.preventDefault();
 		if (value == "") {
 			setErrorMessage("Il me faut l'identité de la personne à interroger");

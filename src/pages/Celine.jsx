@@ -27,11 +27,11 @@ const Celine = ({ closeAgentPage }) => {
 	};
 
 	const handleSubmit = (e) => {
-		const answerInThisBox = dataCeline[currentBox].find((element) => slugify(element.ask) == slugify(value));
+		const answerInThisBox = dataCeline[currentBox].find((element) => element.ask.includes(slugify(value)));
 		const previouslyAnsweredInThisBox = answerInThisBox && answerInThisBox.status;
-		const answerInFailedInterview = dataCeline["generic"].find((element) => slugify(element.ask) == slugify(value));
-		const answerInBox1 = dataCeline["box1"].some((element) => slugify(element.ask) == slugify(value));
-		const answerInBox2 = dataCeline["box2"].some((element) => slugify(element.ask) == slugify(value));
+		const answerInFailedInterview = dataCeline["generic"].find((element) => element.ask.includes(slugify(value)));
+		const answerInBox1 = dataCeline["box1"].some((element) => element.ask.includes(slugify(value)));
+		const answerInBox2 = dataCeline["box2"].some((element) => element.ask.includes(slugify(value)));
 		e.preventDefault();
 		if (value == "") {
 			setErrorMessage("Je ne peux pas fouiller les archives sans un nom !");
@@ -89,7 +89,7 @@ const Celine = ({ closeAgentPage }) => {
 					) : (
 						""
 					)}
-					<p className="modal-objectif__subtitle">{answer.text}</p>
+					<div>{renderText()}</div>
 					{answer.id ? (
 						<button className="modal-objectif__button button--red" onClick={openMedia}>
 							Voir l&apos;élément
@@ -104,16 +104,16 @@ const Celine = ({ closeAgentPage }) => {
 		);
 	};
 
-	// const renderText = () => {
-	// 	const text = answer.text.map((el, i) => {
-	// 		return (
-	// 			<p className="modal-objectif__subtitle" key={i}>
-	// 				{el}
-	// 			</p>
-	// 		);
-	// 	});
-	// 	return text;
-	// };
+	const renderText = () => {
+		const text = answer.text.map((el, i) => {
+			return (
+				<p className="modal-objectif__subtitle" key={i}>
+					{el}
+				</p>
+			);
+		});
+		return text;
+	};
 
 	const validateModal = () => {
 		setModal(false);
