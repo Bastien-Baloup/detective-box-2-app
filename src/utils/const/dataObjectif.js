@@ -327,7 +327,7 @@ export const dataObjectif = {
 				"J'appelle les renforts, on va fouiller chez elle de fond en comble",
 			],
 			answersrc: "sounds/300-commentaires-sanchez-4.wav",
-			status: "open",
+			status: "closed",
 		},
 	],
 };
