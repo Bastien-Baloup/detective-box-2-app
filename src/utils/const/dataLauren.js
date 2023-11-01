@@ -341,7 +341,7 @@ export const dataLauren = {
 			text: ["Je sors de l'interrogatoire, voici la retranscription :"],
 			id: "box3audio4",
 			title: "Interrogatoire François Duchamp",
-			img1: "assets/photos-personnages/FrancÌ§ois-Duchamp.jpg",
+			img1: "assets/photos-personnages/Francois-Duchamp.jpg",
 			img2: "assets/photos-personnages/raphaelle.jpg",
 			srcAudio: "sounds/313-interrogatoire-francois-duchamp-raphaelle.wav",
 			srcTranscript: "assets/transcripts/313_Interrogatoire_Francois_Duchamp-Raphaelle_transcript.pdf",
