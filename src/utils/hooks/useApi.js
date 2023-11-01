@@ -1,3 +1,5 @@
+import { urlApi } from "../const/urlApi";
+
 /**
  * Service to fetch Token with API
  * @param {object} credentials email and password used to connect
@@ -32,7 +34,7 @@ export const getToken = (credentials) => {
  */
 
 export const putUser = (token, credentials) => {
-	return fetch("http://localhost:3001/api/v1/user/profile", {
+	return fetch("", {
 		method: "PUT",
 		headers: {
 			"Content-Type": "application/json",
@@ -50,15 +52,296 @@ export const putUser = (token, credentials) => {
 		});
 };
 
-// create one service to update data from Adele
-// create one service to update data from Celine
-// create one service to update data from Tim
-// create one service to update data from Raphaelle
-// create one service to update data from Lauren
-// create one service to update data from History
-// create one service to update data from Quizz
-// create one service to update data from Help
-// create one service to update data from Event
-// create one service to update data from Box
-// create one service to update data from Objectifs
-// create one service for Reset
+export const getBox = () => {
+	return fetch(urlApi.apiRemi() + "/box/", {
+		method: "GET",
+	})
+		.then((response) => response.json())
+		.then((data) => {
+			console.log(data);
+			return data;
+		})
+		.catch(() => {
+			localStorage.clear();
+		});
+};
+
+export const updateBox = (boxid) => {
+	return fetch(urlApi.apiRemi() + `/box/${boxid}`, {
+		method: "PUT",
+	})
+		.then((response) => response.json())
+		.then((data) => {
+			console.log(data);
+			return data;
+		})
+		.catch(() => {
+			localStorage.clear();
+		});
+};
+
+export const resetBox = () => {
+	return fetch(urlApi.apiRemi() + "/box/reset", {
+		method: "PUT",
+	})
+		.then((response) => response.json())
+		.then((data) => {
+			console.log(data);
+			return data;
+		})
+		.catch(() => {
+			localStorage.clear();
+		});
+};
+
+export const getQuizz = () => {
+	return fetch(urlApi.apiRemi() + "/quizz/", {
+		method: "GET",
+	})
+		.then((response) => response.json())
+		.then((data) => {
+			console.log(data);
+			return data;
+		})
+		.catch(() => {
+			localStorage.clear();
+		});
+};
+
+export const updateQuizz = (boxid) => {
+	return fetch(urlApi.apiRemi() + `/quizz/${boxid}`, {
+		method: "PUT",
+	})
+		.then((response) => response.json())
+		.then((data) => {
+			console.log(data);
+			return data;
+		})
+		.catch(() => {
+			localStorage.clear();
+		});
+};
+
+export const resetQuizz = () => {
+	return fetch(urlApi.apiRemi() + "/quizz/reset", {
+		method: "PUT",
+	})
+		.then((response) => response.json())
+		.then((data) => {
+			console.log(data);
+			return data;
+		})
+		.catch(() => {
+			localStorage.clear();
+		});
+};
+
+export const getHelp = () => {
+	return fetch(urlApi.apiRemi() + "/help", {
+		method: "GET",
+	})
+		.then((response) => response.json())
+		.then((data) => {
+			console.log(data);
+			return data;
+		})
+		.catch(() => {
+			localStorage.clear();
+		});
+};
+
+export const updateHelp = (id) => {
+	return fetch(urlApi.apiRemi() + `/help/${id}`, {
+		method: "PUT",
+	})
+		.then((response) => response.json())
+		.then((data) => {
+			console.log(data);
+			return data;
+		})
+		.catch(() => {
+			localStorage.clear();
+		});
+};
+
+export const resetHelp = () => {
+	return fetch(urlApi.apiRemi() + "/help/reset", {
+		method: "PUT",
+	})
+		.then((response) => response.json())
+		.then((data) => {
+			console.log(data);
+			return data;
+		})
+		.catch(() => {
+			localStorage.clear();
+		});
+};
+
+export const getObjectives = () => {
+	return fetch(urlApi.apiRemi() + "/objectives", {
+		method: "GET",
+	})
+		.then((response) => response.json())
+		.then((data) => {
+			console.log(data);
+			return data;
+		})
+		.catch(() => {
+			localStorage.clear();
+		});
+};
+
+export const updateObjectives = (boxid) => {
+	return fetch(urlApi.apiRemi() + `/objectives/${boxid}`, {
+		method: "PUT",
+	})
+		.then((response) => response.json())
+		.then((data) => {
+			console.log(data);
+			return data;
+		})
+		.catch(() => {
+			localStorage.clear();
+		});
+};
+
+export const resetObjectives = () => {
+	return fetch(urlApi.apiRemi() + "/objectives/reset", {
+		method: "PUT",
+	})
+		.then((response) => response.json())
+		.then((data) => {
+			console.log(data);
+			return data;
+		})
+		.catch(() => {
+			localStorage.clear();
+		});
+};
+
+export const getHistory = (boxid) => {
+	return fetch(urlApi.apiRemi() + `/history/${boxid}`, {
+		method: "GET",
+	})
+		.then((response) => response.json())
+		.then((data) => {
+			console.log(data);
+			return data;
+		})
+		.catch(() => {
+			localStorage.clear();
+		});
+};
+
+export const updateHistory = (boxid) => {
+	return fetch(urlApi.apiRemi() + `/history/${boxid}`, {
+		method: "PUT",
+	})
+		.then((response) => response.json())
+		.then((data) => {
+			console.log(data);
+			return data;
+		})
+		.catch(() => {
+			localStorage.clear();
+		});
+};
+
+export const resetHistory = () => {
+	return fetch(urlApi.apiRemi() + "/history/reset", {
+		method: "PUT",
+	})
+		.then((response) => response.json())
+		.then((data) => {
+			console.log(data);
+			return data;
+		})
+		.catch(() => {
+			localStorage.clear();
+		});
+};
+
+export const getCharactersById = (personnage) => {
+	return fetch(urlApi.apiRemi() + `/characters/${personnage}`, {
+		method: "GET",
+	})
+		.then((response) => response.json())
+		.then((data) => {
+			console.log(data);
+			return data;
+		})
+		.catch(() => {
+			localStorage.clear();
+		});
+};
+
+export const updateCharactersById = (personnage, id) => {
+	return fetch(urlApi.apiRemi() + `/characters/${personnage}/${id}`, {
+		method: "PUT",
+	})
+		.then((response) => response.json())
+		.then((data) => {
+			console.log(data);
+			return data;
+		})
+		.catch(() => {
+			localStorage.clear();
+		});
+};
+
+export const resetCharacters = () => {
+	return fetch(urlApi.apiRemi() + "/characters/reset", {
+		method: "PUT",
+	})
+		.then((response) => response.json())
+		.then((data) => {
+			console.log(data);
+			return data;
+		})
+		.catch(() => {
+			localStorage.clear();
+		});
+};
+
+export const getEvent = (boxid) => {
+	return fetch(urlApi.apiRemi() + `/events/${boxid}`, {
+		method: "GET",
+	})
+		.then((response) => response.json())
+		.then((data) => {
+			console.log(data);
+			return data;
+		})
+		.catch(() => {
+			localStorage.clear();
+		});
+};
+
+export const updateEvent = (boxid) => {
+	return fetch(urlApi.apiRemi() + `/events/${boxid}`, {
+		method: "PUT",
+	})
+		.then((response) => response.json())
+		.then((data) => {
+			console.log(data);
+			return data;
+		})
+		.catch(() => {
+			localStorage.clear();
+		});
+};
+
+export const resetEvent = () => {
+	return fetch(urlApi.apiRemi() + "/events/reset", {
+		method: "PUT",
+	})
+		.then((response) => response.json())
+		.then((data) => {
+			console.log(data);
+			return data;
+		})
+		.catch(() => {
+			localStorage.clear();
+		});
+};
