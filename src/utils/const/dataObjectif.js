@@ -154,8 +154,6 @@ export const dataObjectif = {
 				{ name: "Timo Sladie", img: "assets/photos-personnages/Timo-Sladie.jpg" },
 			],
 			errorMessage: "Quelque chose ne va pas dans cette liste",
-			// "Il nous faut éliminer encore des victimes si l'on veut avancer dans l'enquête et revenir voir Garraud avec de nouveaux éléments…",
-			// "Vous y êtes allés un peu fort sur ce premier tri ! On devrait en garder plus pour être certain de ne pas en oublier en route",
 			answer: [
 				"Aaron King",
 				"Annina Kurschner",
@@ -227,7 +225,6 @@ export const dataObjectif = {
 				{ name: "Riano Della Valle", img: "assets/photos-personnages/riano_dellavalle.jpg" },
 			],
 			errorMessage: "Je pense que quelque chose ne va pas dans cette liste",
-			// "Nous avons 5 cartes, il nous faut 5 victimes",
 			answer: ["Aaron King", "Annina Kurschner", "Jörn Frenzel", "Konstantin Wallner", "Riano Della Valle"],
 			answertext: [
 				"Bravo ! Vous avez réussi à retrouver toutes les victimes correspondant aux cartes de tarot que le tueur nous avait laissées !",
@@ -240,22 +237,26 @@ export const dataObjectif = {
 			id: 24,
 			title: "Le meurtre de Mason Reynolds",
 			subtitle: "A qui appartient le médaillon ?",
-			detail: [
+			predetail: [
 				"Le tueur a de nouveau frappé, à Colchester cette fois, en Angleterre.",
 				"Grâce aux contacts de Lauren, nous venons d'obtenir l'autorisation d'aller fouiller la scène par l'intermédiaire de notre partenaire Jaden Gill.",
 				"Je compte sur vous pour la passer au peigne fin.",
 			],
-			newdetails: [
+			detail: [
 				"Encore une histoire de médaillon de Lilith !",
 				"Il semblerait qu'il s'agisse du même que celui retrouvé dans la malle avec l'organe de Rebecca. C'est trop gros pour être une simple coïncidence.",
 				"Qui a bien pu leur offrir ?",
 			],
 			errorMessage: "Je ne pense pas que ce soit cela.",
 			label: "Réponse",
-			answer: ["lilithequilibree", "lilithequilibre", "lilitequilibree", "lilitequilibre"],
+			answer: ["stellalouiseberg", "louisebergstella"],
 			answertext: [
-				"Bien joués agents, nous avons maintenant le nom de la théorie.",
-				"Il nous faut approfondir nos recherches pour comprendre ce dont le tueur parle.",
+				"Sanchez :",
+				"Vous l'avez retrouvée, bravo !",
+				"Maintenant je suis sûre qu'on doit également pouvoir retrouver l'adresse de cette dénommée Stella.",
+				"Dites-moi où je dois me rendre lorsque vous l'aurez trouvée.",
+				"Lauren :",
+				"Raph, je crois que notre tueur a peut-être rencontré une victime avant sa mort, je creuse cette piste et je reviens vers toi dès que j'ai quelque chose de concret...",
 			],
 			answersrc: "sounds/204-objectifs-reussis-5.wav",
 			status: "closed",
@@ -272,7 +273,6 @@ export const dataObjectif = {
 			],
 			label: "Réponse",
 			errorMessage: "Je ne pense pas que ce soit cela.",
-			// “Je pense qu'on approche, mais elle parle d’un lieu préhistorique, non ?”
 			answer: ["dolmenvondegernau", "dolmendegernau"],
 			answertext: [
 				"Le Dolmen von Degernau...",
@@ -291,7 +291,6 @@ export const dataObjectif = {
 			],
 			label: "Réponse",
 			errorMessage: "Je ne pense pas que ce soit cela.",
-			// ““La forêt des Arbailles... C’est grand. Il me faudrait plus d’informations, quelque chose qui m’aiderait à situer un point dans la forêt. Peut-être que Lauren savait ?”
 			answer: ["dolmendite", "dolmenite"],
 			answertext: ["Bien joué agents, le Dolmen d'Ité..."],
 			answersrc: null,
@@ -322,27 +321,13 @@ export const dataObjectif = {
 			detail: ["Il faut qu'on identifie le tueur pour pouvoir l'arrêter avant que ne recommence"],
 			label: "Réponse",
 			errorMessage: "Je ne pense pas que ce soit cela.",
-			// “Si on allait plutôt chez elle pour voir de quoi il en retourne ?
-			// “Cet arbre généalogique ne joue pas en sa faveur, mais ça ne veut pas tout dire.”
 			answer: ["celinevalluy"],
 			answertext: [
 				"Je n'arrive pas à le croire... Céline la tueuse, alors que je la connais depuis des années !",
 				"J'appelle les renforts, on va fouiller chez elle de fond en comble",
 			],
 			answersrc: "sounds/300-commentaires-sanchez-4.wav",
-			newdetail: [
-				"On a le nom des deux dernières cibles, mais il n'en reste plus qu'une en vie, il faut qu'on la trouve pour pouvoir la sauver",
-				"Qui est la dernière cible encore vivante ?",
-			],
-			// newlabel: null,
-			// newerrorMessage: null,
-			// newanswer: ["organise"],
-			// newanswertext: [
-			// 	"Nous avons donc affaire à un tueur organisé...",
-			// 	"Gardez bien cela à l'esprit pour le reste de l'enquête.",
-			// ],
-			// newanswersrc: null,
-			status: "closed",
+			status: "open",
 		},
 	],
 };
