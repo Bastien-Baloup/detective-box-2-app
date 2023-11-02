@@ -1076,7 +1076,7 @@ export const dataHistory = {
 			img1: "assets/photos-personnages/Samuel Perry.jpg",
 			img2: "assets/photos-personnages/raphaelle.jpg",
 			srcAudio: "sounds/207-echanges-samuel-perry-raphaelle.wav",
-			srcTranscript: "assets/transcripts/207_Echanges_Samuel_Perry-RaphaeÌˆlle_transcript.pdf",
+			srcTranscript: "assets/transcripts/207_Echanges_Samuel_Perry-Raphaelle_transcript.pdf",
 			status: false,
 		},
 		{
@@ -1138,7 +1138,7 @@ export const dataHistory = {
 		{
 			id: "box2video5",
 			box: "Box 2",
-			title: "Bureau de Fraser",
+			title: "Bureau de Lauren Fraser",
 			category: "Video",
 			detail: "Le tueur s'est introduit dans l'agence et a enlevé Lauren Fraser !",
 			poster: "thumbnails/video/DB_S02_210_def_miniature.jpg",
@@ -1406,8 +1406,8 @@ export const dataHistory = {
 			title: "Interrogatoire François Duchamp",
 			category: "Audio",
 			detail: "Profiler mentor de Lauren Fraser",
-			poster: "assets/photos-personnages/FrancÌ§ois-Duchamp.jpg",
-			img1: "assets/photos-personnages/FrancÌ§ois-Duchamp.jpg",
+			poster: "assets/photos-personnages/Francois-Duchamp.jpg",
+			img1: "assets/photos-personnages/Francois-Duchamp.jpg",
 			img2: "assets/photos-personnages/raphaelle.jpg",
 			srcAudio: "sounds/313-interrogatoire-francois-duchamp-raphaelle.wav",
 			srcTranscript: "assets/transcripts/313_Interrogatoire_Francois_Duchamp-Raphaelle_transcript.pdf",
