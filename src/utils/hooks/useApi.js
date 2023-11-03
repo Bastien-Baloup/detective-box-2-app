@@ -1,13 +1,9 @@
-import { urlApi } from "../const/urlApi";
-
-/**
- * Service to fetch Token with API
- * @param {object} credentials email and password used to connect
- * @returns {Promise} data containing user's token
- */
+const url = "https://api.detectivebox.remimichel.fr";
+// import { useNavigate } from "react-router-dom";
+// const navigate = useNavigate();
 
 export const getToken = (credentials) => {
-	return fetch("", {
+	return fetch(url + "/users/login", {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
@@ -26,21 +22,13 @@ export const getToken = (credentials) => {
 		});
 };
 
-/**
- * Service to update User Profile to MongoDB with API
- * @param {string} token auth otken used to put new user's infos
- * @param {object} credentials new firstName and lastName to upadate user profile
- * @returns {Promise} data containing new user's infos
- */
-
-export const putUser = (token, credentials) => {
-	return fetch("", {
-		method: "PUT",
+export const createUser = (newaccount) => {
+	return fetch(url + "/users/", {
+		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
-			Authorization: `Bearer ${token}`,
 		},
-		body: JSON.stringify(credentials),
+		body: JSON.stringify(newaccount),
 	})
 		.then((response) => response.json())
 		.then((data) => {
@@ -52,296 +40,484 @@ export const putUser = (token, credentials) => {
 		});
 };
 
-export const getBox = () => {
-	return fetch(urlApi.apiRemi() + "/box/", {
+export const getUser = (token) => {
+	return fetch(url + "/users/me", {
 		method: "GET",
+		headers: {
+			"Content-Type": "application/json",
+			Authorization: `Bearer ${token}`,
+		},
 	})
 		.then((response) => response.json())
 		.then((data) => {
 			console.log(data);
 			return data;
 		})
-		.catch(() => {
-			localStorage.clear();
+		.catch((error) => {
+			console.error(error);
 		});
 };
 
-export const updateBox = (boxid) => {
-	return fetch(urlApi.apiRemi() + `/box/${boxid}`, {
+export const updatePassword = (token, newpassword) => {
+	return fetch(url + "/users/", {
 		method: "PUT",
+		headers: {
+			"Content-Type": "application/json",
+			Authorization: `Bearer ${token}`,
+		},
+		body: JSON.stringify({
+			password: newpassword,
+		}),
 	})
 		.then((response) => response.json())
 		.then((data) => {
 			console.log(data);
 			return data;
 		})
-		.catch(() => {
-			localStorage.clear();
+		.catch((error) => {
+			console.error(error);
 		});
 };
 
-export const resetBox = () => {
-	return fetch(urlApi.apiRemi() + "/box/reset", {
+export const updateName = (token, id, newinfos) => {
+	return fetch(url + "/users/" + id, {
 		method: "PUT",
+		headers: {
+			"Content-Type": "application/json",
+			Authorization: `Bearer ${token}`,
+		},
+		body: JSON.stringify(newinfos),
 	})
 		.then((response) => response.json())
 		.then((data) => {
 			console.log(data);
 			return data;
 		})
-		.catch(() => {
-			localStorage.clear();
+		.catch((error) => {
+			console.error(error);
 		});
 };
 
-export const getQuizz = () => {
-	return fetch(urlApi.apiRemi() + "/quizz/", {
+export const getBox = (token) => {
+	return fetch(url + "/box/", {
 		method: "GET",
+		headers: {
+			"Content-Type": "application/json",
+			Authorization: `Bearer ${token}`,
+		},
 	})
 		.then((response) => response.json())
 		.then((data) => {
 			console.log(data);
 			return data;
 		})
-		.catch(() => {
-			localStorage.clear();
+		.catch((error) => {
+			console.error(error);
 		});
 };
 
-export const updateQuizz = (boxid) => {
-	return fetch(urlApi.apiRemi() + `/quizz/${boxid}`, {
+export const updateBox = (token, boxid, newstatus) => {
+	return fetch(url + `/box/` + boxid, {
 		method: "PUT",
+		headers: {
+			"Content-Type": "application/json",
+			Authorization: `Bearer ${token}`,
+		},
+		body: JSON.stringify({
+			status: newstatus,
+		}),
 	})
 		.then((response) => response.json())
 		.then((data) => {
 			console.log(data);
 			return data;
 		})
-		.catch(() => {
-			localStorage.clear();
+		.catch((error) => {
+			console.error(error);
 		});
 };
 
-export const resetQuizz = () => {
-	return fetch(urlApi.apiRemi() + "/quizz/reset", {
+export const resetBox = (token) => {
+	return fetch(url + "/box/reset", {
 		method: "PUT",
+		headers: {
+			"Content-Type": "application/json",
+			Authorization: `Bearer ${token}`,
+		},
 	})
 		.then((response) => response.json())
 		.then((data) => {
 			console.log(data);
 			return data;
 		})
-		.catch(() => {
-			localStorage.clear();
+		.catch((error) => {
+			console.error(error);
 		});
 };
 
-export const getHelp = () => {
-	return fetch(urlApi.apiRemi() + "/help", {
+export const getQuizzByBox = (token, boxid) => {
+	return fetch(url + "/quizz/" + boxid, {
 		method: "GET",
+		headers: {
+			"Content-Type": "application/json",
+			Authorization: `Bearer ${token}`,
+		},
 	})
 		.then((response) => response.json())
 		.then((data) => {
 			console.log(data);
 			return data;
 		})
-		.catch(() => {
-			localStorage.clear();
+		.catch((error) => {
+			console.error(error);
 		});
 };
 
-export const updateHelp = (id) => {
-	return fetch(urlApi.apiRemi() + `/help/${id}`, {
+export const updateQuizz = (token, boxid) => {
+	return fetch(url + "/quizz/" + boxid, {
 		method: "PUT",
+		headers: {
+			"Content-Type": "application/json",
+			Authorization: `Bearer ${token}`,
+		},
+		body: JSON.stringify({
+			status: true,
+		}),
 	})
 		.then((response) => response.json())
 		.then((data) => {
 			console.log(data);
 			return data;
 		})
-		.catch(() => {
-			localStorage.clear();
+		.catch((error) => {
+			console.error(error);
 		});
 };
 
-export const resetHelp = () => {
-	return fetch(urlApi.apiRemi() + "/help/reset", {
+export const resetQuizz = (token) => {
+	return fetch(url + "/quizz/reset", {
 		method: "PUT",
+		headers: {
+			"Content-Type": "application/json",
+			Authorization: `Bearer ${token}`,
+		},
 	})
 		.then((response) => response.json())
 		.then((data) => {
 			console.log(data);
 			return data;
 		})
-		.catch(() => {
-			localStorage.clear();
+		.catch((error) => {
+			console.error(error);
 		});
 };
 
-export const getObjectives = () => {
-	return fetch(urlApi.apiRemi() + "/objectives", {
+// export const getHelp = () => {
+// 	return fetch(url + "/help/", {
+// 		method: "GET",
+// 	})
+// 		.then((response) => response.json())
+// 		.then((data) => {
+// 			console.log(data);
+// 			return data;
+// 		})
+// 		.catch((error) => {
+// 			console.error(error);
+// 		});
+// };
+
+export const getHelpByBox = (token, boxid) => {
+	return fetch(url + "/help/" + boxid, {
 		method: "GET",
+		headers: {
+			"Content-Type": "application/json",
+			Authorization: `Bearer ${token}`,
+		},
 	})
 		.then((response) => response.json())
 		.then((data) => {
 			console.log(data);
 			return data;
 		})
-		.catch(() => {
-			localStorage.clear();
+		.catch((error) => {
+			console.error(error);
 		});
 };
 
-export const updateObjectives = (boxid) => {
-	return fetch(urlApi.apiRemi() + `/objectives/${boxid}`, {
+export const updateHelp = (token, boxid, helpid, newstatus) => {
+	return fetch(url + "/help/" + boxid + "/?id=" + helpid, {
 		method: "PUT",
+		headers: {
+			"Content-Type": "application/json",
+			Authorization: `Bearer ${token}`,
+		},
+		body: JSON.stringify({
+			status: newstatus,
+		}),
 	})
 		.then((response) => response.json())
 		.then((data) => {
 			console.log(data);
 			return data;
 		})
-		.catch(() => {
-			localStorage.clear();
+		.catch((error) => {
+			console.error(error);
 		});
 };
 
-export const resetObjectives = () => {
-	return fetch(urlApi.apiRemi() + "/objectives/reset", {
+export const resetHelp = (token) => {
+	return fetch(url + "/help/reset", {
 		method: "PUT",
+		headers: {
+			"Content-Type": "application/json",
+			Authorization: `Bearer ${token}`,
+		},
 	})
 		.then((response) => response.json())
 		.then((data) => {
 			console.log(data);
 			return data;
 		})
-		.catch(() => {
-			localStorage.clear();
+		.catch((error) => {
+			console.error(error);
 		});
 };
 
-export const getHistory = (boxid) => {
-	return fetch(urlApi.apiRemi() + `/history/${boxid}`, {
+export const getObjectivesByBox = (token, boxid) => {
+	return fetch(url + "/objectives/" + boxid, {
 		method: "GET",
+		headers: {
+			"Content-Type": "application/json",
+			Authorization: `Bearer ${token}`,
+		},
 	})
 		.then((response) => response.json())
 		.then((data) => {
 			console.log(data);
 			return data;
 		})
-		.catch(() => {
-			localStorage.clear();
+		.catch((error) => {
+			console.error(error);
 		});
 };
 
-export const updateHistory = (boxid) => {
-	return fetch(urlApi.apiRemi() + `/history/${boxid}`, {
+export const updateObjectives = (token, boxid, objectiveid, newstatus) => {
+	return fetch(url + "/help/" + boxid + "/?id=" + objectiveid, {
 		method: "PUT",
+		headers: {
+			"Content-Type": "application/json",
+			Authorization: `Bearer ${token}`,
+		},
+		body: JSON.stringify({
+			status: newstatus,
+		}),
 	})
 		.then((response) => response.json())
 		.then((data) => {
 			console.log(data);
 			return data;
 		})
-		.catch(() => {
-			localStorage.clear();
+		.catch((error) => {
+			console.error(error);
 		});
 };
 
-export const resetHistory = () => {
-	return fetch(urlApi.apiRemi() + "/history/reset", {
+export const resetObjectives = (token) => {
+	return fetch(url + "/objectives/reset", {
 		method: "PUT",
+		headers: {
+			"Content-Type": "application/json",
+			Authorization: `Bearer ${token}`,
+		},
 	})
 		.then((response) => response.json())
 		.then((data) => {
 			console.log(data);
 			return data;
 		})
-		.catch(() => {
-			localStorage.clear();
+		.catch((error) => {
+			console.error(error);
 		});
 };
 
-export const getCharactersById = (personnage) => {
-	return fetch(urlApi.apiRemi() + `/characters/${personnage}`, {
+export const getHistoryByBox = (token, boxid) => {
+	return fetch(url + "/history" + { boxid }, {
 		method: "GET",
+		headers: {
+			"Content-Type": "application/json",
+			Authorization: `Bearer ${token}`,
+		},
 	})
 		.then((response) => response.json())
 		.then((data) => {
 			console.log(data);
 			return data;
 		})
-		.catch(() => {
-			localStorage.clear();
+		.catch((error) => {
+			console.error(error);
 		});
 };
 
-export const updateCharactersById = (personnage, id) => {
-	return fetch(urlApi.apiRemi() + `/characters/${personnage}/${id}`, {
+export const updateHistory = (token, boxid, objectiveid) => {
+	return fetch(url + "/history/" + boxid + "/?id=" + objectiveid, {
 		method: "PUT",
+		headers: {
+			"Content-Type": "application/json",
+			Authorization: `Bearer ${token}`,
+		},
+		body: JSON.stringify({
+			status: true,
+		}),
 	})
 		.then((response) => response.json())
 		.then((data) => {
 			console.log(data);
 			return data;
 		})
-		.catch(() => {
-			localStorage.clear();
+		.catch((error) => {
+			console.error(error);
 		});
 };
 
-export const resetCharacters = () => {
-	return fetch(urlApi.apiRemi() + "/characters/reset", {
+export const resetHistory = (token) => {
+	return fetch(url + "/history/reset", {
 		method: "PUT",
+		headers: {
+			"Content-Type": "application/json",
+			Authorization: `Bearer ${token}`,
+		},
 	})
 		.then((response) => response.json())
 		.then((data) => {
 			console.log(data);
 			return data;
 		})
-		.catch(() => {
-			localStorage.clear();
+		.catch((error) => {
+			console.error(error);
 		});
 };
 
-export const getEvent = (boxid) => {
-	return fetch(urlApi.apiRemi() + `/events/${boxid}`, {
+// export const getCharacters = () => {
+// 	return fetch(url + "/characters/", {
+// 		method: "GET",
+// 	})
+// 		.then((response) => response.json())
+// 		.then((data) => {
+// 			console.log(data);
+// 			return data;
+// 		})
+// 		.catch((error) => {
+// 			console.error(error);
+// 		});
+// };
+
+export const getCharactersById = (token, personnage) => {
+	return fetch(url + "/characters/" + personnage, {
 		method: "GET",
+		headers: {
+			"Content-Type": "application/json",
+			Authorization: `Bearer ${token}`,
+		},
 	})
 		.then((response) => response.json())
 		.then((data) => {
 			console.log(data);
 			return data;
 		})
-		.catch(() => {
-			localStorage.clear();
+		.catch((error) => {
+			console.error(error);
 		});
 };
 
-export const updateEvent = (boxid) => {
-	return fetch(urlApi.apiRemi() + `/events/${boxid}`, {
+export const updateCharactersById = (token, personnage, boxid, answer) => {
+	return fetch(url + "/characters/" + personnage + "/" + boxid + "/?answer=" + answer, {
 		method: "PUT",
+		headers: {
+			"Content-Type": "application/json",
+			Authorization: `Bearer ${token}`,
+		},
 	})
 		.then((response) => response.json())
 		.then((data) => {
 			console.log(data);
 			return data;
 		})
-		.catch(() => {
-			localStorage.clear();
+		.catch((error) => {
+			console.error(error);
 		});
 };
 
-export const resetEvent = () => {
-	return fetch(urlApi.apiRemi() + "/events/reset", {
+export const resetCharacters = (token) => {
+	return fetch(url + "/characters/reset", {
 		method: "PUT",
+		headers: {
+			"Content-Type": "application/json",
+			Authorization: `Bearer ${token}`,
+		},
 	})
 		.then((response) => response.json())
 		.then((data) => {
 			console.log(data);
 			return data;
 		})
-		.catch(() => {
-			localStorage.clear();
+		.catch((error) => {
+			console.error(error);
+		});
+};
+
+export const getEventByBox = (token, boxid) => {
+	return fetch(url + "/events/" + boxid, {
+		method: "GET",
+		headers: {
+			"Content-Type": "application/json",
+			Authorization: `Bearer ${token}`,
+		},
+	})
+		.then((response) => response.json())
+		.then((data) => {
+			console.log(data);
+			return data;
+		})
+		.catch((error) => {
+			console.error(error);
+		});
+};
+
+export const updateEvent = (token, boxid, id, newstatus) => {
+	return fetch(url + "/events/" + boxid + "/?id=" + id, {
+		method: "PUT",
+		headers: {
+			"Content-Type": "application/json",
+			Authorization: `Bearer ${token}`,
+		},
+		body: JSON.stringify({
+			status: newstatus,
+		}),
+	})
+		.then((response) => response.json())
+		.then((data) => {
+			console.log(data);
+			return data;
+		})
+		.catch((error) => {
+			console.error(error);
+		});
+};
+
+export const resetEvent = (token) => {
+	return fetch(url + "/events/reset", {
+		method: "PUT",
+		headers: {
+			"Content-Type": "application/json",
+			Authorization: `Bearer ${token}`,
+		},
+	})
+		.then((response) => response.json())
+		.then((data) => {
+			console.log(data);
+			return data;
+		})
+		.catch((error) => {
+			console.error(error);
 		});
 };

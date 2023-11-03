@@ -19,18 +19,18 @@ export const BoxProvider = ({ children }) => {
 export const AuthContext = createContext("");
 
 const getInitialState = () => {
-	const credentials = localStorage.getItem("credentials");
-	return credentials ? JSON.parse(credentials) : null;
+	const token = localStorage.getItem("token");
+	return token ? JSON.parse(token) : null;
 };
 
 const getInitialLogin = () => {
-	const credentials = localStorage.getItem("credentials");
-	return credentials ? true : false;
+	const token = localStorage.getItem("token");
+	return token ? true : false;
 };
 
 export const AuthProvider = ({ children }) => {
 	const [loggedIn, setLoggedIn] = useState(getInitialLogin);
-	const [credentials, setCredentials] = useState(getInitialState);
+	const [token, setToken] = useState(getInitialState);
 
 	// useEffect(() => {
 	// 	const existingCredentials = localStorage.getItem("credentials");
@@ -68,10 +68,10 @@ export const AuthProvider = ({ children }) => {
 	// 	}
 	// }, [credentials]);
 
-	const login = (credentials) => {
-		// console.log(credentials);
-		localStorage.setItem("credentials", JSON.stringify(credentials));
-		setCredentials(credentials);
+	const login = (token) => {
+		localStorage.setItem("token", JSON.stringify(token));
+		// localStorage.setItem("token", dataToken.body.token);
+		setToken(token);
 		setLoggedIn(true);
 	};
 
@@ -81,7 +81,7 @@ export const AuthProvider = ({ children }) => {
 	};
 
 	return (
-		<AuthContext.Provider value={{ setLoggedIn, loggedIn, setCredentials, credentials, login, logout }}>
+		<AuthContext.Provider value={{ setLoggedIn, loggedIn, setToken, token, login, logout }}>
 			{children}
 		</AuthContext.Provider>
 	);

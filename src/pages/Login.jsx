@@ -6,7 +6,8 @@ import { useContext } from "react";
 import Signin from "../components/Signin";
 import Signup from "../components/Signup";
 import Logo from "../assets/img/DB-Logo-DetectiveBox_DetectiveBlanc.png";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
+import { getToken } from "../utils/hooks/useApi.js";
 
 function Login() {
 	const [isSigninActive, setIsSigninActive] = useState(true);
@@ -18,49 +19,28 @@ function Login() {
 	const [email, setEmail] = useState("");
 	const [emailForgot, setEmailForgot] = useState("");
 	const credentials = { email: email, password: password };
+	// const newaccount = { email: email, password: password, name: username };
 	const { login, loggedIn } = useContext(AuthContext);
-	const navigate = useNavigate();
 
 	// EXPLICATION : Si le joueur est connecté, alors redirection sur le choix des boxs
 	if (loggedIn) {
 		return <Navigate to="/box-choice" />;
 	}
 
-	const handleSubmitSignin = (e) => {
+	const handleSubmitSignin = async (e) => {
 		e.preventDefault();
 		if (email === "" || password === "") {
 			setErrorMessageSignin("Merci de remplir le formulaire pour vous connecter");
 			return;
 		}
-		// setEmail("");
-		// setPassword("");
-		// setErrorMessageSignin("");
-		login(credentials);
-		navigate("/box-choice");
-
-		// const handleSubmit = async (e) => {
-		// 	e.preventDefault();
-		// 	setErrorMessage("");
-		// 	if (username === "" || password === "") {
-		// 		setErrorMessage("Please fill the form to connect");
-		// 		return;
-		// 	}
-
-		// 	const credentials = { email: username, password: password };
-
-		// 	const dataToken = await getToken(credentials);
-		// 	if (dataToken.status === 200) {
-		// 		localStorage.setItem("token", dataToken.body.token);
-		// 	} else {
-		// 		setErrorMessage(dataToken.message);
-		// 	}
-		// 	const token = localStorage.getItem("token");
-		// 	if (token) {
-		// 		dispatch(logIn());
-		// 		const dataUser = await getUser(token);
-		// 		dispatch(getName(dataUser.body.firstName, dataUser.body.lastName));
-		// 	}
-		// };
+		const dataToken = await getToken(credentials);
+		if (dataToken.status === 200) {
+			login(dataToken);
+			console.log(dataToken);
+		} else {
+			console.log(dataToken.status);
+		}
+		console.log(JSON.stringify(credentials));
 	};
 
 	const handleSubmitSignup = (e) => {
