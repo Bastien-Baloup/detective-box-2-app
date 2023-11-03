@@ -1,3 +1,5 @@
+// EXPLICATION : Page pour l'affichage du choix des scénario qui a été transformé en landing page
+
 import Saison1 from "../assets/img/encart_saison1.jpg";
 import Saison2 from "../assets/img/encart_saison2.jpg";
 import Paper from "../assets/img/DB-papier-froisse.jpg";

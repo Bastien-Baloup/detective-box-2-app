@@ -1,15 +1,20 @@
-// When audio done, update state to put it into historique
+// EXPLICATION : Ce composant retourne la modale Audio.
+// EXPLICATION : Utilisation de wavesurfer pour avoir un style particulier sur l'audio.
+
 import PropTypes from "prop-types";
-import { useEffect, useState, useRef } from "react";
 import Play from "../assets/icons/Icon_Play.svg";
 import Pause from "../assets/icons/Icon_Pause.svg";
 import WaveSurfer from "wavesurfer.js";
+// import { AmbianceContext } from "../utils/context/fetchContext.jsx";
+import { useEffect, useState, useRef } from "react";
 
 const Audio = ({ title, srcImg1, srcImg2, srcTranscription, handleModalAudio, srcAudio }) => {
 	const containerRef = useRef(undefined);
 	const waveSurferRef = useRef(false);
 	const [isPlaying, setIsPlaying] = useState(false);
+	// const { fetchPreviousStateNappe, fetchResumeNappe } = useContext(AmbianceContext);
 
+// EXPLICATION : Cette fonction est utilisée pour faire fonctioner la librairie waveSurfer
 	useEffect(() => {
 		const waveSurfer = WaveSurfer.create({
 			container: containerRef.current,
@@ -35,8 +40,14 @@ const Audio = ({ title, srcImg1, srcImg2, srcTranscription, handleModalAudio, sr
 		};
 	}, [srcAudio]);
 
+	// EXPLICATION : Cette fonction permet d'ouvrir le document de transcription de l'audio dans un nouvel onglet
 	const openInNewTab = () => {
 		window.open(srcTranscription, "_blank");
+	};
+
+	const handleEndAudioModal = () => {
+		handleModalAudio();
+		// Fetch ambiance resume ?
 	};
 
 	return (
@@ -64,7 +75,7 @@ const Audio = ({ title, srcImg1, srcImg2, srcTranscription, handleModalAudio, sr
 					<div className="modal-audio__player__waveform-container" ref={containerRef}></div>
 				</div>
 				<div className="modal-audio__buttons">
-					<button className="modal-audio__button--resume button--red" onClick={handleModalAudio}>
+					<button className="modal-audio__button--resume button--red" onClick={handleEndAudioModal}>
 						Continuer l&apos;enquête
 					</button>
 					<button className="modal-audio__button--display button--white" onClick={openInNewTab}>

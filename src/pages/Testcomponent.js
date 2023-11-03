@@ -1,3 +1,5 @@
+// EXPLICATION : Page brouillon
+
 import { useEffect, useState, useRef } from "react";
 import Audio from "../components/Audio.jsx";
 import Card from "../components/Card.jsx";

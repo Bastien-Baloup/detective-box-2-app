@@ -1,3 +1,5 @@
+// EXPLICATION : Page Historique qui permet d'afficher toutes les preuves + les filtres de tri pour trier ces mêmes preuves en fonction de leur type et des boxs.
+
 import { useState } from "react";
 import Filter from "../components/Filter";
 import Preuve from "../components/Preuve";

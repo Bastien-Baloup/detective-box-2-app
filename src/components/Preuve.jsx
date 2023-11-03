@@ -1,3 +1,5 @@
+// EXPLICATION : Ce composant retourne les cartes Preuves qui sont affichées dans la page Historique
+
 import PropTypes from "prop-types";
 import Archiveicon from "../assets/icons/Icon_mini_Archive.svg";
 import Documenticon from "../assets/icons/Icon_mini_Document.svg";
@@ -7,6 +9,7 @@ import Videoicon from "../assets/icons/Icon_mini_Video.svg";
 import { urlApi } from "../utils/const/urlApi";
 
 const Preuve = ({ data, openModal }) => {
+	// EXPLICATION : Fonction pour afficher la bonne icone en fonction du type de preuve
 	const findIcon = () => {
 		if (data.category == "Archive") {
 			return Archiveicon;

@@ -1,3 +1,6 @@
+// EXPLICATION : Ce composant retourne la barre de progression qui se met à jour avec les objectifs.
+// EXPLICATION : Ce composant est utilisé dans le Header
+
 import RoundWhite from "../assets/icons/Icon_Round-white.svg";
 import RoundRed from "../assets/icons/Icon_Round-red.svg";
 import LineMediumWhite from "../assets/icons/Icon_Line_Medium-white.svg";
@@ -12,16 +15,14 @@ import { BoxContext } from "../utils/context/fetchContext";
 import { useContext } from "react";
 import { dataObjectif } from "../utils/const/dataObjectif";
 
-// rendre les points équidistants dans la box 3
-
 const Progression = () => {
 	const { currentBox } = useContext(BoxContext);
-
 	const currentStep = dataObjectif[currentBox].filter((element) => element.status == "done").length;
-
 	const trackBox = (box) => {
 		const boxPlayed = box < currentBox;
 
+		// EXPLICATION : Si la box a été jouée (box < currentbox), alors on retourne ces icones
+		// EXPLICATION : Si la box est en cours, alors on affiche les icones en fonction des étapes de validation des objectifs
 		if (boxPlayed) {
 			return (
 				<>
@@ -48,6 +49,7 @@ const Progression = () => {
 		);
 	};
 
+	// EXPLICATION : Si la box n'est pas encore jouée, afficher ces icones
 	const noTrackBox = () => {
 		return (
 			<>

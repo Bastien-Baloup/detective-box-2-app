@@ -1,3 +1,5 @@
+// EXPLICATION : Page Login qui va afficher les formulaires sign in, sign up et mot de passe oublié
+
 import { useState } from "react";
 import { AuthContext } from "../utils/context/fetchContext.jsx";
 import { useContext } from "react";
@@ -19,6 +21,7 @@ function Login() {
 	const { login, loggedIn } = useContext(AuthContext);
 	const navigate = useNavigate();
 
+	// EXPLICATION : Si le joueur est connecté, alors redirection sur le choix des boxs
 	if (loggedIn) {
 		return <Navigate to="/box-choice" />;
 	}
@@ -70,11 +73,13 @@ function Login() {
 		setEmail("");
 		setPassword("");
 		setErrorMessageSignup("");
+		//API pour créer compte
 		alert("Compte bien créé Agent ");
 	};
 
 	// si email exist, renvoyer "Votre compte existe déjà, merci de vous connecter"
 
+	// EXPLICATION : Gérer le formulaire pour le mot de passe oublié
 	const handleSubmitEmailForgot = (e) => {
 		e.preventDefault();
 		if (emailForgot === "") {
@@ -83,9 +88,10 @@ function Login() {
 		}
 		setEmailForgot("");
 		setErrorMessageForgot("");
-		alert("Votre mot de passe vous a été envoyé par mail !");
+		alert("Un nouveau mot de passe vous a été envoyé par mail !");
 	};
 
+	// EXPLICATION : A chaque fois qu'on switch de sign in à sign up, alors on reset les states
 	const switchToSignup = () => {
 		setErrorMessageForgot("");
 		setErrorMessageSignin("");
@@ -95,7 +101,7 @@ function Login() {
 		setEmail("");
 		setPassword("");
 	};
-
+	// EXPLICATION : A chaque fois qu'on switch de sign up à sign in, alors on reset les states
 	const switchToSignin = () => {
 		setErrorMessageForgot("");
 		setErrorMessageSignin("");

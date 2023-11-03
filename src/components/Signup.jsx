@@ -1,3 +1,6 @@
+// Ce composant permet d'afficher le formulaire pour se créer un compte
+// Ce composant est utilisé dans la page Login
+
 import Input from "./Input";
 import PropTypes from "prop-types";
 

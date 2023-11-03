@@ -1,14 +1,23 @@
-// When document seen, update state to put it into historique
+// EXPLICATION : Ce composant permet d'afficher les modales videos.
+
 import PropTypes from "prop-types";
 import { useState } from "react";
+// import { AmbianceContext } from "../utils/context/fetchContext.jsx";
+// import { useContext } from "react";
 
 const Video = ({ title, srcVideo, handleModalVideo, delayedButton }) => {
 	const [isDone, setIsDone] = useState(false);
+	// const { fetchPreviousStateNappe, fetchResumeNappe } = useContext(AmbianceContext);
+
+	const handleEndAudioModal = () => {
+		handleModalVideo();
+	};
 
 	const handleVideoEnded = () => {
 		setIsDone(true);
 	};
 
+	// EXPLICATION : Attention, le bouton peut s'afficher une fois la vidéo finie (forcer les joueurs à la regarder jusqu'au bout) ou dès le départ (utile dans l'historique par exemple)
 	return (
 		<div className="modal-video__background">
 			<div className="modal-video__box">
@@ -20,14 +29,14 @@ const Video = ({ title, srcVideo, handleModalVideo, delayedButton }) => {
 						height="240"
 						controls
 						controlsList="nodownload"
-						onContextMenu={e => e.preventDefault()}
+						onContextMenu={(e) => e.preventDefault()}
 						onLoadStart={delayedButton == false ? handleVideoEnded : null}
 						onEnded={delayedButton == true ? handleVideoEnded : null}
 					>
-						<source src={srcVideo} type="video/mp4"  />
+						<source src={srcVideo} type="video/mp4" />
 					</video>
 				</div>
-				<button className={"modal-video__button" + (isDone ? "-show" : "") + " button--red"} onClick={handleModalVideo}>
+				<button className={"modal-video__button" + (isDone ? "-show" : "") + " button--red"} onClick={handleEndAudioModal}>
 					Continuer l&apos;enquête
 				</button>
 			</div>

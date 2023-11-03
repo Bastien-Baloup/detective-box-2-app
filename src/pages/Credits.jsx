@@ -1,3 +1,6 @@
+// EXPLICATION : Cette page permet l'affichage des crédits.
+// EXPLICATION : Ce sont les mêmes crédits que dans la vidéo de fin. Ne pas les changer !
+
 import { Link } from "react-router-dom";
 
 function Credits() {

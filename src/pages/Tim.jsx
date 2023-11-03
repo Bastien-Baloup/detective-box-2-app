@@ -1,3 +1,6 @@
+// EXPLICATION : Page pour faire les requêtes auprès du personnage de Tim
+// EXPLICATION : Les validations des requêtes sont faites ici
+
 import PhotoTim from "../assets/img/Agent_tim.jpg";
 import Input from "../components/Input.jsx";
 import Document from "../components/Document.jsx";
@@ -17,6 +20,7 @@ const Tim = ({ closeAgentPage }) => {
 	const [modalMedia, setModalMedia] = useState(false);
 	const [answer, setAnswer] = useState("");
 
+	// EXPLICATION : Fonction pour slugifier l'input des joueurs
 	const slugify = (input) => {
 		let inputSlugified = input
 			.replace(/\s/g, "")
@@ -27,6 +31,8 @@ const Tim = ({ closeAgentPage }) => {
 		return inputSlugified;
 	};
 
+	// EXPLICATION : Les réponses peuvent être trouvées dans la box actuelle ou les boxs précédentes
+	// EXPLICATION : Les réponses du personnage dépendent de la location de la réponse (box précedente ou box actuelle) et du status de la réponse (déjà demandé ou pas)
 	const handleSubmit = (e) => {
 		const answerInThisBox = dataTim[currentBox].find((element) => element.ask.includes(slugify(value)));
 		const previouslyAnsweredInThisBox = answerInThisBox && answerInThisBox.status;

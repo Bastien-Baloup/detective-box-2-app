@@ -1,11 +1,14 @@
-// When document seen, update state to put it into historique
+// EXPLICATION : Ce composant permet de rendre la modale Document.
+
 import PropTypes from "prop-types";
 
 const Document = ({ title, srcElement, handleModalDocument }) => {
+	// EXPLICATION : Cette fonction permet d'ouvrir le document dans un nouvel onglet (pour le voir en plus grand)
 	const openInNewTab = () => {
 		window.open(srcElement, "_blank");
 	};
 
+	// EXPLICATION : Cette fonction permet d'afficher une img ou un iframe dans la modale en fonction de si le document est un pdf ou un png/jpeg
 	const mediaFactory = (src) => {
 		const extension = src.slice(((src.lastIndexOf(".") - 1) >>> 0) + 2);
 		if (extension == "pdf") {

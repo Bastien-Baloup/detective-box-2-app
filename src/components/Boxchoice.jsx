@@ -1,3 +1,9 @@
+// EXPLICATION : Ce composant retourne les cartes de choix des boxs.
+// EXPLICATION : Ce composant est utilise dans la page Choice
+// EXPLICATION : Si la box est fermé, pas de clic possible.
+// EXPLICATION : Si la box est ouverte, on récupére le numéro de la box pour le mettre dans le context
+// EXPLICATION : Si la box est terminée, une modale s'ouvre proposant aux joueurs de continuer l'aventure ou de se rendre sur le site pour d'autres enquêtes
+
 import PropTypes from "prop-types";
 import { useState } from "react";
 import { Link } from "react-router-dom";
@@ -17,10 +23,12 @@ const BoxChoice = ({ data }) => {
 		setModal(!modal);
 	};
 
+	// EXPLICATION : Cette fonction permet d'ouvrir le site dans un nouvel onglet
 	const openWebsite = () => {
 		window.open("https://detectivebox.fr/", "_blank");
 	};
 
+	// EXPLICATION : Cette fonction permet d'afficher la modale qui invite les joueurs à se rendre sur le site s'ils ont finit la box
 	const renderModal = () => {
 		return (
 			<div className="modal-boxdone__background">
@@ -41,6 +49,7 @@ const BoxChoice = ({ data }) => {
 		);
 	};
 
+	// EXPLICATION : Cette fonction permet d'afficher la carte en fonction de son status (done, closed, open)
 	const renderBox = () => {
 		if (data.status == "done") {
 			return (

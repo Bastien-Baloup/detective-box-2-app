@@ -1,3 +1,6 @@
+// Page pour faire les requêtes auprès du personnage de Raphaelle
+// Les validations des requêtes sont faites ici
+
 import PhotoRaphaelle from "../assets/img/Agent_raphaelle.jpg";
 import Input from "../components/Input.jsx";
 import Cross from "../assets/icons/Icon_Cross-white.svg";
@@ -16,6 +19,7 @@ const Raphaelle = ({ closeAgentPage }) => {
 	const [modal, setModal] = useState(false);
 	const [answer, setAnswer] = useState("");
 
+	// EXPLICATION : Fonction pour slugifier l'input Adresse des joueurs (lettre et chiffres ok)
 	const slugifyAdresse = (input) => {
 		let inputSlugified = input
 			.replace(/\s/g, "")
@@ -25,6 +29,8 @@ const Raphaelle = ({ closeAgentPage }) => {
 			.replace(/[^a-z0-9]/g, "");
 		return inputSlugified;
 	};
+
+	// EXPLICATION : Fonction pour slugifier l'input GPS des joueurs (seulement )
 	const slugifyGPS = (input) => {
 		let inputSlugified = input
 			.replace(/\s/g, "")
@@ -35,6 +41,9 @@ const Raphaelle = ({ closeAgentPage }) => {
 		return inputSlugified;
 	};
 
+	// EXPLICATION : Les réponses peuvent être trouvées dans la box actuelle ou les boxs précédentes
+	// EXPLICATION : Les réponses du personnage dépendent de la location de la réponse (box précedente ou box actuelle) et du status de la réponse (déjà demandé ou pas)
+	// EXPLICATION : Pour rappel, Raphaëlle est le seul personnage qui a deux champs (adresse et GPS(latitude et longitude))
 	const handleSubmit = (e) => {
 		const answerInThisBox = (value) => {
 			return dataRaphaelle[currentBox].find((element) => element.ask.includes(value));
@@ -46,6 +55,7 @@ const Raphaelle = ({ closeAgentPage }) => {
 		const answerInBox2 = (value) => dataRaphaelle["box2"].some((element) => element.ask.includes(value));
 
 		e.preventDefault();
+		// EXPLICATION : si les deux champs sont remplis, message d'erreur
 		if (valueAdresse != "" && (valueLatitude != "" || valueLongitude != "")) {
 			setErrorMessage("Il faut me donner une adresse ou une localisation GPS, pas les deux en même temps !");
 			setValueAdresse("");
@@ -53,6 +63,7 @@ const Raphaelle = ({ closeAgentPage }) => {
 			setValueLongitude("");
 			return;
 		}
+		// EXPLICATION : si aucun des champs n'est rempli, message d'erreur
 		if (valueAdresse == "" && valueLatitude == "" && valueLongitude == "") {
 			setErrorMessage("On n'a pas le temps d'être indécis. Dîtes moi où aller.");
 			setValueAdresse("");
@@ -60,8 +71,10 @@ const Raphaelle = ({ closeAgentPage }) => {
 			setValueLatitude("");
 			return;
 		}
+		// EXPLICATION : si uniquement le champ adresse est rempli
 		if (valueAdresse != "" && valueLatitude == "" && valueLongitude == "") {
 			let slugifiedAdresse = slugifyAdresse(valueAdresse);
+			// EXPLICATION : Verifie que l'adresse contient au moins une lettre, sinon les joueurs peuvent rentrer les coordonnées GPS dans le champ adresse
 			let regex = /[a-zA-Z]/;
 			const doesItHaveLetters = regex.test(slugifiedAdresse);
 			if (doesItHaveLetters == false) {
@@ -106,7 +119,7 @@ const Raphaelle = ({ closeAgentPage }) => {
 				return;
 			}
 		}
-
+		// EXPLICATION : si uniquement les champs latitude et longitude sont remplis
 		if ((valueLatitude != "" || valueLongitude != "") && valueAdresse == "") {
 			let GPS = valueLatitude.concat(valueLongitude);
 			let slugifiedGPS = slugifyGPS(GPS);
@@ -173,6 +186,7 @@ const Raphaelle = ({ closeAgentPage }) => {
 	const openLieu = () => {
 		window.open(answer.src, "_blank");
 		validateModal();
+		// ne pas oublier le token dans l'url
 		// API Mettre ce lieu de fouille dans l'Historique
 	};
 

@@ -1,3 +1,6 @@
+// EXXPLICATION : Ce composant permet de rendre le slider qui est utilisé pour les renforts (affiche toutes les aides une par une)
+// EXPLICATION : Ce composant est utilisé dans la page Help
+
 import PropTypes from "prop-types";
 import { useState } from "react";
 import Empty from "../assets/icons/Icon_Cercle-empty.svg";
@@ -11,6 +14,7 @@ const Slider = ({ data, handleModal, url }) => {
 	const totalItems = data.hints.length;
 	const pagination = [];
 
+	// EXPLICATION : Affiche le tracker de bas de page
 	const renderPagination = () => {
 		for (let i = 0; i < totalItems; i++) {
 			pagination.push(
@@ -75,7 +79,6 @@ const Slider = ({ data, handleModal, url }) => {
 					<img className="slider__header__icon" src={Cross} onClick={handleModal} />
 				</button>
 			</div>
-
 			<div className="slider__main">
 				{renderArrowLeft()}
 				<div className="slider__content">

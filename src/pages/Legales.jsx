@@ -1,3 +1,5 @@
+// EXPLICATION : Page pas écrite et non utilisée car pas d'information de la part du client
+
 import { Link } from "react-router-dom";
 
 function Legales() {

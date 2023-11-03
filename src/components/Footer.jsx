@@ -1,10 +1,13 @@
+// EXPLICATION : Ce composant permet de rendre le footer qui contient les objectifs
+
 import Paper from "../assets/img/Paper.png";
 import Objectif from "./Objectif";
 import { dataObjectif } from "../utils/const/dataObjectif.js";
 import { BoxContext } from "../utils/context/fetchContext.jsx";
-import { useContext } from "react";	
+import { useContext } from "react";
 
 const Footer = () => {
+	// EXPLICATION : CurrentBox est utilisé pour fetcher uniquement les objectifs de la boite en cours.
 	const { currentBox } = useContext(BoxContext);
 
 	return (
@@ -26,5 +29,5 @@ const Footer = () => {
 			</div>
 		</footer>
 	);
-}
+};
 export default Footer;

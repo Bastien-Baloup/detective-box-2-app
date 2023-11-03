@@ -1,3 +1,5 @@
+// EXPLICATION : Ce composant permet de mettre le Header, le Footer et le coeur de l'application ensemble, car ils sont tous impactés par le currentBox du fetch context
+
 import { Outlet } from "react-router-dom";
 import Header from "./Header.jsx";
 import Footer from "./Footer.jsx";

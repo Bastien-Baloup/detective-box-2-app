@@ -1,12 +1,12 @@
-// Quizz n'apparait qu'à la première ouverture de la box. Penser à mettre un état done = true dans la BDD
+// EXPLICATION : Ce composant permet d'afficher le quizz pour les box 2 et box 3.
+// EXPLICATION : Le quizz n'apparait qu'une seule fois ever. Son status est mis à jour dans le Header
+
 import PropTypes from "prop-types";
 import { useState } from "react";
 import Empty from "../assets/icons/Icon_Cercle-empty.svg";
 import Full from "../assets/icons/Icon_Cercle-full.svg";
 import Input from "./Input.jsx";
 import Timer from "./Timer.jsx";
-
-//Mettre des boutons carrés quant multi choice
 
 const Quizz = ({ data, handleEndQuizz, url }) => {
 	const [instructionActive, setInstructionActive] = useState(true);
@@ -35,12 +35,14 @@ const Quizz = ({ data, handleEndQuizz, url }) => {
 		);
 	};
 
+	// EXPLICATION : A la fin de la modale d'instruction, afficher le jeu avec la première question
 	const endInstructions = () => {
 		setInstructionActive(false);
 		setGameActive(true);
 		setQuestionDisplayed(true);
 	};
 
+	// EXPLICATION : Alternance entre les questions et les réponses
 	const displayGame = () => {
 		return (
 			<>
@@ -50,6 +52,7 @@ const Quizz = ({ data, handleEndQuizz, url }) => {
 		);
 	};
 
+	// EXPLICATION : Afficher le tracker de question en bas de modale
 	const renderPagination = () => {
 		for (let i = 0; i < totalQuestions; i++) {
 			pagination.push(
@@ -64,10 +67,12 @@ const Quizz = ({ data, handleEndQuizz, url }) => {
 		return pagination;
 	};
 
+	// EXPLICATION : Fonction pour avoir plusieurs valeurs stockées si réponse à choix multiple
 	const setMultiValueInput = (value) => {
 		setValueInput((previousValueInput) => [...previousValueInput, value]);
 	};
 
+	// EXPLICATION : Render des options en fonction de si la question est à choix multiple ou non (props multi ou non)
 	const renderChoices = () => {
 		if (data.questions[index].multi) {
 			const inputs = data.questions[index].choices.map((el, i) => {
@@ -82,6 +87,7 @@ const Quizz = ({ data, handleEndQuizz, url }) => {
 		}
 	};
 
+	// EXPLICATION : Afficher le texte des questions
 	const renderQuestionText = () => {
 		const text = data.questions[index].question.map((el, i) => {
 			return <p key={i}>{el}</p>;
@@ -89,6 +95,7 @@ const Quizz = ({ data, handleEndQuizz, url }) => {
 		return text;
 	};
 
+	// EXPLICATION : Afficher les questions avec le timer. Si le timer passe à zéro, on passe à la réponse.
 	const renderQuestion = () => {
 		return (
 			<div className="quizz__question">
@@ -116,6 +123,7 @@ const Quizz = ({ data, handleEndQuizz, url }) => {
 		);
 	};
 
+	// EXPLICATION : Afficher le texte des réponses
 	const renderAnswerText = () => {
 		const text = data.answers[index].explanation.map((el, i) => {
 			return <p key={i}>{el}</p>;
@@ -123,6 +131,7 @@ const Quizz = ({ data, handleEndQuizz, url }) => {
 		return text;
 	};
 
+	// EXPLICATION : Afficher les réponses
 	const renderAsnwer = () => {
 		return (
 			<div className="quizz__answer">
@@ -149,6 +158,7 @@ const Quizz = ({ data, handleEndQuizz, url }) => {
 		);
 	};
 
+	// EXPLICATION : Si bonne réponse, alors augmenter le score + changer le state de validationQuestion pour afficher "bonne réponse" ou "mauvaise réponse" sur la modale des réponse
 	const handleQuestionForm = () => {
 		if (data.answers[index].multi) {
 			if (data.answers[index].answer.every((answer) => valueInput.includes(answer))) {
@@ -164,6 +174,7 @@ const Quizz = ({ data, handleEndQuizz, url }) => {
 		setAnswerDisplayed(true);
 	};
 
+	// EXPLICATION : Si la réponse est la dernière de la liste, alors on arrête le jeu et on affiche les résultats.
 	const handleAnswerForm = () => {
 		if (index === totalQuestions - 1) {
 			endGame();
@@ -176,11 +187,13 @@ const Quizz = ({ data, handleEndQuizz, url }) => {
 		}
 	};
 
+	// EXPLICATION : On arrête le jeu et on affiche les résultats
 	const endGame = () => {
 		setGameActive(false);
 		setResultActive(true);
 	};
 
+	// EXPLICATION : On affiche les commentaires en fonction du score
 	const displayComment = () => {
 		if (score === 0) {
 			return "C'est pas terrible tout ça, j'espère que vous avez plus de capacité de déduction que de mémoire…";
@@ -196,6 +209,7 @@ const Quizz = ({ data, handleEndQuizz, url }) => {
 		}
 	};
 
+	// EXPLICATION : On affiche la modale de résultat avec le score, le commentaire associé et le bouton qui permet de fermer le quizz (et d'afficher la vidéo de briefing -- voir Header)
 	const displayResults = () => {
 		return (
 			<div className="quizz__results">

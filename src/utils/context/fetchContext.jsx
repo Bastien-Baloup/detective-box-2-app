@@ -19,7 +19,6 @@ export const BoxProvider = ({ children }) => {
 export const AuthContext = createContext("");
 
 const getInitialState = () => {
-	// console.log("on passe par là");
 	const credentials = localStorage.getItem("credentials");
 	return credentials ? JSON.parse(credentials) : null;
 };
@@ -111,6 +110,7 @@ export const AmbianceProvider = ({ children }) => {
 	};
 
 	const fetchResumeNappe = () => {
+		console.log(ispreviouslyMuted);
 		if (!ispreviouslyMuted) {
 			setNappeMute(false);
 		}

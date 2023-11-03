@@ -1,3 +1,5 @@
+// EXPLICATION : Page pour permettre aux joueurs de changer leur identifiant et leur mot de passe
+
 import { Link } from "react-router-dom";
 import Input from "../components/Input";
 import { useState } from "react";

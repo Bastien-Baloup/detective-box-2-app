@@ -1,3 +1,11 @@
+// EXPLICATION : Ce composant permet de rendre le dropdown menu.
+// EXPLICATION : Ce dropdown permet d'activer ou de désactiver la musique d'ambiance
+// EXPLICATION : + d'envoyer les joueurs sur la page paramètre pour changer mot de passe et nom d'utilisateur
+// EXPLICATION : + de renvoyer vers la page des mentions légales de app1 (un boilerplate d'une page mention légale est disponible dans les composants de cette app au besoin)
+// EXPLICATION : + de renvoyer vers la page crédit
+// EXPLICATION : + de déconnecter l'utilisateur
+// EXPLICATION : Ce composant est utilisé dans le header
+
 import { useState } from "react";
 import PropTypes from "prop-types";
 import IconAccount from "../assets/icons/Icon_Account.svg";
@@ -14,18 +22,21 @@ const Compte = () => {
 		setActive(!active);
 	};
 
+	// EXPLICATION : Cette fonction permet de récupérer l'état de la musique d'ambiance et d'activer son état inverse.
 	const handleNappe = () => {
 		fetchNappeMute(!nappeMute);
 		activeDrop();
 	};
 
+	// EXPLICATION : Cette fonction permet de déconnecter l'utilisateur (logique dans Context)
 	const hangleLogout = () => {
 		logout();
 		activeDrop();
 	};
 
+	// EXPLICATION : Cette fonction permet d'ouvrir la page des politiques de confidentialité de l'app 1'
 	const openWebsite = () => {
-		window.open("https://app.detectivebox.fr/politique-de-confidentialite.html", "_blank");
+		window.open("https://app1.detectivebox.fr/politique-de-confidentialite.html", "_blank");
 	};
 
 	return (

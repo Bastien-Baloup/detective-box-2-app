@@ -1,3 +1,5 @@
+// EXPLICATION : Page pour afficher les renforts
+
 import { useState } from "react";
 import { dataHelp } from "../utils/const/dataHelp";
 import Slider from "../components/Slider";
@@ -15,21 +17,25 @@ function Renfort() {
 
 	const { currentBox } = useContext(BoxContext);
 
+	// EXPLICATION : Fonction pour retourner au choix des renforts
 	const backToHome = () => {
 		setSliderActivated(false);
 		setmenuActivated(true);
 	};
 
+	// EXPLICATION : Fonction pour ouvrir le slider avec le renfort selectionné
 	const openSlider = (data) => {
 		setHelpSelected(data);
 		setSliderActivated(true);
 		setmenuActivated(false);
 	};
 
+	// EXPLICATION : Afficher le composant Slider
 	const displaySlider = (data) => {
 		return <Slider data={data} handleModal={backToHome} url={urlApi.apiRemi()} />;
 	};
 
+	// EXPLICATION : Afficher le choix des renforts (etat en fonction de leur statut)
 	const displayMenu = () => {
 		const menuChoices = dataHelp[currentBox].map((help, index) => {
 			if (help.status == "done") {

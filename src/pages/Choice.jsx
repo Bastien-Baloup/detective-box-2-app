@@ -1,3 +1,6 @@
+// EXPLICATION : Page pour afficher les cartes de choix des boxs + le bouton reset pour recommencer le jeu depuis 0
+// EXPLICATION : Attention, dans la BDD, une box "Generic" a été créé (utilise pour les requêtes personnages qui sont multi-boxs). Ne pas l'afficher ici !
+
 // Récupérer dans la BDD quelle box a son état OUVERTE = TRUE (OUVERTE / FERMEE / RESOLUE)
 // Changer le Context avec la box sélectionnée
 import Logo from "../assets/img/DB-Logo-DetectiveBox_AgenceDetectiveBlanc.png";
@@ -15,6 +18,7 @@ function Choice() {
 	const [modalReset1, setModalReset1] = useState(false);
 	const [modalReset2, setModalReset2] = useState(false);
 
+	// EXPLICATION : Si le joueur n'est pas connecté, retour à la page sign in
 	if (!loggedIn) {
 		return <Navigate to="/sign-in" />;
 	}
@@ -34,6 +38,7 @@ function Choice() {
 		setModalReset1(false);
 	};
 
+	// EXPLICATION : Modale de vérification pour reste tout l'avancement
 	const displayModalReset1 = () => {
 		return (
 			<div className="modal-boxdone__background">
@@ -53,6 +58,7 @@ function Choice() {
 		);
 	};
 
+	// EXPLICATION : Modale de double vérification pour reste tout l'avancement
 	const displayModalReset2 = () => {
 		return (
 			<div className="modal-boxdone__background">
@@ -73,6 +79,7 @@ function Choice() {
 		);
 	};
 
+	// EXPLICATION : Fonction pour remettre les boxs à zéro
 	const resetGame = () => {
 		alert("Mock : Vous avez supprimé votre partie");
 		setModalReset2(false);

@@ -1,3 +1,6 @@
+// Page pour faire les requêtes auprès du personnage de Lauren
+// Les validations des requêtes sont faites ici
+
 import PhotoLauren from "../assets/img/Agent_lauren.jpg";
 import PhotoRaphaelle from "../assets/img/Agent_raphaelle.jpg";
 import Input from "../components/Input.jsx";
@@ -17,6 +20,7 @@ const Lauren = ({ closeAgentPage }) => {
 	const [modalMedia, setModalMedia] = useState(false);
 	const [answer, setAnswer] = useState("");
 
+	// EXPLICATION : Fonction pour slugifier l'input des joueurs
 	const slugify = (input) => {
 		let inputSlugified = input
 			.replace(/\s/g, "")
@@ -27,6 +31,9 @@ const Lauren = ({ closeAgentPage }) => {
 		return inputSlugified;
 	};
 
+	// EXPLICATION : Les réponses peuvent être trouvées dans la box actuelle ou les boxs précédentes
+	// EXPLICATION : Les réponses du personnage dépendent de la location de la réponse (générique, box précedente ou box actuelle) et du status de la réponse (déjà demandé ou pas)
+	// EXPLICATION : Celine et Lauren sont les seules à avoir des boxs génériques
 	const handleSubmit = (e) => {
 		const answerInThisBox = dataLauren[currentBox].find((element) => element.ask.includes(slugify(value)));
 		const previouslyAnsweredInThisBox = answerInThisBox && answerInThisBox.status;
@@ -90,7 +97,7 @@ const Lauren = ({ closeAgentPage }) => {
 					) : (
 						""
 					)}
-					<p className="modal-objectif__subtitle">{answer.text}</p>
+					<div>{renderText()}</div>
 					{answer.id ? (
 						<button className="modal-objectif__button button--red" onClick={openMedia}>
 							Voir l&apos;élément
@@ -105,16 +112,16 @@ const Lauren = ({ closeAgentPage }) => {
 		);
 	};
 
-	// const renderText = () => {
-	// 	const text = answer.text.map((el, i) => {
-	// 		return (
-	// 			<p className="modal-objectif__subtitle" key={i}>
-	// 				{el}
-	// 			</p>
-	// 		);
-	// 	});
-	// 	return text;
-	// };
+	const renderText = () => {
+		const text = answer.text.map((el, i) => {
+			return (
+				<p className="modal-objectif__subtitle" key={i}>
+					{el}
+				</p>
+			);
+		});
+		return text;
+	};
 
 	const validateModal = () => {
 		setModal(false);

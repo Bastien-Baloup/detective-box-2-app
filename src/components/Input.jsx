@@ -1,3 +1,5 @@
+// EXPLICATION : Ce composant permet de rendre les différents input en fonction de leur type
+
 import PropTypes from "prop-types";
 
 const Input = ({ label, name, placeholder, setValue, value, pattern, type }) => {

@@ -1,5 +1,7 @@
+// EXPLICATION : Ce composant permet de rendre les cartes personnages.
+// EXPLICATION : Ce composant est utilise dans la page Home
+
 import PropTypes from "prop-types";
-//state may not be necessary : make a if statement on Home : if event occured, then rendre other card option
 
 const Card = ({ srcImg, srcIcon, name, contentButton, actionButton, state }) => {
 	return (

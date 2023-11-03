@@ -1,3 +1,6 @@
+// EXPLICATION : Page pour faire les requêtes auprès du personnage de Adèle
+// EXPLICATION : Les validations des requêtes sont faites ici
+
 import PhotoAdele from "../assets/img/Agent_adele.jpg";
 import Input from "../components/Input.jsx";
 import Document from "../components/Document.jsx";
@@ -16,6 +19,7 @@ const Adele = ({ closeAgentPage }) => {
 	const [modalMedia, setModalMedia] = useState(false);
 	const [answer, setAnswer] = useState("");
 
+	// EXPLICATION : Fonction pour slugifier l'input des joueurs
 	const slugify = (input) => {
 		let inputSlugified = input
 			.replace(/\s/g, "")
@@ -26,6 +30,9 @@ const Adele = ({ closeAgentPage }) => {
 		return inputSlugified;
 	};
 
+	// EXPLICATION : Les réponses peuvent être trouvées dans la box actuelle ou les boxs précédentes
+	// EXPLICATION : Les réponses du personnage dépendent de la location de la réponse (box précedente ou box actuelle) et du status de la réponse (déjà demandé ou pas)
+	// EXPLICATION : Pour rappel, Adèle n'apparait pas en box 1
 	const handleSubmit = (e) => {
 		const answerInThisBox = dataAdele[currentBox].find((element) => element.ask.includes(slugify(value)));
 		const previouslyAnsweredInThisBox = answerInThisBox && answerInThisBox.status;
