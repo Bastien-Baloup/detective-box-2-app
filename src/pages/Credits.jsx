@@ -1,14 +1,9 @@
+// EXPLICATION : Cette page permet l'affichage des crédits.
+// EXPLICATION : Ce sont les mêmes crédits que dans la vidéo de fin. Ne pas les changer !
+
 import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 
 function Credits() {
-	const navigate = useNavigate();
-
-	if (localStorage.length == 0) {
-		navigate("/sign-in");
-		return;
-	}
-
 	return (
 		<main className="credits">
 			<Link className="credits__link" to="/">

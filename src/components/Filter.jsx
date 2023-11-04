@@ -1,11 +1,12 @@
-import PropTypes from "prop-types";
+// EXPLICATION : Ce composant permet de créer les boutons filtres utilisés dans la page Historique
 
+import PropTypes from "prop-types";
 import { useState } from "react";
-// A modifier une fois les JSON créés
 
 const Filter = ({ category, handleSearch }) => {
 	const [isActive, setIsActive] = useState(false);
 
+		// EXPLICATION : Au clic, le filtre change d'état (change de couleur dans l'app) + appel la fonction handleSearch
 	const handleClick = () => {
 		setIsActive(!isActive);
 		handleSearch();

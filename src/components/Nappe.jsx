@@ -1,7 +1,8 @@
+// EXPLICATION : Ce composant retourne la modale Nappe (choix d'activer la musique d'ambiance ou non) qui est affichée dans le Header
+
 import PropTypes from "prop-types";
 
 const Nappe = ({ activateNappe, desactivateNappe }) => {
-	//https://github.com/bjrshussain/audio_player_in_react/blob/master/src/App.js
 	return (
 		<div className="modal-nappe__background">
 			<div className="modal-nappe__box">
@@ -12,7 +13,7 @@ const Nappe = ({ activateNappe, desactivateNappe }) => {
 					<button className="modal-nappe__button button--red" onClick={activateNappe}>
 						Oui
 					</button>
-					<button className="modal-nappe__button button--red" onClick={desactivateNappe}>
+					<button className="modal-nappe__button button--white" onClick={desactivateNappe}>
 						Non
 					</button>
 				</div>

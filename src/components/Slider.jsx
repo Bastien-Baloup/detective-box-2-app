@@ -1,3 +1,6 @@
+// EXPLICATION : Ce composant permet de rendre le slider qui est utilisé pour les renforts (affiche toutes les aides une par une)
+// EXPLICATION : Ce composant est utilisé dans la page Help
+
 import PropTypes from "prop-types";
 import { useState } from "react";
 import Empty from "../assets/icons/Icon_Cercle-empty.svg";
@@ -11,6 +14,7 @@ const Slider = ({ data, handleModal, url }) => {
 	const totalItems = data.hints.length;
 	const pagination = [];
 
+	// EXPLICATION : Affiche le tracker de bas de page
 	const renderPagination = () => {
 		for (let i = 0; i < totalItems; i++) {
 			pagination.push(
@@ -57,6 +61,13 @@ const Slider = ({ data, handleModal, url }) => {
 		);
 	};
 
+	const renderText = () => {
+		const text = data.hints[index].text.map((el, i) => {
+			return <p key={i}>{el}</p>;
+		});
+		return text;
+	};
+
 	return (
 		<section className="slider">
 			<div className="slider__header">
@@ -68,11 +79,10 @@ const Slider = ({ data, handleModal, url }) => {
 					<img className="slider__header__icon" src={Cross} onClick={handleModal} />
 				</button>
 			</div>
-
 			<div className="slider__main">
 				{renderArrowLeft()}
 				<div className="slider__content">
-					<div className="slider__content__text">{data.hints[index].text}</div>
+					<div className="slider__content__text">{renderText()}</div>
 					<div className="slider__content__img--container">
 						{data.hints[index].image != null ? (
 							<img className="slider__content__img" src={url + data.hints[index].image} />
@@ -92,7 +102,7 @@ const Slider = ({ data, handleModal, url }) => {
 };
 
 Slider.propTypes = {
-	data: PropTypes.array,
+	data: PropTypes.object,
 	handleModal: PropTypes.func,
 	url: PropTypes.string,
 };

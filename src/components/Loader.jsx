@@ -1,3 +1,5 @@
+// EXPLICATION : Ce composant retourne le loader
+
 const Loader = () => {
 	return (
 		<>

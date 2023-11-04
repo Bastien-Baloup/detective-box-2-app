@@ -1,11 +1,9 @@
-/**
- * Service to fetch Token with API
- * @param {object} credentials email and password used to connect
- * @returns {Promise} data containing user's token
- */
+const url = "https://api.detectivebox.remimichel.fr";
+// import { useNavigate } from "react-router-dom";
+// const navigate = useNavigate();
 
 export const getToken = (credentials) => {
-	return fetch("http://localhost:3001/api/v1/user/login", {
+	return fetch(url + "/users/login", {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
@@ -16,7 +14,6 @@ export const getToken = (credentials) => {
 			return response.json();
 		})
 		.then((data) => {
-			console.log(data);
 			return data;
 		})
 		.catch((error) => {
@@ -24,21 +21,13 @@ export const getToken = (credentials) => {
 		});
 };
 
-/**
- * Service to update User Profile to MongoDB with API
- * @param {string} token auth otken used to put new user's infos
- * @param {object} credentials new firstName and lastName to upadate user profile
- * @returns {Promise} data containing new user's infos
- */
-
-export const putUser = (token, credentials) => {
-	return fetch("http://localhost:3001/api/v1/user/profile", {
-		method: "PUT",
+export const createUser = (newaccount) => {
+	return fetch(url + "/users/", {
+		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
-			Authorization: `Bearer ${token}`,
 		},
-		body: JSON.stringify(credentials),
+		body: JSON.stringify(newaccount),
 	})
 		.then((response) => response.json())
 		.then((data) => {
@@ -50,14 +39,484 @@ export const putUser = (token, credentials) => {
 		});
 };
 
-// create one service to update data from Adele
-// create one service to update data from Celine
-// create one service to update data from Tim
-// create one service to update data from Raphaelle
-// create one service to update data from Lauren
-// create one service to update data from History
-// create one service to update data from Quizz
-// create one service to update data from Help
-// create one service to update data from Event
-// create one service to update data from Box
-// create one service to update data from Objectifs
+export const getUser = (token) => {
+	return fetch(url + "/users/me", {
+		method: "GET",
+		headers: {
+			"Content-Type": "application/json",
+			Authorization: `Bearer ${token}`,
+		},
+	})
+		.then((response) => response.json())
+		.then((data) => {
+			console.log(data);
+			return data;
+		})
+		.catch((error) => {
+			console.error(error);
+		});
+};
+
+export const updatePassword = (token, newpassword) => {
+	return fetch(url + "/users/", {
+		method: "PUT",
+		headers: {
+			"Content-Type": "application/json",
+			Authorization: `Bearer ${token}`,
+		},
+		body: JSON.stringify({
+			password: newpassword,
+		}),
+	})
+		.then((response) => response.json())
+		.then((data) => {
+			console.log(data);
+			return data;
+		})
+		.catch((error) => {
+			console.error(error);
+		});
+};
+
+export const updateName = (token, id, newinfos) => {
+	return fetch(url + "/users/" + id, {
+		method: "PUT",
+		headers: {
+			"Content-Type": "application/json",
+			Authorization: `Bearer ${token}`,
+		},
+		body: JSON.stringify(newinfos),
+	})
+		.then((response) => response.json())
+		.then((data) => {
+			console.log(data);
+			return data;
+		})
+		.catch((error) => {
+			console.error(error);
+		});
+};
+
+export const getBox = (token) => {
+	return fetch(url + "/box/", {
+		method: "GET",
+		headers: {
+			"Content-Type": "application/json",
+			Authorization: `Bearer ${token}`,
+		},
+	})
+		.then((response) => response.json())
+		.then((data) => {
+			console.log(data);
+			return data;
+		})
+		.catch((error) => {
+			console.error(error);
+		});
+};
+
+export const updateBox = (token, boxid, newstatus) => {
+	return fetch(url + `/box/` + boxid, {
+		method: "PUT",
+		headers: {
+			"Content-Type": "application/json",
+			Authorization: `Bearer ${token}`,
+		},
+		body: JSON.stringify({
+			status: newstatus,
+		}),
+	})
+		.then((response) => response.json())
+		.then((data) => {
+			console.log(data);
+			return data;
+		})
+		.catch((error) => {
+			console.error(error);
+		});
+};
+
+export const resetBox = (token) => {
+	return fetch(url + "/box/reset", {
+		method: "PUT",
+		headers: {
+			"Content-Type": "application/json",
+			Authorization: `Bearer ${token}`,
+		},
+	})
+		.then((response) => response.json())
+		.then((data) => {
+			console.log(data);
+			return data;
+		})
+		.catch((error) => {
+			console.error(error);
+		});
+};
+
+export const getQuizzByBox = (token, boxid) => {
+	return fetch(url + "/quizz/" + boxid, {
+		method: "GET",
+		headers: {
+			"Content-Type": "application/json",
+			Authorization: `Bearer ${token}`,
+		},
+	})
+		.then((response) => response.json())
+		.then((data) => {
+			console.log(data);
+			return data;
+		})
+		.catch((error) => {
+			console.error(error);
+		});
+};
+
+export const updateQuizz = (token, boxid) => {
+	return fetch(url + "/quizz/" + boxid, {
+		method: "PUT",
+		headers: {
+			"Content-Type": "application/json",
+			Authorization: `Bearer ${token}`,
+		},
+		body: JSON.stringify({
+			status: true,
+		}),
+	})
+		.then((response) => response.json())
+		.then((data) => {
+			console.log(data);
+			return data;
+		})
+		.catch((error) => {
+			console.error(error);
+		});
+};
+
+export const resetQuizz = (token) => {
+	return fetch(url + "/quizz/reset", {
+		method: "PUT",
+		headers: {
+			"Content-Type": "application/json",
+			Authorization: `Bearer ${token}`,
+		},
+	})
+		.then((response) => response.json())
+		.then((data) => {
+			console.log(data);
+			return data;
+		})
+		.catch((error) => {
+			console.error(error);
+		});
+};
+
+// export const getHelp = () => {
+// 	return fetch(url + "/help/", {
+// 		method: "GET",
+// 	})
+// 		.then((response) => response.json())
+// 		.then((data) => {
+// 			console.log(data);
+// 			return data;
+// 		})
+// 		.catch((error) => {
+// 			console.error(error);
+// 		});
+// };
+
+export const getHelpByBox = (token, boxid) => {
+	return fetch(url + "/help/" + boxid, {
+		method: "GET",
+		headers: {
+			"Content-Type": "application/json",
+			Authorization: `Bearer ${token}`,
+		},
+	})
+		.then((response) => response.json())
+		.then((data) => {
+			console.log(data);
+			return data;
+		})
+		.catch((error) => {
+			console.error(error);
+		});
+};
+
+export const updateHelp = (token, boxid, helpid, newstatus) => {
+	return fetch(url + "/help/" + boxid + "/?id=" + helpid, {
+		method: "PUT",
+		headers: {
+			"Content-Type": "application/json",
+			Authorization: `Bearer ${token}`,
+		},
+		body: JSON.stringify({
+			status: newstatus,
+		}),
+	})
+		.then((response) => response.json())
+		.then((data) => {
+			console.log(data);
+			return data;
+		})
+		.catch((error) => {
+			console.error(error);
+		});
+};
+
+export const resetHelp = (token) => {
+	return fetch(url + "/help/reset", {
+		method: "PUT",
+		headers: {
+			"Content-Type": "application/json",
+			Authorization: `Bearer ${token}`,
+		},
+	})
+		.then((response) => response.json())
+		.then((data) => {
+			console.log(data);
+			return data;
+		})
+		.catch((error) => {
+			console.error(error);
+		});
+};
+
+export const getObjectivesByBox = (token, boxid) => {
+	return fetch(url + "/objectives/" + boxid, {
+		method: "GET",
+		headers: {
+			"Content-Type": "application/json",
+			Authorization: `Bearer ${token}`,
+		},
+	})
+		.then((response) => response.json())
+		.then((data) => {
+			console.log(data);
+			return data;
+		})
+		.catch((error) => {
+			console.error(error);
+		});
+};
+
+export const updateObjectives = (token, boxid, objectiveid, newstatus) => {
+	return fetch(url + "/objectives/" + boxid + "/?id=" + objectiveid, {
+		method: "PUT",
+		headers: {
+			"Content-Type": "application/json",
+			Authorization: `Bearer ${token}`,
+		},
+		body: JSON.stringify({
+			status: newstatus,
+		}),
+	})
+		.then((response) => response.json())
+		.then((data) => {
+			console.log(data);
+			return data;
+		})
+		.catch((error) => {
+			console.error(error);
+		});
+};
+
+export const resetObjectives = (token) => {
+	return fetch(url + "/objectives/reset", {
+		method: "PUT",
+		headers: {
+			"Content-Type": "application/json",
+			Authorization: `Bearer ${token}`,
+		},
+	})
+		.then((response) => response.json())
+		.then((data) => {
+			console.log(data);
+			return data;
+		})
+		.catch((error) => {
+			console.error(error);
+		});
+};
+
+export const getHistoryByBox = (token, boxid) => {
+	return fetch(url + "/history/" + boxid, {
+		method: "GET",
+		headers: {
+			"Content-Type": "application/json",
+			Authorization: `Bearer ${token}`,
+		},
+	})
+		.then((response) => response.json())
+		.then((data) => {
+			console.log(data);
+			return data;
+		})
+		.catch((error) => {
+			console.error(error);
+		});
+};
+
+export const updateHistory = (token, boxid, objectiveid) => {
+	return fetch(url + "/history/" + boxid + "/?id=" + objectiveid, {
+		method: "PUT",
+		headers: {
+			"Content-Type": "application/json",
+			Authorization: `Bearer ${token}`,
+		},
+		body: JSON.stringify({
+			status: true,
+		}),
+	})
+		.then((response) => response.json())
+		.then((data) => {
+			console.log(data);
+			return data;
+		})
+		.catch((error) => {
+			console.error(error);
+		});
+};
+
+export const resetHistory = (token) => {
+	return fetch(url + "/history/reset", {
+		method: "PUT",
+		headers: {
+			"Content-Type": "application/json",
+			Authorization: `Bearer ${token}`,
+		},
+	})
+		.then((response) => response.json())
+		.then((data) => {
+			console.log(data);
+			return data;
+		})
+		.catch((error) => {
+			console.error(error);
+		});
+};
+
+// export const getCharacters = () => {
+// 	return fetch(url + "/characters/", {
+// 		method: "GET",
+// 	})
+// 		.then((response) => response.json())
+// 		.then((data) => {
+// 			console.log(data);
+// 			return data;
+// 		})
+// 		.catch((error) => {
+// 			console.error(error);
+// 		});
+// };
+
+export const getCharactersById = (token, personnage) => {
+	return fetch(url + "/characters/" + personnage, {
+		method: "GET",
+		headers: {
+			"Content-Type": "application/json",
+			Authorization: `Bearer ${token}`,
+		},
+	})
+		.then((response) => response.json())
+		.then((data) => {
+			console.log(data);
+			return data;
+		})
+		.catch((error) => {
+			console.error(error);
+		});
+};
+
+export const updateCharactersById = (token, personnage, boxid, answer) => {
+	return fetch(url + "/characters/" + personnage + "/" + boxid + "/?answer=" + answer, {
+		method: "PUT",
+		headers: {
+			"Content-Type": "application/json",
+			Authorization: `Bearer ${token}`,
+		},
+	})
+		.then((response) => response.json())
+		.then((data) => {
+			console.log(data);
+			return data;
+		})
+		.catch((error) => {
+			console.error(error);
+		});
+};
+
+export const resetCharacters = (token) => {
+	return fetch(url + "/characters/reset", {
+		method: "PUT",
+		headers: {
+			"Content-Type": "application/json",
+			Authorization: `Bearer ${token}`,
+		},
+	})
+		.then((response) => response.json())
+		.then((data) => {
+			console.log(data);
+			return data;
+		})
+		.catch((error) => {
+			console.error(error);
+		});
+};
+
+export const getEventByBox = (token, boxid) => {
+	return fetch(url + "/events/" + boxid, {
+		method: "GET",
+		headers: {
+			"Content-Type": "application/json",
+			Authorization: `Bearer ${token}`,
+		},
+	})
+		.then((response) => response.json())
+		.then((data) => {
+			console.log(data);
+			return data;
+		})
+		.catch((error) => {
+			console.error(error);
+		});
+};
+
+export const updateEvent = (token, boxid, id, newstatus) => {
+	return fetch(url + "/events/" + boxid + "/?id=" + id, {
+		method: "PUT",
+		headers: {
+			"Content-Type": "application/json",
+			Authorization: `Bearer ${token}`,
+		},
+		body: JSON.stringify({
+			status: newstatus,
+		}),
+	})
+		.then((response) => response.json())
+		.then((data) => {
+			console.log(data);
+			return data;
+		})
+		.catch((error) => {
+			console.error(error);
+		});
+};
+
+export const resetEvent = (token) => {
+	return fetch(url + "/events/reset", {
+		method: "PUT",
+		headers: {
+			"Content-Type": "application/json",
+			Authorization: `Bearer ${token}`,
+		},
+	})
+		.then((response) => response.json())
+		.then((data) => {
+			console.log(data);
+			return data;
+		})
+		.catch((error) => {
+			console.error(error);
+		});
+};

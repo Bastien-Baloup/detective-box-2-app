@@ -1,3 +1,5 @@
+// EXPLICATION : Page Home pour afficher les cartes personnages + les formulaires personnages pour les requêtes
+
 import Card from "../components/Card";
 import IconLauren from "../assets/icons/Logo_Lauren.svg";
 import PhotoLauren from "../assets/img/Agent_lauren.jpg";
@@ -15,38 +17,60 @@ import Lauren from "./Lauren";
 import Raphaelle from "./Raphaelle";
 import Celine from "./Celine";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { BoxContext, AuthContext } from "../utils/context/fetchContext";
+import { useContext, useEffect } from "react";
+import { urlApi } from "../utils/const/urlApi";
+import { getEventByBox, updateEvent, getHistoryByBox } from "../utils/hooks/useApi";
 
 function Home() {
 	const [characterDisplayed, setCharacterDisplayed] = useState(null);
 	const [modalLaurenGone, setModalLaurenGone] = useState(false);
 	const [modalCelineGone, setModalCelineGone] = useState(false);
 
-	// if not logged, redirect to Page de connexion
-	const navigate = useNavigate();
-	if (localStorage.length == 0) {
-		navigate("/sign-in");
-		return;
-	}
-	// SI contexte vide alors navigate("box-choice");
+	const { currentBox } = useContext(BoxContext);
+	const { token } = useContext(AuthContext);
 
-	// A RECUPERER DU CONTEXTE
-	const currentBox = "box1";
+	useEffect(() => {
+		const fetchData = async () => {
+			const result = await getEventByBox(token, 3);
+			const event34 = result.data.find((event) => event.id == 34);
+			setEvent34(event34.status);
+		};
+		fetchData();
+	}, [token, currentBox]);
 
-	const specificCardActionLauren = () => {
+	useEffect(() => {
+		const fetchData = async () => {
+			const result = await getHistoryByBox(token, 2);
+			const document6 = result.data.find((event) => event.id == "box2document6");
+			setDocument6(document6.status);
+		};
+		fetchData();
+	}, [token, currentBox]);
+
+	const [event34, setEvent34] = useState("");
+	const [document6, setDocument6] = useState(false);
+
+	const specificCardActionLauren = async () => {
 		setModalLaurenGone(!modalLaurenGone);
-		console.log("voici une action particulière à effectuer pour Lauren");
+		// API change le status de l'event 32 en "open"
+		await updateEvent(token, 3, 32, "open");
 	};
 
+	// EXPLICATION : Quand le personnage de Lauren a disparu, alors on affiche cette modale pour afficher la video à l'agence (event 32)
 	const displayModalLaurenGone = () => {
 		return (
 			<div className="modal-boxdone__background">
 				<div className="modal-boxdone__box">
-					<p className="modal-boxdone__text">
-						Oh non ! <br></br> Quelque chose est arrivée à Lauren. Rendez-vous à l&apos;agence !
-					</p>
+					<audio autoPlay>
+						<source src={urlApi.apiRemi() + "sounds/210-commentaires-raphaelle-absence-lauren.wav"} type="audio/wav" />
+						Votre navigateur ne prend pas en charge ce format
+					</audio>
+					<p className="modal-boxdone__text">Agents, voici le numéro de portable de Lauren : +33 7 69 57 00 27.</p>
+					<p className="modal-boxdone__text">Essayez de la joindre directement pour nous assurer que tout va bien.</p>
+					<p className="modal-boxdone__text">De mon côté, je me mets en route pour l&apos;agence. Retrouvez moi là bas !</p>
 					<button className="modal-boxdone__button button--red" onClick={specificCardActionLauren}>
-						Continuer l&apos;enquête
+						Se rendre au bureau
 					</button>
 				</div>
 			</div>
@@ -55,13 +79,17 @@ function Home() {
 
 	const specificCardActionCeline = () => {
 		setModalCelineGone(!modalCelineGone);
-		console.log("voici une action particulière à effectuer pour Céline");
 	};
 
+	// EXPLICATION : Quand le personnage de Céline a disparu, alors on affiche cette modale
 	const displayModalCelineGone = () => {
 		return (
 			<div className="modal-boxdone__background">
 				<div className="modal-boxdone__box">
+					<audio autoPlay>
+						<source src={urlApi.apiRemi() + "sounds/300-commentaires-sanchez-1.wav"} type="audio/wav" />
+						Votre navigateur ne prend pas en charge ce format
+					</audio>
 					<p className="modal-boxdone__text">
 						Oh non ! <br></br> Maintenant c&apos;est Céline que j&apos;arrive plus à joindre...
 					</p>
@@ -73,19 +101,11 @@ function Home() {
 		);
 	};
 
+	// EXPLICATION : Fonction pour afficher tout les personnages
 	const displayAllCharacters = () => {
-		// ICI RETRAVAILLER LES STATE AVEC UNE FONCTION IF (EVENT == TRUE) ALORS UNAVAILABLE ...//
 		return (
 			<>
 				<div className="card__wrapper">
-					<Card
-						srcImg={PhotoLauren}
-						srcIcon={IconLauren}
-						name="Lauren Fraser"
-						contentButton="Faire un interrogatoire"
-						actionButton={() => setCharacterDisplayed("lauren")}
-						state={currentBox == "box3" ? "unavailable" : ""}
-					/>
 					<Card
 						srcImg={PhotoRaphaelle}
 						srcIcon={IconRaphaelle}
@@ -94,19 +114,38 @@ function Home() {
 						actionButton={() => setCharacterDisplayed("raphaelle")}
 						state=""
 					/>
+					{currentBox == 3 ? (
+						<Card
+							srcImg={PhotoRaphaelle}
+							srcIcon={IconLauren}
+							name="Raphaëlle Sanchez"
+							contentButton="Demander un interrogatoire"
+							actionButton={() => setCharacterDisplayed("lauren")}
+							state=""
+						/>
+					) : (
+						<Card
+							srcImg={PhotoLauren}
+							srcIcon={IconLauren}
+							name="Lauren Fraser"
+							contentButton="Demander un interrogatoire"
+							actionButton={() => setCharacterDisplayed("lauren")}
+							state={document6 == true ? "unavailable" : ""}
+						/>
+					)}
 					<Card
 						srcImg={PhotoCeline}
 						srcIcon={IconCeline}
 						name="Céline Valluy"
 						contentButton="Demander un dossier de police"
 						actionButton={() => setCharacterDisplayed("celine")}
-						state=""
+						state={event34 == "done" ? "unavailable" : ""}
 					/>
 					<Card
 						srcImg={PhotoTim}
 						srcIcon={IconTim}
 						name="Tim Lonewood"
-						contentButton="Demander une analyse"
+						contentButton="Demander une analyse informatique"
 						actionButton={() => setCharacterDisplayed("tim")}
 						state=""
 					/>
@@ -114,9 +153,9 @@ function Home() {
 						srcImg={PhotoAdele}
 						srcIcon={IconAdele}
 						name="Adèle Leinu"
-						contentButton="Demander une analyse"
-						actionButton={() => setCharacterDisplayed("adele")}
-						state={currentBox == "box1" ? "unavailable" : ""}
+						contentButton="Demander une analyse scientifique"
+						actionButton={currentBox == 1 ? null : () => setCharacterDisplayed("adele")}
+						state={currentBox == 1 ? "unavailable" : ""}
 					/>
 				</div>
 				{modalLaurenGone ? displayModalLaurenGone() : null}
@@ -125,38 +164,30 @@ function Home() {
 		);
 	};
 
+	// EXPLICATION : Afficher de nouveau tout les personnages
 	const backToHome = () => {
 		setCharacterDisplayed(null);
 	};
 
+	// EXPLICATION : Fonctions pour afficher tout les différents personnages
 	const displayLauren = () => {
-		return <Lauren value="" setValue="" closeAgentPage={backToHome} />;
+		return <Lauren closeAgentPage={backToHome} />;
 	};
 
 	const displayRaphaelle = () => {
-		return (
-			<Raphaelle
-				valueAdresse=""
-				setValueAdresse=""
-				valueLatitude=""
-				setValueLatitude=""
-				valueLongitude=""
-				setValueLongitude=""
-				closeAgentPage={backToHome}
-			/>
-		);
+		return <Raphaelle closeAgentPage={backToHome} />;
 	};
 
 	const displayCeline = () => {
-		return <Celine value="" setValue="" closeAgentPage={backToHome} />;
+		return <Celine closeAgentPage={backToHome} />;
 	};
 
 	const displayTim = () => {
-		return <Tim value="" setValue="" closeAgentPage={backToHome} />;
+		return <Tim closeAgentPage={backToHome} />;
 	};
 
 	const displayAdele = () => {
-		return <Adele value="" setValue="" closeAgentPage={backToHome} />;
+		return <Adele closeAgentPage={backToHome} />;
 	};
 
 	return (

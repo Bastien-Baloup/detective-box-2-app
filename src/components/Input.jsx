@@ -1,14 +1,16 @@
+// EXPLICATION : Ce composant permet de rendre les différents input en fonction de leur type
+
 import PropTypes from "prop-types";
 
 const Input = ({ label, name, placeholder, setValue, value, pattern, type }) => {
-	//Penser à rajouter pattern ?
+
 	return (
 		<>
-			{type == "radio" ? (
+			{type == "radio" || type == "checkbox" ? (
 				<div className="input-wrapper-radio">
 					<input
 						className="input-radio"
-						type="radio"
+						type={type}
 						value={label}
 						name={name}
 						id={label}
@@ -20,10 +22,11 @@ const Input = ({ label, name, placeholder, setValue, value, pattern, type }) => 
 				</div>
 			) : (
 				<div className="input-wrapper-text">
-					<label className="input-wrapper__label">{label}</label>
+					<label className="input-wrapper__label" htmlFor={label}>{label}</label>
 					<input
 						className="input-texte"
 						name={name}
+						id={label}
 						maxLength="60"
 						placeholder={placeholder}
 						value={value}

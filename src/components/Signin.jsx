@@ -1,3 +1,6 @@
+// EXPLICATION : Ce composant permet d'afficher le formulaire pour se connecter
+// EXPLICATION : Ce composant est utilisé dans la page Login
+
 import { useState } from "react";
 import Input from "./Input";
 import Cross from "../assets/icons/Icon_Cross-white.svg";
@@ -18,6 +21,7 @@ const Signin = ({
 }) => {
 	const [modalActive, setModalActive] = useState(false);
 
+	// EXPLICATION : Affiche la modale pour le mot de passe oublié
 	const displayModalForgotPassword = () => {
 		return (
 			<div className="modal-forgot__background">

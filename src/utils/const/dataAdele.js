@@ -1,0 +1,93 @@
+export const dataAdele = {
+	box2: [
+		{
+			ask: ["autopsiegarraud", "autopsiecharlesgarraud", "vomi", "vomigarraud", "vomicharlesgarraud", "vomiprison"],
+			text: [
+				"Alors, je suis partie du vomi de Garraud, ça m'a permis d'obtenir le droit de faire son autopsie.",
+				"C'était 'bien planqué' on peut dire mais devinez ce que j'ai trouvé dans son corps ?",
+				"Ce magnifique papier : C'était un peu glauque, le fait qu'il se soit pendu, ça a empêché tout de ressortir...",
+				"Enfin bref, c'est fou ce qu'on peut retrouver dans un corps non ?",
+			],
+			srcComment: "sounds/202-commentaires-adele-1.wav",
+			id: "box2document4",
+			title: "Papier avalé par Garraud",
+			src: "assets/document/215_Papier_avale.jpg",
+			status: false,
+		},
+		{
+			ask: ["b759030", "echantillonb759030", "analysesang", "echantillonsang"],
+			text: [
+				"J'ai mis l'échantillon à l'analyse avant de vous envoyer le dossier.",
+				"L'échantillon B75-9030 ne correspond en effet à l'ADN d'aucune victime rapportée au tueur et certainement pas à Xavier.",
+				"Il est de groupe B et non répertorié dans la base criminelle européenne.",
+				"C'est donc à quelqu'un qui ne s'est jamais fait attraper par la police, même pour un délit.",
+				"J'ai poussé l'analyse un peu plus loin qu'à l'époque, c'est plus facile aujourd'hui, j'y ai diagnostiqué une créatininémie.",
+				"Concrètement, cela signifie que le propriétaire de cette goutte de sang avait un problème rénal.",
+			],
+			srcComment: "sounds/202-commentaires-adele-2.wav",
+			status: false,
+		},
+		{
+			ask: ["organes", "organesfrigo", "organesdufrigo", "membresfrigo", "organesretrouvesdanslefrigo"],
+			text: [
+				"Alors, ce que je peux vous dire, c'est que ça a été bien conservé, probablement dans du formol.",
+				"Il y en avait donc peut-être qui avait plusieurs années.",
+				"Pour la petite liste, on a donc :",
+				"un cou, un estomac, une rotule, des organes génitaux masculins, une tête, un rein, un poumon, un coeur et un morceau de jambe.",
+				"On pourrait presque se croire dans Frankenstein non ?",
+			],
+			srcComment: "sounds/202-commentaires-adele-3.wav",
+			status: false,
+		},
+	],
+	box3: [
+		{
+			ask: [
+				"squelette",
+				"foret",
+				"analysecorps",
+				"corpsdeterre",
+				"corpsdetere",
+				"squellette",
+				"corpsdelaforet",
+				"corpsforet",
+				"squeletteforet",
+				"corpsforetarbailles",
+				"squelettearbailles",
+				"squeletteforetarbailles",
+				"squelettedelaforet",
+				"squelettedesarbailles",
+			],
+			text: [
+				"Je lance l'analyse du corps pour comparaison avec le fichier des disparus, mais ça risque de prendre un peu de temps...",
+				"Sinon, je peux déjà vous dire qu'il est mort assassiné, par un coup de couteau.",
+				"Ah, et c'est un homme, enfin c'était...",
+			],
+			srcComment: "sounds/301-commentaire-adele-sur-corps-1.wav",
+			status: false,
+		},
+		{
+			ask: ["loicvalluy"],
+			text: [
+				"Loïc Valluy... J'ai rentré ça dans mon fichier et vous savez quoi ?",
+				"Vous avez deviné ? Non ?",
+				"C'est le squelette que vous avez trouvé dans la forêt !",
+			],
+			srcComment: "sounds/301-commentaire-adele-sur-corps-2.wav",
+			status: false,
+		},
+		{
+			ask: ["echantillonterre", "echantillonech78b", "ech78b", "echantillondeterre", "echantillonterreech78b"],
+			text: [
+				"Ah, l'échantillon de terre qu'on a trouvé.",
+				"J'ai fait la pré-analyse mais je n'ai pas eu le temps de faire plus…",
+				"et puis, les fleurs, je vous avoue que c'est pas trop mon truc.",
+				"Vous pouvez essayer de déterminer ce que c'est ?",
+				"Si on trouve la provenance, on saura peut-être où est Lauren ? ",
+				"Je vous ai mis l'herbier pour vous aider.",
+			],
+			srcComment: "sounds/301-commentaire-adele-sur-corps-3.wav",
+			status: false,
+		},
+	],
+};

@@ -1,3 +1,7 @@
+// EXPLICATION : Ce composant retourne la navigation de l'application
+// EXPLICATION : Page Home / Historique / Renfort
+// EXPLICATION : Ce composant est affiché dans le Header
+
 import Home from "../assets/icons/Icon_Home.svg";
 import Help from "../assets/icons/Icon_Help.svg";
 import Clue from "../assets/icons/Icon_Clue.svg";

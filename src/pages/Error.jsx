@@ -1,3 +1,5 @@
+// EXPLICATION : Page Erreur 404
+
 import { Link } from "react-router-dom";
 
 function Error() {

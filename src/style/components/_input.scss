@@ -8,6 +8,7 @@
 	color: $secondary-color;
 	outline: none;
 	font: inherit;
+	font-size: 1.25rem;
 	transition: background-color 0.2s ease-in-out;
 	&:focus {
 		background-color: $primary-color;

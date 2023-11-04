@@ -1,12 +1,12 @@
-// Quizz n'apparait qu'à la première ouverture de la box. Penser à mettre un état done = true dans la BDD
+// EXPLICATION : Ce composant permet d'afficher le quizz pour les box 2 et box 3.
+// EXPLICATION : Le quizz n'apparait qu'une seule fois ever. Son status est mis à jour dans le Header
+
 import PropTypes from "prop-types";
 import { useState } from "react";
 import Empty from "../assets/icons/Icon_Cercle-empty.svg";
 import Full from "../assets/icons/Icon_Cercle-full.svg";
 import Input from "./Input.jsx";
 import Timer from "./Timer.jsx";
-
-//Mettre des boutons carrés quant multi choice
 
 const Quizz = ({ data, handleEndQuizz, url }) => {
 	const [instructionActive, setInstructionActive] = useState(true);
@@ -15,16 +15,11 @@ const Quizz = ({ data, handleEndQuizz, url }) => {
 	const [questionDisplayed, setQuestionDisplayed] = useState(false);
 	const [answerDisplayed, setAnswerDisplayed] = useState(false);
 	const [score, setScore] = useState(0);
+	const [validationQuestion, setvalidationQuestion] = useState(false);
 	const [index, setIndex] = useState(0);
 	const [valueInput, setValueInput] = useState("");
 	const totalQuestions = data.questions.length;
 	const pagination = [];
-
-	const endInstructions = () => {
-		setInstructionActive(false);
-		setGameActive(true);
-		setQuestionDisplayed(true);
-	};
 
 	const displayInstructions = () => {
 		return (
@@ -40,35 +35,24 @@ const Quizz = ({ data, handleEndQuizz, url }) => {
 		);
 	};
 
-	const displayComment = () => {
-		if (score === 0) {
-			return "C'est pas terrible tout ça, j'espère que vous avez plus de capacité de déduction que de mémoire…";
-		}
-		if (score >= 1 && score <= 4) {
-			return "Oula, mais vous avez tout oublié ! J'espère que ça va vous revenir petit à petit.";
-		}
-		if (score >= 5 && score <= 8) {
-			return "Pas mal, comme on pouvait l'attendre de nos meilleurs agents !";
-		}
-		if (score === 9 || score === 10) {
-			return "Je le savais, vous êtes les meilleurs !";
-		}
+	// EXPLICATION : A la fin de la modale d'instruction, afficher le jeu avec la première question
+	const endInstructions = () => {
+		setInstructionActive(false);
+		setGameActive(true);
+		setQuestionDisplayed(true);
 	};
 
-	const displayResults = () => {
+	// EXPLICATION : Alternance entre les questions et les réponses
+	const displayGame = () => {
 		return (
-			<div className="quizz__results">
-				<p className="quizz__results__text--1">Vous avez:</p>
-				<p className="quizz__results__text--score">{score}</p>
-				<p className="quizz__results__text--2">bonnes réponses.</p>
-				<p className="quizz__results__comment">{displayComment()}</p>
-				<button className="quizz__instructions__button button--red" onClick={handleEndQuizz}>
-					Reprendre l&apos;enquête
-				</button>
-			</div>
+			<>
+				{questionDisplayed ? renderQuestion() : ""}
+				{answerDisplayed ? renderAsnwer() : ""}
+			</>
 		);
 	};
 
+	// EXPLICATION : Afficher le tracker de question en bas de modale
 	const renderPagination = () => {
 		for (let i = 0; i < totalQuestions; i++) {
 			pagination.push(
@@ -83,36 +67,35 @@ const Quizz = ({ data, handleEndQuizz, url }) => {
 		return pagination;
 	};
 
-	const handleQuestionForm = () => {
-		if (valueInput === data.answers[index].answer) {
-			setScore(score + 1);
-		}
-		setQuestionDisplayed(false);
-		setAnswerDisplayed(true);
+	// EXPLICATION : Fonction pour avoir plusieurs valeurs stockées si réponse à choix multiple
+	const setMultiValueInput = (value) => {
+		setValueInput((previousValueInput) => [...previousValueInput, value]);
 	};
 
-	const handleAnswerForm = () => {
-		if (index === totalQuestions - 1) {
-			endGame();
-		} else {
-			setIndex(index + 1);
-			setQuestionDisplayed(true);
-			setAnswerDisplayed(false);
-		}
-	};
-
-	const endGame = () => {
-		setGameActive(false);
-		setResultActive(true);
-	};
-
+	// EXPLICATION : Render des options en fonction de si la question est à choix multiple ou non (props multi ou non)
 	const renderChoices = () => {
-		const inputs = data.questions[index].choices.map((el, i) => {
-			return <Input type="radio" name="essai" label={el} setValue={setValueInput} key={i} />;
-		});
-		return inputs;
+		if (data.questions[index].multi) {
+			const inputs = data.questions[index].choices.map((el, i) => {
+				return <Input type="checkbox" name={el} label={el} setValue={setMultiValueInput} key={i} />;
+			});
+			return inputs;
+		} else {
+			const inputs = data.questions[index].choices.map((el, i) => {
+				return <Input type="radio" name="essai" label={el} setValue={setValueInput} key={i} />;
+			});
+			return inputs;
+		}
 	};
 
+	// EXPLICATION : Afficher le texte des questions
+	const renderQuestionText = () => {
+		const text = data.questions[index].question.map((el, i) => {
+			return <p key={i}>{el}</p>;
+		});
+		return text;
+	};
+
+	// EXPLICATION : Afficher les questions avec le timer. Si le timer passe à zéro, on passe à la réponse.
 	const renderQuestion = () => {
 		return (
 			<div className="quizz__question">
@@ -120,7 +103,7 @@ const Quizz = ({ data, handleEndQuizz, url }) => {
 					<Timer initialMinute={0} initialSecond={30} timerEndedFunction={handleQuestionForm} />
 				</div>
 				<p className="quizz__question__title">Question n°{data.questions[index].id} :</p>
-				<p className="quizz__question__subtitle">{data.questions[index].question}</p>
+				<div className="quizz__question__subtitle">{renderQuestionText()}</div>
 				<div className="quizz__question__choices">{renderChoices()}</div>
 				<div className="quizz__question__img--container">
 					{data.questions[index].image != null ? (
@@ -140,11 +123,23 @@ const Quizz = ({ data, handleEndQuizz, url }) => {
 		);
 	};
 
+	// EXPLICATION : Afficher le texte des réponses
+	const renderAnswerText = () => {
+		const text = data.answers[index].explanation.map((el, i) => {
+			return <p key={i}>{el}</p>;
+		});
+		return text;
+	};
+
+	// EXPLICATION : Afficher les réponses
 	const renderAsnwer = () => {
 		return (
 			<div className="quizz__answer">
 				<p className="quizz__answer__title">Question n°{data.questions[index].id} :</p>
-				<p className="quizz__answer__subtitle">{data.answers[index].explanation}</p>
+				<p className={`quizz__answer__validation${validationQuestion ? "--true" : "--false"}`}>
+					{validationQuestion ? "Bonne réponse" : "Mauvaise Réponse"}
+				</p>
+				<div className="quizz__answer__subtitle">{renderAnswerText()}</div>
 				<div className="quizz__answer__img--container">
 					{data.answers[index].image != null ? (
 						<img className="quizz__answer__img" src={url + data.answers[index].image} />
@@ -163,12 +158,71 @@ const Quizz = ({ data, handleEndQuizz, url }) => {
 		);
 	};
 
-	const displayGame = () => {
+	// EXPLICATION : Si bonne réponse, alors augmenter le score + changer le state de validationQuestion pour afficher "bonne réponse" ou "mauvaise réponse" sur la modale des réponse
+	const handleQuestionForm = () => {
+		if (data.answers[index].multi) {
+			if (data.answers[index].answer.every((answer) => valueInput.includes(answer))) {
+				setScore(score + 1);
+				setvalidationQuestion(true);
+			}
+		}
+		if (valueInput == data.answers[index].answer) {
+			setScore(score + 1);
+			setvalidationQuestion(true);
+		}
+		setQuestionDisplayed(false);
+		setAnswerDisplayed(true);
+	};
+
+	// EXPLICATION : Si la réponse est la dernière de la liste, alors on arrête le jeu et on affiche les résultats.
+	const handleAnswerForm = () => {
+		if (index === totalQuestions - 1) {
+			endGame();
+		} else {
+			setIndex(index + 1);
+			setQuestionDisplayed(true);
+			setAnswerDisplayed(false);
+			setvalidationQuestion(false);
+			setValueInput("");
+		}
+	};
+
+	// EXPLICATION : On arrête le jeu et on affiche les résultats
+	const endGame = () => {
+		setGameActive(false);
+		setResultActive(true);
+	};
+
+	// EXPLICATION : On affiche les commentaires en fonction du score
+	const displayComment = () => {
+		if (score === 0) {
+			return "C'est pas terrible tout ça, j'espère que vous avez plus de capacité de déduction que de mémoire…";
+		}
+		if (score >= 1 && score <= 4) {
+			return "Oula, mais vous avez tout oublié ! J'espère que ça va vous revenir petit à petit.";
+		}
+		if (score >= 5 && score <= 8) {
+			return "Pas mal, comme on pouvait l'attendre de nos meilleurs agents !";
+		}
+		if (score === 9 || score === 10) {
+			return "Je le savais, vous êtes les meilleurs !";
+		}
+	};
+
+	// EXPLICATION : On affiche la modale de résultat avec le score, le commentaire associé et le bouton qui permet de fermer le quizz (et d'afficher la vidéo de briefing -- voir Header)
+	const displayResults = () => {
 		return (
-			<>
-				{questionDisplayed ? renderQuestion() : ""}
-				{answerDisplayed ? renderAsnwer() : ""}
-			</>
+			<div className="quizz__results">
+				<p className="quizz__results__text--1">Vous avez:</p>
+				<p className="quizz__results__text--score">
+					{score} / {totalQuestions}
+				</p>
+				<p className="quizz__results__text--2">bonnes réponses.</p>
+				<p className="quizz__results__comment">{displayComment()}</p>
+				<button className="quizz__instructions__button button--red" onClick={handleEndQuizz}>
+					Reprendre l&apos;enquête
+				</button>
+			</div>
 		);
 	};
 
@@ -186,6 +240,7 @@ const Quizz = ({ data, handleEndQuizz, url }) => {
 Quizz.propTypes = {
 	data: PropTypes.object,
 	handleEndQuizz: PropTypes.func,
+	url: PropTypes.string,
 };
 
 export default Quizz;

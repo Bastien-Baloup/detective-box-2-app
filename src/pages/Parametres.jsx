@@ -1,23 +1,24 @@
+// EXPLICATION : Page pour permettre aux joueurs de changer leur identifiant et leur mot de passe
+
 import { Link } from "react-router-dom";
 import Input from "../components/Input";
-import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 function Parametres() {
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
 	const [errorMessage, setErrorMessage] = useState("");
-	const navigate = useNavigate();
-
-	if (localStorage.length == 0) {
-		navigate("/sign-in");
-		return;
-	}
 
 	const handleSubmitChange = (e) => {
 		e.preventDefault();
 		if (password === "" && username === "") {
 			setErrorMessage("Merci de remplir au moins un champ pour modifier vos informations");
+			return;
+		}
+		if (password === !"" && username === !"") {
+			setErrorMessage("Merci de changer une information à la fois");
+			setUsername("");
+			setPassword("");
 			return;
 		}
 		setUsername("");
