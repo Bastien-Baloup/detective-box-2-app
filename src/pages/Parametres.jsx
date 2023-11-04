@@ -15,6 +15,12 @@ function Parametres() {
 			setErrorMessage("Merci de remplir au moins un champ pour modifier vos informations");
 			return;
 		}
+		if (password === !"" && username === !"") {
+			setErrorMessage("Merci de changer une information à la fois");
+			setUsername("");
+			setPassword("");
+			return;
+		}
 		setUsername("");
 		setPassword("");
 		setErrorMessage("");

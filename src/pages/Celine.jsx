@@ -7,12 +7,28 @@ import Document from "../components/Document.jsx";
 import Cross from "../assets/icons/Icon_Cross-white.svg";
 import PropTypes from "prop-types";
 import { urlApi } from "../utils/const/urlApi";
-import { BoxContext } from "../utils/context/fetchContext";
-import { useContext, useState } from "react";
-import { dataCeline } from "../utils/const/dataCeline";
+import { BoxContext, AuthContext } from "../utils/context/fetchContext";
+import { useContext, useState, useEffect } from "react";
+// import { dataCeline } from "../utils/const/dataCeline";
+import { updateCharactersById, updateHistory, getCharactersById } from "../utils/hooks/useApi.js";
 
 const Celine = ({ closeAgentPage }) => {
 	const { currentBox } = useContext(BoxContext);
+	const { token } = useContext(AuthContext);
+
+	//EXPLICATION : Celine est le personnage "3"
+
+	useEffect(() => {
+		const fetchData = async () => {
+			const result = await getCharactersById(token, 3);
+			console.log(result);
+			setDataCeline(result);
+		};
+		fetchData();
+	}, [token, currentBox]);
+
+	const [dataCeline, setDataCeline] = useState(null);
+
 	const [value, setValue] = useState("");
 	const [errorMessage, setErrorMessage] = useState("");
 	const [modal, setModal] = useState(false);
@@ -34,11 +50,15 @@ const Celine = ({ closeAgentPage }) => {
 	// EXPLICATION : Les réponses du personnage dépendent de la location de la réponse (générique, box précedente ou box actuelle) et du status de la réponse (déjà demandé ou pas)
 	// EXPLICATION : Celine et Lauren sont les seules à avoir des boxs génériques
 	const handleSubmit = (e) => {
-		const answerInThisBox = dataCeline[currentBox].find((element) => element.ask.includes(slugify(value)));
+		const thisBox = dataCeline.find((element) => element.box_id == currentBox).data;
+		const box1 = dataCeline.find((element) => element.box_id == 1).data;
+		const box2 = dataCeline.find((element) => element.box_id == 2).data;
+		const generic = dataCeline.find((element) => element.box_id == 4).data;
+		const answerInThisBox = thisBox.find((element) => element.ask.includes(slugify(value)));
 		const previouslyAnsweredInThisBox = answerInThisBox && answerInThisBox.status;
-		const answerInFailedInterview = dataCeline["generic"].find((element) => element.ask.includes(slugify(value)));
-		const answerInBox1 = dataCeline["box1"].some((element) => element.ask.includes(slugify(value)));
-		const answerInBox2 = dataCeline["box2"].some((element) => element.ask.includes(slugify(value)));
+		const answerInFailedInterview = generic.find((element) => element.ask.includes(slugify(value)));
+		const answerInBox1 = box1.some((element) => element.ask.includes(slugify(value)));
+		const answerInBox2 = box2.some((element) => element.ask.includes(slugify(value)));
 		e.preventDefault();
 		if (value == "") {
 			setErrorMessage("Je ne peux pas fouiller les archives sans un nom !");
@@ -66,14 +86,14 @@ const Celine = ({ closeAgentPage }) => {
 			setErrorMessage("");
 			return;
 		}
-		if (currentBox == "box2" && answerInBox1) {
+		if (currentBox == 2 && answerInBox1) {
 			setValue("");
 			setErrorMessage(
 				"Vous avez déjà demandé le dossier de cette personne lors d'une box précédente. Rendez-vous dans l'Historique pour le consulter de nouveau."
 			);
 			return;
 		}
-		if (currentBox == "box3" && (answerInBox2 || answerInBox1)) {
+		if (currentBox == 3 && (answerInBox2 || answerInBox1)) {
 			setValue("");
 			setErrorMessage(
 				"Vous avez déjà demandé le dossier de cette personne lors d'une box précédente. Rendez-vous dans l'Historique pour le consulter de nouveau."
@@ -124,7 +144,6 @@ const Celine = ({ closeAgentPage }) => {
 
 	const validateModal = () => {
 		setModal(false);
-		// API Mettre à jour le status de cette réponse de FALSE à TRUE
 	};
 
 	const openMedia = () => {
@@ -134,12 +153,19 @@ const Celine = ({ closeAgentPage }) => {
 
 	const renderModalMedia = () => {
 		return (
-			<Document title={answer.title} srcElement={urlApi.apiRemi() + answer.src} handleModalDocument={closeModalMedia} />
+			<Document
+				title={answer.title}
+				srcElement={urlApi.apiRemi() + answer.src}
+				handleModalDocument={() => closeModalMedia(answer.id, answer.ask)}
+			/>
 		);
 	};
 
-	const closeModalMedia = () => {
+	const closeModalMedia = async (answerId, asnwerAsk) => {
 		setModalMedia(false);
+		await updateCharactersById(token, 3, currentBox, asnwerAsk);
+		await updateHistory(token, currentBox, answerId);
+		// API Mettre à jour le status de cette réponse de FALSE à TRUE
 		// API Mettre à jour le status de cet élément dans l'Historique avec l'id
 	};
 

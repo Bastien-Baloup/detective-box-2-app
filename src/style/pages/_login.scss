@@ -20,6 +20,21 @@
 	}
 }
 
+.modal-confirm {
+	&__background {
+		@include modaleBackground;
+	}
+	&__box {
+		@include modaleBox;
+		width: 80%;
+	}
+	&__text {
+		color: $secondary-color;
+		line-height: 1.5rem;
+		font-size: 1.25rem;
+	}
+}
+
 @include responsive(laptop) {
 	.login__link {
 		font-size: 1.25rem;

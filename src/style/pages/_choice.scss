@@ -15,6 +15,9 @@
 		margin: 1rem 0 5vh 0;
 		line-height: 1.5rem;
 	}
+	&__reset{
+		margin-top: 10vh;
+	}
 }
 
 @include responsive(laptop) {

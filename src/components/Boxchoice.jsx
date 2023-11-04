@@ -11,6 +11,9 @@ import Check from "../assets/icons/Icon_Check-black.svg";
 import Lockopen from "../assets/icons/Icon_Lock-open-black.svg";
 import Lockclosed from "../assets/icons/Icon_Lock-closed-red.svg";
 import Cross from "../assets/icons/Icon_Cross-white.svg";
+import Saison1 from "../assets/img/Facing-episode1.jpg";
+import Saison2 from "../assets/img/Facing-episode2.jpg";
+import Saison3 from "../assets/img/Facing-episode3.jpg";
 import { BoxContext } from "../utils/context/fetchContext.jsx";
 import { useContext } from "react";
 
@@ -49,58 +52,74 @@ const BoxChoice = ({ data }) => {
 		);
 	};
 
+	//EXPLICATION : Cette fonction permet d'afficher les bonnes affiches de cartes en fonction du numéro de la box
+	const renderCover = () => {
+		if (data.id == 1) {
+			return Saison1;
+		}
+		if (data.id == 2) {
+			return Saison2;
+		}
+		if (data.id == 3) {
+			return Saison3;
+		}
+	};
+
 	// EXPLICATION : Cette fonction permet d'afficher la carte en fonction de son status (done, closed, open)
+	// EXPLICATION : box <4 pour ne pas afficher la box "Generic"
 	const renderBox = () => {
-		if (data.status == "done") {
-			return (
-				<>
-					<article className="boxchoice boxchoice--done" onClick={handleModal}>
+		if (data.id < 4) {
+			if (data.status == "done") {
+				return (
+					<>
+						<article className="boxchoice boxchoice--done" onClick={handleModal}>
+							<div className="boxchoice__picture-wrapper">
+								<img src={renderCover()} className="boxchoice__picture" />
+							</div>
+							<div className="boxchoice__info">
+								<h2 className="boxchoice__info__title">Box {data.id}</h2>
+								<div className="boxchoice__info__icon-wrapper">
+									<img src={Check} className="boxchoice__info__icon" />
+								</div>
+							</div>
+						</article>
+					</>
+				);
+			}
+			if (data.status == "open") {
+				return (
+					<article className="boxchoice boxchoice--open" onClick={() => fetchCurrentBox(data.id)}>
+						<Link to={"/"} className="boxchoice__link"></Link>
 						<div className="boxchoice__picture-wrapper">
-							<img src={data.cover} className="boxchoice__picture" />
+							<img src={renderCover()} className="boxchoice__picture" />
 						</div>
 						<div className="boxchoice__info">
-							<h2 className="boxchoice__info__title">Box {data.boxNumber}</h2>
+							<h2 className="boxchoice__info__title">Box {data.id}</h2>
 							<div className="boxchoice__info__icon-wrapper">
-								<img src={Check} className="boxchoice__info__icon" />
+								<img src={Lockopen} className="boxchoice__info__icon" />
 							</div>
 						</div>
 					</article>
-				</>
-			);
-		}
-		if (data.status == "open") {
-			return (
-				<article className="boxchoice boxchoice--open" onClick={() => fetchCurrentBox(`box${data.boxNumber}`)}>
-					<Link to={"/"} className="boxchoice__link"></Link>
-					<div className="boxchoice__picture-wrapper">
-						<img src={data.cover} className="boxchoice__picture" />
-					</div>
-					<div className="boxchoice__info">
-						<h2 className="boxchoice__info__title">Box {data.boxNumber}</h2>
-						<div className="boxchoice__info__icon-wrapper">
-							<img src={Lockopen} className="boxchoice__info__icon" />
-						</div>
-					</div>
-				</article>
-			);
-		}
-		if (data.status == "closed") {
-			return (
-				<>
-					<article className="boxchoice boxchoice--closed">
-						<div className="boxchoice__picture-wrapper">
-							<img src={data.cover} className="boxchoice__picture" />
-						</div>
-						<div className="boxchoice__info">
-							<h2 className="boxchoice__info__title">Box {data.boxNumber}</h2>
-							<div className="boxchoice__info__icon-wrapper">
-								<img src={Lockclosed} className="boxchoice__info__icon" />
+				);
+			}
+			if (data.status == "closed") {
+				return (
+					<>
+						<article className="boxchoice boxchoice--closed">
+							<div className="boxchoice__picture-wrapper">
+								<img src={renderCover()} className="boxchoice__picture" />
 							</div>
-						</div>
-						<div className="boxchoice__greyFilter"></div>
-					</article>
-				</>
-			);
+							<div className="boxchoice__info">
+								<h2 className="boxchoice__info__title">Box {data.id}</h2>
+								<div className="boxchoice__info__icon-wrapper">
+									<img src={Lockclosed} className="boxchoice__info__icon" />
+								</div>
+							</div>
+							<div className="boxchoice__greyFilter"></div>
+						</article>
+					</>
+				);
+			}
 		}
 	};
 

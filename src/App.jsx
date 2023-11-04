@@ -18,7 +18,7 @@ const api = new Api();
 
 function App() {
 	const [status, setStatus] = useState("KO");
-	//added this line to avoid having an error
+	//EXPLICATION : added this line to avoid having an error
 	console.log(status);
 
 	useEffect(() => {

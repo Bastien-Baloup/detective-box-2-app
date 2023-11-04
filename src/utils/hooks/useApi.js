@@ -14,7 +14,6 @@ export const getToken = (credentials) => {
 			return response.json();
 		})
 		.then((data) => {
-			console.log(data);
 			return data;
 		})
 		.catch((error) => {
@@ -302,7 +301,7 @@ export const getObjectivesByBox = (token, boxid) => {
 };
 
 export const updateObjectives = (token, boxid, objectiveid, newstatus) => {
-	return fetch(url + "/help/" + boxid + "/?id=" + objectiveid, {
+	return fetch(url + "/objectives/" + boxid + "/?id=" + objectiveid, {
 		method: "PUT",
 		headers: {
 			"Content-Type": "application/json",
@@ -341,7 +340,7 @@ export const resetObjectives = (token) => {
 };
 
 export const getHistoryByBox = (token, boxid) => {
-	return fetch(url + "/history" + { boxid }, {
+	return fetch(url + "/history/" + boxid, {
 		method: "GET",
 		headers: {
 			"Content-Type": "application/json",

@@ -17,9 +17,10 @@ import Lauren from "./Lauren";
 import Raphaelle from "./Raphaelle";
 import Celine from "./Celine";
 import { useState } from "react";
-import { BoxContext } from "../utils/context/fetchContext";
-import { useContext } from "react";
+import { BoxContext, AuthContext } from "../utils/context/fetchContext";
+import { useContext, useEffect } from "react";
 import { urlApi } from "../utils/const/urlApi";
+import { getEventByBox, updateEvent, getHistoryByBox } from "../utils/hooks/useApi";
 
 function Home() {
 	const [characterDisplayed, setCharacterDisplayed] = useState(null);
@@ -27,10 +28,33 @@ function Home() {
 	const [modalCelineGone, setModalCelineGone] = useState(false);
 
 	const { currentBox } = useContext(BoxContext);
+	const { token } = useContext(AuthContext);
 
-	const specificCardActionLauren = () => {
+	useEffect(() => {
+		const fetchData = async () => {
+			const result = await getEventByBox(token, 3);
+			const event34 = result.data.find((event) => event.id == 34);
+			setEvent34(event34.status);
+		};
+		fetchData();
+	}, [token, currentBox]);
+
+	useEffect(() => {
+		const fetchData = async () => {
+			const result = await getHistoryByBox(token, 2);
+			const document6 = result.data.find((event) => event.id == "box2document6");
+			setDocument6(document6.status);
+		};
+		fetchData();
+	}, [token, currentBox]);
+
+	const [event34, setEvent34] = useState("");
+	const [document6, setDocument6] = useState(false);
+
+	const specificCardActionLauren = async () => {
 		setModalLaurenGone(!modalLaurenGone);
-		// API event 32 == "open";
+		// API change le status de l'event 32 en "open"
+		await updateEvent(token, 3, 32, "open");
 	};
 
 	// EXPLICATION : Quand le personnage de Lauren a disparu, alors on affiche cette modale pour afficher la video à l'agence (event 32)
@@ -90,7 +114,7 @@ function Home() {
 						actionButton={() => setCharacterDisplayed("raphaelle")}
 						state=""
 					/>
-					{currentBox == "box3" ? (
+					{currentBox == 3 ? (
 						<Card
 							srcImg={PhotoRaphaelle}
 							srcIcon={IconLauren}
@@ -106,8 +130,7 @@ function Home() {
 							name="Lauren Fraser"
 							contentButton="Demander un interrogatoire"
 							actionButton={() => setCharacterDisplayed("lauren")}
-							state=""
-							// API state={"box2document6 == true dans historique ? "unavailable" : ""}
+							state={document6 == true ? "unavailable" : ""}
 						/>
 					)}
 					<Card
@@ -116,8 +139,7 @@ function Home() {
 						name="Céline Valluy"
 						contentButton="Demander un dossier de police"
 						actionButton={() => setCharacterDisplayed("celine")}
-						state=""
-						// API state={"data.id == 34" == "done" ? "unavailable" : ""}
+						state={event34 == "done" ? "unavailable" : ""}
 					/>
 					<Card
 						srcImg={PhotoTim}
@@ -132,8 +154,8 @@ function Home() {
 						srcIcon={IconAdele}
 						name="Adèle Leinu"
 						contentButton="Demander une analyse scientifique"
-						actionButton={currentBox == "box1" ? null : () => setCharacterDisplayed("adele")}
-						state={currentBox == "box1" ? "unavailable" : ""}
+						actionButton={currentBox == 1 ? null : () => setCharacterDisplayed("adele")}
+						state={currentBox == 1 ? "unavailable" : ""}
 					/>
 				</div>
 				{modalLaurenGone ? displayModalLaurenGone() : null}

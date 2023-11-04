@@ -8,12 +8,27 @@ import Video from "../components/Video.jsx";
 import Cross from "../assets/icons/Icon_Cross-white.svg";
 import PropTypes from "prop-types";
 import { urlApi } from "../utils/const/urlApi";
-import { BoxContext } from "../utils/context/fetchContext";
-import { useContext, useState } from "react";
-import { dataTim } from "../utils/const/dataTim";
+import { BoxContext, AuthContext } from "../utils/context/fetchContext";
+import { useContext, useState, useEffect } from "react";
+// import { dataTim } from "../utils/const/dataTim";
+import { updateCharactersById, updateHistory, getCharactersById } from "../utils/hooks/useApi.js";
 
 const Tim = ({ closeAgentPage }) => {
 	const { currentBox } = useContext(BoxContext);
+	const { token } = useContext(AuthContext);
+
+	//EXPLICATION : Tim est le personnage "5"
+	useEffect(() => {
+		const fetchData = async () => {
+			const result = await getCharactersById(token, 5);
+			console.log(result);
+			setDataTim(result);
+		};
+		fetchData();
+	}, [token, currentBox]);
+
+	const [dataTim, setDataTim] = useState(null);
+
 	const [value, setValue] = useState("");
 	const [errorMessage, setErrorMessage] = useState("");
 	const [modal, setModal] = useState(false);
@@ -34,10 +49,13 @@ const Tim = ({ closeAgentPage }) => {
 	// EXPLICATION : Les réponses peuvent être trouvées dans la box actuelle ou les boxs précédentes
 	// EXPLICATION : Les réponses du personnage dépendent de la location de la réponse (box précedente ou box actuelle) et du status de la réponse (déjà demandé ou pas)
 	const handleSubmit = (e) => {
-		const answerInThisBox = dataTim[currentBox].find((element) => element.ask.includes(slugify(value)));
+		const thisBox = dataTim.find((element) => element.box_id == currentBox).data;
+		const box1 = dataTim.find((element) => element.box_id == 1).data;
+		const box2 = dataTim.find((element) => element.box_id == 2).data;
+		const answerInThisBox = thisBox.find((element) => element.ask.includes(slugify(value)));
 		const previouslyAnsweredInThisBox = answerInThisBox && answerInThisBox.status;
-		const answerInBox1 = dataTim["box1"].some((element) => element.ask.includes(slugify(value)));
-		const answerInBox2 = dataTim["box2"].some((element) => element.ask.includes(slugify(value)));
+		const answerInBox1 = box1.some((element) => element.ask.includes(slugify(value)));
+		const answerInBox2 = box2.some((element) => element.ask.includes(slugify(value)));
 		e.preventDefault();
 		if (value == "") {
 			setErrorMessage("Vous n'avez rien à me faire analyser ? Je retourne gamer alors.");
@@ -56,14 +74,14 @@ const Tim = ({ closeAgentPage }) => {
 			setErrorMessage("");
 			return;
 		}
-		if (currentBox == "box2" && answerInBox1) {
+		if (currentBox == 2 && answerInBox1) {
 			setValue("");
 			setErrorMessage(
 				"Vous avez déjà analysé cet élément lors d'une box précédente. Rendez-vous dans l'Historique pour revoir les résultats."
 			);
 			return;
 		}
-		if (currentBox == "box3" && (answerInBox2 || answerInBox1)) {
+		if (currentBox == 3 && (answerInBox2 || answerInBox1)) {
 			setValue("");
 			setErrorMessage(
 				"Vous avez déjà analysé cet élément lors d'une box précédente. Rendez-vous dans l'Historique pour revoir les résultats."
@@ -114,7 +132,6 @@ const Tim = ({ closeAgentPage }) => {
 
 	const validateModal = () => {
 		setModal(false);
-		// API Mettre à jour le status de cette réponse de FALSE à TRUE
 	};
 
 	const openMedia = () => {
@@ -125,7 +142,11 @@ const Tim = ({ closeAgentPage }) => {
 	const renderModalMedia = () => {
 		if (answer.id.includes("document")) {
 			return (
-				<Document title={answer.title} srcElement={urlApi.apiRemi() + answer.src} handleModalDocument={closeModalMedia} />
+				<Document
+					title={answer.title}
+					srcElement={urlApi.apiRemi() + answer.src}
+					handleModalDocument={() => closeModalMedia(answer.id, answer.ask)}
+				/>
 			);
 		}
 		if (answer.id.includes("video")) {
@@ -133,16 +154,19 @@ const Tim = ({ closeAgentPage }) => {
 				<Video
 					title={answer.title}
 					srcVideo={urlApi.apiRemi() + answer.src}
-					handleModalVideo={closeModalMedia}
+					handleModalVideo={() => closeModalMedia(answer.id, answer.ask)}
 					delayedButton={true}
 				/>
 			);
 		}
 	};
 
-	const closeModalMedia = () => {
+	const closeModalMedia = async (answerId, asnwerAsk) => {
 		setModalMedia(false);
+		await updateCharactersById(token, 5, currentBox, asnwerAsk);
+		await updateHistory(token, currentBox, answerId);
 		// API Mettre à jour le status de cet élément dans l'Historique avec l'id
+		// API Mettre à jour le status de cette réponse de FALSE à TRUE
 	};
 
 	const catchphrase = [

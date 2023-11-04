@@ -1,21 +1,32 @@
 // EXPLICATION : Page pour afficher les renforts
 
 import { useState } from "react";
-import { dataHelp } from "../utils/const/dataHelp";
+// import { dataHelp } from "../utils/const/dataHelp";
 import Slider from "../components/Slider";
 import Check from "../assets/icons/Icon_Check-green.svg";
 import LockClosed from "../assets/icons/Icon_Lock-closed-red.svg";
 import LockOpen from "../assets/icons/Icon_Lock-open-black.svg";
 import { urlApi } from "../utils/const/urlApi";
-import { BoxContext } from "../utils/context/fetchContext";
-import { useContext } from "react";
+import { BoxContext, AuthContext } from "../utils/context/fetchContext";
+import { useContext, useEffect } from "react";
+import { getHelpByBox } from "../utils/hooks/useApi";
 
 function Renfort() {
+	const { currentBox } = useContext(BoxContext);
+	const { token } = useContext(AuthContext);
+
+	useEffect(() => {
+		const fetchData = async () => {
+			const result = await getHelpByBox(token, currentBox);
+			setDataHelp(result.data);
+		};
+		fetchData();
+	}, [token, currentBox]);
+
 	const [sliderActivated, setSliderActivated] = useState(false);
 	const [menuActivated, setmenuActivated] = useState(true);
 	const [helpSelected, setHelpSelected] = useState(null);
-
-	const { currentBox } = useContext(BoxContext);
+	const [dataHelp, setDataHelp] = useState(null);
 
 	// EXPLICATION : Fonction pour retourner au choix des renforts
 	const backToHome = () => {
@@ -37,7 +48,7 @@ function Renfort() {
 
 	// EXPLICATION : Afficher le choix des renforts (etat en fonction de leur statut)
 	const displayMenu = () => {
-		const menuChoices = dataHelp[currentBox].map((help, index) => {
+		const menuChoices = dataHelp?.map((help, index) => {
 			if (help.status == "done") {
 				return (
 					<>

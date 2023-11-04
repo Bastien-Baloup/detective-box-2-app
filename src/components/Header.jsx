@@ -66,11 +66,11 @@ const Header = () => {
 
 	// EXPLICATION : On affiche le Quizz en fonction de la box. Box 1 pas de quizz !
 	const displayQuizz = () => {
-		if (currentBox == "box1") {
+		if (currentBox == 1) {
 			handleCloseQuizz();
 			return <></>;
 		}
-		if (currentBox == "box2" || currentBox == "box3") {
+		if (currentBox == 2 || currentBox == 3) {
 			if (dataQuizz[currentBox].status == true) {
 				handleCloseQuizz();
 				return <></>;
@@ -127,7 +127,7 @@ const Header = () => {
 
 	// EXPLICATION : Audio pour les nappes d'ambiance en fonction de la box (une box = une musique d'ambiance)
 	const displayAudio = () => {
-		if (currentBox == "box1") {
+		if (currentBox == 1) {
 			return (
 				<audio loop preload="auto" ref={audioElem}>
 					<source src={urlApi.apiRemi() + "sounds/musiques-db-s2-nappe-1.wav"} type="audio/wav" />
@@ -135,7 +135,7 @@ const Header = () => {
 				</audio>
 			);
 		}
-		if (currentBox == "box2") {
+		if (currentBox == 2) {
 			return (
 				<audio loop preload="auto" ref={audioElem}>
 					<source src={urlApi.apiRemi() + "sounds/musiques-db-s2-nappe-2.wav"} type="audio/wav" />
@@ -143,7 +143,7 @@ const Header = () => {
 				</audio>
 			);
 		}
-		if (currentBox == "box3") {
+		if (currentBox == 3) {
 			return (
 				<audio loop preload="auto" ref={audioElem}>
 					<source src={urlApi.apiRemi() + "sounds/musiques-db-s2-nappe-3.wav"} type="audio/wav" />

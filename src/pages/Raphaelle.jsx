@@ -6,18 +6,33 @@ import Input from "../components/Input.jsx";
 import Cross from "../assets/icons/Icon_Cross-white.svg";
 import PropTypes from "prop-types";
 import { urlApi } from "../utils/const/urlApi";
-import { BoxContext } from "../utils/context/fetchContext";
-import { useContext, useState } from "react";
-import { dataRaphaelle } from "../utils/const/dataRaphaelle";
+import { BoxContext, AuthContext } from "../utils/context/fetchContext";
+import { useContext, useState, useEffect } from "react";
+// import { dataRaphaelle } from "../utils/const/dataRaphaelle";
+import { updateCharactersById, updateHistory, getCharactersById } from "../utils/hooks/useApi.js";
 
 const Raphaelle = ({ closeAgentPage }) => {
 	const { currentBox } = useContext(BoxContext);
+	const { token } = useContext(AuthContext);
+
+	//EXPLICATION : Raphaelle est le personnage "4"
+
+	useEffect(() => {
+		const fetchData = async () => {
+			const result = await getCharactersById(token, 4);
+			console.log(result);
+			setDataRaphaelle(result);
+		};
+		fetchData();
+	}, [token, currentBox]);
+
 	const [valueAdresse, setValueAdresse] = useState("");
 	const [valueLatitude, setValueLatitude] = useState("");
 	const [valueLongitude, setValueLongitude] = useState("");
 	const [errorMessage, setErrorMessage] = useState("");
 	const [modal, setModal] = useState(false);
 	const [answer, setAnswer] = useState("");
+	const [dataRaphaelle, setDataRaphaelle] = useState(null);
 
 	// EXPLICATION : Fonction pour slugifier l'input Adresse des joueurs (lettre et chiffres ok)
 	const slugifyAdresse = (input) => {
@@ -45,14 +60,17 @@ const Raphaelle = ({ closeAgentPage }) => {
 	// EXPLICATION : Les réponses du personnage dépendent de la location de la réponse (box précedente ou box actuelle) et du status de la réponse (déjà demandé ou pas)
 	// EXPLICATION : Pour rappel, Raphaëlle est le seul personnage qui a deux champs (adresse et GPS(latitude et longitude))
 	const handleSubmit = (e) => {
+		const thisBox = dataRaphaelle.find((element) => element.box_id == currentBox).data;
+		const box1 = dataRaphaelle.find((element) => element.box_id == 1).data;
+		const box2 = dataRaphaelle.find((element) => element.box_id == 2).data;
 		const answerInThisBox = (value) => {
-			return dataRaphaelle[currentBox].find((element) => element.ask.includes(value));
+			return thisBox.find((element) => element.ask.includes(value));
 		};
 		const previouslyAnsweredInThisBox = (value) => {
 			return answerInThisBox(value) && answerInThisBox(value).status;
 		};
-		const answerInBox1 = (value) => dataRaphaelle["box1"].some((element) => element.ask.includes(value));
-		const answerInBox2 = (value) => dataRaphaelle["box2"].some((element) => element.ask.includes(value));
+		const answerInBox1 = (value) => box1.some((element) => element.ask.includes(value));
+		const answerInBox2 = (value) => box2.some((element) => element.ask.includes(value));
 
 		e.preventDefault();
 		// EXPLICATION : si les deux champs sont remplis, message d'erreur
@@ -100,7 +118,7 @@ const Raphaelle = ({ closeAgentPage }) => {
 				setErrorMessage("");
 				return;
 			}
-			if (currentBox == "box2" && answerInBox1(slugifiedAdresse)) {
+			if (currentBox == 2 && answerInBox1(slugifiedAdresse)) {
 				setValueAdresse("");
 				setValueLongitude("");
 				setValueLatitude("");
@@ -109,7 +127,7 @@ const Raphaelle = ({ closeAgentPage }) => {
 				);
 				return;
 			}
-			if (currentBox == "box3" && (answerInBox2(slugifiedAdresse) || answerInBox1(slugifiedAdresse))) {
+			if (currentBox == 3 && (answerInBox2(slugifiedAdresse) || answerInBox1(slugifiedAdresse))) {
 				setValueAdresse("");
 				setValueLongitude("");
 				setValueLatitude("");
@@ -139,7 +157,7 @@ const Raphaelle = ({ closeAgentPage }) => {
 				setErrorMessage("");
 				return;
 			}
-			if (currentBox == "box2" && answerInBox1(slugifiedGPS)) {
+			if (currentBox == 2 && answerInBox1(slugifiedGPS)) {
 				setValueAdresse("");
 				setValueLongitude("");
 				setValueLatitude("");
@@ -148,7 +166,7 @@ const Raphaelle = ({ closeAgentPage }) => {
 				);
 				return;
 			}
-			if (currentBox == "box3" && (answerInBox2(slugifiedGPS) || answerInBox1(slugifiedGPS))) {
+			if (currentBox == 3 && (answerInBox2(slugifiedGPS) || answerInBox1(slugifiedGPS))) {
 				setValueAdresse("");
 				setValueLongitude("");
 				setValueLatitude("");
@@ -170,7 +188,7 @@ const Raphaelle = ({ closeAgentPage }) => {
 				<div className="modal-objectif__box">
 					<div>{renderText()}</div>
 					{answer.id ? (
-						<button className="modal-objectif__button button--red" onClick={openLieu}>
+						<button className="modal-objectif__button button--red" onClick={() => openLieu(answer.id, answer.ask)}>
 							Explorer le lieu
 						</button>
 					) : (
@@ -183,11 +201,13 @@ const Raphaelle = ({ closeAgentPage }) => {
 		);
 	};
 
-	const openLieu = () => {
-		window.open(answer.src, "_blank");
+	const openLieu = async (answerId, asnwerAsk) => {
+		window.open(answer.src + "/?token=" + token, "_blank");
 		validateModal();
-		// ne pas oublier le token dans l'url
+		await updateHistory(token, currentBox, answerId);
+		await updateCharactersById(token, 4, currentBox, asnwerAsk);
 		// API Mettre ce lieu de fouille dans l'Historique
+		// API Mettre à jour le status de cette réponse de FALSE à TRUE
 	};
 
 	const renderText = () => {
@@ -203,7 +223,6 @@ const Raphaelle = ({ closeAgentPage }) => {
 
 	const validateModal = () => {
 		setModal(false);
-		// API Mettre à jour le status de cette réponse de FALSE à TRUE
 	};
 
 	const catchphrase = [

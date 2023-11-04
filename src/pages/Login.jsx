@@ -18,8 +18,9 @@ function Login() {
 	const [errorMessageForgot, setErrorMessageForgot] = useState("");
 	const [email, setEmail] = useState("");
 	const [emailForgot, setEmailForgot] = useState("");
+	const [modalNewUser, setModalNewUser] = useState(false);
 	const credentials = { email: email, password: password };
-	// const newaccount = { email: email, password: password, name: username };
+	const newaccount = { email: email, password: password, name: username };
 	const { login, loggedIn } = useContext(AuthContext);
 
 	// EXPLICATION : Si le joueur est connecté, alors redirection sur le choix des boxs
@@ -33,17 +34,15 @@ function Login() {
 			setErrorMessageSignin("Merci de remplir le formulaire pour vous connecter");
 			return;
 		}
+		setUsername("");
+		setEmail("");
+		setPassword("");
+		setErrorMessageSignin("");
 		const dataToken = await getToken(credentials);
-		if (dataToken.status === 200) {
-			login(dataToken);
-			console.log(dataToken);
-		} else {
-			console.log(dataToken.status);
-		}
-		console.log(JSON.stringify(credentials));
+		login(dataToken.access_token);
 	};
 
-	const handleSubmitSignup = (e) => {
+	const handleSubmitSignup = async (e) => {
 		e.preventDefault();
 		if (email === "" || password === "" || username === "") {
 			setErrorMessageSignup("Merci de remplir le formulaire pour créer un compte");
@@ -53,11 +52,14 @@ function Login() {
 		setEmail("");
 		setPassword("");
 		setErrorMessageSignup("");
-		//API pour créer compte
-		alert("Compte bien créé Agent ");
+		const newUser = await getToken(newaccount);
+		console.log(newUser);
+		// if (newUser) {
+		// 	setModalNewUser(true);
+		// }
+		// Si le compte existe déjà, alors
+		// setErrorMessageSignup("Ce compte existe déjà, veuillez vous connecter");
 	};
-
-	// si email exist, renvoyer "Votre compte existe déjà, merci de vous connecter"
 
 	// EXPLICATION : Gérer le formulaire pour le mot de passe oublié
 	const handleSubmitEmailForgot = (e) => {
@@ -92,12 +94,32 @@ function Login() {
 		setPassword("");
 	};
 
+	// EXPLICATION : Modale de confirmation de la création d'un nouveau compte
+	const displayModalConfirmNewUser = () => {
+		return (
+			<div className="modal-confirm__background">
+				<div className="modal-confirm__box">
+					<p className="modal-confirm__text">Votre compte a bien été créé</p>
+					<button className="modal-confirm__button button--red" onClick={handleModalNewUser}>
+						Se connecter
+					</button>
+				</div>
+			</div>
+		);
+	};
+
+	const handleModalNewUser = () => {
+		setModalNewUser(false);
+		switchToSignin();
+	};
+
 	return (
 		<main className="login">
 			<a className="login__link" href="https://app.detectivebox.fr/connexion">
 				&lt; Retour aux choix des scénarios
 			</a>
 			<img className="login__logo" src={Logo} />
+			{modalNewUser ? displayModalConfirmNewUser() : ""}
 			{isSigninActive ? (
 				<Signin
 					handleSubmitSignin={handleSubmitSignin}

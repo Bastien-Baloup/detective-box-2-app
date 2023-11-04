@@ -7,12 +7,28 @@ import Document from "../components/Document.jsx";
 import Cross from "../assets/icons/Icon_Cross-white.svg";
 import PropTypes from "prop-types";
 import { urlApi } from "../utils/const/urlApi";
-import { BoxContext } from "../utils/context/fetchContext";
-import { useContext, useState } from "react";
-import { dataAdele } from "../utils/const/dataAdele";
+import { BoxContext, AuthContext } from "../utils/context/fetchContext";
+import { useContext, useState, useEffect } from "react";
+// import { dataAdele } from "../utils/const/dataAdele";
+import { updateCharactersById, updateHistory, getCharactersById } from "../utils/hooks/useApi.js";
 
 const Adele = ({ closeAgentPage }) => {
 	const { currentBox } = useContext(BoxContext);
+	const { token } = useContext(AuthContext);
+
+	//EXPLICATION : Adele est le personnage "1"
+
+	useEffect(() => {
+		const fetchData = async () => {
+			const result = await getCharactersById(token, 1);
+			console.log(result);
+			setDataAdele(result);
+		};
+		fetchData();
+	}, [token, currentBox]);
+
+	const [dataAdele, setDataAdele] = useState(null);
+
 	const [value, setValue] = useState("");
 	const [errorMessage, setErrorMessage] = useState("");
 	const [modal, setModal] = useState(false);
@@ -34,9 +50,11 @@ const Adele = ({ closeAgentPage }) => {
 	// EXPLICATION : Les réponses du personnage dépendent de la location de la réponse (box précedente ou box actuelle) et du status de la réponse (déjà demandé ou pas)
 	// EXPLICATION : Pour rappel, Adèle n'apparait pas en box 1
 	const handleSubmit = (e) => {
-		const answerInThisBox = dataAdele[currentBox].find((element) => element.ask.includes(slugify(value)));
+		const thisBox = dataAdele.find((element) => element.box_id == currentBox).data;
+		const box2 = dataAdele.find((element) => element.box_id == 2).data;
+		const answerInThisBox = thisBox.find((element) => element.ask.includes(slugify(value)));
 		const previouslyAnsweredInThisBox = answerInThisBox && answerInThisBox.status;
-		const answerInBox2 = dataAdele["box2"].some((element) => element.ask.includes(slugify(value)));
+		const answerInBox2 = box2.some((element) => element.ask.includes(slugify(value)));
 		e.preventDefault();
 		if (value == "") {
 			setErrorMessage("Je dois bien analyser quelque chose !");
@@ -55,7 +73,7 @@ const Adele = ({ closeAgentPage }) => {
 			setErrorMessage("");
 			return;
 		}
-		if (currentBox == "box3" && answerInBox2) {
+		if (currentBox == 3 && answerInBox2) {
 			setValue("");
 			setErrorMessage("Vous avez déjà analysé cet élément lors d'une box précédente.");
 			return;
@@ -104,7 +122,6 @@ const Adele = ({ closeAgentPage }) => {
 
 	const validateModal = () => {
 		setModal(false);
-		// API Mettre à jour le status de cette réponse de FALSE à TRUE
 	};
 
 	const openMedia = () => {
@@ -114,12 +131,19 @@ const Adele = ({ closeAgentPage }) => {
 
 	const renderModalMedia = () => {
 		return (
-			<Document title={answer.title} srcElement={urlApi.apiRemi() + answer.src} handleModalDocument={closeModalMedia} />
+			<Document
+				title={answer.title}
+				srcElement={urlApi.apiRemi() + answer.src}
+				handleModalDocument={() => closeModalMedia(answer.id, answer.ask)}
+			/>
 		);
 	};
 
-	const closeModalMedia = () => {
+	const closeModalMedia = async (answerId, asnwerAsk) => {
 		setModalMedia(false);
+		await updateCharactersById(token, 1, currentBox, asnwerAsk);
+		await updateHistory(token, currentBox, answerId);
+		// API Mettre à jour le status de cette réponse de FALSE à TRUE
 		// API Mettre à jour le status de cet élément dans l'Historique avec l'id
 	};
 

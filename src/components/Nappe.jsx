@@ -13,7 +13,7 @@ const Nappe = ({ activateNappe, desactivateNappe }) => {
 					<button className="modal-nappe__button button--red" onClick={activateNappe}>
 						Oui
 					</button>
-					<button className="modal-nappe__button button--red" onClick={desactivateNappe}>
+					<button className="modal-nappe__button button--white" onClick={desactivateNappe}>
 						Non
 					</button>
 				</div>

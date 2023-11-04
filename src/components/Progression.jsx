@@ -11,16 +11,28 @@ import LineSmallRed from "../assets/icons/Icon_Line_Small-red.svg";
 import CheckWhite from "../assets/icons/Icon_Check-white.svg";
 import CrossRed from "../assets/icons/Icon_Cross-red.svg";
 import Flag from "../assets/icons/Icon_Flag.svg";
-import { BoxContext } from "../utils/context/fetchContext";
-import { useContext } from "react";
-import { dataObjectif } from "../utils/const/dataObjectif";
+import { BoxContext, AuthContext } from "../utils/context/fetchContext";
+import { useContext, useState, useEffect } from "react";
+// import { dataObjectif } from "../utils/const/dataObjectif";
+import { getObjectivesByBox } from "../utils/hooks/useApi.js";
 
 const Progression = () => {
 	const { currentBox } = useContext(BoxContext);
-	const currentStep = dataObjectif[currentBox].filter((element) => element.status == "done").length;
+	const { token } = useContext(AuthContext);
+
+	useEffect(() => {
+		const fetchData = async () => {
+			const result = await getObjectivesByBox(token, currentBox);
+			setDataObjectif(result.data);
+		};
+		fetchData();
+	}, [token, currentBox]);
+
+	const [dataObjectif, setDataObjectif] = useState(null);
+	const currentStep = dataObjectif?.filter((element) => element.status == "done").length;
+
 	const trackBox = (box) => {
 		const boxPlayed = box < currentBox;
-
 		// EXPLICATION : Si la box a été jouée (box < currentbox), alors on retourne ces icones
 		// EXPLICATION : Si la box est en cours, alors on affiche les icones en fonction des étapes de validation des objectifs
 		if (boxPlayed) {
@@ -67,21 +79,21 @@ const Progression = () => {
 					<img className="progressBar__box__icon--main" src={CheckWhite} />
 					<div className="progressBar__box__steps">
 						<div className="progressBar__box__title--played">Box 1</div>
-						<div className="progressBar__box__icons">{trackBox("box1")}</div>
+						<div className="progressBar__box__icons">{trackBox(1)}</div>
 					</div>
 				</div>
 				<div className="progressBar__box">
-					<img className="progressBar__box__icon--main" src={currentBox != "box1" ? CheckWhite : CrossRed} />
+					<img className="progressBar__box__icon--main" src={currentBox != 1 ? CheckWhite : CrossRed} />
 					<div className="progressBar__box__steps">
-						<div className={`progressBar__box__title${currentBox != "box1" ? "--played" : ""}`}>Box 2</div>
-						<div className="progressBar__box__icons">{currentBox != "box1" ? trackBox("box2") : noTrackBox()}</div>
+						<div className={`progressBar__box__title${currentBox != 1 ? "--played" : ""}`}>Box 2</div>
+						<div className="progressBar__box__icons">{currentBox != 1 ? trackBox(2) : noTrackBox()}</div>
 					</div>
 				</div>
 				<div className="progressBar__box">
 					<img className="progressBar__box__icon--main" src={currentBox == "box3" ? CheckWhite : CrossRed} />
 					<div className="progressBar__box__steps">
-						<div className={`progressBar__box__title${currentBox == "box3" ? "--played" : ""}`}>Box 3</div>
-						<div className="progressBar__box__icons">{currentBox == "box3" ? trackBox("box3") : noTrackBox()}</div>
+						<div className={`progressBar__box__title${currentBox == 3 ? "--played" : ""}`}>Box 3</div>
+						<div className="progressBar__box__icons">{currentBox == 3 ? trackBox(3) : noTrackBox()}</div>
 					</div>
 					<img className="progressBar__box__icon--main" src={Flag} />
 				</div>

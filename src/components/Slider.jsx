@@ -1,4 +1,4 @@
-// EXXPLICATION : Ce composant permet de rendre le slider qui est utilisé pour les renforts (affiche toutes les aides une par une)
+// EXPLICATION : Ce composant permet de rendre le slider qui est utilisé pour les renforts (affiche toutes les aides une par une)
 // EXPLICATION : Ce composant est utilisé dans la page Help
 
 import PropTypes from "prop-types";

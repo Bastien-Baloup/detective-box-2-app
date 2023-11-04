@@ -33,6 +33,8 @@ const Objectif = ({ data }) => {
 
 	const navigate = useNavigate();
 
+	const token = localStorage.getItem("token");
+
 	// --- CONDITIONS SPE OBJECTIF 14 --- //
 
 	const [victime1, setVictime1] = useState("");
@@ -1382,7 +1384,7 @@ const Objectif = ({ data }) => {
 
 	const closeDebriefLauren = () => {
 		// box3audio1==true dans historique
-		window.open("https://fouille.foret.detectivebox.fr", "_blank");
+		window.open("https://fouille.foret.detectivebox.fr/?token=" + token, "_blank");
 		// ne pas oublier le token
 		// box3lieu1==true dans historique
 		setDebriefLauren(false);

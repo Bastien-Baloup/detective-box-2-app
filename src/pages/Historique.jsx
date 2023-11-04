@@ -3,26 +3,60 @@
 import { useState } from "react";
 import Filter from "../components/Filter";
 import Preuve from "../components/Preuve";
-import { dataHistory } from "../utils/const/dataHistory";
+// import { dataHistory } from "../utils/const/dataHistory";
 import Document from "../components/Document";
 import Audio from "../components/Audio";
 import Video from "../components/Video";
 import { urlApi } from "../utils/const/urlApi";
 import Cross from "../assets/icons/Icon_Cross-white.svg";
-import { BoxContext } from "../utils/context/fetchContext";
-import { useContext } from "react";
+import { BoxContext, AuthContext } from "../utils/context/fetchContext";
+import { useContext, useEffect } from "react";
+import { getHistoryByBox } from "../utils/hooks/useApi";
 
 function Historique() {
 	const filtersType = ["Archive", "Document", "Video", "Audio", "Lieu"];
 	const filterBox = ["Box 1", "Box 2", "Box 3"];
+	const { token } = useContext(AuthContext);
+	const { currentBox } = useContext(BoxContext);
 
+	useEffect(() => {
+		const fetchData = async () => {
+			if (currentBox == 1) {
+				const result = await getHistoryByBox(token, currentBox);
+				console.log(result.data);
+				setDataHistory1(result.data);
+			}
+			if (currentBox == 2) {
+				const result = await getHistoryByBox(token, currentBox);
+				console.log(result.data);
+				setDataHistory2(result.data);
+				const result2 = await getHistoryByBox(token, 1);
+				console.log(result2.data);
+				setDataHistory1(result2.data);
+			}
+			if (currentBox == 3) {
+				const result = await getHistoryByBox(token, currentBox);
+				console.log(result.data);
+				setDataHistory3(result.data);
+				const result2 = await getHistoryByBox(token, 1);
+				console.log(result2.data);
+				setDataHistory1(result2.data);
+				const result3 = await getHistoryByBox(token, 2);
+				console.log(result3.data);
+				setDataHistory2(result3.data);
+			}
+		};
+		fetchData();
+	}, [token, currentBox]);
+
+	const [dataHistory1, setDataHistory1] = useState(null);
+	const [dataHistory2, setDataHistory2] = useState(null);
+	const [dataHistory3, setDataHistory3] = useState(null);
 	const [selectedCategory, setSelectedCategory] = useState([]);
 	const [selectedBox, setselectedBox] = useState([]);
 
 	const [modal, setModal] = useState(false);
 	const [selectedClue, setSelectedClue] = useState("");
-
-	const { currentBox } = useContext(BoxContext);
 
 	// EXPLICATION : cette fonction va créer un nouvel array avec l'ensemble des filtres de catégorie
 	const handleFilterCategory = (selectedFilter) => {
@@ -46,41 +80,43 @@ function Historique() {
 
 	// EXPLICATION : cette fonction va filtrer les data en fonction des arrays filtres créés plus haut
 	const filterClues = (data) => {
-		if (selectedCategory.length == 0 && selectedBox.length == 0) {
-			return data.map((clue, index) => <Preuve data={clue} key={`clueKey-${index}`} openModal={() => openModal(clue)} />);
-		}
-		if (selectedCategory.length == 0 && selectedBox.length != 0) {
+		if (data.length > 1) {
+			if (selectedCategory.length == 0 && selectedBox.length == 0) {
+				return data.map((clue, index) => <Preuve data={clue} key={`clueKey-${index}`} openModal={() => openModal(clue)} />);
+			}
+			if (selectedCategory.length == 0 && selectedBox.length != 0) {
+				return data
+					.filter((clue) => selectedBox.includes(clue.box))
+					.map((clue, index) => <Preuve data={clue} key={`clueKey-${index}`} openModal={() => openModal(clue)} />);
+			}
+			if (selectedBox.length == 0 && selectedCategory.length != 0) {
+				return data
+					.filter((clue) => selectedCategory.includes(clue.category))
+					.map((clue, index) => <Preuve data={clue} key={`clueKey-${index}`} openModal={() => openModal(clue)} />);
+			}
 			return data
+				.filter((clue) => selectedCategory.includes(clue.category))
 				.filter((clue) => selectedBox.includes(clue.box))
 				.map((clue, index) => <Preuve data={clue} key={`clueKey-${index}`} openModal={() => openModal(clue)} />);
 		}
-		if (selectedBox.length == 0 && selectedCategory.length != 0) {
-			return data
-				.filter((clue) => selectedCategory.includes(clue.category))
-				.map((clue, index) => <Preuve data={clue} key={`clueKey-${index}`} openModal={() => openModal(clue)} />);
-		}
-		return data
-			.filter((clue) => selectedCategory.includes(clue.category))
-			.filter((clue) => selectedBox.includes(clue.box))
-			.map((clue, index) => <Preuve data={clue} key={`clueKey-${index}`} openModal={() => openModal(clue)} />);
 	};
 
 	// EXPLICATION : cette fonction indique quelle data utiliser en fonction de la current box PUIS elle appelle la fonction filter pour display les bonnes preuves
 	// Les preuves des boxs précédentes sont toujours toutes affichées. En revanche, seulement celles dont status = true de la current box sont affichées
 	const displayClue = () => {
-		if (currentBox == "box1") {
-			let cluesCurrentBoxTrue = dataHistory["box1"].filter((clue) => clue.status == true);
+		if (currentBox == 1) {
+			let cluesCurrentBoxTrue = dataHistory1?.filter((clue) => clue.status == true);
 			let allClues = [cluesCurrentBoxTrue].flat();
 			return filterClues(allClues);
 		}
-		if (currentBox == "box2") {
-			let cluesCurrentBoxTrue = dataHistory["box2"].filter((clue) => clue.status == true);
-			let allClues = [dataHistory["box1"], cluesCurrentBoxTrue].flat();
+		if (currentBox == 2) {
+			let cluesCurrentBoxTrue = dataHistory2?.filter((clue) => clue.status == true);
+			let allClues = [dataHistory1, cluesCurrentBoxTrue].flat();
 			return filterClues(allClues);
 		}
-		if (currentBox == "box3") {
-			let cluesCurrentBoxTrue = dataHistory["box3"].filter((clue) => clue.status == true);
-			let allClues = [dataHistory["box1"], dataHistory["box2"], cluesCurrentBoxTrue].flat();
+		if (currentBox == 3) {
+			let cluesCurrentBoxTrue = dataHistory3?.filter((clue) => clue.status == true);
+			let allClues = [dataHistory1, dataHistory2, cluesCurrentBoxTrue].flat();
 			return filterClues(allClues);
 		}
 	};
