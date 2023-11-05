@@ -2,29 +2,54 @@
 
 import { Link } from "react-router-dom";
 import Input from "../components/Input";
-import { useState } from "react";
+import { useState, useContext, useEffect } from "react";
+import { updatePassword, getUser, updateName } from "../utils/hooks/useApi";
+import { AuthContext } from "../utils/context/fetchContext";
 
 function Parametres() {
+	const { token } = useContext(AuthContext);
+
+	useEffect(() => {
+		const fetchData = async () => {
+			const user = await getUser(token);
+			console.log(user);
+			setuser(user);
+		};
+		fetchData();
+	}, [token]);
+
+	const [user, setuser] = useState("");
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
 	const [errorMessage, setErrorMessage] = useState("");
+	const newinfos = { email: user.email, name: username };
 
-	const handleSubmitChange = (e) => {
+	const handleSubmitChange = async (e) => {
 		e.preventDefault();
-		if (password === "" && username === "") {
+		if (password == "" && username == "") {
 			setErrorMessage("Merci de remplir au moins un champ pour modifier vos informations");
 			return;
 		}
-		if (password === !"" && username === !"") {
+		if (password != "" && username != "") {
 			setErrorMessage("Merci de changer une information à la fois");
 			setUsername("");
 			setPassword("");
 			return;
 		}
-		setUsername("");
-		setPassword("");
-		setErrorMessage("");
-		alert("Modifications enregistrées");
+		if (password != "" && username == "") {
+			await updatePassword(token, user.id, newinfos);
+			setUsername("");
+			setPassword("");
+			setErrorMessage("");
+			return;
+		}
+		if (password == "" && username != "") {
+			await updateName(token, password);
+			setUsername("");
+			setPassword("");
+			setErrorMessage("");
+			return;
+		}
 	};
 
 	return (
@@ -33,6 +58,7 @@ function Parametres() {
 				&lt; Retour à l&apos;enquête
 			</Link>
 			<h1 className="parametres__title">Paramètres</h1>
+			<p className="parametres__user">agent {user.name}</p>
 			<div className="parametres__errorMessage">{errorMessage}</div>
 			<form className="parametres__form" onSubmit={handleSubmitChange}>
 				<p className="parametres__subtitle">Changer votre nom d&apos;agent</p>

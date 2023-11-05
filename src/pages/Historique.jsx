@@ -9,7 +9,7 @@ import Audio from "../components/Audio";
 import Video from "../components/Video";
 import { urlApi } from "../utils/const/urlApi";
 import Cross from "../assets/icons/Icon_Cross-white.svg";
-import { BoxContext, AuthContext } from "../utils/context/fetchContext";
+import { BoxContext, AuthContext, DataContext } from "../utils/context/fetchContext";
 import { useContext, useEffect } from "react";
 import { getHistoryByBox } from "../utils/hooks/useApi";
 
@@ -18,6 +18,7 @@ function Historique() {
 	const filterBox = ["Box 1", "Box 2", "Box 3"];
 	const { token } = useContext(AuthContext);
 	const { currentBox } = useContext(BoxContext);
+	const { toggleDataHistory } = useContext(DataContext);
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -47,7 +48,7 @@ function Historique() {
 			}
 		};
 		fetchData();
-	}, [token, currentBox]);
+	}, [token, currentBox, toggleDataHistory]);
 
 	const [dataHistory1, setDataHistory1] = useState(null);
 	const [dataHistory2, setDataHistory2] = useState(null);

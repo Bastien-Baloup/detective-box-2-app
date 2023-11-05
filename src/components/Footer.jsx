@@ -3,21 +3,22 @@
 import Paper from "../assets/img/Paper.png";
 import Objectif from "./Objectif";
 // import { dataObjectif } from "../utils/const/dataObjectif.js";
-import { BoxContext, AuthContext } from "../utils/context/fetchContext.jsx";
+import { BoxContext, AuthContext, DataContext } from "../utils/context/fetchContext.jsx";
 import { useContext, useEffect, useState } from "react";
 import { getObjectivesByBox } from "../utils/hooks/useApi.js";
 
 const Footer = () => {
 	const { currentBox } = useContext(BoxContext);
 	const { token } = useContext(AuthContext);
-	
+	const { toggleDataObjectif } = useContext(DataContext);
+
 	useEffect(() => {
 		const fetchData = async () => {
 			const result = await getObjectivesByBox(token, currentBox);
 			setDataObjectif(result.data);
 		};
 		fetchData();
-	}, [token, currentBox]);
+	}, [token, currentBox, toggleDataObjectif]);
 
 	// EXPLICATION : CurrentBox est utilisé pour fetcher uniquement les objectifs de la boite en cours.
 

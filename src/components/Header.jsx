@@ -9,18 +9,22 @@ import Compte from "../components/Compte.jsx";
 import Nav from "../components/Nav.jsx";
 import Nappe from "../components/Nappe.jsx";
 import Quizz from "../components/Quizz.jsx";
-// import Timer from "./Timer.jsx";
-import { dataQuizz } from "../utils/const/dataQuizz";
+import Timer from "./Timer.jsx";
+// import { dataQuizz } from "../utils/const/dataQuizz";
 import Video from "../components/Video.jsx";
 import { Link } from "react-router-dom";
 import { urlApi } from "../utils/const/urlApi";
-import { AmbianceContext, BoxContext } from "../utils/context/fetchContext.jsx";
+import { AmbianceContext, BoxContext, AuthContext, DataContext } from "../utils/context/fetchContext.jsx";
 import { useEffect, useState, useRef, useContext } from "react";
+import { getQuizzByBox, getEventByBox, updateEvent, updateQuizz } from "../utils/hooks/useApi.js";
 // REDUIRE LA TAILLE DU LOGO //
 
 const Header = () => {
 	const { fetchNappeMute, nappeMute } = useContext(AmbianceContext);
 	const { currentBox } = useContext(BoxContext);
+	const { token } = useContext(AuthContext);
+	const { actionToggleDataEvent, toggleDataEvent } = useContext(DataContext);
+
 	const [tutorialModalIsActive, setTutorialModalIsActive] = useState(true);
 	const [tutorialIsActive, setTutorialIsActive] = useState(false);
 	const [quizzIsActive, setQuizzIsActive] = useState(false);
@@ -37,6 +41,48 @@ const Header = () => {
 		}
 	}, [nappeMute]);
 
+		// EXPLICATION : Cette fonction récupère du quizz (il ne se joue qu'une fois par box)
+
+	useEffect(() => {
+		const fetchData = async () => {
+			if (currentBox != 1) {
+				const quizz = await getQuizzByBox(token, currentBox);
+				console.log(quizz);
+				setDataQuizz(quizz);
+			}
+		};
+		fetchData();
+	}, [token, currentBox]);
+
+	useEffect(() => {
+		const fetchData = async () => {
+			const events = await getEventByBox(token, currentBox);
+			// setDataEvent(events.data);
+			if (currentBox == 1) {
+				const event11 = events.data.find((event) => event.id == 11);
+				setEvent11(event11.status);
+			}
+			if (currentBox == 2) {
+				const event21 = events.data.find((event) => event.id == 21);
+				setEvent21(event21.status);
+			}
+			if (currentBox == 3) {
+				const event31 = events.data.find((event) => event.id == 31);
+				setEvent31(event31.status);
+				const event33 = events.data.find((event) => event.id == 33);
+				setEvent33(event33.status);
+			}
+		};
+		fetchData();
+	}, [token, currentBox, toggleDataEvent]);
+
+	const [dataQuizz, setDataQuizz] = useState("");
+	// const [dataEvent, setDataEvent] = useState("");
+	const [event11, setEvent11] = useState("");
+	const [event21, setEvent21] = useState("");
+	const [event31, setEvent31] = useState("");
+	const [event33, setEvent33] = useState("");
+
 	// EXPLICATION : Le joueur choisi d'activer la musique d'ambiance > son état se met à jour dans le context > ferme la modale > affiche la video de briefing en fonction de la box.
 	const activateNappe = () => {
 		fetchNappeMute(false);
@@ -45,16 +91,19 @@ const Header = () => {
 	};
 
 	// EXPLICATION : L'affichage de la video se fait via le Composant Objectif via un event (la video ne se joue qu'une fois donc si l'évent est "done", alors la video ne se joue pas)
-	const playBriefingVideo = () => {
-		// if (currentBox =="box1" && event11 == closed){
-		// 	// event 11 == "open";
-		// }
-		// if (currentBox =="box2" && event21 == closed){
-		// 	// event 21 == "open";
-		// }
-		// if (currentBox =="box3" && event31 == closed){
-		// 	// event 31 == "open";
-		// }
+	const playBriefingVideo = async () => {
+		if (currentBox == 1 && event11 == "closed") {
+			await updateEvent(token, 1, 11, "open");
+			actionToggleDataEvent();
+		}
+		if (currentBox == 2 && event21 == "closed") {
+			await updateEvent(token, 2, 21, "open");
+			actionToggleDataEvent();
+		}
+		if (currentBox == 3 && event31 == "closed") {
+			await updateEvent(token, 3, 31, "open");
+			actionToggleDataEvent();
+		}
 	};
 
 	// EXPLICATION : Le joueur choisi de désactiver la musique d'ambiance > son état se met à jour dans le context > ferme la modale > affiche la video de briefing en fonction de la box.
@@ -82,9 +131,9 @@ const Header = () => {
 	};
 
 	// EXPLICATION : On ferme le quizz et on affiche la modale pour choisir si active ou desactive la nappe d'ambiance
-	const handleCloseQuizz = () => {
+	const handleCloseQuizz = async () => {
+		await updateQuizz(token, currentBox);
 		setQuizzIsActive(false);
-		// API PUT METHOD TO UPDATE dataQuizz[currentBox].status = true //
 		setNappeModalIsActive(true);
 	};
 
@@ -154,27 +203,28 @@ const Header = () => {
 	};
 
 	// EXPLICATION : Le timer de fin s'affiche lors de la dernière étape du jeu. Il est en overlay sur le header pour que le joueur ne puisse pas cliquer sur les autres composants
-	// const displayTimer = () => {
-	// 	if (" objectif id: 33 == "open") {
-	// 		fetchNappeMute(false);
-	// 		return (
-	// 			<>
-	// 				<div className="final__timer">
-	// 					<Timer initialMinute={30} initialSecond={0} timerEndedFunction={tooLate} />;
-	// 				</div>
-	// 				<audio autoPlay>
-	// 					<source src={urlApi.apiRemi() + "sounds/305-commentaires-pendant-timer.wav"} type="audio/wav" />
-	// 					Votre navigateur ne prend pas en charge ce format
-	// 				</audio>
-	// 			</>
-	// 		);
-	// 	}
-	// };
+	const displayTimer = () => {
+		if (event33 && event33 == "open") {
+			fetchNappeMute(false);
+			return (
+				<>
+					<div className="final__timer">
+						<Timer initialMinute={30} initialSecond={0} timerEndedFunction={tooLate} />;
+					</div>
+					<audio autoPlay>
+						<source src={urlApi.apiRemi() + "sounds/305-commentaires-pendant-timer.wav"} type="audio/wav" />
+						Votre navigateur ne prend pas en charge ce format
+					</audio>
+				</>
+			);
+		}
+	};
 
-	// const tooLate = () => {
-	// objectif id: 33 == "closed";
-	// objectif id: 35 == "open";
-	// };
+	const tooLate = async () => {
+		await updateEvent(token, 3, 33, "done");
+		await updateEvent(token, 3, 35, "open");
+		actionToggleDataEvent();
+	};
 
 	// Il manque ici la vidéo du TUTORIEL !! //
 
@@ -193,7 +243,7 @@ const Header = () => {
 			{quizzIsActive ? displayQuizz() : <></>}
 			{nappeModalIsActive ? <Nappe activateNappe={activateNappe} desactivateNappe={desactivateNappe} /> : <></>}
 			{displayAudio()}
-			{/* {displayTimer()} */}
+			{displayTimer()}
 			<div className="header__topSection">
 				<Link className="header__logo--container" to="/">
 					<img className="header__logo" src={Logo} />

@@ -57,6 +57,24 @@ export const getUser = (token) => {
 		});
 };
 
+export const forgotPassword = (email) => {
+	return fetch(url + "/users/forgot_password", {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify(email),
+	})
+		.then((response) => response.json())
+		.then((data) => {
+			console.log(data);
+			return data;
+		})
+		.catch((error) => {
+			console.error(error);
+		});
+};
+
 export const updatePassword = (token, newpassword) => {
 	return fetch(url + "/users/", {
 		method: "PUT",
@@ -86,6 +104,24 @@ export const updateName = (token, id, newinfos) => {
 			Authorization: `Bearer ${token}`,
 		},
 		body: JSON.stringify(newinfos),
+	})
+		.then((response) => response.json())
+		.then((data) => {
+			console.log(data);
+			return data;
+		})
+		.catch((error) => {
+			console.error(error);
+		});
+};
+
+export const resetAll = (token) => {
+	return fetch(url + "/game/reset", {
+		method: "PUT",
+		headers: {
+			"Content-Type": "application/json",
+			Authorization: `Bearer ${token}`,
+		},
 	})
 		.then((response) => response.json())
 		.then((data) => {

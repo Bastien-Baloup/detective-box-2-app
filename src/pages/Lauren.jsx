@@ -8,7 +8,7 @@ import Audio from "../components/Audio.jsx";
 import Cross from "../assets/icons/Icon_Cross-white.svg";
 import PropTypes from "prop-types";
 import { urlApi } from "../utils/const/urlApi";
-import { BoxContext, AuthContext } from "../utils/context/fetchContext";
+import { BoxContext, AuthContext, DataContext } from "../utils/context/fetchContext";
 import { useContext, useState, useEffect } from "react";
 // import { dataLauren } from "../utils/const/dataLauren";
 import { updateCharactersById, updateHistory, getCharactersById } from "../utils/hooks/useApi.js";
@@ -16,6 +16,7 @@ import { updateCharactersById, updateHistory, getCharactersById } from "../utils
 const Lauren = ({ closeAgentPage }) => {
 	const { currentBox } = useContext(BoxContext);
 	const { token } = useContext(AuthContext);
+	const { actionToggleDataLauren, toggleDataLauren } = useContext(DataContext);
 
 	//EXPLICATION : Lauren est le personnage "2"
 
@@ -26,7 +27,7 @@ const Lauren = ({ closeAgentPage }) => {
 			setDataLauren(result);
 		};
 		fetchData();
-	}, [token, currentBox]);
+	}, [token, currentBox, toggleDataLauren]);
 
 	const [dataLauren, setDataLauren] = useState(null);
 
@@ -166,11 +167,12 @@ const Lauren = ({ closeAgentPage }) => {
 	};
 
 	const closeModalMedia = async (answerId, asnwerAsk) => {
-		setModalMedia(false);
 		await updateCharactersById(token, 2, currentBox, asnwerAsk);
 		await updateHistory(token, currentBox, answerId);
 		// API Mettre à jour le status de cette réponse de FALSE à TRUE sauf si c'est generic
 		// API Mettre à jour le status de cet élément dans l'Historique avec l'id
+		actionToggleDataLauren();
+		setModalMedia(false);
 	};
 
 	const catchphraseLauren = [
