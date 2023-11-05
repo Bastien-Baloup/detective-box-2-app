@@ -43,8 +43,13 @@ export const dataEvent = {
 			status: "closed",
 		},
 		{
-			id: 23,
+			id: 24,
 			// description : "Cet event fait apparaitre le second mail de Lauren",
+			status: "closed",
+		},
+		{
+			id: 25,
+			// description : "Cet event fait apparaitre la video de fin de la box 2 : enlevement de Lauren",
 			status: "closed",
 		},
 	],
