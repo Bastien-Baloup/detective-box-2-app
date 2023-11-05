@@ -12,16 +12,7 @@ import { useContext, useState } from "react";
 import { Navigate } from "react-router-dom";
 import { urlApi } from "../utils/const/urlApi.js";
 import { useEffect } from "react";
-import {
-	getBox,
-	resetBox,
-	resetCharacters,
-	resetEvent,
-	resetHelp,
-	resetHistory,
-	resetObjectives,
-	resetQuizz,
-} from "../utils/hooks/useApi.js";
+import { getBox, resetAll } from "../utils/hooks/useApi.js";
 
 function Choice() {
 	const { loggedIn, token } = useContext(AuthContext);
@@ -121,51 +112,42 @@ function Choice() {
 	};
 
 	const handleModalDeleted = () => {
-		location.reload();
 		setModalDeleted(false);
+		location.reload();
 	};
 
 	// EXPLICATION : Fonction pour remettre les boxs à zéro
-	const resetGame = () => {
+	const resetGame = async () => {
 		setTimeout(() => {
 			setLoader(false);
 		}, 4000);
-		// resetBox(token);
-		// resetQuizz(token);
-		// resetHelp(token);
-		// resetObjectives(token);
-		// resetHistory(token);
-		// resetCharacters(token);
-		// resetEvent(token);
-		const fetchReset = async () => {
-			const resultResetBox = await resetBox(token);
-			console.log(resultResetBox);
-			if (resultResetBox == "OK") {
-				const resultQuizzBox = await resetQuizz(token);
-				console.log(resultQuizzBox);
-				if (resultQuizzBox == "OK") {
-					const resultHelp = await resetHelp(token);
-					console.log(resultHelp);
-					if (resultHelp == "OK") {
-						const resultObjectives = await resetObjectives(token);
-						console.log(resultObjectives);
-						if (resultObjectives == "OK") {
-							const resultHistory = await resetHistory(token);
-							console.log(resultHistory);
-							if (resultHistory == "OK") {
-								const resultCharacters = await resetCharacters(token);
-								console.log(resultCharacters);
-								if (resultCharacters == "OK") {
-									const resultEvent = await resetEvent(token);
-									console.log(resultEvent);
-								}
-							}
-						}
-					}
-				}
-			}
-		};
-		console.log(fetchReset());
+		await resetAll(token);
+		// const resultResetBox = await resetBox(token);
+		// console.log(resultResetBox);
+		// if (resultResetBox == "OK") {
+		// 	const resultQuizzBox = await resetQuizz(token);
+		// 	console.log(resultQuizzBox);
+		// 	if (resultQuizzBox == "OK") {
+		// 		const resultHelp = await resetHelp(token);
+		// 		console.log(resultHelp);
+		// 		if (resultHelp == "OK") {
+		// 			const resultObjectives = await resetObjectives(token);
+		// 			console.log(resultObjectives);
+		// 			if (resultObjectives == "OK") {
+		// 				const resultHistory = await resetHistory(token);
+		// 				console.log(resultHistory);
+		// 				if (resultHistory == "OK") {
+		// 					const resultCharacters = await resetCharacters(token);
+		// 					console.log(resultCharacters);
+		// 					if (resultCharacters == "OK") {
+		// 						const resultEvent = await resetEvent(token);
+		// 						console.log(resultEvent);
+		// 					}
+		// 				}
+		// 			}
+		// 		}
+		// 	}
+		// }
 		setModalReset2(false);
 		setModalDeleted(true);
 	};

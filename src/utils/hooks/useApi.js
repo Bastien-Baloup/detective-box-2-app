@@ -115,6 +115,24 @@ export const updateName = (token, id, newinfos) => {
 		});
 };
 
+export const resetAll = (token) => {
+	return fetch(url + "/game/reset", {
+		method: "PUT",
+		headers: {
+			"Content-Type": "application/json",
+			Authorization: `Bearer ${token}`,
+		},
+	})
+		.then((response) => response.json())
+		.then((data) => {
+			console.log(data);
+			return data;
+		})
+		.catch((error) => {
+			console.error(error);
+		});
+};
+
 export const getBox = (token) => {
 	return fetch(url + "/box/", {
 		method: "GET",
