@@ -8,7 +8,7 @@ import Video from "../components/Video.jsx";
 import Cross from "../assets/icons/Icon_Cross-white.svg";
 import PropTypes from "prop-types";
 import { urlApi } from "../utils/const/urlApi";
-import { BoxContext, AuthContext } from "../utils/context/fetchContext";
+import { BoxContext, AuthContext, DataContext } from "../utils/context/fetchContext";
 import { useContext, useState, useEffect } from "react";
 // import { dataTim } from "../utils/const/dataTim";
 import { updateCharactersById, updateHistory, getCharactersById } from "../utils/hooks/useApi.js";
@@ -16,6 +16,7 @@ import { updateCharactersById, updateHistory, getCharactersById } from "../utils
 const Tim = ({ closeAgentPage }) => {
 	const { currentBox } = useContext(BoxContext);
 	const { token } = useContext(AuthContext);
+	const { actionToggleDataTim, toggleDataTim } = useContext(DataContext);
 
 	//EXPLICATION : Tim est le personnage "5"
 	useEffect(() => {
@@ -25,7 +26,7 @@ const Tim = ({ closeAgentPage }) => {
 			setDataTim(result);
 		};
 		fetchData();
-	}, [token, currentBox]);
+	}, [token, currentBox, toggleDataTim]);
 
 	const [dataTim, setDataTim] = useState(null);
 
@@ -162,11 +163,12 @@ const Tim = ({ closeAgentPage }) => {
 	};
 
 	const closeModalMedia = async (answerId, asnwerAsk) => {
-		setModalMedia(false);
 		await updateCharactersById(token, 5, currentBox, asnwerAsk);
 		await updateHistory(token, currentBox, answerId);
 		// API Mettre à jour le status de cet élément dans l'Historique avec l'id
 		// API Mettre à jour le status de cette réponse de FALSE à TRUE
+		actionToggleDataTim();
+		setModalMedia(false);
 	};
 
 	const catchphrase = [

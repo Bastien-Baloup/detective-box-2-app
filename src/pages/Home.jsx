@@ -17,7 +17,7 @@ import Lauren from "./Lauren";
 import Raphaelle from "./Raphaelle";
 import Celine from "./Celine";
 import { useState } from "react";
-import { BoxContext, AuthContext } from "../utils/context/fetchContext";
+import { BoxContext, AuthContext, DataContext } from "../utils/context/fetchContext";
 import { useContext, useEffect } from "react";
 import { urlApi } from "../utils/const/urlApi";
 import { getEventByBox, updateEvent, getHistoryByBox } from "../utils/hooks/useApi";
@@ -29,6 +29,7 @@ function Home() {
 
 	const { currentBox } = useContext(BoxContext);
 	const { token } = useContext(AuthContext);
+	const { toggleDataHistory, toggleDataEvent, actionToggleDataEvent } = useContext(DataContext);
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -37,7 +38,7 @@ function Home() {
 			setEvent34(event34.status);
 		};
 		fetchData();
-	}, [token, currentBox]);
+	}, [token, currentBox, toggleDataEvent]);
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -46,18 +47,18 @@ function Home() {
 			setDocument6(document6.status);
 		};
 		fetchData();
-	}, [token, currentBox]);
+	}, [token, currentBox, toggleDataHistory]);
 
 	const [event34, setEvent34] = useState("");
 	const [document6, setDocument6] = useState(false);
 
 	const specificCardActionLauren = async () => {
+		await updateEvent(token, 2, 25, "open");
+		actionToggleDataEvent();
 		setModalLaurenGone(!modalLaurenGone);
-		// API change le status de l'event 32 en "open"
-		await updateEvent(token, 3, 32, "open");
 	};
 
-	// EXPLICATION : Quand le personnage de Lauren a disparu, alors on affiche cette modale pour afficher la video à l'agence (event 32)
+	// EXPLICATION : Quand le personnage de Lauren a disparu, alors on affiche cette modale pour afficher la video à l'agence (event 25)
 	const displayModalLaurenGone = () => {
 		return (
 			<div className="modal-boxdone__background">

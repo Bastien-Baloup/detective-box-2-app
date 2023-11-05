@@ -127,6 +127,9 @@ function Choice() {
 
 	// EXPLICATION : Fonction pour remettre les boxs à zéro
 	const resetGame = () => {
+		setTimeout(() => {
+			setLoader(false);
+		}, 4000);
 		// resetBox(token);
 		// resetQuizz(token);
 		// resetHelp(token);

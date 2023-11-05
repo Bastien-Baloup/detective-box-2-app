@@ -3,7 +3,7 @@
 // EXPLICATION : Il affiche egalement toute la logique des différents événements de l'application
 
 import PropTypes from "prop-types";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Check from "../assets/icons/Icon_Check-green.svg";
 import LockClosed from "../assets/icons/Icon_Lock-closed-red.svg";
 import LockOpen from "../assets/icons/Icon_Lock-open-black.svg";
@@ -15,12 +15,23 @@ import Audio from "../components/Audio";
 import { urlApi } from "../utils/const/urlApi";
 // import { dataHelp } from "../utils/const/dataHelp";
 import { useNavigate } from "react-router-dom";
-import { BoxContext } from "../utils/context/fetchContext";
+import { BoxContext, AuthContext, DataContext } from "../utils/context/fetchContext";
 import { useContext } from "react";
+import {
+	updateHelp,
+	getEventByBox,
+	updateEvent,
+	getHistoryByBox,
+	getHelpByBox,
+	updateHistory,
+	updateObjectives,
+	updateBox,
+	getObjectivesByBox,
+} from "../utils/hooks/useApi.js";
 
 // Changer le weight sur le sous titre
 
-const Objectif = ({ data }) => {
+const Objectif = async ({ data }) => {
 	const [modal, setModal] = useState(false);
 	const [modalAnswer, setModalAnswer] = useState(false);
 	const [modalAnswerBis, setModalAnswerBis] = useState(false);
@@ -30,10 +41,214 @@ const Objectif = ({ data }) => {
 	const [nextStep, setNextStep] = useState(false);
 
 	const { currentBox } = useContext(BoxContext);
-
+	const { token } = useContext(AuthContext);
+	const {
+		actionToggleDataEvent,
+		toggleDataEvent,
+		actionToggleDataHelp,
+		toggleDataHelp,
+		actionToggleDataHistory,
+		toggleDataHistory,
+		actionToggleDataObjectif,
+		toggleDataObjectif,
+	} = useContext(DataContext);
 	const navigate = useNavigate();
 
-	const token = localStorage.getItem("token");
+	// EXPLICATION : UseEffect pour récupérer l'état des événements
+	useEffect(() => {
+		const fetchData = async () => {
+			const events = await getEventByBox(token, currentBox);
+			if (currentBox == 1) {
+				const event11 = events.data.find((event) => event.id == 11);
+				setEvent11(event11.status);
+				const event12 = events.data.find((event) => event.id == 12);
+				setEvent12(event12.status);
+				const event13 = events.data.find((event) => event.id == 13);
+				setEvent13(event13.status);
+				const event14 = events.data.find((event) => event.id == 14);
+				setEvent14(event14.status);
+				const event15 = events.data.find((event) => event.id == 15);
+				setEvent15(event15.status);
+			}
+			if (currentBox == 2) {
+				const event21 = events.data.find((event) => event.id == 21);
+				setEvent21(event21.status);
+				const event25 = events.data.find((event) => event.id == 25);
+				setEvent25(event25.status);
+				const event23 = events.data.find((event) => event.id == 23);
+				setEvent23(event23.status);
+				const event24 = events.data.find((event) => event.id == 24);
+				setEvent24(event24.status);
+				const event22 = events.data.find((event) => event.id == 22);
+				setEvent22(event22.status);
+			}
+			if (currentBox == 3) {
+				const event31 = events.data.find((event) => event.id == 31);
+				setEvent31(event31.status);
+				const event32 = events.data.find((event) => event.id == 32);
+				setEvent32(event32.status);
+				const event33 = events.data.find((event) => event.id == 33);
+				setEvent33(event33.status);
+				const event35 = events.data.find((event) => event.id == 35);
+				setEvent35(event35.status);
+				const event37 = events.data.find((event) => event.id == 37);
+				setEvent37(event37.status);
+				const event38 = events.data.find((event) => event.id == 38);
+				setEvent38(event38.status);
+				const event39 = events.data.find((event) => event.id == 39);
+				setEvent39(event39.status);
+			}
+		};
+		fetchData();
+	}, [token, currentBox, toggleDataEvent]);
+
+	const [event11, setEvent11] = useState("");
+	const [event12, setEvent12] = useState("");
+	const [event13, setEvent13] = useState("");
+	const [event14, setEvent14] = useState("");
+	const [event15, setEvent15] = useState("");
+	const [event21, setEvent21] = useState("");
+	const [event22, setEvent22] = useState("");
+	const [event23, setEvent23] = useState("");
+	const [event24, setEvent24] = useState("");
+	const [event25, setEvent25] = useState("");
+	const [event31, setEvent31] = useState("");
+	const [event32, setEvent32] = useState("");
+	const [event33, setEvent33] = useState("");
+	const [event35, setEvent35] = useState("");
+	const [event37, setEvent37] = useState("");
+	const [event38, setEvent38] = useState("");
+	const [event39, setEvent39] = useState("");
+
+	// EXPLICATION : UseEffect pour récupérer l'état de l'historique
+	useEffect(() => {
+		const fetchData = async () => {
+			const clues = await getHistoryByBox(token, currentBox);
+			if (currentBox == 1) {
+				const box1lieu2 = clues.data.find((event) => event.id == "box1lieu2");
+				setBox1Lieu2(box1lieu2.status);
+				const box2lieu1 = clues.data.find((event) => event.id == "box2lieu1");
+				setBox1Lieu1(box2lieu1.status);
+				const box1video4 = clues.data.find((event) => event.id == "box1video4");
+				setBox1Video4(box1video4.status);
+				const box1document1 = clues.data.find((event) => event.id == "box1document1");
+				setBox1Document1(box1document1.status);
+				const box1document2 = clues.data.find((event) => event.id == "box1document2");
+				setBox1Document2(box1document2.status);
+				const box1document6 = clues.data.find((event) => event.id == "box1document6");
+				setBox1Document6(box1document6.status);
+				const box1archive23 = clues.data.find((event) => event.id == "box1archive23");
+				setBox1Archive23(box1archive23.status);
+			}
+			if (currentBox == 2) {
+				const box2lieu2 = clues.data.find((event) => event.id == "box2lieu2");
+				setBox2Lieu2(box2lieu2.status);
+				const box2video5 = clues.data.find((event) => event.id == "box2video5");
+				setBox2Video5(box2video5.status);
+				const box2document4 = clues.data.find((event) => event.id == "box2document4");
+				setBox2Document4(box2document4.status);
+				const box2lieu3 = clues.data.find((event) => event.id == "box2lieu3");
+				setBox2Lieu3(box2lieu3.status);
+			}
+			if (currentBox == 3) {
+				const box3document2 = clues.data.find((event) => event.id == "box3document2");
+				setBox3Document2(box3document2.status);
+				const box3audio3 = clues.data.find((event) => event.id == "box3audio3");
+				setBox3Audio3(box3audio3.status);
+				const box3lieu2 = clues.data.find((event) => event.id == "box3lieu2");
+				setBox3Lieu2(box3lieu2.status);
+			}
+		};
+		fetchData();
+	}, [token, currentBox, toggleDataHistory]);
+
+	const [box1lieu2, setBox1Lieu2] = useState(false);
+	const [box2lieu1, setBox1Lieu1] = useState(false);
+	const [box1video4, setBox1Video4] = useState(false);
+	const [box1document1, setBox1Document1] = useState(false);
+	const [box1document2, setBox1Document2] = useState(false);
+	const [box1document6, setBox1Document6] = useState(false);
+	const [box1archive23, setBox1Archive23] = useState(false);
+	const [box2lieu2, setBox2Lieu2] = useState(false);
+	const [box2video5, setBox2Video5] = useState(false);
+	const [box2document4, setBox2Document4] = useState(false);
+	const [box2lieu3, setBox2Lieu3] = useState(false);
+	const [box3document2, setBox3Document2] = useState(false);
+	const [box3audio3, setBox3Audio3] = useState(false);
+	const [box3lieu2, setBox3Lieu2] = useState(false);
+
+	// EXPLICATION : UseEffect pour récupérer l'état des renforts (help)
+	useEffect(() => {
+		const fetchData = async () => {
+			const help = await getHelpByBox(token, currentBox);
+			if (currentBox == 2) {
+				const box2help2 = help.data.find((event) => event.id == "box2help2");
+				setBox2Help2(box2help2.status);
+				const box2help5 = help.data.find((event) => event.id == "box2help5");
+				setBox2Help5(box2help5.status);
+				const box2help6 = help.data.find((event) => event.id == "box2help6");
+				setBox2Help6(box2help6.status);
+			}
+			if (currentBox == 3) {
+				const box3help5 = help.data.find((event) => event.id == "box3help5");
+				setBox3Help5(box3help5.status);
+				const box3help4 = help.data.find((event) => event.id == "box3help4");
+				setBox3Help4(box3help4.status);
+			}
+		};
+		fetchData();
+	}, [token, currentBox, toggleDataHelp]);
+
+	const [box2help2, setBox2Help2] = useState("");
+	const [box2help5, setBox2Help5] = useState("");
+	const [box2help6, setBox2Help6] = useState("");
+	const [box3help4, setBox3Help4] = useState("");
+	const [box3help5, setBox3Help5] = useState("");
+
+	// EXPLICATION : UseEffect pour récupérer l'état des objectifs
+	useEffect(() => {
+		const fetchData = async () => {
+			const objectifs = await getObjectivesByBox(token, currentBox);
+			if (currentBox == 1) {
+				const objectif12 = objectifs.data.find((event) => event.id == 12);
+				setObjectif12(objectif12.status);
+				const objectif11 = objectifs.data.find((event) => event.id == 11);
+				setObjectif11(objectif11.status);
+				const objectif13 = objectifs.data.find((event) => event.id == 13);
+				setObjectif13(objectif13.status);
+				const objectif14 = objectifs.data.find((event) => event.id == 14);
+				setObjectif14(objectif14.status);
+			}
+			if (currentBox == 2) {
+				const objectif22 = objectifs.data.find((event) => event.id == 22);
+				setObjectif22(objectif22.status);
+				const objectif21 = objectifs.data.find((event) => event.id == 21);
+				setObjectif21(objectif21.status);
+				const objectif23 = objectifs.data.find((event) => event.id == 23);
+				setObjectif23(objectif23.status);
+				const objectif24 = objectifs.data.find((event) => event.id == 24);
+				setObjectif24(objectif24.status);
+			}
+			if (currentBox == 3) {
+				const objectif31 = objectifs.data.find((event) => event.id == 31);
+				setObjectif31(objectif31.status);
+				const objectif34 = objectifs.data.find((event) => event.id == 34);
+				setObjectif34(objectif34.status);
+			}
+		};
+		fetchData();
+	}, [token, currentBox, toggleDataObjectif]);
+
+	const [objectif11, setObjectif11] = useState("");
+	const [objectif12, setObjectif12] = useState("");
+	const [objectif13, setObjectif13] = useState("");
+	const [objectif14, setObjectif14] = useState("");
+	const [objectif21, setObjectif21] = useState("");
+	const [objectif22, setObjectif22] = useState("");
+	const [objectif23, setObjectif23] = useState("");
+	const [objectif24, setObjectif24] = useState("");
+	const [objectif31, setObjectif31] = useState("");
+	const [objectif34, setObjectif34] = useState("");
 
 	// --- CONDITIONS SPE OBJECTIF 14 --- //
 
@@ -183,6 +398,7 @@ const Objectif = ({ data }) => {
 	};
 
 	// -- CONDITIONS SPE OBJECTIF 33 -- //
+
 	const [victimeSaved, setVictimeSaved] = useState("");
 
 	const handleVictimeChoice = (choice) => {
@@ -191,14 +407,17 @@ const Objectif = ({ data }) => {
 		setModalAnswer(true);
 	};
 
-	const handleFinalStep = () => {
+	const handleFinalStep = async () => {
 		setModalAnswer(false);
 		setModalBis(!modalBis);
 		setNextStep(true);
-		// API box3help4 == done + box3help5 == open
+		await updateHelp(token, 3, "box3help4", "done");
+		await updateHelp(token, 3, "box3help5", "open");
+		actionToggleDataHelp();
 	};
 
-	const handleSubmitCity = () => {
+	const handleSubmitCity = async (e) => {
+		e.preventDefault();
 		setErrorMessage("Je ne trouve aucune personne à se nom dans cette ville. On doit s'être trompé quelque part");
 		if (slugify(value) == "milan" && victimeSaved == "maria") {
 			setErrorMessage(
@@ -206,13 +425,22 @@ const Objectif = ({ data }) => {
 			);
 		}
 		if (slugify(value) == "milan" && victimeSaved == "giuseppe") {
-			// if event 37 == "closed" > event 37 == "open"
+			if (event37 == "closed") {
+				await updateEvent(token, 3, 37, "open");
+				actionToggleDataEvent();
+			}
 		}
 		if (slugify(value) == "graz" && victimeSaved == "maria") {
-			// if event 39 == "closed" > event 39 == "open"
+			if (event39 == "closed") {
+				await updateEvent(token, 3, 39, "open");
+				actionToggleDataEvent();
+			}
 		}
 		if (slugify(value) == "graz" && victimeSaved == "giuseppe") {
-			// if event 38 == "closed" > event 38 == "open"
+			if (event38 == "closed") {
+				await updateEvent(token, 3, 38, "open");
+				actionToggleDataEvent();
+			}
 		}
 	};
 
@@ -240,7 +468,7 @@ const Objectif = ({ data }) => {
 		return inputSlugified;
 	};
 
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
 		if (data.id == 31) {
 			if (slugify(value) == "aussichtspavillion" || slugify(value) == "wutoschingen") {
@@ -260,43 +488,42 @@ const Objectif = ({ data }) => {
 		}
 		if (data.id == 34) {
 			if (data.answer.includes(slugify(value))) {
-				// 	if ("API box3audio3 == true dans l'historique") {
-				// 		setErrorMessage("Si on allait plutôt chez elle pour voir de quoi il en retourne ?");
-				// 		setValue("");
-				// 		return;
-				// 	}
-				// 	if ("API box3lieu2 == true dans l'historique") {
-				// 		setErrorMessage("Cet arbre généalogique ne joue pas en sa faveur, mais ça ne veut pas tout dire.");
-				// 		setValue("");
-				// 		return;
-				// 	}
-				// 	if ("API box3help4 != done dans dataHelp") {
-				// 		setErrorMessage("");
-				// 		setValue("");
-				// 		setModal(false);
-				// 		setModalAnswer(true);
-				// 		return;
-				// 	} else {
-				// 		setErrorMessage("C'est un peu léger d'inculper quelqu'un avec le peu d'infos qu'on a");
-				// 		setValue("");
-				// 		return;
-				// 	}
-				// } else {
+				if (box3audio3 == true) {
+					setErrorMessage("Si on allait plutôt chez elle pour voir de quoi il en retourne ?");
+					setValue("");
+					return;
+				}
+				if (box3lieu2 == true) {
+					setErrorMessage("Cet arbre généalogique ne joue pas en sa faveur, mais ça ne veut pas tout dire.");
+					setValue("");
+					return;
+				}
+				if (box3help4 != "done") {
+					setErrorMessage("");
+					setValue("");
+					setModal(false);
+					setModalAnswer(true);
+					return;
+				} else {
+					setErrorMessage("C'est un peu léger d'inculper quelqu'un avec le peu d'infos qu'on a");
+					setValue("");
+					return;
+				}
+			} else {
 				setErrorMessage(data.errorMessage);
 				setValue("");
 			}
 		}
 		if (data.answer.includes(slugify(value))) {
 			if (data.id == 11) {
-				// API box1document3 == true dans l'historique
+				await updateHistory(token, 1, "box1document3");
+				actionToggleDataHistory();
 				console.log("document 3 dans l'historique !");
 			}
-			if (data.id == 13) {
-				// API if ("box1lieu2" == false dans l'historique) {
+			if (data.id == 13 && box1lieu2 == false) {
 				setErrorMessage("Je pense que nous avons trop peu d'éléments pour tirer une conclusion pour cette piste");
 				setValue("");
 				return;
-				// }
 			}
 			setErrorMessage("");
 			setValue("");
@@ -309,7 +536,7 @@ const Objectif = ({ data }) => {
 		}
 	};
 
-	const handleModalAnswer = () => {
+	const handleModalAnswer = async () => {
 		if (data.newdetail) {
 			setModalAnswer(false);
 			setModalBis(true);
@@ -317,52 +544,70 @@ const Objectif = ({ data }) => {
 		} else {
 			setModalAnswer(false);
 			if (data.id == 12) {
-				// API Changer status de l'objectif en done
-				// API box1help2 == done dans dataHelp
+				await updateObjectives(token, 1, 12, "done");
+				await updateHelp(token, 1, "box1help2", "done");
+				actionToggleDataObjectif();
+				actionToggleDataHelp();
 				console.log("objectif12 terminé");
 			}
 			if (data.id == 13) {
-				// API Changer status de l'objectif en done
-				// API box1help3 == done dans datatHelp
+				await updateObjectives(token, 1, 13, "done");
+				await updateHelp(token, 1, "box1help3", "done");
+				actionToggleDataObjectif();
+				actionToggleDataHelp();
 				console.log("objectif13 terminé");
 			}
 			if (data.id == 14) {
-				// API Changer status de l'objectif en done
-				// API box1help4 == done dans dataHelp
+				await updateObjectives(token, 1, 14, "done");
+				await updateHelp(token, 1, "box1help4", "done");
+				actionToggleDataObjectif();
+				actionToggleDataHelp();
 				console.log("objectif14 terminé");
 			}
 			if (data.id == 21) {
-				// API Changer status de l'objectif en done
-				// API box2help1 == done dans dataHelp
+				await updateObjectives(token, 2, 21, "done");
+				await updateHelp(token, 2, "box2help1", "done");
+				actionToggleDataObjectif();
+				actionToggleDataHelp();
 				console.log("objectif21 terminé");
 			}
 			if (data.id == 23) {
-				// API Changer status de l'objectif en done
-				// API box2help3 == done dans dataHelp
+				await updateObjectives(token, 2, 23, "done");
+				await updateHelp(token, 2, "box2help3", "done");
+				actionToggleDataObjectif();
+				actionToggleDataHelp();
 				console.log("objectif23 terminé");
 			}
 			if (data.id == 24) {
-				// API box2help4 == done dans dataHelp
-				// API box2help5 == open dans dataHelp
+				await updateHelp(token, 2, "box2help4", "done");
+				await updateHelp(token, 2, "box2help5", "open");
+				actionToggleDataHelp();
 				console.log("objectif24 terminé");
 			}
 			if (data.id == 31) {
-				// API Changer status de l'objectif en done
-				// API box3help1 == done dans dataHelp
+				await updateObjectives(token, 3, 31, "done");
+				await updateHelp(token, 3, "box3help1", "done");
+				actionToggleDataObjectif();
+				actionToggleDataHelp();
 				console.log("objectif31 terminé");
 			}
 			if (data.id == 32) {
-				// API Changer status de l'objectif en done
-				// API box3help2 == done dans dataHelp
+				await updateObjectives(token, 3, 32, "done");
+				await updateHelp(token, 3, "box3help2", "done");
+				actionToggleDataObjectif();
+				actionToggleDataHelp();
 				console.log("objectif32 terminé");
 			}
 			if (data.id == 34) {
-				// API Changer status de l'objectif en done
-				// API box3help6 == done dans dataHelp
+				await updateObjectives(token, 3, 34, "done");
+				await updateHelp(token, 3, "box3help6", "done");
+				actionToggleDataObjectif();
+				actionToggleDataHelp();
 				console.log("objectif34 terminé");
 			}
 			if (data.id == 33) {
-				// API box3help4 == done dans dataHelp
+				await updateHelp(token, 3, "box3help4", "done");
+				actionToggleDataHelp();
 				console.log("objectif33 etape 1 terminé");
 			}
 		}
@@ -382,18 +627,22 @@ const Objectif = ({ data }) => {
 		}
 	};
 
-	const handleModalAnswerBis = () => {
+	const handleModalAnswerBis = async () => {
 		setModalAnswerBis(false);
 		if (data.id == 11) {
-			// API Changer status de l'objectif en done
-			// API box1help1 == done dans dataHelp
+			await updateObjectives(token, 1, 11, "done");
+			await updateHelp(token, 1, "box1help1", "done");
+			actionToggleDataObjectif();
+			actionToggleDataHelp();
 			console.log("objectif11 terminé");
 		}
 		if (data.id == 22) {
-			// API Changer status de l'objectif en done
-			// API box2help2 == done dans dataHelp
-			// API objectif data.id == 23 == true dans dataObjectif
-			// API box2help3 == open dans dataHelp
+			await updateObjectives(token, 2, 22, "done");
+			await updateHelp(token, 2, "box2help2", "done");
+			await updateObjectives(token, 2, 23, "open");
+			await updateHelp(token, 2, "box2help3", "open");
+			actionToggleDataObjectif();
+			actionToggleDataHelp();
 			console.log("objectif22 terminé");
 		}
 	};
@@ -550,8 +799,7 @@ const Objectif = ({ data }) => {
 				</div>
 			);
 		}
-		// if (data.id == 24 && lieu de fouille chez mason PAS visite ! (ou document dans historique ?)) {
-		if (data.id == 24) {
+		if (data.id == 24 && box2lieu1 == false) {
 			return (
 				<div className="modal-objectif__background">
 					<div className="modal-objectif__box">
@@ -569,8 +817,7 @@ const Objectif = ({ data }) => {
 				</div>
 			);
 		}
-		// if (API data.id == 33 == "open" && box3help4 == open) {
-		if (data.id == 33) {
+		if (data.id == 33 && box3help4 == "open") {
 			return (
 				<div className="modal-objectif__background">
 					<div className="modal-objectif__box">
@@ -590,8 +837,7 @@ const Objectif = ({ data }) => {
 				</div>
 			);
 		}
-		// if (API data.id == 33 == "open" && objectif 34 == done) {
-		if (data.id == 33) {
+		if (data.id == 33 && objectif34 == "done") {
 			return (
 				<div className="modal-objectif__background">
 					<div className="modal-objectif__box">
@@ -849,21 +1095,24 @@ const Objectif = ({ data }) => {
 	const [videoInterrogatoireGarraud, setVideoInterrogatoireGarraud] = useState(false);
 	const [endGameModale, setEndGameModale] = useState(false);
 
-	const handleModalVideoBrief = () => {
-		if (currentBox == "box1") {
-			//API box1video1 in history == true
+	const handleModalVideoBrief = async () => {
+		if (currentBox == 1) {
+			await updateHistory(token, 1, "box1video1");
+			actionToggleDataHistory();
 		}
-		if (currentBox == "box2") {
-			//API box2video1 in history == true
+		if (currentBox == 2) {
+			await updateHistory(token, 2, "box2video1");
+			actionToggleDataHistory();
 		}
-		if (currentBox == "box3") {
-			//API box3video1 in history == true
+		if (currentBox == 3) {
+			await updateHistory(token, 3, "box3video1");
+			actionToggleDataHistory();
 		}
 		setModaleVideo(false);
 	};
 
 	const displayBrief = () => {
-		if (currentBox == "box1") {
+		if (currentBox == 1) {
 			return (
 				<Video
 					title="Briefing box 1"
@@ -873,7 +1122,7 @@ const Objectif = ({ data }) => {
 				/>
 			);
 		}
-		if (currentBox == "box2") {
+		if (currentBox == 2) {
 			return (
 				<Video
 					title="Briefing box 1"
@@ -883,7 +1132,7 @@ const Objectif = ({ data }) => {
 				/>
 			);
 		}
-		if (currentBox == "box3") {
+		if (currentBox == 3) {
 			return (
 				<Video
 					title="Briefing box 1"
@@ -917,9 +1166,10 @@ const Objectif = ({ data }) => {
 		setModaleMailHacking(true);
 	};
 
-	const handleCloseMailHacking = () => {
+	const handleCloseMailHacking = async () => {
+		await updateHistory(token, 1, "box1document5");
+		actionToggleDataHistory();
 		setModaleMailHacking(true);
-		// API put box1document5 == true in history
 	};
 
 	const displayMailHacking = () => {
@@ -952,7 +1202,7 @@ const Objectif = ({ data }) => {
 	};
 
 	const renderEndText = () => {
-		if (currentBox == "box1") {
+		if (currentBox == 1) {
 			return (
 				<div>
 					<p>Vous avez finit la première partie</p>
@@ -960,7 +1210,7 @@ const Objectif = ({ data }) => {
 				</div>
 			);
 		}
-		if (currentBox == "box2") {
+		if (currentBox == 2) {
 			return (
 				<div>
 					<p>Vous avez finit la seconde partie</p>
@@ -968,7 +1218,7 @@ const Objectif = ({ data }) => {
 				</div>
 			);
 		}
-		if (currentBox == "box3") {
+		if (currentBox == 3) {
 			return (
 				<div>
 					<p>Vous avez finit l&pos;enquête, bravo Agent !</p>
@@ -1019,9 +1269,10 @@ const Objectif = ({ data }) => {
 		/>;
 	};
 
-	const closeAudioRebecca = () => {
+	const closeAudioRebecca = async () => {
+		await updateHistory(token, 1, "box1audio1");
+		actionToggleDataHistory();
 		setModaleRebecca(false);
-		//API box1audio1 == true in history
 	};
 
 	const displayModaleVHS = () => {
@@ -1085,132 +1336,158 @@ const Objectif = ({ data }) => {
 		);
 	};
 
-	const handleCloseVideoInterrogatoire = () => {
+	const handleCloseVideoInterrogatoire = async () => {
 		setVideoInterrogatoireGarraud(false);
-		// box1video4 == true dans history
+		await updateHistory(token, 1, "box1video4");
+		actionToggleDataHistory();
 	};
 
-	const handleEndGameModale = () => {
-		if (currentBox == "box1") {
-			// API box 1 status == done;
-			// API box 2 status == "open";
+	const handleEndGameModale = async () => {
+		if (currentBox == 1) {
+			await updateBox(token, 1, "done");
+			await updateBox(token, 2, "open");
 		}
-		if (currentBox == "box2") {
-			// API box 2 status == done;
-			// API box 3 status == "open";
+		if (currentBox == 2) {
+			await updateBox(token, 2, "done");
+			await updateBox(token, 3, "open");
 		}
-		if (currentBox == "box3") {
-			// API box 3 status == done;
+		if (currentBox == 3) {
+			await updateBox(token, 3, "done");
 		}
 		navigate("/box-choice");
 	};
 
 	// Pour toutes les videos
-	// 	if (box1 event 11 == "open"){
-	// 		setModaleVideo(true)
-	// 		event id 11 == "done"
-	// 	}
+	if (event11 == "open") {
+		setModaleVideo(true);
+		await updateEvent(token, 1, 11, "done");
+		actionToggleDataEvent();
+	}
 
-	// 	if (box1 event id 2 == "open"){
-	// 		setModaleHacking(true)
-	// 		event id 2 == "done"
-	// 	}
+	if (event12 == "open") {
+		setModaleHacking(true);
+		await updateEvent(token, 1, 12, "done");
+		actionToggleDataEvent();
+	}
 
-	// 	if (objectif id 12 == done && currentBox event 12 == "closed"){
-	// 		currentBox event id 12 == "open"
-	// 	}
+	if (objectif12 == "done" && event12 == "closed") {
+		await updateEvent(token, 1, 12, "open");
+		actionToggleDataEvent();
+	}
 
-	// 	if(objectif 11 , 12, 13 == "done" && objectif 14 == "closed"){
-	// 		objectif 14 == "open";
-	// 	}
+	if (objectif11 == "done" && objectif12 == "done" && objectif13 == "done" && objectif14 == "closed") {
+		await updateObjectives(token, 1, 14, "open");
+		actionToggleDataObjectif();
+	}
 
-	// 	if(objectif 14 == "done" && box1video4 ==true in history){
-	// 		setEndGameModale(true);
-	// 	}
+	if (objectif14 == "done" && box1video4 == true) {
+		setEndGameModale(true);
+	}
 
-	// 	if(box1document1 == true dans history && event box 13 == "closed"){
-	// event box 1 3 == "open";
-	// 	}
+	if (box1document1 == true && event13 == "closed") {
+		await updateEvent(token, 1, 13, "open");
+		actionToggleDataEvent();
+	}
 
-	// 	if (box1 event id 13 == "open"){
-	// 		setModaleMalle(true);
-	// 		event id 2 == "done"
-	// 	}
+	if (event13 == "open") {
+		setModaleMalle(true);
+		await updateEvent(token, 1, 13, "done");
+		actionToggleDataEvent();
+	}
 
-	// 	if(box1archive23 == true dans history){
-	// 		box1document4 == true dans history
-	// 	}
+	if (box1archive23 == true) {
+		await updateHistory(token, 1, "box1document4");
+		actionToggleDataHistory();
+	}
 
-	// 	if(box1document2 == true dans history && event box 14 == "closed"){
-	// 		event box 1 4 == "open";
-	// 			}
+	if (box1document2 == true && event14 == "closed") {
+		await updateEvent(token, 1, 14, "open");
+		actionToggleDataEvent();
+	}
 
-	// 	if (box1 event id 14 == "open"){
-	// 				setModaleVHS(true);
-	// 				event id 4 == "done"
-	// 	}
+	if (event14 == "open") {
+		setModaleVHS(true);
+		await updateEvent(token, 1, 14, "done");
+		actionToggleDataEvent();
+	}
 
-	// 	if(box1document6 == true dans history && event 15 == "closed"){
-	// 		event box 15 == "open";
-	// 			}
+	if (box1document6 == true && event15 == "closed") {
+		await updateEvent(token, 1, 15, "open");
+		actionToggleDataEvent();
+	}
 
-	// 	if (box1 event id 15 == "open"){
-	// 				setModaleInterrogatoireGarraud(true);
-	// 				event id 15 == "done"
-	// 	}
+	if (event15 == "open") {
+		setModaleInterrogatoireGarraud(true);
+		await updateEvent(token, 1, 15, "done");
+		actionToggleDataEvent();
+	}
 
 	// --- LOGIQUE EVENT BOX 2 --- //
 
 	const [mailLauren1, setMailLauren1] = useState(false);
-	// const [mailLauren2, setMailLauren2] = useState(false);
+	const [mailLauren2, setMailLauren2] = useState(false);
 	const [audioSamuel, setAudioSamuel] = useState(false);
 	const [audioBreakingNews, setAudioBreakingNews] = useState(false);
 	const [videoBreakingNews, setVideoBreakingNews] = useState(false);
-	// const [videoBureauLauren, setVideoBureauLauren] = useState(false);
+	const [videoBureauLauren, setVideoBureauLauren] = useState(false);
 	const [audioEndBreakingNews, setAudioEndBreakingNews] = useState(false);
 
-	// if (box1 event 21 == "open"){
-	// 	setModaleVideo(true)
-	// 	event id 21 == "done"
-	// }
+	if (event21 == "open") {
+		setModaleVideo(true);
+		await updateEvent(token, 2, 21, "done");
+		actionToggleDataEvent();
+	}
 
-	// if(box2lieu2 == true dans historique && objectif22 =="closed" && "box2help2" == "closed"){
-	// 	objectif 22 == "open";
-	// 	box2help2 == "open"}
+	if (box2lieu2 == true && objectif22 == "closed" && box2help2 == "closed") {
+		await updateObjectives(token, 2, 22, "open");
+		await updateHelp(token, 2, "box2help2", "open");
+		actionToggleDataObjectif();
+		actionToggleDataHelp();
+	}
 
-	// if(objectif 21 , 22, 23 == "done" && objectif 24 == "closed"){
-	// 	objectif 24 == "open";
-	// 	box2help4 == "open";
-	// }
+	if (objectif22 == "done" && objectif21 == "done" && objectif23 == "done" && objectif24 == "closed") {
+		await updateObjectives(token, 2, 24, "open");
+		await updateHelp(token, 2, "box2help4", "open");
+		actionToggleDataObjectif();
+		actionToggleDataHelp();
+	}
 
-	// if(event 32 == "open" && box2video5 ==false in history){
-	// 	setVideoBureauLauren(true);
-	// 	event 32 == "done"
-	// }
+	if (event25 == "open" && box2video5 == false) {
+		setVideoBureauLauren(true);
+		await updateEvent(token, 2, 25, "done");
+		actionToggleDataEvent();
+	}
 
-	// const displayVideoBureauLauren = () => {
-	// 	return (
-	// 		<Video
-	// 			title="Bureau de Lauren Fraser"
-	// 			srcVideo={urlApi.apiRemi() + "videos/db-s02-209-vdef.mp4"}
-	// 			handleModalVideo={handleCloseVideoBureau}
-	// 			delayedButton={true}
-	// 		/>
-	// 	);
-	// };
+	const displayVideoBureauLauren = () => {
+		return (
+			<Video
+				title="Bureau de Lauren Fraser"
+				srcVideo={urlApi.apiRemi() + "videos/db-s02-209-vdef.mp4"}
+				handleModalVideo={handleCloseVideoBureau}
+				delayedButton={true}
+			/>
+		);
+	};
 
-	// const handleCloseVideoBureau = () => {
-	// 	// box2video5 == true dans history
-	// };
+	const handleCloseVideoBureau = async () => {
+		await updateHistory(token, 2, "box2video5");
+		actionToggleDataHistory();
+	};
 
-	// if(objectif 24 == "done" && box2video5 ==true in history){
-	// 	setEndGameModale(true);
-	// }
+	if (objectif24 == "done" && box2video5 == true) {
+		setEndGameModale(true);
+	}
 
-	// if(box2document4 == true dans historique && event 23 == "closed" ){
-	// 	setMailLauren1(true);
-	// 	event 23 == "open"
-	// }
+	if (box2document4 == true && event23 == "closed") {
+		await updateEvent(token, 2, 23, "open");
+		actionToggleDataEvent();
+	}
+
+	if (event23 == "open") {
+		setMailLauren1(true);
+		await updateEvent(token, 2, 23, "done");
+		actionToggleDataEvent();
+	}
 
 	const displayMailLauren1 = () => {
 		return (
@@ -1222,35 +1499,44 @@ const Objectif = ({ data }) => {
 		);
 	};
 
-	const handleCloseMail1 = () => {
-		// box2document8 ==true dans history
+	const handleCloseMail1 = async () => {
+		await updateHistory(token, 2, "box2document8");
+		actionToggleDataHistory();
 		setMailLauren1(false);
 	};
 
-	// if(objectif3 == "done" dans historique && event 24 == "closed" ){
-	// 	setMailLauren2(true);
-	// 	event 24 == "open"
-	// }
+	if (objectif23 == "done" && event24 == "closed") {
+		await updateEvent(token, 2, 24, "open");
+		actionToggleDataEvent();
+	}
 
-	// const displayMailLauren2 = () => {
-	// 	return (
-	// 		<Document
-	// 			title="Email de Lauren Fraser"
-	// 			srcElement={urlApi.apiRemi() + "assets/document/219_Message_Lauren_#2.jpg"}
-	// 			handleModalDocument={handleCloseMail2}
-	// 		/>
-	// 	);
-	// };
+	if (event24 == "open") {
+		setMailLauren2(true);
+		await updateEvent(token, 2, 24, "done");
+		actionToggleDataEvent();
+	}
 
-	// const handleCloseMail2 = () => {
-	// 	// box2document9 ==true dans history
-	// 	setMailLauren1(false);
-	// };
+	const displayMailLauren2 = () => {
+		return (
+			<Document
+				title="Email de Lauren Fraser"
+				srcElement={urlApi.apiRemi() + "assets/document/219_Message_Lauren_#2.jpg"}
+				handleModalDocument={handleCloseMail2}
+			/>
+		);
+	};
 
-	// if(objectif 21 == "done" && event 22 == "closed"){
-	// 	setAudioSamuel(true);
-	// 	event 22 = "open"
-	// }
+	const handleCloseMail2 = async () => {
+		await updateHistory(token, 2, "box2document9");
+		actionToggleDataHistory();
+		setMailLauren1(false);
+	};
+
+	if (objectif21 == "done" && event22 == "closed") {
+		setAudioSamuel(true);
+		await updateEvent(token, 2, 22, "open");
+		actionToggleDataEvent();
+	}
 
 	const displayAudioSamuel = () => {
 		return (
@@ -1265,9 +1551,10 @@ const Objectif = ({ data }) => {
 		);
 	};
 
-	const closeAudioSamuel = () => {
+	const closeAudioSamuel = async () => {
+		await updateHistory(token, 2, "box2audio3");
+		actionToggleDataHistory();
 		setAudioSamuel(false);
-		// box2audio3 == true dans history
 		setAudioBreakingNews(true);
 	};
 
@@ -1312,19 +1599,21 @@ const Objectif = ({ data }) => {
 		);
 	};
 
-	const handleCloseVideoBreakingNews = () => {
+	const handleCloseVideoBreakingNews = async () => {
 		setAudioEndBreakingNews(true);
-		// box2video3 == true dans history
+		await updateHistory(token, 2, "box2video3");
+		actionToggleDataHistory();
 	};
 
-	// if(box2lieu3 == true dans history && box2help5 == "open" dans historique && box2help6 == "closed" dans historique){
-	// 	box2help5 == "done" dans dataHelp
-	// 	box2help6 == "open" dans dataHelp
-	// }
+	if (box2lieu3 == true && box2help5 == "open" && box2help6 == "closed") {
+		await updateHelp(token, 2, "box2help5", "done");
+		await updateHelp(token, 2, "box2help6", "open");
+		actionToggleDataHelp();
+	}
 
 	// --- LOGIQUE EVENT BOX 3 --- //
 
-	// const [videoSauverLauren, setVideoSauverLauren] = useState(false);
+	const [videoSauverLauren, setVideoSauverLauren] = useState(false);
 	const [debriefLauren, setDebriefLauren] = useState(false);
 	const [tempsEcoule, setTempsEcoule] = useState(false);
 	const [mauvaiseFin1, setMauvaiseFin1] = useState(false);
@@ -1332,42 +1621,48 @@ const Objectif = ({ data }) => {
 	const [resolution, setResolution] = useState(false);
 	const [interrogatoireFinal, setInterrogatoireFinal] = useState(false);
 
-	// if (box1 event 31 == "open"){
-	// 	setModaleVideo(true)
-	// 	event id 31 == "done"
-	// }
+	if (event31 == "open") {
+		setModaleVideo(true);
+		await updateEvent(token, 3, 31, "done");
+		actionToggleDataEvent();
+	}
 
-	// 	if (box3document2 == true dans history &&o objectif 31 == "closed"){
-	// objectif 31 == "open"
-	// box3help3 == "open"
-	// objectif 34 == "open"
-	// box3help6 == "open"
-	// 	}
+	if (box3document2 == true && objectif31 == "closed") {
+		await updateObjectives(token, 3, 31, "open");
+		await updateObjectives(token, 3, 34, "open");
+		await updateHelp(token, 3, "box3help3", "open");
+		await updateHelp(token, 3, "box3help6", "open");
+		actionToggleDataObjectif();
+		actionToggleDataHelp();
+	}
 
-	// if(box3help4 == true dans help && Objectif 34 == done && event32 == closed){
-	// 	event 32 == open;
-	// }
+	if (box3help4 == true && objectif34 == "done" && event32 == "closed") {
+		await updateEvent(token, 3, 32, "open");
+		actionToggleDataEvent();
+	}
 
-	// if(event32 == open){
-	// 	setVideoSauverLauren(true);
-	// 	event32 =="closed";
-	// }
+	if (event32 == "open") {
+		setVideoSauverLauren(true);
+		await updateEvent(token, 3, 32, "done");
+		actionToggleDataEvent();
+	}
 
-	// const displayVideoSauverLauren = () => {
-	// 	return (
-	// 		<Video
-	// 			title="Cave de Céline"
-	// 			srcVideo={urlApi.apiRemi() + "videos/db-s02-302-def.mp4"}
-	// 			handleModalVideo={handleCloseVideoSauverLauren}
-	// 			delayedButton={true}
-	// 		/>
-	// 	);
-	// };
+	const displayVideoSauverLauren = () => {
+		return (
+			<Video
+				title="Cave de Céline"
+				srcVideo={urlApi.apiRemi() + "videos/db-s02-302-def.mp4"}
+				handleModalVideo={handleCloseVideoSauverLauren}
+				delayedButton={true}
+			/>
+		);
+	};
 
-	// const handleCloseVideoSauverLauren = () => {
-	// 	// box3video2 == true dans history;
-	// 	setDebriefLauren(true);
-	// };
+	const handleCloseVideoSauverLauren = async () => {
+		setDebriefLauren(true);
+		await updateHistory(token, 3, "box3video2");
+		actionToggleDataHistory();
+	};
 
 	const displayDebriefLauren = () => {
 		return (
@@ -1382,22 +1677,24 @@ const Objectif = ({ data }) => {
 		);
 	};
 
-	const closeDebriefLauren = () => {
-		// box3audio1==true dans historique
-		window.open("https://fouille.foret.detectivebox.fr/?token=" + token, "_blank");
-		// ne pas oublier le token
-		// box3lieu1==true dans historique
+	const closeDebriefLauren = async () => {
+		await updateHistory(token, 3, "box3audio1");
+		await updateHistory(token, 3, "box3lieu1");
+		actionToggleDataHistory();
 		setDebriefLauren(false);
+		window.open("https://fouille.foret.detectivebox.fr/?token=" + token, "_blank");
 	};
 
-	// if(box3help5 == true dans help and event 33 == "closed" ){
-	// 	event 33 == "open"
-	// }
+	if (box3help5 == true && event33 == "closed") {
+		await updateEvent(token, 3, 33, "open");
+		actionToggleDataEvent();
+	}
 
-	// if (objectif id: 35 == "open"){
-	// 	setTempsEcoule(true);
-	// 	id35 ="closed"
-	// }
+	if (event35 == "open") {
+		setTempsEcoule(true);
+		await updateEvent(token, 3, 35, "done");
+		actionToggleDataEvent();
+	}
 
 	const displayModaleTempsEcoule = () => {
 		return (
@@ -1420,25 +1717,35 @@ const Objectif = ({ data }) => {
 		);
 	};
 
-	const handleReset = () => {
+	const handleReset = async () => {
 		setTempsEcoule(false);
 		setMauvaiseFin1(false);
 		setMauvaiseFin2(false);
-		// event 39, 38, 37, 35, 34, 33 =="closed"
-		// box3help5 == "closed" dans DataHelp box3help4 == "open"
+		await updateEvent(token, 3, 33, "closed");
+		await updateEvent(token, 3, 34, "closed");
+		await updateEvent(token, 3, 35, "closed");
+		await updateEvent(token, 3, 37, "closed");
+		await updateEvent(token, 3, 38, "closed");
+		await updateEvent(token, 3, 39, "closed");
+		await updateHelp(token, 3, "box3help5", "closed");
+		await updateHelp(token, 3, "box3help4", "open");
+		actionToggleDataEvent();
+		actionToggleDataHelp();
 	};
 
-	const handleGoToResolution = () => {
+	const handleGoToResolution = async () => {
 		setTempsEcoule(false);
 		setMauvaiseFin1(false);
 		setMauvaiseFin2(false);
-		// event39 == "open"
+		await updateEvent(token, 3, 39, "open");
+		actionToggleDataEvent();
 	};
 
-	// if (event 39 == "open"){
-	// setResolution(true);
-	// 	event 39 == "done"
-	// }
+	if (event39 == "open") {
+		setResolution(true);
+		await updateEvent(token, 3, 39, "done");
+		actionToggleDataEvent();
+	}
 
 	const displayModaleResolution = () => {
 		return (
@@ -1479,10 +1786,11 @@ const Objectif = ({ data }) => {
 		setEndGameModale(true);
 	};
 
-	// if (event 37 == "open"){
-	// setMauvaiseFin1(true)
-	// 	event 37 == "done"
-	// }
+	if (event37 == "open") {
+		setMauvaiseFin1(true);
+		await updateEvent(token, 3, 37, "done");
+		actionToggleDataEvent();
+	}
 
 	const displayModaleMauvaiseFin1 = () => {
 		return (
@@ -1508,10 +1816,11 @@ const Objectif = ({ data }) => {
 		);
 	};
 
-	// if (event 38 == "open"){
-	// 	setMauvaiseFin2(true)
-	// 	event 38 == "done"
-	// }
+	if (event38 == "open") {
+		setMauvaiseFin2(true);
+		await updateEvent(token, 3, 38, "done");
+		actionToggleDataEvent();
+	}
 
 	const displayModaleMauvaiseFin2 = () => {
 		return (
@@ -1550,12 +1859,12 @@ const Objectif = ({ data }) => {
 			{modaleInterrogatoireGarraud ? displayModaleInterrogatoireGarraud() : null}
 			{videoInterrogatoireGarraud ? displayVideoInterrogatoireGarraud() : null}
 			{mailLauren1 ? displayMailLauren1() : null}
-			{/* {mailLauren2 ? displayMailLauren2() : null} */}
+			{mailLauren2 ? displayMailLauren2() : null}
 			{audioSamuel ? displayAudioSamuel() : null}
 			{audioBreakingNews ? displayAudioBreakingNews() : null}
 			{videoBreakingNews ? displayVideoBreakingNews() : null}
-			{/* {videoBureauLauren ? displayVideoBureauLauren() : null} */}
-			{/* {videoSauverLauren ? displayVideoSauverLauren() : null} */}
+			{videoBureauLauren ? displayVideoBureauLauren() : null}
+			{videoSauverLauren ? displayVideoSauverLauren() : null}
 			{debriefLauren ? displayDebriefLauren() : null}
 			{tempsEcoule ? displayModaleTempsEcoule() : null}
 			{mauvaiseFin1 ? displayModaleMauvaiseFin1() : null}

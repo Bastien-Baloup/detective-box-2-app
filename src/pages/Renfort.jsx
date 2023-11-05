@@ -7,13 +7,14 @@ import Check from "../assets/icons/Icon_Check-green.svg";
 import LockClosed from "../assets/icons/Icon_Lock-closed-red.svg";
 import LockOpen from "../assets/icons/Icon_Lock-open-black.svg";
 import { urlApi } from "../utils/const/urlApi";
-import { BoxContext, AuthContext } from "../utils/context/fetchContext";
+import { BoxContext, AuthContext, DataContext } from "../utils/context/fetchContext";
 import { useContext, useEffect } from "react";
 import { getHelpByBox } from "../utils/hooks/useApi";
 
 function Renfort() {
 	const { currentBox } = useContext(BoxContext);
 	const { token } = useContext(AuthContext);
+	const { toggleDataHelp } = useContext(DataContext);
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -21,7 +22,7 @@ function Renfort() {
 			setDataHelp(result.data);
 		};
 		fetchData();
-	}, [token, currentBox]);
+	}, [token, currentBox, toggleDataHelp]);
 
 	const [sliderActivated, setSliderActivated] = useState(false);
 	const [menuActivated, setmenuActivated] = useState(true);

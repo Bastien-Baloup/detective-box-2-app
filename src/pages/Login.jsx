@@ -7,7 +7,7 @@ import Signin from "../components/Signin";
 import Signup from "../components/Signup";
 import Logo from "../assets/img/DB-Logo-DetectiveBox_DetectiveBlanc.png";
 import { Navigate } from "react-router-dom";
-import { getToken } from "../utils/hooks/useApi.js";
+import { getToken, createUser, forgotPassword } from "../utils/hooks/useApi.js";
 
 function Login() {
 	const [isSigninActive, setIsSigninActive] = useState(true);
@@ -30,44 +30,45 @@ function Login() {
 
 	const handleSubmitSignin = async (e) => {
 		e.preventDefault();
-		if (email === "" || password === "") {
+		if (email == "" || password == "") {
 			setErrorMessageSignin("Merci de remplir le formulaire pour vous connecter");
 			return;
 		}
+		const dataToken = await getToken(credentials);
+		login(dataToken.access_token);
 		setUsername("");
 		setEmail("");
 		setPassword("");
 		setErrorMessageSignin("");
-		const dataToken = await getToken(credentials);
-		login(dataToken.access_token);
 	};
 
 	const handleSubmitSignup = async (e) => {
 		e.preventDefault();
-		if (email === "" || password === "" || username === "") {
+		if (email == "" || password == "" || username == "") {
 			setErrorMessageSignup("Merci de remplir le formulaire pour créer un compte");
 			return;
 		}
+		const newUser = await createUser(newaccount);
+		console.log(newUser);
 		setUsername("");
 		setEmail("");
 		setPassword("");
 		setErrorMessageSignup("");
-		const newUser = await getToken(newaccount);
-		console.log(newUser);
-		// if (newUser) {
-		// 	setModalNewUser(true);
-		// }
+		if (newUser) {
+			setModalNewUser(true);
+		}
 		// Si le compte existe déjà, alors
 		// setErrorMessageSignup("Ce compte existe déjà, veuillez vous connecter");
 	};
 
 	// EXPLICATION : Gérer le formulaire pour le mot de passe oublié
-	const handleSubmitEmailForgot = (e) => {
+	const handleSubmitEmailForgot = async (e) => {
 		e.preventDefault();
-		if (emailForgot === "") {
+		if (emailForgot == "") {
 			setErrorMessageForgot("Merci de rentrer une adresse mail");
 			return;
 		}
+		await forgotPassword(emailForgot);
 		setEmailForgot("");
 		setErrorMessageForgot("");
 		alert("Un nouveau mot de passe vous a été envoyé par mail !");

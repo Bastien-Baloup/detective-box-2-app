@@ -6,7 +6,7 @@ import Input from "../components/Input.jsx";
 import Cross from "../assets/icons/Icon_Cross-white.svg";
 import PropTypes from "prop-types";
 import { urlApi } from "../utils/const/urlApi";
-import { BoxContext, AuthContext } from "../utils/context/fetchContext";
+import { BoxContext, AuthContext, DataContext } from "../utils/context/fetchContext";
 import { useContext, useState, useEffect } from "react";
 // import { dataRaphaelle } from "../utils/const/dataRaphaelle";
 import { updateCharactersById, updateHistory, getCharactersById } from "../utils/hooks/useApi.js";
@@ -14,6 +14,7 @@ import { updateCharactersById, updateHistory, getCharactersById } from "../utils
 const Raphaelle = ({ closeAgentPage }) => {
 	const { currentBox } = useContext(BoxContext);
 	const { token } = useContext(AuthContext);
+	const { actionToggleDataRaphaelle, toggleDataRaphaelle } = useContext(DataContext);
 
 	//EXPLICATION : Raphaelle est le personnage "4"
 
@@ -24,7 +25,7 @@ const Raphaelle = ({ closeAgentPage }) => {
 			setDataRaphaelle(result);
 		};
 		fetchData();
-	}, [token, currentBox]);
+	}, [token, currentBox, toggleDataRaphaelle]);
 
 	const [valueAdresse, setValueAdresse] = useState("");
 	const [valueLatitude, setValueLatitude] = useState("");
@@ -202,12 +203,13 @@ const Raphaelle = ({ closeAgentPage }) => {
 	};
 
 	const openLieu = async (answerId, asnwerAsk) => {
-		window.open(answer.src + "/?token=" + token, "_blank");
-		validateModal();
 		await updateHistory(token, currentBox, answerId);
 		await updateCharactersById(token, 4, currentBox, asnwerAsk);
 		// API Mettre ce lieu de fouille dans l'Historique
 		// API Mettre à jour le status de cette réponse de FALSE à TRUE
+		window.open(answer.src + "/?token=" + token, "_blank");
+		actionToggleDataRaphaelle();
+		validateModal();
 	};
 
 	const renderText = () => {
