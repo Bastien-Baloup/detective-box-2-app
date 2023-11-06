@@ -39,25 +39,53 @@ const Progression = () => {
 		if (boxPlayed) {
 			return (
 				<>
-					<img className="progressBar__box__icon--small" src={RoundWhite} />
-					<img className="progressBar__box__icon--small" src={LineMediumWhite} />
-					<img className="progressBar__box__icon--small" src={RoundWhite} />
-					<img className="progressBar__box__icon--small" src={LineSmallWhite} />
-					<img className="progressBar__box__icon--small" src={RoundWhite} />
-					<img className="progressBar__box__icon--small" src={LineSmallWhite} />
-					<img className="progressBar__box__icon--small" src={RoundWhite} />
+					<div className="progressBar__box__icon--small--container">
+						<img className="progressBar__box__icon--small" src={RoundWhite} />
+					</div>
+					<div className="progressBar__box__icon--small--container">
+						<img className="progressBar__box__icon--small" src={LineMediumWhite} />
+					</div>
+					<div className="progressBar__box__icon--small--container">
+						<img className="progressBar__box__icon--small" src={RoundWhite} />
+					</div>
+					<div className="progressBar__box__icon--small--container">
+						<img className="progressBar__box__icon--small" src={LineSmallWhite} />
+					</div>
+					<div className="progressBar__box__icon--small--container">
+						<img className="progressBar__box__icon--small" src={RoundWhite} />
+					</div>
+					<div className="progressBar__box__icon--small--container">
+						<img className="progressBar__box__icon--small" src={LineSmallWhite} />
+					</div>
+					<div className="progressBar__box__icon--small--container">
+						<img className="progressBar__box__icon--small" src={RoundWhite} />
+					</div>
 				</>
 			);
 		}
 		return (
 			<>
-				<img className="progressBar__box__icon--small" src={currentStep < 1 ? RoundRed : RoundWhite} />
-				<img className="progressBar__box__icon--small" src={currentStep < 2 ? LineMediumRed : LineMediumWhite} />
-				<img className="progressBar__box__icon--small" src={currentStep < 2 ? RoundRed : RoundWhite} />
-				<img className="progressBar__box__icon--small" src={currentStep < 3 ? LineSmallRed : LineSmallWhite} />
-				<img className="progressBar__box__icon--small" src={currentStep < 3 ? RoundRed : RoundWhite} />
-				<img className="progressBar__box__icon--small" src={currentStep < 4 ? LineSmallRed : LineSmallWhite} />
-				<img className="progressBar__box__icon--small" src={currentStep < 4 ? RoundRed : RoundWhite} />
+				<div className="progressBar__box__icon--small--container">
+					<img className="progressBar__box__icon--small" src={currentStep < 1 ? RoundRed : RoundWhite} />
+				</div>
+				<div className="progressBar__box__icon--small--container">
+					<img className="progressBar__box__icon--small" src={currentStep < 2 ? LineMediumRed : LineMediumWhite} />
+				</div>
+				<div className="progressBar__box__icon--small--container">
+					<img className="progressBar__box__icon--small" src={currentStep < 2 ? RoundRed : RoundWhite} />
+				</div>
+				<div className="progressBar__box__icon--small--container">
+					<img className="progressBar__box__icon--small" src={currentStep < 3 ? LineSmallRed : LineSmallWhite} />
+				</div>
+				<div className="progressBar__box__icon--small--container">
+					<img className="progressBar__box__icon--small" src={currentStep < 3 ? RoundRed : RoundWhite} />
+				</div>
+				<div className="progressBar__box__icon--small--container">
+					<img className="progressBar__box__icon--small" src={currentStep < 4 ? LineSmallRed : LineSmallWhite} />
+				</div>
+				<div className="progressBar__box__icon--small--container">
+					<img className="progressBar__box__icon--small" src={currentStep < 4 ? RoundRed : RoundWhite} />
+				</div>
 			</>
 		);
 	};
@@ -66,9 +94,15 @@ const Progression = () => {
 	const noTrackBox = () => {
 		return (
 			<>
-				<img className="progressBar__box__icon--small" src={RoundRed} />
-				<img className="progressBar__box__icon--small" src={LineBigRed} />
-				<img className="progressBar__box__icon--small" src={RoundRed} />
+				<div className="progressBar__box__icon--small--container">
+					<img className="progressBar__box__icon--small" src={RoundRed} />
+				</div>
+				<div className="progressBar__box__icon--small--container">
+					<img className="progressBar__box__icon--small" src={LineBigRed} />
+				</div>
+				<div className="progressBar__box__icon--small--container">
+					<img className="progressBar__box__icon--small" src={RoundRed} />
+				</div>
 			</>
 		);
 	};
@@ -77,26 +111,36 @@ const Progression = () => {
 		<>
 			<div className="progressBar">
 				<div className="progressBar__box">
-					<img className="progressBar__box__icon--main" src={CheckWhite} />
+					<div className="progressBar__box__icon--main--container">
+						<img className="progressBar__box__icon--main" src={CheckWhite} />
+					</div>
 					<div className="progressBar__box__steps">
 						<div className="progressBar__box__title--played">Box 1</div>
 						<div className="progressBar__box__icons">{trackBox(1)}</div>
 					</div>
 				</div>
 				<div className="progressBar__box">
-					<img className="progressBar__box__icon--main" src={currentBox != 1 ? CheckWhite : CrossRed} />
+					<div className="progressBar__box__icon--main--container">
+						<img className="progressBar__box__icon--main" src={currentBox != 1 ? CheckWhite : CrossRed} />
+					</div>
 					<div className="progressBar__box__steps">
 						<div className={`progressBar__box__title${currentBox != 1 ? "--played" : ""}`}>Box 2</div>
 						<div className="progressBar__box__icons">{currentBox != 1 ? trackBox(2) : noTrackBox()}</div>
 					</div>
 				</div>
 				<div className="progressBar__box">
-					<img className="progressBar__box__icon--main" src={currentBox == "box3" ? CheckWhite : CrossRed} />
+					<div className="progressBar__box__icon--main--container">
+						<img className="progressBar__box__icon--main" src={currentBox == "box3" ? CheckWhite : CrossRed} />
+					</div>
 					<div className="progressBar__box__steps">
 						<div className={`progressBar__box__title${currentBox == 3 ? "--played" : ""}`}>Box 3</div>
 						<div className="progressBar__box__icons">{currentBox == 3 ? trackBox(3) : noTrackBox()}</div>
 					</div>
-					<img className="progressBar__box__icon--main" src={Flag} />
+				</div>
+				<div className="progressBar__box">
+					<div className="progressBar__box__icon--main--container">
+						<img className="progressBar__box__icon--main" src={Flag} />
+					</div>
 				</div>
 			</div>
 		</>
