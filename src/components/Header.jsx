@@ -16,7 +16,14 @@ import { Link } from "react-router-dom";
 import { urlApi } from "../utils/const/urlApi";
 import { AmbianceContext, BoxContext, AuthContext, DataContext } from "../utils/context/fetchContext.jsx";
 import { useEffect, useState, useRef, useContext } from "react";
-import { getQuizzByBox, getEventByBox, updateEvent, updateQuizz } from "../utils/hooks/useApi.js";
+import {
+	getQuizzByBox,
+	getEventByBox,
+	updateEvent,
+	updateQuizz,
+	updateHistory,
+	getHistoryByBox,
+} from "../utils/hooks/useApi.js";
 // REDUIRE LA TAILLE DU LOGO //
 
 const Header = () => {
@@ -29,6 +36,7 @@ const Header = () => {
 	const [tutorialIsActive, setTutorialIsActive] = useState(false);
 	const [quizzIsActive, setQuizzIsActive] = useState(false);
 	const [nappeModalIsActive, setNappeModalIsActive] = useState(false);
+	const [modaleVideo, setModaleVideo] = useState(false);
 
 	const audioElem = useRef();
 
@@ -41,7 +49,7 @@ const Header = () => {
 		}
 	}, [nappeMute]);
 
-		// EXPLICATION : Cette fonction récupère du quizz (il ne se joue qu'une fois par box)
+	// EXPLICATION : Cette fonction récupère du quizz (il ne se joue qu'une fois par box)
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -54,21 +62,12 @@ const Header = () => {
 		fetchData();
 	}, [token, currentBox]);
 
+	// EXPLICATION : Cette fonction récupère les événements
 	useEffect(() => {
 		const fetchData = async () => {
 			const events = await getEventByBox(token, currentBox);
 			// setDataEvent(events.data);
-			if (currentBox == 1) {
-				const event11 = events.data.find((event) => event.id == 11);
-				setEvent11(event11.status);
-			}
-			if (currentBox == 2) {
-				const event21 = events.data.find((event) => event.id == 21);
-				setEvent21(event21.status);
-			}
 			if (currentBox == 3) {
-				const event31 = events.data.find((event) => event.id == 31);
-				setEvent31(event31.status);
 				const event33 = events.data.find((event) => event.id == 33);
 				setEvent33(event33.status);
 			}
@@ -76,33 +75,91 @@ const Header = () => {
 		fetchData();
 	}, [token, currentBox, toggleDataEvent]);
 
+	// EXPLICATION : Cette fonction récupère l'état des vidéos de brief dans l'historique (il ne se joue qu'une fois par box)
+	useEffect(() => {
+		const fetchData = async () => {
+			const clues = await getHistoryByBox(token, currentBox);
+			if (currentBox == 1) {
+				const box1video1 = clues.data.find((event) => event.id == "box1video1");
+				setBox1Video1(box1video1.status);
+			}
+			if (currentBox == 2) {
+				const box2video1 = clues.data.find((event) => event.id == "box2video1");
+				setBox2Video1(box2video1.status);
+			}
+			if (currentBox == 3) {
+				const box3video1 = clues.data.find((event) => event.id == "box3video1");
+				setBox3Video1(box3video1.status);
+			}
+		};
+		fetchData();
+	}, [token, currentBox]);
+
+	const [box1video1, setBox1Video1] = useState(false);
+	const [box2video1, setBox2Video1] = useState(false);
+	const [box3video1, setBox3Video1] = useState(false);
 	const [dataQuizz, setDataQuizz] = useState("");
-	// const [dataEvent, setDataEvent] = useState("");
-	const [event11, setEvent11] = useState("");
-	const [event21, setEvent21] = useState("");
-	const [event31, setEvent31] = useState("");
+
 	const [event33, setEvent33] = useState("");
 
 	// EXPLICATION : Le joueur choisi d'activer la musique d'ambiance > son état se met à jour dans le context > ferme la modale > affiche la video de briefing en fonction de la box.
 	const activateNappe = () => {
 		fetchNappeMute(false);
 		setNappeModalIsActive(false);
-		playBriefingVideo();
+		if (currentBox == 1 && box1video1 == false) {
+			setModaleVideo(true);
+		}
+		if (currentBox == 2 && box2video1 == false) {
+			setModaleVideo(true);
+		}
+		if (currentBox == 3 && box3video1 == false) {
+			setModaleVideo(true);
+		}
 	};
 
-	// EXPLICATION : L'affichage de la video se fait via le Composant Objectif via un event (la video ne se joue qu'une fois donc si l'évent est "done", alors la video ne se joue pas)
-	const playBriefingVideo = async () => {
-		if (currentBox == 1 && event11 == "closed") {
-			await updateEvent(token, 1, 11, "open");
-			actionToggleDataEvent();
+	const handleModalVideoBrief = async () => {
+		if (currentBox == 1) {
+			await updateHistory(token, 1, "box1video1");
 		}
-		if (currentBox == 2 && event21 == "closed") {
-			await updateEvent(token, 2, 21, "open");
-			actionToggleDataEvent();
+		if (currentBox == 2) {
+			await updateHistory(token, 2, "box2video1");
 		}
-		if (currentBox == 3 && event31 == "closed") {
-			await updateEvent(token, 3, 31, "open");
-			actionToggleDataEvent();
+		if (currentBox == 3) {
+			await updateHistory(token, 3, "box3video1");
+		}
+		setModaleVideo(false);
+	};
+
+	const displayBrief = () => {
+		if (currentBox == 1) {
+			return (
+				<Video
+					title="Briefing box 1"
+					srcVideo={urlApi.apiRemi() + "videos/db-s02-101-def.mp4"}
+					handleModalVideo={handleModalVideoBrief}
+					delayedButton={true}
+				/>
+			);
+		}
+		if (currentBox == 2) {
+			return (
+				<Video
+					title="Briefing box 1"
+					srcVideo={urlApi.apiRemi() + "videos/db-s02-201-vdef.mp4"}
+					handleModalVideo={handleModalVideoBrief}
+					delayedButton={true}
+				/>
+			);
+		}
+		if (currentBox == 3) {
+			return (
+				<Video
+					title="Briefing box 1"
+					srcVideo={urlApi.apiRemi() + "videos/db-s02-301-def.mp4"}
+					handleModalVideo={handleModalVideoBrief}
+					delayedButton={true}
+				/>
+			);
 		}
 	};
 
@@ -110,7 +167,15 @@ const Header = () => {
 	const desactivateNappe = () => {
 		fetchNappeMute(true);
 		setNappeModalIsActive(false);
-		playBriefingVideo();
+		if (currentBox == 1 && box1video1 == false) {
+			setModaleVideo(true);
+		}
+		if (currentBox == 2 && box2video1 == false) {
+			setModaleVideo(true);
+		}
+		if (currentBox == 3 && box3video1 == false) {
+			setModaleVideo(true);
+		}
 	};
 
 	// EXPLICATION : On affiche le Quizz en fonction de la box. Box 1 pas de quizz !
@@ -242,6 +307,7 @@ const Header = () => {
 			)}
 			{quizzIsActive ? displayQuizz() : <></>}
 			{nappeModalIsActive ? <Nappe activateNappe={activateNappe} desactivateNappe={desactivateNappe} /> : <></>}
+			{modaleVideo ? displayBrief() : null}
 			{displayAudio()}
 			{displayTimer()}
 			<div className="header__topSection">

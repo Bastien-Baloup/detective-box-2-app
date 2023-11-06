@@ -68,15 +68,26 @@ const Audio = ({ title, srcImg1, srcImg2, srcTranscription, handleModalAudio, sr
 					</div>
 				</div>
 				<div className="modal-audio__player">
-					<button
-						className="modal-audio__player__button"
-						onClick={() => {
-							setIsPlaying(!isPlaying);
-							waveSurferRef.current.playPause();
-						}}
-					>
-						<img className="modal-audio__player__icon" src={isPlaying ? Play : Pause} />
-					</button>
+					{isLoading ? (
+						""
+					) : (
+						<button
+							className="modal-audio__player__button"
+							onClick={() => {
+								setIsPlaying(!isPlaying);
+								waveSurferRef.current.playPause();
+							}}
+						>
+							<img className="modal-audio__player__icon" src={isPlaying ? Play : Pause} />
+						</button>
+					)}
+					{isLoading ? (
+						<div className="lds-dual-ring--container">
+							<div className="lds-dual-ring"></div>
+						</div>
+					) : (
+						""
+					)}
 					<div className="modal-audio__player__waveform-container" ref={containerRef}></div>
 				</div>
 				<div className="modal-audio__buttons">

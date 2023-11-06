@@ -85,6 +85,7 @@
 		width: -moz-available; /* WebKit-based browsers will ignore this. */
 		width: -webkit-fill-available; /* Mozilla-based browsers will ignore this. */
 		padding: 0.5rem;
+		min-height: 3rem;
 	}
 }
 
