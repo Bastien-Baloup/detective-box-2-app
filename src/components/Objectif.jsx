@@ -54,6 +54,22 @@ const Objectif = ({ data }) => {
 	} = useContext(DataContext);
 	const navigate = useNavigate();
 
+	useEffect(() => {
+        const token = localStorage.getItem('token').replace(/"/g, '') //XXX: Need to trim quotes from LocalStorage oO
+        const sse = new EventSource('https://api.detectivebox.remimichel.fr/events/stream?token=' + token);
+        sse.addEventListener('update', (event) => {
+            const data = JSON.parse(event.data)
+            if(data.id === 'box1document1'){
+                setModaleMalle(true);
+            }
+			//TODO: Handle other events
+        })
+
+        sse.addEventListener('error', () => {
+            sse.close()
+        })
+    }, [])
+
 	// EXPLICATION : UseEffect pour récupérer l'état des événements
 	useEffect(() => {
 		const fetchData = async () => {
