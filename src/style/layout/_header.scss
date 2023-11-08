@@ -7,7 +7,7 @@ header {
 	&__topSection {
 		display: grid;
 		grid-template: 1fr/ 1fr 1fr;
-		align-items: start;
+		align-items: center;
 		justify-items: center;
 		gap: 1rem;
 		& .progressBar {
@@ -19,9 +19,10 @@ header {
 	}
 	&__bottomSection {
 		height: 100%;
+		transform: translateY(1px);
 	}
 	&__logo {
-		max-width: 6rem;
+		max-width: 3rem;
 		width: 100%;
 		&--container {
 			justify-self: flex-start;

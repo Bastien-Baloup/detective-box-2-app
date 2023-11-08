@@ -12,10 +12,12 @@ const Audio = ({ title, srcImg1, srcImg2, srcTranscription, handleModalAudio, sr
 	const containerRef = useRef(undefined);
 	const waveSurferRef = useRef(false);
 	const [isPlaying, setIsPlaying] = useState(false);
+	const [isLoading, setIsLoading] = useState(true);
 	// const { fetchPreviousStateNappe, fetchResumeNappe } = useContext(AmbianceContext);
 
-// EXPLICATION : Cette fonction est utilisée pour faire fonctioner la librairie waveSurfer
+	// EXPLICATION : Cette fonction est utilisée pour faire fonctioner la librairie waveSurfer
 	useEffect(() => {
+		// if (!containerRef.current) return;
 		const waveSurfer = WaveSurfer.create({
 			container: containerRef.current,
 			responsive: true,
@@ -27,18 +29,21 @@ const Audio = ({ title, srcImg1, srcImg2, srcTranscription, handleModalAudio, sr
 			barGap: 5,
 			barMinHeight: 50,
 			cursorWidth: 1,
-			autoplay: true,
 			dragToSeek: true,
+			// autoplay: true,
 		});
 		waveSurfer.load(srcAudio);
 		waveSurfer.on("ready", () => {
 			waveSurferRef.current = waveSurfer;
+			setIsLoading(false);
 		});
-
 		return () => {
 			waveSurfer.destroy();
 		};
 	}, [srcAudio]);
+
+	console.log(waveSurferRef);
+	console.log(containerRef);
 
 	// EXPLICATION : Cette fonction permet d'ouvrir le document de transcription de l'audio dans un nouvel onglet
 	const openInNewTab = () => {
@@ -63,21 +68,36 @@ const Audio = ({ title, srcImg1, srcImg2, srcTranscription, handleModalAudio, sr
 					</div>
 				</div>
 				<div className="modal-audio__player">
-					<button
-						className="modal-audio__player__button"
-						onClick={() => {
-							setIsPlaying(!isPlaying);
-							waveSurferRef.current.playPause();
-						}}
-					>
-						<img className="modal-audio__player__icon" src={isPlaying ? Play : Pause} />
-					</button>
+					{isLoading ? (
+						""
+					) : (
+						<button
+							className="modal-audio__player__button"
+							onClick={() => {
+								setIsPlaying(!isPlaying);
+								waveSurferRef.current.playPause();
+							}}
+						>
+							<img className="modal-audio__player__icon" src={isPlaying ? Play : Pause} />
+						</button>
+					)}
+					{isLoading ? (
+						<div className="lds-dual-ring--container">
+							<div className="lds-dual-ring"></div>
+						</div>
+					) : (
+						""
+					)}
 					<div className="modal-audio__player__waveform-container" ref={containerRef}></div>
 				</div>
 				<div className="modal-audio__buttons">
-					<button className="modal-audio__button--resume button--red" onClick={handleEndAudioModal}>
-						Continuer l&apos;enquête
-					</button>
+					{isLoading ? (
+						""
+					) : (
+						<button className="modal-audio__button--resume button--red" onClick={handleEndAudioModal}>
+							Continuer l&apos;enquête
+						</button>
+					)}
 					<button className="modal-audio__button--display button--white" onClick={openInNewTab}>
 						Transcription
 					</button>
