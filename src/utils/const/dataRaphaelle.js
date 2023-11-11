@@ -77,7 +77,7 @@ export const dataRaphaelle = {
 			],
 			text: ["Il semblerait que ce soit une petite maison, pas très bien entretenue.", "Allons voir ce que ça donne."],
 			id: "box2lieu2",
-			src: "https://fouille.prison.detectivebox.fr",
+			src: "https://fouille.appartement.detectivebox.fr",
 			status: false,
 		},
 		{
@@ -98,7 +98,7 @@ export const dataRaphaelle = {
 			],
 			text: ["La cellule de la prison de Garraud."],
 			id: "box2lieu3",
-			src: "https://fouille.appartement.detectivebox.fr",
+			src: "https://fouille.prison.detectivebox.fr",
 			status: false,
 		},
 	],
