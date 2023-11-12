@@ -88,11 +88,11 @@ const Slider = ({ data, handleModal, url }) => {
 							<img className="slider__content__img" src={url + data.hints[index].image} />
 						) : null}
 					</div>
-					<div className="slider__pagination">
-						<div className="slider__pagination__tracker">{renderPagination()}</div>
-						<div className="slider__pagination__summary">
-							{index + 1}/{totalItems}
-						</div>
+				</div>
+				<div className="slider__pagination">
+					<div className="slider__pagination__tracker">{renderPagination()}</div>
+					<div className="slider__pagination__summary">
+						{index + 1}/{totalItems}
 					</div>
 				</div>
 				{renderArrowRight()}

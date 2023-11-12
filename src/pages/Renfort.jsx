@@ -19,6 +19,7 @@ function Renfort() {
 	useEffect(() => {
 		const fetchData = async () => {
 			const result = await getHelpByBox(token, currentBox);
+			console.log(result);
 			setDataHelp(result.data);
 		};
 		fetchData();

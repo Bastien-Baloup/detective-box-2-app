@@ -4,6 +4,7 @@
 	}
 	&__box {
 		@include modaleBox;
+		gap: 1.5rem;
 	}
 	&__icon {
 		width: 2.5rem;
@@ -13,6 +14,20 @@
 			align-self: self-end;
 			cursor: pointer;
 		}
+	}
+	&__title {
+		line-height: 1.5rem;
+		font-size: 1.25rem;
+		font-weight: 600;
+	}
+	&__subtitle {
+		line-height: 1.25rem;
+	}
+}
+
+@include responsive(tablet) {
+	.modal-objectif__box {
+		gap: 2rem;
 	}
 }
 
@@ -24,7 +39,8 @@
 
 .objectif {
 	cursor: pointer;
-	width: 20rem;
+	width: -moz-available; /* WebKit-based browsers will ignore this. */
+	width: -webkit-fill-available; /* Mozilla-based browsers will ignore this. */
 	height: 5rem;
 	padding: 1rem;
 	margin: 1rem;
@@ -39,10 +55,12 @@
 		justify-content: center;
 		align-items: center;
 		gap: 1rem;
+		width: 100%;
 	}
 	&__icon-wrapper {
 		max-width: 100%;
 		max-height: 100%;
+		width: 2rem;
 	}
 	&__icon {
 		width: 100%;
@@ -51,7 +69,7 @@
 	&__title {
 		text-align: left;
 		font-family: inherit;
-		font-size: 1rem;
+		font-size: 1.25rem;
 	}
 	&__subInfo {
 		width: 100%;
@@ -68,9 +86,17 @@
 	}
 	&__subtitle {
 		text-align: left;
+		font-size: 1rem;
+		margin: 0.5rem;
 	}
 	&:hover .objectif__subInfo {
 		opacity: 1;
+	}
+}
+
+@include responsive(tablet) {
+	.objectif {
+		width: 18rem;
 	}
 }
 
