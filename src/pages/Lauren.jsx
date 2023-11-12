@@ -169,8 +169,6 @@ const Lauren = ({ closeAgentPage }) => {
 	const closeModalMedia = async (answerId, asnwerAsk) => {
 		await updateCharactersById(token, 2, currentBox, asnwerAsk);
 		await updateHistory(token, currentBox, answerId);
-		// API Mettre à jour le status de cette réponse de FALSE à TRUE sauf si c'est generic
-		// API Mettre à jour le status de cet élément dans l'Historique avec l'id
 		actionToggleDataLauren();
 		setModalMedia(false);
 	};

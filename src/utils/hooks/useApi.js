@@ -2,6 +2,26 @@ const url = "https://api.detectivebox.remimichel.fr";
 // import { useNavigate } from "react-router-dom";
 // const navigate = useNavigate();
 
+export const getHistories = (token, ids) => {
+	return fetch(url + `/history?ids=${ids.join(',')}`, {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json",
+				"Authorization": `Bearer ${token}`
+			},
+	})
+}
+
+export const getMe = (token) => {
+	return fetch(url + "/users/me", {
+		method: "GET",
+		headers: {
+			"Content-Type": "application/json",
+			"Authorization": `Bearer ${token}`
+		},
+	})
+}
+
 export const getToken = (credentials) => {
 	return fetch(url + "/users/login", {
 		method: "POST",
@@ -10,15 +30,6 @@ export const getToken = (credentials) => {
 		},
 		body: JSON.stringify(credentials),
 	})
-		.then((response) => {
-			return response.json();
-		})
-		.then((data) => {
-			return data;
-		})
-		.catch((error) => {
-			console.error(error);
-		});
 };
 
 export const createUser = (newaccount) => {
@@ -31,7 +42,6 @@ export const createUser = (newaccount) => {
 	})
 		.then((response) => response.json())
 		.then((data) => {
-			console.log(data);
 			return data;
 		})
 		.catch((error) => {
@@ -49,7 +59,6 @@ export const getUser = (token) => {
 	})
 		.then((response) => response.json())
 		.then((data) => {
-			console.log(data);
 			return data;
 		})
 		.catch((error) => {
@@ -67,7 +76,6 @@ export const forgotPassword = (email) => {
 	})
 		.then((response) => response.json())
 		.then((data) => {
-			console.log(data);
 			return data;
 		})
 		.catch((error) => {
@@ -88,7 +96,6 @@ export const updatePassword = (token, newpassword) => {
 	})
 		.then((response) => response.json())
 		.then((data) => {
-			console.log(data);
 			return data;
 		})
 		.catch((error) => {
@@ -107,7 +114,6 @@ export const updateName = (token, id, newinfos) => {
 	})
 		.then((response) => response.json())
 		.then((data) => {
-			console.log(data);
 			return data;
 		})
 		.catch((error) => {
@@ -125,7 +131,6 @@ export const resetAll = (token) => {
 	})
 		.then((response) => response.json())
 		.then((data) => {
-			console.log(data);
 			return data;
 		})
 		.catch((error) => {
@@ -143,7 +148,6 @@ export const getBox = (token) => {
 	})
 		.then((response) => response.json())
 		.then((data) => {
-			console.log(data);
 			return data;
 		})
 		.catch((error) => {
@@ -164,7 +168,6 @@ export const updateBox = (token, boxid, newstatus) => {
 	})
 		.then((response) => response.json())
 		.then((data) => {
-			console.log(data);
 			return data;
 		})
 		.catch((error) => {
@@ -182,7 +185,6 @@ export const resetBox = (token) => {
 	})
 		.then((response) => response.json())
 		.then((data) => {
-			console.log(data);
 			return data;
 		})
 		.catch((error) => {
@@ -200,7 +202,6 @@ export const getQuizzByBox = (token, boxid) => {
 	})
 		.then((response) => response.json())
 		.then((data) => {
-			console.log(data);
 			return data;
 		})
 		.catch((error) => {
@@ -221,7 +222,6 @@ export const updateQuizz = (token, boxid) => {
 	})
 		.then((response) => response.json())
 		.then((data) => {
-			console.log(data);
 			return data;
 		})
 		.catch((error) => {
@@ -239,7 +239,6 @@ export const resetQuizz = (token) => {
 	})
 		.then((response) => response.json())
 		.then((data) => {
-			console.log(data);
 			return data;
 		})
 		.catch((error) => {
@@ -271,7 +270,6 @@ export const getHelpByBox = (token, boxid) => {
 	})
 		.then((response) => response.json())
 		.then((data) => {
-			console.log(data);
 			return data;
 		})
 		.catch((error) => {
@@ -292,7 +290,6 @@ export const updateHelp = (token, boxid, helpid, newstatus) => {
 	})
 		.then((response) => response.json())
 		.then((data) => {
-			console.log(data);
 			return data;
 		})
 		.catch((error) => {
@@ -310,7 +307,6 @@ export const resetHelp = (token) => {
 	})
 		.then((response) => response.json())
 		.then((data) => {
-			console.log(data);
 			return data;
 		})
 		.catch((error) => {
@@ -328,7 +324,6 @@ export const getObjectivesByBox = (token, boxid) => {
 	})
 		.then((response) => response.json())
 		.then((data) => {
-			console.log(data);
 			return data;
 		})
 		.catch((error) => {
@@ -349,7 +344,6 @@ export const updateObjectives = (token, boxid, objectiveid, newstatus) => {
 	})
 		.then((response) => response.json())
 		.then((data) => {
-			console.log(data);
 			return data;
 		})
 		.catch((error) => {
@@ -367,7 +361,6 @@ export const resetObjectives = (token) => {
 	})
 		.then((response) => response.json())
 		.then((data) => {
-			console.log(data);
 			return data;
 		})
 		.catch((error) => {
@@ -385,7 +378,6 @@ export const getHistoryByBox = (token, boxid) => {
 	})
 		.then((response) => response.json())
 		.then((data) => {
-			console.log(data);
 			return data;
 		})
 		.catch((error) => {
@@ -406,7 +398,6 @@ export const updateHistory = (token, boxid, objectiveid) => {
 	})
 		.then((response) => response.json())
 		.then((data) => {
-			console.log(data);
 			return data;
 		})
 		.catch((error) => {
@@ -424,7 +415,6 @@ export const resetHistory = (token) => {
 	})
 		.then((response) => response.json())
 		.then((data) => {
-			console.log(data);
 			return data;
 		})
 		.catch((error) => {
@@ -456,7 +446,6 @@ export const getCharactersById = (token, personnage) => {
 	})
 		.then((response) => response.json())
 		.then((data) => {
-			console.log(data);
 			return data;
 		})
 		.catch((error) => {
@@ -474,7 +463,6 @@ export const updateCharactersById = (token, personnage, boxid, answer) => {
 	})
 		.then((response) => response.json())
 		.then((data) => {
-			console.log(data);
 			return data;
 		})
 		.catch((error) => {
@@ -492,7 +480,6 @@ export const resetCharacters = (token) => {
 	})
 		.then((response) => response.json())
 		.then((data) => {
-			console.log(data);
 			return data;
 		})
 		.catch((error) => {
@@ -510,7 +497,6 @@ export const getEventByBox = (token, boxid) => {
 	})
 		.then((response) => response.json())
 		.then((data) => {
-			console.log(data);
 			return data;
 		})
 		.catch((error) => {
@@ -531,7 +517,6 @@ export const updateEvent = (token, boxid, id, newstatus) => {
 	})
 		.then((response) => response.json())
 		.then((data) => {
-			console.log(data);
 			return data;
 		})
 		.catch((error) => {
@@ -549,7 +534,6 @@ export const resetEvent = (token) => {
 	})
 		.then((response) => response.json())
 		.then((data) => {
-			console.log(data);
 			return data;
 		})
 		.catch((error) => {

@@ -159,7 +159,7 @@ function Historique() {
 							<img className="modal-objectif__icon" src={Cross} onClick={() => setModal(false)} />
 						</button>
 						<p className="modal-objectif__title">Vous êtes sur de vouloir retourner sur le lieu {clue.title} ?</p>
-						<button className="modal-objectif__button button--red" onClick={() => window.open(clue.src, "_blank")}>
+						<button className="modal-objectif__button button--red" onClick={() => window.open(clue.src + "/?token=" + token, "_blank")}>
 							Explorer de nouveau
 						</button>
 					</div>

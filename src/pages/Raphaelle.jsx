@@ -9,12 +9,19 @@ import { urlApi } from "../utils/const/urlApi";
 import { BoxContext, AuthContext, DataContext } from "../utils/context/fetchContext";
 import { useContext, useState, useEffect } from "react";
 // import { dataRaphaelle } from "../utils/const/dataRaphaelle";
-import { updateCharactersById, updateHistory, getCharactersById } from "../utils/hooks/useApi.js";
+import {
+	updateCharactersById,
+	updateHistory,
+	getCharactersById,
+	getObjectivesByBox,
+	updateObjectives,
+	updateHelp,
+} from "../utils/hooks/useApi.js";
 
 const Raphaelle = ({ closeAgentPage }) => {
 	const { currentBox } = useContext(BoxContext);
 	const { token } = useContext(AuthContext);
-	const { actionToggleDataRaphaelle, toggleDataRaphaelle } = useContext(DataContext);
+	const { actionToggleDataRaphaelle, toggleDataRaphaelle, toggleDataObjectif } = useContext(DataContext);
 
 	//EXPLICATION : Raphaelle est le personnage "4"
 
@@ -27,6 +34,23 @@ const Raphaelle = ({ closeAgentPage }) => {
 		fetchData();
 	}, [token, currentBox, toggleDataRaphaelle]);
 
+	useEffect(() => {
+		const fetchData = async () => {
+			const objectifs = await getObjectivesByBox(token, currentBox);
+			if (currentBox == 1) {
+				const objectif14 = objectifs.data.find((event) => event.id == 14);
+				setObjectif14(objectif14.status);
+			}
+			if (currentBox == 2) {
+				const objectif21 = objectifs.data.find((event) => event.id == 21);
+				setObjectif21(objectif21.status);
+				const objectif24 = objectifs.data.find((event) => event.id == 24);
+				setObjectif24(objectif24.status);
+			}
+		};
+		fetchData();
+	}, [token, currentBox, toggleDataObjectif]);
+
 	const [valueAdresse, setValueAdresse] = useState("");
 	const [valueLatitude, setValueLatitude] = useState("");
 	const [valueLongitude, setValueLongitude] = useState("");
@@ -34,6 +58,9 @@ const Raphaelle = ({ closeAgentPage }) => {
 	const [modal, setModal] = useState(false);
 	const [answer, setAnswer] = useState("");
 	const [dataRaphaelle, setDataRaphaelle] = useState(null);
+	const [objectif14, setObjectif14] = useState("");
+	const [objectif21, setObjectif21] = useState("");
+	const [objectif24, setObjectif24] = useState("");
 
 	// EXPLICATION : Fonction pour slugifier l'input Adresse des joueurs (lettre et chiffres ok)
 	const slugifyAdresse = (input) => {
@@ -110,7 +137,29 @@ const Raphaelle = ({ closeAgentPage }) => {
 				setErrorMessage("Vous m'avez dejà demandé d'explorer ce lieu.");
 				return;
 			}
+			// EXPLICATION : certains lieux ne sont visitables que si certaines conditions ont été remplies
 			if (answerInThisBox(slugifiedAdresse)) {
+				if (answerInThisBox(slugifiedAdresse).id == "box1lieu3" && objectif14 != "done") {
+					setValueAdresse("");
+					setValueLongitude("");
+					setValueLatitude("");
+					setErrorMessage("Vous devriez vous concentrer sur le dernier objectif avant d'aller là bas.");
+					return;
+				}
+				if (answerInThisBox(slugifiedAdresse).id == "box2lieu3" && objectif21 != "done") {
+					setValueAdresse("");
+					setValueLongitude("");
+					setValueLatitude("");
+					setErrorMessage("On ne peut pas se rendre à la prison comme ça, sans raison !");
+					return;
+				}
+				if (answerInThisBox(slugifiedAdresse).id == "box2lieu2" && objectif24 != "done") {
+					setValueAdresse("");
+					setValueLongitude("");
+					setValueLatitude("");
+					setErrorMessage("Vous n'avez aucune raison d'aller à cette adresse.");
+					return;
+				}
 				setAnswer(answerInThisBox(slugifiedAdresse));
 				setModal(true);
 				setValueAdresse("");
@@ -202,11 +251,19 @@ const Raphaelle = ({ closeAgentPage }) => {
 		);
 	};
 
+	// EXPLICATION : la visite du lieu box2lieu3 ouvre l'objectif 2 de la box 2 et le renfort 2
+	// EXPLICATION : la visite du lieu box2lieu2 ouvre le renfort 6 et ferme le renfort 5
 	const openLieu = async (answerId, asnwerAsk) => {
 		await updateHistory(token, currentBox, answerId);
 		await updateCharactersById(token, 4, currentBox, asnwerAsk);
-		// API Mettre ce lieu de fouille dans l'Historique
-		// API Mettre à jour le status de cette réponse de FALSE à TRUE
+		if (answerId == "box2lieu3") {
+			await updateObjectives(token, 2, 22, "open");
+			await updateHelp(token, 2, "box2help3", "open");
+		}
+		if (answerId == "box2lieu2") {
+			await updateHelp(token, 2, "box2help5", "done");
+			await updateHelp(token, 2, "box2help6", "open");
+		}
 		window.open(answer.src + "/?token=" + token, "_blank");
 		actionToggleDataRaphaelle();
 		validateModal();

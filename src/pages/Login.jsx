@@ -34,7 +34,12 @@ function Login() {
 			setErrorMessageSignin("Merci de remplir le formulaire pour vous connecter");
 			return;
 		}
-		const dataToken = await getToken(credentials);
+		const res = await getToken(credentials);
+		if(res.status === 401){
+			setErrorMessageSignin("Veuillez vérifier vos identifiants");
+			return
+		}
+		const dataToken = await res.json();
 		login(dataToken.access_token);
 		setUsername("");
 		setEmail("");

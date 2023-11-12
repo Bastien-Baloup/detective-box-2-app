@@ -1,5 +1,8 @@
 .main__home{
-	padding: 2rem;
+	padding: 1.5rem;
 	border: 1px solid $secondary-color;
-	border-top: none;
+	// border-top: none;
+	background-color: $primary-color;
+	overflow: auto;
+	min-height: 50vh;
 }

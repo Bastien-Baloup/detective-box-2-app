@@ -1,5 +1,7 @@
 .main__history {
-	padding: 2rem;
+	padding: 1.5rem;
 	border: 1px solid $secondary-color;
-	border-top: none;
+	// border-top: none;
+	background-color: $primary-color;
+	min-height: 50vh;
 }
