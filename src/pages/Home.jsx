@@ -43,14 +43,14 @@ function Home() {
 	useEffect(() => {
 		const fetchData = async () => {
 			const result = await getHistoryByBox(token, 2);
-			const document6 = result.data.find((event) => event.id == "box2document6");
-			setDocument6(document6.status);
+			const box2document6 = result.data.find((event) => event.id == "box2document6");
+			setBox2Document6(box2document6.status);
 		};
 		fetchData();
 	}, [token, currentBox, toggleDataHistory]);
 
 	const [event34, setEvent34] = useState("");
-	const [document6, setDocument6] = useState(false);
+	const [box2document6, setBox2Document6] = useState(false);
 
 	const specificCardActionLauren = async () => {
 		await updateEvent(token, 2, 25, "open");
@@ -131,7 +131,7 @@ function Home() {
 							name="Lauren Fraser"
 							contentButton="Demander un interrogatoire"
 							actionButton={() => setCharacterDisplayed("lauren")}
-							state={document6 == true ? "unavailable" : ""}
+							state={currentBox == 2 && box2document6 == true ? "unavailable" : ""}
 						/>
 					)}
 					<Card
