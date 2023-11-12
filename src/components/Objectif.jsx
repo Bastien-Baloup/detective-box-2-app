@@ -27,6 +27,7 @@ import {
 	updateObjectives,
 	updateBox,
 	getObjectivesByBox,
+	getHistories,
 } from "../utils/hooks/useApi.js";
 
 const Objectif = ({ data }) => {
@@ -53,19 +54,16 @@ const Objectif = ({ data }) => {
 	const navigate = useNavigate();
 
 	useEffect(() => {
-        const token = localStorage.getItem('token').replace(/"/g, '') //XXX: Need to trim quotes from LocalStorage oO
-        const sse = new EventSource('https://api.detectivebox.remimichel.fr/events/stream?token=' + token);
-        sse.addEventListener('update', (event) => {
-            const data = JSON.parse(event.data)
-            if(data.id === 'box1document1'){
-                setModaleMalle(true);
-            }
-			//TODO: Handle other events
-        })
+		/*setInterval(async() => {
+			const data = await getHistories(
+				token,
+				['box1video4', 'box2document6', 'box1document1', 'box3document2']
+			).then(res => res.json())
+			if(data['box1document1']){
+				setModaleMalle(true)
+			}
+		}, 3000)*/
 
-        sse.addEventListener('error', () => {
-            sse.close()
-        })
     }, [])
 
 	// EXPLICATION : UseEffect pour récupérer l'état des événements
