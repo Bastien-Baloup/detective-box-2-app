@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
-import { useState, createContext } from "react";
+import {useState, createContext, useEffect} from "react";
+import {getMe} from "../hooks/useApi.js";
 
 // EXPLICATION : Context pour avoir la bonne boîte utilisée
 
@@ -14,23 +15,34 @@ export const BoxProvider = ({ children }) => {
 	return <BoxContext.Provider value={{ fetchCurrentBox, currentBox }}>{children}</BoxContext.Provider>;
 };
 
-// EXPLICATION : Context pour avoir le token dans le local storage et gérer l'accès aux différentes pages de l'application.
-
 export const AuthContext = createContext("");
 
+// EXPLICATION : Context pour avoir le token dans le local storage et gérer l'accès aux différentes pages de l'application.
+
 const getInitialState = () => {
-	const token = localStorage.getItem("token");
-	return token ? JSON.parse(token) : null;
+	return localStorage.getItem("token");
 };
 
 const getInitialLogin = () => {
-	const token = localStorage.getItem("token");
-	return token ? true : false;
+	return localStorage.getItem("token");
 };
 
 export const AuthProvider = ({ children }) => {
 	const [loggedIn, setLoggedIn] = useState(getInitialLogin);
 	const [token, setToken] = useState(getInitialState);
+
+	useEffect(() => {
+		(async function(){
+			if(!token){
+				setLoggedIn(false)
+				return
+			}
+			const res = await getMe(token)
+			if(res.status === 401){
+				setLoggedIn(false)
+			}
+		})()
+	}, [])
 
 	// useEffect(() => {
 	// 	const existingCredentials = localStorage.getItem("credentials");
@@ -69,7 +81,7 @@ export const AuthProvider = ({ children }) => {
 	// }, [credentials]);
 
 	const login = (token) => {
-		localStorage.setItem("token", JSON.stringify(token));
+		localStorage.setItem("token", token);
 		// localStorage.setItem("token", dataToken.body.token);
 		setToken(token);
 		setLoggedIn(true);

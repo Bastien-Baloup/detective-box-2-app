@@ -2,6 +2,26 @@ const url = "https://api.detectivebox.remimichel.fr";
 // import { useNavigate } from "react-router-dom";
 // const navigate = useNavigate();
 
+export const getHistories = (token, ids) => {
+	return fetch(url + `/history?ids=${ids.join(',')}`, {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json",
+				"Authorization": `Bearer ${token}`
+			},
+	})
+}
+
+export const getMe = (token) => {
+	return fetch(url + "/users/me", {
+		method: "GET",
+		headers: {
+			"Content-Type": "application/json",
+			"Authorization": `Bearer ${token}`
+		},
+	})
+}
+
 export const getToken = (credentials) => {
 	return fetch(url + "/users/login", {
 		method: "POST",
@@ -10,15 +30,6 @@ export const getToken = (credentials) => {
 		},
 		body: JSON.stringify(credentials),
 	})
-		.then((response) => {
-			return response.json();
-		})
-		.then((data) => {
-			return data;
-		})
-		.catch((error) => {
-			console.error(error);
-		});
 };
 
 export const createUser = (newaccount) => {

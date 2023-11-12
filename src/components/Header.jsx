@@ -135,7 +135,7 @@ const Header = () => {
 			return (
 				<Video
 					title="Briefing box 1"
-					srcVideo={urlApi.apiRemi() + "videos/db-s02-101-def.mp4"}
+					srcVideo={urlApi.apiRemi() + "videos/db-s02-101-def.mp4&type=video"}
 					handleModalVideo={handleModalVideoBrief}
 					delayedButton={true}
 				/>
@@ -145,7 +145,7 @@ const Header = () => {
 			return (
 				<Video
 					title="Briefing box 2"
-					srcVideo={urlApi.apiRemi() + "videos/db-s02-201-vdef.mp4"}
+					srcVideo={urlApi.apiRemi() + "videos/db-s02-201-vdef.mp4&type=video"}
 					handleModalVideo={handleModalVideoBrief}
 					delayedButton={true}
 				/>
@@ -155,7 +155,7 @@ const Header = () => {
 			return (
 				<Video
 					title="Briefing box 3"
-					srcVideo={urlApi.apiRemi() + "videos/db-s02-301-def.mp4"}
+					srcVideo={urlApi.apiRemi() + "videos/db-s02-301-def.mp4&type=video"}
 					handleModalVideo={handleModalVideoBrief}
 					delayedButton={true}
 				/>
