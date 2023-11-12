@@ -7,15 +7,18 @@
 	font-family: "Din", Arial, Helvetica, sans-serif;
 	font-weight: 400;
 	color: $secondary-color;
+}
+
+@include responsive(mobile) {
+	#root {
+		padding: 2rem;
+		min-height: calc(100vh - 4rem);
+	}
+}
+
+body {
 	background-color: black;
 	background-image: url("./../assets/img/DB-griffures-Grises.png");
 	background-size: cover;
 	background-repeat: no-repeat;
-}
-
-@include responsive(mobile) {
-	#root{
-		padding: 2rem;
-		min-height: calc(100vh - 4rem);
-	}
 }

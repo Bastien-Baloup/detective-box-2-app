@@ -162,14 +162,15 @@ const Celine = ({ closeAgentPage }) => {
 		);
 	};
 
-	const closeModalMedia = (answerId, asnwerAsk) => {
-		const effect = async () => {
-			await updateCharactersById(token, 3, currentBox, asnwerAsk);
-			await updateHistory(token, currentBox, answerId);
-			// API Mettre à jour le status de cette réponse de FALSE à TRUE
-			// API Mettre à jour le status de cet élément dans l'Historique avec l'id
-		};
-		effect().then(console.log("c'est finit")).then(actionToggleDataCeline()).then(setModalMedia(false));
+	// EXPLICATION : Précision particuilère pour le personnage de Xavier Monrency (archive 23) qui fait apparaitre un deuxième document dans l'historique
+	const closeModalMedia = async (answerId, asnwerAsk) => {
+		await updateCharactersById(token, 3, currentBox, asnwerAsk);
+		await updateHistory(token, currentBox, answerId);
+		if (answerId == "box1archive23") {
+			await updateHistory(token, 1, "box1document4");
+		}
+		actionToggleDataCeline();
+		setModalMedia(false);
 	};
 
 	const catchphrase = [

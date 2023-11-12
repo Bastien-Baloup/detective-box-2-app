@@ -24,7 +24,6 @@ import {
 	updateHistory,
 	getHistoryByBox,
 } from "../utils/hooks/useApi.js";
-// REDUIRE LA TAILLE DU LOGO //
 
 const Header = () => {
 	const { fetchNappeMute, nappeMute } = useContext(AmbianceContext);
@@ -101,6 +100,7 @@ const Header = () => {
 	const [dataQuizz, setDataQuizz] = useState("");
 
 	const [event33, setEvent33] = useState("");
+	console.log(box1video1);
 
 	// EXPLICATION : Le joueur choisi d'activer la musique d'ambiance > son état se met à jour dans le context > ferme la modale > affiche la video de briefing en fonction de la box.
 	const activateNappe = () => {
@@ -144,7 +144,7 @@ const Header = () => {
 		if (currentBox == 2) {
 			return (
 				<Video
-					title="Briefing box 1"
+					title="Briefing box 2"
 					srcVideo={urlApi.apiRemi() + "videos/db-s02-201-vdef.mp4"}
 					handleModalVideo={handleModalVideoBrief}
 					delayedButton={true}
@@ -154,7 +154,7 @@ const Header = () => {
 		if (currentBox == 3) {
 			return (
 				<Video
-					title="Briefing box 1"
+					title="Briefing box 3"
 					srcVideo={urlApi.apiRemi() + "videos/db-s02-301-def.mp4"}
 					handleModalVideo={handleModalVideoBrief}
 					delayedButton={true}
@@ -197,7 +197,9 @@ const Header = () => {
 
 	// EXPLICATION : On ferme le quizz et on affiche la modale pour choisir si active ou desactive la nappe d'ambiance
 	const handleCloseQuizz = async () => {
-		await updateQuizz(token, currentBox);
+		if (currentBox == 2 || currentBox == 3) {
+			await updateQuizz(token, currentBox);
+		}
 		setQuizzIsActive(false);
 		setNappeModalIsActive(true);
 	};
@@ -269,7 +271,7 @@ const Header = () => {
 
 	// EXPLICATION : Le timer de fin s'affiche lors de la dernière étape du jeu. Il est en overlay sur le header pour que le joueur ne puisse pas cliquer sur les autres composants
 	const displayTimer = () => {
-		if (event33 && event33 == "open") {
+		if (event33 == "open") {
 			fetchNappeMute(false);
 			return (
 				<>
