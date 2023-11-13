@@ -17,7 +17,7 @@ import Lauren from "./Lauren";
 import Raphaelle from "./Raphaelle";
 import Celine from "./Celine";
 import { useState } from "react";
-import { BoxContext, AuthContext, DataContext } from "../utils/context/fetchContext";
+import { BoxContext, DataContext } from "../utils/context/fetchContext";
 import { useContext, useEffect } from "react";
 import { urlApi } from "../utils/const/urlApi";
 import { getEventByBox, updateEvent, getHistoryByBox } from "../utils/hooks/useApi";
@@ -28,7 +28,7 @@ function Home() {
 	const [modalCelineGone, setModalCelineGone] = useState(false);
 
 	const { currentBox } = useContext(BoxContext);
-	const { token } = useContext(AuthContext);
+	const token = localStorage.getItem("token");
 	const { toggleDataHistory, toggleDataEvent, actionToggleDataEvent } = useContext(DataContext);
 
 	useEffect(() => {
@@ -38,7 +38,7 @@ function Home() {
 			setEvent34(event34.status);
 		};
 		fetchData();
-	}, [token, currentBox, toggleDataEvent]);
+	}, [toggleDataEvent]);
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -47,7 +47,7 @@ function Home() {
 			setBox2Document6(box2document6.status);
 		};
 		fetchData();
-	}, [token, currentBox, toggleDataHistory]);
+	}, [toggleDataHistory]);
 
 	const [event34, setEvent34] = useState("");
 	const [box2document6, setBox2Document6] = useState(false);

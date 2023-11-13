@@ -49,9 +49,9 @@
 		&__img {
 			@include img-max;
 		}
-		// &__text{
-		// 	white-space: pre;
-		// }
+		&__text{
+		line-height: 1.5rem;
+		}
 	}
 
 	&__arrow {

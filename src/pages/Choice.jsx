@@ -15,13 +15,13 @@ import { useEffect } from "react";
 import { getBox, resetAll } from "../utils/hooks/useApi.js";
 
 function Choice() {
-	const { loggedIn, token } = useContext(AuthContext);
+	const { loggedIn } = useContext(AuthContext);
 	const [modalReset1, setModalReset1] = useState(false);
 	const [modalReset2, setModalReset2] = useState(false);
 	const [modalDeleted, setModalDeleted] = useState(false);
 	const [loader, setLoader] = useState(true);
 	const [dataBox, setDataBox] = useState(null);
-	// const token = localStorage.getItem("token");
+	const token = localStorage.getItem("token");
 
 	useEffect(() => {
 		const fetchData = async () => {

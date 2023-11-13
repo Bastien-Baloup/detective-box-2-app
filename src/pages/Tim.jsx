@@ -8,14 +8,14 @@ import Video from "../components/Video.jsx";
 import Cross from "../assets/icons/Icon_Cross-white.svg";
 import PropTypes from "prop-types";
 import { urlApi } from "../utils/const/urlApi";
-import { BoxContext, AuthContext, DataContext } from "../utils/context/fetchContext";
+import { BoxContext, DataContext } from "../utils/context/fetchContext";
 import { useContext, useState, useEffect } from "react";
 // import { dataTim } from "../utils/const/dataTim";
 import { updateCharactersById, updateHistory, getCharactersById } from "../utils/hooks/useApi.js";
 
 const Tim = ({ closeAgentPage }) => {
 	const { currentBox } = useContext(BoxContext);
-	const { token } = useContext(AuthContext);
+	const token = localStorage.getItem("token");
 	const { actionToggleDataTim, toggleDataTim } = useContext(DataContext);
 
 	//EXPLICATION : Tim est le personnage "5"
@@ -26,7 +26,7 @@ const Tim = ({ closeAgentPage }) => {
 			setDataTim(result);
 		};
 		fetchData();
-	}, [token, currentBox, toggleDataTim]);
+	}, [toggleDataTim]);
 
 	const [dataTim, setDataTim] = useState(null);
 

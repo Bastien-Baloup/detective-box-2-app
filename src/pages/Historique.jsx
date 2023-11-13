@@ -9,14 +9,14 @@ import Audio from "../components/Audio";
 import Video from "../components/Video";
 import { urlApi } from "../utils/const/urlApi";
 import Cross from "../assets/icons/Icon_Cross-white.svg";
-import { BoxContext, AuthContext, DataContext } from "../utils/context/fetchContext";
+import { BoxContext, DataContext } from "../utils/context/fetchContext";
 import { useContext, useEffect } from "react";
 import { getHistoryByBox } from "../utils/hooks/useApi";
 
 function Historique() {
 	const filtersType = ["Archive", "Document", "Video", "Audio", "Lieu"];
 	const filterBox = ["Box 1", "Box 2", "Box 3"];
-	const { token } = useContext(AuthContext);
+	const token = localStorage.getItem("token");
 	const { currentBox } = useContext(BoxContext);
 	const { toggleDataHistory } = useContext(DataContext);
 

@@ -1,26 +1,34 @@
 const url = "https://api.detectivebox.remimichel.fr";
-// import { useNavigate } from "react-router-dom";
-// const navigate = useNavigate();
 
 export const getHistories = (token, ids) => {
-	return fetch(url + `/history?ids=${ids.join(',')}`, {
-			method: "GET",
-			headers: {
-				"Content-Type": "application/json",
-				"Authorization": `Bearer ${token}`
-			},
-	})
-}
+	return fetch(url + `/history?ids=${ids.join(",")}`, {
+		method: "GET",
+		headers: {
+			"Content-Type": "application/json",
+			Authorization: `Bearer ${token}`,
+		},
+	});
+};
+
+export const updateTimeEndBox = (token, id) => {
+	return fetch(url + `users/end_box/` + id, {
+		method: "PUT",
+		headers: {
+			"Content-Type": "application/json",
+			Authorization: `Bearer ${token}`,
+		},
+	});
+};
 
 export const getMe = (token) => {
 	return fetch(url + "/users/me", {
 		method: "GET",
 		headers: {
 			"Content-Type": "application/json",
-			"Authorization": `Bearer ${token}`
+			Authorization: `Bearer ${token}`,
 		},
-	})
-}
+	});
+};
 
 export const getToken = (credentials) => {
 	return fetch(url + "/users/login", {
@@ -29,7 +37,7 @@ export const getToken = (credentials) => {
 			"Content-Type": "application/json",
 		},
 		body: JSON.stringify(credentials),
-	})
+	});
 };
 
 export const createUser = (newaccount) => {

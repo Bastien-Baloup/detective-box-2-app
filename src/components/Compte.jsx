@@ -48,13 +48,13 @@ const Compte = () => {
 				<button className="dropdown__child" onClick={handleNappe}>
 					Nappe d&apos;ambiance
 				</button>
-				<Link className="dropdown__child" to="/parametres">
+				<Link className="dropdown__child" to="/parametres" target="_blank">
 					Paramètres
 				</Link>
 				<button className="dropdown__child" onClick={openWebsite}>
 					Mentions Légales
 				</button>
-				<Link className="dropdown__child" to="/credits">
+				<Link className="dropdown__child" to="/credits" target="_blank">
 					Crédits
 				</Link>
 				<button className="dropdown__child" onClick={hangleLogout}>

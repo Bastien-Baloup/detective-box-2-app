@@ -1,14 +1,12 @@
 // EXPLICATION : Cette page permet l'affichage des crédits.
 // EXPLICATION : Ce sont les mêmes crédits que dans la vidéo de fin. Ne pas les changer !
 
-import { Link } from "react-router-dom";
-
 function Credits() {
 	return (
 		<main className="credits">
-			<Link className="credits__link" to="/">
+			{/* <Link className="credits__link" to="/">
 				&lt; Retour à l&apos;enquête
-			</Link>
+			</Link> */}
 			<h1 className="credits__title">Crédits</h1>
 			<p className="credits__subtitle">Attention, cette page peut vous révèler des informations sur l&apos;enquête</p>
 			<div className="credits__content">

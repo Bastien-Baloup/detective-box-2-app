@@ -11,14 +11,14 @@ import LineSmallRed from "../assets/icons/Icon_Line_Small-red.svg";
 import CheckWhite from "../assets/icons/Icon_Check-white.svg";
 import CrossRed from "../assets/icons/Icon_Cross-red.svg";
 import Flag from "../assets/icons/Icon_Flag.svg";
-import { BoxContext, AuthContext, DataContext } from "../utils/context/fetchContext";
+import { BoxContext, DataContext } from "../utils/context/fetchContext";
 import { useContext, useState, useEffect } from "react";
 // import { dataObjectif } from "../utils/const/dataObjectif";
 import { getObjectivesByBox } from "../utils/hooks/useApi.js";
 
 const Progression = () => {
 	const { currentBox } = useContext(BoxContext);
-	const { token } = useContext(AuthContext);
+	const token = localStorage.getItem("token");
 	const { toggleDataObjectif } = useContext(DataContext);
 
 	useEffect(() => {
@@ -27,7 +27,7 @@ const Progression = () => {
 			setDataObjectif(result.data);
 		};
 		fetchData();
-	}, [token, currentBox, toggleDataObjectif]);
+	}, [toggleDataObjectif]);
 
 	const [dataObjectif, setDataObjectif] = useState(null);
 	const currentStep = dataObjectif?.filter((element) => element.status == "done").length;

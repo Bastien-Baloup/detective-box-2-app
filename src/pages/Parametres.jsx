@@ -1,13 +1,11 @@
 // EXPLICATION : Page pour permettre aux joueurs de changer leur identifiant et leur mot de passe
 
-import { Link } from "react-router-dom";
 import Input from "../components/Input";
-import { useState, useContext, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { updatePassword, getUser, updateName } from "../utils/hooks/useApi";
-import { AuthContext } from "../utils/context/fetchContext";
 
 function Parametres() {
-	const { token } = useContext(AuthContext);
+	const token = localStorage.getItem("token");
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -54,14 +52,14 @@ function Parametres() {
 
 	return (
 		<main className="parametres">
-			<Link className="parametres__link" to="/">
+			{/* <Link className="parametres__link" to="/">
 				&lt; Retour à l&apos;enquête
-			</Link>
+			</Link> */}
 			<h1 className="parametres__title">Paramètres</h1>
-			<p className="parametres__user">agent {user.name}</p>
+			<p className="parametres__user">Agent {user.name}</p>
 			<div className="parametres__errorMessage">{errorMessage}</div>
 			<form className="parametres__form" onSubmit={handleSubmitChange}>
-				<p className="parametres__subtitle">Changer votre nom d&apos;agent</p>
+				<p className="parametres__subtitle">Changer votre :</p>
 				<Input
 					type="texte"
 					pattern="\S(.*\S)?"
@@ -71,7 +69,7 @@ function Parametres() {
 					value={username}
 					setValue={setUsername}
 				/>
-				<p className="parametres__subtitle">Changer votre mot de passe</p>
+				<p className="parametres__subtitle">Changer votre :</p>
 				<Input
 					type="password"
 					label="Mot de passe"

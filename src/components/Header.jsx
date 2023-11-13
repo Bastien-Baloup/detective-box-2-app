@@ -14,7 +14,7 @@ import Timer from "./Timer.jsx";
 import Video from "../components/Video.jsx";
 import { Link } from "react-router-dom";
 import { urlApi } from "../utils/const/urlApi";
-import { AmbianceContext, BoxContext, AuthContext, DataContext } from "../utils/context/fetchContext.jsx";
+import { AmbianceContext, BoxContext, DataContext } from "../utils/context/fetchContext.jsx";
 import { useEffect, useState, useRef, useContext } from "react";
 import {
 	getQuizzByBox,
@@ -28,7 +28,7 @@ import {
 const Header = () => {
 	const { fetchNappeMute, nappeMute } = useContext(AmbianceContext);
 	const { currentBox } = useContext(BoxContext);
-	const { token } = useContext(AuthContext);
+	const token = localStorage.getItem("token");
 	const { actionToggleDataEvent, toggleDataEvent } = useContext(DataContext);
 
 	const [tutorialModalIsActive, setTutorialModalIsActive] = useState(true);
@@ -49,7 +49,6 @@ const Header = () => {
 	}, [nappeMute]);
 
 	// EXPLICATION : Cette fonction récupère du quizz (il ne se joue qu'une fois par box)
-
 	useEffect(() => {
 		const fetchData = async () => {
 			if (currentBox != 1) {
@@ -59,20 +58,19 @@ const Header = () => {
 			}
 		};
 		fetchData();
-	}, [token, currentBox]);
+	}, []);
 
 	// EXPLICATION : Cette fonction récupère les événements
 	useEffect(() => {
 		const fetchData = async () => {
 			const events = await getEventByBox(token, currentBox);
-			// setDataEvent(events.data);
 			if (currentBox == 3) {
 				const event33 = events.data.find((event) => event.id == 33);
 				setEvent33(event33.status);
 			}
 		};
 		fetchData();
-	}, [token, currentBox, toggleDataEvent]);
+	}, [toggleDataEvent]);
 
 	// EXPLICATION : Cette fonction récupère l'état des vidéos de brief dans l'historique (il ne se joue qu'une fois par box)
 	useEffect(() => {
@@ -92,7 +90,7 @@ const Header = () => {
 			}
 		};
 		fetchData();
-	}, [token, currentBox]);
+	}, []);
 
 	const [box1video1, setBox1Video1] = useState(false);
 	const [box2video1, setBox2Video1] = useState(false);

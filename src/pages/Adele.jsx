@@ -7,14 +7,14 @@ import Document from "../components/Document.jsx";
 import Cross from "../assets/icons/Icon_Cross-white.svg";
 import PropTypes from "prop-types";
 import { urlApi } from "../utils/const/urlApi";
-import { BoxContext, AuthContext, DataContext } from "../utils/context/fetchContext";
+import { BoxContext, DataContext } from "../utils/context/fetchContext";
 import { useContext, useState, useEffect } from "react";
 // import { dataAdele } from "../utils/const/dataAdele";
 import { updateCharactersById, updateHistory, getCharactersById } from "../utils/hooks/useApi.js";
 
 const Adele = ({ closeAgentPage }) => {
 	const { currentBox } = useContext(BoxContext);
-	const { token } = useContext(AuthContext);
+	const token = localStorage.getItem("token");
 	const { actionToggleDataAdele, toggleDataAdele } = useContext(DataContext);
 
 	//EXPLICATION : Adele est le personnage "1"
@@ -26,7 +26,7 @@ const Adele = ({ closeAgentPage }) => {
 			setDataAdele(result);
 		};
 		fetchData();
-	}, [token, currentBox, toggleDataAdele]);
+	}, [toggleDataAdele]);
 
 	const [dataAdele, setDataAdele] = useState(null);
 

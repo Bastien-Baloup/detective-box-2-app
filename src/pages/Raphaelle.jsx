@@ -6,7 +6,7 @@ import Input from "../components/Input.jsx";
 import Cross from "../assets/icons/Icon_Cross-white.svg";
 import PropTypes from "prop-types";
 import { urlApi } from "../utils/const/urlApi";
-import { BoxContext, AuthContext, DataContext } from "../utils/context/fetchContext";
+import { BoxContext, DataContext } from "../utils/context/fetchContext";
 import { useContext, useState, useEffect } from "react";
 // import { dataRaphaelle } from "../utils/const/dataRaphaelle";
 import {
@@ -20,7 +20,7 @@ import {
 
 const Raphaelle = ({ closeAgentPage }) => {
 	const { currentBox } = useContext(BoxContext);
-	const { token } = useContext(AuthContext);
+	const token = localStorage.getItem("token");
 	const { actionToggleDataRaphaelle, toggleDataRaphaelle, toggleDataObjectif } = useContext(DataContext);
 
 	//EXPLICATION : Raphaelle est le personnage "4"
@@ -32,7 +32,7 @@ const Raphaelle = ({ closeAgentPage }) => {
 			setDataRaphaelle(result);
 		};
 		fetchData();
-	}, [token, currentBox, toggleDataRaphaelle]);
+	}, [toggleDataRaphaelle]);
 
 	useEffect(() => {
 		const fetchData = async () => {

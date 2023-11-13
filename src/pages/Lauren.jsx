@@ -8,15 +8,15 @@ import Audio from "../components/Audio.jsx";
 import Cross from "../assets/icons/Icon_Cross-white.svg";
 import PropTypes from "prop-types";
 import { urlApi } from "../utils/const/urlApi";
-import { BoxContext, AuthContext, DataContext } from "../utils/context/fetchContext";
+import { BoxContext, DataContext } from "../utils/context/fetchContext";
 import { useContext, useState, useEffect } from "react";
 // import { dataLauren } from "../utils/const/dataLauren";
-import { updateCharactersById, updateHistory, getCharactersById } from "../utils/hooks/useApi.js";
+import { updateCharactersById, updateHistory, getCharactersById, getHistoryByBox } from "../utils/hooks/useApi.js";
 
 const Lauren = ({ closeAgentPage }) => {
 	const { currentBox } = useContext(BoxContext);
-	const { token } = useContext(AuthContext);
-	const { actionToggleDataLauren, toggleDataLauren } = useContext(DataContext);
+	const token = localStorage.getItem("token");
+	const { actionToggleDataLauren, toggleDataLauren, toggleDataHistory } = useContext(DataContext);
 
 	//EXPLICATION : Lauren est le personnage "2"
 
@@ -27,15 +27,30 @@ const Lauren = ({ closeAgentPage }) => {
 			setDataLauren(result);
 		};
 		fetchData();
-	}, [token, currentBox, toggleDataLauren]);
+	}, [toggleDataLauren]);
+
+	useEffect(() => {
+		const fetchData = async () => {
+			const result = await getHistoryByBox(token, 2);
+			const box2document6 = result.data.find((event) => event.id == "box2document6");
+			setBox2Document6(box2document6.status);
+		};
+		fetchData();
+	}, [toggleDataHistory]);
 
 	const [dataLauren, setDataLauren] = useState(null);
+	const [box2document6, setBox2Document6] = useState(false);
 
 	const [value, setValue] = useState("");
 	const [errorMessage, setErrorMessage] = useState("");
 	const [modal, setModal] = useState(false);
 	const [modalMedia, setModalMedia] = useState(false);
 	const [answer, setAnswer] = useState("");
+
+	//EXPLICATION : Fonction pour sortir les joueurs de la page de Lauren si elle vient de se faire enlever (box2document6 dans historique)
+	if (currentBox == 2 && box2document6) {
+		closeAgentPage();
+	}
 
 	// EXPLICATION : Fonction pour slugifier l'input des joueurs
 	const slugify = (input) => {
