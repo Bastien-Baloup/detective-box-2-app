@@ -3,7 +3,7 @@
 // EXPLICATION : Il affiche egalement toute la logique des différents événements de l'application
 
 import PropTypes from "prop-types";
-import { useState, useEffect } from "react";
+import {useState, useEffect, useRef, useLayoutEffect, useReducer} from "react";
 import Check from "../assets/icons/Icon_Check-green.svg";
 import LockClosed from "../assets/icons/Icon_Lock-closed-red.svg";
 import LockOpen from "../assets/icons/Icon_Lock-open-black.svg";
@@ -79,7 +79,8 @@ const Objectif = ({ data }) => {
 
 	const navigate = useNavigate();
 
-	const [event13, setEvent13] = useState("");
+	let event13 = useRef('');
+	//const [event13, setEvent13] = useState("");
 	const [event14, setEvent14] = useState("");
 	const [event15, setEvent15] = useState("");
 	const [event23, setEvent23] = useState("");
@@ -111,17 +112,17 @@ const Objectif = ({ data }) => {
 	// console.log(objectif12);
 
 	const [events, setEvent] = useState();
-	console.log(events);
 
 	// EXPLICATION : Fonction pour récupérer l'état des événements
-	useEffect(() => {
+	useLayoutEffect(() => {
 		const fetchData = async () => {
 			const events = await getEventByBox(token, currentBox);
 			setEvent(events);
 			if (events != undefined) {
 				if (currentBox === 1) {
 					const event13Data = events.data.find((event) => event.id === 13);
-					setEvent13(event13Data.status);
+					//setEvent13(event13Data.status);
+					event13.current = event13Data.status
 					console.log(event13Data);
 					const event14Data = events.data.find((event) => event.id === 14);
 					setEvent14(event14Data.status);
@@ -141,7 +142,7 @@ const Objectif = ({ data }) => {
 			}
 		};
 		fetchData();
-	}, [toggleDataEvent]);
+	}, []);
 
 	// EXPLICATION : Fonction pour récupérer l'état de l'historique
 	useEffect(() => {
@@ -225,14 +226,18 @@ const Objectif = ({ data }) => {
 	}, [toggleDataEvent]);
 
 	//EXPLICATION : UseEffect pour avoir les event sur les lieux de fouille
+	let es = useRef(null);
 
 	useEffect(() => {
-		const es = new EventSource("http://sse.detectivebox.remimichel.fr/stream?token=" + token);
-		es.addEventListener("message", (event) => {
+		if(es.current){
+			return
+		}
+
+		es.current = new EventSource("http://sse.detectivebox.remimichel.fr/stream?token=" + token);
+		es.current.addEventListener("message", (event) => {
 			const data = JSON.parse(event.data);
 			console.log(data.id);
-			console.log(event14);
-			if (data.id === "box1document1" && event13 == "closed") {
+			if (data.id === "box1document1" && event13.current == "closed") {
 				setModaleMalle(true);
 			}
 			if (data.id === "box1video2" && event14 == "closed") {
@@ -259,8 +264,8 @@ const Objectif = ({ data }) => {
 				updateApp();
 			}
 		});
-		es.addEventListener("error", () => {
-			es.close();
+		es.current.addEventListener("error", () => {
+			es.current.close();
 		});
 	}, []);
 
