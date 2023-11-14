@@ -15,6 +15,7 @@ const Footer = () => {
 	useEffect(() => {
 		const fetchData = async () => {
 			const result = await getObjectivesByBox(token, currentBox);
+			console.log(result.data);
 			setDataObjectif(result.data);
 		};
 		fetchData();

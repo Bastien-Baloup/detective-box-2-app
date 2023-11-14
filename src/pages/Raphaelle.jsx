@@ -21,7 +21,7 @@ import {
 const Raphaelle = ({ closeAgentPage }) => {
 	const { currentBox } = useContext(BoxContext);
 	const token = localStorage.getItem("token");
-	const { actionToggleDataRaphaelle, toggleDataRaphaelle, toggleDataObjectif } = useContext(DataContext);
+	const { actionToggleDataRaphaelle, toggleDataRaphaelle, toggleDataObjectif, } = useContext(DataContext);
 
 	//EXPLICATION : Raphaelle est le personnage "4"
 
@@ -266,6 +266,7 @@ const Raphaelle = ({ closeAgentPage }) => {
 		}
 		window.open(answer.src + "/?token=" + token, "_blank");
 		actionToggleDataRaphaelle();
+		// actionTogglePolling(true);
 		validateModal();
 	};
 
@@ -321,10 +322,11 @@ const Raphaelle = ({ closeAgentPage }) => {
 							value={valueAdresse}
 							setValue={setValueAdresse}
 						/>
-						<p>OU</p>
+						<p className="agent__raphaelle--text">OU</p>
+						<p className="agent__raphaelle--label">Coordonnées GPS</p>
 						<Input
 							type="texte"
-							label="Coordonnées GPS - latitude"
+							label="Latitude"
 							name="gps"
 							placeholder="Ce champ est vide"
 							value={valueLatitude}
@@ -332,7 +334,7 @@ const Raphaelle = ({ closeAgentPage }) => {
 						/>
 						<Input
 							type="texte"
-							label="Coordonnées GPS - longitude"
+							label="Longitude"
 							name="gps"
 							placeholder="Ce champ est vide"
 							value={valueLongitude}

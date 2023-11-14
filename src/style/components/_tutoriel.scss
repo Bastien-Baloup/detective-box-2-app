@@ -4,4 +4,7 @@
 	&__background {
 		@include modaleBackground;
 	}
+	&__text{
+		line-height: 1.25rem;
+	}
 }

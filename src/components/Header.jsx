@@ -98,7 +98,6 @@ const Header = () => {
 	const [dataQuizz, setDataQuizz] = useState("");
 
 	const [event33, setEvent33] = useState("");
-	console.log(box1video1);
 
 	// EXPLICATION : Le joueur choisi d'activer la musique d'ambiance > son état se met à jour dans le context > ferme la modale > affiche la video de briefing en fonction de la box.
 	const activateNappe = () => {

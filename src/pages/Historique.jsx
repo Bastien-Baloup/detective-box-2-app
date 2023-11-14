@@ -24,26 +24,20 @@ function Historique() {
 		const fetchData = async () => {
 			if (currentBox == 1) {
 				const result = await getHistoryByBox(token, currentBox);
-				console.log(result.data);
 				setDataHistory1(result.data);
 			}
 			if (currentBox == 2) {
 				const result = await getHistoryByBox(token, currentBox);
-				console.log(result.data);
 				setDataHistory2(result.data);
 				const result2 = await getHistoryByBox(token, 1);
-				console.log(result2.data);
 				setDataHistory1(result2.data);
 			}
 			if (currentBox == 3) {
 				const result = await getHistoryByBox(token, currentBox);
-				console.log(result.data);
 				setDataHistory3(result.data);
 				const result2 = await getHistoryByBox(token, 1);
-				console.log(result2.data);
 				setDataHistory1(result2.data);
 				const result3 = await getHistoryByBox(token, 2);
-				console.log(result3.data);
 				setDataHistory2(result3.data);
 			}
 		};

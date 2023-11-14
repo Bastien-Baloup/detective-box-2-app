@@ -112,6 +112,7 @@ export const DataProvider = ({ children }) => {
 	const [toggleDataHelp, setToggleDataHelp] = useState(true);
 	const [toggleDataHistory, setToggleDataHistory] = useState(true);
 	const [toggleDataObjectif, setToggleDataObjectif] = useState(true);
+	const [togglePolling, setTogglePolling] = useState(false);
 
 	const actionToggleDataAdele = () => {
 		setToggleDataAdele(!toggleDataAdele);
@@ -140,6 +141,9 @@ export const DataProvider = ({ children }) => {
 	const actionToggleDataObjectif = () => {
 		setToggleDataObjectif(!toggleDataObjectif);
 	};
+	const actionTogglePolling = (value) => {
+		setTogglePolling(value);
+	};
 
 	return (
 		<DataContext.Provider
@@ -162,6 +166,8 @@ export const DataProvider = ({ children }) => {
 				toggleDataHistory,
 				actionToggleDataObjectif,
 				toggleDataObjectif,
+				actionTogglePolling,
+				togglePolling,
 			}}
 		>
 			{children}
