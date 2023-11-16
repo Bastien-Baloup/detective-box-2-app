@@ -2,14 +2,15 @@
 
 import PropTypes from "prop-types";
 import { useState } from "react";
-// import { AmbianceContext } from "../utils/context/fetchContext.jsx";
-// import { useContext } from "react";
+import { AmbianceContext } from "../utils/context/fetchContext.jsx";
+import { useContext } from "react";
 
 const Video = ({ title, srcVideo, handleModalVideo, delayedButton }) => {
 	const [isDone, setIsDone] = useState(false);
-	// const { fetchPreviousStateNappe, fetchResumeNappe } = useContext(AmbianceContext);
+	const { fetchResumeNappe } = useContext(AmbianceContext);
 
-	const handleEndAudioModal = () => {
+	const handleEndVideoModal = () => {
+		fetchResumeNappe();
 		handleModalVideo();
 	};
 
@@ -36,7 +37,7 @@ const Video = ({ title, srcVideo, handleModalVideo, delayedButton }) => {
 						<source src={srcVideo} type="video/mp4" />
 					</video>
 				</div>
-				<button className={"modal-video__button" + (isDone ? "-show" : "") + " button--red"} onClick={handleEndAudioModal}>
+				<button className={"modal-video__button" + (isDone ? "-show" : "") + " button--red"} onClick={handleEndVideoModal}>
 					Continuer l&apos;enquête
 				</button>
 			</div>

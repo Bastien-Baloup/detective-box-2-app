@@ -9,7 +9,7 @@ import Audio from "../components/Audio";
 import Video from "../components/Video";
 import { urlApi } from "../utils/const/urlApi";
 import Cross from "../assets/icons/Icon_Cross-white.svg";
-import { BoxContext, DataContext } from "../utils/context/fetchContext";
+import { BoxContext, DataContext, AmbianceContext } from "../utils/context/fetchContext";
 import { useContext, useEffect } from "react";
 import { getHistoryByBox } from "../utils/hooks/useApi";
 
@@ -18,31 +18,33 @@ function Historique() {
 	const filterBox = ["Box 1", "Box 2", "Box 3"];
 	const token = localStorage.getItem("token");
 	const { currentBox } = useContext(BoxContext);
+	const { fetchPreviousStateNappe } = useContext(AmbianceContext);
 	const { toggleDataHistory } = useContext(DataContext);
 
 	useEffect(() => {
 		const fetchData = async () => {
-			if (currentBox == 1) {
+			console.log(currentBox);
+			if (currentBox === 1) {
 				const result = await getHistoryByBox(token, currentBox);
 				setDataHistory1(result.data);
 			}
-			if (currentBox == 2) {
+			if (currentBox === 2) {
 				const result = await getHistoryByBox(token, currentBox);
 				setDataHistory2(result.data);
-				const result2 = await getHistoryByBox(token, 1);
-				setDataHistory1(result2.data);
+				const resultbox1 = await getHistoryByBox(token, 1);
+				setDataHistory1(resultbox1.data);
 			}
-			if (currentBox == 3) {
+			if (currentBox === 3) {
 				const result = await getHistoryByBox(token, currentBox);
 				setDataHistory3(result.data);
-				const result2 = await getHistoryByBox(token, 1);
-				setDataHistory1(result2.data);
-				const result3 = await getHistoryByBox(token, 2);
-				setDataHistory2(result3.data);
+				const resultbox1 = await getHistoryByBox(token, 1);
+				setDataHistory1(resultbox1.data);
+				const resultbox2 = await getHistoryByBox(token, 2);
+				setDataHistory2(resultbox2.data);
 			}
 		};
 		fetchData();
-	}, [token, currentBox, toggleDataHistory]);
+	}, [toggleDataHistory]);
 
 	const [dataHistory1, setDataHistory1] = useState(null);
 	const [dataHistory2, setDataHistory2] = useState(null);
@@ -104,12 +106,12 @@ function Historique() {
 			let allClues = [cluesCurrentBoxTrue].flat();
 			return filterClues(allClues);
 		}
-		if (currentBox == 2) {
+		if (currentBox == 2 && dataHistory1) {
 			let cluesCurrentBoxTrue = dataHistory2?.filter((clue) => clue.status == true);
 			let allClues = [dataHistory1, cluesCurrentBoxTrue].flat();
 			return filterClues(allClues);
 		}
-		if (currentBox == 3) {
+		if (currentBox == 3 && dataHistory1 && dataHistory2) {
 			let cluesCurrentBoxTrue = dataHistory3?.filter((clue) => clue.status == true);
 			let allClues = [dataHistory1, dataHistory2, cluesCurrentBoxTrue].flat();
 			return filterClues(allClues);
@@ -117,8 +119,15 @@ function Historique() {
 	};
 
 	const openModal = (clue) => {
+		if (clue.category == "Audio" || clue.category == "Video") {
+			fetchPreviousStateNappe();
+		}
 		setModal(true);
 		setSelectedClue(clue);
+	};
+
+	const closeModaleAudio = () => {
+		setModal(false);
 	};
 
 	// EXPLICATION : cette fonction indique quelle modale afficher au clic d'une preuve en fonction de sa catégorie
@@ -141,7 +150,7 @@ function Historique() {
 					srcImg2={urlApi.apiRemi() + clue.img2}
 					srcTranscription={urlApi.apiRemi() + clue.srcTranscript}
 					srcAudio={urlApi.apiRemi() + clue.srcAudio}
-					handleModalAudio={() => setModal(false)}
+					handleModalAudio={closeModaleAudio}
 				/>
 			);
 		}
@@ -153,7 +162,10 @@ function Historique() {
 							<img className="modal-objectif__icon" src={Cross} onClick={() => setModal(false)} />
 						</button>
 						<p className="modal-objectif__title">Vous êtes sur de vouloir retourner sur le lieu {clue.title} ?</p>
-						<button className="modal-objectif__button button--red" onClick={() => window.open(clue.src + "/?token=" + token, "_blank")}>
+						<button
+							className="modal-objectif__button button--red"
+							onClick={() => window.open(clue.src + "/?token=" + token, "_blank")}
+						>
 							Explorer de nouveau
 						</button>
 					</div>
@@ -164,7 +176,7 @@ function Historique() {
 			return (
 				<Video
 					title={clue.title}
-					srcVideo={urlApi.apiRemi() + clue.src}
+					srcVideo={urlApi.apiRemi() + clue.src + "&type=video"}
 					handleModalVideo={() => setModal(false)}
 					delayedButton={false}
 				/>

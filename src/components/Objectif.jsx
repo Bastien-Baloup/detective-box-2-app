@@ -3,7 +3,7 @@
 // EXPLICATION : Il affiche egalement toute la logique des différents événements de l'application
 
 import PropTypes from "prop-types";
-import {useState, useEffect, useRef, useLayoutEffect, useReducer} from "react";
+import { useState, useEffect, useRef, useLayoutEffect } from "react";
 import Check from "../assets/icons/Icon_Check-green.svg";
 import LockClosed from "../assets/icons/Icon_Lock-closed-red.svg";
 import LockOpen from "../assets/icons/Icon_Lock-open-black.svg";
@@ -15,21 +15,8 @@ import Audio from "../components/Audio";
 import { urlApi } from "../utils/const/urlApi";
 // import { dataHelp } from "../utils/const/dataHelp";
 import { useNavigate } from "react-router-dom";
-import { BoxContext, DataContext } from "../utils/context/fetchContext";
+import { BoxContext, DataContext, AmbianceContext } from "../utils/context/fetchContext";
 import { useContext } from "react";
-// import {
-// 	updateHelp,
-// 	getEventByBox,
-// 	updateEvent,
-// 	getHistoryByBox,
-// 	getHelpByBox,
-// 	updateHistory,
-// 	updateObjectives,
-// 	updateBox,
-// 	getObjectivesByBox,
-// 	getHistories,
-// 	updateTimeEndBox,
-// } from "../utils/hooks/useApi.js";
 import {
 	updateHelp,
 	getEventByBox,
@@ -54,18 +41,7 @@ const Objectif = ({ data }) => {
 
 	const { currentBox } = useContext(BoxContext);
 	const token = localStorage.getItem("token");
-	// const {
-	// 	actionToggleDataEvent,
-	// 	toggleDataEvent,
-	// 	actionToggleDataHelp,
-	// 	toggleDataHelp,
-	// 	actionToggleDataHistory,
-	// 	toggleDataHistory,
-	// 	actionToggleDataObjectif,
-	// 	toggleDataObjectif,
-	// 	togglePolling,
-	// 	actionTogglePolling,
-	// } = useContext(DataContext);
+	const { fetchPreviousStateNappe } = useContext(AmbianceContext);
 	const {
 		actionToggleDataEvent,
 		toggleDataEvent,
@@ -79,16 +55,18 @@ const Objectif = ({ data }) => {
 
 	const navigate = useNavigate();
 
-	let event13 = useRef('');
-	//const [event13, setEvent13] = useState("");
-	const [event14, setEvent14] = useState("");
-	const [event15, setEvent15] = useState("");
+	let event13 = useRef("");
+	let event14 = useRef("");
+	let event15 = useRef("");
+	// const [event13, setEvent13] = useState("");
+	// const [event14, setEvent14] = useState("");
+	// const [event15, setEvent15] = useState("");
 	const [event23, setEvent23] = useState("");
 	const [event25, setEvent25] = useState("");
 	const [event35, setEvent35] = useState("");
 
 	const [box1lieu2, setBox1Lieu2] = useState(false);
-	const [box2lieu1, setBox1Lieu1] = useState(false);
+	const [box2lieu1, setBox2Lieu1] = useState(false);
 	const [box2video5, setBox2Video5] = useState(false);
 	const [box3audio3, setBox3Audio3] = useState(false);
 	const [box3lieu2, setBox3Lieu2] = useState(false);
@@ -96,10 +74,11 @@ const Objectif = ({ data }) => {
 
 	const [box3help4, setBox3Help4] = useState("");
 
+	let objectif33 = useRef("");
 	const [objectif11, setObjectif11] = useState("");
 	const [objectif12, setObjectif12] = useState("");
 	const [objectif13, setObjectif13] = useState("");
-	const [objectif33, setObjectif33] = useState("");
+	// const [objectif33, setObjectif33] = useState("");
 	const [objectif34, setObjectif34] = useState("");
 
 	const [objectifs, setObjectifs] = useState();
@@ -112,6 +91,7 @@ const Objectif = ({ data }) => {
 	// console.log(objectif12);
 
 	const [events, setEvent] = useState();
+	console.log(events);
 
 	// EXPLICATION : Fonction pour récupérer l'état des événements
 	useLayoutEffect(() => {
@@ -121,13 +101,17 @@ const Objectif = ({ data }) => {
 			if (events != undefined) {
 				if (currentBox === 1) {
 					const event13Data = events.data.find((event) => event.id === 13);
-					//setEvent13(event13Data.status);
-					event13.current = event13Data.status
+					// setEvent13(event13Data.status);
+					event13.current = event13Data.status;
 					console.log(event13Data);
 					const event14Data = events.data.find((event) => event.id === 14);
-					setEvent14(event14Data.status);
+					// setEvent14(event14Data.status);
+					event14.current = event14Data.status;
+					console.log(event14Data);
 					const event15Data = events.data.find((event) => event.id === 15);
-					setEvent15(event15Data.status);
+					// setEvent15(event15Data.status);
+					event15.current = event15Data.status;
+					console.log(event15Data);
 				}
 				if (currentBox === 2) {
 					const event23Data = events.data.find((event) => event.id === 23);
@@ -142,7 +126,25 @@ const Objectif = ({ data }) => {
 			}
 		};
 		fetchData();
-	}, []);
+	}, [toggleDataEvent]);
+
+	//EXPLICATION : UseEffect pour déclencher les evenements entre les différents composants
+	useEffect(() => {
+		if (currentBox == 2) {
+			// EXPLICATION : Pour faire le lien entre le composant Home (carte Lauren) et ici
+			console.log(event25);
+			if (event25 == "open" && box2video5 == false) {
+				setVideoBureauLauren(true);
+				fetchPreviousStateNappe();
+			}
+		}
+		if (currentBox == 3) {
+			// EXPLICATION : Pour faire le lien entre le composant Header (timer) et ici
+			if (event35 == "open") {
+				setTempsEcoule(true);
+			}
+		}
+	}, [toggleDataEvent]);
 
 	// EXPLICATION : Fonction pour récupérer l'état de l'historique
 	useEffect(() => {
@@ -154,7 +156,7 @@ const Objectif = ({ data }) => {
 			}
 			if (currentBox == 2) {
 				const box2lieu1Data = clues.data.find((event) => event.id == "box2lieu1");
-				setBox1Lieu1(box2lieu1Data.status);
+				setBox2Lieu1(box2lieu1Data.status);
 				const box2video5Data = clues.data.find((event) => event.id == "box2video5");
 				setBox2Video5(box2video5Data.status);
 			}
@@ -197,7 +199,8 @@ const Objectif = ({ data }) => {
 			}
 			if (currentBox == 3) {
 				const objectif33Data = objectifs.data.find((event) => event.id == 33);
-				setObjectif33(objectif33Data.status);
+				objectif33.current = objectif33Data.status;
+				console.log(objectif33Data);
 				const objectif34Data = objectifs.data.find((event) => event.id == 34);
 				setObjectif34(objectif34Data.status);
 			}
@@ -205,45 +208,26 @@ const Objectif = ({ data }) => {
 		fetchData();
 	}, [toggleDataObjectif]);
 
-	//EXPLICATION : UseEffect pour déclencher les evenements entre les différents composants
-
-	useEffect(() => {
-		const fetchEvent = async () => {
-			if (currentBox == 2) {
-				// EXPLICATION : Pour faire le lien entre le composant Home (carte Lauren) et ici
-				if (event25 == "open" && box2video5 == false) {
-					setVideoBureauLauren(true);
-				}
-			}
-			if (currentBox == 3) {
-				// EXPLICATION : Pour faire le lien entre le composant Header (timer) et ici
-				if (event35 == "open") {
-					setTempsEcoule(true);
-				}
-			}
-		};
-		fetchEvent();
-	}, [toggleDataEvent]);
-
 	//EXPLICATION : UseEffect pour avoir les event sur les lieux de fouille
 	let es = useRef(null);
 
 	useEffect(() => {
-		if(es.current){
-			return
+		console.log(es.current);
+		if (es.current) {
+			return;
 		}
-
-		es.current = new EventSource("http://sse.detectivebox.remimichel.fr/stream?token=" + token);
+		es.current = new EventSource("https://sse.detectivebox.remimichel.fr/stream?token=" + token);
 		es.current.addEventListener("message", (event) => {
 			const data = JSON.parse(event.data);
 			console.log(data.id);
+			console.log(objectif33.current);
 			if (data.id === "box1document1" && event13.current == "closed") {
 				setModaleMalle(true);
 			}
-			if (data.id === "box1video2" && event14 == "closed") {
+			if (data.id === "box1video2" && event14.current == "closed") {
 				setModaleVHS(true);
 			}
-			if (data.id === "box1document6" && event15 == "closed") {
+			if (data.id === "box1document6" && event15.current == "closed") {
 				setModaleInterrogatoireGarraud(true);
 			}
 			// if (data.id === "box2document6" && currentBox === 2) {
@@ -252,14 +236,16 @@ const Objectif = ({ data }) => {
 			if (data.id === "box2document4" && event23 == "closed") {
 				setMailLauren1(true);
 			}
-			if (data.id === "box3document2" && objectif33 == "closed") {
+			if (data.id === "box3document2" && objectif33.current == "closed") {
 				const updateApp = async () => {
+					console.log("on passe dans la fonction");
 					await updateObjectives(token, 3, 33, "open");
 					await updateObjectives(token, 3, 34, "open");
-					// actionToggleDataObjectif();
+					actionToggleDataObjectif();
+					await updateHelp(token, 3, "box3help2", "closed");
 					await updateHelp(token, 3, "box3help3", "open");
 					await updateHelp(token, 3, "box3help6", "open");
-					// actionToggleDataHelp();
+					actionToggleDataHelp();
 				};
 				updateApp();
 			}
@@ -401,7 +387,6 @@ const Objectif = ({ data }) => {
 	};
 
 	const handleSubmit21 = () => {
-		getIntVictimesValue();
 		if (value.length > 8) {
 			setErrorMessage(
 				"Il nous faut éliminer encore des victimes si l'on veut avancer dans l'enquête et revenir voir Garraud avec de nouveaux éléments…"
@@ -431,6 +416,7 @@ const Objectif = ({ data }) => {
 		} else {
 			setIntVictimes((prevState) => ({ ...prevState, [el]: false }));
 		}
+		getIntVictimesValue();
 	};
 
 	// --- CONDITIONS SPE OBJECTIF 23 --- //
@@ -454,7 +440,6 @@ const Objectif = ({ data }) => {
 	};
 
 	const handleSubmit23 = () => {
-		getFinalVictimesValue();
 		console.log(value);
 		console.log(data.answer);
 		if (value.length > 5 || value.length < 5) {
@@ -478,6 +463,7 @@ const Objectif = ({ data }) => {
 		} else {
 			setFinalVictimes((prevState) => ({ ...prevState, [el]: false }));
 		}
+		getFinalVictimesValue();
 	};
 
 	// -- CONDITIONS SPE OBJECTIF 33 -- //
@@ -566,9 +552,11 @@ const Objectif = ({ data }) => {
 		}
 		if (data.id == 34) {
 			if (data.answer.includes(slugify(value))) {
-				if (box3audio3 == true) {
-					setErrorMessage("Si on allait plutôt chez elle pour voir de quoi il en retourne ?");
+				if (box3help4 == "open") {
+					setErrorMessage("");
 					setValue("");
+					setModal(false);
+					setModalAnswer(true);
 					return;
 				}
 				if (box3lieu2 == true) {
@@ -576,11 +564,9 @@ const Objectif = ({ data }) => {
 					setValue("");
 					return;
 				}
-				if (box3help4 != "done") {
-					setErrorMessage("");
+				if (box3audio3 == true) {
+					setErrorMessage("Si on allait plutôt chez elle pour voir de quoi il en retourne ?");
 					setValue("");
-					setModal(false);
-					setModalAnswer(true);
 					return;
 				} else {
 					setErrorMessage("C'est un peu léger d'inculper quelqu'un avec le peu d'infos qu'on a");
@@ -599,6 +585,7 @@ const Objectif = ({ data }) => {
 				console.log("document 3 dans l'historique !");
 			}
 			if (data.id == 13 && box1lieu2 == false) {
+				console.log(box1lieu2);
 				setErrorMessage("Je pense que nous avons trop peu d'éléments pour tirer une conclusion pour cette piste");
 				setValue("");
 				return;
@@ -634,6 +621,8 @@ const Objectif = ({ data }) => {
 					actionToggleDataHelp();
 				}
 				setModaleHacking(true);
+				await updateHistory(token, 1, "box1document5");
+				actionToggleDataHistory();
 				console.log("objectif12 terminé");
 			}
 			if (data.id == 13) {
@@ -660,6 +649,9 @@ const Objectif = ({ data }) => {
 				await updateObjectives(token, 2, 21, "done");
 				await updateHelp(token, 2, "box2help1", "done");
 				setAudioSamuel(true);
+				fetchPreviousStateNappe();
+				await updateHistory(token, 2, "box2audio3");
+				actionToggleDataHistory();
 				actionToggleDataObjectif();
 				actionToggleDataHelp();
 				console.log("objectif21 terminé");
@@ -672,12 +664,15 @@ const Objectif = ({ data }) => {
 				setMailLauren2(true);
 				actionToggleDataObjectif();
 				actionToggleDataHelp();
+				await updateHistory(token, 2, "box2document9");
+				actionToggleDataHistory();
 				console.log("objectif23 terminé");
 			}
 			if (data.id == 24) {
 				await updateObjectives(token, 2, 24, "done");
 				await updateHelp(token, 2, "box2help4", "done");
 				await updateHelp(token, 2, "box2help5", "open");
+				actionToggleDataObjectif();
 				actionToggleDataHelp();
 				console.log("objectif24 terminé");
 			}
@@ -690,9 +685,7 @@ const Objectif = ({ data }) => {
 			}
 			if (data.id == 32) {
 				await updateObjectives(token, 3, 32, "done");
-				await updateHelp(token, 3, "box3help2", "done");
 				actionToggleDataObjectif();
-				actionToggleDataHelp();
 				console.log("objectif32 terminé");
 			}
 			if (data.id == 34) {
@@ -877,16 +870,25 @@ const Objectif = ({ data }) => {
 						</h2>
 						<div className="modal-objectif__errorMessage">{errorMessage}</div>
 						<div>{renderText(data.detail)}</div>
-						<div>
+						<div className="modal-objectif__victimestri__liste">
 							{data.victimes.map((el, i) => {
 								return (
-									<div key={i}>
-										<img
-											className="modal-objectif__victimes"
-											src={urlApi.apiRemi() + el.img}
-											onClick={() => toggleIntVictime(el.name)}
-										/>
-										<p className="modal-objectif__victimes">{el.name}</p>
+									<div
+										key={i}
+										className={`modal-objectif__victimestri__info ${
+											intVictimes[el.name] == true ? "victimestri__info--selected" : ""
+										}`}
+									>
+										<div className="modal-objectif__victimestri__photo--container">
+											<img
+												className={`modal-objectif__victimestri__photo ${
+													intVictimes[el.name] == true ? "victimestri__photo--selected" : ""
+												}`}
+												src={urlApi.apiRemi() + el.img}
+												onClick={() => toggleIntVictime(el.name)}
+											/>
+										</div>
+										<p className="modal-objectif__victimestri__nom">{el.name}</p>
 									</div>
 								);
 							})}
@@ -910,16 +912,25 @@ const Objectif = ({ data }) => {
 						</h2>
 						<div className="modal-objectif__errorMessage">{errorMessage}</div>
 						<div>{renderText(data.detail)}</div>
-						<div>
+						<div className="modal-objectif__victimestri__liste">
 							{data.victimes.map((el, i) => {
 								return (
-									<div key={i}>
-										<img
-											className="modal-objectif__victimes"
-											src={urlApi.apiRemi() + el.img}
-											onClick={() => toggleFinalVictime(el.name)}
-										/>
-										<p className="modal-objectif__victimes">{el.name}</p>
+									<div
+										key={i}
+										className={`modal-objectif__victimestri__info ${
+											finalVictimes[el.name] == true ? "victimestri__info--selected" : ""
+										}`}
+									>
+										<div className="modal-objectif__victimestri__photo--container">
+											<img
+												className={`modal-objectif__victimestri__photo ${
+													finalVictimes[el.name] == true ? "victimestri__photo--selected" : ""
+												}`}
+												src={urlApi.apiRemi() + el.img}
+												onClick={() => toggleFinalVictime(el.name)}
+											/>
+										</div>
+										<p className="modal-objectif__victimestri__nom">{el.name}</p>
 									</div>
 								);
 							})}
@@ -972,6 +983,7 @@ const Objectif = ({ data }) => {
 		if (data.id == 33 && objectif34 == "done") {
 			if (box3lieu3 == false) {
 				setVideoSauverLauren(true);
+				fetchPreviousStateNappe();
 				return;
 			}
 			if (box3lieu3 == true) {
@@ -1235,12 +1247,14 @@ const Objectif = ({ data }) => {
 	const displayHacking = () => {
 		return (
 			<div className="modal-objectif__background">
-				<div className="modal-objectif__box">
+				<div className="modal-objectif__box modal-hacking">
 					<audio autoPlay>
 						<source src={urlApi.apiRemi() + "sounds/103-hacking-tueur.wav"} type="audio/wav" />
 						Votre navigateur ne prend pas en charge ce format
 					</audio>
-					<div>Vous avez un mail</div>
+					<div className="text-hacking" data-text="Vous avez un mail">
+						Vous avez un mail
+					</div>
 					<button className="modal-objectif__button button--red" onClick={handleOpenMailHacking}>
 						Valider
 					</button>
@@ -1255,8 +1269,6 @@ const Objectif = ({ data }) => {
 	};
 
 	const handleCloseMailHacking = async () => {
-		await updateHistory(token, 1, "box1document5");
-		actionToggleDataHistory();
 		setModaleMailHacking(false);
 	};
 
@@ -1280,7 +1292,7 @@ const Objectif = ({ data }) => {
 		return (
 			<div className="modal-objectif__background">
 				<div className="modal-objectif__box">
-					{renderEndText}
+					{renderEndText()}
 					<button className="modal-objectif__button button--red" onClick={handleEndGameModale}>
 						Clore cette partie de l&apos;enquête
 					</button>
@@ -1292,7 +1304,7 @@ const Objectif = ({ data }) => {
 	const renderEndText = () => {
 		if (currentBox == 1) {
 			return (
-				<div>
+				<div className="modal-objectif__endGame--text">
 					<p>Vous avez finit la première partie</p>
 					<p>Rendez-vous en box 2 pour la suite de l&apos;enquête</p>
 				</div>
@@ -1341,27 +1353,30 @@ const Objectif = ({ data }) => {
 		);
 	};
 
-	const handleOpenRebeccaAudio = async () => {
-		await updateEvent(token, 1, 13, "done");
-		actionToggleDataEvent();
-		await updateHistory(token, 1, "box1audio1");
-		actionToggleDataHistory();
+	const handleOpenRebeccaAudio = () => {
+		fetchPreviousStateNappe();
 		setModaleMalle(false);
 		setModaleRebecca(true);
 	};
 
 	const displayAudioRebecca = () => {
-		<Audio
-			title="Derniers mots de Rebecca"
-			srcImg1={urlApi.apiRemi() + "assets/photos-personnages/rebecca_dumont.jpg"}
-			srcImg2={null}
-			srcTranscription={urlApi.apiRemi() + "assets/transcripts/102_Derniers_mots_Rebecca_transcript.pdf"}
-			handleModalAudio={closeAudioRebecca}
-			srcAudio={urlApi.apiRemi() + "sounds/102-derniers-mots-rebecca.wav"}
-		/>;
+		return (
+			<Audio
+				title="Derniers mots de Rebecca"
+				srcImg1={urlApi.apiRemi() + "assets/photos-personnages/rebecca_dumont.jpg"}
+				srcImg2={null}
+				srcTranscription={urlApi.apiRemi() + "assets/transcripts/102_Derniers_mots_Rebecca_transcript.pdf"}
+				handleModalAudio={closeAudioRebecca}
+				srcAudio={urlApi.apiRemi() + "sounds/102-derniers-mots-rebecca.wav"}
+			/>
+		);
 	};
 
-	const closeAudioRebecca = () => {
+	const closeAudioRebecca = async () => {
+		await updateEvent(token, 1, 13, "done");
+		actionToggleDataEvent();
+		await updateHistory(token, 1, "box1audio1");
+		actionToggleDataHistory();
 		setModaleRebecca(false);
 	};
 
@@ -1415,13 +1430,14 @@ const Objectif = ({ data }) => {
 	const handleOpenInterrogatoire = () => {
 		setModaleInterrogatoireGarraud(false);
 		setVideoInterrogatoireGarraud(true);
+		fetchPreviousStateNappe();
 	};
 
 	const displayVideoInterrogatoireGarraud = () => {
 		return (
 			<Video
 				title="Interrogatoire de Charles Garraud"
-				srcVideo={urlApi.apiRemi() + "videos/db-s02-104-vdef.mp4"}
+				srcVideo={urlApi.apiRemi() + "videos/db-s02-104-vdef.mp4&type=video"}
 				handleModalVideo={handleCloseVideoInterrogatoire}
 				delayedButton={true}
 			/>
@@ -1430,18 +1446,20 @@ const Objectif = ({ data }) => {
 
 	const handleCloseVideoInterrogatoire = async () => {
 		setVideoInterrogatoireGarraud(false);
-		await updateHistory(token, 1, "box1video4");
-		await updateEvent(token, 1, 15, "done");
 		setEndGameModale(true);
 	};
 
 	const handleEndGameModale = async () => {
 		if (currentBox == 1) {
+			// await updateHistory(token, 1, "box1video4");
+			await updateEvent(token, 1, 15, "done");
 			await updateBox(token, 1, "done");
 			await updateBox(token, 2, "open");
 			await updateTimeEndBox(token, 1);
 		}
 		if (currentBox == 2) {
+			// await updateHistory(token, 2, "box2video5");
+			await updateEvent(token, 2, 25, "done");
 			await updateBox(token, 2, "done");
 			await updateBox(token, 3, "open");
 			await updateTimeEndBox(token, 2);
@@ -1467,7 +1485,7 @@ const Objectif = ({ data }) => {
 		return (
 			<Video
 				title="Bureau de Lauren Fraser"
-				srcVideo={urlApi.apiRemi() + "videos/db-s02-209-vdef.mp4"}
+				srcVideo={urlApi.apiRemi() + "videos/db-s02-209-vdef.mp4&type=video"}
 				handleModalVideo={handleCloseVideoBureau}
 				delayedButton={true}
 			/>
@@ -1475,10 +1493,7 @@ const Objectif = ({ data }) => {
 	};
 
 	const handleCloseVideoBureau = async () => {
-		await updateHistory(token, 2, "box2video5");
-		actionToggleDataHistory();
-		await updateEvent(token, 2, 25, "done");
-		// actionToggleDataEvent();
+		setVideoBureauLauren(false);
 		setEndGameModale(true);
 	};
 
@@ -1511,9 +1526,7 @@ const Objectif = ({ data }) => {
 	};
 
 	const handleCloseMail2 = async () => {
-		await updateHistory(token, 2, "box2document9");
-		actionToggleDataHistory();
-		setMailLauren1(false);
+		setMailLauren2(false);
 	};
 
 	const displayAudioSamuel = () => {
@@ -1530,8 +1543,6 @@ const Objectif = ({ data }) => {
 	};
 
 	const closeAudioSamuel = async () => {
-		await updateHistory(token, 2, "box2audio3");
-		actionToggleDataHistory();
 		setAudioSamuel(false);
 		setAudioBreakingNews(true);
 	};
@@ -1556,6 +1567,7 @@ const Objectif = ({ data }) => {
 	const handleCloseAudioBreakingNews = () => {
 		setAudioBreakingNews(false);
 		setVideoBreakingNews(true);
+		fetchPreviousStateNappe();
 	};
 
 	const displayVideoBreakingNews = () => {
@@ -1569,7 +1581,7 @@ const Objectif = ({ data }) => {
 				) : null}
 				<Video
 					title="Flash Info"
-					srcVideo={urlApi.apiRemi() + "videos/db-s02-203-vdef.mp4"}
+					srcVideo={urlApi.apiRemi() + "videos/db-s02-203-vdef.mp4&type=video"}
 					handleModalVideo={handleCloseVideoBreakingNews}
 					delayedButton={true}
 				/>
@@ -1579,6 +1591,7 @@ const Objectif = ({ data }) => {
 
 	const handleCloseVideoBreakingNews = async () => {
 		setAudioEndBreakingNews(true);
+		fetchPreviousStateNappe();
 		await updateHistory(token, 2, "box2video3");
 		actionToggleDataHistory();
 	};
@@ -1597,7 +1610,7 @@ const Objectif = ({ data }) => {
 		return (
 			<Video
 				title="Cave de Céline"
-				srcVideo={urlApi.apiRemi() + "videos/db-s02-302-def.mp4"}
+				srcVideo={urlApi.apiRemi() + "videos/db-s02-302-def.mp4&type=video"}
 				handleModalVideo={handleCloseVideoSauverLauren}
 				delayedButton={true}
 			/>
@@ -1606,6 +1619,7 @@ const Objectif = ({ data }) => {
 
 	const handleCloseVideoSauverLauren = async () => {
 		setDebriefLauren(true);
+		fetchPreviousStateNappe();
 		await updateHistory(token, 3, "box3video2");
 		actionToggleDataHistory();
 	};
@@ -1696,13 +1710,14 @@ const Objectif = ({ data }) => {
 	const handleInterrogatoireFinal = () => {
 		setResolution(false);
 		setInterrogatoireFinal(true);
+		fetchPreviousStateNappe();
 	};
 
 	const displayInterrogatoireFinal = () => {
 		return (
 			<Video
 				title="Interrogatoire de Céline Valluy"
-				srcVideo={urlApi.apiRemi() + "videos/db-s02-309-def.mp4"}
+				srcVideo={urlApi.apiRemi() + "videos/db-s02-309-def.mp4&type=video"}
 				handleModalVideo={handleEndBox3}
 				delayedButton={true}
 			/>

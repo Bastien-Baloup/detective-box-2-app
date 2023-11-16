@@ -36,6 +36,9 @@
 				transform: rotate(45deg);
 			}
 		}
+		&__errorMessage{
+			color: $tertiary-color;
+		}
 	}
 	&__closeButton {
 		width: 2.5rem;

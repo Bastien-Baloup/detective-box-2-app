@@ -5,15 +5,15 @@ import PropTypes from "prop-types";
 import Play from "../assets/icons/Icon_Play.svg";
 import Pause from "../assets/icons/Icon_Pause.svg";
 import WaveSurfer from "wavesurfer.js";
-// import { AmbianceContext } from "../utils/context/fetchContext.jsx";
-import { useEffect, useState, useRef } from "react";
+import { AmbianceContext } from "../utils/context/fetchContext.jsx";
+import { useEffect, useState, useRef, useContext } from "react";
 
 const Audio = ({ title, srcImg1, srcImg2, srcTranscription, handleModalAudio, srcAudio }) => {
 	const containerRef = useRef(undefined);
 	const waveSurferRef = useRef(false);
 	const [isPlaying, setIsPlaying] = useState(false);
 	const [isLoading, setIsLoading] = useState(true);
-	// const { fetchPreviousStateNappe, fetchResumeNappe } = useContext(AmbianceContext);
+	const { fetchResumeNappe } = useContext(AmbianceContext);
 
 	// EXPLICATION : Cette fonction est utilisée pour faire fonctioner la librairie waveSurfer
 	useEffect(() => {
@@ -52,7 +52,7 @@ const Audio = ({ title, srcImg1, srcImg2, srcTranscription, handleModalAudio, sr
 
 	const handleEndAudioModal = () => {
 		handleModalAudio();
-		// Fetch ambiance resume ?
+		fetchResumeNappe();
 	};
 
 	return (

@@ -23,7 +23,7 @@ function Renfort() {
 			setDataHelp(result.data);
 		};
 		fetchData();
-	}, [token, currentBox, toggleDataHelp]);
+	}, [toggleDataHelp]);
 
 	const [sliderActivated, setSliderActivated] = useState(false);
 	const [menuActivated, setmenuActivated] = useState(true);

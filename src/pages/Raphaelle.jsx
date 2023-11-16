@@ -16,12 +16,20 @@ import {
 	getObjectivesByBox,
 	updateObjectives,
 	updateHelp,
+	getHistoryByBox,
 } from "../utils/hooks/useApi.js";
 
 const Raphaelle = ({ closeAgentPage }) => {
 	const { currentBox } = useContext(BoxContext);
 	const token = localStorage.getItem("token");
-	const { actionToggleDataRaphaelle, toggleDataRaphaelle, toggleDataObjectif, } = useContext(DataContext);
+	const {
+		actionToggleDataRaphaelle,
+		toggleDataRaphaelle,
+		toggleDataObjectif,
+		actionToggleDataHelp,
+		actionToggleDataObjectif,
+		toggleDataHistory,
+	} = useContext(DataContext);
 
 	//EXPLICATION : Raphaelle est le personnage "4"
 
@@ -49,7 +57,18 @@ const Raphaelle = ({ closeAgentPage }) => {
 			}
 		};
 		fetchData();
-	}, [token, currentBox, toggleDataObjectif]);
+	}, [toggleDataObjectif]);
+
+	useEffect(() => {
+		const fetchData = async () => {
+			const clues = await getHistoryByBox(token, currentBox);
+			if (currentBox == 3) {
+				const box3audio3Data = clues.data.find((event) => event.id == "box3audio3");
+				setBox3Audio3(box3audio3Data.status);
+			}
+		};
+		fetchData();
+	}, [toggleDataHistory]);
 
 	const [valueAdresse, setValueAdresse] = useState("");
 	const [valueLatitude, setValueLatitude] = useState("");
@@ -61,6 +80,7 @@ const Raphaelle = ({ closeAgentPage }) => {
 	const [objectif14, setObjectif14] = useState("");
 	const [objectif21, setObjectif21] = useState("");
 	const [objectif24, setObjectif24] = useState("");
+	const [box3audio3, setBox3Audio3] = useState(false);
 
 	// EXPLICATION : Fonction pour slugifier l'input Adresse des joueurs (lettre et chiffres ok)
 	const slugifyAdresse = (input) => {
@@ -158,6 +178,15 @@ const Raphaelle = ({ closeAgentPage }) => {
 					setValueLongitude("");
 					setValueLatitude("");
 					setErrorMessage("Vous n'avez aucune raison d'aller à cette adresse.");
+					return;
+				}
+				if (answerInThisBox(slugifiedAdresse).id == "box3lieu2" && box3audio3 == false) {
+					setValueAdresse("");
+					setValueLongitude("");
+					setValueLatitude("");
+					setErrorMessage(
+						"Je ne vois pas l'intérêt d'aller chez Céline pour nos recherches. Elle est disponible pour nous donner les archives de police si vous en avez besoin. Vous devriez vous concentrer sur l'enquête."
+					);
 					return;
 				}
 				setAnswer(answerInThisBox(slugifiedAdresse));
@@ -259,10 +288,13 @@ const Raphaelle = ({ closeAgentPage }) => {
 		if (answerId == "box2lieu3") {
 			await updateObjectives(token, 2, 22, "open");
 			await updateHelp(token, 2, "box2help3", "open");
+			actionToggleDataObjectif();
+			actionToggleDataHelp();
 		}
 		if (answerId == "box2lieu2") {
 			await updateHelp(token, 2, "box2help5", "done");
 			await updateHelp(token, 2, "box2help6", "open");
+			actionToggleDataHelp();
 		}
 		window.open(answer.src + "/?token=" + token, "_blank");
 		actionToggleDataRaphaelle();

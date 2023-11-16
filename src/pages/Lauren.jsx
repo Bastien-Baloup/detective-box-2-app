@@ -8,13 +8,14 @@ import Audio from "../components/Audio.jsx";
 import Cross from "../assets/icons/Icon_Cross-white.svg";
 import PropTypes from "prop-types";
 import { urlApi } from "../utils/const/urlApi";
-import { BoxContext, DataContext } from "../utils/context/fetchContext";
+import { BoxContext, DataContext, AmbianceContext } from "../utils/context/fetchContext";
 import { useContext, useState, useEffect } from "react";
 // import { dataLauren } from "../utils/const/dataLauren";
 import { updateCharactersById, updateHistory, getCharactersById, getHistoryByBox } from "../utils/hooks/useApi.js";
 
 const Lauren = ({ closeAgentPage }) => {
 	const { currentBox } = useContext(BoxContext);
+	const { fetchPreviousStateNappe } = useContext(AmbianceContext);
 	const token = localStorage.getItem("token");
 	const { actionToggleDataLauren, toggleDataLauren, toggleDataHistory } = useContext(DataContext);
 
@@ -164,6 +165,7 @@ const Lauren = ({ closeAgentPage }) => {
 	};
 
 	const openMedia = () => {
+		fetchPreviousStateNappe();
 		validateModal();
 		setModalMedia(true);
 	};

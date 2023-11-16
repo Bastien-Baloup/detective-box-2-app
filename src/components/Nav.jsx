@@ -14,19 +14,19 @@ const Nav = () => {
 				<div className="nav__icon__container">
 					<img src={Home} className="nav__icon" />
 				</div>
-				<div className="nav__title">Accueil </div>
+				<div className="nav__title">Requêtes</div>
 			</NavLink>
 			<NavLink className={"nav__container"} to="/history">
 				<div className="nav__icon__container">
 					<img src={Clue} className="nav__icon" />
 				</div>
-				<div className="nav__title">Historique </div>
+				<div className="nav__title">Historique</div>
 			</NavLink>
 			<NavLink className={"nav__container"} to="/help">
 				<div className="nav__icon__container">
 					<img src={Help} className="nav__icon" />
 				</div>
-				<div className="nav__title">Demander du renfort </div>
+				<div className="nav__title">Demander du renfort</div>
 			</NavLink>
 		</nav>
 	);

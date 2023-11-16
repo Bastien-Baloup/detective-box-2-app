@@ -11,7 +11,7 @@ export const getHistories = (token, ids) => {
 };
 
 export const updateTimeEndBox = (token, id) => {
-	return fetch(url + `users/end_box/` + id, {
+	return fetch(url + `/users/end_box/` + id, {
 		method: "PUT",
 		headers: {
 			"Content-Type": "application/json",
@@ -48,13 +48,13 @@ export const createUser = (newaccount) => {
 		},
 		body: JSON.stringify(newaccount),
 	})
-		.then((response) => response.json())
-		.then((data) => {
-			return data;
-		})
-		.catch((error) => {
-			console.error(error);
-		});
+		// .then((response) => response.json())
+		// .then((data) => {
+		// 	return data;
+		// })
+		// .catch((error) => {
+		// 	console.error(error);
+		// });
 };
 
 export const getUser = (token) => {
