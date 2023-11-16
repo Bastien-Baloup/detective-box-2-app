@@ -8,7 +8,7 @@ import Video from "../components/Video.jsx";
 import Cross from "../assets/icons/Icon_Cross-white.svg";
 import PropTypes from "prop-types";
 import { urlApi } from "../utils/const/urlApi";
-import { BoxContext, DataContext } from "../utils/context/fetchContext";
+import { BoxContext, DataContext, AmbianceContext } from "../utils/context/fetchContext";
 import { useContext, useState, useEffect } from "react";
 // import { dataTim } from "../utils/const/dataTim";
 import { updateCharactersById, updateHistory, getCharactersById } from "../utils/hooks/useApi.js";
@@ -17,6 +17,7 @@ const Tim = ({ closeAgentPage }) => {
 	const { currentBox } = useContext(BoxContext);
 	const token = localStorage.getItem("token");
 	const { actionToggleDataTim, toggleDataTim } = useContext(DataContext);
+	const { fetchPreviousStateNappe } = useContext(AmbianceContext);
 
 	//EXPLICATION : Tim est le personnage "5"
 	useEffect(() => {
@@ -136,6 +137,9 @@ const Tim = ({ closeAgentPage }) => {
 	};
 
 	const openMedia = () => {
+		if (answer.id.includes("video")) {
+			fetchPreviousStateNappe();
+		}
 		validateModal();
 		setModalMedia(true);
 	};
@@ -154,7 +158,7 @@ const Tim = ({ closeAgentPage }) => {
 			return (
 				<Video
 					title={answer.title}
-					srcVideo={urlApi.apiRemi() + answer.src}
+					srcVideo={urlApi.apiRemi() + answer.src + "&type=video"}
 					handleModalVideo={() => closeModalMedia(answer.id, answer.ask)}
 					delayedButton={true}
 				/>

@@ -35,9 +35,9 @@ function Login() {
 			return;
 		}
 		const res = await getToken(credentials);
-		if(res.status === 401){
+		if (res.status === 401) {
 			setErrorMessageSignin("Veuillez vérifier vos identifiants");
-			return
+			return;
 		}
 		const dataToken = await res.json();
 		login(dataToken.access_token);
@@ -53,17 +53,18 @@ function Login() {
 			setErrorMessageSignup("Merci de remplir le formulaire pour créer un compte");
 			return;
 		}
-		const newUser = await createUser(newaccount);
+		const res = await createUser(newaccount);
+		if (res.status === 409) {
+			setErrorMessageSignup("Ce compte existe déjà");
+			return;
+		}
+		const newUser = await res.json();
 		console.log(newUser);
 		setUsername("");
 		setEmail("");
 		setPassword("");
 		setErrorMessageSignup("");
-		if (newUser) {
-			setModalNewUser(true);
-		}
-		// Si le compte existe déjà, alors
-		// setErrorMessageSignup("Ce compte existe déjà, veuillez vous connecter");
+		setModalNewUser(true);
 	};
 
 	// EXPLICATION : Gérer le formulaire pour le mot de passe oublié

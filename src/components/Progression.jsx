@@ -130,7 +130,7 @@ const Progression = () => {
 				</div>
 				<div className="progressBar__box">
 					<div className="progressBar__box__icon--main--container">
-						<img className="progressBar__box__icon--main" src={currentBox == "box3" ? CheckWhite : CrossRed} />
+						<img className="progressBar__box__icon--main" src={currentBox == 3 ? CheckWhite : CrossRed} />
 					</div>
 					<div className="progressBar__box__steps">
 						<div className={`progressBar__box__title${currentBox == 3 ? "--played" : ""}`}>Box 3</div>

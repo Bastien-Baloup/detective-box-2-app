@@ -53,7 +53,6 @@ const Header = () => {
 		const fetchData = async () => {
 			if (currentBox != 1) {
 				const quizz = await getQuizzByBox(token, currentBox);
-				console.log(quizz);
 				setDataQuizz(quizz);
 			}
 		};
@@ -99,20 +98,17 @@ const Header = () => {
 
 	const [event33, setEvent33] = useState("");
 
-	// EXPLICATION : Le joueur choisi d'activer la musique d'ambiance > son état se met à jour dans le context > ferme la modale > affiche la video de briefing en fonction de la box.
+	// EXPLICATION : Le joueur choisi d'activer la musique d'ambiance > son état se met à jour dans le context > ferme la modale.
 	const activateNappe = () => {
 		fetchNappeMute(false);
 		setNappeModalIsActive(false);
-		if (currentBox == 1 && box1video1 == false) {
-			setModaleVideo(true);
-		}
-		if (currentBox == 2 && box2video1 == false) {
-			setModaleVideo(true);
-		}
-		if (currentBox == 3 && box3video1 == false) {
-			setModaleVideo(true);
-		}
 	};
+
+		// EXPLICATION : Le joueur choisi de désactiver la musique d'ambiance > son état se met à jour dans le context > ferme la modale.
+		const desactivateNappe = () => {
+			fetchNappeMute(true);
+			setNappeModalIsActive(false);
+		};
 
 	const handleModalVideoBrief = async () => {
 		if (currentBox == 1) {
@@ -125,6 +121,7 @@ const Header = () => {
 			await updateHistory(token, 3, "box3video1");
 		}
 		setModaleVideo(false);
+		setNappeModalIsActive(true);
 	};
 
 	const displayBrief = () => {
@@ -160,20 +157,7 @@ const Header = () => {
 		}
 	};
 
-	// EXPLICATION : Le joueur choisi de désactiver la musique d'ambiance > son état se met à jour dans le context > ferme la modale > affiche la video de briefing en fonction de la box.
-	const desactivateNappe = () => {
-		fetchNappeMute(true);
-		setNappeModalIsActive(false);
-		if (currentBox == 1 && box1video1 == false) {
-			setModaleVideo(true);
-		}
-		if (currentBox == 2 && box2video1 == false) {
-			setModaleVideo(true);
-		}
-		if (currentBox == 3 && box3video1 == false) {
-			setModaleVideo(true);
-		}
-	};
+
 
 	// EXPLICATION : On affiche le Quizz en fonction de la box. Box 1 pas de quizz !
 	const displayQuizz = () => {
@@ -182,22 +166,35 @@ const Header = () => {
 			return <></>;
 		}
 		if (currentBox == 2 || currentBox == 3) {
-			if (dataQuizz[currentBox].status == true) {
+			console.log(dataQuizz);
+			if (dataQuizz && dataQuizz.status == true) {
 				handleCloseQuizz();
 				return <></>;
 			}
-			if (dataQuizz[currentBox].status == false) {
-				return <Quizz data={dataQuizz[currentBox]} handleEndQuizz={handleCloseQuizz} url={urlApi.apiRemi()} />;
+			if (dataQuizz && dataQuizz.status == false) {
+				return <Quizz data={dataQuizz} handleEndQuizz={handleCloseQuizz} url={urlApi.apiRemi()} />;
 			}
 		}
 	};
 
-	// EXPLICATION : On ferme le quizz et on affiche la modale pour choisir si active ou desactive la nappe d'ambiance
+	// EXPLICATION : On ferme le quizz > affiche la video de briefing en fonction de la box > si briefing déjà vu, on affiche la modale pour choisir si active ou desactive la nappe d'ambiance
 	const handleCloseQuizz = async () => {
 		if (currentBox == 2 || currentBox == 3) {
 			await updateQuizz(token, currentBox);
 		}
 		setQuizzIsActive(false);
+		if (currentBox == 1 && box1video1 == false) {
+			setModaleVideo(true);
+			return;
+		}
+		if (currentBox == 2 && box2video1 == false) {
+			setModaleVideo(true);
+			return;
+		}
+		if (currentBox == 3 && box3video1 == false) {
+			setModaleVideo(true);
+			return;
+		}
 		setNappeModalIsActive(true);
 	};
 
@@ -294,8 +291,8 @@ const Header = () => {
 
 	// EXPLICATION : Dans l'ordre : Modale Tutoriel > Si oui > affichage tutoriel video / si non > fermeture modale tutoriel
 	// EXPLICATION : PUIS affichage du quizz si box 2 ou box 3
-	// EXPLICATION : PUIS affichage de la modale de choix de l'activation de la musique d'ambiance
 	// EXPLICATION : PUIS affichage de la video de brief si l'event correspondant est initialement "closed".
+	// EXPLICATION : PUIS affichage de la modale de choix de l'activation de la musique d'ambiance
 	return (
 		<header>
 			{tutorialModalIsActive ? displayTutorial() : <></>}
@@ -309,13 +306,17 @@ const Header = () => {
 			{modaleVideo ? displayBrief() : null}
 			{displayAudio()}
 			{displayTimer()}
-			<div className="header__topSection">
-				<Link className="header__logo--container" to="/">
-					<img className="header__logo" src={Logo} />
-				</Link>
-				<Progression />
-				<Compte />
-			</div>
+			{event33 == "open" ? (
+				<></>
+			) : (
+				<div className="header__topSection">
+					<Link className="header__logo--container" to="/">
+						<img className="header__logo" src={Logo} />
+					</Link>
+					<Progression />
+					<Compte />
+				</div>
+			)}
 			<div className="header__bottomSection">
 				<Nav />
 			</div>

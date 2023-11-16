@@ -52,10 +52,14 @@ function Home() {
 	const [event34, setEvent34] = useState("");
 	const [box2document6, setBox2Document6] = useState(false);
 
-	const specificCardActionLauren = async () => {
+	const specificCardActionLauren = () => {
+		setModalLaurenGone(!modalLaurenGone);
+	};
+
+	const launchEventGoToDB = async () => {
+		setModalLaurenGone(!modalLaurenGone);
 		await updateEvent(token, 2, 25, "open");
 		actionToggleDataEvent();
-		setModalLaurenGone(!modalLaurenGone);
 	};
 
 	// EXPLICATION : Quand le personnage de Lauren a disparu, alors on affiche cette modale pour afficher la video à l'agence (event 25)
@@ -70,7 +74,7 @@ function Home() {
 					<p className="modal-boxdone__text">Agents, voici le numéro de portable de Lauren : +33 7 69 57 00 27.</p>
 					<p className="modal-boxdone__text">Essayez de la joindre directement pour nous assurer que tout va bien.</p>
 					<p className="modal-boxdone__text">De mon côté, je me mets en route pour l&apos;agence. Retrouvez moi là bas !</p>
-					<button className="modal-boxdone__button button--red" onClick={specificCardActionLauren}>
+					<button className="modal-boxdone__button button--red" onClick={launchEventGoToDB}>
 						Se rendre au bureau
 					</button>
 				</div>
@@ -130,7 +134,9 @@ function Home() {
 							srcIcon={IconLauren}
 							name="Lauren Fraser"
 							contentButton="Demander un interrogatoire"
-							actionButton={() => setCharacterDisplayed("lauren")}
+							actionButton={
+								currentBox == 2 && box2document6 == true ? specificCardActionLauren : () => setCharacterDisplayed("lauren")
+							}
 							state={currentBox == 2 && box2document6 == true ? "unavailable" : ""}
 						/>
 					)}
