@@ -104,11 +104,11 @@ const Header = () => {
 		setNappeModalIsActive(false);
 	};
 
-		// EXPLICATION : Le joueur choisi de désactiver la musique d'ambiance > son état se met à jour dans le context > ferme la modale.
-		const desactivateNappe = () => {
-			fetchNappeMute(true);
-			setNappeModalIsActive(false);
-		};
+	// EXPLICATION : Le joueur choisi de désactiver la musique d'ambiance > son état se met à jour dans le context > ferme la modale.
+	const desactivateNappe = () => {
+		fetchNappeMute(true);
+		setNappeModalIsActive(false);
+	};
 
 	const handleModalVideoBrief = async () => {
 		if (currentBox == 1) {
@@ -156,8 +156,6 @@ const Header = () => {
 			);
 		}
 	};
-
-
 
 	// EXPLICATION : On affiche le Quizz en fonction de la box. Box 1 pas de quizz !
 	const displayQuizz = () => {

@@ -65,7 +65,7 @@ export const dataRaphaelle = {
 			],
 			text: ["J'ai fait envoyer un agent sur la dernière scène de crime.", "Voyons ce qu'il en ressort..."],
 			id: "box2lieu1",
-			src: "https://fouille.maison.detectivebox.fr",
+			src: "https://fouille.mason.detectivebox.fr",
 			status: false,
 		},
 		{

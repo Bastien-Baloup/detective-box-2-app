@@ -306,7 +306,12 @@ export const dataObjectif = {
 			],
 			label: "Réponse",
 			errorMessage: "Je ne pense pas que ce soit cela.",
-			answer: ["mariagruber", "giusepperossi"],
+			answer: [
+				"mariagrubergiusepperossi",
+				"giusepperossimariagruber",
+				"giusepperossietmariagruber",
+				"mariagruberetgiusepperossi",
+			],
 			answertext: [
 				"On a réussi à identifier les dernières victimes, mais le pire reste à venir !",
 				"Cela veut donc dire que le tueur est... Non je ne veux pas le croire...",
