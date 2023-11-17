@@ -122,32 +122,6 @@ function Choice() {
 			setLoader(false);
 		}, 4000);
 		await resetAll(token);
-		// const resultResetBox = await resetBox(token);
-		// console.log(resultResetBox);
-		// if (resultResetBox == "OK") {
-		// 	const resultQuizzBox = await resetQuizz(token);
-		// 	console.log(resultQuizzBox);
-		// 	if (resultQuizzBox == "OK") {
-		// 		const resultHelp = await resetHelp(token);
-		// 		console.log(resultHelp);
-		// 		if (resultHelp == "OK") {
-		// 			const resultObjectives = await resetObjectives(token);
-		// 			console.log(resultObjectives);
-		// 			if (resultObjectives == "OK") {
-		// 				const resultHistory = await resetHistory(token);
-		// 				console.log(resultHistory);
-		// 				if (resultHistory == "OK") {
-		// 					const resultCharacters = await resetCharacters(token);
-		// 					console.log(resultCharacters);
-		// 					if (resultCharacters == "OK") {
-		// 						const resultEvent = await resetEvent(token);
-		// 						console.log(resultEvent);
-		// 					}
-		// 				}
-		// 			}
-		// 		}
-		// 	}
-		// }
 		setModalReset2(false);
 		setModalDeleted(true);
 	};

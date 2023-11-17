@@ -1155,7 +1155,7 @@ export const dataHistory = {
 			category: "Lieu",
 			detail: "Fouille de la scène de crime de Mason Reynolds",
 			poster: "thumbnails/lieux/201_Chez_Mason_low.jpg",
-			src: "https://fouille.maison.detectivebox.fr",
+			src: "https://fouille.mason.detectivebox.fr",
 			status: false,
 		},
 		{

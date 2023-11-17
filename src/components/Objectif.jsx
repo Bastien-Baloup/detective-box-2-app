@@ -41,7 +41,7 @@ const Objectif = ({ data }) => {
 
 	const { currentBox } = useContext(BoxContext);
 	const token = localStorage.getItem("token");
-	const { fetchPreviousStateNappe } = useContext(AmbianceContext);
+	const { fetchPreviousStateNappe, fetchNappeMute, nappeMute } = useContext(AmbianceContext);
 	const {
 		actionToggleDataEvent,
 		toggleDataEvent,
@@ -58,10 +58,11 @@ const Objectif = ({ data }) => {
 	let event13 = useRef("");
 	let event14 = useRef("");
 	let event15 = useRef("");
+	let event23 = useRef("");
 	// const [event13, setEvent13] = useState("");
 	// const [event14, setEvent14] = useState("");
 	// const [event15, setEvent15] = useState("");
-	const [event23, setEvent23] = useState("");
+	// const [event23, setEvent23] = useState("");
 	const [event25, setEvent25] = useState("");
 	const [event35, setEvent35] = useState("");
 
@@ -115,7 +116,9 @@ const Objectif = ({ data }) => {
 				}
 				if (currentBox === 2) {
 					const event23Data = events.data.find((event) => event.id === 23);
-					setEvent23(event23Data.status);
+					// setEvent23(event23Data.status);
+					event23.current = event23Data.status;
+					console.log(event23Data);
 					const event25Data = events.data.find((event) => event.id === 25);
 					setEvent25(event25Data.status);
 				}
@@ -128,6 +131,7 @@ const Objectif = ({ data }) => {
 		fetchData();
 	}, [toggleDataEvent]);
 
+	//LALALALALALALALA
 	//EXPLICATION : UseEffect pour déclencher les evenements entre les différents composants
 	useEffect(() => {
 		if (currentBox == 2) {
@@ -141,6 +145,7 @@ const Objectif = ({ data }) => {
 		if (currentBox == 3) {
 			// EXPLICATION : Pour faire le lien entre le composant Header (timer) et ici
 			if (event35 == "open") {
+				fetchNappeMute(true);
 				setTempsEcoule(true);
 			}
 		}
@@ -230,9 +235,9 @@ const Objectif = ({ data }) => {
 			if (data.id === "box1document6" && event15.current == "closed") {
 				setModaleInterrogatoireGarraud(true);
 			}
-			// if (data.id === "box2document6" && currentBox === 2) {
-			// 	actionToggleDataHistory();
-			// }
+			if (data.id === "box2document6" && currentBox === 2) {
+				actionToggleDataHistory();
+			}
 			if (data.id === "box2document4" && event23 == "closed") {
 				setMailLauren1(true);
 			}
@@ -242,7 +247,7 @@ const Objectif = ({ data }) => {
 					await updateObjectives(token, 3, 33, "open");
 					await updateObjectives(token, 3, 34, "open");
 					actionToggleDataObjectif();
-					await updateHelp(token, 3, "box3help2", "closed");
+					await updateHelp(token, 3, "box3help2", "done");
 					await updateHelp(token, 3, "box3help3", "open");
 					await updateHelp(token, 3, "box3help6", "open");
 					actionToggleDataHelp();
@@ -387,6 +392,7 @@ const Objectif = ({ data }) => {
 	};
 
 	const handleSubmit21 = () => {
+		getIntVictimesValue();
 		if (value.length > 8) {
 			setErrorMessage(
 				"Il nous faut éliminer encore des victimes si l'on veut avancer dans l'enquête et revenir voir Garraud avec de nouveaux éléments…"
@@ -416,7 +422,6 @@ const Objectif = ({ data }) => {
 		} else {
 			setIntVictimes((prevState) => ({ ...prevState, [el]: false }));
 		}
-		getIntVictimesValue();
 	};
 
 	// --- CONDITIONS SPE OBJECTIF 23 --- //
@@ -442,6 +447,7 @@ const Objectif = ({ data }) => {
 	const handleSubmit23 = () => {
 		console.log(value);
 		console.log(data.answer);
+		getFinalVictimesValue();
 		if (value.length > 5 || value.length < 5) {
 			setErrorMessage("Nous avons 5 cartes, il nous faut 5 victimes");
 			return;
@@ -463,7 +469,6 @@ const Objectif = ({ data }) => {
 		} else {
 			setFinalVictimes((prevState) => ({ ...prevState, [el]: false }));
 		}
-		getFinalVictimesValue();
 	};
 
 	// -- CONDITIONS SPE OBJECTIF 33 -- //
@@ -472,39 +477,179 @@ const Objectif = ({ data }) => {
 
 	const handleVictimeChoice = (choice) => {
 		setVictimeSaved(choice);
-		setModal(false);
-		setModalAnswer(true);
+		handleModal();
 	};
 
 	const handleFinalStep = async () => {
-		setModalAnswer(false);
-		setModalBis(!modalBis);
-		setNextStep(true);
+		// setModalAnswerBis(false);
+		// setModalBis(!modalBis);
+		// setNextStep(true);
 		await updateHelp(token, 3, "box3help4", "done");
 		await updateHelp(token, 3, "box3help5", "open");
 		await updateEvent(token, 3, 33, "open");
 		actionToggleDataHelp();
 		actionToggleDataEvent();
+		handleModal();
 	};
 
 	const handleSubmitCity = async (e) => {
 		e.preventDefault();
+		console.log(victimeSaved);
+		console.log(value);
 		setErrorMessage("");
 		if (slugify(value) == "milan" && victimeSaved == "maria") {
 			setErrorMessage(
 				"Bon, j'ai fait quelques recherches rapidement sur cette Maria Gruber... malheureusement c'est un prénom très répandu, surtout en Autriche, difficile de cibler correctement l'endroit qu'on cherche... mais ça vous aidera peut-être"
 			);
+			return;
 		}
 		if (slugify(value) == "milan" && victimeSaved == "giuseppe") {
+			console.log(nappeMute);
+			handleModal();
+			await updateEvent(token, 3, 33, "done");
+			actionToggleDataEvent();
 			setMauvaiseFin1(true);
+			fetchNappeMute(true);
+			return;
 		}
 		if (slugify(value) == "graz" && victimeSaved == "maria") {
+			fetchNappeMute(true);
+			handleModal();
+			await updateEvent(token, 3, 33, "done");
+			actionToggleDataEvent();
 			setResolution(true);
+			return;
 		}
 		if (slugify(value) == "graz" && victimeSaved == "giuseppe") {
+			fetchNappeMute(true);
+			handleModal();
+			await updateEvent(token, 3, 33, "done");
+			actionToggleDataEvent();
 			setMauvaiseFin2(true);
+			return;
 		} else {
-			setErrorMessage("Je ne trouve aucune personne à se nom dans cette ville. On doit s'être trompé quelque part");
+			setErrorMessage("Je ne trouve aucune personne à ce nom dans cette ville. On doit s'être trompé quelque part");
+		}
+	};
+
+	const renderLastStep = () => {
+		console.log("on passe par ici", objectif34);
+		if (objectif34 == "open") {
+			console.log("on passe par l'étape 1");
+			return (
+				<div className="modal-objectif__background">
+					<div className="modal-objectif__box">
+						<button className="modal-objectif__icon--container">
+							<img className="modal-objectif__icon" src={Cross} onClick={handleModal} />
+						</button>
+						<h2 className="modal-objectif__title">
+							Objectif : <br></br> {data.title}
+						</h2>
+						<p className="modal-objectif__subtitle">
+							Il nous manque des informations sur l&apos;identité du tueur pour aller plus loin
+						</p>
+						<button className="modal-objectif__button button--red" onClick={handleModal}>
+							Continuer l&apos;enquête
+						</button>
+					</div>
+				</div>
+			);
+		}
+		if (objectif34 == "done" && box3lieu3 == false) {
+			console.log("on passe par l'étape 2");
+			fetchPreviousStateNappe();
+			return (
+				<Video
+					title="Cave de Céline"
+					srcVideo={urlApi.apiRemi() + "videos/db-s02-302-def.mp4&type=video"}
+					handleModalVideo={handleCloseVideoSauverLauren}
+					delayedButton={true}
+				/>
+			);
+		}
+		if (objectif34 == "done" && box3lieu3 == true && victimeSaved == "") {
+			console.log("on passe par l'étape 3");
+			return (
+				<div className="modal-objectif__background">
+					<div className="modal-objectif__box">
+						<button className="modal-objectif__icon--container">
+							<img className="modal-objectif__icon" src={Cross} onClick={handleModal} />
+						</button>
+						<h2 className="modal-objectif__title">
+							Objectif : <br></br> {data.title}
+						</h2>
+						<p className="modal-objectif__subtitle">
+							On a le nom des deux dernières cibles, mais il n&apos;en reste plus qu&apos;une en vie, il faut qu&apos;on la
+							trouve pour pouvoir la sauver.
+						</p>
+						<p className="modal-objectif__subtitle">Qui est la dernière cible encore vivante ?</p>
+						<button className="modal-objectif__button button--red" onClick={() => handleVictimeChoice("maria")}>
+							Maria Gruber
+						</button>
+						<button className="modal-objectif__button button--red" onClick={() => handleVictimeChoice("giuseppe")}>
+							Giuseppe Rossi
+						</button>
+					</div>
+				</div>
+			);
+		}
+		if (victimeSaved != "" && box3help4 == "open") {
+			console.log("on passe par l'étape 4");
+			return (
+				<div className="modal-objectif__background">
+					<div className="modal-objectif__box">
+						<h2 className="modal-objectif__title">
+							Objectif : <br></br> {data.title}
+						</h2>
+						{victimeSaved == "Maria" ? (
+							<audio autoPlay>
+								<source src={urlApi.apiRemi() + "sounds/304-dernier-objectif-rempli-maria.wav"} type="audio/wav" />
+								Votre navigateur ne prend pas en charge ce format
+							</audio>
+						) : (
+							<audio autoPlay>
+								<source src={urlApi.apiRemi() + "sounds/304-dernier-objectif-rempli-giuseppe.wav"} type="audio/wav" />
+								Votre navigateur ne prend pas en charge ce format
+							</audio>
+						)}
+						<p className="modal-objectif__subtitle">“Le jeu n&apos;est pas fini, Raph…”</p>
+						<button className="modal-objectif__button button--red" onClick={handleFinalStep}>
+							Continuer l&apos;enquête
+						</button>
+					</div>
+				</div>
+			);
+		}
+		if (victimeSaved != "" && box3help4 == "done") {
+			console.log("on passe par l'étape 5");
+			return (
+				<div className="modal-objectif__background">
+					<div className="modal-objectif__box">
+						<button className="modal-objectif__icon--container">
+							<img className="modal-objectif__icon" src={Cross} onClick={handleModal} />
+						</button>
+						<h2 className="modal-objectif__title">
+							Objectif : <br></br> {data.title}
+						</h2>
+						<div className="modal-objectif__errorMessage">{errorMessage}</div>
+						<p className="modal-objectif__subtitle">Les choses s&apos;accélèrent, elle nous a mis un ultimatum !</p>
+						<p className="modal-objectif__subtitle">
+							Il faut qu&apos;on sache où est cette personne pour intervenir à temps, on ne peut pas se permettre de se tromper
+						</p>
+						<form className="modal-objectif__form" onSubmit={handleSubmitCity}>
+							<Input
+								type="texte"
+								label={data.newlabel}
+								name="objectifbis"
+								placeholder="Ce champ est vide"
+								value={value}
+								setValue={setValue}
+							/>
+							<button className="modal-objectif__button button--red">Valider</button>
+						</form>
+					</div>
+				</div>
+			);
 		}
 	};
 
@@ -696,8 +841,10 @@ const Objectif = ({ data }) => {
 				console.log("objectif34 terminé");
 			}
 			if (data.id == 33) {
-				await updateHelp(token, 3, "box3help4", "done");
+				await updateHelp(token, 3, "box3help4", "open");
+				await updateHelp(token, 3, "box3help3", "done");
 				actionToggleDataHelp();
+				setModalAnswer(false);
 				console.log("objectif33 etape 1 terminé");
 			}
 		}
@@ -960,57 +1107,9 @@ const Objectif = ({ data }) => {
 				</div>
 			);
 		}
-		if (data.id == 33 && objectif34 != "done") {
-			return (
-				<div className="modal-objectif__background">
-					<div className="modal-objectif__box">
-						<button className="modal-objectif__icon--container">
-							<img className="modal-objectif__icon" src={Cross} onClick={handleModal} />
-						</button>
-						<h2 className="modal-objectif__title">
-							Objectif : <br></br> {data.title}
-						</h2>
-						<p className="modal-objectif__subtitle">
-							Il nous manque des informations sur l&apos;identité du tueur pour aller plus loin
-						</p>
-						<button className="modal-objectif__button button--red" onClick={handleModal}>
-							Continuer l&apos;enquête
-						</button>
-					</div>
-				</div>
-			);
-		}
-		if (data.id == 33 && objectif34 == "done") {
-			if (box3lieu3 == false) {
-				setVideoSauverLauren(true);
-				fetchPreviousStateNappe();
-				return;
-			}
-			if (box3lieu3 == true) {
-				return (
-					<div className="modal-objectif__background">
-						<div className="modal-objectif__box">
-							<button className="modal-objectif__icon--container">
-								<img className="modal-objectif__icon" src={Cross} onClick={handleModal} />
-							</button>
-							<h2 className="modal-objectif__title">
-								Objectif : <br></br> {data.title}
-							</h2>
-							<p className="modal-objectif__subtitle">
-								On a le nom des deux dernières cibles, mais il n&apos;en reste plus qu&apos;une en vie, il faut qu&apos;on la
-								trouve pour pouvoir la sauver.
-							</p>
-							<p className="modal-objectif__subtitle">Qui est la dernière cible encore vivante ?</p>
-							<button className="modal-objectif__button button--red" onClick={() => handleVictimeChoice("maria")}>
-								Maria Gruber
-							</button>
-							<button className="modal-objectif__button button--red" onClick={() => handleVictimeChoice("giuseppe")}>
-								Giuseppe Rossi
-							</button>
-						</div>
-					</div>
-				);
-			}
+
+		if (data.id == 33 && box3help4 != "closed") {
+			return <>{renderLastStep()}</>;
 		}
 		return (
 			<div className="modal-objectif__background">
@@ -1040,36 +1139,6 @@ const Objectif = ({ data }) => {
 	};
 
 	const renderModalBis = () => {
-		if (data.id == 33) {
-			return (
-				<div className="modal-objectif__background">
-					<div className="modal-objectif__box">
-						<button className="modal-objectif__icon--container">
-							<img className="modal-objectif__icon" src={Cross} onClick={handleModalBis} />
-						</button>
-						<h2 className="modal-objectif__title">
-							Objectif : <br></br> {data.title}
-						</h2>
-						<div className="modal-objectif__errorMessage">{errorMessage}</div>
-						<p className="modal-objectif__subtitle">Les choses s&apos;accélèrent, elle nous a mis un ultimatum !</p>
-						<p className="modal-objectif__subtitle">
-							Il faut qu&apos;on sache où est cette personne pour intervenir à temps, on ne peut pas se permettre de se tromper
-						</p>
-						<form className="modal-objectif__form" onSubmit={handleSubmitCity}>
-							<Input
-								type="texte"
-								label={data.newlabel}
-								name="objectifbis"
-								placeholder="Ce champ est vide"
-								value={value}
-								setValue={setValue}
-							/>
-							<button className="modal-objectif__button button--red">Valider</button>
-						</form>
-					</div>
-				</div>
-			);
-		}
 		return (
 			<div className="modal-objectif__background">
 				<div className="modal-objectif__box">
@@ -1098,32 +1167,6 @@ const Objectif = ({ data }) => {
 	};
 
 	const renderModalAnswer = () => {
-		if (data.id == 33) {
-			return (
-				<div className="modal-objectif__background">
-					<div className="modal-objectif__box">
-						<h2 className="modal-objectif__title">
-							Objectif : <br></br> {data.title}
-						</h2>
-						{victimeSaved == "Maria" ? (
-							<audio autoPlay>
-								<source src={urlApi.apiRemi() + "sounds/304-dernier-objectif-rempli-maria.wav"} type="audio/wav" />
-								Votre navigateur ne prend pas en charge ce format
-							</audio>
-						) : (
-							<audio autoPlay>
-								<source src={urlApi.apiRemi() + "sounds/304-dernier-objectif-rempli-giuseppe.wav"} type="audio/wav" />
-								Votre navigateur ne prend pas en charge ce format
-							</audio>
-						)}
-						<p className="modal-objectif__subtitle">“Le jeu n&apos;est pas fini, Raph…”</p>
-						<button className="modal-objectif__button button--red" onClick={handleFinalStep}>
-							Continuer l&apos;enquête
-						</button>
-					</div>
-				</div>
-			);
-		}
 		return (
 			<div className="modal-objectif__background">
 				<div className="modal-objectif__box">
@@ -1312,7 +1355,7 @@ const Objectif = ({ data }) => {
 		}
 		if (currentBox == 2) {
 			return (
-				<div>
+				<div className="modal-objectif__endGame--text">
 					<p>Vous avez finit la seconde partie</p>
 					<p>Rendez-vous en box 3 pour la suite de l&apos;enquête</p>
 				</div>
@@ -1320,7 +1363,7 @@ const Objectif = ({ data }) => {
 		}
 		if (currentBox == 3) {
 			return (
-				<div>
+				<div className="modal-objectif__endGame--text">
 					<p>Vous avez cloturé le dossier du Tueur au Tarot, bravo Agent !</p>
 					<p>Au plaisir de vous retrouver sur de prochaines enquêtes.</p>
 				</div>
@@ -1557,7 +1600,7 @@ const Objectif = ({ data }) => {
 					</audio>
 					<p>Attendez, allumez la TV ! </p>
 					<button className="modal-objectif__button button--red" onClick={handleCloseAudioBreakingNews}>
-						Passer à l&apos;interrogatoire
+						Regarder les infos
 					</button>
 				</div>
 			</div>
@@ -1598,7 +1641,7 @@ const Objectif = ({ data }) => {
 
 	// --- LOGIQUE EVENT BOX 3 --- //
 
-	const [videoSauverLauren, setVideoSauverLauren] = useState(false);
+	// const [videoSauverLauren, setVideoSauverLauren] = useState(false);
 	const [debriefLauren, setDebriefLauren] = useState(false);
 	const [tempsEcoule, setTempsEcoule] = useState(false);
 	const [mauvaiseFin1, setMauvaiseFin1] = useState(false);
@@ -1606,22 +1649,21 @@ const Objectif = ({ data }) => {
 	const [resolution, setResolution] = useState(false);
 	const [interrogatoireFinal, setInterrogatoireFinal] = useState(false);
 
-	const displayVideoSauverLauren = () => {
-		return (
-			<Video
-				title="Cave de Céline"
-				srcVideo={urlApi.apiRemi() + "videos/db-s02-302-def.mp4&type=video"}
-				handleModalVideo={handleCloseVideoSauverLauren}
-				delayedButton={true}
-			/>
-		);
-	};
+	// const displayVideoSauverLauren = () => {
+	// 	return (
+	// 		<Video
+	// 			title="Cave de Céline"
+	// 			srcVideo={urlApi.apiRemi() + "videos/db-s02-302-def.mp4&type=video"}
+	// 			handleModalVideo={handleCloseVideoSauverLauren}
+	// 			delayedButton={true}
+	// 		/>
+	// 	);
+	// };
 
 	const handleCloseVideoSauverLauren = async () => {
+		handleModal();
 		setDebriefLauren(true);
 		fetchPreviousStateNappe();
-		await updateHistory(token, 3, "box3video2");
-		actionToggleDataHistory();
 	};
 
 	const displayDebriefLauren = () => {
@@ -1629,7 +1671,7 @@ const Objectif = ({ data }) => {
 			<Audio
 				title="Debrief Lauren"
 				srcImg1={urlApi.apiRemi() + "assets/photos-personnages/lauren.jpg"}
-				srcImg2={null}
+				srcImg2={urlApi.apiRemi() + "assets/photos-personnages/raphaelle.jpg"}
 				srcTranscription={urlApi.apiRemi() + "assets/photos-personnages/raphaelle.jpg"}
 				handleModalAudio={closeDebriefLauren}
 				srcAudio={urlApi.apiRemi() + "sounds/303-debrief-lauren.wav"}
@@ -1639,10 +1681,12 @@ const Objectif = ({ data }) => {
 
 	const closeDebriefLauren = async () => {
 		await updateHistory(token, 3, "box3audio1");
-		await updateHistory(token, 3, "box3lieu1");
+		await updateHistory(token, 3, "box3lieu3");
+		await updateHistory(token, 3, "box3video2");
+		actionToggleDataHistory();
 		actionToggleDataHistory();
 		setDebriefLauren(false);
-		window.open("https://fouille.foret.detectivebox.fr/?token=" + token, "_blank");
+		window.open("https://fouille.cave.detectivebox.fr/?token=" + token, "_blank");
 	};
 
 	const displayModaleTempsEcoule = () => {
@@ -1674,6 +1718,7 @@ const Objectif = ({ data }) => {
 		setVictimeSaved("");
 		setNextStep(false);
 		await updateEvent(token, 3, 35, "closed");
+		await updateEvent(token, 3, 33, "open");
 		await updateHelp(token, 3, "box3help5", "closed");
 		await updateHelp(token, 3, "box3help4", "open");
 		actionToggleDataEvent();
@@ -1682,7 +1727,8 @@ const Objectif = ({ data }) => {
 
 	const handleGoToResolution = async () => {
 		await updateEvent(token, 3, 35, "done");
-		// actionToggleDataEvent();
+		await updateEvent(token, 3, 33, "done");
+		actionToggleDataEvent();
 		setTempsEcoule(false);
 		setMauvaiseFin1(false);
 		setMauvaiseFin2(false);
@@ -1794,7 +1840,7 @@ const Objectif = ({ data }) => {
 			{audioBreakingNews ? displayAudioBreakingNews() : null}
 			{videoBreakingNews ? displayVideoBreakingNews() : null}
 			{videoBureauLauren ? displayVideoBureauLauren() : null}
-			{videoSauverLauren ? displayVideoSauverLauren() : null}
+			{/* {videoSauverLauren ? displayVideoSauverLauren() : null} */}
 			{debriefLauren ? displayDebriefLauren() : null}
 			{tempsEcoule ? displayModaleTempsEcoule() : null}
 			{mauvaiseFin1 ? displayModaleMauvaiseFin1() : null}
