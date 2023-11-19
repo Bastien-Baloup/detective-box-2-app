@@ -235,7 +235,7 @@ const Header = () => {
 		if (currentBox == 1) {
 			return (
 				<audio loop preload="auto" ref={audioElem}>
-					<source src={urlApi.apiRemi() + "sounds/musiques-db-s2-nappe-1.mp3"} type="audio/mpeg" />
+					<source src={urlApi.apiRemi() + "sounds/musiques-db-s2-nappe-1.wav"} type="audio/wav" />
 					Votre navigateur ne prend pas en charge ce format
 				</audio>
 			);
@@ -243,7 +243,7 @@ const Header = () => {
 		if (currentBox == 2) {
 			return (
 				<audio loop preload="auto" ref={audioElem}>
-					<source src={urlApi.apiRemi() + "sounds/musiques-db-s2-nappe-2.mp3"} type="audio/mpeg" />
+					<source src={urlApi.apiRemi() + "sounds/musiques-db-s2-nappe-2.wav"} type="audio/wav" />
 					Votre navigateur ne prend pas en charge ce format
 				</audio>
 			);
@@ -251,7 +251,7 @@ const Header = () => {
 		if (currentBox == 3) {
 			return (
 				<audio loop preload="auto" ref={audioElem}>
-					<source src={urlApi.apiRemi() + "sounds/musiques-db-s2-nappe-3.mp3"} type="audio/mpeg" />
+					<source src={urlApi.apiRemi() + "sounds/musiques-db-s2-nappe-3.wav"} type="audio/wav" />
 					Votre navigateur ne prend pas en charge ce format
 				</audio>
 			);

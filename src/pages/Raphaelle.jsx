@@ -21,7 +21,7 @@ import {
 const Raphaelle = ({ closeAgentPage }) => {
 	const { currentBox } = useContext(BoxContext);
 	const token = localStorage.getItem("token");
-	const { actionToggleDataRaphaelle, toggleDataRaphaelle, toggleDataObjectif, actionToggleDataHelp, toggleDataHistory } =
+	const { actionToggleDataRaphaelle, actionToggleDataHistory, toggleDataRaphaelle, toggleDataObjectif, actionToggleDataHelp, toggleDataHistory } =
 		useContext(DataContext);
 
 	//EXPLICATION : Raphaelle est le personnage "4"
@@ -295,6 +295,7 @@ const Raphaelle = ({ closeAgentPage }) => {
 	// EXPLICATION : la visite du lieu box2lieu2 ouvre le renfort 6 et ferme le renfort 5
 	const openLieu = async (answerId, asnwerAsk) => {
 		await updateHistory(token, currentBox, answerId);
+		actionToggleDataHistory();
 		await updateCharactersById(token, 4, currentBox, asnwerAsk);
 		// if (answerId == "box2lieu3") {
 		// 	await updateObjectives(token, 2, 22, "open");

@@ -46,11 +46,25 @@ function Historique() {
 		fetchData();
 	}, [toggleDataHistory]);
 
+	const initialFilterBox = () => {
+		if (currentBox == 1) {
+			return ["Box 1"];
+		}
+		if (currentBox == 2) {
+			return ["Box 2"];
+		}
+		if (currentBox == 3) {
+			return ["Box 3"];
+		} else {
+			return [];
+		}
+	};
+
 	const [dataHistory1, setDataHistory1] = useState(null);
 	const [dataHistory2, setDataHistory2] = useState(null);
 	const [dataHistory3, setDataHistory3] = useState(null);
 	const [selectedCategory, setSelectedCategory] = useState([]);
-	const [selectedBox, setselectedBox] = useState([]);
+	const [selectedBox, setselectedBox] = useState(() => initialFilterBox());
 
 	const [modal, setModal] = useState(false);
 	const [selectedClue, setSelectedClue] = useState("");
@@ -108,12 +122,12 @@ function Historique() {
 		}
 		if (currentBox == 2 && dataHistory1) {
 			let cluesCurrentBoxTrue = dataHistory2?.filter((clue) => clue.status == true);
-			let allClues = [dataHistory1, cluesCurrentBoxTrue].flat();
+			let allClues = [cluesCurrentBoxTrue, dataHistory1].flat();
 			return filterClues(allClues);
 		}
 		if (currentBox == 3 && dataHistory1 && dataHistory2) {
 			let cluesCurrentBoxTrue = dataHistory3?.filter((clue) => clue.status == true);
-			let allClues = [dataHistory1, dataHistory2, cluesCurrentBoxTrue].flat();
+			let allClues = [cluesCurrentBoxTrue, dataHistory2, dataHistory1].flat();
 			return filterClues(allClues);
 		}
 	};
@@ -183,20 +197,56 @@ function Historique() {
 		}
 	};
 
+	const displayFilterBox = () => {
+		if (currentBox == 1) {
+			return filterBox.map((category, index) => (
+				<Filter
+					category={category}
+					key={`filterBox-${index}`}
+					handleSearch={() => handleFilterBox(category)}
+					activebyDefault={category == "Box 1" ? true : false}
+				/>
+			));
+		}
+		if (currentBox == 2) {
+			return filterBox.map((category, index) => (
+				<Filter
+					category={category}
+					key={`filterBox-${index}`}
+					handleSearch={() => handleFilterBox(category)}
+					activebyDefault={category == "Box 2" ? true : false}
+				/>
+			));
+		}
+		if (currentBox == 3) {
+			return filterBox.map((category, index) => (
+				<Filter
+					category={category}
+					key={`filterBox-${index}`}
+					handleSearch={() => handleFilterBox(category)}
+					activebyDefault={category == "Box 3" ? true : false}
+				/>
+			));
+		}
+	};
+
+	const displayFilterType = () => {
+		return filtersType.map((category, index) => (
+			<Filter
+				category={category}
+				key={`filterType-${index}`}
+				handleSearch={() => handleFilterCategory(category)}
+				activebyDefault={false}
+			/>
+		));
+	};
+
 	return (
 		<main className="main__history">
 			{modal ? displayCorrespondingModal(selectedClue) : null}
 			<div className="filter__wrapper">
-				<div className="filter--type__container">
-					{filtersType.map((category, index) => (
-						<Filter category={category} key={`filterType-${index}`} handleSearch={() => handleFilterCategory(category)} />
-					))}
-				</div>
-				<div className="filter--box__container">
-					{filterBox.map((category, index) => (
-						<Filter category={category} key={`filterBox-${index}`} handleSearch={() => handleFilterBox(category)} />
-					))}
-				</div>
+				<div className="filter--type__container">{displayFilterType()}</div>
+				<div className="filter--box__container">{displayFilterBox()}</div>
 			</div>
 			<div className="clue__wrapper">{displayClue()}</div>
 		</main>
