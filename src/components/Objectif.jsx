@@ -84,12 +84,6 @@ const Objectif = ({ data }) => {
 
 	const [objectifs, setObjectifs] = useState();
 	console.log(objectifs);
-	// const objectif12 = objectifs?.data.find((event) => event.id == 12).status;
-	// const objectif13 = objectifs?.data.find((event) => event.id == 13).status;
-	// const objectif11 = objectifs?.data.find((event) => event.id == 11).status;
-	// const objectif33 = objectifs?.data.find((event) => event.id == 33).status;
-	// const objectif34 = objectifs?.data.find((event) => event.id == 34).status;
-	// console.log(objectif12);
 
 	const [events, setEvent] = useState();
 	console.log(events);
@@ -131,7 +125,6 @@ const Objectif = ({ data }) => {
 		fetchData();
 	}, [toggleDataEvent]);
 
-	//LALALALALALALALA
 	//EXPLICATION : UseEffect pour déclencher les evenements entre les différents composants
 	useEffect(() => {
 		if (currentBox == 2) {
@@ -145,7 +138,6 @@ const Objectif = ({ data }) => {
 		if (currentBox == 3) {
 			// EXPLICATION : Pour faire le lien entre le composant Header (timer) et ici
 			if (event35 == "open") {
-				// fetchNappeMute(true);
 				setTempsEcoule(true);
 			}
 		}
@@ -261,70 +253,6 @@ const Objectif = ({ data }) => {
 		});
 	}, []);
 
-	// EXPLICATION : VERSION POLLING
-
-	// const startHistoryPolling = async () => {
-	// 	setInterval(async () => {
-	// 		const data = await getHistories(token, [
-	// 			"box1document1",
-	// 			"box1document6",
-	// 			"box1video2",
-	// 			"box2document6",
-	// 			"box3document2",
-	// 			"box2document4",
-	// 		]).then((res) => res.json());
-	// 		if (data["box1document1"] && event13 == "closed") {
-	// 			setModaleMalle(true);
-	// 			actionTogglePolling(false);
-	// 			await updateEvent(token, 1, 13, "done");
-	// 		}
-	// 		console.log(event14);
-	// 		if (data["box1video2"] && event14 == "closed") {
-	// 			setModaleVHS(true);
-	// 			actionTogglePolling(false);
-	// 			// await updateEvent(token, 1, 14, "done");
-	// 			// setEvent14("done");
-	// 		}
-	// 		if (data["box1document6"] && event15 == "closed") {
-	// 			setModaleInterrogatoireGarraud(true);
-	// 			actionTogglePolling(false);
-	// 			// await updateEvent(token, 1, 15, "done");
-	// 		}
-	// 		// if (data["box2document6"] && currentBox === 2) {
-	// 		// 	actionToggleDataHistory();
-	// 		//     actionTogglePolling(false);
-	// 		// }
-	// 		if (data["box2document4"] && event23 == "closed") {
-	// 			setMailLauren1(true);
-	// 			actionTogglePolling(false);
-	// 			await updateEvent(token, 2, 23, "done");
-	// 		}
-	// 		if (data["box3document2"] && objectif33 == "closed") {
-	// 			await updateObjectives(token, 3, 33, "open");
-	// 			await updateObjectives(token, 3, 34, "open");
-	// 			await updateHelp(token, 3, "box3help3", "open");
-	// 			await updateHelp(token, 3, "box3help6", "open");
-	// 			actionTogglePolling(false);
-	// 			//toggleObjectives ? toggleHelp ?
-	// 		}
-	// 	}, 5000);
-	// };
-
-	// useEffect(() => {
-	// 	console.log(togglePolling);
-	// 	if (togglePolling == true) {
-	// 		// const events = await getEventByBox(token, currentBox);
-	// 		// const clues = await getHistoryByBox(token, currentBox);
-	// 		// const help = await getHelpByBox(token, currentBox);
-	// 		// const objectifs = await getObjectivesByBox(token, currentBox);
-	// 		// setHistory(clues);
-	// 		// setEvents(events);
-	// 		// setRenforts(help);
-	// 		// setObjectifs(objectifs);
-	// 		startHistoryPolling();
-	// 	}
-	// }, [togglePolling]);
-
 	// --- CONDITIONS SPE OBJECTIF 14 --- //
 
 	const [victime1, setVictime1] = useState("");
@@ -337,6 +265,7 @@ const Objectif = ({ data }) => {
 	const getVictimesValue = useCallback(() => {
 		const allVictimes = [victime1, victime2, victime3, victime4, victime5, victime6];
 		setValue(allVictimes);
+		console.log(allVictimes);
 	}, [victime1, victime2, victime3, victime4, victime5, victime6]);
 
 	useEffect(() => {
@@ -1350,7 +1279,7 @@ const Objectif = ({ data }) => {
 		return (
 			<>
 				<audio autoPlay>
-					<source src={urlApi.apiRemi() + "sounds/musiques-db-s2-theme-tueur.mp3"} type="audio/mpeg" />
+					<source src={urlApi.apiRemi() + "sounds/musiques-db-s2-theme-tueur.wav"} type="audio/wav" />
 					Votre navigateur ne prend pas en charge ce format
 				</audio>
 				<Document

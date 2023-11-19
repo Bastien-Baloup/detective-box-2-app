@@ -102,12 +102,12 @@ export const dataObjectif = {
 			errorMessage:
 				"Je crains qu'il y ait une erreur dans votre liste, ou du moins, une possible incohérence que nous devrions examiner de plus près.",
 			answer: [
-				"Victime du grand oeuvre du tueur au Tarot (tueur organisé)",
-				"Victime du grand oeuvre du tueur au Tarot (tueur organisé)",
-				"Victime du grand oeuvre du tueur au Tarot (tueur organisé)",
+				"Victime du Grand Œuvre du tueur au Tarot (tueur organisé)",
+				"Victime du Grand Œuvre du tueur au Tarot (tueur organisé)",
+				"Victime du Grand Œuvre du tueur au Tarot (tueur organisé)",
 				"Victime de Charles Garraud (tueur désorganisé)",
-				"Victime du grand oeuvre du tueur au Tarot (tueur organisé)",
-				"Victime collatérales du Tueur au Tarot (tueur organisé)",
+				"Victime du Grand Œuvre du tueur au Tarot (tueur organisé)",
+				"Victime collatérale du Tueur au Tarot (tueur organisé)",
 			],
 			answertext: [
 				"Nous avons progressé dans la résolution de ce problème, il est maintenant plus facile de comprendre la situation.",
