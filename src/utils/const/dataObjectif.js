@@ -14,6 +14,7 @@ export const dataObjectif = {
 			answertext: [
 				"Raphaëlle:",
 				"Bien joué, j'ai l'impression que vous avez résolu ce paragraphe du poème. Si je comprends bien, le tueur connaissait sa victime, mais pas l'inverse. Continuons notre enquête.",
+				"",
 				"Lauren:",
 				"Faire parler sa victime avant de la tuer, c'est un procédé classique de personnalisation. On sent qu'il y prend du plaisir. De même que le petit rituel qu'il lui impose. Je vous invite à analyser à quel type de tueur on a à faire. Je vous envoie pour cela un extrait du livre de profiling que j'ai co-écrit. Dans une affaire de tueur en série, ça ne peut que nous aider ! A quel type de tueur avons-nous donc affaire ?",
 			],
@@ -21,7 +22,7 @@ export const dataObjectif = {
 			newdetail: ["A quel type de tueur avons nous affaire ?"],
 			newlabel: "Réponse",
 			newerrorMessage: "Non je ne pense pas que ce soit cela.",
-			newanswer: ["organise"],
+			newanswer: ["organise", "tueurorganise"],
 			newanswertext: [
 				"Nous avons donc affaire à un tueur organisé...",
 				"Gardez bien cela à l'esprit pour le reste de l'enquête.",
@@ -43,6 +44,7 @@ export const dataObjectif = {
 			answertext: [
 				"Tim:",
 				"Punaise vous êtes des rapides, vous !",
+				"",
 				"Raphaëlle:",
 				"Des années que les décrypteurs du monde entier sont sur ce message... Il y en a beaucoup qui vont être jaloux de vos talents ! D'un autre côté, il leur manquait des documents... mais quand même!",
 				"C'est donc Xavier Monrency l'oublié.",
@@ -64,6 +66,7 @@ export const dataObjectif = {
 			answertext: [
 				"Raphaëlle:",
 				"La personne enlevée était donc la mère de Garraud... Et l'orgueilleux, c'était Charles, qui s'est fait piéger par le tueur... On a affaire à des sacrés tordus quand même... J'espère qu'avec ça on va finir par réussir à l'interroger.",
+				"",
 				"Céline:",
 				"Je vais voir ce que je peux arranger.",
 			],
@@ -84,8 +87,8 @@ export const dataObjectif = {
 			label: null,
 			choices: [
 				"-- Choisissez le type de victime --",
-				"Victime du grand oeuvre du tueur au Tarot (tueur organisé)",
-				"Victime collatérales du Tueur au Tarot (tueur organisé)",
+				"Victime du Grand Œuvre du tueur au Tarot (tueur organisé)",
+				"Victime collatérale du Tueur au Tarot (tueur organisé)",
 				"Victime de Charles Garraud (tueur désorganisé)",
 			],
 			victimes: [
@@ -117,11 +120,9 @@ export const dataObjectif = {
 		{
 			id: 21,
 			title: "Premier tri de la liste des victimes",
-			subtitle: "dégrossir la liste des victimes potentielles",
+			subtitle: "Dégrossir la liste des victimes potentielles",
 			detail: [
-				"Notre objectif ici est de dégrossir la liste des victimes potentielles.",
-				"Il faut qu'on comprenne comment marche son mode opératoire.",
-				"À cette fin, examinons les éléments que Garraud nous a donnés.",
+				"Notre objectif ici est de dégrossir la liste des victimes potentielles en écartant les profils qui ne sont pas liés au Tueur au Tarot.",
 			],
 			victimes: [
 				{ name: "Aaron King", img: "assets/photos-personnages/aaron_king.jpg" },
@@ -184,7 +185,14 @@ export const dataObjectif = {
 			],
 			errorMessage: "Je ne pense pas que ce soit cela.",
 			label: "Réponse",
-			answer: ["lilithequilibree", "lilithequilibre", "lilitequilibree", "lilitequilibre"],
+			answer: [
+				"lilithequilibree",
+				"lilithequilibre",
+				"lilitequilibree",
+				"lilitequilibre",
+				"theoriedelilithequilibree",
+				"theoriedelilithequilibre",
+			],
 			answertext: [
 				"Bien joués agents, nous avons maintenant le nom de la théorie.",
 				"Il nous faut approfondir nos recherches pour comprendre ce dont le tueur parle.",
@@ -192,13 +200,13 @@ export const dataObjectif = {
 			answersrc: "sounds/204-objectifs-reussis-2.wav",
 			newdetail: [
 				"Avez-vous examiné tous les messages du forum ? Nous avons maintenant le nom de la théorie, mais il nous faut approfondir nos recherches pour comprendre ce dont le tueur parle. Selon le message, il déclare :",
-				"Le placement de Lilith a donné le pouvoir à mes victimes de changer le monde, mais ils ont refusé, trop petits qu'ils étaient.",
+				"“Le placement de Lilith a donné le pouvoir à mes victimes de changer le monde, mais ils ont refusé, trop petits qu'ils étaient.”",
 				"J'ai l'impression qu'il fait référence à la sélection de ses victimes. Nous devrions creuser davantage cette piste.",
 				"Quel était le placement de Lilith évoqué par la théorie ?",
 			],
 			newlabel: "Réponse",
 			newerrorMessage: "Je ne pense pas que ce soit cela.",
-			newanswer: ["balance"],
+			newanswer: ["balance", "enbalance", "lilithenbalance"],
 			newanswertext: [
 				"Bravo agents, vous êtes parvenus à suivre la piste jusqu'au bout",
 				"Lilith en balance, le schéma du tueur se dévoile progressivement.",
@@ -211,7 +219,7 @@ export const dataObjectif = {
 			title: "Modus opérandi",
 			subtitle: "Finaliser la liste des victimes",
 			detail: [
-				"Nous avons effectué une première sélection, cependant, nous devons maintenant réduire le groupe à 5 personnes.",
+				"Nous avons effectué une première sélection, cependant, nous devons maintenant réduire le groupe à 5 personnes comme le nombre de cartes de tarot trouvées dans la planque du tueur.",
 				"Il semble que nous devions approfondir la sélection des victimes en utilisant les nouvelles informations à notre disposition.",
 			],
 			victimes: [
@@ -255,6 +263,7 @@ export const dataObjectif = {
 				"Vous l'avez retrouvée, bravo !",
 				"Maintenant je suis sûre qu'on doit également pouvoir retrouver l'adresse de cette dénommée Stella.",
 				"Dites-moi où je dois me rendre lorsque vous l'aurez trouvée.",
+				"",
 				"Lauren :",
 				"Raph, je crois que notre tueur a peut-être rencontré une victime avant sa mort, je creuse cette piste et je reviens vers toi dès que j'ai quelque chose de concret...",
 			],
@@ -273,7 +282,7 @@ export const dataObjectif = {
 			],
 			label: "Réponse",
 			errorMessage: "Je ne pense pas que ce soit cela.",
-			answer: ["dolmenvondegernau", "dolmendegernau"],
+			answer: ["dolmenvondegernau", "dolmendegernau", "menhirvondegernau", "degernaumenhir"],
 			answertext: [
 				"Le Dolmen von Degernau...",
 				"C'est donc cela que Lauren avait trouvé, cela doit nous donner une information pour la suite si Lauren y attachait tant d'importance...",
@@ -291,8 +300,8 @@ export const dataObjectif = {
 			],
 			label: "Réponse",
 			errorMessage: "Je ne pense pas que ce soit cela.",
-			answer: ["dolmendite", "dolmenite"],
-			answertext: ["Bien joué agents, le Dolmen d'Ité..."],
+			answer: ["dolmendite", "dolmenite", "ite", "ithe", "dolmendithe", "dolmenithe"],
+			answertext: ["Bien joué agents, le Dolmen d'Ité...", "On devrait s'y rendre"],
 			answersrc: null,
 			status: "open",
 		},

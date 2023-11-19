@@ -64,7 +64,7 @@ const Adele = ({ closeAgentPage }) => {
 		}
 		if (previouslyAnsweredInThisBox) {
 			setValue("");
-			setErrorMessage("Vous m'avez dejà demandé d'analyser cet élément.");
+			setErrorMessage("Vous m'avez dejà demandé d'analyser cet élément. Il est désormais disponible dans votre Historique.”");
 			return;
 		}
 		if (answerInThisBox) {
@@ -76,7 +76,7 @@ const Adele = ({ closeAgentPage }) => {
 		}
 		if (currentBox == 3 && answerInBox2) {
 			setValue("");
-			setErrorMessage("Vous avez déjà analysé cet élément lors d'une box précédente.");
+			setErrorMessage("Vous avez déjà analysé cet élément lors d'une box précédente. Il est désormais disponible dans votre Historique.”");
 			return;
 		}
 		setValue("");
@@ -179,7 +179,7 @@ const Adele = ({ closeAgentPage }) => {
 					<form className="agent__form" onSubmit={handleSubmit}>
 						<Input
 							type="texte"
-							label="Element à analyser"
+							label="Elément à analyser"
 							name="adele"
 							placeholder="Ce champ est vide"
 							value={value}

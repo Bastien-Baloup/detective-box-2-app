@@ -245,7 +245,7 @@ export const dataLauren = {
 			status: false,
 		},
 		{
-			ask: ["patrickoneil"],
+			ask: ["patrickoneil", "patrickonil", "patrick"],
 			text: ["Je sors de l'interrogatoire, voici la retranscription :"],
 			id: "box1audio12",
 			title: "Interrogatoire Patrick O'Neil",
@@ -285,7 +285,7 @@ export const dataLauren = {
 			id: "box2audio1",
 			title: "Interrogatoire Martin Richard",
 			img1: "assets/photos-personnages/Martin Richard.jpg",
-			img2: "",
+			img2: "assets/photos-personnages/lauren.jpg",
 			srcAudio: "sounds/205-interrogatoire-martin-richard-lauren.wav",
 			srcTranscript: "assets/transcripts/205_Interrogatoire_Martin_Richard-Lauren_transcript.pdf",
 			status: false,

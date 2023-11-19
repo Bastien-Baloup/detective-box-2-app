@@ -186,6 +186,9 @@ const Lauren = ({ closeAgentPage }) => {
 	const closeModalMedia = async (answerId, asnwerAsk) => {
 		await updateCharactersById(token, 2, currentBox, asnwerAsk);
 		await updateHistory(token, currentBox, answerId);
+		if (answerId == "box2audio1") {
+			await updateHistory(token, 2, "box2document3");
+		}
 		actionToggleDataLauren();
 		setModalMedia(false);
 	};

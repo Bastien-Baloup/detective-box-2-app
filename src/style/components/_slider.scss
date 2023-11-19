@@ -45,12 +45,18 @@
 		gap: 1rem;
 		&__img--container {
 			max-width: 80%;
+			max-height: 50vh;
+			overflow: overlay;
 		}
 		&__img {
 			@include img-max;
 		}
-		&__text{
-		line-height: 1.5rem;
+		&__text {
+			line-height: 1.5rem;
+			&--link {
+				// text-decoration: underline;
+				color: $tertiary-color;
+			}
 		}
 	}
 

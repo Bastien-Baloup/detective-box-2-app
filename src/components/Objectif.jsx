@@ -3,7 +3,7 @@
 // EXPLICATION : Il affiche egalement toute la logique des différents événements de l'application
 
 import PropTypes from "prop-types";
-import { useState, useEffect, useRef, useLayoutEffect } from "react";
+import { useState, useEffect, useRef, useLayoutEffect, useCallback } from "react";
 import Check from "../assets/icons/Icon_Check-green.svg";
 import LockClosed from "../assets/icons/Icon_Lock-closed-red.svg";
 import LockOpen from "../assets/icons/Icon_Lock-open-black.svg";
@@ -238,12 +238,13 @@ const Objectif = ({ data }) => {
 			if (data.id === "box2document6" && currentBox === 2) {
 				actionToggleDataHistory();
 			}
-			if (data.id === "box2document4" && event23 == "closed") {
+			if (data.id === "box2document4" && event23.current == "closed") {
 				setMailLauren1(true);
 			}
 			if (data.id === "box3document2" && objectif33.current == "closed") {
 				const updateApp = async () => {
 					console.log("on passe dans la fonction");
+					setModaleSquelette(true);
 					await updateObjectives(token, 3, 33, "open");
 					await updateObjectives(token, 3, 34, "open");
 					actionToggleDataObjectif();
@@ -333,13 +334,16 @@ const Objectif = ({ data }) => {
 	const [victime5, setVictime5] = useState("");
 	const [victime6, setVictime6] = useState("");
 
-	const getVictimesValue = () => {
-		let allVictimes = [victime1, victime2, victime3, victime4, victime5, victime6];
+	const getVictimesValue = useCallback(() => {
+		const allVictimes = [victime1, victime2, victime3, victime4, victime5, victime6];
 		setValue(allVictimes);
-	};
+	}, [victime1, victime2, victime3, victime4, victime5, victime6]);
+
+	useEffect(() => {
+		getVictimesValue();
+	}, [getVictimesValue]);
 
 	const handleSubmit14 = () => {
-		getVictimesValue();
 		if (JSON.stringify(data.answer) == JSON.stringify(value)) {
 			setErrorMessage("");
 			setValue("");
@@ -354,45 +358,47 @@ const Objectif = ({ data }) => {
 	// --- CONDITIONS SPE OBJECTIF 21 --- //
 
 	const [intVictimes, setIntVictimes] = useState({
-		"Aaron King": false,
-		"Ainmire Oconradh": false,
-		"Annelijn Dikboom": false,
-		"Annina Kurschner": false,
-		"Augustas Alsys": false,
-		"Bogdana Nikol": false,
-		"Daisy Vandenbulcke": false,
-		"Dimosthenis Rigas": false,
-		"Dominik Jele": false,
-		"Edvard Kallio": false,
-		"Elias Varelas": false,
-		"Elimena Furino": false,
-		"Eliza Gaewska": false,
-		"Ere Jakobson": false,
-		"Horasiu Prunea": false,
-		"Imelda Tuzzolino": false,
-		"Ivar Mortensen": false,
-		"Janina Muster": false,
-		"Jörn Frenzel": false,
-		"Karina Galicka": false,
-		"Konstantin Wallner": false,
-		"Lina Syren": false,
-		"Marian Bilek": false,
-		"Marike Vonbraun": false,
-		"Petar Cojocaru": false,
-		"Riano Della Valle": false,
-		"Taneli Tuominen": false,
-		"Timo Sladie": false,
+		"Aaron King": true,
+		"Ainmire Oconradh": true,
+		"Annelijn Dikboom": true,
+		"Annina Kurschner": true,
+		"Augustas Alsys": true,
+		"Bogdana Nikol": true,
+		"Daisy Vandenbulcke": true,
+		"Dimosthenis Rigas": true,
+		"Dominik Jele": true,
+		"Edvard Kallio": true,
+		"Elias Varelas": true,
+		"Elimena Furino": true,
+		"Eliza Gaewska": true,
+		"Ere Jakobson": true,
+		"Horasiu Prunea": true,
+		"Imelda Tuzzolino": true,
+		"Ivar Mortensen": true,
+		"Janina Muster": true,
+		"Jörn Frenzel": true,
+		"Karina Galicka": true,
+		"Konstantin Wallner": true,
+		"Lina Syren": true,
+		"Marian Bilek": true,
+		"Marike Vonbraun": true,
+		"Petar Cojocaru": true,
+		"Riano Della Valle": true,
+		"Taneli Tuominen": true,
+		"Timo Sladie": true,
 	});
 
-	const getIntVictimesValue = () => {
-		let allIntVictimesTrue = Object.keys(intVictimes).filter((el) => {
-			return intVictimes[el];
-		});
+	const getIntVictimesValue = useCallback(() => {
+		const allIntVictimesTrue = Object.keys(intVictimes).filter((el) => intVictimes[el]);
 		setValue(allIntVictimesTrue);
-	};
+	}, [intVictimes]);
+
+	useEffect(() => {
+		getIntVictimesValue();
+	}, [getIntVictimesValue]);
 
 	const handleSubmit21 = () => {
-		getIntVictimesValue();
+		console.log(value);
 		if (value.length > 8) {
 			setErrorMessage(
 				"Il nous faut éliminer encore des victimes si l'on veut avancer dans l'enquête et revenir voir Garraud avec de nouveaux éléments…"
@@ -417,32 +423,34 @@ const Objectif = ({ data }) => {
 	};
 
 	const toggleIntVictime = (el) => {
-		if (intVictimes[el] == false) {
-			setIntVictimes((prevState) => ({ ...prevState, [el]: true }));
-		} else {
+		if (intVictimes[el] == true) {
 			setIntVictimes((prevState) => ({ ...prevState, [el]: false }));
+		} else {
+			setIntVictimes((prevState) => ({ ...prevState, [el]: true }));
 		}
 	};
 
 	// --- CONDITIONS SPE OBJECTIF 23 --- //
 
 	const [finalVictimes, setFinalVictimes] = useState({
-		"Aaron King": false,
-		"Annina Kurschner": false,
-		"Daisy Vandenbulcke": false,
-		"Elimena Furino": false,
-		"Horasiu Prunea": false,
-		"Jörn Frenzel": false,
-		"Konstantin Wallner": false,
-		"Riano Della Valle": false,
+		"Aaron King": true,
+		"Annina Kurschner": true,
+		"Daisy Vandenbulcke": true,
+		"Elimena Furino": true,
+		"Horasiu Prunea": true,
+		"Jörn Frenzel": true,
+		"Konstantin Wallner": true,
+		"Riano Della Valle": true,
 	});
 
-	const getFinalVictimesValue = () => {
-		let allFinalVictimesTrue = Object.keys(finalVictimes).filter((el) => {
-			return finalVictimes[el];
-		});
+	const getFinalVictimesValue = useCallback(() => {
+		const allFinalVictimesTrue = Object.keys(finalVictimes).filter((el) => finalVictimes[el]);
 		setValue(allFinalVictimesTrue);
-	};
+	}, [finalVictimes]);
+
+	useEffect(() => {
+		getFinalVictimesValue();
+	}, [getFinalVictimesValue]);
 
 	const handleSubmit23 = () => {
 		console.log(value);
@@ -464,10 +472,10 @@ const Objectif = ({ data }) => {
 	};
 
 	const toggleFinalVictime = (el) => {
-		if (finalVictimes[el] == false) {
-			setFinalVictimes((prevState) => ({ ...prevState, [el]: true }));
-		} else {
+		if (finalVictimes[el] == true) {
 			setFinalVictimes((prevState) => ({ ...prevState, [el]: false }));
+		} else {
+			setFinalVictimes((prevState) => ({ ...prevState, [el]: true }));
 		}
 	};
 
@@ -563,7 +571,6 @@ const Objectif = ({ data }) => {
 					title="Cave de Céline"
 					srcVideo={urlApi.apiRemi() + "videos/db-s02-302-def.mp4&type=video"}
 					handleModalVideo={handleCloseVideoSauverLauren}
-					delayedButton={true}
 				/>
 			);
 		}
@@ -679,6 +686,13 @@ const Objectif = ({ data }) => {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
+		if (data.id == 13) {
+			if (slugify(value) == "jacquelinegarraud") {
+				setErrorMessage("Est-ce qu'elle n'est pas connue sous un autre nom ?");
+				setValue("");
+				return;
+			}
+		}
 		if (data.id == 31) {
 			if (slugify(value) == "aussichtspavillion" || slugify(value) == "wutoschingen") {
 				setErrorMessage("Je pense qu'on approche, mais elle parle d'un lieu préhistorique, non ?");
@@ -687,7 +701,12 @@ const Objectif = ({ data }) => {
 			}
 		}
 		if (data.id == 32) {
-			if (slugify(value) == "arbailles" || slugify(value) == "arbaille") {
+			if (
+				slugify(value) == "arbailles" ||
+				slugify(value) == "arbaille" ||
+				slugify(value) == "foretdesarbailles" ||
+				slugify(value) == "foretarbailles"
+			) {
 				setErrorMessage(
 					"La forêt des Arbailles... C'est grand. Il me faudrait plus d'informations, quelque chose qui m'aiderait à situer un point dans la forêt. Peut-être que Lauren savait ?"
 				);
@@ -791,15 +810,15 @@ const Objectif = ({ data }) => {
 				console.log("objectif14 terminé");
 			}
 			if (data.id == 21) {
-				await updateObjectives(token, 2, 21, "done");
-				await updateHelp(token, 2, "box2help1", "done");
+				// await updateObjectives(token, 2, 21, "done");
+				// await updateHelp(token, 2, "box2help1", "done");
 				setAudioSamuel(true);
 				fetchPreviousStateNappe();
-				await updateHistory(token, 2, "box2audio3");
-				actionToggleDataHistory();
-				actionToggleDataObjectif();
-				actionToggleDataHelp();
-				console.log("objectif21 terminé");
+				// await updateHistory(token, 2, "box2audio3");
+				// actionToggleDataHistory();
+				// actionToggleDataObjectif();
+				// actionToggleDataHelp();
+				// console.log("objectif21 terminé");
 			}
 			if (data.id == 23) {
 				await updateObjectives(token, 2, 23, "done");
@@ -902,102 +921,114 @@ const Objectif = ({ data }) => {
 						<h2 className="modal-objectif__title">
 							Objectif : <br></br> {data.title}
 						</h2>
-						<div className="modal-objectif__errorMessage">{errorMessage}</div>
 						<div>{renderText(data.detail)}</div>
 						<div className="modal-objectif__victimes__main">
-							{/* <div className="modal-objectif__victimes__list"> */}
-							{data.victimes.map((el, i) => {
-								return (
-									<div key={i} className="modal-objectif__victimes__info">
-										<div className="modal-objectif__victimes__photos--container">
-											<img className="modal-objectif__victimes__photos" src={urlApi.apiRemi() + el.img} />
+							<div className="modal-objectif__victimes__select--list">
+								<div className="modal-objectif__victimes__select--container">
+									<select
+										className="modal-objectif__victimes__select"
+										name="victime1"
+										onChange={(e) => setVictime1(e.target.value)}
+									>
+										{data.choices.map((el, i) => {
+											return (
+												<option value={el} key={i}>
+													{el}
+												</option>
+											);
+										})}
+									</select>
+								</div>
+								<div className="modal-objectif__victimes__select--container">
+									<select
+										className="modal-objectif__victimes__select"
+										name="victime2"
+										onChange={(e) => setVictime2(e.target.value)}
+									>
+										{data.choices.map((el, i) => {
+											return (
+												<option value={el} key={i}>
+													{el}
+												</option>
+											);
+										})}
+									</select>
+								</div>
+								<div className="modal-objectif__victimes__select--container">
+									<select
+										className="modal-objectif__victimes__select"
+										name="victime3"
+										onChange={(e) => setVictime3(e.target.value)}
+									>
+										{data.choices.map((el, i) => {
+											return (
+												<option value={el} key={i}>
+													{el}
+												</option>
+											);
+										})}
+									</select>
+								</div>
+								<div className="modal-objectif__victimes__select--container">
+									<select
+										className="modal-objectif__victimes__select"
+										name="victime4"
+										onChange={(e) => setVictime4(e.target.value)}
+									>
+										{data.choices.map((el, i) => {
+											return (
+												<option value={el} key={i}>
+													{el}
+												</option>
+											);
+										})}
+									</select>
+								</div>
+								<div className="modal-objectif__victimes__select--container">
+									<select
+										className="modal-objectif__victimes__select"
+										name="victime5"
+										onChange={(e) => setVictime5(e.target.value)}
+									>
+										{data.choices.map((el, i) => {
+											return (
+												<option value={el} key={i}>
+													{el}
+												</option>
+											);
+										})}
+									</select>
+								</div>
+								<div className="modal-objectif__victimes__select--container">
+									<select
+										className="modal-objectif__victimes__select"
+										name="victime6"
+										onChange={(e) => setVictime6(e.target.value)}
+									>
+										{data.choices.map((el, i) => {
+											return (
+												<option value={el} key={i}>
+													{el}
+												</option>
+											);
+										})}
+									</select>
+								</div>
+							</div>
+							<div className="modal-objectif__victimes__list">
+								{data.victimes.map((el, i) => {
+									return (
+										<div key={i} className="modal-objectif__victimes__info">
+											<div className="modal-objectif__victimes__photos--container">
+												<img className="modal-objectif__victimes__photos" src={urlApi.apiRemi() + el.img} />
+											</div>
+											<p className="modal-objectif__victimes__nom">{el.name}</p>
 										</div>
-										<p className="modal-objectif__victimes__nom">{el.name}</p>
-									</div>
-								);
-							})}
-							{/* </div> */}
-							{/* <div className="modal-objectif__victimes__select"> */}
-							<select
-								className="modal-objectif__victimes__select"
-								name="victime1"
-								onChange={(e) => setVictime1(e.target.value)}
-							>
-								{data.choices.map((el, i) => {
-									return (
-										<option value={el} key={i}>
-											{el}
-										</option>
 									);
 								})}
-							</select>
-							<select
-								className="modal-objectif__victimes__select"
-								name="victime2"
-								onChange={(e) => setVictime2(e.target.value)}
-							>
-								{data.choices.map((el, i) => {
-									return (
-										<option value={el} key={i}>
-											{el}
-										</option>
-									);
-								})}
-							</select>
-							<select
-								className="modal-objectif__victimes__select"
-								name="victime3"
-								onChange={(e) => setVictime3(e.target.value)}
-							>
-								{data.choices.map((el, i) => {
-									return (
-										<option value={el} key={i}>
-											{el}
-										</option>
-									);
-								})}
-							</select>
-							<select
-								className="modal-objectif__victimes__select"
-								name="victime4"
-								onChange={(e) => setVictime4(e.target.value)}
-							>
-								{data.choices.map((el, i) => {
-									return (
-										<option value={el} key={i}>
-											{el}
-										</option>
-									);
-								})}
-							</select>
-							<select
-								className="modal-objectif__victimes__select"
-								name="victime5"
-								onChange={(e) => setVictime5(e.target.value)}
-							>
-								{data.choices.map((el, i) => {
-									return (
-										<option value={el} key={i}>
-											{el}
-										</option>
-									);
-								})}
-							</select>
-							<select
-								className="modal-objectif__victimes__select"
-								name="victime6"
-								onChange={(e) => setVictime6(e.target.value)}
-							>
-								{data.choices.map((el, i) => {
-									return (
-										<option value={el} key={i}>
-											{el}
-										</option>
-									);
-								})}
-							</select>
-							{/* </div> */}
+							</div>
 						</div>
+						<div className="modal-objectif__errorMessage">{errorMessage}</div>
 						<button className="modal-objectif__button button--red" onClick={handleSubmit14}>
 							Valider
 						</button>
@@ -1015,7 +1046,6 @@ const Objectif = ({ data }) => {
 						<h2 className="modal-objectif__title">
 							Objectif : <br></br> {data.title}
 						</h2>
-						<div className="modal-objectif__errorMessage">{errorMessage}</div>
 						<div>{renderText(data.detail)}</div>
 						<div className="modal-objectif__victimestri__liste">
 							{data.victimes.map((el, i) => {
@@ -1023,13 +1053,13 @@ const Objectif = ({ data }) => {
 									<div
 										key={i}
 										className={`modal-objectif__victimestri__info ${
-											intVictimes[el.name] == true ? "victimestri__info--selected" : ""
+											intVictimes[el.name] == false ? "victimestri__info--selected" : ""
 										}`}
 									>
 										<div className="modal-objectif__victimestri__photo--container">
 											<img
 												className={`modal-objectif__victimestri__photo ${
-													intVictimes[el.name] == true ? "victimestri__photo--selected" : ""
+													intVictimes[el.name] == false ? "victimestri__photo--selected" : ""
 												}`}
 												src={urlApi.apiRemi() + el.img}
 												onClick={() => toggleIntVictime(el.name)}
@@ -1040,6 +1070,7 @@ const Objectif = ({ data }) => {
 								);
 							})}
 						</div>
+						<div className="modal-objectif__errorMessage">{errorMessage}</div>
 						<button className="modal-objectif__button button--red" onClick={handleSubmit21}>
 							Valider
 						</button>
@@ -1057,7 +1088,6 @@ const Objectif = ({ data }) => {
 						<h2 className="modal-objectif__title">
 							Objectif : <br></br> {data.title}
 						</h2>
-						<div className="modal-objectif__errorMessage">{errorMessage}</div>
 						<div>{renderText(data.detail)}</div>
 						<div className="modal-objectif__victimestri__liste">
 							{data.victimes.map((el, i) => {
@@ -1065,13 +1095,13 @@ const Objectif = ({ data }) => {
 									<div
 										key={i}
 										className={`modal-objectif__victimestri__info ${
-											finalVictimes[el.name] == true ? "victimestri__info--selected" : ""
+											finalVictimes[el.name] == false ? "victimestri__info--selected" : ""
 										}`}
 									>
 										<div className="modal-objectif__victimestri__photo--container">
 											<img
 												className={`modal-objectif__victimestri__photo ${
-													finalVictimes[el.name] == true ? "victimestri__photo--selected" : ""
+													finalVictimes[el.name] == false ? "victimestri__photo--selected" : ""
 												}`}
 												src={urlApi.apiRemi() + el.img}
 												onClick={() => toggleFinalVictime(el.name)}
@@ -1082,6 +1112,7 @@ const Objectif = ({ data }) => {
 								);
 							})}
 						</div>
+						<div className="modal-objectif__errorMessage">{errorMessage}</div>
 						<button className="modal-objectif__button button--red" onClick={handleSubmit23}>
 							Valider
 						</button>
@@ -1348,7 +1379,7 @@ const Objectif = ({ data }) => {
 		if (currentBox == 1) {
 			return (
 				<div className="modal-objectif__endGame--text">
-					<p>Vous avez finit la première partie</p>
+					<p>Vous avez fini la première partie</p>
 					<p>Rendez-vous en box 2 pour la suite de l&apos;enquête</p>
 				</div>
 			);
@@ -1356,8 +1387,8 @@ const Objectif = ({ data }) => {
 		if (currentBox == 2) {
 			return (
 				<div className="modal-objectif__endGame--text">
-					<p>Vous avez finit la seconde partie</p>
-					<p>Rendez-vous en box 3 pour la suite de l&apos;enquête</p>
+					<p>Vous avez fini la seconde partie</p>
+					<p>Rendez-vous en box 3 pour clore cette affaire</p>
 				</div>
 			);
 		}
@@ -1427,13 +1458,16 @@ const Objectif = ({ data }) => {
 		return (
 			<div className="modal-objectif__background">
 				<div className="modal-objectif__box">
-					<p>Voilà ce qu&apos;on a retrouvé dans le coffre: une lettre et une cassette VHS.</p>
+					<p>Voilà ce qu&apos;on a retrouvé dans le coffre:</p>
+					<p>LETTRE</p>
 					<p>La lettre est disponible dans l&apos;onglet Historique</p>
+					<p>VHS</p>
 					<p>
-						Il y a deux passages intéressants dans la video: un vers 15min où on voit Charles Garraud et un autre à la
-						fin...Si vous voulez plus d&apos;informations sur la cassette, n&apos;hésitez pas à consulter Tim en lui demandant
-						une analyse VHS.
+						Il y a deux passages intéressants dans la video: un vers 15min où on voit Charles Garraud et un autre à la fin...
+						La VHS est entre les mains de Tim pour de plus amples analyses. N&apos;hésitez pas à le solliciter pour accéder au
+						contenu.
 					</p>
+					<p>PLAN</p>
 					<p>
 						Il y avait aussi ce plan étrange, il n&apos;a pas l&apos;air bien vieux, il a dû être accroché à la maison il
 						n&apos;y a pas longtemps.
@@ -1482,7 +1516,6 @@ const Objectif = ({ data }) => {
 				title="Interrogatoire de Charles Garraud"
 				srcVideo={urlApi.apiRemi() + "videos/db-s02-104-vdef.mp4&type=video"}
 				handleModalVideo={handleCloseVideoInterrogatoire}
-				delayedButton={true}
 			/>
 		);
 	};
@@ -1530,7 +1563,6 @@ const Objectif = ({ data }) => {
 				title="Bureau de Lauren Fraser"
 				srcVideo={urlApi.apiRemi() + "videos/db-s02-209-vdef.mp4&type=video"}
 				handleModalVideo={handleCloseVideoBureau}
-				delayedButton={true}
 			/>
 		);
 	};
@@ -1544,7 +1576,7 @@ const Objectif = ({ data }) => {
 		return (
 			<Document
 				title="Email de Lauren Fraser"
-				srcElement={urlApi.apiRemi() + "assets/document/219_Message_Lauren_#1.jpg"}
+				srcElement={urlApi.apiRemi() + "assets/document/219_Message_Lauren_1.jpg"}
 				handleModalDocument={handleCloseMail1}
 			/>
 		);
@@ -1562,7 +1594,7 @@ const Objectif = ({ data }) => {
 		return (
 			<Document
 				title="Email de Lauren Fraser"
-				srcElement={urlApi.apiRemi() + "assets/document/219_Message_Lauren_#2.jpg"}
+				srcElement={urlApi.apiRemi() + "assets/document/219_Message_Lauren_2.jpg"}
 				handleModalDocument={handleCloseMail2}
 			/>
 		);
@@ -1626,7 +1658,6 @@ const Objectif = ({ data }) => {
 					title="Flash Info"
 					srcVideo={urlApi.apiRemi() + "videos/db-s02-203-vdef.mp4&type=video"}
 					handleModalVideo={handleCloseVideoBreakingNews}
-					delayedButton={true}
 				/>
 			</>
 		);
@@ -1636,12 +1667,21 @@ const Objectif = ({ data }) => {
 		setAudioEndBreakingNews(true);
 		fetchPreviousStateNappe();
 		await updateHistory(token, 2, "box2video3");
+		await updateHistory(token, 2, "box2audio3");
+		await updateObjectives(token, 2, 22, "open");
+		await updateHelp(token, 2, "box2help2", "open");
+		await updateObjectives(token, 2, 21, "done");
+		await updateHelp(token, 2, "box2help1", "done");
 		actionToggleDataHistory();
+		actionToggleDataObjectif();
+		actionToggleDataHelp();
+		console.log("objectif21 terminé");
 	};
 
 	// --- LOGIQUE EVENT BOX 3 --- //
 
 	// const [videoSauverLauren, setVideoSauverLauren] = useState(false);
+	const [modaleSquelette, setModaleSquelette] = useState(false);
 	const [debriefLauren, setDebriefLauren] = useState(false);
 	const [tempsEcoule, setTempsEcoule] = useState(false);
 	const [mauvaiseFin1, setMauvaiseFin1] = useState(false);
@@ -1649,16 +1689,22 @@ const Objectif = ({ data }) => {
 	const [resolution, setResolution] = useState(false);
 	const [interrogatoireFinal, setInterrogatoireFinal] = useState(false);
 
-	// const displayVideoSauverLauren = () => {
-	// 	return (
-	// 		<Video
-	// 			title="Cave de Céline"
-	// 			srcVideo={urlApi.apiRemi() + "videos/db-s02-302-def.mp4&type=video"}
-	// 			handleModalVideo={handleCloseVideoSauverLauren}
-	// 			delayedButton={true}
-	// 		/>
-	// 	);
-	// };
+	const displayModaleSquelette = () => {
+		return (
+			<div className="modal-objectif__background">
+				<div className="modal-objectif__box">
+					<p>Bon travail, regardons ce qu&apos;il y a dans ce coffre :</p>
+					<p>Un squelette entier, je ne sais pas de quand il date, mais c&apos;est sacrément bien conservé, sauf la tête.</p>
+					<p>Vous devriez demander à Adèle ce qu&apos;elle peut trouver dessus. </p>
+					<p>Et une vieille photo…</p>
+					<p>Vous trouverez tout ça dans l&apos;Historique.</p>
+					<button className="modal-objectif__button button--red" onClick={setModaleSquelette(false)}>
+						Continuer l&apos;enquête
+					</button>
+				</div>
+			</div>
+		);
+	};
 
 	const handleCloseVideoSauverLauren = async () => {
 		handleModal();
@@ -1765,7 +1811,6 @@ const Objectif = ({ data }) => {
 				title="Interrogatoire de Céline Valluy"
 				srcVideo={urlApi.apiRemi() + "videos/db-s02-309-def.mp4&type=video"}
 				handleModalVideo={handleEndBox3}
-				delayedButton={true}
 			/>
 		);
 	};
@@ -1841,6 +1886,7 @@ const Objectif = ({ data }) => {
 			{videoBreakingNews ? displayVideoBreakingNews() : null}
 			{videoBureauLauren ? displayVideoBureauLauren() : null}
 			{/* {videoSauverLauren ? displayVideoSauverLauren() : null} */}
+			{modaleSquelette ? displayModaleSquelette() : null}
 			{debriefLauren ? displayDebriefLauren() : null}
 			{tempsEcoule ? displayModaleTempsEcoule() : null}
 			{mauvaiseFin1 ? displayModaleMauvaiseFin1() : null}

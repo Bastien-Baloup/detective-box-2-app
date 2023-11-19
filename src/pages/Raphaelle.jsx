@@ -14,7 +14,6 @@ import {
 	updateHistory,
 	getCharactersById,
 	getObjectivesByBox,
-	updateObjectives,
 	updateHelp,
 	getHistoryByBox,
 } from "../utils/hooks/useApi.js";
@@ -27,7 +26,6 @@ const Raphaelle = ({ closeAgentPage }) => {
 		toggleDataRaphaelle,
 		toggleDataObjectif,
 		actionToggleDataHelp,
-		actionToggleDataObjectif,
 		toggleDataHistory,
 	} = useContext(DataContext);
 
@@ -46,14 +44,20 @@ const Raphaelle = ({ closeAgentPage }) => {
 		const fetchData = async () => {
 			const objectifs = await getObjectivesByBox(token, currentBox);
 			if (currentBox == 1) {
-				const objectif14 = objectifs.data.find((event) => event.id == 14);
-				setObjectif14(objectif14.status);
+				const objectif14Data = objectifs.data.find((event) => event.id == 14);
+				setObjectif14(objectif14Data.status);
 			}
 			if (currentBox == 2) {
-				const objectif21 = objectifs.data.find((event) => event.id == 21);
-				setObjectif21(objectif21.status);
-				const objectif24 = objectifs.data.find((event) => event.id == 24);
-				setObjectif24(objectif24.status);
+				const objectif21Data = objectifs.data.find((event) => event.id == 21);
+				setObjectif21(objectif21Data.status);
+				const objectif24Data = objectifs.data.find((event) => event.id == 24);
+				setObjectif24(objectif24Data.status);
+			}
+			if (currentBox == 3) {
+				const objectif31Data = objectifs.data.find((event) => event.id == 31);
+				setObjectif31(objectif31Data.status);
+				const objectif32Data = objectifs.data.find((event) => event.id == 32);
+				setObjectif32(objectif32Data.status);
 			}
 		};
 		fetchData();
@@ -80,6 +84,8 @@ const Raphaelle = ({ closeAgentPage }) => {
 	const [objectif14, setObjectif14] = useState("");
 	const [objectif21, setObjectif21] = useState("");
 	const [objectif24, setObjectif24] = useState("");
+	const [objectif31, setObjectif31] = useState("");
+	const [objectif32, setObjectif32] = useState("");
 	const [box3audio3, setBox3Audio3] = useState(false);
 
 	// EXPLICATION : Fonction pour slugifier l'input Adresse des joueurs (lettre et chiffres ok)
@@ -178,6 +184,13 @@ const Raphaelle = ({ closeAgentPage }) => {
 					setValueLongitude("");
 					setValueLatitude("");
 					setErrorMessage("Vous n'avez aucune raison d'aller à cette adresse.");
+					return;
+				}
+				if (answerInThisBox(slugifiedAdresse).id == "box3lieu1" && objectif31 != "done" && objectif32 != "done") {
+					setValueAdresse("");
+					setValueLongitude("");
+					setValueLatitude("");
+					setErrorMessage("Assurez-vous de valider les premiers objectifs avant de m'envoyer en pleine fôret.");
 					return;
 				}
 				if (answerInThisBox(slugifiedAdresse).id == "box3lieu2" && box3audio3 == false) {
@@ -285,12 +298,12 @@ const Raphaelle = ({ closeAgentPage }) => {
 	const openLieu = async (answerId, asnwerAsk) => {
 		await updateHistory(token, currentBox, answerId);
 		await updateCharactersById(token, 4, currentBox, asnwerAsk);
-		if (answerId == "box2lieu3") {
-			await updateObjectives(token, 2, 22, "open");
-			await updateHelp(token, 2, "box2help3", "open");
-			actionToggleDataObjectif();
-			actionToggleDataHelp();
-		}
+		// if (answerId == "box2lieu3") {
+		// 	await updateObjectives(token, 2, 22, "open");
+		// 	await updateHelp(token, 2, "box2help2", "open");
+		// 	actionToggleDataObjectif();
+		// 	actionToggleDataHelp();
+		// }
 		if (answerId == "box2lieu2") {
 			await updateHelp(token, 2, "box2help5", "done");
 			await updateHelp(token, 2, "box2help6", "open");
@@ -356,22 +369,24 @@ const Raphaelle = ({ closeAgentPage }) => {
 						/>
 						<p className="agent__raphaelle--text">OU</p>
 						<p className="agent__raphaelle--label">Coordonnées GPS</p>
-						<Input
-							type="texte"
-							label="Latitude"
-							name="gps"
-							placeholder="Ce champ est vide"
-							value={valueLatitude}
-							setValue={setValueLatitude}
-						/>
-						<Input
-							type="texte"
-							label="Longitude"
-							name="gps"
-							placeholder="Ce champ est vide"
-							value={valueLongitude}
-							setValue={setValueLongitude}
-						/>
+						<div className="agent__raphaelle--GPSinput">
+							<Input
+								type="texte"
+								label="Latitude"
+								name="gps"
+								placeholder="Ce champ est vide"
+								value={valueLatitude}
+								setValue={setValueLatitude}
+							/>
+							<Input
+								type="texte"
+								label="Longitude"
+								name="gps"
+								placeholder="Ce champ est vide"
+								value={valueLongitude}
+								setValue={setValueLongitude}
+							/>
+						</div>
 						<button className="agent__form__button button--red">Valider</button>
 					</form>
 				</div>

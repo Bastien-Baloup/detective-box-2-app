@@ -128,7 +128,7 @@ function Choice() {
 
 	return (
 		<main className="choice">
-			<audio autoPlay loop>
+			<audio autoPlay>
 				<source src={urlApi.apiRemi() + "sounds/musiques-db-s2-theme-tueur.wav"} type="audio/wav" />
 				Votre navigateur ne prend pas en charge ce format
 			</audio>

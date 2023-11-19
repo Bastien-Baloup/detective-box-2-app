@@ -3,6 +3,7 @@ export const dataTim = {
 		{
 			ask: [
 				"vhs",
+				"contenuvhs",
 				"cassette",
 				"vhscave",
 				"cassettegarraud",
@@ -128,12 +129,13 @@ export const dataTim = {
 	],
 	box2: [
 		{
-			ask: ["webcamappartement", "webcammason", "webcammasonreynolds", "webcamreynolds", "webcammason"],
+			ask: ["webcam", "webcamappartement", "webcammason", "webcammasonreynolds", "webcamreynolds", "webcammason"],
 			text: [
 				"Vous m'avez demandé de m'occuper de la webcam de Reynolds.",
 				"C'est intéressant, elle a une mémoire interne, protégée par un bon mot de passe, mais je l'ai craqué.",
-				"Je ne vous ai mis que le passage le plus important, il a été interrompu alors qu'il avait commencé à enregistrer.",
-				"Je vous envoie la vidéo que j'ai trouvée dessus.",
+				"Je vous envoie ce que j'ai trouvé dessus.",
+				"Par contre je vous préviens, certains passages sont difficilement supportables.",
+				"Je vous ai donc épargné de tout regarder en sélectionnant les moments les plus importants.",
 			],
 			srcComment: "sounds/201-commentaires-tim-1.wav",
 			id: "box2video2",
@@ -145,11 +147,13 @@ export const dataTim = {
 			ask: [
 				"fandesconstellationscachées",
 				"forumbreakingnews",
+				"forum",
 				"wwwfansdesconstellationscacheesfr",
 				"fansdesconstellationscacheesfr",
 			],
 			text: [
 				"C'est une antiquité, que j'ai retrouvée au fin fond du web.",
+				"https://www.fans-des-constellations-cachees.fr/",
 				"J'ai tout déverrouillé pour les topics, mais j'arrive pas à casser les codes pour se connecter aux comptes et avoir accès aux messages privés.",
 				"Par contre, en croisant les dates de connexion et les lieux, je pense avoir trouvé que le pseudo de Garraud était 'Rabid Star Slayer'.",
 				"Pour les mots de passe, la seule obligation demandée, c'est d'être composés de chiffres et de lettres.",
@@ -177,7 +181,18 @@ export const dataTim = {
 	],
 	box3: [
 		{
-			ask: ["dossieranninakurschner", "dossierannina", "anninakurschner", "irhemail", "wwwirhemailcom", "irhemailcom"],
+			ask: [
+				"boitemailannina",
+				"emailannina",
+				"boitemailanninakurschner",
+				"emailanninakurschner",
+				"dossieranninakurschner",
+				"dossierannina",
+				"anninakurschner",
+				"irhemail",
+				"wwwirhemailcom",
+				"irhemailcom",
+			],
 			text: [
 				"Ah je vois qu'il y a un email, je vais aller voir sur le webmail.",
 				"Vous l'avez trouvé vous aussi ? C'est « www.irhemail.com »",

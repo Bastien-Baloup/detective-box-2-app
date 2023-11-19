@@ -190,7 +190,7 @@ export const dataCeline = {
 			status: false,
 		},
 		{
-			ask: ["patrickoneil"],
+			ask: ["patrickoneil", "patrickonil", "patrick"],
 			text: ["Voilà ce que j'ai trouvé :"],
 			id: "box1archive20",
 			title: "Archives Patrick O'Neil",
@@ -243,7 +243,7 @@ export const dataCeline = {
 			status: false,
 		},
 		{
-			ask: ["ainmiroconradh"],
+			ask: ["ainmireoconradh"],
 			text: ["Voilà ce que j'ai trouvé :"],
 			id: "box2archive2",
 			title: "Archives Ainmir Oconradh",
@@ -344,6 +344,7 @@ export const dataCeline = {
 			id: "box2archive14",
 			title: "Archives Ere Jakobson",
 			category: "Archive",
+			src: "assets/archive/2_Archives_Ere_Jakobson.jpg",
 			status: false,
 		},
 		{

@@ -14,7 +14,7 @@ import { useContext, useEffect } from "react";
 import { getHistoryByBox } from "../utils/hooks/useApi";
 
 function Historique() {
-	const filtersType = ["Archive", "Document", "Video", "Audio", "Lieu"];
+	const filtersType = ["Document", "Video", "Audio", "Lieu", "Archive"];
 	const filterBox = ["Box 1", "Box 2", "Box 3"];
 	const token = localStorage.getItem("token");
 	const { currentBox } = useContext(BoxContext);
@@ -178,7 +178,6 @@ function Historique() {
 					title={clue.title}
 					srcVideo={urlApi.apiRemi() + clue.src + "&type=video"}
 					handleModalVideo={() => setModal(false)}
-					delayedButton={false}
 				/>
 			);
 		}
