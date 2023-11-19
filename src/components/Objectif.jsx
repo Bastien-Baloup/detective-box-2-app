@@ -41,7 +41,7 @@ const Objectif = ({ data }) => {
 
 	const { currentBox } = useContext(BoxContext);
 	const token = localStorage.getItem("token");
-	const { fetchPreviousStateNappe, fetchNappeMute, nappeMute } = useContext(AmbianceContext);
+	const { fetchPreviousStateNappe, nappeMute } = useContext(AmbianceContext);
 	const {
 		actionToggleDataEvent,
 		toggleDataEvent,
@@ -145,7 +145,7 @@ const Objectif = ({ data }) => {
 		if (currentBox == 3) {
 			// EXPLICATION : Pour faire le lien entre le composant Header (timer) et ici
 			if (event35 == "open") {
-				fetchNappeMute(true);
+				// fetchNappeMute(true);
 				setTempsEcoule(true);
 			}
 		}
@@ -517,11 +517,11 @@ const Objectif = ({ data }) => {
 			await updateEvent(token, 3, 33, "done");
 			actionToggleDataEvent();
 			setMauvaiseFin1(true);
-			fetchNappeMute(true);
+			// fetchNappeMute(true);
 			return;
 		}
 		if (slugify(value) == "graz" && victimeSaved == "maria") {
-			fetchNappeMute(true);
+			// fetchNappeMute(true);
 			handleModal();
 			await updateEvent(token, 3, 33, "done");
 			actionToggleDataEvent();
@@ -529,7 +529,7 @@ const Objectif = ({ data }) => {
 			return;
 		}
 		if (slugify(value) == "graz" && victimeSaved == "giuseppe") {
-			fetchNappeMute(true);
+			// fetchNappeMute(true);
 			handleModal();
 			await updateEvent(token, 3, 33, "done");
 			actionToggleDataEvent();
