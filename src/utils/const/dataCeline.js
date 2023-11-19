@@ -3,27 +3,27 @@ export const dataCeline = {
 		{
 			ask: ["laurenfraser"],
 			text: ["Vous ne voulez pas vous concentrer sur l'enquête plutôt que d'ennuyer les membres de l'équipe ?"],
-			srcComment: "sounds/403-repliques-celine-8.wav",
+			srcComment: "sounds/403-repliques-celine-8.mp3",
 		},
 		{
 			ask: ["celinevalluy"],
 			text: ["Vous n'avez pas une enquête à résoudre plutôt que de vous inquiéter de ma vie ?"],
-			srcComment: "sounds/403-repliques-celine-8.wav",
+			srcComment: "sounds/403-repliques-celine-8.mp3",
 		},
 		{
 			ask: ["timlonewood"],
 			text: ["Vous ne voulez pas vous concentrer sur l'enquête plutôt que d'ennuyer les membres de l'équipe ?"],
-			srcComment: "sounds/403-repliques-celine-8.wav",
+			srcComment: "sounds/403-repliques-celine-8.mp3",
 		},
 		{
 			ask: ["raphaellesanchez"],
 			text: ["Vous ne voulez pas vous concentrer sur l'enquête plutôt que d'ennuyer les membres de l'équipe ?"],
-			srcComment: "sounds/403-repliques-celine-8.wav",
+			srcComment: "sounds/403-repliques-celine-8.mp3",
 		},
 		{
 			ask: ["adeleleinu"],
 			text: ["Vous ne voulez pas vous concentrer sur l'enquête plutôt que d'ennuyer les membres de l'équipe ?"],
-			srcComment: "sounds/403-repliques-celine-8.wav",
+			srcComment: "sounds/403-repliques-celine-8.mp3",
 		},
 		{
 			ask: ["jacquelinegarraud"],

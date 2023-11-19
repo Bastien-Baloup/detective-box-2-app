@@ -102,7 +102,7 @@ const Tim = ({ closeAgentPage }) => {
 				<div className="modal-objectif__box">
 					{answer.srcComment ? (
 						<audio autoPlay>
-							<source src={urlApi.apiRemi() + answer.srcComment} type="audio/wav" />
+							<source src={urlApi.apiRemi() + answer.srcComment} type="audio/mpeg" />
 							Votre navigateur ne prend pas en charge ce format
 						</audio>
 					) : (
@@ -182,13 +182,13 @@ const Tim = ({ closeAgentPage }) => {
 	};
 
 	const catchphrase = [
-		"sounds/404-repliques-tim-1.wav",
-		"sounds/404-repliques-tim-2.wav",
-		"sounds/404-repliques-tim-3.wav",
-		"sounds/404-repliques-tim-4.wav",
-		"sounds/404-repliques-tim-5.wav",
-		"sounds/404-repliques-tim-6.wav",
-		"sounds/404-repliques-tim-7.wav",
+		"sounds/404-repliques-tim-1.mp3",
+		"sounds/404-repliques-tim-2.mp3",
+		"sounds/404-repliques-tim-3.mp3",
+		"sounds/404-repliques-tim-4.mp3",
+		"sounds/404-repliques-tim-5.mp3",
+		"sounds/404-repliques-tim-6.mp3",
+		"sounds/404-repliques-tim-7.mp3",
 	];
 
 	const randomNumber = Math.floor(Math.random() * catchphrase.length);
@@ -198,7 +198,7 @@ const Tim = ({ closeAgentPage }) => {
 			{modal ? renderModal() : ""}
 			{modalMedia ? renderModalMedia() : ""}
 			<audio autoPlay>
-				<source src={urlApi.apiRemi() + catchphrase[randomNumber]} type="audio/wav" />
+				<source src={urlApi.apiRemi() + catchphrase[randomNumber]} type="audio/mpeg" />
 				Votre navigateur ne prend pas en charge ce format
 			</audio>
 			<div className="agent">

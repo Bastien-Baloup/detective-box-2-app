@@ -68,7 +68,7 @@ function Home() {
 			<div className="modal-boxdone__background">
 				<div className="modal-boxdone__box">
 					<audio autoPlay>
-						<source src={urlApi.apiRemi() + "sounds/210-commentaires-raphaelle-absence-lauren.wav"} type="audio/wav" />
+						<source src={urlApi.apiRemi() + "sounds/210-commentaires-raphaelle-absence-lauren.mp3"} type="audio/mpeg" />
 						Votre navigateur ne prend pas en charge ce format
 					</audio>
 					<p className="modal-boxdone__text">Agents, voici le numéro de portable de Lauren : +33 7 69 57 00 27.</p>
@@ -92,7 +92,7 @@ function Home() {
 			<div className="modal-boxdone__background">
 				<div className="modal-boxdone__box">
 					<audio autoPlay>
-						<source src={urlApi.apiRemi() + "sounds/300-commentaires-sanchez-1.wav"} type="audio/wav" />
+						<source src={urlApi.apiRemi() + "sounds/300-commentaires-sanchez-1.mp3"} type="audio/mpeg" />
 						Votre navigateur ne prend pas en charge ce format
 					</audio>
 					<p className="modal-boxdone__text">

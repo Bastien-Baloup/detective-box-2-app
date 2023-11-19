@@ -128,7 +128,7 @@ const Lauren = ({ closeAgentPage }) => {
 				<div className="modal-objectif__box">
 					{answer.srcComment ? (
 						<audio autoPlay>
-							<source src={urlApi.apiRemi() + answer.srcComment} type="audio/wav" />
+							<source src={urlApi.apiRemi() + answer.srcComment} type="audio/mpeg" />
 							Votre navigateur ne prend pas en charge ce format
 						</audio>
 					) : (
@@ -194,21 +194,21 @@ const Lauren = ({ closeAgentPage }) => {
 	};
 
 	const catchphraseLauren = [
-		"sounds/402-repliques-lauren-1.wav",
-		"sounds/402-repliques-lauren-2.wav",
-		"sounds/402-repliques-lauren-3.wav",
-		"sounds/402-repliques-lauren-4.wav",
-		"sounds/402-repliques-lauren-5.wav",
-		"sounds/402-repliques-lauren-6.wav",
-		"sounds/402-repliques-lauren-7.wav",
+		"sounds/402-repliques-lauren-1.mp3",
+		"sounds/402-repliques-lauren-2.mp3",
+		"sounds/402-repliques-lauren-3.mp3",
+		"sounds/402-repliques-lauren-4.mp3",
+		"sounds/402-repliques-lauren-5.mp3",
+		"sounds/402-repliques-lauren-6.mp3",
+		"sounds/402-repliques-lauren-7.mp3",
 	];
 	const catchphraseRaphaelle = [
-		"sounds/401-repliques-raphaelle-1.wav",
-		"sounds/401-repliques-raphaelle-2.wav",
-		"sounds/401-repliques-raphaelle-3.wav",
-		"sounds/401-repliques-raphaelle-5.wav",
-		"sounds/401-repliques-raphaelle-6.wav",
-		"sounds/401-repliques-raphaelle-7.wav",
+		"sounds/401-repliques-raphaelle-1.mp3",
+		"sounds/401-repliques-raphaelle-2.mp3",
+		"sounds/401-repliques-raphaelle-3.mp3",
+		"sounds/401-repliques-raphaelle-5.mp3",
+		"sounds/401-repliques-raphaelle-6.mp3",
+		"sounds/401-repliques-raphaelle-7.mp3",
 	];
 
 	const randomNumberLauren = Math.floor(Math.random() * catchphraseLauren.length);
@@ -225,7 +225,7 @@ const Lauren = ({ closeAgentPage }) => {
 							? urlApi.apiRemi() + catchphraseRaphaelle[randomNumberRaphaelle]
 							: urlApi.apiRemi() + catchphraseLauren[randomNumberLauren]
 					}
-					type="audio/wav"
+					type="audio/mpeg"
 				/>
 				Votre navigateur ne prend pas en charge ce format
 			</audio>

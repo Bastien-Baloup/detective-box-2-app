@@ -610,12 +610,12 @@ const Objectif = ({ data }) => {
 						</h2>
 						{victimeSaved == "Maria" ? (
 							<audio autoPlay>
-								<source src={urlApi.apiRemi() + "sounds/304-dernier-objectif-rempli-maria.wav"} type="audio/wav" />
+								<source src={urlApi.apiRemi() + "sounds/304-dernier-objectif-rempli-maria.mp3"} type="audio/mpeg" />
 								Votre navigateur ne prend pas en charge ce format
 							</audio>
 						) : (
 							<audio autoPlay>
-								<source src={urlApi.apiRemi() + "sounds/304-dernier-objectif-rempli-giuseppe.wav"} type="audio/wav" />
+								<source src={urlApi.apiRemi() + "sounds/304-dernier-objectif-rempli-giuseppe.mp3"} type="audio/mpeg" />
 								Votre navigateur ne prend pas en charge ce format
 							</audio>
 						)}
@@ -1206,7 +1206,7 @@ const Objectif = ({ data }) => {
 					</h2>
 					{data.answersrc ? (
 						<audio autoPlay>
-							<source src={urlApi.apiRemi() + data.answersrc} type="audio/wav" />
+							<source src={urlApi.apiRemi() + data.answersrc} type="audio/mpeg" />
 							Votre navigateur ne prend pas en charge ce format
 						</audio>
 					) : (
@@ -1230,7 +1230,7 @@ const Objectif = ({ data }) => {
 					</h2>
 					{data.newanswersrc ? (
 						<audio autoPlay>
-							<source src={urlApi.apiRemi() + data.newanswersrc} type="audio/wav" />
+							<source src={urlApi.apiRemi() + data.newanswersrc} type="audio/mpeg" />
 							Votre navigateur ne prend pas en charge ce format
 						</audio>
 					) : (
@@ -1323,7 +1323,7 @@ const Objectif = ({ data }) => {
 			<div className="modal-objectif__background">
 				<div className="modal-objectif__box modal-hacking">
 					<audio autoPlay>
-						<source src={urlApi.apiRemi() + "sounds/103-hacking-tueur.wav"} type="audio/wav" />
+						<source src={urlApi.apiRemi() + "sounds/103-hacking-tueur.mp3"} type="audio/mpeg" />
 						Votre navigateur ne prend pas en charge ce format
 					</audio>
 					<div className="text-hacking" data-text="Vous avez un mail">
@@ -1350,7 +1350,7 @@ const Objectif = ({ data }) => {
 		return (
 			<>
 				<audio autoPlay>
-					<source src={urlApi.apiRemi() + "sounds/musiques-db-s2-theme-tueur.wav"} type="audio/wav" />
+					<source src={urlApi.apiRemi() + "sounds/musiques-db-s2-theme-tueur.mp3"} type="audio/mpeg" />
 					Votre navigateur ne prend pas en charge ce format
 				</audio>
 				<Document
@@ -1441,7 +1441,7 @@ const Objectif = ({ data }) => {
 				srcImg2={null}
 				srcTranscription={urlApi.apiRemi() + "assets/transcripts/102_Derniers_mots_Rebecca_transcript.pdf"}
 				handleModalAudio={closeAudioRebecca}
-				srcAudio={urlApi.apiRemi() + "sounds/102-derniers-mots-rebecca.wav"}
+				srcAudio={urlApi.apiRemi() + "sounds/102-derniers-mots-rebecca.mp3"}
 			/>
 		);
 	};
@@ -1612,7 +1612,7 @@ const Objectif = ({ data }) => {
 				srcImg2={urlApi.apiRemi() + "assets/photos-personnages/raphaelle.jpg"}
 				srcTranscription={urlApi.apiRemi() + "assets/transcripts/207_Echanges_Samuel_Perry-Raphaelle_transcript.pdf"}
 				handleModalAudio={closeAudioSamuel}
-				srcAudio={urlApi.apiRemi() + "sounds/207-echanges-samuel-perry-raphaelle.wav"}
+				srcAudio={urlApi.apiRemi() + "sounds/207-echanges-samuel-perry-raphaelle.mp3"}
 			/>
 		);
 	};
@@ -1627,7 +1627,7 @@ const Objectif = ({ data }) => {
 			<div className="modal-objectif__background">
 				<div className="modal-objectif__box">
 					<audio autoPlay>
-						<source src={urlApi.apiRemi() + "sounds/203-commentaires-raphaelle-breaking-news-1.wav"} type="audio/wav" />
+						<source src={urlApi.apiRemi() + "sounds/203-commentaires-raphaelle-breaking-news-1.mp3"} type="audio/mpeg" />
 						Votre navigateur ne prend pas en charge ce format
 					</audio>
 					<p>Attendez, allumez la TV ! </p>
@@ -1650,7 +1650,7 @@ const Objectif = ({ data }) => {
 			<>
 				{audioEndBreakingNews ? (
 					<audio autoPlay onEnded={() => setVideoBreakingNews(false)}>
-						<source src={urlApi.apiRemi() + "sounds/203-commentaires-raphaelle-breaking-news-2.wav"} type="audio/wav" />
+						<source src={urlApi.apiRemi() + "sounds/203-commentaires-raphaelle-breaking-news-2.mp3"} type="audio/mpeg" />
 						Votre navigateur ne prend pas en charge ce format
 					</audio>
 				) : null}
@@ -1720,7 +1720,7 @@ const Objectif = ({ data }) => {
 				srcImg2={urlApi.apiRemi() + "assets/photos-personnages/raphaelle.jpg"}
 				srcTranscription={urlApi.apiRemi() + "assets/photos-personnages/raphaelle.jpg"}
 				handleModalAudio={closeDebriefLauren}
-				srcAudio={urlApi.apiRemi() + "sounds/303-debrief-lauren.wav"}
+				srcAudio={urlApi.apiRemi() + "sounds/303-debrief-lauren.mp3"}
 			/>
 		);
 	};
@@ -1740,7 +1740,7 @@ const Objectif = ({ data }) => {
 			<div className="modal-objectif__background">
 				<div className="modal-objectif__box">
 					<audio autoPlay>
-						<source src={urlApi.apiRemi() + "sounds/306-fin-du-temps.wav"} type="audio/wav" />
+						<source src={urlApi.apiRemi() + "sounds/306-fin-du-temps.mp3"} type="audio/mpeg" />
 						Votre navigateur ne prend pas en charge ce format
 					</audio>
 					<p>Le temps est écoulé, nous n&apos;avons pas pu sauver la victime à temps !</p>
@@ -1786,7 +1786,7 @@ const Objectif = ({ data }) => {
 			<div className="modal-objectif__background">
 				<div className="modal-objectif__box">
 					<audio autoPlay>
-						<source src={urlApi.apiRemi() + "sounds/307-bonne-fin.wav"} type="audio/wav" />
+						<source src={urlApi.apiRemi() + "sounds/307-bonne-fin.mp3"} type="audio/mpeg" />
 						Votre navigateur ne prend pas en charge ce format
 					</audio>
 					<p>Bravo, grâce à vous, nous avons réussi à sauver la dernière cible et à arrêter Céline !</p>
@@ -1825,7 +1825,7 @@ const Objectif = ({ data }) => {
 			<div className="modal-objectif__background">
 				<div className="modal-objectif__box">
 					<audio autoPlay>
-						<source src={urlApi.apiRemi() + "sounds/308-mauvaise-fin-1.wav"} type="audio/wav" />
+						<source src={urlApi.apiRemi() + "sounds/308-mauvaise-fin-1.mp3"} type="audio/mpeg" />
 						Votre navigateur ne prend pas en charge ce format
 					</audio>
 					<p>
@@ -1849,7 +1849,7 @@ const Objectif = ({ data }) => {
 			<div className="modal-objectif__background">
 				<div className="modal-objectif__box">
 					<audio autoPlay>
-						<source src={urlApi.apiRemi() + "sounds/309-mauvaise-fin-2.wav"} type="audio/wav" />
+						<source src={urlApi.apiRemi() + "sounds/309-mauvaise-fin-2.mp3"} type="audio/mpeg" />
 						Votre navigateur ne prend pas en charge ce format
 					</audio>
 					<p>Le temps est écoulé, nous n&apos;avons pas pu sauver la victime à temps !</p>

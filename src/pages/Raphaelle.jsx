@@ -21,13 +21,8 @@ import {
 const Raphaelle = ({ closeAgentPage }) => {
 	const { currentBox } = useContext(BoxContext);
 	const token = localStorage.getItem("token");
-	const {
-		actionToggleDataRaphaelle,
-		toggleDataRaphaelle,
-		toggleDataObjectif,
-		actionToggleDataHelp,
-		toggleDataHistory,
-	} = useContext(DataContext);
+	const { actionToggleDataRaphaelle, toggleDataRaphaelle, toggleDataObjectif, actionToggleDataHelp, toggleDataHistory } =
+		useContext(DataContext);
 
 	//EXPLICATION : Raphaelle est le personnage "4"
 
@@ -186,7 +181,10 @@ const Raphaelle = ({ closeAgentPage }) => {
 					setErrorMessage("Vous n'avez aucune raison d'aller à cette adresse.");
 					return;
 				}
-				if (answerInThisBox(slugifiedAdresse).id == "box3lieu1" && objectif31 != "done" && objectif32 != "done") {
+				if (
+					(answerInThisBox(slugifiedAdresse).id == "box3lieu1" && objectif31 != "done") ||
+					(answerInThisBox(slugifiedAdresse).id == "box3lieu1" && objectif32 != "done")
+				) {
 					setValueAdresse("");
 					setValueLongitude("");
 					setValueLatitude("");
@@ -331,13 +329,13 @@ const Raphaelle = ({ closeAgentPage }) => {
 	};
 
 	const catchphrase = [
-		"sounds/401-repliques-raphaelle-1.wav",
-		"sounds/401-repliques-raphaelle-2.wav",
-		"sounds/401-repliques-raphaelle-3.wav",
-		"sounds/401-repliques-raphaelle-4.wav",
-		"sounds/401-repliques-raphaelle-5.wav",
-		"sounds/401-repliques-raphaelle-6.wav",
-		"sounds/401-repliques-raphaelle-7.wav",
+		"sounds/401-repliques-raphaelle-1.mp3",
+		"sounds/401-repliques-raphaelle-2.mp3",
+		"sounds/401-repliques-raphaelle-3.mp3",
+		"sounds/401-repliques-raphaelle-4.mp3",
+		"sounds/401-repliques-raphaelle-5.mp3",
+		"sounds/401-repliques-raphaelle-6.mp3",
+		"sounds/401-repliques-raphaelle-7.mp3",
 	];
 
 	const randomNumber = Math.floor(Math.random() * catchphrase.length);
@@ -346,7 +344,7 @@ const Raphaelle = ({ closeAgentPage }) => {
 		<>
 			{modal ? renderModal() : ""}
 			<audio autoPlay>
-				<source src={urlApi.apiRemi() + catchphrase[randomNumber]} type="audio/wav" />
+				<source src={urlApi.apiRemi() + catchphrase[randomNumber]} type="audio/mpeg" />
 				Votre navigateur ne prend pas en charge ce format
 			</audio>
 			<div className="agent">

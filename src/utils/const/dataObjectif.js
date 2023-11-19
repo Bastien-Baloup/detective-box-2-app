@@ -18,7 +18,7 @@ export const dataObjectif = {
 				"Lauren:",
 				"Faire parler sa victime avant de la tuer, c'est un procédé classique de personnalisation. On sent qu'il y prend du plaisir. De même que le petit rituel qu'il lui impose. Je vous invite à analyser à quel type de tueur on a à faire. Je vous envoie pour cela un extrait du livre de profiling que j'ai co-écrit. Dans une affaire de tueur en série, ça ne peut que nous aider ! A quel type de tueur avons-nous donc affaire ?",
 			],
-			answersrc: "sounds/104-objectifs-reussis-1.wav",
+			answersrc: "sounds/104-objectifs-reussis-1.mp3",
 			newdetail: ["A quel type de tueur avons nous affaire ?"],
 			newlabel: "Réponse",
 			newerrorMessage: "Non je ne pense pas que ce soit cela.",
@@ -49,7 +49,7 @@ export const dataObjectif = {
 				"Des années que les décrypteurs du monde entier sont sur ce message... Il y en a beaucoup qui vont être jaloux de vos talents ! D'un autre côté, il leur manquait des documents... mais quand même!",
 				"C'est donc Xavier Monrency l'oublié.",
 			],
-			answersrc: "sounds/104-objectifs-reussis-2.wav",
+			answersrc: "sounds/104-objectifs-reussis-2.mp3",
 			status: "open",
 		},
 		{
@@ -70,7 +70,7 @@ export const dataObjectif = {
 				"Céline:",
 				"Je vais voir ce que je peux arranger.",
 			],
-			answersrc: "sounds/104-objectifs-reussis-3.wav",
+			answersrc: "sounds/104-objectifs-reussis-3.mp3",
 			status: "open",
 		},
 		{
@@ -170,7 +170,7 @@ export const dataObjectif = {
 				"Je vais montrer ça à mon contact à Interpol, Samuel Perry.",
 				"C'est lui qui m'a aidé à établir la liste, il aura peut-être d'autres éléments pour nous.",
 			],
-			answersrc: "sounds/204-objectifs-reussis-1.wav",
+			answersrc: "sounds/204-objectifs-reussis-1.mp3",
 			status: "open",
 		},
 		{
@@ -197,7 +197,7 @@ export const dataObjectif = {
 				"Bien joués agents, nous avons maintenant le nom de la théorie.",
 				"Il nous faut approfondir nos recherches pour comprendre ce dont le tueur parle.",
 			],
-			answersrc: "sounds/204-objectifs-reussis-2.wav",
+			answersrc: "sounds/204-objectifs-reussis-2.mp3",
 			newdetail: [
 				"Avez-vous examiné tous les messages du forum ? Nous avons maintenant le nom de la théorie, mais il nous faut approfondir nos recherches pour comprendre ce dont le tueur parle. Selon le message, il déclare :",
 				"“Le placement de Lilith a donné le pouvoir à mes victimes de changer le monde, mais ils ont refusé, trop petits qu'ils étaient.”",
@@ -211,7 +211,7 @@ export const dataObjectif = {
 				"Bravo agents, vous êtes parvenus à suivre la piste jusqu'au bout",
 				"Lilith en balance, le schéma du tueur se dévoile progressivement.",
 			],
-			newanswersrc: "sounds/204-objectifs-reussis-3.wav",
+			newanswersrc: "sounds/204-objectifs-reussis-3.mp3",
 			status: "closed",
 		},
 		{
@@ -238,7 +238,7 @@ export const dataObjectif = {
 				"Bravo ! Vous avez réussi à retrouver toutes les victimes correspondant aux cartes de tarot que le tueur nous avait laissées !",
 				"Garraud n'a pas menti, il ne s'était vraiment pas arrêté pendant toutes ces années...",
 			],
-			answersrc: "sounds/204-objectifs-reussis-4.wav",
+			answersrc: "sounds/204-objectifs-reussis-4.mp3",
 			status: "closed",
 		},
 		{
@@ -267,7 +267,7 @@ export const dataObjectif = {
 				"Lauren :",
 				"Raph, je crois que notre tueur a peut-être rencontré une victime avant sa mort, je creuse cette piste et je reviens vers toi dès que j'ai quelque chose de concret...",
 			],
-			answersrc: "sounds/204-objectifs-reussis-5.wav",
+			answersrc: "sounds/204-objectifs-reussis-5.mp3",
 			status: "closed",
 		},
 	],
@@ -287,7 +287,7 @@ export const dataObjectif = {
 				"Le Dolmen von Degernau...",
 				"C'est donc cela que Lauren avait trouvé, cela doit nous donner une information pour la suite si Lauren y attachait tant d'importance...",
 			],
-			answersrc: "sounds/300-commentaires-sanchez-2.wav",
+			answersrc: "sounds/300-commentaires-sanchez-2.mp3",
 			status: "open",
 		},
 		{
@@ -325,7 +325,7 @@ export const dataObjectif = {
 				"On a réussi à identifier les dernières victimes, mais le pire reste à venir !",
 				"Cela veut donc dire que le tueur est... Non je ne veux pas le croire...",
 			],
-			answersrc: "sounds/300-commentaires-sanchez-3.wav",
+			answersrc: "sounds/300-commentaires-sanchez-3.mp3",
 			status: "closed",
 		},
 		{
@@ -340,7 +340,7 @@ export const dataObjectif = {
 				"Je n'arrive pas à le croire... Céline la tueuse, alors que je la connais depuis des années !",
 				"J'appelle les renforts, on va fouiller chez elle de fond en comble",
 			],
-			answersrc: "sounds/300-commentaires-sanchez-4.wav",
+			answersrc: "sounds/300-commentaires-sanchez-4.mp3",
 			status: "closed",
 		},
 	],
