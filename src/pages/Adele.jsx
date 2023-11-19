@@ -64,7 +64,7 @@ const Adele = ({ closeAgentPage }) => {
 		}
 		if (previouslyAnsweredInThisBox) {
 			setValue("");
-			setErrorMessage("Vous m'avez dejà demandé d'analyser cet élément.");
+			setErrorMessage("Vous m'avez dejà demandé d'analyser cet élément. Il est désormais disponible dans votre Historique.”");
 			return;
 		}
 		if (answerInThisBox) {
@@ -76,7 +76,7 @@ const Adele = ({ closeAgentPage }) => {
 		}
 		if (currentBox == 3 && answerInBox2) {
 			setValue("");
-			setErrorMessage("Vous avez déjà analysé cet élément lors d'une box précédente.");
+			setErrorMessage("Vous avez déjà analysé cet élément lors d'une box précédente. Il est désormais disponible dans votre Historique.”");
 			return;
 		}
 		setValue("");
@@ -89,7 +89,7 @@ const Adele = ({ closeAgentPage }) => {
 				<div className="modal-objectif__box">
 					{answer.srcComment ? (
 						<audio autoPlay>
-							<source src={urlApi.apiRemi() + answer.srcComment} type="audio/wav" />
+							<source src={urlApi.apiRemi() + answer.srcComment} type="audio/mpeg" />
 							Votre navigateur ne prend pas en charge ce format
 						</audio>
 					) : (
@@ -148,13 +148,13 @@ const Adele = ({ closeAgentPage }) => {
 	};
 
 	const catchphrase = [
-		"sounds/405-repliques-adele-1.wav",
-		"sounds/405-repliques-adele-2.wav",
-		"sounds/405-repliques-adele-3.wav",
-		"sounds/405-repliques-adele-4.wav",
-		"sounds/405-repliques-adele-5.wav",
-		"sounds/405-repliques-adele-6.wav",
-		"sounds/405-repliques-adele-7.wav",
+		"sounds/405-repliques-adele-1.mp3",
+		"sounds/405-repliques-adele-2.mp3",
+		"sounds/405-repliques-adele-3.mp3",
+		"sounds/405-repliques-adele-4.mp3",
+		"sounds/405-repliques-adele-5.mp3",
+		"sounds/405-repliques-adele-6.mp3",
+		"sounds/405-repliques-adele-7.mp3",
 	];
 
 	const randomNumber = Math.floor(Math.random() * catchphrase.length);
@@ -164,7 +164,7 @@ const Adele = ({ closeAgentPage }) => {
 			{modal ? renderModal() : ""}
 			{modalMedia ? renderModalMedia() : ""}
 			<audio autoPlay>
-				<source src={urlApi.apiRemi() + catchphrase[randomNumber]} type="audio/wav" />
+				<source src={urlApi.apiRemi() + catchphrase[randomNumber]} type="audio/mpeg" />
 				Votre navigateur ne prend pas en charge ce format
 			</audio>
 			<div className="agent">
@@ -179,7 +179,7 @@ const Adele = ({ closeAgentPage }) => {
 					<form className="agent__form" onSubmit={handleSubmit}>
 						<Input
 							type="texte"
-							label="Element à analyser"
+							label="Elément à analyser"
 							name="adele"
 							placeholder="Ce champ est vide"
 							value={value}

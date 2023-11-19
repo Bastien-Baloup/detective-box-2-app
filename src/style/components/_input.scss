@@ -3,10 +3,9 @@
 	width: -moz-available;
 	padding: 0.4rem;
 	margin: 1rem 0;
-	border: 1px solid $secondary-color;
+	outline: 1px solid $secondary-color;
 	background-color: rgba(255, 255, 255, 0.2);
 	color: $secondary-color;
-	outline: none;
 	font: inherit;
 	font-size: 1.25rem;
 	transition: background-color 0.2s ease-in-out;

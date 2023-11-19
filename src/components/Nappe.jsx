@@ -9,6 +9,7 @@ const Nappe = ({ activateNappe, desactivateNappe }) => {
 				<p className="modal-nappe__text">
 					Voulez-vous lancer la musique d&apos;ambiance pour rendre votre jeu plus immersif ?
 				</p>
+				<p className="modal-nappe__text">Vous pourrez la désactiver ou l&apos;activer de nouveau depuis le menu Profil.</p>
 				<div className="modal-nappe__buttons">
 					<button className="modal-nappe__button button--red" onClick={activateNappe}>
 						Oui

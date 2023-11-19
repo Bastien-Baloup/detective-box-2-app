@@ -111,7 +111,7 @@ const Celine = ({ closeAgentPage }) => {
 				<div className="modal-objectif__box">
 					{answer.srcComment ? (
 						<audio autoPlay>
-							<source src={urlApi.apiRemi() + answer.srcComment} type="audio/wav" />
+							<source src={urlApi.apiRemi() + answer.srcComment} type="audio/mpeg" />
 							Votre navigateur ne prend pas en charge ce format
 						</audio>
 					) : (
@@ -174,13 +174,13 @@ const Celine = ({ closeAgentPage }) => {
 	};
 
 	const catchphrase = [
-		"sounds/403-repliques-celine-1.wav",
-		"sounds/403-repliques-celine-2.wav",
-		"sounds/403-repliques-celine-3.wav",
-		"sounds/403-repliques-celine-4.wav",
-		"sounds/403-repliques-celine-5.wav",
-		"sounds/403-repliques-celine-6.wav",
-		"sounds/403-repliques-celine-7.wav",
+		"sounds/403-repliques-celine-1.mp3",
+		"sounds/403-repliques-celine-2.mp3",
+		"sounds/403-repliques-celine-3.mp3",
+		"sounds/403-repliques-celine-4.mp3",
+		"sounds/403-repliques-celine-5.mp3",
+		"sounds/403-repliques-celine-6.mp3",
+		"sounds/403-repliques-celine-7.mp3",
 	];
 
 	const randomNumber = Math.floor(Math.random() * catchphrase.length);
@@ -190,7 +190,7 @@ const Celine = ({ closeAgentPage }) => {
 			{modal ? renderModal() : ""}
 			{modalMedia ? renderModalMedia() : ""}
 			<audio autoPlay>
-				<source src={urlApi.apiRemi() + catchphrase[randomNumber]} type="audio/wav" />
+				<source src={urlApi.apiRemi() + catchphrase[randomNumber]} type="audio/mpeg" />
 				Votre navigateur ne prend pas en charge ce format
 			</audio>
 			<div className="agent">

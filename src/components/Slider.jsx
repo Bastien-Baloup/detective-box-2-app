@@ -63,6 +63,13 @@ const Slider = ({ data, handleModal, url }) => {
 
 	const renderText = () => {
 		const text = data.hints[index].text.map((el, i) => {
+			if (el.startsWith("https://")) {
+				return (
+					<a className="slider__content__text--link" key={i} href={el} target="_blank" rel="noreferrer noopener">
+						{el}
+					</a>
+				);
+			}
 			return <p key={i}>{el}</p>;
 		});
 		return text;

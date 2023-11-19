@@ -36,9 +36,9 @@
 				transform: rotate(45deg);
 			}
 		}
-		&__errorMessage{
-			color: $tertiary-color;
-		}
+	}
+	&__errorMessage {
+		color: $tertiary-color;
 	}
 	&__closeButton {
 		width: 2.5rem;
@@ -60,6 +60,19 @@
 		font-family: "Gabriele";
 		flex: none;
 		font-size: 1.25rem;
+	}
+	&--GPSinput {
+		display: flex;
+		gap: 0;
+		justify-content: space-around;
+		flex-direction: column;
+	}
+}
+
+@include responsive(tablet) {
+	.agent__raphaelle--GPSinput {
+		flex-direction: row;
+		gap: 2rem;
 	}
 }
 

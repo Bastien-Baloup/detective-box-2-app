@@ -66,7 +66,9 @@ const Tim = ({ closeAgentPage }) => {
 		}
 		if (previouslyAnsweredInThisBox) {
 			setValue("");
-			setErrorMessage("Vous m'avez dejà demandé d'analyser cet élément.");
+			setErrorMessage(
+				"Vous m'avez dejà demandé d'analyser cet élément. Il est désormais disponible dans votre Historique.”"
+			);
 			return;
 		}
 		if (answerInThisBox) {
@@ -79,14 +81,14 @@ const Tim = ({ closeAgentPage }) => {
 		if (currentBox == 2 && answerInBox1) {
 			setValue("");
 			setErrorMessage(
-				"Vous avez déjà analysé cet élément lors d'une box précédente. Rendez-vous dans l'Historique pour revoir les résultats."
+				"Vous avez déjà analysé cet élément lors d'une box précédente. Il est désormais disponible dans votre Historique."
 			);
 			return;
 		}
 		if (currentBox == 3 && (answerInBox2 || answerInBox1)) {
 			setValue("");
 			setErrorMessage(
-				"Vous avez déjà analysé cet élément lors d'une box précédente. Rendez-vous dans l'Historique pour revoir les résultats."
+				"Vous avez déjà analysé cet élément lors d'une box précédente. Il est désormais disponible dans votre Historique."
 			);
 			return;
 		}
@@ -100,7 +102,7 @@ const Tim = ({ closeAgentPage }) => {
 				<div className="modal-objectif__box">
 					{answer.srcComment ? (
 						<audio autoPlay>
-							<source src={urlApi.apiRemi() + answer.srcComment} type="audio/wav" />
+							<source src={urlApi.apiRemi() + answer.srcComment} type="audio/mpeg" />
 							Votre navigateur ne prend pas en charge ce format
 						</audio>
 					) : (
@@ -123,6 +125,13 @@ const Tim = ({ closeAgentPage }) => {
 
 	const renderText = () => {
 		const text = answer.text.map((el, i) => {
+			if (el.startsWith("https://")) {
+				return (
+					<a className="modal-objectif__subtitle--link" key={i} href={el} target="_blank" rel="noreferrer noopener">
+						{el}
+					</a>
+				);
+			}
 			return (
 				<p className="modal-objectif__subtitle" key={i}>
 					{el}
@@ -160,7 +169,6 @@ const Tim = ({ closeAgentPage }) => {
 					title={answer.title}
 					srcVideo={urlApi.apiRemi() + answer.src + "&type=video"}
 					handleModalVideo={() => closeModalMedia(answer.id, answer.ask)}
-					delayedButton={true}
 				/>
 			);
 		}
@@ -174,13 +182,13 @@ const Tim = ({ closeAgentPage }) => {
 	};
 
 	const catchphrase = [
-		"sounds/404-repliques-tim-1.wav",
-		"sounds/404-repliques-tim-2.wav",
-		"sounds/404-repliques-tim-3.wav",
-		"sounds/404-repliques-tim-4.wav",
-		"sounds/404-repliques-tim-5.wav",
-		"sounds/404-repliques-tim-6.wav",
-		"sounds/404-repliques-tim-7.wav",
+		"sounds/404-repliques-tim-1.mp3",
+		"sounds/404-repliques-tim-2.mp3",
+		"sounds/404-repliques-tim-3.mp3",
+		"sounds/404-repliques-tim-4.mp3",
+		"sounds/404-repliques-tim-5.mp3",
+		"sounds/404-repliques-tim-6.mp3",
+		"sounds/404-repliques-tim-7.mp3",
 	];
 
 	const randomNumber = Math.floor(Math.random() * catchphrase.length);
@@ -190,7 +198,7 @@ const Tim = ({ closeAgentPage }) => {
 			{modal ? renderModal() : ""}
 			{modalMedia ? renderModalMedia() : ""}
 			<audio autoPlay>
-				<source src={urlApi.apiRemi() + catchphrase[randomNumber]} type="audio/wav" />
+				<source src={urlApi.apiRemi() + catchphrase[randomNumber]} type="audio/mpeg" />
 				Votre navigateur ne prend pas en charge ce format
 			</audio>
 			<div className="agent">
@@ -205,7 +213,7 @@ const Tim = ({ closeAgentPage }) => {
 					<form className="agent__form" onSubmit={handleSubmit}>
 						<Input
 							type="texte"
-							label="Element à analyser"
+							label="Elément à analyser"
 							name="tim"
 							placeholder="Ce champ est vide"
 							value={value}

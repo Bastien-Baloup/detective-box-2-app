@@ -61,7 +61,7 @@ export const dataHelp = {
 					id: 7,
 					text: [
 						"Ce voyant semble louche.",
-						"Vous avez cherché 'Nozastrum' ou 'Nostrazum' ?",
+						"Vous avez cherché sur internet 'Nozastrum' ou 'Nostrazum' ?",
 						"Ou demandé à Tim de le faire ?",
 					],
 					image: null,
@@ -91,7 +91,7 @@ export const dataHelp = {
 				},
 				{
 					id: 11,
-					text: ["La combinaison est", "haut droite bas droite bas."],
+					text: ["La combinaison est", "haut-droite-bas-droite-bas."],
 					image: null,
 				},
 				{
@@ -104,6 +104,11 @@ export const dataHelp = {
 				},
 				{
 					id: 13,
+					text: ["Si on se fie à l'enregistrement, les derniers mots de Rebecca étaient", "“J'aurais dû la sauver”"],
+					image: null,
+				},
+				{
+					id: 14,
 					text: [
 						"Le type de tueur…",
 						"C'est du travail de profiler, ça.",
@@ -153,7 +158,7 @@ export const dataHelp = {
 					text: [
 						"J'ai reçu un mail automatique de réponse en envoyant le mail.",
 						"Le fan dit qu'il ne répond plus aux mails mais qu'il a gardé un site web sur le tueur au tarot :",
-						"www.fan-tueur-tarot.fr",
+						"https://www.fan-tueur-tarot.fr",
 					],
 					image: null,
 				},
@@ -189,7 +194,7 @@ export const dataHelp = {
 		},
 		{
 			id: "box1help3",
-			title: "L'orgeuilleux",
+			title: "L'orgueilleux",
 			status: "open",
 			hints: [
 				{
@@ -220,26 +225,29 @@ export const dataHelp = {
 				},
 				{
 					id: 4,
+					text: ["L'une des victimes ne semble pas coller...", "Peut-être qu'on peut la trouver grâce à un autre dossier ?"],
+					image: null,
+				},
+				{
+					id: 5,
 					text: [
-						"L'une des victimes ne semble pas coller...",
-						"Peut-être qu'on peut la trouver grâce à un autre dossier ?",
 						"Latitude et longitude... On dirait des coordonnées GPS.",
 						"Chaque personne nous donnerait-elle un chiffre ?",
 					],
 					image: null,
 				},
 				{
-					id: 5,
+					id: 6,
 					text: [
 						"La carte des étoiles doit pouvoir nous aider à savoir comment était le ciel au moment où les victimes sont mortes.",
 						"J'ai vu sur les notes de Céline qu'elle avait interrogé un astronome à propos de cet objet.",
 						"On peut peut-être retrouver la personne.",
-						"Et il doit exister des tutoriels sur le net aussi pour savoir comment s'en servir.",
+						"Et il doit aussi exister des tutoriels sur le net aussi pour savoir comment s'en servir.",
 					],
 					image: null,
 				},
 				{
-					id: 6,
+					id: 7,
 					text: [
 						"Je pense que la personne qui n'a pas pu téléphoner,",
 						"c'est Marianne Chauve.",
@@ -251,7 +259,7 @@ export const dataHelp = {
 					image: "assets/renforts/box1_orgueilleux_renfort6_carte_ciel.jpg",
 				},
 				{
-					id: 7,
+					id: 8,
 					text: [
 						"Nicolas Chaussée ne semble pas correspondre à la description de la victime...",
 						"Est-ce qu'il y en aurait une autre quelque part qui aurait été oubliée ?",
@@ -259,12 +267,13 @@ export const dataHelp = {
 					image: null,
 				},
 				{
-					id: 8,
+					id: 9,
 					text: [
 						"Si on regarde la consigne, cela dit pour la latitude :",
 						"'La plus longue au Sud'.",
 						"Ce serait donc l'hydre.",
 						"Soit le chiffre 46 sur la lettre des constellations.",
+						"",
 						"Et pour la longitude, cela dit :",
 						"'Au Nord, la même que ci- dessus, mais avec des ailes cette fois'.",
 						"Le dragon ?",
@@ -273,14 +282,16 @@ export const dataHelp = {
 					image: null,
 				},
 				{
-					id: 9,
+					id: 10,
 					text: [
 						"La première colonne est celle de l'oublié :",
 						"- La plus au Sud coupée par l'axe central : Capricorne - 43.",
 						"- La plus au sud-Ouest du Sud-Ouest : le Sagittaire - 1.",
+						"",
 						"La deuxième colonne est celle de Marianne Chauve :",
 						"- La plus longue au sud : L'hydre - 46.",
 						"- Au Nord, la même que ci-dessus, mais avec des ailes cette fois : le dragon - 15.",
+						"",
 						"La troisième colonne est celle d'Elodie Bouchard :",
 						"- Les 2 cornus du Sud Est. Du plus à l'Ouest au plus à l'Est : Bélier, Taureau - 28,4.",
 						"- Les 2 oiseaux. Du plus à l'Est au plus à l'Ouest : Cygne, Aigle - 46,5.",
@@ -288,12 +299,12 @@ export const dataHelp = {
 					image: null,
 				},
 				{
-					id: 10,
+					id: 11,
 					text: ["Moi j'obtiens :", "43.46284, 1.15465", "On part fouiller là-bas ?"],
 					image: null,
 				},
 				{
-					id: 11,
+					id: 12,
 					text: [
 						"Vous avez visionné la VHS ?",
 						"C'est Garraud dessus, on le voit à 15 minutes, il n'a pas l'air bien.",
@@ -302,7 +313,7 @@ export const dataHelp = {
 					image: null,
 				},
 				{
-					id: 12,
+					id: 13,
 					text: [
 						"D'après la lettre, ce proche, c'est la mère de Garraud.",
 						"En regardant la boîte aux lettres et les archives, on voit qu'elle s'appelait Jacqueline Houdin.",
@@ -346,7 +357,7 @@ export const dataHelp = {
 						"- Elodie Bouchard : Victime du grand œuvre du tueur au Tarot.",
 						"- Xavier Monrency : Victime du grand œuvre du tueur au Tarot.",
 						"- Nicolas Chaussee : Victime de Charles Garraud.",
-						"- Jacqueline Garraud : Victime collatérale du Tueur au Tarot",
+						"- Jacqueline Houdin : Victime collatérale du Tueur au Tarot",
 					],
 					image: null,
 				},
@@ -361,7 +372,7 @@ export const dataHelp = {
 						"Je crois qu'il nous a laissé un indice à chaque fois avec un symbole et un triangle.",
 						"On a donc une carte et 2 mots cryptés.",
 						"Ces symboles, il me semble les avoir vus quelque part.",
-						"Ce serait pas son alphabet codé ?",
+						"Ce ne serait pas son alphabet codé ?",
 					],
 					image: null,
 				},
@@ -424,6 +435,7 @@ export const dataHelp = {
 					text: [
 						"Voici tous les mots que j'ai relevés sur la feuille 1 :",
 						"Ah drèsse toix amare thym riz charre leu mât thon deux làs pris son.",
+						"",
 						"Sur la feuille 2 :",
 						"Lait rêvés las cions ah riz voeux, do nœud l'or riz gas mi A la proche aine vis z'y t'e z'eux.",
 						"En les lisant à voix haute on a une phrase :",
@@ -436,8 +448,8 @@ export const dataHelp = {
 					id: 5,
 					text: [
 						"Avez-vous réussi à faire l'origami avec les étranges papiers de Garraud, en vous aidant de la page du livre que vous a donné Martin ?",
-						"Sinon, ceci pourrait vous aider :",
-						"https://www.youtube.com/watch?v=1o6yF1qgNJo",
+						"Sinon, il existe plein de tuto disponibles sur internet pour ce genre de modèle d'Origami.",
+						"Il s'agit de la double étoile ou ou de l'étoile traditionnelle si ça peut vous aider.",
 					],
 					image: null,
 				},
@@ -718,12 +730,18 @@ export const dataHelp = {
 						"Il semblerait qu'il y ait un site de boîte mail en ligne, irhemail,",
 						"et l'adresse qu'elle utilisait était",
 						"'anninakurschner131@irhemail.com'",
-						"Vous avez demandé à Tim de l'analyser pour avoir le mot de passe ?",
+						"Il nous manque son mot de passe.",
+						"Vous avez bien fouillé les affaires retrouvées dans le bureau de Lauren ?",
 					],
 					image: null,
 				},
 				{
 					id: 3,
+					text: ["On peut également demander à Tim d'analyser la boîte mail pour trouver le mot de passe ?"],
+					image: null,
+				},
+				{
+					id: 4,
 					text: [
 						"Il y a un message intéressant sur cette boîte qui dit qu'elle a reçu un mail de :",
 						"Tarot-XX",
@@ -734,7 +752,7 @@ export const dataHelp = {
 					image: null,
 				},
 				{
-					id: 4,
+					id: 5,
 					text: [
 						"Le site demande ensuite la chanson préférée d'Annina.",
 						"Il y a une certaine Leonie Brugmann qui lui demande si elle vient à un cours de musique.",
@@ -743,12 +761,12 @@ export const dataHelp = {
 					image: null,
 				},
 				{
-					id: 5,
+					id: 6,
 					text: ["C'était 99luftballons.", "Elle avait du goût.", "Allons voir sur la messagerie maintenant."],
 					image: null,
 				},
 				{
-					id: 6,
+					id: 7,
 					text: [
 						"La conversation avec Tarot-XX est la plus intéressante.",
 						"On y apprend que notre tueur est une femme et qu'elle a donné rendez-vous à Annina lors de ses vacances à Zurich, avant sa mort.",
@@ -756,7 +774,7 @@ export const dataHelp = {
 					image: null,
 				},
 				{
-					id: 7,
+					id: 8,
 					text: [
 						"Le point de rendez-vous initial était",
 						"'Aussichtspavillion Wutöschingen'",
@@ -766,7 +784,7 @@ export const dataHelp = {
 					image: null,
 				},
 				{
-					id: 8,
+					id: 9,
 					text: ["Elles se sont rendues au", "Dolmen von Degernau."],
 					image: null,
 				},
@@ -820,6 +838,12 @@ export const dataHelp = {
 						"le prunier du Portugal (arbuste qui pousse essentiellement au Portugal, et uniquement dans les Pyrénées-Atlantiques en France).",
 						"Et en géraniacée :",
 						"l'érodium de Manescau (fleurs violettes endémiques des Pyrénées-Atlantiques, on en trouve dans la forêt des Arbailles en France).",
+					],
+					image: null,
+				},
+				{
+					id: 6,
+					text: [
 						"Ce sont les deux seules variétés qu'on trouve au même endroit. Nous avons notre localisation :",
 						"la forêt des Arbailles",
 						"mais il faudrait affiner d'avantage.",
@@ -827,12 +851,12 @@ export const dataHelp = {
 					image: null,
 				},
 				{
-					id: 6,
+					id: 7,
 					text: ["Vous êtes-vous intéressé au briquet ?", "Lauren ne fumait pas, ce briquet me paraît étrange."],
 					image: null,
 				},
 				{
-					id: 7,
+					id: 8,
 					text: [
 						"Le briquet s'ouvre et il y a les notes de Lauren à l'intérieur.",
 						"Cela parle d'Annina et du lieu qui lui rappelle sa jeunesse.",
@@ -841,7 +865,7 @@ export const dataHelp = {
 					image: "assets/renforts/box3_echantillon_renfort7_papier_briquet.jpg",
 				},
 				{
-					id: 8,
+					id: 9,
 					text: [
 						"Le tueur a fait visiter un Dolmen à Annina.",
 						"Est-ce qu'il n'y en aurait pas un dans la forêt des Arbailles ?",
@@ -849,17 +873,17 @@ export const dataHelp = {
 					image: null,
 				},
 				{
-					id: 9,
+					id: 10,
 					text: ["Sur Google Maps, je trouve le Dolmen d'Ité.", "C'est probablement là-bas qu'il faut se rendre."],
 					image: null,
 				},
 				{
-					id: 10,
-					text: ["Nous voici dans la forêt des Arbailles.", "Avez-vous vu l'inscription dans la ruine ?"],
+					id: 11,
+					text: ["Nous voici dans la forêt des Arbailles.", "Avez-vous vu l'inscription sur la pierre ?"],
 					image: null,
 				},
 				{
-					id: 11,
+					id: 12,
 					text: [
 						"Vous avez vu le poème d'Albert Samain récupéré dans la planque de la tueuse ?",
 						"On y voit toute une série de constellations :",
@@ -875,12 +899,12 @@ export const dataHelp = {
 					image: null,
 				},
 				{
-					id: 12,
+					id: 13,
 					text: ["Vous avez vu sur les arbres ?", "Ce sont des constellations qui sont gravées."],
 					image: null,
 				},
 				{
-					id: 13,
+					id: 14,
 					text: ["Suivons ces symboles et creusons au pied du signe du chariot pour découvrir ce qu'il y a de caché ici…"],
 					image: "assets/renforts/box3_foret_renfort4_all_signs.jpg",
 				},

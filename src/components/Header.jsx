@@ -131,7 +131,6 @@ const Header = () => {
 					title="Briefing box 1"
 					srcVideo={urlApi.apiRemi() + "videos/db-s02-101-def.mp4&type=video"}
 					handleModalVideo={handleModalVideoBrief}
-					delayedButton={true}
 				/>
 			);
 		}
@@ -141,7 +140,6 @@ const Header = () => {
 					title="Briefing box 2"
 					srcVideo={urlApi.apiRemi() + "videos/db-s02-201-vdef.mp4&type=video"}
 					handleModalVideo={handleModalVideoBrief}
-					delayedButton={true}
 				/>
 			);
 		}
@@ -151,7 +149,6 @@ const Header = () => {
 					title="Briefing box 3"
 					srcVideo={urlApi.apiRemi() + "videos/db-s02-301-def.mp4&type=video"}
 					handleModalVideo={handleModalVideoBrief}
-					delayedButton={true}
 				/>
 			);
 		}
@@ -238,7 +235,7 @@ const Header = () => {
 		if (currentBox == 1) {
 			return (
 				<audio loop preload="auto" ref={audioElem}>
-					<source src={urlApi.apiRemi() + "sounds/musiques-db-s2-nappe-1.wav"} type="audio/wav" />
+					<source src={urlApi.apiRemi() + "sounds/musiques-db-s2-nappe-1.mp3"} type="audio/mpeg" />
 					Votre navigateur ne prend pas en charge ce format
 				</audio>
 			);
@@ -246,7 +243,7 @@ const Header = () => {
 		if (currentBox == 2) {
 			return (
 				<audio loop preload="auto" ref={audioElem}>
-					<source src={urlApi.apiRemi() + "sounds/musiques-db-s2-nappe-2.wav"} type="audio/wav" />
+					<source src={urlApi.apiRemi() + "sounds/musiques-db-s2-nappe-2.mp3"} type="audio/mpeg" />
 					Votre navigateur ne prend pas en charge ce format
 				</audio>
 			);
@@ -254,7 +251,7 @@ const Header = () => {
 		if (currentBox == 3) {
 			return (
 				<audio loop preload="auto" ref={audioElem}>
-					<source src={urlApi.apiRemi() + "sounds/musiques-db-s2-nappe-3.wav"} type="audio/wav" />
+					<source src={urlApi.apiRemi() + "sounds/musiques-db-s2-nappe-3.mp3"} type="audio/mpeg" />
 					Votre navigateur ne prend pas en charge ce format
 				</audio>
 			);
@@ -263,20 +260,18 @@ const Header = () => {
 
 	// EXPLICATION : Le timer de fin s'affiche lors de la dernière étape du jeu. Il est en overlay sur le header pour que le joueur ne puisse pas cliquer sur les autres composants
 	const displayTimer = () => {
-		if (event33 == "open") {
-			fetchNappeMute(false);
-			return (
-				<>
-					<div className="final__timer">
-						<Timer initialMinute={30} initialSecond={0} timerEndedFunction={tooLate} />;
-					</div>
-					<audio autoPlay>
-						<source src={urlApi.apiRemi() + "sounds/305-commentaires-pendant-timer.wav"} type="audio/wav" />
-						Votre navigateur ne prend pas en charge ce format
-					</audio>
-				</>
-			);
-		}
+		fetchNappeMute(false);
+		return (
+			<>
+				<div className="final__timer">
+					<Timer initialMinute={30} initialSecond={0} timerEndedFunction={tooLate} />;
+				</div>
+				<audio autoPlay>
+					<source src={urlApi.apiRemi() + "sounds/305-commentaires-pendant-timer.mp3"} type="audio/mpeg" />
+					Votre navigateur ne prend pas en charge ce format
+				</audio>
+			</>
+		);
 	};
 
 	const tooLate = async () => {
@@ -300,10 +295,10 @@ const Header = () => {
 				<></>
 			)}
 			{quizzIsActive ? displayQuizz() : <></>}
-			{nappeModalIsActive ? <Nappe activateNappe={activateNappe} desactivateNappe={desactivateNappe} /> : <></>}
 			{modaleVideo ? displayBrief() : null}
+			{nappeModalIsActive ? <Nappe activateNappe={activateNappe} desactivateNappe={desactivateNappe} /> : <></>}
 			{displayAudio()}
-			{displayTimer()}
+			{event33 == "open" ? displayTimer() : <></>}
 			{event33 == "open" ? (
 				<></>
 			) : (

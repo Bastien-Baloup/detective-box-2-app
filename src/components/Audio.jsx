@@ -30,7 +30,7 @@ const Audio = ({ title, srcImg1, srcImg2, srcTranscription, handleModalAudio, sr
 			barMinHeight: 50,
 			cursorWidth: 1,
 			dragToSeek: true,
-			// autoplay: true,
+			autoplay: true,
 		});
 		waveSurfer.load(srcAudio);
 		waveSurfer.on("ready", () => {
@@ -63,9 +63,13 @@ const Audio = ({ title, srcImg1, srcImg2, srcTranscription, handleModalAudio, sr
 					<div className="modal-audio__portrait-container">
 						<img className="modal-audio__portrait" src={srcImg1} />
 					</div>
-					<div className="modal-audio__portrait-container">
-						<img className="modal-audio__portrait" src={srcImg2} />
-					</div>
+					{srcImg2 == null ? (
+						""
+					) : (
+						<div className="modal-audio__portrait-container">
+							<img className="modal-audio__portrait" src={srcImg2} />
+						</div>
+					)}
 				</div>
 				<div className="modal-audio__player">
 					{isLoading ? (
@@ -78,7 +82,7 @@ const Audio = ({ title, srcImg1, srcImg2, srcTranscription, handleModalAudio, sr
 								waveSurferRef.current.playPause();
 							}}
 						>
-							<img className="modal-audio__player__icon" src={isPlaying ? Play : Pause} />
+							<img className="modal-audio__player__icon" src={isPlaying ? Pause : Play} />
 						</button>
 					)}
 					{isLoading ? (
