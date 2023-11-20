@@ -35,6 +35,7 @@ const Objectif = ({ data }) => {
 	const [modalAnswer, setModalAnswer] = useState(false);
 	const [modalAnswerBis, setModalAnswerBis] = useState(false);
 	const [modalBis, setModalBis] = useState(false);
+	const [doneObjectifModal, setDoneObjectifModal] = useState(false);
 	const [errorMessage, setErrorMessage] = useState(false);
 	const [value, setValue] = useState("");
 	const [nextStep, setNextStep] = useState(false);
@@ -488,17 +489,6 @@ const Objectif = ({ data }) => {
 				</div>
 			);
 		}
-		if (objectif34 == "done" && box3lieu3 == false) {
-			console.log("on passe par l'étape 2");
-			fetchPreviousStateNappe();
-			return (
-				<Video
-					title="Cave de Céline"
-					srcVideo={urlApi.apiRemi() + "videos/db-s02-302-def.mp4&type=video"}
-					handleModalVideo={handleCloseVideoSauverLauren}
-				/>
-			);
-		}
 		if (objectif34 == "done" && box3lieu3 == true && victimeSaved == "") {
 			console.log("on passe par l'étape 3");
 			return (
@@ -750,7 +740,7 @@ const Objectif = ({ data }) => {
 				await updateHelp(token, 2, "box2help3", "done");
 				await updateObjectives(token, 2, 24, "open");
 				await updateHelp(token, 2, "box2help4", "open");
-				setMailLauren2(true);
+				setYouveGotMail(true);
 				actionToggleDataObjectif();
 				actionToggleDataHelp();
 				await updateHistory(token, 2, "box2document9");
@@ -780,8 +770,17 @@ const Objectif = ({ data }) => {
 			if (data.id == 34) {
 				await updateObjectives(token, 3, 34, "done");
 				await updateHelp(token, 3, "box3help6", "done");
+				await updateHistory(token, 3, "box3audio1");
+				await updateHistory(token, 3, "box3lieu3");
+				await updateHistory(token, 3, "box3video2");
+				await updateHistory(token, 3, "box3document10");
+				await updateHistory(token, 3, "box3document12");
+				await updateHistory(token, 3, "box3document9");
+				actionToggleDataHistory();
 				actionToggleDataObjectif();
 				actionToggleDataHelp();
+				setVideoSauverLauren(true);
+				fetchPreviousStateNappe();
 				console.log("objectif34 terminé");
 			}
 			if (data.id == 33) {
@@ -1181,13 +1180,36 @@ const Objectif = ({ data }) => {
 		return text;
 	};
 
+	const handleDoneObjectifModal = () => {
+		setDoneObjectifModal(!doneObjectifModal);
+	};
+
+	const renderDoneObjectifModal = () => {
+		return (
+			<div className="modal-objectif__background">
+				<div className="modal-objectif__box">
+					{/* <button className="modal-objectif__icon--container">
+						<img className="modal-objectif__icon" src={Cross} onClick={handleDoneObjectifModal} />
+					</button> */}
+					<h2 className="modal-objectif__title">
+						Objectif : <br></br> {data.title}
+					</h2>
+					{data.newanswertext ? <div>{renderText(data.newanswertext)}</div> : <div>{renderText(data.answertext)}</div>}
+					<button className="modal-objectif__button button--red" onClick={handleDoneObjectifModal}>
+						Valider
+					</button>
+				</div>
+			</div>
+		);
+	};
+
 	// -- RENDER DES BOUTONS OBJECTIFS -- //
 
 	const renderObjectif = () => {
 		if (data.status == "done") {
 			return (
 				<>
-					<button className="objectif objectif--done">
+					<button className="objectif objectif--done" onClick={handleDoneObjectifModal}>
 						<div className="objectif__mainInfo">
 							<div className="objectif__icon-wrapper">
 								<img src={Check} className="objectif__icon" />
@@ -1241,22 +1263,27 @@ const Objectif = ({ data }) => {
 	const [modaleVHS, setModaleVHS] = useState(false);
 	const [modaleInterrogatoireGarraud, setModaleInterrogatoireGarraud] = useState(false);
 	const [videoInterrogatoireGarraud, setVideoInterrogatoireGarraud] = useState(false);
+	const [displayButtonOpenMail, setDisplayButtonOpenMail] = useState(false);
 	const [endGameModale, setEndGameModale] = useState(false);
 
 	const displayHacking = () => {
 		return (
 			<div className="modal-objectif__background">
 				<div className="modal-objectif__box modal-hacking">
-					<audio autoPlay>
+					<audio autoPlay onEnded={() => setDisplayButtonOpenMail(true)}>
 						<source src={urlApi.apiRemi() + "sounds/103-hacking-tueur.mp3"} type="audio/mpeg" />
 						Votre navigateur ne prend pas en charge ce format
 					</audio>
 					<div className="text-hacking" data-text="Vous avez un mail">
 						Vous avez un mail
 					</div>
-					<button className="modal-objectif__button button--red" onClick={handleOpenMailHacking}>
-						Valider
-					</button>
+					{displayButtonOpenMail ? (
+						<button className="modal-objectif__button button--red" onClick={handleOpenMailHacking}>
+							Valider
+						</button>
+					) : (
+						""
+					)}
 				</div>
 			</div>
 		);
@@ -1292,9 +1319,15 @@ const Objectif = ({ data }) => {
 			<div className="modal-objectif__background">
 				<div className="modal-objectif__box modal-objectif__endGame">
 					{renderEndText()}
-					<button className="modal-objectif__button button--red" onClick={handleEndGameModale}>
-						Clore cette partie de l&apos;enquête
-					</button>
+					{currentBox == 3 ? (
+						<button className="modal-objectif__button button--red" onClick={handleEndGameModale}>
+							Clore ce dossier
+						</button>
+					) : (
+						<button className="modal-objectif__button button--red" onClick={handleEndGameModale}>
+							Clore cette partie de l&apos;enquête
+						</button>
+					)}
 				</div>
 			</div>
 		);
@@ -1474,6 +1507,7 @@ const Objectif = ({ data }) => {
 
 	// --- LOGIQUE EVENT BOX 2 --- //
 
+	const [youveGotMail, setYouveGotMail] = useState(false);
 	const [mailLauren2, setMailLauren2] = useState(false);
 	const [audioSamuel, setAudioSamuel] = useState(false);
 	const [audioBreakingNews, setAudioBreakingNews] = useState(false);
@@ -1494,6 +1528,28 @@ const Objectif = ({ data }) => {
 	const handleCloseVideoBureau = async () => {
 		setVideoBureauLauren(false);
 		setEndGameModale(true);
+	};
+
+	const displayYouveGotMail = () => {
+		return (
+			<div className="modal-objectif__background">
+				<div className="modal-objectif__box">
+					<audio autoPlay>
+						<source src={urlApi.apiRemi() + "sounds/ding.mp3"} type="audio/mpeg" />
+						Votre navigateur ne prend pas en charge ce format
+					</audio>
+					<div>Vous avez un mail</div>
+					<button className="modal-objectif__button button--red" onClick={handleCloseYouveGotMail}>
+						Valider
+					</button>
+				</div>
+			</div>
+		);
+	};
+
+	const handleCloseYouveGotMail = () => {
+		setMailLauren2(true);
+		setYouveGotMail(false);
 	};
 
 	const displayMailLauren2 = () => {
@@ -1559,12 +1615,13 @@ const Objectif = ({ data }) => {
 						<source src={urlApi.apiRemi() + "sounds/203-commentaires-raphaelle-breaking-news-2.mp3"} type="audio/mpeg" />
 						Votre navigateur ne prend pas en charge ce format
 					</audio>
-				) : null}
-				<Video
-					title="Flash Info"
-					srcVideo={urlApi.apiRemi() + "videos/db-s02-203-vdef.mp4&type=video"}
-					handleModalVideo={handleCloseVideoBreakingNews}
-				/>
+				) : (
+					<Video
+						title="Flash Info"
+						srcVideo={urlApi.apiRemi() + "videos/db-s02-203-vdef.mp4&type=video"}
+						handleModalVideo={handleCloseVideoBreakingNews}
+					/>
+				)}
 			</>
 		);
 	};
@@ -1586,10 +1643,13 @@ const Objectif = ({ data }) => {
 
 	// --- LOGIQUE EVENT BOX 3 --- //
 
-	// const [videoSauverLauren, setVideoSauverLauren] = useState(false);
+	const [videoSauverLauren, setVideoSauverLauren] = useState(false);
 	const [modaleSquelette, setModaleSquelette] = useState(false);
 	const [debriefLauren, setDebriefLauren] = useState(false);
 	const [tempsEcoule, setTempsEcoule] = useState(false);
+	const [displayTextMauvaiseFin1, setDisplayTextMauvaiseFin1] = useState(false);
+	const [displayTextMauvaiseFin2, setDisplayTextMauvaiseFin2] = useState(false);
+	const [displayTextResolution, setDisplayTextResolution] = useState(false);
 	const [mauvaiseFin1, setMauvaiseFin1] = useState(false);
 	const [mauvaiseFin2, setMauvaiseFin2] = useState(false);
 	const [resolution, setResolution] = useState(false);
@@ -1604,7 +1664,7 @@ const Objectif = ({ data }) => {
 					<p>Vous devriez demander à Adèle ce qu&apos;elle peut trouver dessus. </p>
 					<p>Et une vieille photo…</p>
 					<p>Vous trouverez tout ça dans l&apos;Historique.</p>
-					<button className="modal-objectif__button button--red" onClick={setModaleSquelette(false)}>
+					<button className="modal-objectif__button button--red" onClick={handleCloseModaleSquelette}>
 						Continuer l&apos;enquête
 					</button>
 				</div>
@@ -1612,8 +1672,23 @@ const Objectif = ({ data }) => {
 		);
 	};
 
+	const handleCloseModaleSquelette = () => {
+		setModaleSquelette(false);
+	};
+
+	const displayVideoSauverLauren = () => {
+		fetchPreviousStateNappe();
+		return (
+			<Video
+				title="Cave de Céline"
+				srcVideo={urlApi.apiRemi() + "videos/db-s02-302-def.mp4&type=video"}
+				handleModalVideo={handleCloseVideoSauverLauren}
+			/>
+		);
+	};
+
 	const handleCloseVideoSauverLauren = async () => {
-		handleModal();
+		setVideoSauverLauren(false);
 		setDebriefLauren(true);
 		fetchPreviousStateNappe();
 	};
@@ -1624,22 +1699,14 @@ const Objectif = ({ data }) => {
 				title="Debrief Lauren"
 				srcImg1={urlApi.apiRemi() + "assets/photos-personnages/lauren.jpg"}
 				srcImg2={urlApi.apiRemi() + "assets/photos-personnages/raphaelle.jpg"}
-				srcTranscription={urlApi.apiRemi() + "assets/photos-personnages/raphaelle.jpg"}
+				srcTranscription={urlApi.apiRemi() + "assets/transcripts/303_Debrief_Lauren_transcript.pdf"}
 				handleModalAudio={closeDebriefLauren}
 				srcAudio={urlApi.apiRemi() + "sounds/303-debrief-lauren.mp3"}
 			/>
 		);
 	};
 
-	const closeDebriefLauren = async () => {
-		await updateHistory(token, 3, "box3audio1");
-		await updateHistory(token, 3, "box3lieu3");
-		await updateHistory(token, 3, "box3video2");
-		await updateHistory(token, 3, "box3document10");
-		await updateHistory(token, 3, "box3document12");
-		await updateHistory(token, 3, "box3document9");
-		actionToggleDataHistory();
-		actionToggleDataHistory();
+	const closeDebriefLauren = () => {
 		setDebriefLauren(false);
 		window.open("https://fouille.cave.detectivebox.fr/?token=" + token, "_blank");
 	};
@@ -1673,7 +1740,7 @@ const Objectif = ({ data }) => {
 		setVictimeSaved("");
 		setNextStep(false);
 		await updateEvent(token, 3, 35, "closed");
-		await updateEvent(token, 3, 33, "open");
+		await updateEvent(token, 3, 33, "closed");
 		await updateHelp(token, 3, "box3help5", "closed");
 		await updateHelp(token, 3, "box3help4", "open");
 		actionToggleDataEvent();
@@ -1694,15 +1761,21 @@ const Objectif = ({ data }) => {
 		return (
 			<div className="modal-objectif__background">
 				<div className="modal-objectif__box">
-					<audio autoPlay>
+					<audio autoPlay onEnded={() => setDisplayTextResolution(true)}>
 						<source src={urlApi.apiRemi() + "sounds/307-bonne-fin.mp3"} type="audio/mpeg" />
 						Votre navigateur ne prend pas en charge ce format
 					</audio>
-					<p>Bravo, grâce à vous, nous avons réussi à sauver la dernière cible et à arrêter Céline !</p>
-					<p>Il est temps de tout lui faire avouer.</p>
-					<button className="modal-objectif__button button--red" onClick={handleInterrogatoireFinal}>
-						Voir l&apos;interrogatoire
-					</button>
+					{displayTextResolution ? (
+						<>
+							<p>Bravo, grâce à vous, nous avons réussi à sauver la dernière cible et à arrêter Céline !</p>
+							<p>Il est temps de tout lui faire avouer.</p>
+							<button className="modal-objectif__button button--red" onClick={handleInterrogatoireFinal}>
+								Voir l&apos;interrogatoire
+							</button>
+						</>
+					) : (
+						<p>Merci agents, je saute dans un avion !</p>
+					)}
 				</div>
 			</div>
 		);
@@ -1733,21 +1806,27 @@ const Objectif = ({ data }) => {
 		return (
 			<div className="modal-objectif__background">
 				<div className="modal-objectif__box">
-					<audio autoPlay>
+					<audio autoPlay onEnded={() => setDisplayTextMauvaiseFin1(true)}>
 						<source src={urlApi.apiRemi() + "sounds/308-mauvaise-fin-1.mp3"} type="audio/mpeg" />
 						Votre navigateur ne prend pas en charge ce format
 					</audio>
-					<p>
-						Ce n&apos;était pas la bonne cible, nous nous sommes trompés... Céline est malheureusement dans la nature et elle
-						a réussi son grand œuvre.{" "}
-					</p>
-					<p>Souhaitez-vous réessayer ou passer à l&apos;épilogue ?</p>
-					<button className="modal-objectif__button button--red" onClick={handleReset}>
-						Recommencer
-					</button>
-					<button className="modal-objectif__button button--red" onClick={handleGoToResolution}>
-						Résolution de l&apos;enquête
-					</button>
+					{displayTextMauvaiseFin1 ? (
+						<>
+							<p>
+								Ce n&apos;était pas la bonne cible, nous nous sommes trompés... Céline est malheureusement dans la nature et
+								elle a réussi son grand œuvre.
+							</p>
+							<p>Souhaitez-vous réessayer ou passer à l&apos;épilogue ?</p>
+							<button className="modal-objectif__button button--red" onClick={handleReset}>
+								Recommencer
+							</button>
+							<button className="modal-objectif__button button--red" onClick={handleGoToResolution}>
+								Résolution de l&apos;enquête
+							</button>
+						</>
+					) : (
+						<p>Merci agents, je saute dans un avion !</p>
+					)}
 				</div>
 			</div>
 		);
@@ -1757,18 +1836,27 @@ const Objectif = ({ data }) => {
 		return (
 			<div className="modal-objectif__background">
 				<div className="modal-objectif__box">
-					<audio autoPlay>
+					<audio autoPlay onEnded={() => setDisplayTextMauvaiseFin2(true)}>
 						<source src={urlApi.apiRemi() + "sounds/309-mauvaise-fin-2.mp3"} type="audio/mpeg" />
 						Votre navigateur ne prend pas en charge ce format
 					</audio>
-					<p>Le temps est écoulé, nous n&apos;avons pas pu sauver la victime à temps !</p>
-					<p>Souhaitez-vous réessayer ou passer à l&apos;épilogue ?</p>
-					<button className="modal-objectif__button button--red" onClick={handleReset}>
-						Recommencer
-					</button>
-					<button className="modal-objectif__button button--red" onClick={handleGoToResolution}>
-						Résolution de l&apos;enquête
-					</button>
+					{displayTextMauvaiseFin2 ? (
+						<>
+							<p>
+								Ce n&pos;était pas la bonne cible, nous nous sommes trompés... Céline est malheureusement dans la nature et elle
+								a réussi son grand œuvre.
+							</p>
+							<p>Souhaitez-vous réessayer ou passer à l&apos;épilogue ?</p>
+							<button className="modal-objectif__button button--red" onClick={handleReset}>
+								Recommencer
+							</button>
+							<button className="modal-objectif__button button--red" onClick={handleGoToResolution}>
+								Résolution de l&apos;enquête
+							</button>
+						</>
+					) : (
+						<p>Merci agents, je saute dans un avion !</p>
+					)}
 				</div>
 			</div>
 		);
@@ -1781,6 +1869,7 @@ const Objectif = ({ data }) => {
 			{modalBis ? renderModalBis() : ""}
 			{modalAnswer ? renderModalAnswer() : ""}
 			{modalAnswerBis ? renderModalAnswerBis() : ""}
+			{doneObjectifModal ? renderDoneObjectifModal() : ""}
 			{modaleHacking ? displayHacking() : null}
 			{modaleMailHacking ? displayMailHacking() : null}
 			{modaleMalle ? displayContentMalle() : null}
@@ -1788,12 +1877,13 @@ const Objectif = ({ data }) => {
 			{modaleVHS ? displayModaleVHS() : null}
 			{modaleInterrogatoireGarraud ? displayModaleInterrogatoireGarraud() : null}
 			{videoInterrogatoireGarraud ? displayVideoInterrogatoireGarraud() : null}
+			{youveGotMail ? displayYouveGotMail() : null}
 			{mailLauren2 ? displayMailLauren2() : null}
 			{audioSamuel ? displayAudioSamuel() : null}
 			{audioBreakingNews ? displayAudioBreakingNews() : null}
 			{videoBreakingNews ? displayVideoBreakingNews() : null}
 			{videoBureauLauren ? displayVideoBureauLauren() : null}
-			{/* {videoSauverLauren ? displayVideoSauverLauren() : null} */}
+			{videoSauverLauren ? displayVideoSauverLauren() : null}
 			{modaleSquelette ? displayModaleSquelette() : null}
 			{debriefLauren ? displayDebriefLauren() : null}
 			{tempsEcoule ? displayModaleTempsEcoule() : null}

@@ -15,8 +15,9 @@ import { updateCharactersById, updateHistory, getCharactersById } from "../utils
 const Adele = ({ closeAgentPage }) => {
 	const { currentBox } = useContext(BoxContext);
 	const token = localStorage.getItem("token");
-	const { actionToggleDataAdele, toggleDataAdele } = useContext(DataContext);
+	const { actionToggleDataAdele, toggleDataAdele, actionToggleDataHistory } = useContext(DataContext);
 	// EXPLICATION : state spécifique pour afficher le mail de Lauren
+	const [youveGotMail, setYouveGotMail] = useState(false);
 	const [mailLauren1, setMailLauren1] = useState(false);
 
 	//EXPLICATION : Adele est le personnage "1"
@@ -152,9 +153,32 @@ const Adele = ({ closeAgentPage }) => {
 		actionToggleDataAdele();
 		setModalMedia(false);
 		if (answerId == "box2document4") {
-			setMailLauren1(true);
+			setYouveGotMail(true);
 			await updateHistory(token, 2, "box2document8");
+			actionToggleDataHistory();
 		}
+	};
+
+	const displayYouveGotMail = () => {
+		return (
+			<div className="modal-objectif__background">
+				<div className="modal-objectif__box">
+					<audio autoPlay>
+						<source src={urlApi.apiRemi() + "sounds/ding.mp3"} type="audio/mpeg" />
+						Votre navigateur ne prend pas en charge ce format
+					</audio>
+					<div>Vous avez un mail</div>
+					<button className="modal-objectif__button button--red" onClick={handleCloseYouveGotMail}>
+						Valider
+					</button>
+				</div>
+			</div>
+		);
+	};
+
+	const handleCloseYouveGotMail = () => {
+		setMailLauren1(true);
+		setYouveGotMail(false);
 	};
 
 	const displayMailLauren1 = () => {
@@ -187,7 +211,8 @@ const Adele = ({ closeAgentPage }) => {
 		<>
 			{modal ? renderModal() : ""}
 			{modalMedia ? renderModalMedia() : ""}
-			{mailLauren1 ? displayMailLauren1() : null}
+			{youveGotMail ? displayYouveGotMail() : ""}
+			{mailLauren1 ? displayMailLauren1() : ""}
 			<audio autoPlay>
 				<source src={urlApi.apiRemi() + catchphrase[randomNumber]} type="audio/mpeg" />
 				Votre navigateur ne prend pas en charge ce format

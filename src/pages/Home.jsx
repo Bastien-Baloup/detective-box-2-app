@@ -20,7 +20,7 @@ import { useState } from "react";
 import { BoxContext, DataContext } from "../utils/context/fetchContext";
 import { useContext, useEffect } from "react";
 import { urlApi } from "../utils/const/urlApi";
-import { getEventByBox, updateEvent, getHistoryByBox } from "../utils/hooks/useApi";
+import { updateEvent, getHistoryByBox } from "../utils/hooks/useApi";
 
 function Home() {
 	const [characterDisplayed, setCharacterDisplayed] = useState(null);
@@ -29,27 +29,25 @@ function Home() {
 
 	const { currentBox } = useContext(BoxContext);
 	const token = localStorage.getItem("token");
-	const { toggleDataHistory, toggleDataEvent, actionToggleDataEvent } = useContext(DataContext);
+	const { toggleDataHistory, actionToggleDataEvent } = useContext(DataContext);
 
 	useEffect(() => {
 		const fetchData = async () => {
-			const result = await getEventByBox(token, 3);
-			const event34 = result.data.find((event) => event.id == 34);
-			setEvent34(event34.status);
-		};
-		fetchData();
-	}, [toggleDataEvent]);
-
-	useEffect(() => {
-		const fetchData = async () => {
-			const result = await getHistoryByBox(token, 2);
-			const box2document6 = result.data.find((event) => event.id == "box2document6");
-			setBox2Document6(box2document6.status);
+			if (currentBox == 2) {
+				const result = await getHistoryByBox(token, 2);
+				const box2document6Data = result.data.find((event) => event.id == "box2document6");
+				setBox2Document6(box2document6Data.status);
+			}
+			if (currentBox == 3) {
+				const result = await getHistoryByBox(token, 3);
+				const box3audio3Data = result.data.find((event) => event.id == "box3audio3");
+				setBox3Audio3(box3audio3Data.status);
+			}
 		};
 		fetchData();
 	}, [toggleDataHistory]);
 
-	const [event34, setEvent34] = useState("");
+	const [box3audio3, setBox3Audio3] = useState(false);
 	const [box2document6, setBox2Document6] = useState(false);
 
 	const specificCardActionLauren = () => {
@@ -120,23 +118,27 @@ function Home() {
 			);
 		}
 		if (currentBox == 2 && box2document6 == true) {
-			return <Card
-				srcImg={PhotoLauren}
-				srcIcon={IconLauren}
-				name="Lauren Fraser"
-				contentButton="Demander un interrogatoire"
-				actionButton={specificCardActionLauren}
-				state="unavailable"
-			/>;
+			return (
+				<Card
+					srcImg={PhotoLauren}
+					srcIcon={IconLauren}
+					name="Lauren Fraser"
+					contentButton="Demander un interrogatoire"
+					actionButton={specificCardActionLauren}
+					state="unavailable"
+				/>
+			);
 		} else {
-			return <Card
-				srcImg={PhotoLauren}
-				srcIcon={IconLauren}
-				name="Lauren Fraser"
-				contentButton="Demander un interrogatoire"
-				actionButton={() => setCharacterDisplayed("lauren")}
-				state=""
-			/>;
+			return (
+				<Card
+					srcImg={PhotoLauren}
+					srcIcon={IconLauren}
+					name="Lauren Fraser"
+					contentButton="Demander un interrogatoire"
+					actionButton={() => setCharacterDisplayed("lauren")}
+					state=""
+				/>
+			);
 		}
 	};
 
@@ -160,7 +162,7 @@ function Home() {
 						name="Céline Valluy"
 						contentButton="Demander un dossier de police"
 						actionButton={() => setCharacterDisplayed("celine")}
-						state={event34 == "done" ? "unavailable" : ""}
+						state={box3audio3 ? "unavailable" : ""}
 					/>
 					<Card
 						srcImg={PhotoTim}

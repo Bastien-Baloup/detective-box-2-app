@@ -10,12 +10,12 @@ import { urlApi } from "../utils/const/urlApi";
 import { BoxContext, DataContext } from "../utils/context/fetchContext";
 import { useContext, useState, useEffect } from "react";
 // import { dataCeline } from "../utils/const/dataCeline";
-import { updateCharactersById, updateHistory, getCharactersById } from "../utils/hooks/useApi.js";
+import { updateCharactersById, updateHistory, getCharactersById, getHistoryByBox } from "../utils/hooks/useApi.js";
 
 const Celine = ({ closeAgentPage }) => {
 	const { currentBox } = useContext(BoxContext);
 	const token = localStorage.getItem("token");
-	const { actionToggleDataCeline, toggleDataCeline } = useContext(DataContext);
+	const { actionToggleDataCeline, toggleDataCeline, toggleDataHistory } = useContext(DataContext);
 
 	//EXPLICATION : Celine est le personnage "3"
 
@@ -28,13 +28,28 @@ const Celine = ({ closeAgentPage }) => {
 		fetchData();
 	}, [toggleDataCeline]);
 
+	useEffect(() => {
+		const fetchData = async () => {
+			const result = await getHistoryByBox(token, 3);
+			const box3audio3Data = result.data.find((event) => event.id == "box3audio3");
+			setBox3Audio3(box3audio3Data.status);
+		};
+		fetchData();
+	}, [toggleDataHistory]);
+
 	const [dataCeline, setDataCeline] = useState(null);
+	const [box3audio3, setBox3Audio3] = useState(false);
 
 	const [value, setValue] = useState("");
 	const [errorMessage, setErrorMessage] = useState("");
 	const [modal, setModal] = useState(false);
 	const [modalMedia, setModalMedia] = useState(false);
 	const [answer, setAnswer] = useState("");
+
+	//EXPLICATION : Fonction pour sortir les joueurs de la page de Celine si elle vient de se faire enlever (box3audio3 dans historique)
+	if (currentBox == 2 && box3audio3) {
+		closeAgentPage();
+	}
 
 	// EXPLICATION : Fonction pour slugifier l'input des joueurs
 	const slugify = (input) => {

@@ -3,7 +3,7 @@
 	flex-direction: column;
 	align-items: center;
 	&__logo {
-		max-width: 50%;
+		max-width: 40%;
 		min-width: 15rem;
 		margin: 5vh 0;
 	}
@@ -38,8 +38,5 @@
 @include responsive(laptop) {
 	.login__link {
 		font-size: 1.25rem;
-	}
-	.login__logo {
-		margin: 10vh 0;
 	}
 }

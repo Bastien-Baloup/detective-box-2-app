@@ -1,5 +1,5 @@
 .progressBar {
-	display: flex;
+	display: none;
 	flex-wrap: wrap;
 	// display: grid;
 	// grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -26,6 +26,7 @@
 		padding: 0 0.2rem;
 		&--container{
 			display: flex;
+			align-items: center;
 		}
 	}
 	&--main {
@@ -50,5 +51,6 @@
 @include responsive(tablet) {
 	.progressBar {
 		flex-wrap: nowrap;
+		display: flex;
 	}
 }

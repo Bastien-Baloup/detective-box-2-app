@@ -1,8 +1,14 @@
-.main__home{
+.main__home {
 	padding: 1.5rem;
 	border: 1px solid $secondary-color;
 	// border-top: none;
 	background-color: $primary-color;
 	overflow: auto;
 	// min-height: 50vh;
+}
+
+@include responsive(laptop) {
+	.main__home {
+		margin-bottom: 10rem;
+	}
 }

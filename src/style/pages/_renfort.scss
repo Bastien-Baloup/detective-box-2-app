@@ -6,6 +6,13 @@
 	min-height: 50vh;
 }
 
+@include responsive(laptop) {
+	.main__help {
+		margin-bottom: 10rem;
+	}
+}
+
+
 .help {
 	&__menu {
 		display: flex;
