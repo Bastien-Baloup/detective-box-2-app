@@ -157,7 +157,7 @@ export const dataHistory = {
 		{
 			id: "box1audio7",
 			box: "Box 1",
-			title: "terrogatoire Elisabeth Monrency",
+			title: "Interrogatoire Elisabeth Monrency",
 			category: "Audio",
 			detail: "Interrogatoire datant de 1993 d'Elisabeth Monrency : épouse de Xavier Monrency",
 			poster: "assets/photos-personnages/Elisabeth-Monrency.jpg",

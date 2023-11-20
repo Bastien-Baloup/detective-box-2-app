@@ -145,11 +145,22 @@ export const dataTim = {
 		},
 		{
 			ask: [
-				"fandesconstellationscachées",
+				"fandesconstellationscachees",
+				"fandesconstellationscachéesforum",
 				"forumbreakingnews",
 				"forum",
 				"wwwfansdesconstellationscacheesfr",
+				"wwwfandesconstellationscacheesfr",
 				"fansdesconstellationscacheesfr",
+				"fandesconstellationscacheesfr",
+				"fansdesconstellationscachees",
+				"fandesconstellationscachees",
+				"fanconstellationscachees",
+				"fansconstellationscachees",
+				"fanconstellationscacheesfr",
+				"fansconstellationscacheesfr",
+				"sitefansdesconstellationscachees",
+				"sitefandesconstellationscachees",
 			],
 			text: [
 				"C'est une antiquité, que j'ai retrouvée au fin fond du web.",

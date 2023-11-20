@@ -14,7 +14,7 @@ export const dataObjectif = {
 			answertext: [
 				"Raphaëlle:",
 				"Bien joué, j'ai l'impression que vous avez résolu ce paragraphe du poème. Si je comprends bien, le tueur connaissait sa victime, mais pas l'inverse. Continuons notre enquête.",
-				"",
+				"-",
 				"Lauren:",
 				"Faire parler sa victime avant de la tuer, c'est un procédé classique de personnalisation. On sent qu'il y prend du plaisir. De même que le petit rituel qu'il lui impose. Je vous invite à analyser à quel type de tueur on a à faire. Je vous envoie pour cela un extrait du livre de profiling que j'ai co-écrit. Dans une affaire de tueur en série, ça ne peut que nous aider ! A quel type de tueur avons-nous donc affaire ?",
 			],
@@ -44,7 +44,7 @@ export const dataObjectif = {
 			answertext: [
 				"Tim:",
 				"Punaise vous êtes des rapides, vous !",
-				"",
+				"-",
 				"Raphaëlle:",
 				"Des années que les décrypteurs du monde entier sont sur ce message... Il y en a beaucoup qui vont être jaloux de vos talents ! D'un autre côté, il leur manquait des documents... mais quand même!",
 				"C'est donc Xavier Monrency l'oublié.",
@@ -66,7 +66,7 @@ export const dataObjectif = {
 			answertext: [
 				"Raphaëlle:",
 				"La personne enlevée était donc la mère de Garraud... Et l'orgueilleux, c'était Charles, qui s'est fait piéger par le tueur... On a affaire à des sacrés tordus quand même... J'espère qu'avec ça on va finir par réussir à l'interroger.",
-				"",
+				"-",
 				"Céline:",
 				"Je vais voir ce que je peux arranger.",
 			],
@@ -216,11 +216,11 @@ export const dataObjectif = {
 		},
 		{
 			id: 23,
-			title: "Modus opérandi",
+			title: "Modus operandi",
 			subtitle: "Finaliser la liste des victimes",
 			detail: [
 				"Nous avons effectué une première sélection, cependant, nous devons maintenant réduire le groupe à 5 personnes comme le nombre de cartes de tarot trouvées dans la planque du tueur.",
-				"Il semble que nous devions approfondir la sélection des victimes en utilisant les nouvelles informations à notre disposition.",
+				"Utilisons les nouvelles informations à notre disposition.",
 			],
 			victimes: [
 				{ name: "Aaron King", img: "assets/photos-personnages/aaron_king.jpg" },
@@ -263,7 +263,7 @@ export const dataObjectif = {
 				"Vous l'avez retrouvée, bravo !",
 				"Maintenant je suis sûre qu'on doit également pouvoir retrouver l'adresse de cette dénommée Stella.",
 				"Dites-moi où je dois me rendre lorsque vous l'aurez trouvée.",
-				"",
+				"-",
 				"Lauren :",
 				"Raph, je crois que notre tueur a peut-être rencontré une victime avant sa mort, je creuse cette piste et je reviens vers toi dès que j'ai quelque chose de concret...",
 			],
