@@ -39,11 +39,18 @@ const BoxChoice = ({ data }) => {
 					<button className="modal-boxdone__icon--container">
 						<img className="modal-boxdone__icon" src={Cross} onClick={handleModal} />
 					</button>
-					<p className="modal-boxdone__text">
-						Vous avez déjà terminé cette partie de l&apos;enquête. <br></br>
-						Passez à la box suivante pour continuer et démasquer le tueur ou rendez-vous sur notre site pour découvrir nos
-						autres enquêtes
-					</p>
+					{data.id == 3 ? (
+						<p className="modal-boxdone__text">
+							Vous avez résolu le mystère du Tueur au Tarot et clos le dossier. <br></br>
+							Rendez-vous sur notre site pour découvrir nos autres enquêtes.
+						</p>
+					) : (
+						<p className="modal-boxdone__text">
+							Vous avez déjà terminé cette partie de l&apos;enquête. <br></br>
+							Passez à la box suivante pour continuer et démasquer le tueur ou rendez-vous sur notre site pour découvrir nos
+							autres enquêtes
+						</p>
+					)}
 					<button className="modal-boxdone__button button--red" onClick={openWebsite}>
 						Se rendre sur le site
 					</button>

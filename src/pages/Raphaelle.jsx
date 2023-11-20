@@ -301,16 +301,13 @@ const Raphaelle = ({ closeAgentPage }) => {
 	// EXPLICATION : la visite du lieu box2lieu2 ouvre le renfort 6 et ferme le renfort 5
 	const openLieu = async (answerId, asnwerAsk) => {
 		await updateHistory(token, currentBox, answerId);
-		actionToggleDataHistory();
 		await updateCharactersById(token, 4, currentBox, asnwerAsk);
 		if (answerId == "box2lieu1") {
 			await updateHistory(token, 2, "box2document5");
-			actionToggleDataHistory();
 		}
 		if (answerId == "box2lieu3") {
 			await updateHistory(token, 2, "box2document7");
 			await updateHistory(token, 2, "box2document10");
-			actionToggleDataHistory();
 		}
 		if (answerId == "box2lieu2") {
 			await updateHelp(token, 2, "box2help5", "done");
@@ -322,10 +319,9 @@ const Raphaelle = ({ closeAgentPage }) => {
 			await updateHistory(token, 3, "box3document7");
 			await updateHistory(token, 3, "box3document8");
 			await updateHistory(token, 3, "box3document11");
-			actionToggleDataHistory();
 		}
-
 		window.open(answer.src + "/?token=" + token, "_blank");
+		actionToggleDataHistory();
 		actionToggleDataRaphaelle();
 		// actionTogglePolling(true);
 		validateModal();

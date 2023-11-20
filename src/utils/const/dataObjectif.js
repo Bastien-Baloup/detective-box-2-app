@@ -167,7 +167,7 @@ export const dataObjectif = {
 			],
 			answertext: [
 				"Bravo Agents, c'est un bon premier tri !",
-				"Je vais montrer ça à mon contact à Interpol, Samuel Perry.",
+				"Je vais montrer ça à mon contact à Eurocrim, Samuel Perry.",
 				"C'est lui qui m'a aidé à établir la liste, il aura peut-être d'autres éléments pour nous.",
 			],
 			answersrc: "sounds/204-objectifs-reussis-1.mp3",
@@ -332,7 +332,7 @@ export const dataObjectif = {
 			id: 34,
 			title: "Le tueur",
 			subtitle: "Identifier le tueur",
-			detail: ["Il faut qu'on identifie le tueur pour pouvoir l'arrêter avant que ne recommence"],
+			detail: ["Il faut qu'on identifie le tueur pour pouvoir l'arrêter avant que ça ne recommence"],
 			label: "Réponse",
 			errorMessage: "Je ne pense pas que ce soit cela.",
 			answer: ["celinevalluy"],

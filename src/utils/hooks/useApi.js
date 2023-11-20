@@ -47,14 +47,14 @@ export const createUser = (newaccount) => {
 			"Content-Type": "application/json",
 		},
 		body: JSON.stringify(newaccount),
-	})
-		// .then((response) => response.json())
-		// .then((data) => {
-		// 	return data;
-		// })
-		// .catch((error) => {
-		// 	console.error(error);
-		// });
+	});
+	// .then((response) => response.json())
+	// .then((data) => {
+	// 	return data;
+	// })
+	// .catch((error) => {
+	// 	console.error(error);
+	// });
 };
 
 export const getUser = (token) => {
@@ -80,7 +80,7 @@ export const forgotPassword = (email) => {
 		headers: {
 			"Content-Type": "application/json",
 		},
-		body: JSON.stringify(email),
+		body: JSON.stringify({ email }),
 	})
 		.then((response) => response.json())
 		.then((data) => {
@@ -92,7 +92,7 @@ export const forgotPassword = (email) => {
 };
 
 export const updatePassword = (token, newpassword) => {
-	return fetch(url + "/users/", {
+	return fetch(url + "/users/password", {
 		method: "PUT",
 		headers: {
 			"Content-Type": "application/json",

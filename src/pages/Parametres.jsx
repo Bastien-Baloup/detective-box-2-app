@@ -35,19 +35,17 @@ function Parametres() {
 			return;
 		}
 		if (password != "" && username == "") {
-			await updatePassword(token, user.id, newinfos);
-			setUsername("");
-			setPassword("");
-			setErrorMessage("");
-			return;
+			await updatePassword(token, password);
+			setErrorMessage("Votre mot de passe a bien été modifié !");
+			console.log(user);
 		}
 		if (password == "" && username != "") {
-			await updateName(token, password);
-			setUsername("");
-			setPassword("");
-			setErrorMessage("");
-			return;
+			await updateName(token, user.id, newinfos);
+			setuser((prevUser) => ({ ...prevUser, name: username }));
+			setErrorMessage("Votre nom d'agent a bien été modifié !");
 		}
+		setUsername("");
+		setPassword("");
 	};
 
 	return (

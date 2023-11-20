@@ -126,7 +126,7 @@ export const dataQuizz = {
 				answer: "La menteuse, l'oublié, l'orgueilleux, le chemin de la vérité",
 				explanation: [
 					"Le poème possédait bien quatre paragraphes et quatre pistes.",
-					"Les trois premières nous ramenaient à des victimes du tueur, la dernière à une piste qui nous dirigeait vers une de ses planques.",
+					"Les trois premières nous ramenaient à des victimes du tueur, la dernière piste nous dirigeait vers une de ses planques.",
 				],
 				image: "assets/quiz/box2_poem_quiz_reponse_4.jpg",
 			},
@@ -214,7 +214,7 @@ export const dataQuizz = {
 				id: 3,
 				question: ["Quel est le point commun des victimes que l'on peut trouver dans le livre ?"],
 				choices: [
-					"Les victimes ont toutes Lilith, la lune noire, en balance dans leur thème astral",
+					"Les victimes ont toutes Lilith, la lune noire en balance dans leur thème astral",
 					"Les victimes sont toutes ascendantes cancer",
 					"Les victimes ont toutes une conjonction lune-saturne le jour de leur mort",
 				],
@@ -239,7 +239,7 @@ export const dataQuizz = {
 			{
 				id: 6,
 				question: ["Quelle moitié de carte de tarot se trouvait sur le corps de Mason Reynolds ?"],
-				choices: ["Le diable", "Le pape", "La maison de dieu"],
+				choices: ["Le Diable", "Le Pape", "La Maison Dieu"],
 				image: null,
 			},
 		],
@@ -296,7 +296,7 @@ export const dataQuizz = {
 				explanation: [
 					"Le pape était la demi-carte posée sur le corps de Mason.",
 					"Nous avions reçu l'autre moitié par avance, comme d'habitude.",
-					"Et nous avons reçu deux nouvelles demi-cartes, accompagnées d'une nouvelle lettre, je vous laisse regarder.",
+					"Et nous avons reçu deux nouvelles demi-cartes, accompagnées d'une carte de vœux du tueur, je vous laisse regarder..",
 				],
 				image: "assets/quiz/box3_pape_quiz_reponse_6.jpg",
 			},

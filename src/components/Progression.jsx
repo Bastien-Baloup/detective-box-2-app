@@ -1,16 +1,16 @@
 // EXPLICATION : Ce composant retourne la barre de progression qui se met à jour avec les objectifs.
 // EXPLICATION : Ce composant est utilisé dans le Header
 
-import RoundWhite from "../assets/icons/Icon_Round-white.svg";
-import RoundRed from "../assets/icons/Icon_Round-red.svg";
-import LineMediumWhite from "../assets/icons/Icon_Line_Medium-white.svg";
-import LineSmallWhite from "../assets/icons/Icon_Line_Small-white.svg";
-import LineBigRed from "../assets/icons/Icon_Line_Big-red.svg";
-import LineMediumRed from "../assets/icons/Icon_Line_Medium-red.svg";
-import LineSmallRed from "../assets/icons/Icon_Line_Small-red.svg";
-import CheckWhite from "../assets/icons/Icon_Check-white.svg";
-import CrossRed from "../assets/icons/Icon_Cross-red.svg";
-import Flag from "../assets/icons/Icon_Flag.svg";
+import RoundWhite from "../assets/icons/Icon_Round-white.png";
+import RoundRed from "../assets/icons/Icon_Round-red.png";
+import LineMediumWhite from "../assets/icons/Icon_Line_Medium-white.png";
+// import LineSmallWhite from "../assets/icons/Icon_Line_Small-white.svg";
+import LineBigRed from "../assets/icons/Icon_Line_Big-red.png";
+import LineMediumRed from "../assets/icons/Icon_Line_Medium-red.png";
+// import LineSmallRed from "../assets/icons/Icon_Line_Small-red.svg";
+import CheckWhite from "../assets/icons/Icon_Check-white.png";
+import CrossRed from "../assets/icons/Icon_Cross-red.png";
+import Flag from "../assets/icons/Icon_Flag.png";
 import { BoxContext, DataContext } from "../utils/context/fetchContext";
 import { useContext, useState, useEffect } from "react";
 // import { dataObjectif } from "../utils/const/dataObjectif";
@@ -49,13 +49,13 @@ const Progression = () => {
 						<img className="progressBar__box__icon--small" src={RoundWhite} />
 					</div>
 					<div className="progressBar__box__icon--small--container">
-						<img className="progressBar__box__icon--small" src={LineSmallWhite} />
+						<img className="progressBar__box__icon--small" src={LineMediumWhite} />
 					</div>
 					<div className="progressBar__box__icon--small--container">
 						<img className="progressBar__box__icon--small" src={RoundWhite} />
 					</div>
 					<div className="progressBar__box__icon--small--container">
-						<img className="progressBar__box__icon--small" src={LineSmallWhite} />
+						<img className="progressBar__box__icon--small" src={LineMediumWhite} />
 					</div>
 					<div className="progressBar__box__icon--small--container">
 						<img className="progressBar__box__icon--small" src={RoundWhite} />
@@ -75,13 +75,13 @@ const Progression = () => {
 					<img className="progressBar__box__icon--small" src={currentStep < 2 ? RoundRed : RoundWhite} />
 				</div>
 				<div className="progressBar__box__icon--small--container">
-					<img className="progressBar__box__icon--small" src={currentStep < 3 ? LineSmallRed : LineSmallWhite} />
+					<img className="progressBar__box__icon--small" src={currentStep < 3 ? LineMediumRed : LineMediumWhite} />
 				</div>
 				<div className="progressBar__box__icon--small--container">
 					<img className="progressBar__box__icon--small" src={currentStep < 3 ? RoundRed : RoundWhite} />
 				</div>
 				<div className="progressBar__box__icon--small--container">
-					<img className="progressBar__box__icon--small" src={currentStep < 4 ? LineSmallRed : LineSmallWhite} />
+					<img className="progressBar__box__icon--small" src={currentStep < 4 ? LineMediumRed : LineMediumWhite} />
 				</div>
 				<div className="progressBar__box__icon--small--container">
 					<img className="progressBar__box__icon--small" src={currentStep < 4 ? RoundRed : RoundWhite} />

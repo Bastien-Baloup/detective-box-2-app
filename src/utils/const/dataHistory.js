@@ -61,7 +61,7 @@ export const dataHistory = {
 			category: "Document",
 			detail: "Message affiché au mur dans la planque du tueur",
 			poster: "thumbnails/documents/126_Message_dans_la_planque_LD.jpg",
-			src: "assets/document/126_Message_dans_la_planque.pdf",
+			src: "assets/document/126_Message_dans_la_planque.jpg",
 			status: false,
 		},
 		{
@@ -71,7 +71,7 @@ export const dataHistory = {
 			category: "Document",
 			detail: "Lettre retrouvée dans une boîte en métal avec la VHS",
 			poster: "thumbnails/documents/130_Lettre_pour_Garraud_LD.jpg",
-			src: "assets/document/130_Lettre_pour_Garraud.pdf",
+			src: "assets/document/130_Lettre_pour_Garraud.jpg",
 			status: false,
 		},
 
@@ -390,7 +390,7 @@ export const dataHistory = {
 		{
 			id: "box1archive6",
 			box: "Box 1",
-			title: "Archives Christian Patenaud",
+			title: "Archives Christian Patenaude",
 			category: "Archive",
 			detail: "",
 			poster: "assets/archive/Archives_miniatures_homme_low.jpg",
@@ -631,7 +631,7 @@ export const dataHistory = {
 			category: "Document",
 			detail: "Lettre de Stella Louiseberg retrouvée chez Mason Reynolds",
 			poster: "thumbnails/documents/216_Lettre_de_Stella_LD.jpg",
-			src: "assets/document/216_Lettre_de_Stella.pdf",
+			src: "assets/document/216_Lettre_de_Stella.jpg",
 			status: false,
 		},
 		{

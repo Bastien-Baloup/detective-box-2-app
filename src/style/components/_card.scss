@@ -10,7 +10,7 @@
 	min-width: 5rem;
 	max-width: 10rem;
 	width: 100%;
-	height: 30rem;
+	height: 25rem;
 	position: relative;
 	cursor: pointer;
 	transition: all 1s ease;
@@ -86,6 +86,7 @@
 		width: -webkit-fill-available; /* Mozilla-based browsers will ignore this. */
 		padding: 0.5rem;
 		min-height: 3rem;
+		margin: 0.5rem 1rem;
 	}
 }
 

@@ -6,13 +6,14 @@ header {
 .header {
 	&__topSection {
 		display: grid;
-		grid-template: 1fr/ 1fr 1fr;
+		grid-template-columns: 1fr 1fr;
+		// grid-template: 1fr/ 1fr 1fr;
 		align-items: center;
 		justify-items: center;
 		gap: 1rem;
-		& .progressBar {
-			grid-area: 2/1/3/3;
-		}
+		// & .progressBar {
+		// 	grid-area: 2/1/3/3;
+		// }
 		& .dropdown {
 			justify-self: flex-end;
 		}
@@ -30,12 +31,12 @@ header {
 	}
 }
 
-@include responsive(laptop) {
+@include responsive(tablet) {
 	.header__topSection {
 		grid-template-columns: 1fr 1fr 1fr;
 		grid-template-rows: 1fr;
-		& .progressBar {
-			grid-area: auto;
-		}
+		// & .progressBar {
+		// 	grid-area: auto;
+		// }
 	}
 }

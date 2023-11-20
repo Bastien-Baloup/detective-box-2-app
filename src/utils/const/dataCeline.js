@@ -81,7 +81,7 @@ export const dataCeline = {
 			ask: ["christianpatenaude"],
 			text: ["Voilà ce que j'ai trouvé :"],
 			id: "box1archive6",
-			title: "Archives Christian Patenaud",
+			title: "Archives Christian Patenaude",
 			src: "assets/archive/1_Archives_Christian_Patenaude.jpg",
 			status: false,
 		},

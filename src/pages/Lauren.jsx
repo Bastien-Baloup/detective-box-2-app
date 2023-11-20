@@ -33,8 +33,8 @@ const Lauren = ({ closeAgentPage }) => {
 	useEffect(() => {
 		const fetchData = async () => {
 			const result = await getHistoryByBox(token, 2);
-			const box2document6 = result.data.find((event) => event.id == "box2document6");
-			setBox2Document6(box2document6.status);
+			const box2document6Data = result.data.find((event) => event.id == "box2document6");
+			setBox2Document6(box2document6Data.status);
 		};
 		fetchData();
 	}, [toggleDataHistory]);

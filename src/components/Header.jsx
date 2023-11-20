@@ -64,8 +64,8 @@ const Header = () => {
 		const fetchData = async () => {
 			const events = await getEventByBox(token, currentBox);
 			if (currentBox == 3) {
-				const event33 = events.data.find((event) => event.id == 33);
-				setEvent33(event33.status);
+				const event33Data = events.data.find((event) => event.id == 33);
+				setEvent33(event33Data.status);
 			}
 		};
 		fetchData();
@@ -76,16 +76,16 @@ const Header = () => {
 		const fetchData = async () => {
 			const clues = await getHistoryByBox(token, currentBox);
 			if (currentBox == 1) {
-				const box1video1 = clues.data.find((event) => event.id == "box1video1");
-				setBox1Video1(box1video1.status);
+				const box1video1Data = clues.data.find((event) => event.id == "box1video1");
+				setBox1Video1(box1video1Data.status);
 			}
 			if (currentBox == 2) {
-				const box2video1 = clues.data.find((event) => event.id == "box2video1");
-				setBox2Video1(box2video1.status);
+				const box2video1Data = clues.data.find((event) => event.id == "box2video1");
+				setBox2Video1(box2video1Data.status);
 			}
 			if (currentBox == 3) {
-				const box3video1 = clues.data.find((event) => event.id == "box3video1");
-				setBox3Video1(box3video1.status);
+				const box3video1Data = clues.data.find((event) => event.id == "box3video1");
+				setBox3Video1(box3video1Data.status);
 			}
 		};
 		fetchData();
@@ -119,7 +119,6 @@ const Header = () => {
 		}
 		if (currentBox == 3) {
 			await updateHistory(token, 3, "box3video1");
-			await updateHistory(token, 3, "box3document1");
 		}
 		setModaleVideo(false);
 		setNappeModalIsActive(true);

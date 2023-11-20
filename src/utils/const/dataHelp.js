@@ -912,7 +912,7 @@ export const dataHelp = {
 		},
 		{
 			id: "box3help3",
-			title: ["Localiser les potentielles cibles restantes"],
+			title: ["Identifier les potentielles cibles restantes"],
 			status: "closed",
 			hints: [
 				{
@@ -960,11 +960,9 @@ export const dataHelp = {
 				{
 					id: 6,
 					text: [
-						"Souvenez-vous du programme de greffe.",
-						"On peut se connecter dessus avec un nom et un numéro de patient.",
-						"Vous allez pouvoir en apprendre plus sur Estelle Barloigus et sa maladie.",
 						"On peut donc accéder à son dossier en tapant :",
-						"Estelle - Barloigus - 865249.",
+						"Estelle - Barloigus - 865249 - 15/11/1982",
+						"Vous allez pouvoir en apprendre plus sur Estelle Barloigus et sa maladie",
 					],
 					image: null,
 				},
@@ -1029,7 +1027,7 @@ export const dataHelp = {
 						"Il y a les deux que nous ne connaissions pas encore :",
 						"Maria Gruber et Giuseppe Rossi.",
 					],
-					image: null,
+					image: "assets/renforts/box3_victimes_renfort14_papier_boite.jpg",
 				},
 			],
 		},
