@@ -80,7 +80,7 @@ export const forgotPassword = (email) => {
 		headers: {
 			"Content-Type": "application/json",
 		},
-		body: JSON.stringify(email),
+		body: JSON.stringify({email}),
 	})
 		.then((response) => response.json())
 		.then((data) => {
