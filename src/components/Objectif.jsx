@@ -230,9 +230,6 @@ const Objectif = ({ data }) => {
 			if (data.id === "box2document6" && currentBox === 2) {
 				actionToggleDataHistory();
 			}
-			if (data.id === "box2document4" && event23.current == "closed") {
-				setMailLauren1(true);
-			}
 			if (data.id === "box3document2" && objectif33.current == "closed") {
 				const updateApp = async () => {
 					console.log("on passe dans la fonction");
@@ -265,7 +262,6 @@ const Objectif = ({ data }) => {
 	const getVictimesValue = useCallback(() => {
 		const allVictimes = [victime1, victime2, victime3, victime4, victime5, victime6];
 		setValue(allVictimes);
-		console.log(allVictimes);
 	}, [victime1, victime2, victime3, victime4, victime5, victime6]);
 
 	useEffect(() => {
@@ -733,9 +729,9 @@ const Objectif = ({ data }) => {
 			}
 			if (data.id == 14) {
 				await updateObjectives(token, 1, 14, "done");
-				await updateHelp(token, 1, "box1help4", "done");
+				// await updateHelp(token, 1, "box1help4", "done");
 				actionToggleDataObjectif();
-				actionToggleDataHelp();
+				// actionToggleDataHelp();
 				console.log("objectif14 terminé");
 			}
 			if (data.id == 21) {
@@ -1294,7 +1290,7 @@ const Objectif = ({ data }) => {
 	const displayEndGameModale = () => {
 		return (
 			<div className="modal-objectif__background">
-				<div className="modal-objectif__box">
+				<div className="modal-objectif__box modal-objectif__endGame">
 					{renderEndText()}
 					<button className="modal-objectif__button button--red" onClick={handleEndGameModale}>
 						Clore cette partie de l&apos;enquête
@@ -1478,7 +1474,6 @@ const Objectif = ({ data }) => {
 
 	// --- LOGIQUE EVENT BOX 2 --- //
 
-	const [mailLauren1, setMailLauren1] = useState(false);
 	const [mailLauren2, setMailLauren2] = useState(false);
 	const [audioSamuel, setAudioSamuel] = useState(false);
 	const [audioBreakingNews, setAudioBreakingNews] = useState(false);
@@ -1501,29 +1496,11 @@ const Objectif = ({ data }) => {
 		setEndGameModale(true);
 	};
 
-	const displayMailLauren1 = () => {
-		return (
-			<Document
-				title="Email de Lauren Fraser"
-				srcElement={urlApi.apiRemi() + "assets/document/219_Message_Lauren_1.jpg"}
-				handleModalDocument={handleCloseMail1}
-			/>
-		);
-	};
-
-	const handleCloseMail1 = async () => {
-		await updateHistory(token, 2, "box2document8");
-		actionToggleDataHistory();
-		await updateEvent(token, 2, 23, "done");
-		actionToggleDataEvent();
-		setMailLauren1(false);
-	};
-
 	const displayMailLauren2 = () => {
 		return (
 			<Document
 				title="Email de Lauren Fraser"
-				srcElement={urlApi.apiRemi() + "assets/document/219_Message_Lauren_2.jpg"}
+				srcElement={urlApi.apiRemi() + "assets/document/220_Message_Lauren_2.jpg"}
 				handleModalDocument={handleCloseMail2}
 			/>
 		);
@@ -1658,6 +1635,9 @@ const Objectif = ({ data }) => {
 		await updateHistory(token, 3, "box3audio1");
 		await updateHistory(token, 3, "box3lieu3");
 		await updateHistory(token, 3, "box3video2");
+		await updateHistory(token, 3, "box3document10");
+		await updateHistory(token, 3, "box3document12");
+		await updateHistory(token, 3, "box3document9");
 		actionToggleDataHistory();
 		actionToggleDataHistory();
 		setDebriefLauren(false);
@@ -1808,7 +1788,6 @@ const Objectif = ({ data }) => {
 			{modaleVHS ? displayModaleVHS() : null}
 			{modaleInterrogatoireGarraud ? displayModaleInterrogatoireGarraud() : null}
 			{videoInterrogatoireGarraud ? displayVideoInterrogatoireGarraud() : null}
-			{mailLauren1 ? displayMailLauren1() : null}
 			{mailLauren2 ? displayMailLauren2() : null}
 			{audioSamuel ? displayAudioSamuel() : null}
 			{audioBreakingNews ? displayAudioBreakingNews() : null}

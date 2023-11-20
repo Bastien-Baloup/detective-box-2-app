@@ -110,6 +110,7 @@
 .modal-objectif__victimes {
 	&__photos--container {
 		height: 70%;
+		max-width: 4.5rem;
 	}
 	&__photos {
 		@include img-max;
@@ -234,17 +235,20 @@
 		top: 50%;
 		right: 0;
 		border-top: 3px solid $tertiary-color;
-		-webkit-transform:rotate(-50deg);
-  -moz-transform:rotate(-50deg);
-  -ms-transform:rotate(-50deg);
-  -o-transform:rotate(-50deg);
-  transform:rotate(-50deg);
-	width: 120%;
+		-webkit-transform: rotate(-50deg);
+		-moz-transform: rotate(-50deg);
+		-ms-transform: rotate(-50deg);
+		-o-transform: rotate(-50deg);
+		transform: rotate(-50deg);
+		width: 120%;
 	}
 }
 
-.modal-objectif__endGame--text {
-	line-height: 1.5rem;
+.modal-objectif__endGame {
+	z-index: 40;
+	&--text {
+		line-height: 1.5rem;
+	}
 }
 
 .objectif__wrapper {

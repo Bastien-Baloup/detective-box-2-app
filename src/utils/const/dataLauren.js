@@ -193,7 +193,7 @@ export const dataLauren = {
 			ask: ["elisabethmonrency"],
 			text: ["J'ai retrouvé un interrogatoire qui date de 1993, voici la retranscription :"],
 			id: "box1audio7",
-			title: "Interrogatoire Axelle Charpentier",
+			title: "Interrogatoire Elisabeth Monrency",
 			img1: "assets/photos-personnages/Elisabeth-Monrency.jpg",
 			img2: "assets/photos-personnages/Christian-Patenaude.jpg",
 			srcAudio: "sounds/111-interrogatoire-christian-patenaude-elisabeth-monrency.mp3",

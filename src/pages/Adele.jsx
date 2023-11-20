@@ -16,6 +16,8 @@ const Adele = ({ closeAgentPage }) => {
 	const { currentBox } = useContext(BoxContext);
 	const token = localStorage.getItem("token");
 	const { actionToggleDataAdele, toggleDataAdele } = useContext(DataContext);
+	// EXPLICATION : state spécifique pour afficher le mail de Lauren
+	const [mailLauren1, setMailLauren1] = useState(false);
 
 	//EXPLICATION : Adele est le personnage "1"
 
@@ -64,7 +66,9 @@ const Adele = ({ closeAgentPage }) => {
 		}
 		if (previouslyAnsweredInThisBox) {
 			setValue("");
-			setErrorMessage("Vous m'avez dejà demandé d'analyser cet élément. Il est désormais disponible dans votre Historique.”");
+			setErrorMessage(
+				"Vous m'avez dejà demandé d'analyser cet élément. Il est désormais disponible dans votre Historique.”"
+			);
 			return;
 		}
 		if (answerInThisBox) {
@@ -76,7 +80,9 @@ const Adele = ({ closeAgentPage }) => {
 		}
 		if (currentBox == 3 && answerInBox2) {
 			setValue("");
-			setErrorMessage("Vous avez déjà analysé cet élément lors d'une box précédente. Il est désormais disponible dans votre Historique.”");
+			setErrorMessage(
+				"Vous avez déjà analysé cet élément lors d'une box précédente. Il est désormais disponible dans votre Historique.”"
+			);
 			return;
 		}
 		setValue("");
@@ -145,6 +151,24 @@ const Adele = ({ closeAgentPage }) => {
 		await updateHistory(token, currentBox, answerId);
 		actionToggleDataAdele();
 		setModalMedia(false);
+		if (answerId == "box2document4") {
+			setMailLauren1(true);
+			await updateHistory(token, 2, "box2document8");
+		}
+	};
+
+	const displayMailLauren1 = () => {
+		return (
+			<Document
+				title="Email de Lauren Fraser"
+				srcElement={urlApi.apiRemi() + "assets/document/219_Message_Lauren_1.jpg"}
+				handleModalDocument={handleCloseMail1}
+			/>
+		);
+	};
+
+	const handleCloseMail1 = async () => {
+		setMailLauren1(false);
 	};
 
 	const catchphrase = [
@@ -163,6 +187,7 @@ const Adele = ({ closeAgentPage }) => {
 		<>
 			{modal ? renderModal() : ""}
 			{modalMedia ? renderModalMedia() : ""}
+			{mailLauren1 ? displayMailLauren1() : null}
 			<audio autoPlay>
 				<source src={urlApi.apiRemi() + catchphrase[randomNumber]} type="audio/mpeg" />
 				Votre navigateur ne prend pas en charge ce format

@@ -11,7 +11,7 @@ import { useEffect, useState, useRef, useContext } from "react";
 const Audio = ({ title, srcImg1, srcImg2, srcTranscription, handleModalAudio, srcAudio }) => {
 	const containerRef = useRef(undefined);
 	const waveSurferRef = useRef(false);
-	const [isPlaying, setIsPlaying] = useState(false);
+	const [isPlaying, setIsPlaying] = useState(true);
 	const [isLoading, setIsLoading] = useState(true);
 	const { fetchResumeNappe } = useContext(AmbianceContext);
 

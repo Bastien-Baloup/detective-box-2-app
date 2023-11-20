@@ -106,6 +106,40 @@ function Home() {
 		);
 	};
 
+	const renderLaurenCard = () => {
+		if (currentBox == 3) {
+			return (
+				<Card
+					srcImg={PhotoRaphaelle}
+					srcIcon={IconLauren}
+					name="Raphaëlle Sanchez"
+					contentButton="Demander un interrogatoire"
+					actionButton={() => setCharacterDisplayed("lauren")}
+					state=""
+				/>
+			);
+		}
+		if (currentBox == 2 && box2document6 == true) {
+			return <Card
+				srcImg={PhotoLauren}
+				srcIcon={IconLauren}
+				name="Lauren Fraser"
+				contentButton="Demander un interrogatoire"
+				actionButton={specificCardActionLauren}
+				state="unavailable"
+			/>;
+		} else {
+			return <Card
+				srcImg={PhotoLauren}
+				srcIcon={IconLauren}
+				name="Lauren Fraser"
+				contentButton="Demander un interrogatoire"
+				actionButton={() => setCharacterDisplayed("lauren")}
+				state=""
+			/>;
+		}
+	};
+
 	// EXPLICATION : Fonction pour afficher tout les personnages
 	const displayAllCharacters = () => {
 		return (
@@ -119,27 +153,7 @@ function Home() {
 						actionButton={() => setCharacterDisplayed("raphaelle")}
 						state=""
 					/>
-					{currentBox == 3 ? (
-						<Card
-							srcImg={PhotoRaphaelle}
-							srcIcon={IconLauren}
-							name="Raphaëlle Sanchez"
-							contentButton="Demander un interrogatoire"
-							actionButton={() => setCharacterDisplayed("lauren")}
-							state=""
-						/>
-					) : (
-						<Card
-							srcImg={PhotoLauren}
-							srcIcon={IconLauren}
-							name="Lauren Fraser"
-							contentButton="Demander un interrogatoire"
-							actionButton={
-								currentBox == 2 && box2document6 == true ? specificCardActionLauren : () => setCharacterDisplayed("lauren")
-							}
-							state={currentBox == 2 && box2document6 == true ? "unavailable" : ""}
-						/>
-					)}
+					{renderLaurenCard()}
 					<Card
 						srcImg={PhotoCeline}
 						srcIcon={IconCeline}

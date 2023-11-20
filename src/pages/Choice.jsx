@@ -82,7 +82,7 @@ function Choice() {
 			<div className="modal-boxdone__background">
 				<div className="modal-boxdone__box">
 					<p className="modal-boxdone__text">
-						Merci de confirmer la remise à zéro de votre avancement dans l&apos;enquête <br></br>
+						Merci de confirmer la remise à zéro de votre avancement dans l&apos;enquête. <br></br>
 						Vous comprenez que cette action est irreversible et que nous ne serons pas en mesure de retrouver votre
 						sauvegarde.
 					</p>
