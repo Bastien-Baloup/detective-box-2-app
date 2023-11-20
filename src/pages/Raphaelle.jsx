@@ -21,8 +21,14 @@ import {
 const Raphaelle = ({ closeAgentPage }) => {
 	const { currentBox } = useContext(BoxContext);
 	const token = localStorage.getItem("token");
-	const { actionToggleDataRaphaelle, actionToggleDataHistory, toggleDataRaphaelle, toggleDataObjectif, actionToggleDataHelp, toggleDataHistory } =
-		useContext(DataContext);
+	const {
+		actionToggleDataRaphaelle,
+		actionToggleDataHistory,
+		toggleDataRaphaelle,
+		toggleDataObjectif,
+		actionToggleDataHelp,
+		toggleDataHistory,
+	} = useContext(DataContext);
 
 	//EXPLICATION : Raphaelle est le personnage "4"
 
@@ -297,17 +303,28 @@ const Raphaelle = ({ closeAgentPage }) => {
 		await updateHistory(token, currentBox, answerId);
 		actionToggleDataHistory();
 		await updateCharactersById(token, 4, currentBox, asnwerAsk);
-		// if (answerId == "box2lieu3") {
-		// 	await updateObjectives(token, 2, 22, "open");
-		// 	await updateHelp(token, 2, "box2help2", "open");
-		// 	actionToggleDataObjectif();
-		// 	actionToggleDataHelp();
-		// }
+		if (answerId == "box2lieu1") {
+			await updateHistory(token, 2, "box2document5");
+			actionToggleDataHistory();
+		}
+		if (answerId == "box2lieu3") {
+			await updateHistory(token, 2, "box2document7");
+			await updateHistory(token, 2, "box2document10");
+			actionToggleDataHistory();
+		}
 		if (answerId == "box2lieu2") {
 			await updateHelp(token, 2, "box2help5", "done");
 			await updateHelp(token, 2, "box2help6", "open");
 			actionToggleDataHelp();
 		}
+		if (answerId == "box3lieu2") {
+			await updateHistory(token, 3, "box3document5");
+			await updateHistory(token, 3, "box3document7");
+			await updateHistory(token, 3, "box3document8");
+			await updateHistory(token, 3, "box3document11");
+			actionToggleDataHistory();
+		}
+
 		window.open(answer.src + "/?token=" + token, "_blank");
 		actionToggleDataRaphaelle();
 		// actionTogglePolling(true);

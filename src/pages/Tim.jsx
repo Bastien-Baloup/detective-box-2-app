@@ -16,7 +16,7 @@ import { updateCharactersById, updateHistory, getCharactersById } from "../utils
 const Tim = ({ closeAgentPage }) => {
 	const { currentBox } = useContext(BoxContext);
 	const token = localStorage.getItem("token");
-	const { actionToggleDataTim, toggleDataTim } = useContext(DataContext);
+	const { actionToggleDataTim, toggleDataTim, actionToggleDataHistory } = useContext(DataContext);
 	const { fetchPreviousStateNappe } = useContext(AmbianceContext);
 
 	//EXPLICATION : Tim est le personnage "5"
@@ -141,8 +141,12 @@ const Tim = ({ closeAgentPage }) => {
 		return text;
 	};
 
-	const validateModal = () => {
+	const validateModal = async () => {
 		setModal(false);
+		if (answer.ask == ["stellalouiseberg"]) {
+			await updateHistory(token, 2, "box2document2");
+			actionToggleDataHistory();
+		}
 	};
 
 	const openMedia = () => {

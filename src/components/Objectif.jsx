@@ -1635,6 +1635,9 @@ const Objectif = ({ data }) => {
 		await updateHistory(token, 3, "box3audio1");
 		await updateHistory(token, 3, "box3lieu3");
 		await updateHistory(token, 3, "box3video2");
+		await updateHistory(token, 3, "box3document10");
+		await updateHistory(token, 3, "box3document12");
+		await updateHistory(token, 3, "box3document9");
 		actionToggleDataHistory();
 		actionToggleDataHistory();
 		setDebriefLauren(false);

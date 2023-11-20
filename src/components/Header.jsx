@@ -119,6 +119,7 @@ const Header = () => {
 		}
 		if (currentBox == 3) {
 			await updateHistory(token, 3, "box3video1");
+			await updateHistory(token, 3, "box3document1");
 		}
 		setModaleVideo(false);
 		setNappeModalIsActive(true);
