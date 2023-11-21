@@ -12,18 +12,8 @@ import Layout from "./components/Layout.jsx";
 import Restrictedaccess from "./components/Restrictedaccess.jsx";
 import { BoxProvider, AuthProvider, AmbianceProvider, DataProvider } from "./utils/context/fetchContext.jsx";
 
-// const api = new Api();
 
 function App() {
-	// const [status, setStatus] = useState("KO");
-	// //EXPLICATION : added this line to avoid having an error
-	// console.log(status);
-
-	// useEffect(() => {
-	// 	api.getStatus().then((res) => {
-	// 		setStatus(res.status);
-	// 	});
-	// }, []);
 
 	return (
 		<BoxProvider>

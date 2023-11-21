@@ -9,7 +9,6 @@ import PropTypes from "prop-types";
 import { urlApi } from "../utils/const/urlApi";
 import { BoxContext, DataContext } from "../utils/context/fetchContext";
 import { useContext, useState, useEffect } from "react";
-// import { dataAdele } from "../utils/const/dataAdele";
 import { updateCharactersById, updateHistory, getCharactersById } from "../utils/hooks/useApi.js";
 
 const Adele = ({ closeAgentPage }) => {
@@ -25,7 +24,6 @@ const Adele = ({ closeAgentPage }) => {
 	useEffect(() => {
 		const fetchData = async () => {
 			const result = await getCharactersById(token, 1);
-			console.log(result);
 			setDataAdele(result);
 		};
 		fetchData();

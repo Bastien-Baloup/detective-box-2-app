@@ -1,5 +1,5 @@
-// Page pour faire les requêtes auprès du personnage de Raphaelle
-// Les validations des requêtes sont faites ici
+// EXPLICATION : Page pour faire les requêtes auprès du personnage de Raphaelle
+// EXPLICATION : Les validations des requêtes sont faites ici
 
 import PhotoRaphaelle from "../assets/img/Agent_raphaelle.jpg";
 import Input from "../components/Input.jsx";
@@ -8,7 +8,6 @@ import PropTypes from "prop-types";
 import { urlApi } from "../utils/const/urlApi";
 import { BoxContext, DataContext } from "../utils/context/fetchContext";
 import { useContext, useState, useEffect } from "react";
-// import { dataRaphaelle } from "../utils/const/dataRaphaelle";
 import {
 	updateCharactersById,
 	updateHistory,
@@ -35,7 +34,6 @@ const Raphaelle = ({ closeAgentPage }) => {
 	useEffect(() => {
 		const fetchData = async () => {
 			const result = await getCharactersById(token, 4);
-			console.log(result);
 			setDataRaphaelle(result);
 		};
 		fetchData();

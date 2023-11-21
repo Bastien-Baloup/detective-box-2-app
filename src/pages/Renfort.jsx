@@ -1,7 +1,6 @@
 // EXPLICATION : Page pour afficher les renforts
 
 import { useState } from "react";
-// import { dataHelp } from "../utils/const/dataHelp";
 import Slider from "../components/Slider";
 import Check from "../assets/icons/Icon_Check-green.svg";
 import LockClosed from "../assets/icons/Icon_Lock-closed-red.svg";
@@ -19,7 +18,6 @@ function Renfort() {
 	useEffect(() => {
 		const fetchData = async () => {
 			const result = await getHelpByBox(token, currentBox);
-			console.log(result);
 			setDataHelp(result.data);
 		};
 		fetchData();

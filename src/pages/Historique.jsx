@@ -3,7 +3,6 @@
 import { useState } from "react";
 import Filter from "../components/Filter";
 import Preuve from "../components/Preuve";
-// import { dataHistory } from "../utils/const/dataHistory";
 import Document from "../components/Document";
 import Audio from "../components/Audio";
 import Video from "../components/Video";
@@ -23,7 +22,6 @@ function Historique() {
 
 	useEffect(() => {
 		const fetchData = async () => {
-			console.log(currentBox);
 			if (currentBox === 1) {
 				const result = await getHistoryByBox(token, currentBox);
 				setDataHistory1(result.data);

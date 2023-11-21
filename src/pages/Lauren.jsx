@@ -1,5 +1,5 @@
-// Page pour faire les requêtes auprès du personnage de Lauren
-// Les validations des requêtes sont faites ici
+// EXPLICATION : Page pour faire les requêtes auprès du personnage de Lauren
+// EXPLICATION : Les validations des requêtes sont faites ici
 
 import PhotoLauren from "../assets/img/Agent_lauren.jpg";
 import PhotoRaphaelle from "../assets/img/Agent_raphaelle.jpg";
@@ -24,7 +24,6 @@ const Lauren = ({ closeAgentPage }) => {
 	useEffect(() => {
 		const fetchData = async () => {
 			const result = await getCharactersById(token, 2);
-			console.log(result);
 			setDataLauren(result);
 		};
 		fetchData();

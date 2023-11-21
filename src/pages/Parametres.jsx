@@ -10,7 +10,6 @@ function Parametres() {
 	useEffect(() => {
 		const fetchData = async () => {
 			const user = await getUser(token);
-			console.log(user);
 			setuser(user);
 		};
 		fetchData();
@@ -37,7 +36,6 @@ function Parametres() {
 		if (password != "" && username == "") {
 			await updatePassword(token, password);
 			setErrorMessage("Votre mot de passe a bien été modifié !");
-			console.log(user);
 		}
 		if (password == "" && username != "") {
 			await updateName(token, user.id, newinfos);
@@ -50,9 +48,6 @@ function Parametres() {
 
 	return (
 		<main className="parametres">
-			{/* <Link className="parametres__link" to="/">
-				&lt; Retour à l&apos;enquête
-			</Link> */}
 			<h1 className="parametres__title">Paramètres</h1>
 			<p className="parametres__user">Agent {user.name}</p>
 			<div className="parametres__errorMessage">{errorMessage}</div>
