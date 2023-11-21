@@ -10,7 +10,6 @@ import Nav from "../components/Nav.jsx";
 import Nappe from "../components/Nappe.jsx";
 import Quizz from "../components/Quizz.jsx";
 import Timer from "./Timer.jsx";
-// import { dataQuizz } from "../utils/const/dataQuizz";
 import Video from "../components/Video.jsx";
 import { Link } from "react-router-dom";
 import { urlApi } from "../utils/const/urlApi";
@@ -161,7 +160,6 @@ const Header = () => {
 			return <></>;
 		}
 		if (currentBox == 2 || currentBox == 3) {
-			console.log(dataQuizz);
 			if (dataQuizz && dataQuizz.status == true) {
 				handleCloseQuizz();
 				return <></>;
@@ -260,7 +258,7 @@ const Header = () => {
 
 	// EXPLICATION : Le timer de fin s'affiche lors de la dernière étape du jeu. Il est en overlay sur le header pour que le joueur ne puisse pas cliquer sur les autres composants
 	const displayTimer = () => {
-		fetchNappeMute(false);
+		fetchNappeMute(true);
 		return (
 			<>
 				<div className="final__timer">

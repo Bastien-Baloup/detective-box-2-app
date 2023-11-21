@@ -9,7 +9,6 @@ import PropTypes from "prop-types";
 import { urlApi } from "../utils/const/urlApi";
 import { BoxContext, DataContext } from "../utils/context/fetchContext";
 import { useContext, useState, useEffect } from "react";
-// import { dataCeline } from "../utils/const/dataCeline";
 import { updateCharactersById, updateHistory, getCharactersById, getHistoryByBox } from "../utils/hooks/useApi.js";
 
 const Celine = ({ closeAgentPage }) => {
@@ -22,7 +21,6 @@ const Celine = ({ closeAgentPage }) => {
 	useEffect(() => {
 		const fetchData = async () => {
 			const result = await getCharactersById(token, 3);
-			console.log(result);
 			setDataCeline(result);
 		};
 		fetchData();
@@ -47,7 +45,7 @@ const Celine = ({ closeAgentPage }) => {
 	const [answer, setAnswer] = useState("");
 
 	//EXPLICATION : Fonction pour sortir les joueurs de la page de Celine si elle vient de se faire enlever (box3audio3 dans historique)
-	if (currentBox == 2 && box3audio3) {
+	if (currentBox == 3 && box3audio3) {
 		closeAgentPage();
 	}
 

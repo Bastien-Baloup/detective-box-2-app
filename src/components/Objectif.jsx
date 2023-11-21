@@ -13,7 +13,6 @@ import Video from "../components/Video";
 import Document from "../components/Document";
 import Audio from "../components/Audio";
 import { urlApi } from "../utils/const/urlApi";
-// import { dataHelp } from "../utils/const/dataHelp";
 import { useNavigate } from "react-router-dom";
 import { BoxContext, DataContext, AmbianceContext } from "../utils/context/fetchContext";
 import { useContext } from "react";
@@ -42,7 +41,7 @@ const Objectif = ({ data }) => {
 
 	const { currentBox } = useContext(BoxContext);
 	const token = localStorage.getItem("token");
-	const { fetchPreviousStateNappe, nappeMute } = useContext(AmbianceContext);
+	const { fetchPreviousStateNappe } = useContext(AmbianceContext);
 	const {
 		actionToggleDataEvent,
 		toggleDataEvent,
@@ -60,6 +59,8 @@ const Objectif = ({ data }) => {
 	let event14 = useRef("");
 	let event15 = useRef("");
 	let event23 = useRef("");
+	// let event25 = useRef("");
+	// let event35 = useRef("");
 	// const [event13, setEvent13] = useState("");
 	// const [event14, setEvent14] = useState("");
 	// const [event15, setEvent15] = useState("");
@@ -69,9 +70,11 @@ const Objectif = ({ data }) => {
 
 	const [box1lieu2, setBox1Lieu2] = useState(false);
 	const [box2lieu1, setBox2Lieu1] = useState(false);
+	const [box2lieu3, setBox2Lieu3] = useState(false);
 	const [box2video5, setBox2Video5] = useState(false);
 	const [box3audio3, setBox3Audio3] = useState(false);
 	const [box3lieu2, setBox3Lieu2] = useState(false);
+
 	const [box3lieu3, setBox3Lieu3] = useState(false);
 
 	const [box3help4, setBox3Help4] = useState("");
@@ -83,43 +86,38 @@ const Objectif = ({ data }) => {
 	// const [objectif33, setObjectif33] = useState("");
 	const [objectif34, setObjectif34] = useState("");
 
-	const [objectifs, setObjectifs] = useState();
-	console.log(objectifs);
-
-	const [events, setEvent] = useState();
-	console.log(events);
+	const [toggleEvent2, setActionToggleEvent2] = useState(false);
 
 	// EXPLICATION : Fonction pour récupérer l'état des événements
 	useLayoutEffect(() => {
 		const fetchData = async () => {
 			const events = await getEventByBox(token, currentBox);
-			setEvent(events);
 			if (events != undefined) {
 				if (currentBox === 1) {
 					const event13Data = events.data.find((event) => event.id === 13);
 					// setEvent13(event13Data.status);
 					event13.current = event13Data.status;
-					console.log(event13Data);
 					const event14Data = events.data.find((event) => event.id === 14);
 					// setEvent14(event14Data.status);
 					event14.current = event14Data.status;
-					console.log(event14Data);
 					const event15Data = events.data.find((event) => event.id === 15);
 					// setEvent15(event15Data.status);
 					event15.current = event15Data.status;
-					console.log(event15Data);
 				}
 				if (currentBox === 2) {
 					const event23Data = events.data.find((event) => event.id === 23);
 					// setEvent23(event23Data.status);
 					event23.current = event23Data.status;
-					console.log(event23Data);
 					const event25Data = events.data.find((event) => event.id === 25);
+					// event25.current = event25Data.status;
 					setEvent25(event25Data.status);
+					setActionToggleEvent2(!toggleEvent2);
 				}
 				if (currentBox === 3) {
 					const event35Data = events.data.find((event) => event.id === 35);
+					// event35.current = event35Data.status;
 					setEvent35(event35Data.status);
+					setActionToggleEvent2(!toggleEvent2);
 				}
 			}
 		};
@@ -129,8 +127,8 @@ const Objectif = ({ data }) => {
 	//EXPLICATION : UseEffect pour déclencher les evenements entre les différents composants
 	useEffect(() => {
 		if (currentBox == 2) {
+			console.log(event25, box2video5);
 			// EXPLICATION : Pour faire le lien entre le composant Home (carte Lauren) et ici
-			console.log(event25);
 			if (event25 == "open" && box2video5 == false) {
 				setVideoBureauLauren(true);
 				fetchPreviousStateNappe();
@@ -142,7 +140,7 @@ const Objectif = ({ data }) => {
 				setTempsEcoule(true);
 			}
 		}
-	}, [toggleDataEvent]);
+	}, [toggleEvent2]);
 
 	// EXPLICATION : Fonction pour récupérer l'état de l'historique
 	useEffect(() => {
@@ -155,6 +153,8 @@ const Objectif = ({ data }) => {
 			if (currentBox == 2) {
 				const box2lieu1Data = clues.data.find((event) => event.id == "box2lieu1");
 				setBox2Lieu1(box2lieu1Data.status);
+				const box2lieu3Data = clues.data.find((event) => event.id == "box2lieu3");
+				setBox2Lieu3(box2lieu3Data.status);
 				const box2video5Data = clues.data.find((event) => event.id == "box2video5");
 				setBox2Video5(box2video5Data.status);
 			}
@@ -186,7 +186,6 @@ const Objectif = ({ data }) => {
 	useEffect(() => {
 		const fetchData = async () => {
 			const objectifs = await getObjectivesByBox(token, currentBox);
-			setObjectifs(objectifs);
 			if (currentBox == 1) {
 				const objectif12Data = objectifs.data.find((event) => event.id == 12);
 				setObjectif12(objectif12Data.status);
@@ -198,7 +197,6 @@ const Objectif = ({ data }) => {
 			if (currentBox == 3) {
 				const objectif33Data = objectifs.data.find((event) => event.id == 33);
 				objectif33.current = objectif33Data.status;
-				console.log(objectif33Data);
 				const objectif34Data = objectifs.data.find((event) => event.id == 34);
 				setObjectif34(objectif34Data.status);
 			}
@@ -210,15 +208,12 @@ const Objectif = ({ data }) => {
 	let es = useRef(null);
 
 	useEffect(() => {
-		console.log(es.current);
 		if (es.current) {
 			return;
 		}
 		es.current = new EventSource("https://sse.detectivebox.remimichel.fr/stream?token=" + token);
 		es.current.addEventListener("message", (event) => {
 			const data = JSON.parse(event.data);
-			console.log(data.id);
-			console.log(objectif33.current);
 			if (data.id === "box1document1" && event13.current == "closed") {
 				setModaleMalle(true);
 			}
@@ -233,8 +228,6 @@ const Objectif = ({ data }) => {
 			}
 			if (data.id === "box3document2" && objectif33.current == "closed") {
 				const updateApp = async () => {
-					console.log("on passe dans la fonction");
-					setModaleSquelette(true);
 					await updateObjectives(token, 3, 33, "open");
 					await updateObjectives(token, 3, 34, "open");
 					actionToggleDataObjectif();
@@ -242,6 +235,7 @@ const Objectif = ({ data }) => {
 					await updateHelp(token, 3, "box3help3", "open");
 					await updateHelp(token, 3, "box3help6", "open");
 					actionToggleDataHelp();
+					setModaleSquelette(true);
 				};
 				updateApp();
 			}
@@ -324,7 +318,6 @@ const Objectif = ({ data }) => {
 	}, [getIntVictimesValue]);
 
 	const handleSubmit21 = () => {
-		console.log(value);
 		if (value.length > 8) {
 			setErrorMessage(
 				"Il nous faut éliminer encore des victimes si l'on veut avancer dans l'enquête et revenir voir Garraud avec de nouveaux éléments…"
@@ -379,8 +372,6 @@ const Objectif = ({ data }) => {
 	}, [getFinalVictimesValue]);
 
 	const handleSubmit23 = () => {
-		console.log(value);
-		console.log(data.answer);
 		getFinalVictimesValue();
 		if (value.length > 5 || value.length < 5) {
 			setErrorMessage("Nous avons 5 cartes, il nous faut 5 victimes");
@@ -412,24 +403,20 @@ const Objectif = ({ data }) => {
 	const handleVictimeChoice = (choice) => {
 		setVictimeSaved(choice);
 		handleModal();
+		setTelCeline(true);
 	};
 
 	const handleFinalStep = async () => {
-		// setModalAnswerBis(false);
-		// setModalBis(!modalBis);
-		// setNextStep(true);
 		await updateHelp(token, 3, "box3help4", "done");
 		await updateHelp(token, 3, "box3help5", "open");
 		await updateEvent(token, 3, 33, "open");
 		actionToggleDataHelp();
 		actionToggleDataEvent();
-		handleModal();
+		setTelCeline(false);
 	};
 
 	const handleSubmitCity = async (e) => {
 		e.preventDefault();
-		console.log(victimeSaved);
-		console.log(value);
 		setErrorMessage("");
 		if (slugify(value) == "milan" && victimeSaved == "maria") {
 			setErrorMessage(
@@ -438,16 +425,13 @@ const Objectif = ({ data }) => {
 			return;
 		}
 		if (slugify(value) == "milan" && victimeSaved == "giuseppe") {
-			console.log(nappeMute);
 			handleModal();
 			await updateEvent(token, 3, 33, "done");
 			actionToggleDataEvent();
 			setMauvaiseFin1(true);
-			// fetchNappeMute(true);
 			return;
 		}
 		if (slugify(value) == "graz" && victimeSaved == "maria") {
-			// fetchNappeMute(true);
 			handleModal();
 			await updateEvent(token, 3, 33, "done");
 			actionToggleDataEvent();
@@ -455,7 +439,6 @@ const Objectif = ({ data }) => {
 			return;
 		}
 		if (slugify(value) == "graz" && victimeSaved == "giuseppe") {
-			// fetchNappeMute(true);
 			handleModal();
 			await updateEvent(token, 3, 33, "done");
 			actionToggleDataEvent();
@@ -467,9 +450,7 @@ const Objectif = ({ data }) => {
 	};
 
 	const renderLastStep = () => {
-		console.log("on passe par ici", objectif34);
 		if (objectif34 == "open") {
-			console.log("on passe par l'étape 1");
 			return (
 				<div className="modal-objectif__background">
 					<div className="modal-objectif__box">
@@ -490,7 +471,6 @@ const Objectif = ({ data }) => {
 			);
 		}
 		if (objectif34 == "done" && box3lieu3 == true && victimeSaved == "") {
-			console.log("on passe par l'étape 3");
 			return (
 				<div className="modal-objectif__background">
 					<div className="modal-objectif__box">
@@ -515,35 +495,7 @@ const Objectif = ({ data }) => {
 				</div>
 			);
 		}
-		if (victimeSaved != "" && box3help4 == "open") {
-			console.log("on passe par l'étape 4");
-			return (
-				<div className="modal-objectif__background">
-					<div className="modal-objectif__box">
-						<h2 className="modal-objectif__title">
-							Objectif : <br></br> {data.title}
-						</h2>
-						{victimeSaved == "Maria" ? (
-							<audio autoPlay>
-								<source src={urlApi.apiRemi() + "sounds/304-dernier-objectif-rempli-maria.mp3"} type="audio/mpeg" />
-								Votre navigateur ne prend pas en charge ce format
-							</audio>
-						) : (
-							<audio autoPlay>
-								<source src={urlApi.apiRemi() + "sounds/304-dernier-objectif-rempli-giuseppe.mp3"} type="audio/mpeg" />
-								Votre navigateur ne prend pas en charge ce format
-							</audio>
-						)}
-						<p className="modal-objectif__subtitle">“Le jeu n&apos;est pas fini, Raph…”</p>
-						<button className="modal-objectif__button button--red" onClick={handleFinalStep}>
-							Continuer l&apos;enquête
-						</button>
-					</div>
-				</div>
-			);
-		}
 		if (victimeSaved != "" && box3help4 == "done") {
-			console.log("on passe par l'étape 5");
 			return (
 				<div className="modal-objectif__background">
 					<div className="modal-objectif__box">
@@ -573,6 +525,33 @@ const Objectif = ({ data }) => {
 				</div>
 			);
 		}
+	};
+
+	const displayTelCeline = () => {
+		return (
+			<div className="modal-objectif__background">
+				<div className="modal-objectif__box">
+					<h2 className="modal-objectif__title">
+						Objectif : <br></br> {data.title}
+					</h2>
+					{victimeSaved == "maria" ? (
+						<audio autoPlay>
+							<source src={urlApi.apiRemi() + "sounds/304-dernier-objectif-rempli-maria.mp3"} type="audio/mpeg" />
+							Votre navigateur ne prend pas en charge ce format
+						</audio>
+					) : (
+						<audio autoPlay>
+							<source src={urlApi.apiRemi() + "sounds/304-dernier-objectif-rempli-giuseppe.mp3"} type="audio/mpeg" />
+							Votre navigateur ne prend pas en charge ce format
+						</audio>
+					)}
+					<p className="modal-objectif__subtitle">“Le jeu n&apos;est pas fini, Raph…”</p>
+					<button className="modal-objectif__button button--red" onClick={handleFinalStep}>
+						Continuer l&apos;enquête
+					</button>
+				</div>
+			</div>
+		);
 	};
 
 	// -- GENERIQUE -- //
@@ -661,11 +640,14 @@ const Objectif = ({ data }) => {
 			if (data.id == 11) {
 				await updateHistory(token, 1, "box1document3");
 				actionToggleDataHistory();
-				console.log("document 3 dans l'historique !");
 			}
 			if (data.id == 13 && box1lieu2 == false) {
-				console.log(box1lieu2);
 				setErrorMessage("Je pense que nous avons trop peu d'éléments pour tirer une conclusion pour cette piste");
+				setValue("");
+				return;
+			}
+			if (data.id == 22 && box2lieu3 == false) {
+				setErrorMessage("Allez d'abord récolter des preuves dans la cellule de Garraud !");
 				setValue("");
 				return;
 			}
@@ -685,55 +667,58 @@ const Objectif = ({ data }) => {
 			setModalAnswer(false);
 			setModalBis(true);
 			setNextStep(true);
+			return;
 		} else {
 			setModalAnswer(false);
 			if (data.id == 12) {
-				await updateObjectives(token, 1, 12, "done");
-				actionToggleDataObjectif();
-				await updateHelp(token, 1, "box1help2", "done");
-				actionToggleDataHelp();
-				console.log(objectif13, objectif11);
 				if (objectif11 == "done" && objectif13 == "done") {
 					await updateObjectives(token, 1, 14, "open");
+					await updateObjectives(token, 1, 12, "done");
 					actionToggleDataObjectif();
 					await updateHelp(token, 1, "box1help4", "open");
+					await updateHelp(token, 1, "box1help2", "done");
 					actionToggleDataHelp();
+					await updateHistory(token, 1, "box1document5");
+					actionToggleDataHistory();
+					setModaleHacking(true);
+					return;
+				} else {
+					await updateObjectives(token, 1, 12, "done");
+					actionToggleDataObjectif();
+					await updateHelp(token, 1, "box1help2", "done");
+					actionToggleDataHelp();
+					await updateHistory(token, 1, "box1document5");
+					actionToggleDataHistory();
+					setModaleHacking(true);
+					return;
 				}
-				setModaleHacking(true);
-				await updateHistory(token, 1, "box1document5");
-				actionToggleDataHistory();
-				console.log("objectif12 terminé");
 			}
 			if (data.id == 13) {
-				await updateObjectives(token, 1, 13, "done");
-				actionToggleDataObjectif();
-				await updateHelp(token, 1, "box1help3", "done");
-				actionToggleDataHelp();
 				if (objectif11 == "done" && objectif12 == "done") {
 					await updateObjectives(token, 1, 14, "open");
+					await updateObjectives(token, 1, 13, "done");
 					actionToggleDataObjectif();
 					await updateHelp(token, 1, "box1help4", "open");
+					await updateHelp(token, 1, "box1help3", "done");
 					actionToggleDataHelp();
+					return;
+				} else {
+					await updateObjectives(token, 1, 13, "done");
+					actionToggleDataObjectif();
+					await updateHelp(token, 1, "box1help3", "done");
+					actionToggleDataHelp();
+					return;
 				}
-				console.log("objectif13 terminé");
 			}
 			if (data.id == 14) {
 				await updateObjectives(token, 1, 14, "done");
-				// await updateHelp(token, 1, "box1help4", "done");
 				actionToggleDataObjectif();
-				// actionToggleDataHelp();
-				console.log("objectif14 terminé");
+				return;
 			}
 			if (data.id == 21) {
-				// await updateObjectives(token, 2, 21, "done");
-				// await updateHelp(token, 2, "box2help1", "done");
 				setAudioSamuel(true);
 				fetchPreviousStateNappe();
-				// await updateHistory(token, 2, "box2audio3");
-				// actionToggleDataHistory();
-				// actionToggleDataObjectif();
-				// actionToggleDataHelp();
-				// console.log("objectif21 terminé");
+				return;
 			}
 			if (data.id == 23) {
 				await updateObjectives(token, 2, 23, "done");
@@ -744,8 +729,9 @@ const Objectif = ({ data }) => {
 				actionToggleDataObjectif();
 				actionToggleDataHelp();
 				await updateHistory(token, 2, "box2document9");
+				await updateHistory(token, 2, "box2document12");
 				actionToggleDataHistory();
-				console.log("objectif23 terminé");
+				return;
 			}
 			if (data.id == 24) {
 				await updateObjectives(token, 2, 24, "done");
@@ -753,19 +739,19 @@ const Objectif = ({ data }) => {
 				await updateHelp(token, 2, "box2help5", "open");
 				actionToggleDataObjectif();
 				actionToggleDataHelp();
-				console.log("objectif24 terminé");
+				return;
 			}
 			if (data.id == 31) {
 				await updateObjectives(token, 3, 31, "done");
 				await updateHelp(token, 3, "box3help1", "done");
 				actionToggleDataObjectif();
 				actionToggleDataHelp();
-				console.log("objectif31 terminé");
+				return;
 			}
 			if (data.id == 32) {
 				await updateObjectives(token, 3, 32, "done");
 				actionToggleDataObjectif();
-				console.log("objectif32 terminé");
+				return;
 			}
 			if (data.id == 34) {
 				await updateObjectives(token, 3, 34, "done");
@@ -781,14 +767,14 @@ const Objectif = ({ data }) => {
 				actionToggleDataHelp();
 				setVideoSauverLauren(true);
 				fetchPreviousStateNappe();
-				console.log("objectif34 terminé");
+				return;
 			}
 			if (data.id == 33) {
 				await updateHelp(token, 3, "box3help4", "open");
 				await updateHelp(token, 3, "box3help3", "done");
 				actionToggleDataHelp();
 				setModalAnswer(false);
-				console.log("objectif33 etape 1 terminé");
+				return;
 			}
 		}
 	};
@@ -811,17 +797,20 @@ const Objectif = ({ data }) => {
 		setModalAnswerBis(false);
 		setNextStep(false);
 		if (data.id == 11) {
-			await updateObjectives(token, 1, 11, "done");
-			actionToggleDataObjectif();
-			await updateHelp(token, 1, "box1help1", "done");
-			console.log(objectif12, objectif13);
 			if (objectif12 == "done" && objectif13 == "done") {
 				await updateObjectives(token, 1, 14, "open");
+				await updateObjectives(token, 1, 11, "done");
 				await updateHelp(token, 1, "box1help4", "open");
+				await updateHelp(token, 1, "box1help1", "done");
+				actionToggleDataObjectif();
+				actionToggleDataHelp();
+				return;
+			} else {
+				await updateObjectives(token, 1, 11, "done");
+				actionToggleDataObjectif();
+				await updateHelp(token, 1, "box1help1", "done");
+				return;
 			}
-			actionToggleDataObjectif();
-			actionToggleDataHelp();
-			console.log("objectif11 terminé");
 		}
 		if (data.id == 22) {
 			await updateObjectives(token, 2, 22, "done");
@@ -830,7 +819,7 @@ const Objectif = ({ data }) => {
 			await updateHelp(token, 2, "box2help3", "open");
 			actionToggleDataObjectif();
 			actionToggleDataHelp();
-			console.log("objectif22 terminé");
+			return;
 		}
 	};
 
@@ -1188,9 +1177,6 @@ const Objectif = ({ data }) => {
 		return (
 			<div className="modal-objectif__background">
 				<div className="modal-objectif__box">
-					{/* <button className="modal-objectif__icon--container">
-						<img className="modal-objectif__icon" src={Cross} onClick={handleDoneObjectifModal} />
-					</button> */}
 					<h2 className="modal-objectif__title">
 						Objectif : <br></br> {data.title}
 					</h2>
@@ -1207,6 +1193,23 @@ const Objectif = ({ data }) => {
 
 	const renderObjectif = () => {
 		if (data.status == "done") {
+			if (data.id == 14 || data.id == 24) {
+				return (
+					<>
+						<button className="objectif objectif--open" onClick={handleDoneObjectifModal}>
+							<div className="objectif__mainInfo">
+								<div className="objectif__icon-wrapper">
+									<img src={LockOpen} className="objectif__icon" />
+								</div>
+								<h3 className="objectif__title">{data.title}</h3>
+							</div>
+							<div className="objectif__subInfo">
+								<p className="objectif__subtitle">{data.subtitle}</p>
+							</div>
+						</button>
+					</>
+				);
+			}
 			return (
 				<>
 					<button className="objectif objectif--done" onClick={handleDoneObjectifModal}>
@@ -1307,7 +1310,7 @@ const Objectif = ({ data }) => {
 				</audio>
 				<Document
 					title="Email du tueur"
-					srcElement={urlApi.apiRemi() + "assets/document/125_Email_Tueur_Oublie.png"}
+					srcElement={urlApi.apiRemi() + "assets/document/125_Email_Tueur_Oublie.jpg"}
 					handleModalDocument={handleCloseMailHacking}
 				/>
 			</>
@@ -1631,6 +1634,7 @@ const Objectif = ({ data }) => {
 		fetchPreviousStateNappe();
 		await updateHistory(token, 2, "box2video3");
 		await updateHistory(token, 2, "box2audio3");
+		await updateHistory(token, 2, "box2document11");
 		await updateObjectives(token, 2, 22, "open");
 		await updateHelp(token, 2, "box2help2", "open");
 		await updateObjectives(token, 2, 21, "done");
@@ -1638,7 +1642,6 @@ const Objectif = ({ data }) => {
 		actionToggleDataHistory();
 		actionToggleDataObjectif();
 		actionToggleDataHelp();
-		console.log("objectif21 terminé");
 	};
 
 	// --- LOGIQUE EVENT BOX 3 --- //
@@ -1646,6 +1649,7 @@ const Objectif = ({ data }) => {
 	const [videoSauverLauren, setVideoSauverLauren] = useState(false);
 	const [modaleSquelette, setModaleSquelette] = useState(false);
 	const [debriefLauren, setDebriefLauren] = useState(false);
+	const [telCeline, setTelCeline] = useState(false);
 	const [tempsEcoule, setTempsEcoule] = useState(false);
 	const [displayTextMauvaiseFin1, setDisplayTextMauvaiseFin1] = useState(false);
 	const [displayTextMauvaiseFin2, setDisplayTextMauvaiseFin2] = useState(false);
@@ -1696,7 +1700,7 @@ const Objectif = ({ data }) => {
 	const displayDebriefLauren = () => {
 		return (
 			<Audio
-				title="Debrief Lauren"
+				title="Débrief Lauren"
 				srcImg1={urlApi.apiRemi() + "assets/photos-personnages/lauren.jpg"}
 				srcImg2={urlApi.apiRemi() + "assets/photos-personnages/raphaelle.jpg"}
 				srcTranscription={urlApi.apiRemi() + "assets/transcripts/303_Debrief_Lauren_transcript.pdf"}
@@ -1720,7 +1724,7 @@ const Objectif = ({ data }) => {
 						Votre navigateur ne prend pas en charge ce format
 					</audio>
 					<p>Le temps est écoulé, nous n&apos;avons pas pu sauver la victime à temps !</p>
-					<p>Souhaitez-vous réessayer ou passer à l&apos;épilogue ?</p>
+					<p>Souhaitez-vous réessayer le dernier objectif ou passer à l&apos;épilogue ?</p>
 					<button className="modal-objectif__button button--red" onClick={handleReset}>
 						Recommencer
 					</button>
@@ -1816,7 +1820,7 @@ const Objectif = ({ data }) => {
 								Ce n&apos;était pas la bonne cible, nous nous sommes trompés... Céline est malheureusement dans la nature et
 								elle a réussi son grand œuvre.
 							</p>
-							<p>Souhaitez-vous réessayer ou passer à l&apos;épilogue ?</p>
+							<p>Souhaitez-vous réessayer le dernier objectif ou passer à l&apos;épilogue ?</p>
 							<button className="modal-objectif__button button--red" onClick={handleReset}>
 								Recommencer
 							</button>
@@ -1843,10 +1847,10 @@ const Objectif = ({ data }) => {
 					{displayTextMauvaiseFin2 ? (
 						<>
 							<p>
-								Ce n&pos;était pas la bonne cible, nous nous sommes trompés... Céline est malheureusement dans la nature et elle
-								a réussi son grand œuvre.
+								Ce n&apos;était pas la bonne cible, nous nous sommes trompés... Céline est malheureusement dans la nature et
+								elle a réussi son grand œuvre.
 							</p>
-							<p>Souhaitez-vous réessayer ou passer à l&apos;épilogue ?</p>
+							<p>Souhaitez-vous réessayer le dernier objectif ou passer à l&apos;épilogue ?</p>
 							<button className="modal-objectif__button button--red" onClick={handleReset}>
 								Recommencer
 							</button>
@@ -1886,6 +1890,7 @@ const Objectif = ({ data }) => {
 			{videoSauverLauren ? displayVideoSauverLauren() : null}
 			{modaleSquelette ? displayModaleSquelette() : null}
 			{debriefLauren ? displayDebriefLauren() : null}
+			{telCeline ? displayTelCeline() : null}
 			{tempsEcoule ? displayModaleTempsEcoule() : null}
 			{mauvaiseFin1 ? displayModaleMauvaiseFin1() : null}
 			{mauvaiseFin2 ? displayModaleMauvaiseFin2() : null}

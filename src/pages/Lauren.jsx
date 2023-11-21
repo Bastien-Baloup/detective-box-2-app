@@ -1,5 +1,5 @@
-// Page pour faire les requêtes auprès du personnage de Lauren
-// Les validations des requêtes sont faites ici
+// EXPLICATION : Page pour faire les requêtes auprès du personnage de Lauren
+// EXPLICATION : Les validations des requêtes sont faites ici
 
 import PhotoLauren from "../assets/img/Agent_lauren.jpg";
 import PhotoRaphaelle from "../assets/img/Agent_raphaelle.jpg";
@@ -17,14 +17,14 @@ const Lauren = ({ closeAgentPage }) => {
 	const { currentBox } = useContext(BoxContext);
 	const { fetchPreviousStateNappe } = useContext(AmbianceContext);
 	const token = localStorage.getItem("token");
-	const { actionToggleDataLauren, toggleDataLauren, toggleDataHistory } = useContext(DataContext);
+	const { actionToggleDataLauren, toggleDataLauren, toggleDataHistory, actionTogggleDataHistory } =
+		useContext(DataContext);
 
 	//EXPLICATION : Lauren est le personnage "2"
 
 	useEffect(() => {
 		const fetchData = async () => {
 			const result = await getCharactersById(token, 2);
-			console.log(result);
 			setDataLauren(result);
 		};
 		fetchData();
@@ -190,6 +190,7 @@ const Lauren = ({ closeAgentPage }) => {
 			await updateHistory(token, 2, "box2document3");
 		}
 		actionToggleDataLauren();
+		actionTogggleDataHistory();
 		setModalMedia(false);
 	};
 

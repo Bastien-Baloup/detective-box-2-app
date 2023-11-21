@@ -42,9 +42,6 @@ const Audio = ({ title, srcImg1, srcImg2, srcTranscription, handleModalAudio, sr
 		};
 	}, [srcAudio]);
 
-	console.log(waveSurferRef);
-	console.log(containerRef);
-
 	// EXPLICATION : Cette fonction permet d'ouvrir le document de transcription de l'audio dans un nouvel onglet
 	const openInNewTab = () => {
 		window.open(srcTranscription, "_blank");

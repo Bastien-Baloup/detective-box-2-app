@@ -85,7 +85,6 @@ export const AmbianceProvider = ({ children }) => {
 	};
 
 	const fetchResumeNappe = () => {
-		console.log(ispreviouslyMuted);
 		if (!ispreviouslyMuted) {
 			setNappeMute(false);
 		}

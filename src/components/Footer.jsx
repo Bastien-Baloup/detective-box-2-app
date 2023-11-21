@@ -2,7 +2,6 @@
 
 import Paper from "../assets/img/Paper.png";
 import Objectif from "./Objectif";
-// import { dataObjectif } from "../utils/const/dataObjectif.js";
 import { BoxContext, DataContext } from "../utils/context/fetchContext.jsx";
 import { useContext, useEffect, useState } from "react";
 import { getObjectivesByBox } from "../utils/hooks/useApi.js";
@@ -15,7 +14,6 @@ const Footer = () => {
 	useEffect(() => {
 		const fetchData = async () => {
 			const result = await getObjectivesByBox(token, currentBox);
-			console.log("on passe bien dans le footer");
 			setDataObjectif(result.data);
 		};
 		fetchData();

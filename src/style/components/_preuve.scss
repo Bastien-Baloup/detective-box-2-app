@@ -1,11 +1,15 @@
 .clue__wrapper {
 	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(16rem, 19rem));
+	grid-template-columns: repeat(auto-fill, minmax(14rem, 19rem));
 	width: 100%;
 	gap: 1rem;
 	justify-content: center;
-	max-height: 45vh;
+	// max-height: 45vh;
 	overflow: auto;
+	height: -moz-available;          /* WebKit-based browsers will ignore this. */
+	height: -webkit-fill-available;  /* Mozilla-based browsers will ignore this. */
+	height: fill-available;
+	margin-top: 2rem;
 }
 
 .clue {

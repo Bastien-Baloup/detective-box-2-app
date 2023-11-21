@@ -3,7 +3,10 @@
 	border: 1px solid $secondary-color;
 	// border-top: none;
 	background-color: $primary-color;
-	min-height: 50vh;
+	height: 60vh;
+	min-height: 26rem;
+	display: flex;
+	flex-direction: column;
 }
 
 @include responsive(laptop) {

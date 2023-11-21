@@ -48,7 +48,7 @@
 	}
 }
 
-@include responsive(tablet) {
+@include responsive(bigtablet) {
 	.progressBar {
 		flex-wrap: nowrap;
 		display: flex;
