@@ -6,7 +6,6 @@
 import Logo from "../assets/img/DB-Logo-DetectiveBox_AgenceDetectiveBlanc.png";
 import Boxchoice from "../components/Boxchoice.jsx";
 import Loader from "../components/Loader.jsx";
-// import { dataBox } from "../utils/const/dataBox";
 import { AuthContext } from "../utils/context/fetchContext.jsx";
 import { useContext, useState } from "react";
 import { Navigate } from "react-router-dom";

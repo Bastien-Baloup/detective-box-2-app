@@ -94,7 +94,8 @@ function Home() {
 						Votre navigateur ne prend pas en charge ce format
 					</audio>
 					<p className="modal-boxdone__text">
-						Oh non ! <br></br> Maintenant c&apos;est Céline que j&apos;arrive plus à joindre...
+						Oh non ! <br></br> Maintenant c&apos;est Céline que j&apos;arrive plus à joindre... <br></br>On devrait aller chez
+						elle pour vérifier que tout va bien !
 					</p>
 					<button className="modal-boxdone__button button--red" onClick={specificCardActionCeline}>
 						Continuer l&apos;enquête
@@ -142,6 +143,32 @@ function Home() {
 		}
 	};
 
+	const renderCelineCard = () => {
+		if (currentBox == 3 && box3audio3 == true) {
+			return (
+				<Card
+					srcImg={PhotoCeline}
+					srcIcon={IconCeline}
+					name="Céline Valluy"
+					contentButton="Demander un dossier de police"
+					actionButton={specificCardActionCeline}
+					state="unavailable"
+				/>
+			);
+		} else {
+			return (
+				<Card
+					srcImg={PhotoCeline}
+					srcIcon={IconCeline}
+					name="Céline Valluy"
+					contentButton="Demander un dossier de police"
+					actionButton={() => setCharacterDisplayed("celine")}
+					state=""
+				/>
+			);
+		}
+	};
+
 	// EXPLICATION : Fonction pour afficher tout les personnages
 	const displayAllCharacters = () => {
 		return (
@@ -156,14 +183,7 @@ function Home() {
 						state=""
 					/>
 					{renderLaurenCard()}
-					<Card
-						srcImg={PhotoCeline}
-						srcIcon={IconCeline}
-						name="Céline Valluy"
-						contentButton="Demander un dossier de police"
-						actionButton={() => setCharacterDisplayed("celine")}
-						state={box3audio3 ? "unavailable" : ""}
-					/>
+					{renderCelineCard()}
 					<Card
 						srcImg={PhotoTim}
 						srcIcon={IconTim}

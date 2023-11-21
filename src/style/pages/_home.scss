@@ -4,7 +4,10 @@
 	// border-top: none;
 	background-color: $primary-color;
 	overflow: auto;
-	// min-height: 50vh;
+	height: 60vh;
+	min-height: 25rem;
+	display: flex;
+	align-items: center;
 }
 
 @include responsive(laptop) {

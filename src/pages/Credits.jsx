@@ -4,9 +4,6 @@
 function Credits() {
 	return (
 		<main className="credits">
-			{/* <Link className="credits__link" to="/">
-				&lt; Retour à l&apos;enquête
-			</Link> */}
 			<h1 className="credits__title">Crédits</h1>
 			<p className="credits__subtitle">Attention, cette page peut vous révèler des informations sur l&apos;enquête</p>
 			<div className="credits__content">

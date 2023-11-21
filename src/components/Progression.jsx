@@ -4,16 +4,13 @@
 import RoundWhite from "../assets/icons/Icon_Round-white.png";
 import RoundRed from "../assets/icons/Icon_Round-red.png";
 import LineMediumWhite from "../assets/icons/Icon_Line_Medium-white.png";
-// import LineSmallWhite from "../assets/icons/Icon_Line_Small-white.svg";
 import LineBigRed from "../assets/icons/Icon_Line_Big-red.png";
 import LineMediumRed from "../assets/icons/Icon_Line_Medium-red.png";
-// import LineSmallRed from "../assets/icons/Icon_Line_Small-red.svg";
 import CheckWhite from "../assets/icons/Icon_Check-white.png";
 import CrossRed from "../assets/icons/Icon_Cross-red.png";
 import Flag from "../assets/icons/Icon_Flag.png";
 import { BoxContext, DataContext } from "../utils/context/fetchContext";
 import { useContext, useState, useEffect } from "react";
-// import { dataObjectif } from "../utils/const/dataObjectif";
 import { getObjectivesByBox } from "../utils/hooks/useApi.js";
 
 const Progression = () => {

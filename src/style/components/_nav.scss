@@ -16,7 +16,6 @@
 		font-size: 0.75rem;
 		cursor: pointer;
 		min-width: 10%;
-
 		&.active {
 			height: 2rem;
 			border-bottom: solid 1px $primary-color;
@@ -54,15 +53,14 @@
 		&__title {
 			display: block;
 		}
-
 		&__container {
 			gap: 1rem;
 			padding: 1rem;
-			height: 2.5rem;
+			// height: 2.5rem;
 			font-size: 1rem;
 			width: 100%;
 			&.active {
-				height: 4rem;
+				// height: 4rem;
 				font-size: 1.5rem;
 			}
 		}

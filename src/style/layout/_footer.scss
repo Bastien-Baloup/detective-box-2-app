@@ -26,7 +26,7 @@ footer {
 	}
 	&__title {
 		color: $primary-color;
-		font-size: 1.5rem;
+		font-size: 1.25rem;
 		transform: translateY(1rem);
 		font-weight: bold;
 		font-family: "Gabriele";
@@ -44,6 +44,6 @@ footer {
 
 	&__bottomSection {
 		background-color: #fff9f2;
-		padding: 1rem;
+		padding: 1.5rem 0.5rem 1rem 0.5rem;
 	}
 }

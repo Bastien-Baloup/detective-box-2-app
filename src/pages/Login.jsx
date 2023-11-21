@@ -58,8 +58,8 @@ function Login() {
 			setErrorMessageSignup("Ce compte existe déjà");
 			return;
 		}
-		const newUser = await res.json();
-		console.log(newUser);
+		// const newUser = await res.json();
+		// console.log(newUser);
 		setUsername("");
 		setEmail("");
 		setPassword("");
