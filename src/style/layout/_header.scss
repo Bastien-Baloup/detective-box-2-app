@@ -31,7 +31,7 @@ header {
 	}
 }
 
-@include responsive(tablet) {
+@include responsive(bigtablet) {
 	.header__topSection {
 		grid-template-columns: 1fr 1fr 1fr;
 		grid-template-rows: 1fr;
