@@ -171,24 +171,6 @@
 		display: grid;
 		grid-template-columns: 1fr fit-content(20rem);
 	}
-	// &__main .modal-objectif__victimes__info:nth-child(1) {
-	// 	grid-row: 1;
-	// }
-	// &__main .modal-objectif__victimes__info:nth-child(2) {
-	// 	grid-row: 3;
-	// }
-	// &__main .modal-objectif__victimes__info:nth-child(3) {
-	// 	grid-row: 5;
-	// }
-	// &__main .modal-objectif__victimes__info:nth-child(4) {
-	// 	grid-row: 7;
-	// }
-	// &__main .modal-objectif__victimes__info:nth-child(5) {
-	// 	grid-row: 9;
-	// }
-	// &__main .modal-objectif__victimes__info:nth-child(6) {
-	// 	grid-row: 11;
-	// }
 }
 
 .modal-objectif__victimestri {
@@ -255,15 +237,16 @@
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
+	gap: 1rem;
 }
 
 .objectif {
 	cursor: pointer;
 	width: -moz-available; /* WebKit-based browsers will ignore this. */
 	width: -webkit-fill-available; /* Mozilla-based browsers will ignore this. */
-	height: 5rem;
+	// height: 5rem;
 	padding: 1rem;
-	margin: 1rem;
+	// margin: 1rem;
 	overflow: hidden;
 	position: relative;
 	display: flex;
@@ -289,7 +272,7 @@
 	&__title {
 		text-align: left;
 		font-family: inherit;
-		font-size: 1.25rem;
+		font-size: 1rem;
 	}
 	&__subInfo {
 		width: 100%;
@@ -316,7 +299,7 @@
 
 @include responsive(tablet) {
 	.objectif {
-		width: 18rem;
+		width: 15rem;
 	}
 }
 
@@ -356,18 +339,6 @@
 }
 
 @keyframes shake {
-	// 10%, 90% {
-	//   transform: translate3d(-1px, 0, 0);
-	// }
-	// 20%, 80% {
-	//   transform: translate3d(2px, 0, 0);
-	// }
-	// 30%, 50%, 70% {
-	//   transform: translate3d(-2px, 0, 0);
-	// }
-	// 40%, 60% {
-	//   transform: translate3d(2px, 0, 0);
-	// }
 	0% {
 		transform: skewX(-10deg);
 	}

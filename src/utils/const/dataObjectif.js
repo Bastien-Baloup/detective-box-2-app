@@ -110,7 +110,11 @@ export const dataObjectif = {
 				"Victime collatérale du Tueur au Tarot (tueur organisé)",
 			],
 			answertext: [
-				"Nous avons progressé dans la résolution de ce problème, il est maintenant plus facile de comprendre la situation.",
+				"Bravo agent, nous avons progressé dans l'affaire et commençons à y voir plus clair !",
+				"Continuons nos recherches.",
+				"A chaque paragraphe résolu, on a obtenu un indice. Vous les trouverez dans votre historique.",
+				"Maintenant, ce serait peut-être bien d'aller visiter le lieu du quatrième paragraphe du poème, non ?",
+				"Dîtes-moi où je dois me rendre.",
 			],
 			answersrc: null,
 			status: "closed",

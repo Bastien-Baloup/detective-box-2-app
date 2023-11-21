@@ -234,7 +234,6 @@ const Objectif = ({ data }) => {
 			if (data.id === "box3document2" && objectif33.current == "closed") {
 				const updateApp = async () => {
 					console.log("on passe dans la fonction");
-					setModaleSquelette(true);
 					await updateObjectives(token, 3, 33, "open");
 					await updateObjectives(token, 3, 34, "open");
 					actionToggleDataObjectif();
@@ -242,6 +241,7 @@ const Objectif = ({ data }) => {
 					await updateHelp(token, 3, "box3help3", "open");
 					await updateHelp(token, 3, "box3help6", "open");
 					actionToggleDataHelp();
+					setModaleSquelette(true);
 				};
 				updateApp();
 			}
@@ -412,6 +412,7 @@ const Objectif = ({ data }) => {
 	const handleVictimeChoice = (choice) => {
 		setVictimeSaved(choice);
 		handleModal();
+		setTelCeline(true);
 	};
 
 	const handleFinalStep = async () => {
@@ -423,7 +424,8 @@ const Objectif = ({ data }) => {
 		await updateEvent(token, 3, 33, "open");
 		actionToggleDataHelp();
 		actionToggleDataEvent();
-		handleModal();
+		setTelCeline(false);
+		// handleModal();
 	};
 
 	const handleSubmitCity = async (e) => {
@@ -490,7 +492,7 @@ const Objectif = ({ data }) => {
 			);
 		}
 		if (objectif34 == "done" && box3lieu3 == true && victimeSaved == "") {
-			console.log("on passe par l'étape 3");
+			console.log("on passe par l'étape 2");
 			return (
 				<div className="modal-objectif__background">
 					<div className="modal-objectif__box">
@@ -515,35 +517,8 @@ const Objectif = ({ data }) => {
 				</div>
 			);
 		}
-		if (victimeSaved != "" && box3help4 == "open") {
-			console.log("on passe par l'étape 4");
-			return (
-				<div className="modal-objectif__background">
-					<div className="modal-objectif__box">
-						<h2 className="modal-objectif__title">
-							Objectif : <br></br> {data.title}
-						</h2>
-						{victimeSaved == "Maria" ? (
-							<audio autoPlay>
-								<source src={urlApi.apiRemi() + "sounds/304-dernier-objectif-rempli-maria.mp3"} type="audio/mpeg" />
-								Votre navigateur ne prend pas en charge ce format
-							</audio>
-						) : (
-							<audio autoPlay>
-								<source src={urlApi.apiRemi() + "sounds/304-dernier-objectif-rempli-giuseppe.mp3"} type="audio/mpeg" />
-								Votre navigateur ne prend pas en charge ce format
-							</audio>
-						)}
-						<p className="modal-objectif__subtitle">“Le jeu n&apos;est pas fini, Raph…”</p>
-						<button className="modal-objectif__button button--red" onClick={handleFinalStep}>
-							Continuer l&apos;enquête
-						</button>
-					</div>
-				</div>
-			);
-		}
 		if (victimeSaved != "" && box3help4 == "done") {
-			console.log("on passe par l'étape 5");
+			console.log("on passe par l'étape 3");
 			return (
 				<div className="modal-objectif__background">
 					<div className="modal-objectif__box">
@@ -573,6 +548,33 @@ const Objectif = ({ data }) => {
 				</div>
 			);
 		}
+	};
+
+	const displayTelCeline = () => {
+		return (
+			<div className="modal-objectif__background">
+				<div className="modal-objectif__box">
+					<h2 className="modal-objectif__title">
+						Objectif : <br></br> {data.title}
+					</h2>
+					{victimeSaved == "maria" ? (
+						<audio autoPlay>
+							<source src={urlApi.apiRemi() + "sounds/304-dernier-objectif-rempli-maria.mp3"} type="audio/mpeg" />
+							Votre navigateur ne prend pas en charge ce format
+						</audio>
+					) : (
+						<audio autoPlay>
+							<source src={urlApi.apiRemi() + "sounds/304-dernier-objectif-rempli-giuseppe.mp3"} type="audio/mpeg" />
+							Votre navigateur ne prend pas en charge ce format
+						</audio>
+					)}
+					<p className="modal-objectif__subtitle">“Le jeu n&apos;est pas fini, Raph…”</p>
+					<button className="modal-objectif__button button--red" onClick={handleFinalStep}>
+						Continuer l&apos;enquête
+					</button>
+				</div>
+			</div>
+		);
 	};
 
 	// -- GENERIQUE -- //
@@ -744,6 +746,7 @@ const Objectif = ({ data }) => {
 				actionToggleDataObjectif();
 				actionToggleDataHelp();
 				await updateHistory(token, 2, "box2document9");
+				await updateHistory(token, 2, "box2document12");
 				actionToggleDataHistory();
 				console.log("objectif23 terminé");
 			}
@@ -1188,9 +1191,6 @@ const Objectif = ({ data }) => {
 		return (
 			<div className="modal-objectif__background">
 				<div className="modal-objectif__box">
-					{/* <button className="modal-objectif__icon--container">
-						<img className="modal-objectif__icon" src={Cross} onClick={handleDoneObjectifModal} />
-					</button> */}
 					<h2 className="modal-objectif__title">
 						Objectif : <br></br> {data.title}
 					</h2>
@@ -1207,6 +1207,23 @@ const Objectif = ({ data }) => {
 
 	const renderObjectif = () => {
 		if (data.status == "done") {
+			if (data.id == 14 || data.id == 24) {
+				return (
+					<>
+						<button className="objectif objectif--open" onClick={handleDoneObjectifModal}>
+							<div className="objectif__mainInfo">
+								<div className="objectif__icon-wrapper">
+									<img src={LockOpen} className="objectif__icon" />
+								</div>
+								<h3 className="objectif__title">{data.title}</h3>
+							</div>
+							<div className="objectif__subInfo">
+								<p className="objectif__subtitle">{data.subtitle}</p>
+							</div>
+						</button>
+					</>
+				);
+			}
 			return (
 				<>
 					<button className="objectif objectif--done" onClick={handleDoneObjectifModal}>
@@ -1307,7 +1324,7 @@ const Objectif = ({ data }) => {
 				</audio>
 				<Document
 					title="Email du tueur"
-					srcElement={urlApi.apiRemi() + "assets/document/125_Email_Tueur_Oublie.png"}
+					srcElement={urlApi.apiRemi() + "assets/document/125_Email_Tueur_Oublie.jpg"}
 					handleModalDocument={handleCloseMailHacking}
 				/>
 			</>
@@ -1631,6 +1648,7 @@ const Objectif = ({ data }) => {
 		fetchPreviousStateNappe();
 		await updateHistory(token, 2, "box2video3");
 		await updateHistory(token, 2, "box2audio3");
+		await updateHistory(token, 2, "box2document11");
 		await updateObjectives(token, 2, 22, "open");
 		await updateHelp(token, 2, "box2help2", "open");
 		await updateObjectives(token, 2, 21, "done");
@@ -1646,6 +1664,7 @@ const Objectif = ({ data }) => {
 	const [videoSauverLauren, setVideoSauverLauren] = useState(false);
 	const [modaleSquelette, setModaleSquelette] = useState(false);
 	const [debriefLauren, setDebriefLauren] = useState(false);
+	const [telCeline, setTelCeline] = useState(false);
 	const [tempsEcoule, setTempsEcoule] = useState(false);
 	const [displayTextMauvaiseFin1, setDisplayTextMauvaiseFin1] = useState(false);
 	const [displayTextMauvaiseFin2, setDisplayTextMauvaiseFin2] = useState(false);
@@ -1696,7 +1715,7 @@ const Objectif = ({ data }) => {
 	const displayDebriefLauren = () => {
 		return (
 			<Audio
-				title="Debrief Lauren"
+				title="Débrief Lauren"
 				srcImg1={urlApi.apiRemi() + "assets/photos-personnages/lauren.jpg"}
 				srcImg2={urlApi.apiRemi() + "assets/photos-personnages/raphaelle.jpg"}
 				srcTranscription={urlApi.apiRemi() + "assets/transcripts/303_Debrief_Lauren_transcript.pdf"}
@@ -1720,7 +1739,7 @@ const Objectif = ({ data }) => {
 						Votre navigateur ne prend pas en charge ce format
 					</audio>
 					<p>Le temps est écoulé, nous n&apos;avons pas pu sauver la victime à temps !</p>
-					<p>Souhaitez-vous réessayer ou passer à l&apos;épilogue ?</p>
+					<p>Souhaitez-vous réessayer le dernier objectif ou passer à l&apos;épilogue ?</p>
 					<button className="modal-objectif__button button--red" onClick={handleReset}>
 						Recommencer
 					</button>
@@ -1816,7 +1835,7 @@ const Objectif = ({ data }) => {
 								Ce n&apos;était pas la bonne cible, nous nous sommes trompés... Céline est malheureusement dans la nature et
 								elle a réussi son grand œuvre.
 							</p>
-							<p>Souhaitez-vous réessayer ou passer à l&apos;épilogue ?</p>
+							<p>Souhaitez-vous réessayer le dernier objectif ou passer à l&apos;épilogue ?</p>
 							<button className="modal-objectif__button button--red" onClick={handleReset}>
 								Recommencer
 							</button>
@@ -1843,10 +1862,10 @@ const Objectif = ({ data }) => {
 					{displayTextMauvaiseFin2 ? (
 						<>
 							<p>
-								Ce n&pos;était pas la bonne cible, nous nous sommes trompés... Céline est malheureusement dans la nature et elle
-								a réussi son grand œuvre.
+								Ce n&apos;était pas la bonne cible, nous nous sommes trompés... Céline est malheureusement dans la nature et
+								elle a réussi son grand œuvre.
 							</p>
-							<p>Souhaitez-vous réessayer ou passer à l&apos;épilogue ?</p>
+							<p>Souhaitez-vous réessayer le dernier objectif ou passer à l&apos;épilogue ?</p>
 							<button className="modal-objectif__button button--red" onClick={handleReset}>
 								Recommencer
 							</button>
@@ -1886,6 +1905,7 @@ const Objectif = ({ data }) => {
 			{videoSauverLauren ? displayVideoSauverLauren() : null}
 			{modaleSquelette ? displayModaleSquelette() : null}
 			{debriefLauren ? displayDebriefLauren() : null}
+			{telCeline ? displayTelCeline() : null}
 			{tempsEcoule ? displayModaleTempsEcoule() : null}
 			{mauvaiseFin1 ? displayModaleMauvaiseFin1() : null}
 			{mauvaiseFin2 ? displayModaleMauvaiseFin2() : null}
