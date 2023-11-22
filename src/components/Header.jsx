@@ -258,7 +258,7 @@ const Header = () => {
 
 	// EXPLICATION : Le timer de fin s'affiche lors de la dernière étape du jeu. Il est en overlay sur le header pour que le joueur ne puisse pas cliquer sur les autres composants
 	const displayTimer = () => {
-		fetchNappeMute(false);
+		fetchNappeMute(true);
 		return (
 			<>
 				<div className="final__timer">
@@ -288,7 +288,11 @@ const Header = () => {
 		<header>
 			{tutorialModalIsActive ? displayTutorial() : <></>}
 			{tutorialIsActive ? (
-				<Video title="Vidéo du tutoriel" srcVideo={null} handleModalVideo={handleCloseTutorial} />
+				<Video
+					title="Vidéo du tutoriel"
+					srcVideo={urlApi.apiRemi() + "videos/tutoriel.mp4&type=video"}
+					handleModalVideo={handleCloseTutorial}
+				/>
 			) : (
 				<></>
 			)}

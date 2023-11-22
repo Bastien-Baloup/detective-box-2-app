@@ -11,7 +11,7 @@
 		height: 100%;
 		display: flex;
 		flex-direction: column;
-		gap: 2rem;
+		gap: 1rem;
 	}
 	&__portrait {
 		@include img-max;
@@ -20,7 +20,7 @@
 		&--container {
 			border: solid 1px $secondary-color;
 			background-color: $primary-color;
-			height: 5rem;
+			height: 4.5rem;
 			@include flex-center;
 			position: relative;
 			&::before {
@@ -82,7 +82,7 @@
 		min-width: 5rem;
 		max-width: 10rem;
 		width: 100%;
-		height: 30rem;
+		height: 25rem;
 		border: solid 1px $secondary-color;
 		overflow: hidden;
 	}

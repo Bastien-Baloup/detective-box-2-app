@@ -11,8 +11,8 @@
 
 @include responsive(mobile) {
 	#root {
-		padding: 2rem;
-		min-height: calc(100vh - 4rem);
+		padding: 1rem 2rem;
+		min-height: calc(100vh - 2rem);
 	}
 }
 

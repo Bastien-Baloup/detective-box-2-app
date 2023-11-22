@@ -59,6 +59,8 @@ const Objectif = ({ data }) => {
 	let event14 = useRef("");
 	let event15 = useRef("");
 	let event23 = useRef("");
+	// let event25 = useRef("");
+	// let event35 = useRef("");
 	// const [event13, setEvent13] = useState("");
 	// const [event14, setEvent14] = useState("");
 	// const [event15, setEvent15] = useState("");
@@ -68,9 +70,11 @@ const Objectif = ({ data }) => {
 
 	const [box1lieu2, setBox1Lieu2] = useState(false);
 	const [box2lieu1, setBox2Lieu1] = useState(false);
+	const [box2lieu3, setBox2Lieu3] = useState(false);
 	const [box2video5, setBox2Video5] = useState(false);
 	const [box3audio3, setBox3Audio3] = useState(false);
 	const [box3lieu2, setBox3Lieu2] = useState(false);
+
 	const [box3lieu3, setBox3Lieu3] = useState(false);
 
 	const [box3help4, setBox3Help4] = useState("");
@@ -81,6 +85,8 @@ const Objectif = ({ data }) => {
 	const [objectif13, setObjectif13] = useState("");
 	// const [objectif33, setObjectif33] = useState("");
 	const [objectif34, setObjectif34] = useState("");
+
+	const [toggleEvent2, setActionToggleEvent2] = useState(false);
 
 	// EXPLICATION : Fonction pour récupérer l'état des événements
 	useLayoutEffect(() => {
@@ -103,11 +109,15 @@ const Objectif = ({ data }) => {
 					// setEvent23(event23Data.status);
 					event23.current = event23Data.status;
 					const event25Data = events.data.find((event) => event.id === 25);
+					// event25.current = event25Data.status;
 					setEvent25(event25Data.status);
+					setActionToggleEvent2(!toggleEvent2);
 				}
 				if (currentBox === 3) {
 					const event35Data = events.data.find((event) => event.id === 35);
+					// event35.current = event35Data.status;
 					setEvent35(event35Data.status);
+					setActionToggleEvent2(!toggleEvent2);
 				}
 			}
 		};
@@ -117,6 +127,7 @@ const Objectif = ({ data }) => {
 	//EXPLICATION : UseEffect pour déclencher les evenements entre les différents composants
 	useEffect(() => {
 		if (currentBox == 2) {
+			console.log(event25, box2video5);
 			// EXPLICATION : Pour faire le lien entre le composant Home (carte Lauren) et ici
 			if (event25 == "open" && box2video5 == false) {
 				setVideoBureauLauren(true);
@@ -129,7 +140,7 @@ const Objectif = ({ data }) => {
 				setTempsEcoule(true);
 			}
 		}
-	}, [toggleDataEvent]);
+	}, [toggleEvent2]);
 
 	// EXPLICATION : Fonction pour récupérer l'état de l'historique
 	useEffect(() => {
@@ -142,6 +153,8 @@ const Objectif = ({ data }) => {
 			if (currentBox == 2) {
 				const box2lieu1Data = clues.data.find((event) => event.id == "box2lieu1");
 				setBox2Lieu1(box2lieu1Data.status);
+				const box2lieu3Data = clues.data.find((event) => event.id == "box2lieu3");
+				setBox2Lieu3(box2lieu3Data.status);
 				const box2video5Data = clues.data.find((event) => event.id == "box2video5");
 				setBox2Video5(box2video5Data.status);
 			}
@@ -386,6 +399,7 @@ const Objectif = ({ data }) => {
 	// -- CONDITIONS SPE OBJECTIF 33 -- //
 
 	const [victimeSaved, setVictimeSaved] = useState("");
+	const [displayButtonCelineTel, setDisplayButtonCelineTel] = useState(false);
 
 	const handleVictimeChoice = (choice) => {
 		setVictimeSaved(choice);
@@ -522,7 +536,7 @@ const Objectif = ({ data }) => {
 						Objectif : <br></br> {data.title}
 					</h2>
 					{victimeSaved == "maria" ? (
-						<audio autoPlay>
+						<audio autoPlay onEnded={() => setDisplayButtonCelineTel(true)}>
 							<source src={urlApi.apiRemi() + "sounds/304-dernier-objectif-rempli-maria.mp3"} type="audio/mpeg" />
 							Votre navigateur ne prend pas en charge ce format
 						</audio>
@@ -533,9 +547,13 @@ const Objectif = ({ data }) => {
 						</audio>
 					)}
 					<p className="modal-objectif__subtitle">“Le jeu n&apos;est pas fini, Raph…”</p>
-					<button className="modal-objectif__button button--red" onClick={handleFinalStep}>
-						Continuer l&apos;enquête
-					</button>
+					{displayButtonCelineTel ? (
+						<button className="modal-objectif__button button--red" onClick={handleFinalStep}>
+							Continuer l&apos;enquête
+						</button>
+					) : (
+						""
+					)}
 				</div>
 			</div>
 		);
@@ -633,6 +651,11 @@ const Objectif = ({ data }) => {
 				setValue("");
 				return;
 			}
+			if (data.id == 22 && box2lieu3 == false) {
+				setErrorMessage("Allez d'abord récolter des preuves dans la cellule de Garraud !");
+				setValue("");
+				return;
+			}
 			setErrorMessage("");
 			setValue("");
 			setModal(false);
@@ -649,42 +672,58 @@ const Objectif = ({ data }) => {
 			setModalAnswer(false);
 			setModalBis(true);
 			setNextStep(true);
+			return;
 		} else {
 			setModalAnswer(false);
 			if (data.id == 12) {
-				await updateObjectives(token, 1, 12, "done");
-				actionToggleDataObjectif();
-				await updateHelp(token, 1, "box1help2", "done");
-				actionToggleDataHelp();
 				if (objectif11 == "done" && objectif13 == "done") {
 					await updateObjectives(token, 1, 14, "open");
+					await updateObjectives(token, 1, 12, "done");
 					actionToggleDataObjectif();
 					await updateHelp(token, 1, "box1help4", "open");
+					await updateHelp(token, 1, "box1help2", "done");
 					actionToggleDataHelp();
+					await updateHistory(token, 1, "box1document5");
+					actionToggleDataHistory();
+					setModaleHacking(true);
+					return;
+				} else {
+					await updateObjectives(token, 1, 12, "done");
+					actionToggleDataObjectif();
+					await updateHelp(token, 1, "box1help2", "done");
+					actionToggleDataHelp();
+					await updateHistory(token, 1, "box1document5");
+					actionToggleDataHistory();
+					setModaleHacking(true);
+					return;
 				}
-				setModaleHacking(true);
-				await updateHistory(token, 1, "box1document5");
-				actionToggleDataHistory();
 			}
 			if (data.id == 13) {
-				await updateObjectives(token, 1, 13, "done");
-				actionToggleDataObjectif();
-				await updateHelp(token, 1, "box1help3", "done");
-				actionToggleDataHelp();
 				if (objectif11 == "done" && objectif12 == "done") {
 					await updateObjectives(token, 1, 14, "open");
+					await updateObjectives(token, 1, 13, "done");
 					actionToggleDataObjectif();
 					await updateHelp(token, 1, "box1help4", "open");
+					await updateHelp(token, 1, "box1help3", "done");
 					actionToggleDataHelp();
+					return;
+				} else {
+					await updateObjectives(token, 1, 13, "done");
+					actionToggleDataObjectif();
+					await updateHelp(token, 1, "box1help3", "done");
+					actionToggleDataHelp();
+					return;
 				}
 			}
 			if (data.id == 14) {
 				await updateObjectives(token, 1, 14, "done");
 				actionToggleDataObjectif();
+				return;
 			}
 			if (data.id == 21) {
 				setAudioSamuel(true);
 				fetchPreviousStateNappe();
+				return;
 			}
 			if (data.id == 23) {
 				await updateObjectives(token, 2, 23, "done");
@@ -697,6 +736,7 @@ const Objectif = ({ data }) => {
 				await updateHistory(token, 2, "box2document9");
 				await updateHistory(token, 2, "box2document12");
 				actionToggleDataHistory();
+				return;
 			}
 			if (data.id == 24) {
 				await updateObjectives(token, 2, 24, "done");
@@ -704,16 +744,19 @@ const Objectif = ({ data }) => {
 				await updateHelp(token, 2, "box2help5", "open");
 				actionToggleDataObjectif();
 				actionToggleDataHelp();
+				return;
 			}
 			if (data.id == 31) {
 				await updateObjectives(token, 3, 31, "done");
 				await updateHelp(token, 3, "box3help1", "done");
 				actionToggleDataObjectif();
 				actionToggleDataHelp();
+				return;
 			}
 			if (data.id == 32) {
 				await updateObjectives(token, 3, 32, "done");
 				actionToggleDataObjectif();
+				return;
 			}
 			if (data.id == 34) {
 				await updateObjectives(token, 3, 34, "done");
@@ -729,12 +772,14 @@ const Objectif = ({ data }) => {
 				actionToggleDataHelp();
 				setVideoSauverLauren(true);
 				fetchPreviousStateNappe();
+				return;
 			}
 			if (data.id == 33) {
 				await updateHelp(token, 3, "box3help4", "open");
 				await updateHelp(token, 3, "box3help3", "done");
 				actionToggleDataHelp();
 				setModalAnswer(false);
+				return;
 			}
 		}
 	};
@@ -757,15 +802,20 @@ const Objectif = ({ data }) => {
 		setModalAnswerBis(false);
 		setNextStep(false);
 		if (data.id == 11) {
-			await updateObjectives(token, 1, 11, "done");
-			actionToggleDataObjectif();
-			await updateHelp(token, 1, "box1help1", "done");
 			if (objectif12 == "done" && objectif13 == "done") {
 				await updateObjectives(token, 1, 14, "open");
+				await updateObjectives(token, 1, 11, "done");
 				await updateHelp(token, 1, "box1help4", "open");
+				await updateHelp(token, 1, "box1help1", "done");
+				actionToggleDataObjectif();
+				actionToggleDataHelp();
+				return;
+			} else {
+				await updateObjectives(token, 1, 11, "done");
+				actionToggleDataObjectif();
+				await updateHelp(token, 1, "box1help1", "done");
+				return;
 			}
-			actionToggleDataObjectif();
-			actionToggleDataHelp();
 		}
 		if (data.id == 22) {
 			await updateObjectives(token, 2, 22, "done");
@@ -774,6 +824,7 @@ const Objectif = ({ data }) => {
 			await updateHelp(token, 2, "box2help3", "open");
 			actionToggleDataObjectif();
 			actionToggleDataHelp();
+			return;
 		}
 	};
 
@@ -1278,7 +1329,7 @@ const Objectif = ({ data }) => {
 					{renderEndText()}
 					{currentBox == 3 ? (
 						<button className="modal-objectif__button button--red" onClick={handleEndGameModale}>
-							Clore ce dossier
+							Classer l&apos;affaire
 						</button>
 					) : (
 						<button className="modal-objectif__button button--red" onClick={handleEndGameModale}>
@@ -1310,7 +1361,7 @@ const Objectif = ({ data }) => {
 		if (currentBox == 3) {
 			return (
 				<div className="modal-objectif__endGame--text">
-					<p>Vous avez cloturé le dossier du Tueur au Tarot, bravo Agent !</p>
+					<p>Vous avez définitivement clôturé le dossier du Tueur au Tarot, bravo Agents !</p>
 					<p>Au plaisir de vous retrouver sur de prochaines enquêtes.</p>
 				</div>
 			);
@@ -1732,7 +1783,7 @@ const Objectif = ({ data }) => {
 							</button>
 						</>
 					) : (
-						<p>Merci agents, je saute dans un avion !</p>
+						<p>Merci Agents, je saute dans un avion !</p>
 					)}
 				</div>
 			</div>
@@ -1783,7 +1834,7 @@ const Objectif = ({ data }) => {
 							</button>
 						</>
 					) : (
-						<p>Merci agents, je saute dans un avion !</p>
+						<p>Merci Agents, je saute dans un avion !</p>
 					)}
 				</div>
 			</div>
@@ -1813,7 +1864,7 @@ const Objectif = ({ data }) => {
 							</button>
 						</>
 					) : (
-						<p>Merci agents, je saute dans un avion !</p>
+						<p>Merci Agents, je saute dans un avion !</p>
 					)}
 				</div>
 			</div>

@@ -45,7 +45,7 @@ const Celine = ({ closeAgentPage }) => {
 	const [answer, setAnswer] = useState("");
 
 	//EXPLICATION : Fonction pour sortir les joueurs de la page de Celine si elle vient de se faire enlever (box3audio3 dans historique)
-	if (currentBox == 2 && box3audio3) {
+	if (currentBox == 3 && box3audio3) {
 		closeAgentPage();
 	}
 

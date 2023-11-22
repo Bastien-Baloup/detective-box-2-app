@@ -17,7 +17,8 @@ const Lauren = ({ closeAgentPage }) => {
 	const { currentBox } = useContext(BoxContext);
 	const { fetchPreviousStateNappe } = useContext(AmbianceContext);
 	const token = localStorage.getItem("token");
-	const { actionToggleDataLauren, toggleDataLauren, toggleDataHistory } = useContext(DataContext);
+	const { actionToggleDataLauren, toggleDataLauren, toggleDataHistory, actionToggleDataHistory } =
+		useContext(DataContext);
 
 	//EXPLICATION : Lauren est le personnage "2"
 
@@ -189,6 +190,7 @@ const Lauren = ({ closeAgentPage }) => {
 			await updateHistory(token, 2, "box2document3");
 		}
 		actionToggleDataLauren();
+		actionToggleDataHistory();
 		setModalMedia(false);
 	};
 
