@@ -399,6 +399,7 @@ const Objectif = ({ data }) => {
 	// -- CONDITIONS SPE OBJECTIF 33 -- //
 
 	const [victimeSaved, setVictimeSaved] = useState("");
+	const [displayButtonCelineTel, setDisplayButtonCelineTel] = useState(false);
 
 	const handleVictimeChoice = (choice) => {
 		setVictimeSaved(choice);
@@ -535,7 +536,7 @@ const Objectif = ({ data }) => {
 						Objectif : <br></br> {data.title}
 					</h2>
 					{victimeSaved == "maria" ? (
-						<audio autoPlay>
+						<audio autoPlay onEnded={() => setDisplayButtonCelineTel(true)}>
 							<source src={urlApi.apiRemi() + "sounds/304-dernier-objectif-rempli-maria.mp3"} type="audio/mpeg" />
 							Votre navigateur ne prend pas en charge ce format
 						</audio>
@@ -546,9 +547,13 @@ const Objectif = ({ data }) => {
 						</audio>
 					)}
 					<p className="modal-objectif__subtitle">“Le jeu n&apos;est pas fini, Raph…”</p>
-					<button className="modal-objectif__button button--red" onClick={handleFinalStep}>
-						Continuer l&apos;enquête
-					</button>
+					{displayButtonCelineTel ? (
+						<button className="modal-objectif__button button--red" onClick={handleFinalStep}>
+							Continuer l&apos;enquête
+						</button>
+					) : (
+						""
+					)}
 				</div>
 			</div>
 		);
@@ -1324,7 +1329,7 @@ const Objectif = ({ data }) => {
 					{renderEndText()}
 					{currentBox == 3 ? (
 						<button className="modal-objectif__button button--red" onClick={handleEndGameModale}>
-							Clore ce dossier
+							Classer l&apos;affaire
 						</button>
 					) : (
 						<button className="modal-objectif__button button--red" onClick={handleEndGameModale}>
@@ -1356,7 +1361,7 @@ const Objectif = ({ data }) => {
 		if (currentBox == 3) {
 			return (
 				<div className="modal-objectif__endGame--text">
-					<p>Vous avez cloturé le dossier du Tueur au Tarot, bravo Agent !</p>
+					<p>Vous avez définitivement clôturé le dossier du Tueur au Tarot, bravo Agents !</p>
 					<p>Au plaisir de vous retrouver sur de prochaines enquêtes.</p>
 				</div>
 			);
@@ -1778,7 +1783,7 @@ const Objectif = ({ data }) => {
 							</button>
 						</>
 					) : (
-						<p>Merci agents, je saute dans un avion !</p>
+						<p>Merci Agents, je saute dans un avion !</p>
 					)}
 				</div>
 			</div>
@@ -1829,7 +1834,7 @@ const Objectif = ({ data }) => {
 							</button>
 						</>
 					) : (
-						<p>Merci agents, je saute dans un avion !</p>
+						<p>Merci Agents, je saute dans un avion !</p>
 					)}
 				</div>
 			</div>
@@ -1859,7 +1864,7 @@ const Objectif = ({ data }) => {
 							</button>
 						</>
 					) : (
-						<p>Merci agents, je saute dans un avion !</p>
+						<p>Merci Agents, je saute dans un avion !</p>
 					)}
 				</div>
 			</div>

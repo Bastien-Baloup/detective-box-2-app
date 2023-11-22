@@ -306,7 +306,7 @@ export const dataHelp = {
 				{
 					id: 12,
 					text: [
-						"Vous avez visionné la VHS ?",
+						"Vous avez visionné la VHS ? Tim pourra vous aider.",
 						"C'est Garraud dessus, on le voit à 15 minutes, il n'a pas l'air bien.",
 						"Et à la fin, cette personne, c'était probablement quelqu'un de proche…",
 					],

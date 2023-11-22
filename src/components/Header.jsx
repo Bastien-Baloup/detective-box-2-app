@@ -288,7 +288,11 @@ const Header = () => {
 		<header>
 			{tutorialModalIsActive ? displayTutorial() : <></>}
 			{tutorialIsActive ? (
-				<Video title="Vidéo du tutoriel" srcVideo={null} handleModalVideo={handleCloseTutorial} />
+				<Video
+					title="Vidéo du tutoriel"
+					srcVideo={urlApi.apiRemi() + "videos/tutoriel.mp4&type=video"}
+					handleModalVideo={handleCloseTutorial}
+				/>
 			) : (
 				<></>
 			)}

@@ -39,6 +39,10 @@ const Compte = () => {
 		window.open("https://app1.detectivebox.fr/politique-de-confidentialite.html", "_blank");
 	};
 
+	const openWebsite2 = () => {
+		window.open("https://www.facebook.com/groups/1336056806836086", "_blank");
+	};
+
 	return (
 		<div className="dropdown">
 			<button className="dropdown__icon-container" onClick={activeDrop}>
@@ -51,6 +55,9 @@ const Compte = () => {
 				<Link className="dropdown__child" to="/parametres" target="_blank">
 					Paramètres
 				</Link>
+				<button className="dropdown__child" onClick={openWebsite2}>
+					Aide
+				</button>
 				<button className="dropdown__child" onClick={openWebsite}>
 					Mentions Légales
 				</button>

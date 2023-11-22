@@ -4,13 +4,15 @@
 	// border-top: none;
 	background-color: $primary-color;
 	height: 60vh;
-	min-height: 26rem;
+	min-height: 20rem;
 	display: flex;
 	flex-direction: column;
 }
 
 @include responsive(laptop) {
 	.main__history {
-		margin-bottom: 10rem;
+		// margin-bottom: 8rem;
+		height: 50vh;
+		min-height: 20rem;
 	}
 }

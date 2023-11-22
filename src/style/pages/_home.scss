@@ -5,13 +5,15 @@
 	background-color: $primary-color;
 	overflow: auto;
 	height: 60vh;
-	min-height: 26rem;
+	min-height: 20rem;
 	display: flex;
 	align-items: center;
 }
 
 @include responsive(laptop) {
 	.main__home {
-		margin-bottom: 10rem;
+		// margin-bottom: 8rem;
+		height: 50vh;
+		min-height: 20rem;
 	}
 }

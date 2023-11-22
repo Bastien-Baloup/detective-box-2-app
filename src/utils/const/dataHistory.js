@@ -700,8 +700,8 @@ export const dataHistory = {
 			title: "5 victimes supplémentaires du Tueur",
 			category: "Document",
 			detail: "5 nouvelles victimes pour 5 cartes de Tarot...",
-			poster: "thumbnails/documents/212_Victimes_Tueur_Tarot_Eurocrim.jpg",
-			src: "assets/document/212_Victimes_Tueur_Tarot_Eurocrim_LD.jpg",
+			poster: "thumbnails/documents/212_Victimes_Tueur_Tarot_Eurocrim_LD.jpg",
+			src: "assets/document/212_Victimes_Tueur_Tarot_Eurocrim.jpg",
 			status: false,
 		},
 
