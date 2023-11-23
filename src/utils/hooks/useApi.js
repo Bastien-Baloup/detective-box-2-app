@@ -1,4 +1,4 @@
-const url = "https://api.detectivebox.remimichel.fr";
+const url = "https://api2.detectivebox.fr";
 
 export const getHistories = (token, ids) => {
 	return fetch(url + `/history?ids=${ids.join(",")}`, {

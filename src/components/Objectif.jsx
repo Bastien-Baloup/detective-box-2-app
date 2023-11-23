@@ -211,7 +211,7 @@ const Objectif = ({ data }) => {
 		if (es.current) {
 			return;
 		}
-		es.current = new EventSource("https://sse.detectivebox.remimichel.fr/stream?token=" + token);
+		es.current = new EventSource("https://sse.detectivebox.fr/stream?token=" + token);
 		es.current.addEventListener("message", (event) => {
 			const data = JSON.parse(event.data);
 			if (data.id === "box1document1" && event13.current == "closed") {
