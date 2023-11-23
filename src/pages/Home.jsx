@@ -71,7 +71,7 @@ function Home() {
 					</audio>
 					<p className="modal-boxdone__text">Agents, voici le numéro de portable de Lauren : +33 7 69 57 00 27.</p>
 					<p className="modal-boxdone__text">Essayez de la joindre directement pour nous assurer que tout va bien.</p>
-					<p className="modal-boxdone__text">De mon côté, je me mets en route pour l&apos;agence. Retrouvez moi là bas !</p>
+					<p className="modal-boxdone__text">De mon côté, je me mets en route pour l&apos;agence. Retrouvez moi là-bas !</p>
 					<button className="modal-boxdone__button button--red" onClick={launchEventGoToDB}>
 						Se rendre au bureau
 					</button>

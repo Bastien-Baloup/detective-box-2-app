@@ -221,7 +221,7 @@ const Adele = ({ closeAgentPage }) => {
 				</div>
 				<div className="agent__main">
 					<div className="agent__title--container">
-						<p className="agent__title">Que souhaitez vous analyser ?</p>
+						<p className="agent__title">Que souhaitez-vous analyser ?</p>
 					</div>
 					<div className="agent__errorMessage">{errorMessage}</div>
 					<form className="agent__form" onSubmit={handleSubmit}>

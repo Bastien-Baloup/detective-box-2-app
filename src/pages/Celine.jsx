@@ -212,7 +212,7 @@ const Celine = ({ closeAgentPage }) => {
 				</div>
 				<div className="agent__main">
 					<div className="agent__title--container">
-						<p className="agent__title">Quel dossier cherchez vous ?</p>
+						<p className="agent__title">Quel dossier cherchez-vous ?</p>
 					</div>
 					<div className="agent__errorMessage">{errorMessage}</div>
 					<form className="agent__form" onSubmit={handleSubmit}>

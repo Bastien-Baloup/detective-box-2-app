@@ -236,7 +236,7 @@ const Lauren = ({ closeAgentPage }) => {
 				</div>
 				<div className="agent__main">
 					<div className="agent__title--container">
-						<p className="agent__title">Qui souhaitez vous interroger ?</p>
+						<p className="agent__title">Qui souhaitez-vous interroger ?</p>
 					</div>
 					<div className="agent__errorMessage">{errorMessage}</div>
 					<form className="agent__form" onSubmit={handleSubmit}>
