@@ -79,7 +79,7 @@ const Slider = ({ data, handleModal, url }) => {
 		<section className="slider">
 			<div className="slider__header">
 				<div className="slider__header__title">
-					Objectif: <br></br>
+					Objectif : <br></br>
 					{data.title}
 				</div>
 				<button className="slider__header__icon--container">
