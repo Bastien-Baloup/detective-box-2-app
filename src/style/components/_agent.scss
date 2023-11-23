@@ -3,6 +3,7 @@
 	flex-direction: column-reverse;
 	gap: 2rem;
 	width: 100%;
+	height: 100%;
 	&__portrait--container {
 		display: none;
 	}
@@ -20,7 +21,7 @@
 		&--container {
 			border: solid 1px $secondary-color;
 			background-color: $primary-color;
-			height: 4.5rem;
+			min-height: 4.5rem;
 			@include flex-center;
 			position: relative;
 			&::before {
@@ -82,7 +83,7 @@
 		min-width: 5rem;
 		max-width: 10rem;
 		width: 100%;
-		height: 25rem;
+		// max-height: 25rem;
 		border: solid 1px $secondary-color;
 		overflow: hidden;
 	}
