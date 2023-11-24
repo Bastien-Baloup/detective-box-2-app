@@ -50,6 +50,10 @@ const Signin = ({
 	return (
 		<>
 			<section className="signin">
+				<p className="signin__instructions">
+					Vous avez déjà résolu notre première enquête &quot;Woodlock University&quot; ? Vous devrez tout de même vous créer
+					un nouveau compte pour partir en chasse du Tueur au Tarot.
+				</p>
 				<div className="signin__errorMessage">{errorMessageSignin}</div>
 				<form className="signin__form" onSubmit={handleSubmitSignin}>
 					<Input

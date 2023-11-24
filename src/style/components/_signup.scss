@@ -14,10 +14,13 @@
 	// 	}
 	// }
 	&__button__signin {
-		margin-top: 5vh;
+		margin-top: 2vh;
 	}
 	&__form .input-wrapper-text {
-		margin-bottom: 1.5rem;
+		margin-bottom: 1rem;
+	}
+	&__instructions {
+		margin-bottom: 0.5rem;
 	}
 }
 
@@ -25,5 +28,5 @@
 	color: $tertiary-color;
 	line-height: 1.25rem;
 	font-size: 1.25rem;
-	padding: 1rem;
+	padding-bottom: 1rem;
 }

@@ -18,6 +18,7 @@ const Signup = ({
 	return (
 		<>
 			<section className="signup">
+				<p className="signup__instructions">Il n&apos;est pas obligatoire de reprendre l&apos;adresse mail utilisée pour la commande.</p>
 				<div className="signup__errorMessage">{errorMessageSignup}</div>
 				<form className="signup__form" onSubmit={handleSubmitSignup}>
 					<Input
