@@ -539,12 +539,12 @@ const Objectif = ({ data }) => {
 					</h2>
 					{victimeSaved == "maria" ? (
 						<audio autoPlay onEnded={() => setDisplayButtonCelineTel(true)}>
-							<source src={urlApi.apiRemi() + "sounds/304-dernier-objectif-rempli-maria.mp3"} type="audio/mpeg" />
+							<source src={urlApi.cdn() + "sounds/304-dernier-objectif-rempli-maria.mp3"} type="audio/mpeg" />
 							Votre navigateur ne prend pas en charge ce format
 						</audio>
 					) : (
 						<audio autoPlay onEnded={() => setDisplayButtonCelineTel(true)}>
-							<source src={urlApi.apiRemi() + "sounds/304-dernier-objectif-rempli-giuseppe.mp3"} type="audio/mpeg" />
+							<source src={urlApi.cdn() + "sounds/304-dernier-objectif-rempli-giuseppe.mp3"} type="audio/mpeg" />
 							Votre navigateur ne prend pas en charge ce format
 						</audio>
 					)}
@@ -940,7 +940,7 @@ const Objectif = ({ data }) => {
 									return (
 										<div key={i} className="modal-objectif__victimes__info">
 											<div className="modal-objectif__victimes__photos--container">
-												<img className="modal-objectif__victimes__photos" src={urlApi.apiRemi() + el.img} />
+												<img className="modal-objectif__victimes__photos" src={urlApi.cdn() + el.img} />
 											</div>
 											<p className="modal-objectif__victimes__nom">{el.name}</p>
 										</div>
@@ -981,7 +981,7 @@ const Objectif = ({ data }) => {
 												className={`modal-objectif__victimestri__photo ${
 													intVictimes[el.name] == false ? "victimestri__photo--selected" : ""
 												}`}
-												src={urlApi.apiRemi() + el.img}
+												src={urlApi.cdn() + el.img}
 												onClick={() => toggleIntVictime(el.name)}
 											/>
 										</div>
@@ -1023,7 +1023,7 @@ const Objectif = ({ data }) => {
 												className={`modal-objectif__victimestri__photo ${
 													finalVictimes[el.name] == false ? "victimestri__photo--selected" : ""
 												}`}
-												src={urlApi.apiRemi() + el.img}
+												src={urlApi.cdn() + el.img}
 												onClick={() => toggleFinalVictime(el.name)}
 											/>
 										</div>
@@ -1126,7 +1126,7 @@ const Objectif = ({ data }) => {
 					</h2>
 					{data.answersrc ? (
 						<audio autoPlay>
-							<source src={urlApi.apiRemi() + data.answersrc} type="audio/mpeg" />
+							<source src={urlApi.cdn() + data.answersrc} type="audio/mpeg" />
 							Votre navigateur ne prend pas en charge ce format
 						</audio>
 					) : (
@@ -1150,7 +1150,7 @@ const Objectif = ({ data }) => {
 					</h2>
 					{data.newanswersrc ? (
 						<audio autoPlay>
-							<source src={urlApi.apiRemi() + data.newanswersrc} type="audio/mpeg" />
+							<source src={urlApi.cdn() + data.newanswersrc} type="audio/mpeg" />
 							Votre navigateur ne prend pas en charge ce format
 						</audio>
 					) : (
@@ -1281,7 +1281,7 @@ const Objectif = ({ data }) => {
 			<div className="modal-objectif__background">
 				<div className="modal-objectif__box modal-hacking">
 					<audio autoPlay onEnded={() => setDisplayButtonOpenMail(true)}>
-						<source src={urlApi.apiRemi() + "sounds/103-hacking-tueur.mp3"} type="audio/mpeg" />
+						<source src={urlApi.cdn() + "sounds/103-hacking-tueur.mp3"} type="audio/mpeg" />
 						Votre navigateur ne prend pas en charge ce format
 					</audio>
 					<div className="text-hacking" data-text="Vous avez un mail">
@@ -1312,12 +1312,12 @@ const Objectif = ({ data }) => {
 		return (
 			<>
 				<audio autoPlay>
-					<source src={urlApi.apiRemi() + "sounds/musiques-db-s2-theme-tueur.wav"} type="audio/wav" />
+					<source src={urlApi.cdn() + "sounds/musiques-db-s2-theme-tueur.wav"} type="audio/wav" />
 					Votre navigateur ne prend pas en charge ce format
 				</audio>
 				<Document
 					title="Email du tueur"
-					srcElement={urlApi.apiRemi() + "assets/document/125_Email_Tueur_Oublie.jpg"}
+					srcElement={urlApi.cdn() + "assets/document/125_Email_Tueur_Oublie.jpg"}
 					handleModalDocument={handleCloseMailHacking}
 				/>
 			</>
@@ -1405,11 +1405,11 @@ const Objectif = ({ data }) => {
 		return (
 			<Audio
 				title="Derniers mots de Rebecca"
-				srcImg1={urlApi.apiRemi() + "assets/photos-personnages/rebecca_dumont.jpg"}
+				srcImg1={urlApi.cdn() + "assets/photos-personnages/rebecca_dumont.jpg"}
 				srcImg2={null}
-				srcTranscription={urlApi.apiRemi() + "assets/transcripts/102_Derniers_mots_Rebecca_transcript.pdf"}
+				srcTranscription={urlApi.cdn() + "assets/transcripts/102_Derniers_mots_Rebecca_transcript.pdf"}
 				handleModalAudio={closeAudioRebecca}
-				srcAudio={urlApi.cdn() + "sounds/102-derniers-mots-rebecca.mp3"}
+				srcAudio={urlApi.apiRemi() + "sounds/102-derniers-mots-rebecca.mp3"}
 			/>
 		);
 	};
@@ -1545,7 +1545,7 @@ const Objectif = ({ data }) => {
 			<div className="modal-objectif__background">
 				<div className="modal-objectif__box">
 					<audio autoPlay>
-						<source src={urlApi.apiRemi() + "sounds/ding.mp3"} type="audio/mpeg" />
+						<source src={urlApi.cdn() + "sounds/ding.mp3"} type="audio/mpeg" />
 						Votre navigateur ne prend pas en charge ce format
 					</audio>
 					<div>Vous avez un mail</div>
@@ -1566,7 +1566,7 @@ const Objectif = ({ data }) => {
 		return (
 			<Document
 				title="Email de Lauren Fraser"
-				srcElement={urlApi.apiRemi() + "assets/document/220_Message_Lauren_2.jpg"}
+				srcElement={urlApi.cdn() + "assets/document/220_Message_Lauren_2.jpg"}
 				handleModalDocument={handleCloseMail2}
 			/>
 		);
@@ -1580,11 +1580,11 @@ const Objectif = ({ data }) => {
 		return (
 			<Audio
 				title="Echanges Samuel Perry & Raphaëlle Sanchez"
-				srcImg1={urlApi.apiRemi() + "assets/photos-personnages/Samuel Perry.jpg"}
-				srcImg2={urlApi.apiRemi() + "assets/photos-personnages/raphaelle.jpg"}
-				srcTranscription={urlApi.apiRemi() + "assets/transcripts/207_Echanges_Samuel_Perry-Raphaelle_transcript.pdf"}
+				srcImg1={urlApi.cdn() + "assets/photos-personnages/Samuel Perry.jpg"}
+				srcImg2={urlApi.cdn() + "assets/photos-personnages/raphaelle.jpg"}
+				srcTranscription={urlApi.cdn() + "assets/transcripts/207_Echanges_Samuel_Perry-Raphaelle_transcript.pdf"}
 				handleModalAudio={closeAudioSamuel}
-				srcAudio={urlApi.cdn() + "sounds/207-echanges-samuel-perry-raphaelle.mp3"}
+				srcAudio={urlApi.apiRemi() + "sounds/207-echanges-samuel-perry-raphaelle.mp3"}
 			/>
 		);
 	};
@@ -1599,7 +1599,7 @@ const Objectif = ({ data }) => {
 			<div className="modal-objectif__background">
 				<div className="modal-objectif__box">
 					<audio autoPlay>
-						<source src={urlApi.apiRemi() + "sounds/203-commentaires-raphaelle-breaking-news-1.mp3"} type="audio/mpeg" />
+						<source src={urlApi.cdn() + "sounds/203-commentaires-raphaelle-breaking-news-1.mp3"} type="audio/mpeg" />
 						Votre navigateur ne prend pas en charge ce format
 					</audio>
 					<p>Attendez, allumez la TV ! </p>
@@ -1622,7 +1622,7 @@ const Objectif = ({ data }) => {
 			<>
 				{audioEndBreakingNews ? (
 					<audio autoPlay onEnded={() => setVideoBreakingNews(false)}>
-						<source src={urlApi.apiRemi() + "sounds/203-commentaires-raphaelle-breaking-news-2.mp3"} type="audio/mpeg" />
+						<source src={urlApi.cdn() + "sounds/203-commentaires-raphaelle-breaking-news-2.mp3"} type="audio/mpeg" />
 						Votre navigateur ne prend pas en charge ce format
 					</audio>
 				) : (
@@ -1708,11 +1708,11 @@ const Objectif = ({ data }) => {
 		return (
 			<Audio
 				title="Débrief Lauren"
-				srcImg1={urlApi.apiRemi() + "assets/photos-personnages/lauren.jpg"}
-				srcImg2={urlApi.apiRemi() + "assets/photos-personnages/raphaelle.jpg"}
-				srcTranscription={urlApi.apiRemi() + "assets/transcripts/303_Debrief_Lauren_transcript.pdf"}
+				srcImg1={urlApi.cdn() + "assets/photos-personnages/lauren.jpg"}
+				srcImg2={urlApi.cdn() + "assets/photos-personnages/raphaelle.jpg"}
+				srcTranscription={urlApi.cdn() + "assets/transcripts/303_Debrief_Lauren_transcript.pdf"}
 				handleModalAudio={closeDebriefLauren}
-				srcAudio={urlApi.cdn() + "sounds/303-debrief-lauren.mp3"}
+				srcAudio={urlApi.apiRemi() + "sounds/303-debrief-lauren.mp3"}
 			/>
 		);
 	};
@@ -1727,7 +1727,7 @@ const Objectif = ({ data }) => {
 			<div className="modal-objectif__background">
 				<div className="modal-objectif__box">
 					<audio autoPlay>
-						<source src={urlApi.apiRemi() + "sounds/306-fin-du-temps.mp3"} type="audio/mpeg" />
+						<source src={urlApi.cdn() + "sounds/306-fin-du-temps.mp3"} type="audio/mpeg" />
 						Votre navigateur ne prend pas en charge ce format
 					</audio>
 					<p>Le temps est écoulé, nous n&apos;avons pas pu sauver la victime à temps !</p>
@@ -1773,7 +1773,7 @@ const Objectif = ({ data }) => {
 			<div className="modal-objectif__background">
 				<div className="modal-objectif__box">
 					<audio autoPlay onEnded={() => setDisplayTextResolution(true)}>
-						<source src={urlApi.apiRemi() + "sounds/307-bonne-fin.mp3"} type="audio/mpeg" />
+						<source src={urlApi.cdn() + "sounds/307-bonne-fin.mp3"} type="audio/mpeg" />
 						Votre navigateur ne prend pas en charge ce format
 					</audio>
 					{displayTextResolution ? (
@@ -1818,7 +1818,7 @@ const Objectif = ({ data }) => {
 			<div className="modal-objectif__background">
 				<div className="modal-objectif__box">
 					<audio autoPlay onEnded={() => setDisplayTextMauvaiseFin1(true)}>
-						<source src={urlApi.apiRemi() + "sounds/308-mauvaise-fin-1.mp3"} type="audio/mpeg" />
+						<source src={urlApi.cdn() + "sounds/308-mauvaise-fin-1.mp3"} type="audio/mpeg" />
 						Votre navigateur ne prend pas en charge ce format
 					</audio>
 					{displayTextMauvaiseFin1 ? (
@@ -1848,7 +1848,7 @@ const Objectif = ({ data }) => {
 			<div className="modal-objectif__background">
 				<div className="modal-objectif__box">
 					<audio autoPlay onEnded={() => setDisplayTextMauvaiseFin2(true)}>
-						<source src={urlApi.apiRemi() + "sounds/309-mauvaise-fin-2.mp3"} type="audio/mpeg" />
+						<source src={urlApi.cdn() + "sounds/309-mauvaise-fin-2.mp3"} type="audio/mpeg" />
 						Votre navigateur ne prend pas en charge ce format
 					</audio>
 					{displayTextMauvaiseFin2 ? (

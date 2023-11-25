@@ -94,7 +94,7 @@ const Adele = ({ closeAgentPage }) => {
 				<div className="modal-objectif__box">
 					{answer.srcComment ? (
 						<audio autoPlay>
-							<source src={urlApi.apiRemi() + answer.srcComment} type="audio/mpeg" />
+							<source src={urlApi.cdn() + answer.srcComment} type="audio/mpeg" />
 							Votre navigateur ne prend pas en charge ce format
 						</audio>
 					) : (
@@ -139,7 +139,7 @@ const Adele = ({ closeAgentPage }) => {
 		return (
 			<Document
 				title={answer.title}
-				srcElement={urlApi.apiRemi() + answer.src}
+				srcElement={urlApi.cdn() + answer.src}
 				handleModalDocument={() => closeModalMedia(answer.id, answer.ask)}
 			/>
 		);
@@ -162,7 +162,7 @@ const Adele = ({ closeAgentPage }) => {
 			<div className="modal-objectif__background">
 				<div className="modal-objectif__box">
 					<audio autoPlay>
-						<source src={urlApi.apiRemi() + "sounds/ding.mp3"} type="audio/mpeg" />
+						<source src={urlApi.cdn() + "sounds/ding.mp3"} type="audio/mpeg" />
 						Votre navigateur ne prend pas en charge ce format
 					</audio>
 					<div>Vous avez un mail</div>
@@ -183,7 +183,7 @@ const Adele = ({ closeAgentPage }) => {
 		return (
 			<Document
 				title="Email de Lauren Fraser"
-				srcElement={urlApi.apiRemi() + "assets/document/219_Message_Lauren_1.jpg"}
+				srcElement={urlApi.cdn() + "assets/document/219_Message_Lauren_1.jpg"}
 				handleModalDocument={handleCloseMail1}
 			/>
 		);
@@ -212,7 +212,7 @@ const Adele = ({ closeAgentPage }) => {
 			{youveGotMail ? displayYouveGotMail() : ""}
 			{mailLauren1 ? displayMailLauren1() : ""}
 			<audio autoPlay>
-				<source src={urlApi.apiRemi() + catchphrase[randomNumber]} type="audio/mpeg" />
+				<source src={urlApi.cdn() + catchphrase[randomNumber]} type="audio/mpeg" />
 				Votre navigateur ne prend pas en charge ce format
 			</audio>
 			<div className="agent">

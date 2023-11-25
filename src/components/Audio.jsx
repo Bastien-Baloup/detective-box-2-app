@@ -18,8 +18,6 @@ const Audio = ({ title, srcImg1, srcImg2, srcTranscription, handleModalAudio, sr
 	// EXPLICATION : Cette fonction est utilisée pour faire fonctioner la librairie waveSurfer
 	useEffect(() => {
 		// if (!containerRef.current) return;
-		const audio = new Audio(srcAudio)
-		console.log(audio)
 		const waveSurfer = WaveSurfer.create({
 			container: containerRef.current,
 			responsive: true,
@@ -33,9 +31,8 @@ const Audio = ({ title, srcImg1, srcImg2, srcTranscription, handleModalAudio, sr
 			cursorWidth: 1,
 			dragToSeek: true,
 			autoplay: true,
-			media: audio
 		});
-		//waveSurfer.load(srcAudio);
+		waveSurfer.load(srcAudio);
 		waveSurfer.on("ready", () => {
 			waveSurferRef.current = waveSurfer;
 			setIsLoading(false);

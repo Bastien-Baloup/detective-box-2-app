@@ -31,7 +31,7 @@ const Preuve = ({ data, openModal }) => {
 	return (
 		<article className="clue" onClick={openModal} tabIndex="0">
 			<div className="clue__picture-wrapper">
-				<img src={urlApi.apiRemi() + data.poster} className="clue__picture" />
+				<img src={urlApi.cdn() + data.poster} className="clue__picture" />
 			</div>
 			<div className="clue__info">
 				<div className="clue__info--main">

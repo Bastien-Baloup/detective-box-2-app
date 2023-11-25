@@ -233,7 +233,7 @@ const Header = () => {
 		if (currentBox == 1) {
 			return (
 				<audio loop preload="auto" ref={audioElem}>
-					<source src={urlApi.apiRemi() + "sounds/musiques-db-s2-nappe-1.wav"} type="audio/wav" />
+					<source src={urlApi.cdn() + "sounds/musiques-db-s2-nappe-1.wav"} type="audio/wav" />
 					Votre navigateur ne prend pas en charge ce format
 				</audio>
 			);
@@ -241,7 +241,7 @@ const Header = () => {
 		if (currentBox == 2) {
 			return (
 				<audio loop preload="auto" ref={audioElem}>
-					<source src={urlApi.apiRemi() + "sounds/musiques-db-s2-nappe-2.wav"} type="audio/wav" />
+					<source src={urlApi.cdn() + "sounds/musiques-db-s2-nappe-2.wav"} type="audio/wav" />
 					Votre navigateur ne prend pas en charge ce format
 				</audio>
 			);
@@ -249,7 +249,7 @@ const Header = () => {
 		if (currentBox == 3) {
 			return (
 				<audio loop preload="auto" ref={audioElem}>
-					<source src={urlApi.apiRemi() + "sounds/musiques-db-s2-nappe-3.wav"} type="audio/wav" />
+					<source src={urlApi.cdn() + "sounds/musiques-db-s2-nappe-3.wav"} type="audio/wav" />
 					Votre navigateur ne prend pas en charge ce format
 				</audio>
 			);
@@ -265,7 +265,7 @@ const Header = () => {
 					<Timer initialMinute={30} initialSecond={0} timerEndedFunction={tooLate} />;
 				</div>
 				<audio autoPlay>
-					<source src={urlApi.apiRemi() + "sounds/305-commentaires-pendant-timer.mp3"} type="audio/mpeg" />
+					<source src={urlApi.cdn() + "sounds/305-commentaires-pendant-timer.mp3"} type="audio/mpeg" />
 					Votre navigateur ne prend pas en charge ce format
 				</audio>
 			</>
