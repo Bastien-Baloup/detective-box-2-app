@@ -169,7 +169,7 @@ const Tim = ({ closeAgentPage }) => {
 			return (
 				<Video
 					title={answer.title}
-					srcVideo={urlApi.apiRemi() + answer.src + "&type=video"}
+					srcVideo={urlApi.cdn() + answer.src + "&type=video"}
 					handleModalVideo={() => closeModalMedia(answer.id, answer.ask)}
 				/>
 			);

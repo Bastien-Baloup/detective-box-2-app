@@ -1482,7 +1482,7 @@ const Objectif = ({ data }) => {
 		return (
 			<Video
 				title="Interrogatoire de Charles Garraud"
-				srcVideo={urlApi.apiRemi() + "videos/db-s02-104-vdef.mp4&type=video"}
+				srcVideo={urlApi.cdn() + "videos/db-s02-104-vdef.mp4&type=video"}
 				handleModalVideo={handleCloseVideoInterrogatoire}
 			/>
 		);
@@ -1529,7 +1529,7 @@ const Objectif = ({ data }) => {
 		return (
 			<Video
 				title="Bureau de Lauren Fraser"
-				srcVideo={urlApi.apiRemi() + "videos/db-s02-209-vdef.mp4&type=video"}
+				srcVideo={urlApi.cdn() + "videos/db-s02-209-vdef.mp4&type=video"}
 				handleModalVideo={handleCloseVideoBureau}
 			/>
 		);
@@ -1628,7 +1628,7 @@ const Objectif = ({ data }) => {
 				) : (
 					<Video
 						title="Flash Info"
-						srcVideo={urlApi.apiRemi() + "videos/db-s02-203-vdef.mp4&type=video"}
+						srcVideo={urlApi.cdn() + "videos/db-s02-203-vdef.mp4&type=video"}
 						handleModalVideo={handleCloseVideoBreakingNews}
 					/>
 				)}
@@ -1692,7 +1692,7 @@ const Objectif = ({ data }) => {
 		return (
 			<Video
 				title="Cave de Céline"
-				srcVideo={urlApi.apiRemi() + "videos/db-s02-302-def.mp4&type=video"}
+				srcVideo={urlApi.cdn() + "videos/db-s02-302-def.mp4&type=video"}
 				handleModalVideo={handleCloseVideoSauverLauren}
 			/>
 		);
@@ -1802,7 +1802,7 @@ const Objectif = ({ data }) => {
 		return (
 			<Video
 				title="Interrogatoire de Céline Valluy"
-				srcVideo={urlApi.apiRemi() + "videos/db-s02-309-def.mp4&type=video"}
+				srcVideo={urlApi.cdn() + "videos/db-s02-309-def.mp4&type=video"}
 				handleModalVideo={handleEndBox3}
 			/>
 		);

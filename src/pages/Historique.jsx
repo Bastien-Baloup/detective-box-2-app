@@ -188,7 +188,7 @@ function Historique() {
 			return (
 				<Video
 					title={clue.title}
-					srcVideo={urlApi.apiRemi() + clue.src + "&type=video"}
+					srcVideo={urlApi.cdn() + clue.src + "&type=video"}
 					handleModalVideo={() => setModal(false)}
 				/>
 			);
