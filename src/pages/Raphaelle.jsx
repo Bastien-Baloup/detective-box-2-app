@@ -356,7 +356,7 @@ const Raphaelle = ({ closeAgentPage }) => {
 		<>
 			{modal ? renderModal() : ""}
 			<audio autoPlay>
-				<source src={urlApi.apiRemi() + catchphrase[randomNumber]} type="audio/mpeg" />
+				<source src={urlApi.cdn() + catchphrase[randomNumber]} type="audio/mpeg" />
 				Votre navigateur ne prend pas en charge ce format
 			</audio>
 			<div className="agent">

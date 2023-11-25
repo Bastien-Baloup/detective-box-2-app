@@ -128,7 +128,7 @@ const Lauren = ({ closeAgentPage }) => {
 				<div className="modal-objectif__box">
 					{answer.srcComment ? (
 						<audio autoPlay>
-							<source src={urlApi.apiRemi() + answer.srcComment} type="audio/mpeg" />
+							<source src={urlApi.cdn() + answer.srcComment} type="audio/mpeg" />
 							Votre navigateur ne prend pas en charge ce format
 						</audio>
 					) : (
@@ -174,9 +174,9 @@ const Lauren = ({ closeAgentPage }) => {
 		return (
 			<Audio
 				title={answer.title}
-				srcImg1={urlApi.apiRemi() + answer.img1}
-				srcImg2={urlApi.apiRemi() + answer.img2}
-				srcTranscription={urlApi.apiRemi() + answer.srcTranscript}
+				srcImg1={urlApi.cdn() + answer.img1}
+				srcImg2={urlApi.cdn() + answer.img2}
+				srcTranscription={urlApi.cdn() + answer.srcTranscript}
 				srcAudio={urlApi.apiRemi() + answer.srcAudio}
 				handleModalAudio={() => closeModalMedia(answer.id, answer.ask)}
 			/>
@@ -223,8 +223,8 @@ const Lauren = ({ closeAgentPage }) => {
 				<source
 					src={
 						currentBox == 3
-							? urlApi.apiRemi() + catchphraseRaphaelle[randomNumberRaphaelle]
-							: urlApi.apiRemi() + catchphraseLauren[randomNumberLauren]
+							? urlApi.cdn() + catchphraseRaphaelle[randomNumberRaphaelle]
+							: urlApi.cdn() + catchphraseLauren[randomNumberLauren]
 					}
 					type="audio/mpeg"
 				/>

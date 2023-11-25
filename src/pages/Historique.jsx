@@ -146,22 +146,22 @@ function Historique() {
 	const displayCorrespondingModal = (clue) => {
 		if (clue.category == "Archive") {
 			return (
-				<Document title={clue.title} srcElement={urlApi.apiRemi() + clue.src} handleModalDocument={() => setModal(false)} />
+				<Document title={clue.title} srcElement={urlApi.cdn() + clue.src} handleModalDocument={() => setModal(false)} />
 			);
 		}
 		if (clue.category == "Document") {
 			return (
-				<Document title={clue.title} srcElement={urlApi.apiRemi() + clue.src} handleModalDocument={() => setModal(false)} />
+				<Document title={clue.title} srcElement={urlApi.cdn() + clue.src} handleModalDocument={() => setModal(false)} />
 			);
 		}
 		if (clue.category == "Audio") {
 			return (
 				<Audio
 					title={clue.title}
-					srcImg1={urlApi.apiRemi() + clue.img1}
-					srcImg2={urlApi.apiRemi() + clue.img2}
-					srcTranscription={urlApi.apiRemi() + clue.srcTranscript}
-					srcAudio={urlApi.cdn() + clue.srcAudio}
+					srcImg1={urlApi.cdn() + clue.img1}
+					srcImg2={urlApi.cdn() + clue.img2}
+					srcTranscription={urlApi.cdn() + clue.srcTranscript}
+					srcAudio={urlApi.apiRemi() + clue.srcAudio}
 					handleModalAudio={closeModaleAudio}
 				/>
 			);

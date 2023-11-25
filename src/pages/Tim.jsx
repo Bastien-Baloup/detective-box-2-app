@@ -100,7 +100,7 @@ const Tim = ({ closeAgentPage }) => {
 				<div className="modal-objectif__box">
 					{answer.srcComment ? (
 						<audio autoPlay>
-							<source src={urlApi.apiRemi() + answer.srcComment} type="audio/mpeg" />
+							<source src={urlApi.cdn() + answer.srcComment} type="audio/mpeg" />
 							Votre navigateur ne prend pas en charge ce format
 						</audio>
 					) : (
@@ -160,7 +160,7 @@ const Tim = ({ closeAgentPage }) => {
 			return (
 				<Document
 					title={answer.title}
-					srcElement={urlApi.apiRemi() + answer.src}
+					srcElement={urlApi.cdn() + answer.src}
 					handleModalDocument={() => closeModalMedia(answer.id, answer.ask)}
 				/>
 			);
@@ -200,7 +200,7 @@ const Tim = ({ closeAgentPage }) => {
 			{modal ? renderModal() : ""}
 			{modalMedia ? renderModalMedia() : ""}
 			<audio autoPlay>
-				<source src={urlApi.apiRemi() + catchphrase[randomNumber]} type="audio/mpeg" />
+				<source src={urlApi.cdn() + catchphrase[randomNumber]} type="audio/mpeg" />
 				Votre navigateur ne prend pas en charge ce format
 			</audio>
 			<div className="agent">
