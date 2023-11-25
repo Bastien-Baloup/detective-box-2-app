@@ -1409,7 +1409,7 @@ const Objectif = ({ data }) => {
 				srcImg2={null}
 				srcTranscription={urlApi.apiRemi() + "assets/transcripts/102_Derniers_mots_Rebecca_transcript.pdf"}
 				handleModalAudio={closeAudioRebecca}
-				srcAudio={urlApi.apiRemi() + "sounds/102-derniers-mots-rebecca.mp3"}
+				srcAudio={urlApi.cdn() + "sounds/102-derniers-mots-rebecca.mp3"}
 			/>
 		);
 	};
@@ -1584,7 +1584,7 @@ const Objectif = ({ data }) => {
 				srcImg2={urlApi.apiRemi() + "assets/photos-personnages/raphaelle.jpg"}
 				srcTranscription={urlApi.apiRemi() + "assets/transcripts/207_Echanges_Samuel_Perry-Raphaelle_transcript.pdf"}
 				handleModalAudio={closeAudioSamuel}
-				srcAudio={urlApi.apiRemi() + "sounds/207-echanges-samuel-perry-raphaelle.mp3"}
+				srcAudio={urlApi.cdn() + "sounds/207-echanges-samuel-perry-raphaelle.mp3"}
 			/>
 		);
 	};
@@ -1712,7 +1712,7 @@ const Objectif = ({ data }) => {
 				srcImg2={urlApi.apiRemi() + "assets/photos-personnages/raphaelle.jpg"}
 				srcTranscription={urlApi.apiRemi() + "assets/transcripts/303_Debrief_Lauren_transcript.pdf"}
 				handleModalAudio={closeDebriefLauren}
-				srcAudio={urlApi.apiRemi() + "sounds/303-debrief-lauren.mp3"}
+				srcAudio={urlApi.cdn() + "sounds/303-debrief-lauren.mp3"}
 			/>
 		);
 	};
