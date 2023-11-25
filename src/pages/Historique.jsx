@@ -161,7 +161,7 @@ function Historique() {
 					srcImg1={urlApi.cdn() + clue.img1}
 					srcImg2={urlApi.cdn() + clue.img2}
 					srcTranscription={urlApi.cdn() + clue.srcTranscript}
-					srcAudio={urlApi.apiRemi() + clue.srcAudio}
+					srcAudio={urlApi.cdn() + clue.srcAudio}
 					handleModalAudio={closeModaleAudio}
 				/>
 			);

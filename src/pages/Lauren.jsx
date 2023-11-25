@@ -177,7 +177,7 @@ const Lauren = ({ closeAgentPage }) => {
 				srcImg1={urlApi.cdn() + answer.img1}
 				srcImg2={urlApi.cdn() + answer.img2}
 				srcTranscription={urlApi.cdn() + answer.srcTranscript}
-				srcAudio={urlApi.apiRemi() + answer.srcAudio}
+				srcAudio={urlApi.cdn() + answer.srcAudio}
 				handleModalAudio={() => closeModalMedia(answer.id, answer.ask)}
 			/>
 		);
