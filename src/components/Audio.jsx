@@ -19,6 +19,7 @@ const Audio = ({ title, srcImg1, srcImg2, srcTranscription, handleModalAudio, sr
 	useEffect(() => {
 		// if (!containerRef.current) return;
 		const audio = new Audio(srcAudio)
+		console.log(audio)
 		const waveSurfer = WaveSurfer.create({
 			container: containerRef.current,
 			responsive: true,
