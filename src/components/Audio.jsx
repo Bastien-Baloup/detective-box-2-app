@@ -71,7 +71,7 @@ const Audio = ({ title, srcImg1, srcImg2, srcTranscription, handleModalAudio, sr
 				</div>
 				<div className="modal-audio__player">
 					<div className="modal-audio__player__waveform-container">
-						<audio controls style="width: 60%;">
+						<audio controls style={{width: '60%'}}>
 							<source src={srcAudio} type="audio/mpeg"/>
 						</audio>
 					</div>
