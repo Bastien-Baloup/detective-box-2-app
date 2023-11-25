@@ -4,19 +4,20 @@
 import PropTypes from "prop-types";
 import Play from "../assets/icons/Icon_Play.svg";
 import Pause from "../assets/icons/Icon_Pause.svg";
-import WaveSurfer from "wavesurfer.js";
+//import WaveSurfer from "wavesurfer.js";
 import { AmbianceContext } from "../utils/context/fetchContext.jsx";
-import { useEffect, useState, useRef, useContext } from "react";
+//import { useEffect, useState, useRef, useContext } from "react";
+import { useState, useRef, useContext } from "react";
 
 const Audio = ({ title, srcImg1, srcImg2, srcTranscription, handleModalAudio, srcAudio }) => {
-	const containerRef = useRef(undefined);
-	const waveSurferRef = useRef(false);
-	const [isPlaying, setIsPlaying] = useState(true);
-	const [isLoading, setIsLoading] = useState(true);
+//	const containerRef = useRef(undefined);
+//	const waveSurferRef = useRef(false);
+//	const [isPlaying, setIsPlaying] = useState(true);
+//	const [isLoading, setIsLoading] = useState(true);
 	const { fetchResumeNappe } = useContext(AmbianceContext);
 
 	// EXPLICATION : Cette fonction est utilisée pour faire fonctioner la librairie waveSurfer
-	useEffect(() => {
+/*	useEffect(() => {
 		// if (!containerRef.current) return;
 		const waveSurfer = WaveSurfer.create({
 			container: containerRef.current,
@@ -41,7 +42,7 @@ const Audio = ({ title, srcImg1, srcImg2, srcTranscription, handleModalAudio, sr
 			waveSurfer.destroy();
 		};
 	}, [srcAudio]);
-
+*/
 	// EXPLICATION : Cette fonction permet d'ouvrir le document de transcription de l'audio dans un nouvel onglet
 	const openInNewTab = () => {
 		window.open(srcTranscription, "_blank");
@@ -53,6 +54,40 @@ const Audio = ({ title, srcImg1, srcImg2, srcTranscription, handleModalAudio, sr
 	};
 
 	return (
+		<div className="modal-audio__background">
+			<div className="modal-audio__box">
+				<p className="modal-audio__title">{title}</p>
+				<div className="modal-audio__portraits">
+					<div className="modal-audio__portrait-container">
+						<img className="modal-audio__portrait" src={srcImg1} />
+					</div>
+					{srcImg2 == null ? (
+						""
+					) : (
+						<div className="modal-audio__portrait-container">
+							<img className="modal-audio__portrait" src={srcImg2} />
+						</div>
+					)}
+				</div>
+				<div className="modal-audio__player">
+					<div className="modal-audio__player__waveform-container">
+						<audio controls style="width: 60%;">
+							<source src={srcAudio} type="audio/mpeg"/>
+						</audio>
+					</div>
+				</div>
+				<div className="modal-audio__buttons">
+						<button className="modal-audio__button--resume button--red" onClick={handleEndAudioModal}>
+							Continuer l&apos;enquête
+						</button>
+					<button className="modal-audio__button--display button--white" onClick={openInNewTab}>
+						Transcription
+					</button>
+				</div>
+			</div>
+		</div>
+	);
+/*	return (
 		<div className="modal-audio__background">
 			<div className="modal-audio__box">
 				<p className="modal-audio__title">{title}</p>
@@ -105,7 +140,7 @@ const Audio = ({ title, srcImg1, srcImg2, srcTranscription, handleModalAudio, sr
 				</div>
 			</div>
 		</div>
-	);
+	);*/
 };
 
 Audio.propTypes = {
