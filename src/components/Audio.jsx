@@ -31,18 +31,10 @@ const Audio = ({ title, srcImg1, srcImg2, srcTranscription, handleModalAudio, sr
 			cursorWidth: 1,
 			dragToSeek: true,
 			autoplay: true,
-			xhr: {
-        cache: "default",
-        mode: "cors",
-        method: "GET",
-        credentials: "include",
-        headers: [
-          { key: "cache-control", value: "no-cache" },
-          { key: "pragma", value: "no-cache" }
-        ]
-      }
 		});
-		waveSurfer.load(srcAudio);
+		const audio = new Audio(srcAudio);
+		audio.crossOrigin = 'anonymous';
+		waveSurfer.load(audio);
 		waveSurfer.on("ready", () => {
 			waveSurferRef.current = waveSurfer;
 			setIsLoading(false);
