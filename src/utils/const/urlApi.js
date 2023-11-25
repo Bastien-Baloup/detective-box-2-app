@@ -1,5 +1,5 @@
 export const urlApi = {
 	apiRemi() {
-		return "https://api2.detectivebox.fr/documents/?name=";
+		return "https://detectivebox-2-app-nihbf.ondigitalocean.app/api/documents/?name=";
 	},
 };
