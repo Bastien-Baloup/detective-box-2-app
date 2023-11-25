@@ -128,7 +128,7 @@ const Header = () => {
 			return (
 				<Video
 					title="Briefing box 1"
-					srcVideo={urlApi.cdn() + "videos/db-s02-101-def.mp4&type=video"}
+					srcVideo={urlApi.cdn() + "videos/db-s02-101-def.mp4"}
 					handleModalVideo={handleModalVideoBrief}
 				/>
 			);
@@ -137,7 +137,7 @@ const Header = () => {
 			return (
 				<Video
 					title="Briefing box 2"
-					srcVideo={urlApi.cdn() + "videos/db-s02-201-vdef.mp4&type=video"}
+					srcVideo={urlApi.cdn() + "videos/db-s02-201-vdef.mp4"}
 					handleModalVideo={handleModalVideoBrief}
 				/>
 			);
@@ -146,7 +146,7 @@ const Header = () => {
 			return (
 				<Video
 					title="Briefing box 3"
-					srcVideo={urlApi.cdn() + "videos/db-s02-301-def.mp4&type=video"}
+					srcVideo={urlApi.cdn() + "videos/db-s02-301-def.mp4"}
 					handleModalVideo={handleModalVideoBrief}
 				/>
 			);
@@ -290,7 +290,7 @@ const Header = () => {
 			{tutorialIsActive ? (
 				<Video
 					title="Vidéo du tutoriel"
-					srcVideo={urlApi.cdn() + "videos/tutoriel.mp4&type=video"}
+					srcVideo={urlApi.cdn() + "videos/tutoriel.mp4"}
 					handleModalVideo={handleCloseTutorial}
 				/>
 			) : (
