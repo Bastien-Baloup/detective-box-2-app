@@ -214,6 +214,7 @@ const Objectif = ({ data }) => {
 		es.current = new EventSource("https://sse.detectivebox.fr/stream?token=" + token);
 		es.current.addEventListener("message", (event) => {
 			const data = JSON.parse(event.data);
+			console.log(data.id);
 			if (data.id === "box1document1" && event13.current == "closed") {
 				setModaleMalle(true);
 			}
@@ -228,6 +229,7 @@ const Objectif = ({ data }) => {
 			}
 			if (data.id === "box3document2" && objectif33.current == "closed") {
 				const updateApp = async () => {
+					console.log("oui on passe dans la fonction");
 					await updateObjectives(token, 3, 33, "open");
 					await updateObjectives(token, 3, 34, "open");
 					actionToggleDataObjectif();
@@ -541,7 +543,7 @@ const Objectif = ({ data }) => {
 							Votre navigateur ne prend pas en charge ce format
 						</audio>
 					) : (
-						<audio autoPlay>
+						<audio autoPlay onEnded={() => setDisplayButtonCelineTel(true)}>
 							<source src={urlApi.apiRemi() + "sounds/304-dernier-objectif-rempli-giuseppe.mp3"} type="audio/mpeg" />
 							Votre navigateur ne prend pas en charge ce format
 						</audio>

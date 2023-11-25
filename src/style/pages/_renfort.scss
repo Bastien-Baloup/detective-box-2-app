@@ -10,7 +10,7 @@
 
 @include responsive(laptop) {
 	.main__help {
-		// margin-bottom: 8rem;
+		margin-bottom: 8rem;
 		height: 50vh;
 		min-height: 20rem;
 	}

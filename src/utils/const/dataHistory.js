@@ -826,7 +826,7 @@ export const dataHistory = {
 			status: false,
 		},
 		{
-			id: "box2lieu2",
+			id: "box2lieu3",
 			box: "Box 2",
 			title: "Cellule Garraud",
 			category: "Lieu",
@@ -836,7 +836,7 @@ export const dataHistory = {
 			status: false,
 		},
 		{
-			id: "box2lieu3",
+			id: "box2lieu2",
 			box: "Box 2",
 			title: " Appartement Stella",
 			category: "Lieu",
