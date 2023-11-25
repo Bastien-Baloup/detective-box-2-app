@@ -6,3 +6,6 @@ export const urlApi = {
 		return "https://db2cdn.fra1.cdn.digitaloceanspaces.com/";
 	}
 };
+
+//https://db2cdn.fra1.cdn.digitaloceanspaces.com/videos/db-s02-201-vdef.mp4
+//https://db2cdn.fra1.cdn.digitaloceanspaces.com/videos/db-s02-201-vdef.mp4&type=video
