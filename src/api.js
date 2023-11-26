@@ -1,7 +1,7 @@
 class Api {
 
     constructor() {
-        this.endpoint = import.meta.env.VITE_API_URL
+        this.endpoint = import.meta.env.VITE_API_STREAM
     }
 
     getStatus(){

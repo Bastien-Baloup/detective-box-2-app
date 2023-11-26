@@ -1,4 +1,4 @@
-const url = "https://api2.detectivebox.fr";
+const url = import.meta.env.VITE_API_STREAM;
 
 export const getHistories = (token, ids) => {
 	return fetch(url + `/history?ids=${ids.join(",")}`, {

@@ -1,11 +1,8 @@
 export const urlApi = {
-	apiRemi() {
-		return "https://detectivebox-2-app-nihbf.ondigitalocean.app/api/documents/?name=";
+	apiRemi: () => {
+		return import.meta.env.VITE_API + 'documents/?name=';
 	},
-	cdn() {
-		return "https://db2cdn.fra1.cdn.digitaloceanspaces.com/";
+	cdn: () => {
+		return import.meta.env.VITE_CDN;
 	}
 };
-
-//https://db2cdn.fra1.cdn.digitaloceanspaces.com/videos/db-s02-201-vdef.mp4
-//https://db2cdn.fra1.cdn.digitaloceanspaces.com/videos/db-s02-201-vdef.mp4&type=video
