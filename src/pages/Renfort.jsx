@@ -43,7 +43,7 @@ function Renfort() {
 
 	// EXPLICATION : Afficher le composant Slider
 	const displaySlider = (data) => {
-		return <Slider data={data} handleModal={backToHome} url={urlApi.apiRemi()} />;
+		return <Slider data={data} handleModal={backToHome} url={urlApi.cdn()} />;
 	};
 
 	// EXPLICATION : Afficher le choix des renforts (etat en fonction de leur statut)
