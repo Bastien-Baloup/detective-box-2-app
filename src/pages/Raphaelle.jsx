@@ -371,7 +371,7 @@ const Raphaelle = ({ closeAgentPage }) => {
 					<form className="agent__form" onSubmit={handleSubmit}>
 						<Input
 							type="texte"
-							label="Adresse"
+							label="Adresse ou lieu spécifique"
 							name="adresse"
 							placeholder="Ce champ est vide"
 							value={valueAdresse}
