@@ -31,19 +31,6 @@ export const AuthProvider = ({ children }) => {
 	const [loggedIn, setLoggedIn] = useState(getInitialLogin);
 	const [token, setToken] = useState(getInitialState);
 
-	useEffect(() => {
-		(async function(){
-			if(!token){
-				setLoggedIn(false)
-				return
-			}
-			const res = await getMe(token)
-			if(res.status === 401){
-				setLoggedIn(false)
-			}
-		})()
-	}, [])
-
 	const login = (token) => {
 		localStorage.setItem("token", token);
 		setToken(token);
@@ -54,6 +41,21 @@ export const AuthProvider = ({ children }) => {
 		localStorage.clear();
 		setLoggedIn(false);
 	};
+
+	useEffect(() => {
+		(async function(){
+			if(!token){
+				setLoggedIn(false)
+				return
+			}
+			const res = await getMe(token)
+			if(res.status === 401){
+				logout()
+			}
+		})()
+	}, [])
+
+
 
 	return (
 		<AuthContext.Provider value={{ setLoggedIn, loggedIn, setToken, token, login, logout }}>
