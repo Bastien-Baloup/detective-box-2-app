@@ -323,9 +323,7 @@ export const resetHelp = (token) => {
 };
 
 export const getObjectivesByBox = (token, boxid) => {
-	return fetch(url + "/objectiini_set('display_errors', '1');
-	ini_set('display_startup_errors', '1');
-	error_reporting(E_ALL);ves/" + boxid, {
+	return fetch(url + "/objectives/" + boxid, {
 		method: "GET",
 		headers: {
 			"Content-Type": "application/json",
