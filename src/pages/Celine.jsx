@@ -218,7 +218,7 @@ const Celine = ({ closeAgentPage }) => {
 					<form className="agent__form" onSubmit={handleSubmit}>
 						<Input
 							type="texte"
-							label="Nom et prénom"
+							label="Prénom et Nom"
 							name="celine"
 							placeholder="Ce champ est vide"
 							value={value}
