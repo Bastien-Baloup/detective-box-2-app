@@ -15,6 +15,7 @@ import {
 	getObjectivesByBox,
 	updateHelp,
 	getHistoryByBox,
+	updateObjectives,
 } from "../utils/hooks/useApi.js";
 
 const Raphaelle = ({ closeAgentPage }) => {
@@ -27,6 +28,7 @@ const Raphaelle = ({ closeAgentPage }) => {
 		toggleDataObjectif,
 		actionToggleDataHelp,
 		toggleDataHistory,
+		actionToggleDataObjectif,
 	} = useContext(DataContext);
 
 	//EXPLICATION : Raphaelle est le personnage "4"
@@ -312,17 +314,28 @@ const Raphaelle = ({ closeAgentPage }) => {
 			await updateHelp(token, 2, "box2help6", "open");
 			actionToggleDataHelp();
 		}
+		if (answerId == "box3lieu1"){
+			await updateObjectives(token, 3, 33, "open");
+			await updateObjectives(token, 3, 34, "open");
+			actionToggleDataObjectif();
+			await updateHelp(token, 3, "box3help2", "done");
+			await updateHelp(token, 3, "box3help3", "open");
+			await updateHelp(token, 3, "box3help6", "open");
+			actionToggleDataHelp();
+		}
 		if (answerId == "box3lieu2") {
 			await updateHistory(token, 3, "box3document5");
 			await updateHistory(token, 3, "box3document7");
 			await updateHistory(token, 3, "box3document8");
 			await updateHistory(token, 3, "box3document11");
 		}
+
 		window.open(answer.src + "/?token=" + token, "_blank");
 		actionToggleDataHistory();
 		actionToggleDataRaphaelle();
 		// actionTogglePolling(true);
 		validateModal();
+		
 	};
 
 	const renderText = () => {

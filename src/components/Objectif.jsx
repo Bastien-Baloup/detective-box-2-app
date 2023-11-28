@@ -230,13 +230,6 @@ const Objectif = ({ data }) => {
 			if (data.id === "box3document2" && objectif33.current == "closed") {
 				const updateApp = async () => {
 					console.log("oui on passe dans la fonction");
-					await updateObjectives(token, 3, 33, "open");
-					await updateObjectives(token, 3, 34, "open");
-					actionToggleDataObjectif();
-					await updateHelp(token, 3, "box3help2", "done");
-					await updateHelp(token, 3, "box3help3", "open");
-					await updateHelp(token, 3, "box3help6", "open");
-					actionToggleDataHelp();
 					setModaleSquelette(true);
 				};
 				updateApp();
