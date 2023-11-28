@@ -230,6 +230,8 @@ const Objectif = ({ data }) => {
 			if (data.id === "box3document2"  && currentBox === 3) {
 				await setModaleSquelette(true);
 				if (objectif33.current == "closed"){
+					await updateHistory(token, 3, "box3document3");
+					actionToggleDataHistory();
 					await updateObjectives(token, 3, 33, "open");
 					await updateObjectives(token, 3, 34, "open");
 					actionToggleDataObjectif();
