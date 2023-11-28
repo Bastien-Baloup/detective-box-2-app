@@ -319,7 +319,7 @@ const Objectif = ({ data }) => {
 
 	const handleSubmit21 = () => {
 		if (value.length > 8) {
-			setErrorMessage(ref_data
+			setErrorMessage(
 				"Il nous faut éliminer encore des victimes si l'on veut avancer dans l'enquête et revenir voir Garraud avec de nouveaux éléments…"
 			);
 			return;
