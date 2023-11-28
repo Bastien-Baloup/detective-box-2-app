@@ -212,7 +212,7 @@ const Objectif = ({ data }) => {
 			return;
 		}
 		es.current = new EventSource("https://sse.detectivebox.fr/stream?token=" + token);
-		es.current.addEventListener("message", (event) => {
+		es.current.addEventListener("message",async (event) => {
 			const data = JSON.parse(event.data);
 			console.log(data.id);
 			if (data.id === "box1document1" && event13.current == "closed") {
@@ -227,12 +227,17 @@ const Objectif = ({ data }) => {
 			if (data.id === "box2document6" && currentBox === 2) {
 				actionToggleDataHistory();
 			}
-			if (data.id === "box3document2" && objectif33.current == "closed") {
-				const updateApp = async () => {
-					console.log("oui on passe dans la fonction");
-					setModaleSquelette(true);
-				};
-				updateApp();
+			if (data.id === "box3document2"  && currentBox === 3) {
+				await setModaleSquelette(true);
+				if (objectif33.current == "closed"){
+					await updateObjectives(token, 3, 33, "open");
+					await updateObjectives(token, 3, 34, "open");
+					actionToggleDataObjectif();
+					await updateHelp(token, 3, "box3help2", "done");
+					await updateHelp(token, 3, "box3help3", "open");
+					await updateHelp(token, 3, "box3help6", "open");
+					actionToggleDataHelp();
+				}
 			}
 		});
 		es.current.addEventListener("error", () => {
@@ -314,7 +319,7 @@ const Objectif = ({ data }) => {
 
 	const handleSubmit21 = () => {
 		if (value.length > 8) {
-			setErrorMessage(
+			setErrorMessage(ref_data
 				"Il nous faut éliminer encore des victimes si l'on veut avancer dans l'enquête et revenir voir Garraud avec de nouveaux éléments…"
 			);
 			return;
