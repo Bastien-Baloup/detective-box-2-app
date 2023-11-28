@@ -233,13 +233,13 @@ const Objectif = ({ data }) => {
 					await updateObjectives(token, 3, 33, "open");
 					await updateObjectives(token, 3, 34, "open");
 					actionToggleDataObjectif();
-					await updateHelp(token, 3, "box3help2", "done");
 					await updateHelp(token, 3, "box3help3", "open");
 					await updateHelp(token, 3, "box3help6", "open");
-					actionToggleDataHelp();
 				}
-				await updateHistory(token, 3, "box3document3");
+				await updateHelp(token, 3, "box3help2", "done");
+				actionToggleDataHelp();
 				await setModaleSquelette(true);
+				await updateHistory(token, 3, "box3document3");
 			}
 		});
 		es.current.addEventListener("error", () => {
