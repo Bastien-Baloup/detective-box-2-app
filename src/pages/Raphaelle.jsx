@@ -318,7 +318,7 @@ const Raphaelle = ({ closeAgentPage }) => {
 			await updateObjectives(token, 3, 33, "open");
 			await updateObjectives(token, 3, 34, "open");
 			actionToggleDataObjectif();
-			await updateHelp(token, 3, "box3help2", "done");
+			//await updateHelp(token, 3, "box3help2", "done");
 			await updateHelp(token, 3, "box3help3", "open");
 			await updateHelp(token, 3, "box3help6", "open");
 			actionToggleDataHelp();
