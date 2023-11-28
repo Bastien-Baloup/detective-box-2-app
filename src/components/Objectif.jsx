@@ -238,7 +238,7 @@ const Objectif = ({ data }) => {
 				}
 				await updateHelp(token, 3, "box3help2", "done");
 				actionToggleDataHelp();
-				await setModaleSquelette(true);
+				setModaleSquelette(true);
 				await updateHistory(token, 3, "box3document3");
 			}
 		});
