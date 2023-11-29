@@ -228,14 +228,12 @@ const Objectif = ({ data }) => {
 				actionToggleDataHistory();
 			}
 			if (data.id === "box3document2") {
-				if (objectif33.current == "closed"){
-					actionToggleDataHistory();
-					await updateObjectives(token, 3, 33, "open");
-					await updateObjectives(token, 3, 34, "open");
-					actionToggleDataObjectif();
-					await updateHelp(token, 3, "box3help3", "open");
-					await updateHelp(token, 3, "box3help6", "open");
-				}
+				actionToggleDataHistory();
+				await updateObjectives(token, 3, 33, "open");
+				await updateObjectives(token, 3, 34, "open");
+				actionToggleDataObjectif();
+				await updateHelp(token, 3, "box3help3", "open");
+				await updateHelp(token, 3, "box3help6", "open");
 				await updateHelp(token, 3, "box3help2", "done");
 				actionToggleDataHelp();
 				setModaleSquelette(true);
