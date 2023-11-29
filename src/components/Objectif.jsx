@@ -206,15 +206,15 @@ const Objectif = ({ data }) => {
 
 	//EXPLICATION : UseEffect pour avoir les event sur les lieux de fouille
 	let es = useRef(null);
-
-	useEffect(() => {
+	const setUpEventSource = () => {
 		if (es.current) {
 			return;
 		}
 		es.current = new EventSource("https://sse.detectivebox.fr/stream?token=" + token);
+		console.log('ES created')
 		es.current.addEventListener("message",async (event) => {
 			const data = JSON.parse(event.data);
-			console.log(data.id);
+			console.log('ES message received: ' + data.id);
 			if (data.id === "box1document1" && event13.current == "closed") {
 				setModaleMalle(true);
 			}
@@ -241,8 +241,14 @@ const Objectif = ({ data }) => {
 			}
 		});
 		es.current.addEventListener("error", () => {
+			console.log('ES disconnected')
 			es.current.close();
+			setTimeout(() => setUpEventSource(), 1000)
 		});
+	}
+
+	useEffect(() => {
+		setUpEventSource()
 	}, []);
 
 	// --- CONDITIONS SPE OBJECTIF 14 --- //
