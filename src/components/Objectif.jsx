@@ -215,16 +215,16 @@ const Objectif = ({ data }) => {
 		es.current.addEventListener("message",async (event) => {
 			const data = JSON.parse(event.data);
 			console.log('ES message received: ' + data.id);
-			if (data.id === "box1document1" && event13.current == "closed") {
+			if (data.id === "box1document1") {
 				setModaleMalle(true);
 			}
-			if (data.id === "box1video2" && event14.current == "closed") {
+			if (data.id === "box1video2") {
 				setModaleVHS(true);
 			}
-			if (data.id === "box1document6" && event15.current == "closed") {
+			if (data.id === "box1document6") {
 				setModaleInterrogatoireGarraud(true);
 			}
-			if (data.id === "box2document6" && currentBox === 2) {
+			if (data.id === "box2document6") {
 				actionToggleDataHistory();
 			}
 			if (data.id === "box3document2") {
