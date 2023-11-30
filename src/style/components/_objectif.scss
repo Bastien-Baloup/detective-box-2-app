@@ -271,8 +271,9 @@
 	}
 	&__title {
 		text-align: left;
-		font-family: inherit;
-		font-size: 1rem;
+		font-family: fixture;
+		font-size: 1.75rem;
+		font-weight: 600;
 	}
 	&__subInfo {
 		width: 100%;
