@@ -1513,7 +1513,7 @@ const Objectif = ({ data }) => {
 			await updateTimeEndBox(token, 2);
 		}
 		if (currentBox == 3) {
-			await updateBox(token, 3, "done");
+			//await updateBox(token, 3, "done");
 			await updateTimeEndBox(token, 3);
 		}
 		navigate("/box-choice");
