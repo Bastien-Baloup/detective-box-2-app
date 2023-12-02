@@ -13,7 +13,7 @@ import { useContext, useEffect } from "react";
 import { getHistoryByBox } from "../utils/hooks/useApi";
 
 function Historique() {
-	const filtersType = ["Document", "Video", "Audio", "Lieu", "Archive"];
+	const filtersType = ["Document", "Vidéo", "Audio", "Lieu", "Archive"];
 	const filterBox = ["Box 1", "Box 2", "Box 3"];
 	const token = localStorage.getItem("token");
 	const { currentBox } = useContext(BoxContext);
@@ -69,6 +69,8 @@ function Historique() {
 
 	// EXPLICATION : cette fonction va créer un nouvel array avec l'ensemble des filtres de catégorie
 	const handleFilterCategory = (selectedFilter) => {
+		if (selectedFilter === 'Vidéo'){ selectedFilter = 'Video'}
+		console.log(selectedFilter)
 		if (selectedCategory.includes(selectedFilter)) {
 			let filters = selectedCategory.filter((element) => element !== selectedFilter);
 			setSelectedCategory(filters);
@@ -131,7 +133,7 @@ function Historique() {
 	};
 
 	const openModal = (clue) => {
-		if (clue.category == "Audio" || clue.category == "Video") {
+		if (clue.category == "Audio" || clue.category == "vidéo") {
 			fetchPreviousStateNappe();
 		}
 		setModal(true);
@@ -184,7 +186,7 @@ function Historique() {
 				</div>
 			);
 		}
-		if (clue.category == "Video") {
+		if (clue.category == "vidéo") {
 			return (
 				<Video
 					title={clue.title}
