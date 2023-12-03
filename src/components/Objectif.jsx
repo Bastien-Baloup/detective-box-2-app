@@ -594,6 +594,7 @@ const Objectif = ({ data }) => {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
+		actionToggleDataHistory();
 		if (data.id == 13) {
 			if (slugify(value) == "jacquelinegarraud") {
 				setErrorMessage("Est-ce qu'elle n'est pas connue sous un autre nom ?");
@@ -637,12 +638,7 @@ const Objectif = ({ data }) => {
 					return;
 				}
 				if (box3audio3 == true) {
-					setErrorMessage("Si on allait plutôt chez elle pour voir de quoi il en retourne ?");
-					setValue("");
-					return;
-				} else {
-					setErrorMessage("C'est un peu léger d'inculper quelqu'un avec le peu d'infos qu'on a");
-					setValue("");
+					setErrorMessage("Si on allait plutactionToggleDataHistory();
 					return;
 				}
 			} else {
