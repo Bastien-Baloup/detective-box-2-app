@@ -224,6 +224,9 @@ const Objectif = ({ data }) => {
 			if (data.id === "box1video2") {
 				setModaleVHS(true);
 			}
+			if (data.id === "box1video3") {
+				actionToggleDataHistory();
+			}
 			if (data.id === "box1document6") {
 				setModaleInterrogatoireGarraud(true);
 			}
@@ -594,7 +597,6 @@ const Objectif = ({ data }) => {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		actionToggleDataHistory();
 		if (data.id == 13) {
 			if (slugify(value) == "jacquelinegarraud") {
 				setErrorMessage("Est-ce qu'elle n'est pas connue sous un autre nom ?");
