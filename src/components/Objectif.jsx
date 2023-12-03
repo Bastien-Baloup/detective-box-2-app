@@ -638,7 +638,12 @@ const Objectif = ({ data }) => {
 					return;
 				}
 				if (box3audio3 == true) {
-					setErrorMessage("Si on allait plutactionToggleDataHistory();
+					setErrorMessage("Si on allait plutôt chez elle pour voir de quoi il en retourne ?");
+					setValue("");
+					return;
+				} else {
+					setErrorMessage("C'est un peu léger d'inculper quelqu'un avec le peu d'infos qu'on a");
+					setValue("");
 					return;
 				}
 			} else {
