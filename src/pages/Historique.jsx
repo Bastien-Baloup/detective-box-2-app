@@ -146,6 +146,7 @@ function Historique() {
 
 	// EXPLICATION : cette fonction indique quelle modale afficher au clic d'une preuve en fonction de sa catégorie
 	const displayCorrespondingModal = (clue) => {
+		console.log(clue)
 		if (clue.category == "Archive") {
 			return (
 				<Document title={clue.title} srcElement={urlApi.cdn() + clue.src} handleModalDocument={() => setModal(false)} />
@@ -186,7 +187,7 @@ function Historique() {
 				</div>
 			);
 		}
-		if (clue.category == "vidéo") {
+		if (clue.category == "Video") {
 			return (
 				<Video
 					title={clue.title}
