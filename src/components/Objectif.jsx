@@ -228,6 +228,7 @@ const Objectif = ({ data }) => {
 				actionToggleDataHistory();
 			}
 			if (data.id === "box3document2") {
+				await updateHistory(token, 3, "box3document3");
 				actionToggleDataHistory();
 				await updateObjectives(token, 3, 33, "open");
 				await updateObjectives(token, 3, 34, "open");
@@ -237,7 +238,6 @@ const Objectif = ({ data }) => {
 				await updateHelp(token, 3, "box3help2", "done");
 				actionToggleDataHelp();
 				setModaleSquelette(true);
-				await updateHistory(token, 3, "box3document3");
 			}
 		});
 		es.current.addEventListener("error", () => {
