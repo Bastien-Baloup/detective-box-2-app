@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Forêt</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="target-densitydpi=device-dpi, width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui"
+    />
+    <style>
+      @-ms-viewport {
+        width: device-width;
+      }
+      .fade-in-1,
+      .fade-out {
+        transition: opacity 1s ease-in-out;
+      }
+      .fade-in-10 {
+        transition: opacity 10s ease-in-out;
+      }
+    </style>
+    <link rel="stylesheet" href="vendor/reset.min.css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body class="multiple-scenes">
+    <div id="pano">
+      <!--<button id="test" style="position:absolute;top:50%;left:50%;z-index:10;color:red;" class="confirm">TEST</button>-->
+      <div class="dig-img" style="display: none">
+        <img src="rien.jpg" class="dig-see" style="display: none; opacity: 0" />
+        <div class="dig-see-2" style="display: none; opacity: 0">
+          <img src="os.jpg" class="dig-see-3" /><br />
+          <a href="#" class="confirm" onclick="clickHandle()"
+            >Ouvrir le coffre</a
+          >
+        </div>
+      </div>
+      <div class="img" id="img-see1" style="display: none">
+        <img src="gravures/bande25.jpg" class="img-see" />
+      </div>
+      <div class="img" id="img-see20" style="display: none">
+        <img src="gravures/bande25.jpg" class="img-see" />
+      </div>
+      <div class="img" id="img-see3" style="display: none">
+        <img src="gravures/bande2.jpg" class="img-see" />
+      </div>
+      <div class="img" id="img-see25" style="display: none">
+        <img src="gravures/bande3.jpg" class="img-see" />
+      </div>
+      <div class="img" id="img-see2" style="display: none">
+        <img src="gravures/bande4.jpg" class="img-see" />
+      </div>
+      <div class="img" id="img-see10" style="display: none">
+        <img src="gravures/bande5.jpg" class="img-see" />
+      </div>
+      <div class="img" id="img-see11" style="display: none">
+        <img src="gravures/bande6.jpg" class="img-see" />
+      </div>
+      <div class="img" id="img-see12" style="display: none">
+        <img src="gravures/bande7.jpg" class="img-see" />
+      </div>
+      <div class="img" id="img-see9" style="display: none">
+        <img src="gravures/bande8.jpg" class="img-see" />
+      </div>
+      <div class="img" id="img-see5" style="display: none">
+        <img src="gravures/bande9.jpg" class="img-see" />
+      </div>
+      <div class="img" id="img-see6" style="display: none">
+        <img src="gravures/bande10.jpg" class="img-see" />
+      </div>
+      <div class="img" id="img-see7" style="display: none">
+        <img src="gravures/bande11.jpg" class="img-see" />
+      </div>
+      <div class="img" id="img-see14" style="display: none">
+        <img src="gravures/bande12.jpg" class="img-see" />
+      </div>
+      <div class="img" id="img-see22" style="display: none">
+        <img src="gravures/bande13.jpg" class="img-see" />
+      </div>
+      <div class="img" id="img-see22" style="display: none">
+        <img src="gravures/bande9.jpg" class="img-see" />
+      </div>
+      <div class="img" id="img-see24" style="display: none">
+        <img src="gravures/bande8.jpg" class="img-see" />
+      </div>
+      <div class="img" id="img-see15" style="display: none">
+        <img src="gravures/bande14.jpg" class="img-see" />
+      </div>
+      <div class="img" id="img-see16" style="display: none">
+        <img src="gravures/bande15.jpg" class="img-see" />
+      </div>
+      <div class="img" id="img-see12" style="display: none">
+        <img src="gravures/bande16.jpg" class="img-see" />
+      </div>
+      <div class="img" id="img-see18" style="display: none">
+        <img src="gravures/bande16.jpg" class="img-see" />
+      </div>
+      <div class="img" id="img-see19" style="display: none">
+        <img src="gravures/bande17.jpg" class="img-see" />
+      </div>
+      <div class="img" id="img-see16" style="display: none">
+        <img src="gravures/bande18.jpg" class="img-see" />
+      </div>
+      <div class="img" id="img-see19" style="display: none">
+        <img src="gravures/bande19.jpg" class="img-see" />
+      </div>
+      <div class="img" id="img-see8" style="display: none">
+        <img src="gravures/bande20.jpg" class="img-see" />
+      </div>
+      <div class="img" id="img-see21" style="display: none">
+        <img src="gravures/bande21.jpg" class="img-see" />
+      </div>
+      <div class="img" id="img-see13" style="display: none">
+        <img src="gravures/bande1.jpg" class="img-see" />
+      </div>
+      <div class="img" id="img-see23" style="display: none">
+        <img src="gravures/bande23.jpg" class="img-see" />
+      </div>
+      <div class="img" id="img-see17" style="display: none">
+        <img src="gravures/bande24.jpg" class="img-see" />
+      </div>
+      <div class="img" id="img-see4" style="display: none">
+        <img src="gravures/bande22.jpg" class="img-see" />
+      </div>
+      <div class="img" id="img-see25" style="display: none">
+        <img src="gravures/bande7.jpg" class="img-see" />
+      </div>
+      <div class="img" id="img-see26" style="display: none">
+        <img src="gravures/bande12.jpg" class="img-see" />
+      </div>
+      <div class="img" id="img-see27" style="display: none">
+        <img src="gravures/bande21.jpg" class="img-see" />
+      </div>
+      <div class="img" id="img-see28" style="display: none">
+        <img src="gravures/bande19.jpg" class="img-see" />
+      </div>
+      <div class="img" id="img-see29" style="display: none">
+        <img src="gravures/bande9.jpg" class="img-see" />
+      </div>
+      <div class="img" id="img-see30" style="display: none">
+        <img src="gravures/bande23.jpg" class="img-see" />
+      </div>
+      <div class="img" id="img-see31" style="display: none">
+        <img src="gravures/bande2.jpg" class="img-see" />
+      </div>
+    </div>
+
+    <div id="sceneList" style="display: none">
+      <ul class="scenes">
+        <a href="javascript:void(0)" class="scene" data-id="0-chapelle">
+          <li class="text">Chapelle</li>
+        </a>
+
+        <a href="javascript:void(0)" class="scene" data-id="04">
+          <li class="text">Avancer dans cette direction</li>
+        </a>
+
+        <a href="javascript:void(0)" class="scene" data-id="01">
+          <li class="text">Avancer dans cette direction</li>
+        </a>
+
+        <a href="javascript:void(0)" class="scene" data-id="05">
+          <li class="text">Avancer dans cette direction</li>
+        </a>
+
+        <a href="javascript:void(0)" class="scene" data-id="08">
+          <li class="text">Avancer dans cette direction</li>
+        </a>
+
+        <a href="javascript:void(0)" class="scene" data-id="10">
+          <li class="text">Avancer dans cette direction</li>
+        </a>
+
+        <a href="javascript:void(0)" class="scene" data-id="12">
+          <li class="text">Avancer dans cette direction</li>
+        </a>
+
+        <a href="javascript:void(0)" class="scene" data-id="13">
+          <li class="text">Avancer dans cette direction</li>
+        </a>
+
+        <a href="javascript:void(0)" class="scene" data-id="03">
+          <li class="text">Avancer dans cette direction</li>
+        </a>
+
+        <a href="javascript:void(0)" class="scene" data-id="02">
+          <li class="text">Avancer dans cette direction</li>
+        </a>
+
+        <a href="javascript:void(0)" class="scene" data-id="09">
+          <li class="text">Avancer dans cette direction</li>
+        </a>
+
+        <a href="javascript:void(0)" class="scene" data-id="07">
+          <li class="text">Avancer dans cette direction</li>
+        </a>
+
+        <a href="javascript:void(0)" class="scene" data-id="06">
+          <li class="text">Avancer dans cette direction</li>
+        </a>
+
+        <a href="javascript:void(0)" class="scene" data-id="16">
+          <li class="text">Avancer dans cette direction</li>
+        </a>
+
+        <a href="javascript:void(0)" class="scene" data-id="11">
+          <li class="text">Avancer dans cette direction</li>
+        </a>
+
+        <a href="javascript:void(0)" class="scene" data-id="15">
+          <li class="text">Avancer dans cette direction</li>
+        </a>
+
+        <a href="javascript:void(0)" class="scene" data-id="14">
+          <li class="text">Avancer dans cette direction</li>
+        </a>
+      </ul>
+    </div>
+
+    <div id="titleBar" style="display: none">
+      <h1 class="sceneName"></h1>
+    </div>
+
+    <a
+      style="
+        position: fixed;
+        z-index: 1000;
+        padding: 10px;
+        margin: 10px;
+        border-radius: 10px;
+        background-color: rgba(0, 0, 0, 0.3);
+      "
+      href="#"
+      onclick="reset()"
+      >Retourner au début</a
+    >
+
+    <a href="javascript:void(0)" id="autorotateToggle" style="display: none">
+      <img class="icon off" src="img/play.png" />
+      <img class="icon on" src="img/pause.png" />
+    </a>
+
+    <a href="javascript:void(0)" id="fullscreenToggle" style="display: none">
+      <img class="icon off" src="img/fullscreen.png" />
+      <img class="icon on" src="img/windowed.png" />
+    </a>
+
+    <a href="javascript:void(0)" id="sceneListToggle" style="display: none">
+      <img class="icon off" src="img/expand.png" />
+      <img class="icon on" src="img/collapse.png" />
+    </a>
+
+    <a
+      href="javascript:void(0)"
+      id="viewUp"
+      class="viewControlButton viewControlButton-1"
+    >
+      <img class="icon" src="img/up.png" />
+    </a>
+    <a
+      href="javascript:void(0)"
+      id="viewDown"
+      class="viewControlButton viewControlButton-2"
+    >
+      <img class="icon" src="img/down.png" />
+    </a>
+    <a
+      href="javascript:void(0)"
+      id="viewLeft"
+      class="viewControlButton viewControlButton-3"
+    >
+      <img class="icon" src="img/left.png" />
+    </a>
+    <a
+      href="javascript:void(0)"
+      id="viewRight"
+      class="viewControlButton viewControlButton-4"
+    >
+      <img class="icon" src="img/right.png" />
+    </a>
+    <a
+      href="javascript:void(0)"
+      id="viewIn"
+      class="viewControlButton viewControlButton-5"
+    >
+      <img class="icon" src="img/plus.png" />
+    </a>
+    <a
+      href="javascript:void(0)"
+      id="viewOut"
+      class="viewControlButton viewControlButton-6"
+    >
+      <img class="icon" src="img/minus.png" />
+    </a>
+
+    <script src="vendor/screenfull.min.js"></script>
+    <script src="vendor/bowser.min.js"></script>
+    <script src="vendor/marzipano.js"></script>
+    <audio id="arrival" controls style="display: none">
+      <source src="arrival.mp3" type="audio/mpeg" />
+      Your browser does not support the audio element.
+    </audio>
+    <audio id="arbres" controls style="display: none">
+      <source src="arbres.mp3" type="audio/mpeg" />
+      Your browser does not support the audio element.
+    </audio>
+    <audio id="digging" controls style="display: none">
+      <source src="digging.mp3" type="audio/mpeg" />
+      Your browser does not support the audio element.
+    </audio>
+    <audio id="digging-not" controls style="display: none">
+      <source src="digging-1.mp3" type="audio/mpeg" />
+      Your browser does not support the audio element.
+    </audio>
+    <audio id="digging-found" controls style="display: none">
+      <source src="digging-found.mp3" type="audio/mpeg" />
+      Your browser does not support the audio element.
+    </audio>
+    <audio id="birds" controls loop style="display: none">
+      <source src="birds.mp3" type="audio/mpeg" />
+      Your browser does not support the audio element.
+    </audio>
+    <script>
+      const params = new URLSearchParams(window.location.search);
+      localStorage.setItem("token", params.get("token"));
+      const arrivalForest = sessionStorage.getItem("arrival_forest");
+      const reset = () => {
+        let token = localStorage.getItem("token");
+        if (!token) {
+          params = new URLSearchParams(window.location.search);
+          token = params.get("token");
+        }
+        window.location.href = "index.html?token=" + token;
+      };
+
+      const clickHandle = async () => {
+        let token = localStorage.getItem("token");
+        if (!token || token === null) {
+          params = new URLSearchParams(window.location.search);
+          token = params.get("token");
+          if (!token || token === null) {
+            alert(
+              "Erreur de communication avec l'app détectivebox : Token vide"
+            );
+            return;
+          }
+        }
+
+        const apiUrl = "https://api2.detectivebox.fr/history/3?id=";
+        const endpoints = ["box3document2", "box3document3"];
+
+        try {
+					let hasError = false
+          const responses = await Promise.all(
+            endpoints.map(async (endpoint) => {
+              const response = await fetch(apiUrl + endpoint, {
+                method: "PUT",
+                headers: {
+                  "Content-Type": "application/json",
+                  Authorization: `Bearer ${token}`,
+                },
+                body: JSON.stringify({ status: true }),
+              });
+              console.table(response);
+              return response;
+            })
+          );
+					
+					for (response of responses) {
+						if (!response.ok) {
+              alert(
+                "Erreur de communication avec le serveur: " +
+                  response.status +
+                  (response.statusText !== ""
+                    ? " - " + response.statusText
+                    : "")
+              );
+							hasError = true
+							break
+						}
+					}
+					if (!hasError) {
+						alert("Rendez-vous sur l'application pour la suite de l'enquête");
+					}
+        } catch (error) {
+          console.error("Error:", error);
+          alert(
+            "Une erreur s'est produite lors de la communication avec le serveur."
+          );
+        }
+      };
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const fadeIn = (element) => {
+          element.style.display = "block";
+          element.classList.add("fade-in-1");
+          element.classList.remove("fade-out");
+          setTimeout(() => {
+            element.style.opacity = 1;
+          }, 50);
+        };
+
+        const fadeIn10 = (element) => {
+          element.style.display = "block";
+          element.classList.add("fade-in-10");
+          element.classList.remove("fade-out");
+          setTimeout(() => {
+            element.style.opacity = 1;
+          }, 50);
+        };
+
+        const fadeOut = (element) => {
+          element.style.opacity = 0;
+          element.classList.add("fade-out");
+          element.classList.remove("fade-in");
+          setTimeout(() => {
+            element.style.display = "none";
+          }, 1000);
+        };
+
+        const body = document.body;
+
+        const playAudio = (audioElement) => {
+          audioElement.play();
+        };
+
+        const playArrivalAudio = (event) => {
+          playAudio(document.getElementById("arrival"));
+          body.removeEventListener("click", playArrivalAudio);
+        };
+        if (!arrivalForest) {
+          body.addEventListener("click", playArrivalAudio);
+        }
+
+        const playBirdsAudio = (event) => {
+          playAudio(document.getElementById("birds"));
+          body.removeEventListener("click", playBirdsAudio);
+        };
+        body.addEventListener("click", playBirdsAudio);
+
+        const linkHotspot = document.querySelector(".link-hotspot");
+        linkHotspot.addEventListener("click", (event) => {
+          const location = linkHotspot.textContent;
+
+          if (location === "Sortir du dolmen") {
+            playAudio(document.getElementById("arbres"));
+            const arbresElement = document.getElementById("arbres");
+            if (arbresElement.src !== "") {
+              document.getElementById("arrival").pause();
+              playAudio(arbresElement);
+              arbresElement.addEventListener("ended", () => {
+                arbresElement.src = "";
+              });
+            }
+          }
+        });
+
+        const diggingElement = document.getElementById("digging");
+        const digImgElements = document.querySelectorAll(".dig-img");
+        digImgElements.forEach((digImg) => {
+          digImg.addEventListener("click", () => {
+            fadeOut(digImg);
+            diggingElement.pause();
+            diggingElement.currentTime = 0;
+            fadeOut(document.querySelector(".dig-see"));
+          });
+        });
+
+        const playDiggingNotAudio = () => {
+          document.getElementById("digging-not").play();
+          diggingElement.removeEventListener("ended", playDiggingNotAudio);
+        };
+
+        const playDiggingFound = () => {
+          document.getElementById("digging-found").play();
+          diggingElement.removeEventListener("ended", playDiggingFound);
+        };
+
+        const digElements = document.querySelectorAll(".dig");
+        let number = 0;
+        digElements.forEach((dig) => {
+          dig.addEventListener("click", () => {
+            playAudio(diggingElement);
+            fadeIn(document.querySelector(".dig-img"));
+
+            if (dig.id === "dig30") {
+              fadeOut(document.querySelector(".dig-see"));
+              fadeIn10(document.querySelector(".dig-see-2"));
+
+              diggingElement.addEventListener("ended", playDiggingFound);
+            } else {
+              fadeOut(document.querySelector(".dig-see-2"));
+              fadeIn10(document.querySelector(".dig-see"));
+
+              diggingElement.addEventListener("ended", playDiggingNotAudio);
+
+              number = number === 7 ? 7 : number + 1;
+              document.getElementById("digging-not").src =
+                "digging-" + number + ".mp3";
+            }
+          });
+        });
+
+        let isWatchClick = false;
+
+        const imgElements = document.querySelectorAll(".img");
+        imgElements.forEach((img) => {
+          img.addEventListener("click", (e) => {
+            if (!isWatchClick) {
+              fadeOut(img);
+            }
+            isWatchClick = false;
+          });
+        });
+
+        document.body.addEventListener("click", (e) => {
+          imgElements.forEach((img) => {
+            if (!isWatchClick) {
+              fadeOut(img);
+            }
+          });
+          isWatchClick = false;
+        });
+
+        const watchElements = document.querySelectorAll(".watch");
+        watchElements.forEach((watch) => {
+          watch.addEventListener("click", (e) => {
+            isWatchClick = true;
+
+            const id = watch.id;
+            const imgElement = document.getElementById("img-" + id);
+            fadeIn(imgElement);
+          });
+        });
+
+        sessionStorage.setItem("arrival_forest", "1");
+      });
+    </script>
+
+    <script src="data.js"></script>
+    <script src="index.js"></script>
+  </body>
+</html>

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Cave</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="target-densitydpi=device-dpi, width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui"
+    />
+    <style>
+      @-ms-viewport {
+        width: device-width;
+      }
+    </style>
+    <link rel="stylesheet" href="vendor/reset.min.css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body class="multiple-scenes">
+    <div id="pano"></div>
+
+    <div id="sceneList">
+      <ul class="scenes">
+        <a
+          href="javascript:void(0)"
+          class="scene"
+          data-id="0-302_planque_celine_cave_1"
+        >
+          <li class="text">302_planque_celine_cave_1</li>
+        </a>
+
+        <a
+          href="javascript:void(0)"
+          class="scene"
+          data-id="1-302_planque_celine_cave_2"
+        >
+          <li class="text">302_planque_celine_cave_2</li>
+        </a>
+
+        <a
+          href="javascript:void(0)"
+          class="scene"
+          data-id="2-302_planque_celine_cave_3"
+        >
+          <li class="text">302_planque_celine_cave_3</li>
+        </a>
+      </ul>
+    </div>
+
+    <div id="titleBar">
+      <h1 class="sceneName"></h1>
+    </div>
+
+    <a href="javascript:void(0)" id="autorotateToggle">
+      <img class="icon off" src="img/play.png" />
+      <img class="icon on" src="img/pause.png" />
+    </a>
+
+    <a href="javascript:void(0)" id="fullscreenToggle">
+      <img class="icon off" src="img/fullscreen.png" />
+      <img class="icon on" src="img/windowed.png" />
+    </a>
+
+    <a href="javascript:void(0)" id="sceneListToggle">
+      <img class="icon off" src="img/expand.png" />
+      <img class="icon on" src="img/collapse.png" />
+    </a>
+
+    <a
+      href="javascript:void(0)"
+      id="viewUp"
+      class="viewControlButton viewControlButton-1"
+    >
+      <img class="icon" src="img/up.png" />
+    </a>
+    <a
+      href="javascript:void(0)"
+      id="viewDown"
+      class="viewControlButton viewControlButton-2"
+    >
+      <img class="icon" src="img/down.png" />
+    </a>
+    <a
+      href="javascript:void(0)"
+      id="viewLeft"
+      class="viewControlButton viewControlButton-3"
+    >
+      <img class="icon" src="img/left.png" />
+    </a>
+    <a
+      href="javascript:void(0)"
+      id="viewRight"
+      class="viewControlButton viewControlButton-4"
+    >
+      <img class="icon" src="img/right.png" />
+    </a>
+    <a
+      href="javascript:void(0)"
+      id="viewIn"
+      class="viewControlButton viewControlButton-5"
+    >
+      <img class="icon" src="img/plus.png" />
+    </a>
+    <a
+      href="javascript:void(0)"
+      id="viewOut"
+      class="viewControlButton viewControlButton-6"
+    >
+      <img class="icon" src="img/minus.png" />
+    </a>
+
+    <div class="img" id="img-see3" style="display: none">
+      <span class="close-img">X</span>
+      <img src="assets/caisse_outils.jpg" class="img-see" />
+    </div>
+    <div class="img" id="img-see4" style="display: none">
+      <span class="close-img">X</span>
+      <img src="assets/carnet_estelle.jpg" class="img-see" />
+      <div style="background: black; text-align: center; padding: 0.5em">
+        <a
+          href="assets/carnet-estelle-ouvert.jpg"
+          target="_blank"
+          class="btn-red"
+          >Feuilleter</a
+        >
+      </div>
+    </div>
+
+    <div class="img" id="img-see5" style="display: none">
+      <span class="close-img">X</span>
+      <img src="assets/liste_donneurs.jpg" class="img-see" />
+    </div>
+
+    <div class="img" id="img-see6" style="display: none">
+      <span class="close-img">X</span>
+      <img src="assets/masque_1.jpg" class="img-see" />
+    </div>
+
+    <div class="img" id="img-see7" style="display: none">
+      <span class="close-img">X</span>
+      <img src="assets/masque_2.jpg" class="img-see" />
+    </div>
+
+    <audio id="arrival" controls style="display: none">
+      <source src="assets/arrival.mp3" type="audio/mpeg" />
+      Your browser does not support the audio element.
+    </audio>
+
+    <audio id="comment-1" controls style="display: none">
+      <source src="assets/carnet.mp3" type="audio/mpeg" />
+      Your browser does not support the audio element.
+    </audio>
+
+    <audio id="comment-2" controls style="display: none">
+      <source src="assets/lists.mp3" type="audio/mpeg" />
+      Your browser does not support the audio element.
+    </audio>
+
+    <script src="vendor/screenfull.min.js"></script>
+    <script src="vendor/bowser.min.js"></script>
+    <script src="vendor/marzipano.js"></script>
+
+    <script>
+      const arrivalCave = sessionStorage.getItem("arrival_cave")
+
+      document.addEventListener("DOMContentLoaded", () => {
+      	const bodyClickHandler = (event) => {
+      		document.getElementById("arrival").play()
+      		event.currentTarget.removeEventListener(event.type, bodyClickHandler)
+      	}
+
+      	if (!arrivalCave) {
+      		document.body.addEventListener("click", bodyClickHandler)
+      	}
+
+      	const watchParent = document.querySelector(".watch").parentElement.parentElement.parentElement
+      	if (watchParent) {
+      		watchParent.nextElementSibling.style.display = "none"
+      	}
+
+      	const closeImgs = document.querySelectorAll(".close-img")
+      	closeImgs.forEach((closeImg) => {
+      		closeImg.addEventListener("click", () => {
+      			document.querySelectorAll(".img").forEach((img) => {
+      				img.style.display = "none"
+      			})
+      		})
+      	})
+
+      	const watchElements = document.querySelectorAll(".watch")
+      	watchElements.forEach((watch) => {
+      		watch.addEventListener("click", () => {
+      			document.querySelectorAll(".img").forEach((img) => {
+      				img.style.display = "none"
+      			})
+      			const id = watch.id
+      			document.getElementById("img-" + id).style.opacity = 1
+      			document.getElementById("img-" + id).style.display = "block"
+
+      			if (id === "see4" && document.getElementById("comment-1").getAttribute("src") !== "") {
+      				document.getElementById("comment-1").play()
+
+      				document.getElementById("comment-1").addEventListener("ended", () => {
+      					document.getElementById("comment-1").setAttribute("src", "")
+      				})
+      			}
+
+      			if (id === "see5" && document.getElementById("comment-2").getAttribute("src") !== "") {
+      				document.getElementById("comment-2").play()
+
+      				document.getElementById("comment-2").addEventListener("ended", () => {
+      					document.getElementById("comment-2").setAttribute("src", "")
+      				})
+      			}
+      		})
+      	})
+				sessionStorage.setItem("arrival_cave", "1")
+      })
+
+    </script>
+
+    <script src="data.js"></script>
+    <script src="index.js"></script>
+  </body>
+</html>

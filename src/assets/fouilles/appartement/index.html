@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Appartement</title>
+	<meta charset="utf-8" />
+	<meta name="viewport"
+		content="target-densitydpi=device-dpi, width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui" />
+	<style>
+		@-ms-viewport {
+			width: device-width;
+		}
+
+		body {
+			-webkit-touch-callout: none;
+			-webkit-user-select: none;
+			-khtml-user-select: none;
+			-moz-user-select: none;
+			-ms-user-select: none;
+			user-select: none;
+			cursor: grab;
+		}
+
+		img {
+			-webkit-user-drag: none;
+			-khtml-user-drag: none;
+			-moz-user-drag: none;
+			-o-user-drag: none;
+			user-drag: none;
+		}
+
+		.see-all {
+			width: 90%;
+			margin-left: auto;
+			margin-right: auto;
+			display: block;
+		}
+
+		.w-50 {
+			width: 40%;
+		}
+
+		.w-100 {
+			width: 100%;
+		}
+
+		.w-25 {
+			width: 25%;
+		}
+
+		.w-75 {
+			position: absolute;
+			left: 0;
+			right: 0;
+			margin: 0 auto;
+			width: 50%;
+			z-index: 10;
+		}
+
+		.m-3 {
+			margin: 1em;
+		}
+
+		.shadow {
+			-webkit-box-shadow: 2px 2px 2px 2px #9a9a9a;
+			box-shadow: 2px 2px 2px 2px #9a9a9a;
+		}
+
+		.mx-auto {
+			margin-left: auto;
+			margin-right: auto;
+			display: block;
+			width: 80%;
+		}
+
+		.w-60 {
+			width: 60%;
+		}
+
+		.see-all {
+			width: 90%;
+			margin-left: auto;
+			margin-right: auto;
+			display: block;
+		}
+
+		.btn,
+		#message {
+			font-family: "din";
+			margin-top: 2em;
+			box-shadow: inset 0px 1px 0px 0px #cf866c;
+			background: linear-gradient(to bottom, #d0451b 5%, #bc3315 100%);
+			background-color: #d0451b;
+			border-radius: 3px;
+			border: 1px solid #942911;
+			display: block;
+			margin-left: auto;
+			margin-right: auto;
+			cursor: pointer;
+			color: #ffffff;
+
+			font-size: 1.5em;
+			padding: 6px 24px;
+			text-decoration: none;
+			text-shadow: 0px 1px 0px #854629;
+		}
+
+		.btn:hover {
+			background: linear-gradient(to bottom, #bc3315 5%, #d0451b 100%);
+			background-color: #bc3315;
+		}
+
+		.btn:active {
+			position: relative;
+			top: 1px;
+		}
+
+		@font-face {
+			font-family: "din";
+			src: url("../fonts/d-din-webfont.woff2") format("woff2"),
+				url("../fonts/d-din-webfont.woff") format("woff");
+			font-weight: normal;
+			font-style: normal;
+		}
+
+		.confirm {
+			box-shadow: inset 0px 39px 0px -24px #e67a73;
+			background-color: #e4685d;
+			border-radius: 4px;
+			border: 1px solid #ffffff;
+			display: inline-block;
+			cursor: pointer;
+			color: #ffffff;
+			font-family: "din", Arial;
+			font-size: 15px;
+			padding: 6px 15px;
+			text-decoration: none;
+			text-shadow: 0px 1px 0px #b23e35;
+		}
+
+		.confirm:hover {
+			background-color: #eb675e;
+		}
+	</style>
+	<link rel="stylesheet" href="vendor/reset.min.css" />
+	<link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+	<div id="fouille" class="single-scene">
+		<div style="
+          background: url('assets/masque.png') no-repeat;
+          background-size: 100% 100%;
+          height: 100vh;
+          width: 100vw;
+          z-index: 1;
+          position: absolute;
+        "></div>
+		<div id="pano"></div>
+		<div id="sceneList" style="display: none">
+			<ul class="scenes">
+				<a href="javascript:void(0)" class="scene" data-id="0-image-jpeg-9e2b05ece620-1-copie">
+					<li class="text">Appartement</li>
+				</a>
+			</ul>
+		</div>
+		<div id="titleBar" style="display: none">
+			<h1 class="sceneName">Appartement</h1>
+		</div>
+
+		<a href="javascript:void(0)" id="autorotateToggle" style="display: none">
+			<img class="icon off" src="img/play.png" />
+			<img class="icon on" src="img/pause.png" />
+		</a>
+
+		<a href="javascript:void(0)" id="fullscreenToggle">
+			<img class="icon off" src="img/fullscreen.png" />
+			<img class="icon on" src="img/windowed.png" />
+		</a>
+
+		<a href="javascript:void(0)" id="sceneListToggle">
+			<img class="icon off" src="img/expand.png" />
+			<img class="icon on" src="img/collapse.png" />
+		</a>
+
+		<a href="javascript:void(0)" id="viewUp" class="viewControlButton viewControlButton-1">
+			<img class="icon" src="img/up.png" />
+		</a>
+		<a href="javascript:void(0)" id="viewDown" class="viewControlButton viewControlButton-2">
+			<img class="icon" src="img/down.png" />
+		</a>
+		<a href="javascript:void(0)" id="viewLeft" class="viewControlButton viewControlButton-3">
+			<img class="icon" src="img/left.png" />
+		</a>
+		<a href="javascript:void(0)" id="viewRight" class="viewControlButton viewControlButton-4">
+			<img class="icon" src="img/right.png" />
+		</a>
+		<a href="javascript:void(0)" id="viewIn" class="viewControlButton viewControlButton-5">
+			<img class="icon" src="img/plus.png" />
+		</a>
+		<a href="javascript:void(0)" id="viewOut" class="viewControlButton viewControlButton-6">
+			<img class="icon" src="img/minus.png" />
+		</a>
+
+		<audio id="arrival" controls style="display: none">
+			<source src="assets/arrival.mp3" type="audio/mpeg" />
+			Your browser does not support the audio element.
+		</audio>
+
+		<audio id="frigo-vroom" autoplay loop controls style="display: none">
+			<source src="assets/frigo-vroom.mp3" type="audio/mpeg" />
+			Your browser does not support the audio element.
+		</audio>
+	</div>
+	<div id="panel-photos" style="
+        overflow: scroll;
+        background-image: url('assets/bg.png');
+        background-size: cover;
+        display: none;
+        height: 100%;
+      ">
+		<div>
+			<a id="retour-photos" href="#" class="confirm" onclick="retour()" style="
+            position: absolute;
+            z-index: 100;
+            top: 2%;
+            right: 2%;
+            display: none;
+          ">
+				Retour à la pièce
+			</a>
+			<img src="assets/duchamp.jpg" class="w-50 mt-5 ml-5 shadow m-3" style="transform: rotate(15deg)" />
+			<img src="assets/message-1.png" class="w-25 shadow m-3" style="transform: rotate(-10deg)" />
+			<img src="assets/message-2.png" class="w-25 shadow m-3" style="transform: rotate(15deg)" />
+			<img src="assets/message-3.png" class="w-50 mb-5 shadow m-3" style="transform: rotate(5deg)" />
+			<img src="assets/3.jpg" class="w-25 shadow m-3" style="transform: rotate(-10deg) translate(7.5%, -30%)" />
+			<img src="assets/1.jpg" class="w-25 ml-5 shadow m-3" style="transform: rotate(5deg) translate(-112.5%, 7.5%)" />
+
+			<div style="width: 100%; text-align: center">
+				<img src="assets/4.jpg" class="w-25 ml-5shadow m-3" style="transform: rotate(10deg)" />
+				<img src="assets/2.jpg" class="w-25 mt-5 ml-5 shadow m-3" style="transform: rotate(5deg)" />
+			</div>
+		</div>
+
+		<img id="texto" src="assets/texto-sanchez.png" style="
+          display: none;
+          position: fixed;
+          top: 10px;
+          right: 10px;
+          height: 90vh;
+        " />
+
+		<audio id="photos" controls style="display: none">
+			<source src="assets/photo.mp3" type="audio/mpeg" />
+			Your browser does not support the audio element.
+		</audio>
+
+		<audio id="ding" controls style="display: none">
+			<source src="assets/ding.mp3" type="audio/mpeg" />
+			Your browser does not support the audio element.
+		</audio>
+	</div>
+	<div id="frigo" style="background-color: black; display: none">
+		<video id="video-frigo" src="assets/frigo.mp4" style="
+          width: 100%;
+          margin-left: auto;
+          margin-right: auto;
+          display: block;
+          max-height: calc(100dvh - 40px);
+        "></video>
+		<div style="width: 100%; text-align: center; margin-bottom: 3em">
+			<a id="retour-frigo" href="#" class="confirm" onclick="retour()" style="
+            width: max-content;
+            margin: auto;
+            margin-top: 10px;
+            display: none;
+          ">Retour à la pièce</a>
+		</div>
+	</div>
+	<script>
+		const arrivalAppartement = sessionStorage.getItem("arrival_appartment")
+		const params = new URLSearchParams(window.location.search)
+		localStorage.setItem("token", params.get("token"))
+
+		const clicHandle = async () => {
+			const token = localStorage.getItem("token")
+			if (!token) {
+				alert("Erreur de communication avec l'app détectivebox : Token vide")
+				return
+			}
+			const response = await fetch(
+				"https://api2.detectivebox.fr/history/2?id=box2document6",
+				{
+					method: "PUT",
+					headers: {
+						"Content-Type": "application/json",
+						Authorization: `Bearer ${localStorage.getItem("token")}`,
+					},
+					body: JSON.stringify({ status: true }),
+				}
+			)
+			console.table(response)
+			if (!response.ok) {
+				alert(
+					"Erreur de comunication avec le serveur: " +
+					response.status +
+					(response.statusText !== "" ? " - " + response.statusText : "")
+				)
+			} else {
+				alert("Rendez-vous sur l'application pour la suite de l'enquête")
+			}
+		}
+
+		const retour = () => {
+			document.getElementById("fouille").style.display = "block"
+			document.getElementById("panel-photos").style.display = "none"
+			document.getElementById("frigo").style.display = "none"
+			document.getElementById("video-frigo").pause()
+			document.getElementById("video-frigo").currentTime = 0
+		}
+
+		let clicked = false
+		let clickY
+
+		document.addEventListener("mousemove", (e) => {
+			clicked && updateScrollPos(e)
+		})
+
+		document.addEventListener("mousedown", (e) => {
+			clicked = true
+			clickY = e.pageY
+		})
+
+		document.addEventListener("mouseup", () => {
+			clicked = false
+			document.documentElement.style.cursor = "auto"
+		})
+
+		const updateScrollPos = (e) => {
+			document.documentElement.style.cursor = "row-resize"
+			window.scrollTo(window.scrollX, window.scrollY + (clickY - e.pageY))
+		}
+
+		document.addEventListener("DOMContentLoaded", () => {
+			document.getElementById("fouille").addEventListener("click", () => {
+				document.getElementById("frigo-vroom").play()
+			})
+
+			document.querySelectorAll("#pano > div").forEach((element) => {
+				element.style.zIndex = "2"
+			})
+
+			if (!arrivalAppartement) {
+				const fouilleClickHandler = () => {
+					document.getElementById("arrival").play()
+					document
+						.getElementById("fouille")
+						.removeEventListener("click", fouilleClickHandler)
+				}
+				document
+					.getElementById("fouille")
+					.addEventListener("click", fouilleClickHandler)
+			}
+
+			const ouvrirPhotos = document.getElementById("ouvrir-photos")
+			if (ouvrirPhotos) {
+				ouvrirPhotos.addEventListener("click", (e) => {
+					e.preventDefault()
+					const arrivalPhoto = sessionStorage.getItem("detective_box_photo")
+					document.getElementById("panel-photos").style.display = "block"
+					document.getElementById("fouille").style.display = "none"
+					if (!arrivalPhoto) {
+						document.getElementById("photos").play()
+
+						const photosEndedHandler = () => {
+							document.getElementById("ding").play()
+							document.getElementById("texto").style.display = "block"
+							setTimeout(() => {
+								document.getElementById("texto").style.display = "none"
+								clicHandle()
+								document.getElementById("retour-photos").style.display =
+									"block"
+							}, 15000)
+							document
+								.getElementById("photos")
+								.removeEventListener("ended", photosEndedHandler)
+						}
+
+						document
+							.getElementById("photos")
+							.addEventListener("ended", photosEndedHandler)
+
+						sessionStorage.setItem("detective_box_photo", "1")
+					} else {
+						document.getElementById("retour-photos").style.display = "block"
+					}
+				})
+			}
+
+			const ouvrirFrigo = document.getElementById("ouvrir-frigo")
+			if (ouvrirFrigo) {
+				ouvrirFrigo.addEventListener("click", (e) => {
+					e.preventDefault()
+					const arrivalFrigo = sessionStorage.getItem("detective_box_frigo")
+
+					document.getElementById("frigo").style.display = "block"
+					document.getElementById("fouille").style.display = "none"
+					document.getElementById("video-frigo").play()
+					if (!arrivalFrigo) {
+						const frigoEndedHandler = () => {
+							document.getElementById("retour-frigo").style.display = "block"
+							document
+								.getElementById("video-frigo")
+								.removeEventListener("ended", frigoEndedHandler)
+						}
+						document
+							.getElementById("video-frigo")
+							.addEventListener("ended", frigoEndedHandler)
+					} else {
+						document.getElementById("retour-frigo").style.display = "block"
+					}
+
+					sessionStorage.setItem("detective_box_frigo", "1")
+				})
+			}
+
+			document.querySelectorAll(".w-50").forEach((element) => {
+				element.addEventListener("click", (event) => {
+					document.querySelectorAll(".w-75").forEach((el) => {
+						el.style.display = "none"
+					})
+					element.nextElementSibling.style.display = "block"
+				})
+			})
+
+			document.querySelectorAll(".w-75").forEach((element) => {
+				element.addEventListener("click", () => {
+					element.style.display = "none"
+				})
+			})
+
+			document.getElementById("open").addEventListener("click", (event) => {
+				event.currentTarget.style.display = "none"
+				document.getElementById("video-file").play()
+				const openClickHandler = () => {
+					document.getElementById("message").style.display = "table"
+					document.getElementById("message").style.display = "table-cell"
+					document
+						.getElementById("video-file")
+						.removeEventListener("ended", openClickHandler)
+				}
+				document
+					.getElementById("video-file")
+					.addEventListener("ended", openClickHandler)
+			})
+
+			document.getElementById("message").addEventListener("click", () => {
+				window.close()
+			})
+
+			sessionStorage.setItem("arrival_appartment", "1")
+		});
+	</script>
+
+	<script src="vendor/bowser.min.js"></script>
+	<script src="vendor/marzipano.js"></script>
+
+	<script src="data.js"></script>
+	<script src="index.js"></script>
+</body>
+
+</html>

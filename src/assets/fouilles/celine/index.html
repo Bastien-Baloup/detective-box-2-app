@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Lieu de fouille</title>
+	<meta charset="utf-8" />
+	<meta name="viewport"
+		content="target-densitydpi=device-dpi, width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui" />
+	<style>
+		@-ms-viewport {
+			width: device-width;
+		}
+	</style>
+	<link rel="stylesheet" href="vendor/reset.min.css" />
+	<link rel="stylesheet" href="style.css" />
+</head>
+
+<body class="multiple-scenes">
+	<div id="pano"></div>
+
+	<div id="sceneList">
+		<ul class="scenes">
+			<a href="javascript:void(0)" class="scene" data-id="0-302_planque3_celine_1">
+				<li class="text">302_Planque3_Celine_1</li>
+			</a>
+
+			<a href="javascript:void(0)" class="scene" data-id="1-302_planque3_celine_2">
+				<li class="text">302_Planque3_Celine_2</li>
+			</a>
+
+			<a href="javascript:void(0)" class="scene" data-id="2-302_planque3_celine_3">
+				<li class="text">302_Planque3_Celine_3</li>
+			</a>
+
+			<a href="javascript:void(0)" class="scene" data-id="3-302_planque3_celine_4">
+				<li class="text">302_Planque3_Celine_4</li>
+			</a>
+		</ul>
+	</div>
+
+	<div id="titleBar">
+		<h1 class="sceneName"></h1>
+	</div>
+
+	<a href="javascript:void(0)" id="autorotateToggle">
+		<img class="icon off" src="img/play.png" />
+		<img class="icon on" src="img/pause.png" />
+	</a>
+
+	<a href="javascript:void(0)" id="fullscreenToggle">
+		<img class="icon off" src="img/fullscreen.png" />
+		<img class="icon on" src="img/windowed.png" />
+	</a>
+
+	<a href="javascript:void(0)" id="sceneListToggle">
+		<img class="icon off" src="img/expand.png" />
+		<img class="icon on" src="img/collapse.png" />
+	</a>
+
+	<a href="javascript:void(0)" id="viewUp" class="viewControlButton viewControlButton-1">
+		<img class="icon" src="img/up.png" />
+	</a>
+	<a href="javascript:void(0)" id="viewDown" class="viewControlButton viewControlButton-2">
+		<img class="icon" src="img/down.png" />
+	</a>
+	<a href="javascript:void(0)" id="viewLeft" class="viewControlButton viewControlButton-3">
+		<img class="icon" src="img/left.png" />
+	</a>
+	<a href="javascript:void(0)" id="viewRight" class="viewControlButton viewControlButton-4">
+		<img class="icon" src="img/right.png" />
+	</a>
+	<a href="javascript:void(0)" id="viewIn" class="viewControlButton viewControlButton-5">
+		<img class="icon" src="img/plus.png" />
+	</a>
+	<a href="javascript:void(0)" id="viewOut" class="viewControlButton viewControlButton-6">
+		<img class="icon" src="img/minus.png" />
+	</a>
+
+	<script src="vendor/screenfull.min.js"></script>
+	<script src="vendor/bowser.min.js"></script>
+	<script src="vendor/marzipano.js"></script>
+
+	<div class="img" id="img-see1" style="display: none">
+		<span class="close-img">X</span>
+		<img src="assets/photo.jpg" class="img-see" />
+	</div>
+	<div class="img" id="img-see2" style="display: none">
+		<span class="close-img">X</span>
+		<img src="assets/arbre.jpg" class="img-see" />
+		<div style="text-align: center; background-color: black">
+			<a href="assets/arbre.jpg" target="_blank" class="btn-red">Voir de plus près
+			</a>
+		</div>
+	</div>
+	<div class="img" id="img-see3" style="display: none">
+		<span class="close-img">X</span>
+		<img src="assets/dossier.jpg" class="img-see" />
+		<div style="text-align: center; background-color: black; padding: 0.5em">
+			<span class="btn-red watch d-screen-none" id="see3pdf">Feuilleter</span>
+			<a href="assets/dossier.pdf" target="_blank" class="btn-red watch d-mobile-none">Feuilleter</a>
+		</div>
+	</div>
+	<div class="img img-pdf" id="img-see3pdf" style="display: none">
+		<span class="close-img">X</span>
+		<object data="assets/dossier.pdf#toolbar=0&navpanes=0&scrollbar=0" type="application/pdf">
+			<div>
+				Votre navigateur n'intègre pas de lecteur pdf. Visionner le fichier
+				directement <a href="assets/dossier.pdf">ICI</a>
+			</div>
+		</object>
+	</div>
+
+	<div class="img" id="img-see4" style="display: none">
+		<span class="close-img">X</span>
+		<img src="assets/board.jpg" class="img-see" />
+		<p class="info-hotspot-text" style="
+          padding: 0.5em;
+          text-align: center;
+          border-radius: 10px;
+          margin-bottom: 10px;
+        ">
+			Tiens le Detective Board de l’affaire… <br />Pourquoi donc Céline en
+			garde un exemplaire chez elle ?
+		</p>
+	</div>
+	<div class="img" id="img-see5" style="display: none">
+		<span class="close-img">X</span>
+
+		<span class="btn-red watch d-screen-none" id="see5pdf">Feuilleter</span>
+		<a href="assets/livre.pdf" target="_blank" class="btn-red watch d-mobile-none" id="see5pdf">Feuilleter</a>
+
+		<div id="point-2" class="btn-red">Actionner</div>
+		<img src="assets/lilith.jpg" class="img-see" />
+	</div>
+
+	<div class="img img-pdf" id="img-see5pdf" style="display: none">
+		<span class="close-img">X</span>
+		<object data="assets/livre.pdf" type="application/pdf">
+			<div>
+				Votre navigateur n'intègre pas de lecteur pdf. Visionner le fichier
+				directement <a href="assets/livre.pdf">ICI</a>
+			</div>
+		</object>
+	</div>
+
+	<div class="img" id="img-see6" style="display: none">
+		<span class="close-img">X</span>
+		<img src="assets/recu-1.jpg" class="img-see" />
+		<div style="text-align: center; background-color: black; padding: 0.5em">
+			<span class="btn-red watch" id="see7">Retourner</span>
+		</div>
+	</div>
+	<div class="img" id="img-see7" style="display: none">
+		<span class="close-img">X</span>
+		<img src="assets/recu-2.jpg" class="img-see" />
+		<div style="text-align: center; background-color: black; padding: 0.5em">
+			<span class="btn-red watch" id="see6">Retourner</span>
+		</div>
+	</div>
+
+	<audio id="arrival" controls style="display: none">
+		<source src="assets/arrival.mp3" type="audio/mpeg" />
+		Your browser does not support the audio element.
+	</audio>
+
+	<audio id="grenier-audio" controls style="display: none">
+		<source src="assets/comment.mp3" type="audio/mpeg" />
+		Your browser does not support the audio element.
+	</audio>
+
+	<audio id="music" controls style="display: none">
+		<source src="assets/music.mp3" type="audio/mpeg" />
+		Your browser does not support the audio element.
+	</audio>
+
+	<script>
+		const arrivalCeline = sessionStorage.getItem("arrival_celine")
+
+		document.addEventListener("DOMContentLoaded", () => {
+			const bodyClickHandler = (event) => {
+				document.getElementById("arrival").play()
+				event.currentTarget.removeEventListener(event.type, bodyClickHandler)
+			}
+
+			if (!arrivalCeline) {
+				document.body.addEventListener("click", bodyClickHandler)
+			}
+
+			const closeImgs = document.querySelectorAll(".close-img")
+			closeImgs.forEach((closeImg) => {
+				closeImg.addEventListener("click", () => {
+					document.querySelectorAll(".img").forEach((img) => {
+						img.style.display = "none"
+					})
+				})
+			})
+
+			const watchElements = document.querySelectorAll(".watch")
+			watchElements.forEach((watch) => {
+				watch.addEventListener("click", (event) => {
+					document.querySelectorAll(".img").forEach((img) => {
+						img.style.display = "none"
+					})
+					const id = event.currentTarget.id
+					document.getElementById("img-" + id).style.opacity = 1
+					document.getElementById("img-" + id).style.display = "block"
+				})
+			})
+
+			const grenierElement = document.querySelector(".grenier")
+			if (grenierElement) {
+				const playGenierAudio = (event) => {
+					document.getElementById("grenier-audio").play()
+					grenierElement.removeEventListener(event.type, playGenierAudio)
+				}
+				grenierElement.addEventListener("click", playGenierAudio)
+			}
+
+			const point2Element = document.getElementById("point-2")
+			if (point2Element) {
+				point2Element.addEventListener("click", () => {
+					document.getElementById("music").play()
+				})
+			}
+
+			const watchParent = document.querySelector(".watch").parentElement.parentElement.parentElement
+			if (watchParent) {
+				watchParent.nextElementSibling.style.display = "none"
+			}
+
+			sessionStorage.setItem("arrival_celine", "1")
+		})
+	</script>
+
+	<script src="data.js"></script>
+	<script src="index.js"></script>
+</body>
+
+</html>
