@@ -38,7 +38,7 @@
 	}
 }
 
-.dropdown__child {
+.dropdown__child, a.dropdown__child {
 	border: none;
 	font: inherit;
 	color: $primary-color;
