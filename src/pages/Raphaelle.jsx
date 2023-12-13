@@ -355,7 +355,7 @@ const Raphaelle = ({ closeAgentPage }) => {
     await updateHistory(token, currentBox, answerId);
     await updateCharactersById(token, 4, currentBox, asnwerAsk);
     if (answerId == "box1lieu1") {
-      setChantierModalOpen(true);
+      //setChantierModalOpen(true);
     }
     if (answerId == "box2lieu1") {
       await updateHistory(token, 2, "box2document5");
@@ -385,7 +385,7 @@ const Raphaelle = ({ closeAgentPage }) => {
       await updateHistory(token, 3, "box3document11");
     }
 
-    //window.open(answer.src + "/?token=" + token, "_blank");
+    window.open(answer.src + "/?token=" + token, "_blank");
     actionToggleDataHistory();
     actionToggleDataRaphaelle();
     // actionTogglePolling(true);
