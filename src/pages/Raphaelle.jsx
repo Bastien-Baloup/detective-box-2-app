@@ -353,7 +353,7 @@ const Raphaelle = ({ closeAgentPage }) => {
   // EXPLICATION : la visite du lieu box2lieu2 ouvre le renfort 6 et ferme le renfort 5
   const openLieu = async (answerId, asnwerAsk) => {
     await updateHistory(token, currentBox, answerId);
-    await updateCharactersById(token, 4, currentBox, asnwerAsk);
+    //await updateCharactersById(token, 4, currentBox, asnwerAsk);
     if (answerId == "box1lieu1") {
       setChantierModalOpen(true);
     }
