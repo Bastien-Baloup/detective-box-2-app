@@ -29,10 +29,10 @@
 	overflow: scroll;
 }
 
-a,
-a:hover,
-a:active,
-a:visited {
+#modal-chantier a,
+#modal-chantier a:hover,
+#modal-chantier a:active,
+#modal-chantier a:visited {
 	text-decoration: none;
 	color: inherit;
 }
