@@ -1,4 +1,4 @@
-var APP_DATA = {
+const data = {
 	"scenes": [
 		{
 			"id": "0-103_planque_grnier_1",
@@ -51,7 +51,7 @@ var APP_DATA = {
 				"fov": 1.4599726663201706
 			},
 			"linkHotspots": [{
-					"yaw": 1.6855938185488196,
+					"yaw": 1.685593818548819,
 					"pitch": 2.6267400046949234,
 					"rotation": 0,
 					"target": "0-103_planque_grnier_1"
@@ -105,3 +105,5 @@ var APP_DATA = {
 		"viewControlButtons": false
 	}
 };
+
+export default data
