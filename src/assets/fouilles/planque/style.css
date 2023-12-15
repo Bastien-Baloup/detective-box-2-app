@@ -48,7 +48,7 @@
 }
 
 @media (min-width: 1200px) {
-	.img {
+	#modal-mason .img {
 		width: 35%;
 	}
 }

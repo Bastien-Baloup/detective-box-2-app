@@ -1,4 +1,4 @@
-* {
+#modal-mason * {
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
@@ -16,8 +16,8 @@
 	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
-html,
-body {
+#modal-mason,
+#modal-mason #fouille {
 	width: 100%;
 	padding: 0;
 	margin: 0;
@@ -29,15 +29,15 @@ body {
 	overflow: scroll;
 }
 
-a,
-a:hover,
-a:active,
-a:visited {
+#modal-mason a,
+#modal-mason a:hover,
+#modal-mason a:active,
+#modal-mason a:visited {
 	text-decoration: none;
 	color: inherit;
 }
 
-.img {
+#modal-mason .img {
 	position: relative;
 	margin: auto;
 	position: absolute;
@@ -48,19 +48,19 @@ a:visited {
 }
 
 @media (min-width: 1200px) {
-	.img {
+	#modal-mason .img {
 		width: 50%;
 	}
 }
 
 
 
-.img-see {
+#modal-mason .img-see {
 	width: 100%;
 	height: 100%;
 }
 
-.close-img {
+#modal-mason .close-img {
 	position: absolute;
 	right: 0;
 	top: 0;
@@ -72,12 +72,12 @@ a:visited {
 
 }
 
-.close-img:hover {
+#modal-mason .close-img:hover {
 	background-color: darkgoldenrod
 }
 
 
-#pano {
+#modal-mason #pano {
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -86,7 +86,7 @@ a:visited {
 	overflow: hidden;
 }
 
-#titleBar {
+#modal-mason #titleBar {
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -96,30 +96,30 @@ a:visited {
 	display: none;
 }
 
-.mobile #titleBar {
+#modal-mason .mobile #titleBar {
 	height: 50px;
 	right: 50px;
 }
 
 /* If there is a fullscreen button the title bar must make space for it */
-body.fullscreen-enabled #titleBar {
+#fouille.fullscreen-enabled #titleBar {
 	right: 80px;
 }
 
-body.fullscreen-enabled.mobile #titleBar {
+#fouille.fullscreen-enabled.mobile #titleBar {
 	right: 100px;
 }
 
 /* If there are multiple scenes the title bar must make space for the scene list toggle */
-body.multiple-scenes #titleBar {
+#fouille.multiple-scenes #titleBar {
 	left: 40px;
 }
 
-body.multiple-scenes.mobile #titleBar {
+#fouille.multiple-scenes.mobile #titleBar {
 	left: 50px;
 }
 
-#titleBar .sceneName {
+#modal-mason #titleBar .sceneName {
 	width: 100%;
 	height: 100%;
 	line-height: 30px;
@@ -136,11 +136,11 @@ body.multiple-scenes.mobile #titleBar {
 	user-select: text;
 }
 
-.mobile #titleBar .sceneName {
+#modal-mason .mobile #titleBar .sceneName {
 	line-height: 40px;
 }
 
-#fullscreenToggle {
+#modal-mason #fullscreenToggle {
 	display: none;
 	position: absolute;
 	top: 0;
@@ -152,16 +152,16 @@ body.multiple-scenes.mobile #titleBar {
 	background-color: rgba(103, 115, 131, 0.8);
 }
 
-.mobile #fullscreenToggle {
+#modal-mason .mobile #fullscreenToggle {
 	width: 50px;
 	height: 50px;
 }
 
-body.fullscreen-enabled #fullscreenToggle {
+#fouille.fullscreen-enabled #fullscreenToggle {
 	display: block;
 }
 
-#fullscreenToggle .icon {
+#modal-mason #fullscreenToggle .icon {
 	position: absolute;
 	top: 5px;
 	right: 5px;
@@ -169,28 +169,28 @@ body.fullscreen-enabled #fullscreenToggle {
 	height: 30px;
 }
 
-.mobile #fullscreenToggle .icon {
+#modal-mason .mobile #fullscreenToggle .icon {
 	top: 10px;
 	right: 10px;
 }
 
-#fullscreenToggle .icon.on {
+#modal-mason #fullscreenToggle .icon.on {
 	display: none;
 }
 
-#fullscreenToggle .icon.off {
+#modal-mason #fullscreenToggle .icon.off {
 	display: block;
 }
 
-#fullscreenToggle.enabled .icon.on {
+#modal-mason #fullscreenToggle.enabled .icon.on {
 	display: block;
 }
 
-#fullscreenToggle.enabled .icon.off {
+#modal-mason #fullscreenToggle.enabled .icon.off {
 	display: none;
 }
 
-#autorotateToggle {
+#modal-mason #autorotateToggle {
 	display: none;
 	position: absolute;
 	top: 0;
@@ -203,21 +203,21 @@ body.fullscreen-enabled #fullscreenToggle {
 
 }
 
-.mobile #autorotateToggle {
+#modal-mason .mobile #autorotateToggle {
 	width: 50px;
 	height: 50px;
 }
 
 /* If there is a fullscreen button, autorotate must placed a bit to the left */
-body.fullscreen-enabled #autorotateToggle {
+#fouille.fullscreen-enabled #autorotateToggle {
 	right: 40px;
 }
 
-body.fullscreen-enabled.mobile #autorotateToggle {
+#fouille.fullscreen-enabled.mobile #autorotateToggle {
 	right: 50px;
 }
 
-#autorotateToggle .icon {
+#modal-mason #autorotateToggle .icon {
 	position: absolute;
 	top: 5px;
 	right: 5px;
@@ -225,28 +225,28 @@ body.fullscreen-enabled.mobile #autorotateToggle {
 	height: 30px;
 }
 
-.mobile #autorotateToggle .icon {
+#modal-mason .mobile #autorotateToggle .icon {
 	top: 10px;
 	right: 10px;
 }
 
-#autorotateToggle .icon.on {
+#modal-mason #autorotateToggle .icon.on {
 	display: none;
 }
 
-#autorotateToggle .icon.off {
+#modal-mason #autorotateToggle .icon.off {
 	display: block;
 }
 
-#autorotateToggle.enabled .icon.on {
+#modal-mason #autorotateToggle.enabled .icon.on {
 	display: block;
 }
 
-#autorotateToggle.enabled .icon.off {
+#modal-mason #autorotateToggle.enabled .icon.off {
 	display: none;
 }
 
-#sceneListToggle {
+#modal-mason #sceneListToggle {
 	display: none;
 	position: absolute;
 	top: 0;
@@ -258,12 +258,12 @@ body.fullscreen-enabled.mobile #autorotateToggle {
 	background-color: rgba(103, 115, 131, 0.8);
 }
 
-.mobile #sceneListToggle {
+#modal-mason .mobile #sceneListToggle {
 	width: 50px;
 	height: 50px;
 }
 
-#sceneListToggle .text {
+#modal-mason #sceneListToggle .text {
 	position: absolute;
 	top: 5px;
 	left: 15px;
@@ -271,7 +271,7 @@ body.fullscreen-enabled.mobile #autorotateToggle {
 	line-height: 30px;
 }
 
-#sceneListToggle .icon {
+#modal-mason #sceneListToggle .icon {
 	position: absolute;
 	top: 5px;
 	right: 5px;
@@ -279,28 +279,28 @@ body.fullscreen-enabled.mobile #autorotateToggle {
 	height: 30px;
 }
 
-.mobile #sceneListToggle .icon {
+#modal-mason .mobile #sceneListToggle .icon {
 	top: 10px;
 	right: 10px;
 }
 
-#sceneListToggle .icon.on {
+#modal-mason #sceneListToggle .icon.on {
 	display: none;
 }
 
-#sceneListToggle .icon.off {
+#modal-mason #sceneListToggle .icon.off {
 	display: block;
 }
 
-#sceneListToggle.enabled .icon.on {
+#modal-mason #sceneListToggle.enabled .icon.on {
 	display: block;
 }
 
-#sceneListToggle.enabled .icon.off {
+#modal-mason #sceneListToggle.enabled .icon.off {
 	display: none;
 }
 
-#sceneList {
+#modal-mason #sceneList {
 	position: absolute;
 	top: 0;
 	left: -220px;
@@ -314,47 +314,47 @@ body.fullscreen-enabled.mobile #autorotateToggle {
 	transition: margin-left 0.5s ease-in-out;
 }
 
-.mobile #sceneList {
+#modal-mason .mobile #sceneList {
 	padding-top: 50px;
 }
 
-#sceneList .scenes {
+#modal-mason #sceneList .scenes {
 	width: 100%;
 	background-color: rgb(58, 68, 84);
 	background-color: rgba(58, 68, 84, 0.8);
 	display: none;
 }
 
-.mobile #sceneList {
+#modal-mason .mobile #sceneList {
 	width: 100%;
 	height: 100%;
 	left: -100%;
 }
 
-.mobile #sceneList.enabled {
+#modal-mason .mobile #sceneList.enabled {
 	margin-left: 100%;
 }
 
-.mobile #sceneList .scenes {
+#modal-mason .mobile #sceneList .scenes {
 	height: 100%;
 }
 
-#sceneList.enabled {
+#modal-mason #sceneList.enabled {
 	margin-left: 220px;
 
 }
 
-#sceneList .scene {
+#modal-mason #sceneList .scene {
 	display: block;
 	width: 100%;
 	height: 30px;
 }
 
-.mobile #sceneList .scene {
+#modal-mason .mobile #sceneList .scene {
 	height: 40px;
 }
 
-#sceneList .scene .text {
+#modal-mason #sceneList .scene .text {
 	width: 100%;
 	height: 100%;
 	padding: 0 15px;
@@ -364,29 +364,29 @@ body.fullscreen-enabled.mobile #autorotateToggle {
 	white-space: nowrap;
 }
 
-.mobile #sceneList .scene .text {
+#modal-mason .mobile #sceneList .scene .text {
 	line-height: 40px;
 }
 
-.no-touch #sceneList .scene:hover {
+#modal-mason .no-touch #sceneList .scene:hover {
 	background-color: rgb(103, 115, 131);
 	background-color: rgba(103, 115, 131, 0.8);
 }
 
-#sceneList .scene.current {
+#modal-mason #sceneList .scene.current {
 	background-color: rgb(103, 115, 131);
 	background-color: rgba(103, 115, 131, 0.8);
 }
 
 /* Hide scene list when only a single scene exists */
-body.single-scene #sceneList,
-body.single-scene #sceneListToggle {
+#fouille.single-scene #sceneList,
+#fouille.single-scene #sceneListToggle {
 	display: none;
 }
 
 /* Link hotspot */
 
-.link-hotspot {
+#modal-mason .link-hotspot {
 	width: 60px;
 	height: 60px;
 	margin-left: -30px;
@@ -396,22 +396,22 @@ body.single-scene #sceneListToggle {
 	transition: opacity 0.2s;
 }
 
-.no-touch .link-hotspot:hover {
+#modal-mason .no-touch .link-hotspot:hover {
 	opacity: 1;
 }
 
-.mobile .link-hotspot {
+#modal-mason .mobile .link-hotspot {
 	width: 70px;
 	height: 70px;
 }
 
-.link-hotspot-icon {
+#modal-mason .link-hotspot-icon {
 	width: 100%;
 	height: 100%;
 	cursor: pointer;
 }
 
-.link-hotspot-tooltip {
+#modal-mason .link-hotspot-tooltip {
 	position: absolute;
 	left: 100%;
 	top: 14px;
@@ -448,12 +448,12 @@ body.single-scene #sceneListToggle {
 		opacity 0.3s;
 }
 
-.mobile .link-hotspot {
+#modal-mason .mobile .link-hotspot {
 	top: 19px;
 	/* ( 70 - (16 + 2*8) ) / 2 */
 }
 
-.no-touch .link-hotspot:hover .link-hotspot-tooltip {
+#modal-mason .no-touch .link-hotspot:hover .link-hotspot-tooltip {
 	opacity: 1;
 	-ms-transform: translateX(0);
 	-webkit-transform: translateX(0);
@@ -461,54 +461,54 @@ body.single-scene #sceneListToggle {
 }
 
 /* Prevent tooltip from triggering */
-.link-hotspot-tooltip {
+#modal-mason .link-hotspot-tooltip {
 	pointer-events: none;
 }
 
-.no-touch .link-hotspot:hover .link-hotspot-tooltip {
+#modal-mason .no-touch .link-hotspot:hover .link-hotspot-tooltip {
 	pointer-events: all;
 }
 
 /* Fallback mode without pointer-events (IE8-10) */
-.tooltip-fallback .link-hotspot-tooltip {
+#modal-mason .tooltip-fallback .link-hotspot-tooltip {
 	display: none;
 }
 
-.no-touch .tooltip-fallback .link-hotspot:hover .link-hotspot-tooltip {
+#modal-mason .no-touch .tooltip-fallback .link-hotspot:hover .link-hotspot-tooltip {
 	display: block;
 }
 
 /* Info hotspot */
 
-.info-hotspot {
+#modal-mason .info-hotspot {
 	line-height: 1.2em;
 	opacity: 0.9;
 	-webkit-transition: opacity 0.2s 0.2s;
 	transition: opacity 0.2s 0.2s;
 }
 
-.no-touch .info-hotspot:hover {
+#modal-mason .no-touch .info-hotspot:hover {
 	opacity: 1;
 	-webkit-transition: opacity 0.2s;
 	transition: opacity 0.2s;
 }
 
-.info-hotspot.visible {
+#modal-mason .info-hotspot.visible {
 	opacity: 1;
 }
 
 /* Change color of all info */
 
 
-.info-hotspot .info-hotspot-header,
-.info-hotspot-close-icon,
-.info-hotspot-text,
-.info-hotspot-close-wrapper {
+#modal-mason .info-hotspot .info-hotspot-header,
+#modal-mason .info-hotspot-close-icon,
+#modal-mason .info-hotspot-text,
+#modal-mason .info-hotspot-close-wrapper {
 	background-color: rgba(227, 6, 19, 1) !important;
 }
 
 
-.info-hotspot .info-hotspot-header {
+#modal-mason .info-hotspot .info-hotspot-header {
 	width: 40px;
 	height: 40px;
 	border-radius: 20px;
@@ -520,13 +520,13 @@ body.single-scene #sceneListToggle {
 		border-radius 0.3s ease-in-out 0.5s;
 }
 
-.mobile .info-hotspot .info-hotspot-header {
+#modal-mason .mobile .info-hotspot .info-hotspot-header {
 	width: 50px;
 	height: 50px;
 	border-radius: 25px;
 }
 
-.desktop.no-touch .info-hotspot .info-hotspot-header:hover {
+#modal-mason .desktop.no-touch .info-hotspot .info-hotspot-header:hover {
 	width: 260px;
 	border-radius: 5px;
 	-webkit-transition: width 0.3s ease-in-out,
@@ -535,8 +535,8 @@ body.single-scene #sceneListToggle {
 		border-radius 0.3s ease-in-out;
 }
 
-.desktop .info-hotspot.visible .info-hotspot-header,
-.desktop.no-touch .info-hotspot.visible .info-hotspot-header:hover {
+#modal-mason .desktop .info-hotspot.visible .info-hotspot-header,
+#modal-mason .desktop.no-touch .info-hotspot.visible .info-hotspot-header:hover {
 	width: 260px;
 	border-radius: 5px;
 	border-top-right-radius: 0;
@@ -548,23 +548,23 @@ body.single-scene #sceneListToggle {
 		border-radius 0.3s ease-in-out;
 }
 
-.info-hotspot .info-hotspot-icon-wrapper {
+#modal-mason .info-hotspot .info-hotspot-icon-wrapper {
 	width: 40px;
 	height: 40px;
 }
 
-.mobile .info-hotspot .info-hotspot-icon-wrapper {
+#modal-mason .mobile .info-hotspot .info-hotspot-icon-wrapper {
 	width: 50px;
 	height: 50px;
 }
 
-.info-hotspot .info-hotspot-icon {
+#modal-mason .info-hotspot .info-hotspot-icon {
 	width: 90%;
 	height: 90%;
 	margin: 5%;
 }
 
-.info-hotspot .info-hotspot-title-wrapper {
+#modal-mason .info-hotspot .info-hotspot-title-wrapper {
 	position: absolute;
 	left: 40px;
 	top: 0;
@@ -579,8 +579,8 @@ body.single-scene #sceneListToggle {
 
 }
 
-.desktop .info-hotspot.visible .info-hotspot-title-wrapper,
-.desktop.no-touch .info-hotspot .info-hotspot-header:hover .info-hotspot-title-wrapper {
+#modal-mason .desktop .info-hotspot.visible .info-hotspot-title-wrapper,
+#modal-mason .desktop.no-touch .info-hotspot .info-hotspot-header:hover .info-hotspot-title-wrapper {
 	width: 220px;
 	padding: 0 5px;
 	-webkit-transition: width 0s 0.4s,
@@ -589,14 +589,14 @@ body.single-scene #sceneListToggle {
 		padding 0s 0.4s;
 }
 
-.info-hotspot .info-hotspot-title-wrapper:before {
+#modal-mason .info-hotspot .info-hotspot-title-wrapper:before {
 	content: '';
 	display: inline-block;
 	vertical-align: middle;
 	height: 100%;
 }
 
-.info-hotspot .info-hotspot-title {
+#modal-mason .info-hotspot .info-hotspot-title {
 	display: inline-block;
 	vertical-align: middle;
 
@@ -606,7 +606,7 @@ body.single-scene #sceneListToggle {
 	user-select: text;
 }
 
-.info-hotspot .info-hotspot-close-wrapper {
+#modal-mason .info-hotspot .info-hotspot-close-wrapper {
 	position: absolute;
 	left: 260px;
 	top: 0;
@@ -631,7 +631,7 @@ body.single-scene #sceneListToggle {
 		visibility 0s 0.6s;
 }
 
-.desktop .info-hotspot.visible .info-hotspot-close-wrapper {
+#modal-mason .desktop .info-hotspot.visible .info-hotspot-close-wrapper {
 	visibility: visible;
 	-ms-transform: perspective(200px) rotateY(0deg);
 	-webkit-transform: perspective(200px) rotateY(0deg);
@@ -646,13 +646,13 @@ body.single-scene #sceneListToggle {
 		visibility 0s 0s;
 }
 
-.info-hotspot .info-hotspot-close-icon {
+#modal-mason .info-hotspot .info-hotspot-close-icon {
 	width: 70%;
 	height: 70%;
 	margin: 15%;
 }
 
-.info-hotspot .info-hotspot-text {
+#modal-mason .info-hotspot .info-hotspot-text {
 	display: none;
 	position: absolute;
 	width: 300px;
@@ -688,7 +688,7 @@ body.single-scene #sceneListToggle {
 	user-select: text;
 }
 
-.desktop .info-hotspot.visible .info-hotspot-text {
+#modal-mason .desktop .info-hotspot.visible .info-hotspot-text {
 	visibility: visible;
 	-ms-transform: perspective(200px) rotateX(0deg);
 	-webkit-transform: perspective(200px) rotateX(0deg);
@@ -705,11 +705,11 @@ body.single-scene #sceneListToggle {
 
 /* Info hotspot modal */
 
-.desktop .info-hotspot-modal {
+#modal-mason .desktop .info-hotspot-modal {
 	display: none;
 }
 
-.info-hotspot-modal {
+#modal-mason .info-hotspot-modal {
 	top: 0;
 	left: 0;
 	position: absolute;
@@ -728,7 +728,7 @@ body.single-scene #sceneListToggle {
 
 }
 
-.info-hotspot-modal.visible {
+#modal-mason .info-hotspot-modal.visible {
 	opacity: 1;
 	visibility: visible;
 	-webkit-transition: opacity 0.2s ease-in-out,
@@ -738,7 +738,7 @@ body.single-scene #sceneListToggle {
 
 }
 
-.info-hotspot-modal .info-hotspot-header {
+#modal-mason .info-hotspot-modal .info-hotspot-header {
 	position: absolute;
 	top: 60px;
 	left: 10px;
@@ -751,24 +751,24 @@ body.single-scene #sceneListToggle {
 	background-color: rgba(227, 6, 19, 1) !important;
 }
 
-.info-hotspot-modal.visible .info-hotspot-header {
+#modal-mason .info-hotspot-modal.visible .info-hotspot-header {
 	opacity: 1;
 	-webkit-transition: opacity 0.3s ease-in-out 0.2s;
 	transition: opacity 0.3s ease-in-out 0.2s;
 }
 
-.info-hotspot-modal .info-hotspot-icon-wrapper {
+#modal-mason .info-hotspot-modal .info-hotspot-icon-wrapper {
 	width: 50px;
 	height: 50px;
 }
 
-.info-hotspot-modal .info-hotspot-icon {
+#modal-mason .info-hotspot-modal .info-hotspot-icon {
 	width: 90%;
 	height: 90%;
 	margin: 5%;
 }
 
-.info-hotspot-modal .info-hotspot-title-wrapper {
+#modal-mason .info-hotspot-modal .info-hotspot-title-wrapper {
 	position: absolute;
 	top: 0;
 	left: 50px;
@@ -778,14 +778,14 @@ body.single-scene #sceneListToggle {
 	padding: 0 10px;
 }
 
-.info-hotspot-modal .info-hotspot-title-wrapper:before {
+#modal-mason .info-hotspot-modal .info-hotspot-title-wrapper:before {
 	content: '';
 	display: inline-block;
 	vertical-align: middle;
 	height: 100%;
 }
 
-.info-hotspot-modal .info-hotspot-title {
+#modal-mason .info-hotspot-modal .info-hotspot-title {
 	display: inline-block;
 	vertical-align: middle;
 
@@ -795,7 +795,7 @@ body.single-scene #sceneListToggle {
 	user-select: text;
 }
 
-.info-hotspot-modal .info-hotspot-close-wrapper {
+#modal-mason .info-hotspot-modal .info-hotspot-close-wrapper {
 	position: absolute;
 	top: 0;
 	right: 0;
@@ -805,13 +805,13 @@ body.single-scene #sceneListToggle {
 	cursor: pointer;
 }
 
-.info-hotspot-modal .info-hotspot-close-icon {
+#modal-mason .info-hotspot-modal .info-hotspot-close-icon {
 	width: 70%;
 	height: 70%;
 	margin: 15%;
 }
 
-.info-hotspot-modal .info-hotspot-text {
+#modal-mason .info-hotspot-modal .info-hotspot-text {
 	position: absolute;
 	top: 110px;
 	left: 10px;
@@ -830,7 +830,7 @@ body.single-scene #sceneListToggle {
 	user-select: text;
 }
 
-.info-hotspot-modal.visible .info-hotspot-text {
+#modal-mason .info-hotspot-modal.visible .info-hotspot-text {
 	opacity: 1;
 	-webkit-transition: opacity 0.3s ease-in-out 0.4s;
 	transition: opacity 0.3s ease-in-out 0.4s;
@@ -838,7 +838,7 @@ body.single-scene #sceneListToggle {
 
 /* View control buttons */
 
-.viewControlButton {
+#modal-mason .viewControlButton {
 	display: none;
 	position: absolute;
 	bottom: 0;
@@ -850,18 +850,18 @@ body.single-scene #sceneListToggle {
 	background-color: rgba(103, 115, 131, 0.8);
 }
 
-body.view-control-buttons .viewControlButton {
+#fouille.view-control-buttons .viewControlButton {
 	display: block;
 }
 
 /* Hide controls when width is too small */
 @media (max-width: 600px) {
-	body.view-control-buttons .viewControlButton {
+	#fouille.view-control-buttons .viewControlButton {
 		display: none;
 	}
 }
 
-.viewControlButton .icon {
+#modal-mason .viewControlButton .icon {
 	position: absolute;
 	top: 5px;
 	right: 5px;
@@ -870,27 +870,27 @@ body.view-control-buttons .viewControlButton {
 }
 
 /* Center is at margin-left: -20px */
-.viewControlButton-1 {
+#modal-mason .viewControlButton-1 {
 	margin-left: -145px;
 }
 
-.viewControlButton-2 {
+#modal-mason .viewControlButton-2 {
 	margin-left: -95px;
 }
 
-.viewControlButton-3 {
+#modal-mason .viewControlButton-3 {
 	margin-left: -45px;
 }
 
-.viewControlButton-4 {
+#modal-mason .viewControlButton-4 {
 	margin-left: 5px;
 }
 
-.viewControlButton-5 {
+#modal-mason .viewControlButton-5 {
 	margin-left: 55px;
 }
 
-.viewControlButton-6 {
+#modal-mason .viewControlButton-6 {
 	margin-left: 105px;
 }
 
@@ -907,7 +907,7 @@ body.view-control-buttons .viewControlButton {
 
 /* SPECIAL FOR THIS SCENE */
 
-#point-1 {
+#modal-mason #point-1 {
 	position: absolute;
 	background-color: red;
 	top: 12.5%;
@@ -918,7 +918,7 @@ body.view-control-buttons .viewControlButton {
 	z-index: 30;
 }
 
-#point-2 {
+#modal-mason #point-2 {
 	position: absolute;
 	background-color: red;
 	top: 21%;
@@ -929,7 +929,7 @@ body.view-control-buttons .viewControlButton {
 	z-index: 30;
 }
 
-#webcam {
+#modal-mason #webcam {
 	position: absolute;
 	top: 12.5%;
 	left: 61%;
@@ -940,7 +940,7 @@ body.view-control-buttons .viewControlButton {
 	z-index: 30;
 }
 
-.img-vertical {
+#modal-mason .img-vertical {
 	width: 35% !important;
 }
 
@@ -1003,7 +1003,7 @@ body.view-control-buttons .viewControlButton {
 
 }
 
-.blink_me {
+#modal-mason .blink_me {
 	animation: blinker 1s linear infinite;
 }
 
@@ -1016,7 +1016,7 @@ body.view-control-buttons .viewControlButton {
 
 
 
-.btn-red {
+#modal-mason .btn-red {
 	margin-top: 1em;
 	margin-bottom: 1em;
 	box-shadow: inset 0px 1px 0px 0px #cf866c;
@@ -1034,7 +1034,7 @@ body.view-control-buttons .viewControlButton {
 	transition: all 0.3s ease-in;
 }
 
-.btn-red:hover {
+#modal-mason .btn-red:hover {
 	background: linear-gradient(to bottom, #bc3315 5%, #d0451b 100%);
 	background-color: #bc3315;
 }
