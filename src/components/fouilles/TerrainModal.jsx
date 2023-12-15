@@ -1,41 +1,41 @@
-import { MarzipanoInit } from '../../utils/const/marzipanoInit';
-import { useEffect, useRef } from 'react';
-import PropTypes from 'prop-types';
-import '../../assets/fouilles/terrain/style.css';
-import data from '../../assets/fouilles/terrain/data';
+import { MarzipanoInit } from '../../utils/const/marzipanoInit'
+import { useEffect, useRef } from 'react'
+import PropTypes from 'prop-types'
+import '../../assets/fouilles/terrain/style.css'
+import data from '../../assets/fouilles/terrain/data'
 
-function ChantierModal({ onClose }) {
-  const panoRef = useRef(null);
-  const viewerRef = useRef(null);
-  const arrivalTerrain = useRef(sessionStorage.getItem('arrival_terrain'));
+function TerrainModal({ onClose }) {
+  const panoRef = useRef(null)
+  const viewerRef = useRef(null)
+  const arrivalTerrain = useRef(sessionStorage.getItem('arrival_terrain'))
 
   const songStarter = () => {
     if (!arrivalTerrain.current) {
-      setTimeout(() => document.getElementById('arrival').play(), 1500);
+      setTimeout(() => document.getElementById('arrival').play(), 1500)
     }
-  };
+  }
 
   const openDoor = async () => {
-    const fouilleElement = document.getElementById('fouille');
-    const videoContainerElement = document.getElementById('video-container');
-    const videoElement = document.getElementById('video');
+    const fouilleElement = document.getElementById('fouille')
+    const videoContainerElement = document.getElementById('video-container')
+    const videoElement = document.getElementById('video')
 
-    const commentAudio = document.getElementById('comment');
+    const commentAudio = document.getElementById('comment')
     if (commentAudio) {
-      commentAudio.pause();
+      commentAudio.pause()
     }
-    const arrivalAudio = document.getElementById('arrival');
+    const arrivalAudio = document.getElementById('arrival')
     if (arrivalAudio) {
-      arrivalAudio.pause();
+      arrivalAudio.pause()
     }
 
-    fouilleElement.style.display = 'none';
-    videoContainerElement.style.display = 'block';
-    videoElement.play();
+    fouilleElement.style.display = 'none'
+    videoContainerElement.style.display = 'block'
+    videoElement.play()
 
-    let token = localStorage.getItem('token');
+    let token = localStorage.getItem('token')
     if (!token || token === 'null') {
-        alert("Erreur de communication avec l'app détectivebox : Token vide");
+        alert("Erreur de communication avec l'app détectivebox : Token vide")
         return
     }
 
@@ -43,7 +43,7 @@ function ChantierModal({ onClose }) {
       const headers = {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
-      };
+      }
 
       const response = await fetch(
         'https://api2.detectivebox.fr/history/1?id=box1video2',
@@ -52,7 +52,7 @@ function ChantierModal({ onClose }) {
           headers,
           body: JSON.stringify({ status: true }),
         }
-      );
+      )
 
       const response2 = await fetch(
         'https://api2.detectivebox.fr/history/1?id=box1document2',
@@ -61,7 +61,7 @@ function ChantierModal({ onClose }) {
           headers,
           body: JSON.stringify({ status: true }),
         }
-      );
+      )
 
       const response3 = await fetch(
         'https://api2.detectivebox.fr/history/1?id=box1document7',
@@ -70,82 +70,82 @@ function ChantierModal({ onClose }) {
           headers,
           body: JSON.stringify({ status: true }),
         }
-      );
+      )
 
       if (!response.ok) {
         alert(
           `Erreur de communication avec le serveur: ${response.status} - ${
             response.statusText || 'Unknown'
           }`
-        );
+        )
       } else if (!response2.ok) {
         alert(
           `Erreur de communication avec le serveur: ${response2.status} - ${
             response2.statusText || 'Unknown'
           }`
-        );
+        )
       } else if (!response3.ok) {
         alert(
           `Erreur de communication avec le serveur: ${response3.status} - ${
             response3.statusText || 'Unknown'
           }`
-        );
+        )
       } else {
-        // alert('Rendez-vous sur l\'application pour la suite de l\'enquête');
+        // alert('Rendez-vous sur l\'application pour la suite de l\'enquête')
       }
     } catch (error) {
-      console.error('An error occurred:', error);
+      console.error('An error occurred:', error)
     }
-  };
+  }
 
   const terrainInit = () => {
-    const closeImgElements = document.querySelectorAll('.close-img');
+    const closeImgElements = document.querySelectorAll('.close-img')
     closeImgElements.forEach((element) => {
       element.onclick = () => {
-        const imgElements = document.querySelectorAll('.img');
+        const imgElements = document.querySelectorAll('.img')
         imgElements.forEach((imgElement) => {
-          imgElement.style.display = 'none';
-        });
-      };
-    });
+          imgElement.style.display = 'none'
+        })
+      }
+    })
 
     const watchClick = (e) => {
       document.querySelectorAll('.img').forEach((imgElement) => {
-        imgElement.style.display = 'none';
-      });
+        imgElement.style.display = 'none'
+      })
 
-      const id = e.target.getAttribute('id');
+      const id = e.target.getAttribute('id')
       if (id == 'door') {
         openDoor() 
       } else {
-        document.getElementById('img-' + id).style.display = 'block';
+        document.getElementById('img-' + id).style.display = 'block'
         if (id == 'see2') {
-          const arrivalAudio = document.getElementById('arrival');
+          const arrivalAudio = document.getElementById('arrival')
           if (arrivalAudio) {
-            arrivalAudio.volume = 0;
+            arrivalAudio.volume = 0
           }
-          const commentAudio = document.getElementById('comment');
+          const commentAudio = document.getElementById('comment')
           if (commentAudio && commentAudio.getAttribute('src') !== '') {
-            commentAudio.play();
+            commentAudio.play()
           }
           commentAudio.addEventListener('ended', () => {
-            commentAudio.setAttribute('src', '');
-          });
+            commentAudio.setAttribute('src', '')
+          })
         }
       }
-    };
+    }
 
-    const watchElements = document.querySelectorAll('.watch');
+    const watchElements = document.querySelectorAll('.watch')
     watchElements.forEach((element) => {
-      element.onclick = watchClick;
-    });
+      element.onclick = watchClick
+    })
 
-    sessionStorage.setItem('arrival_terrain', '1');
-  };
+    sessionStorage.setItem('arrival_terrain', '1')
+  }
 
-  useEffect(() => MarzipanoInit(panoRef, viewerRef, data, 'terrain'), []);
-  useEffect(terrainInit, []);
-  useEffect(songStarter, []);
+  useEffect(() => MarzipanoInit(panoRef, viewerRef, data, 'terrain'), [])
+  useEffect(songStarter, [])
+  useEffect(terrainInit, [])
 
   return (
     <div
@@ -246,14 +246,14 @@ function ChantierModal({ onClose }) {
         </button>
       </div>
     </div>
-  );
+  )
 }
 
-ChantierModal.propTypes = {
+TerrainModal.propTypes = {
   onClose: PropTypes.func.isRequired,
-};
+}
 
-export default ChantierModal;
+export default TerrainModal
 
 /*
 <button

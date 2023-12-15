@@ -17,9 +17,7 @@ import {
   getHistoryByBox,
   updateObjectives,
 } from '../utils/hooks/useApi.js'
-import ChantierModal from '../components/fouilles/ChantierModal.jsx'
-import TerrainModal from '../components/fouilles/TerrainModal.jsx'
-import PlanqueModal from '../components/fouilles/PlanqueModal.jsx'
+import { useLieu } from '../utils/hooks/useLieu.jsx'
 
 const Raphaelle = ({ closeAgentPage }) => {
   const { currentBox } = useContext(BoxContext)
@@ -93,9 +91,7 @@ const Raphaelle = ({ closeAgentPage }) => {
   const [objectif31, setObjectif31] = useState('')
   const [objectif32, setObjectif32] = useState('')
   const [box3audio3, setBox3Audio3] = useState(false)
-  const [chantierModalOpen, setChantierModalOpen] = useState(false)
-  const [terrainModalOpen, setTerrainModalOpen] = useState(false)
-  const [planqueModalOpen, setPlanqueModalOpen] = useState(false)
+  const { renderLieu, setLieu, setLieuModalOpen } = useLieu()
 
   // EXPLICATION : Fonction pour slugifier l'input Adresse des joueurs (lettre et chiffres ok)
   const slugifyAdresse = (input) => {
@@ -345,42 +341,12 @@ const Raphaelle = ({ closeAgentPage }) => {
     )
   }
 
-  const renderChantier = () => {
-    return (
-      chantierModalOpen && (
-        <ChantierModal onClose={() => setChantierModalOpen(false)} />
-      )
-    )
-  }
-  const renderTerrain = () => {
-    return (
-      terrainModalOpen && (
-        <TerrainModal onClose={() => setTerrainModalOpen(false)} />
-      )
-    )
-  }
-  const renderPlanque = () => {
-    return (
-      planqueModalOpen && (
-        <PlanqueModal onClose={() => setPlanqueModalOpen(false)} />
-      )
-    )
-  }
-
   // EXPLICATION : la visite du lieu box2lieu3 ouvre l'objectif 2 de la box 2 et le renfort 2
   // EXPLICATION : la visite du lieu box2lieu2 ouvre le renfort 6 et ferme le renfort 5
   const openLieu = async (answerId, asnwerAsk) => {
     await updateHistory(token, currentBox, answerId)
     //await updateCharactersById(token, 4, currentBox, asnwerAsk)
-    if (answerId == 'box1lieu1') {
-      setChantierModalOpen(true)
-    }
-    if (answerId == 'box1lieu2') {
-      setTerrainModalOpen(true)
-    }
-    if (answerId == 'box1lieu3') {
-      setPlanqueModalOpen(true)
-    }
+
     if (answerId == 'box2lieu1') {
       await updateHistory(token, 2, 'box2document5')
     }
@@ -410,6 +376,8 @@ const Raphaelle = ({ closeAgentPage }) => {
     }
 
     //window.open(answer.src + '/?token=' + token, '_blank')
+    setLieu(answerId)
+    setLieuModalOpen(true)
     actionToggleDataHistory()
     actionToggleDataRaphaelle()
     // actionTogglePolling(true)
@@ -446,9 +414,7 @@ const Raphaelle = ({ closeAgentPage }) => {
   return (
     <>
       {modal ? renderModal() : ''}
-      {renderChantier()}
-      {renderTerrain()}
-      {renderPlanque()}
+      {renderLieu()}
       <audio autoPlay>
         <source
           src={urlApi.cdn() + catchphrase[randomNumber]}

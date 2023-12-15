@@ -1,154 +1,154 @@
-import { MarzipanoInit } from '../../utils/const/marzipanoInit';
-import { useEffect, useRef } from 'react';
-import PropTypes from 'prop-types';
-import '../../assets/fouilles/chantier/style.css';
-import data from '../../assets/fouilles/chantier/data';
+import { MarzipanoInit } from '../../utils/const/marzipanoInit'
+import { useEffect, useRef } from 'react'
+import PropTypes from 'prop-types'
+import '../../assets/fouilles/chantier/style.css'
+import data from '../../assets/fouilles/chantier/data'
 
 function ChantierModal({ onClose }) {
-  const panoRef = useRef(null);
-  const viewerRef = useRef(null);
-  const lockInput = useRef('');
+  const panoRef = useRef(null)
+  const viewerRef = useRef(null)
+  const lockInput = useRef('')
 
-  const isSongPlaying = useRef(false);
-  const isArrivalPlaying = useRef(false);
-  const arrivalChantier = useRef(sessionStorage.getItem('arrival_chantier'));
+  const isSongPlaying = useRef(false)
+  const isArrivalPlaying = useRef(false)
+  const arrivalChantier = useRef(sessionStorage.getItem('arrival_chantier'))
 
   const songStarter = () => {
     if (!arrivalChantier.current) {
       if (!isArrivalPlaying.current) {
-        setTimeout(() => document.getElementById('arrival').play(), 3000);
-        isArrivalPlaying.current = true;
+        setTimeout(() => document.getElementById('arrival').play(), 3000)
+        isArrivalPlaying.current = true
       }
     }
     if (!isSongPlaying.current) {
-      document.getElementById('song').play();
-      document.getElementById('song').volume = 0.1;
-      isSongPlaying.current = true;
+      document.getElementById('song').play()
+      document.getElementById('song').volume = 0.1
+      isSongPlaying.current = true
     }
-  };
+  }
 
   const chantierInit = () => {
-    const closeImgs = document.querySelectorAll('.close-img');
+    const closeImgs = document.querySelectorAll('.close-img')
     closeImgs.forEach((closeImg) => {
       closeImg.onclick = () => {
         document.querySelectorAll('.img').forEach((img) => {
-          img.style.display = 'none';
-        });
-      };
-    });
+          img.style.display = 'none'
+        })
+      }
+    })
 
-    const watchElements = document.querySelectorAll('.watch');
+    const watchElements = document.querySelectorAll('.watch')
     watchElements.forEach((watch) => {
       watch.onclick = () => {
         document.querySelectorAll('.img').forEach((img) => {
-          img.style.display = 'none';
-        });
-        const id = watch.id;
-        document.getElementById('img-' + id).style.opacity = 1;
-        document.getElementById('img-' + id).style.visibility = 'visible';
-      };
-    });
+          img.style.display = 'none'
+        })
+        const id = watch.id
+        document.getElementById('img-' + id).style.opacity = 1
+        document.getElementById('img-' + id).style.visibility = 'visible'
+      }
+    })
 
     const updateSongVolume = () => {
       const location = document
         .querySelector('.current')
-        .getAttribute('data-id');
-      console.log(location);
+        .getAttribute('data-id')
+      console.log(location)
 
-      const songElement = document.getElementById('song');
+      const songElement = document.getElementById('song')
 
       if (location === '0-101---chantier1') {
-        songElement.play();
-        songElement.volume = 0.1;
+        songElement.play()
+        songElement.volume = 0.1
       } else if (location === '1-101---chantier2') {
-        songElement.volume = 0.3;
+        songElement.volume = 0.3
       } else if (location === '3-101---chantier4') {
-        songElement.volume = 0.2;
+        songElement.volume = 0.2
       } else if (location === '2-101---chantier3') {
-        songElement.volume = 0.8;
+        songElement.volume = 0.8
       }
-    };
+    }
 
-    const linkHotspots = document.querySelectorAll('.link-hotspot');
+    const linkHotspots = document.querySelectorAll('.link-hotspot')
     linkHotspots.forEach((linkHotspot) => {
       linkHotspot.addEventListener('click', updateSongVolume)
       console.log(linkHotspot.onclick)
-    });
+    })
 
-    const lienMalle = document.getElementById('lien-malle');
+    const lienMalle = document.getElementById('lien-malle')
     lienMalle.onclick = (event) => {
-      event.preventDefault();
+      event.preventDefault()
 
-      document.getElementById('song').volume = 0;
-      document.getElementById('arrival').pause();
-      document.getElementById('fouille').style.display = 'none';
-      document.getElementById('malle-container').style.display = 'block';
-      document.getElementById('malle-mp3').play();
-    };
+      document.getElementById('song').volume = 0
+      document.getElementById('arrival').pause()
+      document.getElementById('fouille').style.display = 'none'
+      document.getElementById('malle-container').style.display = 'block'
+      document.getElementById('malle-mp3').play()
+    }
 
-    const items = document.querySelectorAll('.item');
+    const items = document.querySelectorAll('.item')
 
     const lockAnimation = (targetElement) => {
       document.querySelectorAll('.interupted').forEach((element) => {
         element.pause(); // Stop playing
         element.currentTime = 0; // Reset time
-      });
+      })
 
-      targetElement.style.backgroundColor = 'darkred';
+      targetElement.style.backgroundColor = 'darkred'
       setTimeout(() => {
-        targetElement.style.backgroundColor = 'rgba(0,0,0,0.5)';
-      }, 200);
-    };
+        targetElement.style.backgroundColor = 'rgba(0,0,0,0.5)'
+      }, 200)
+    }
 
     const reset = (e) => {
-      const targetElement = e.target;
-      lockAnimation(targetElement);
-      lockInput.current = '';
-      document.getElementById('reset-sound').play();
-    };
+      const targetElement = e.target
+      lockAnimation(targetElement)
+      lockInput.current = ''
+      document.getElementById('reset-sound').play()
+    }
 
     const transition = () => {
-      document.getElementById('malle-mp3').volume = 0;
+      document.getElementById('malle-mp3').volume = 0
       items.forEach((item) => {
-        item.style.display = 'none';
-      });
-      document.getElementById('malle-container').style.display = 'none';
-      document.getElementById('open-malle-container').style.display = 'block';
-      document.getElementById('malle-opened').play();
-    };
+        item.style.display = 'none'
+      })
+      document.getElementById('malle-container').style.display = 'none'
+      document.getElementById('open-malle-container').style.display = 'block'
+      document.getElementById('malle-opened').play()
+    }
 
     const input = (e) => {
-      const targetElement = e.target;
-      lockAnimation(targetElement);
-      document.getElementById('click').play();
+      const targetElement = e.target
+      lockAnimation(targetElement)
+      document.getElementById('click').play()
 
-      lockInput.current += targetElement.id;
+      lockInput.current += targetElement.id
       if (
         lockInput.current === 'uprightdownrightdown' ||
         lockInput.current === 'upuprightrightdowndownrightrightdowndown' ||
         lockInput.current ===
           'upupupuprightrightdowndownrightrightrightdowndown'
       ) {
-        document.getElementById('malle-mp3').pause();
-        document.getElementById('open-malle').play();
-        document.getElementById('open-malle').onended = transition;
+        document.getElementById('malle-mp3').pause()
+        document.getElementById('open-malle').play()
+        document.getElementById('open-malle').onended = transition
       }
-    };
+    }
 
     items.forEach((item) => {
-      console.log(item);
+      console.log(item)
       if (item.id === 'reset') {
-        item.onclick = reset;
+        item.onclick = reset
       } else {
-        item.onclick = input;
+        item.onclick = input
       }
-    });
+    })
 
     const endHandle = async () => {
-      const token = localStorage.getItem('token');
+      const token = localStorage.getItem('token')
       if (!token) {
-        alert("Erreur de communication avec l'app détectivebox : Token vide");
-        return;
+        alert("Erreur de communication avec l'app détectivebox : Token vide")
+        return
       }
       const response = await fetch(
         'https://api2.detectivebox.fr/history/1?id=box1document1',
@@ -160,28 +160,28 @@ function ChantierModal({ onClose }) {
           },
           body: JSON.stringify({ status: true }),
         }
-      );
-      console.table(response);
+      )
+      console.table(response)
       if (!response.ok) {
         alert(
           'Erreur de communication avec le serveur: ' +
             response.status +
             (response.statusText !== '' ? ' - ' + response.statusText : '')
-        );
+        )
       } else {
-        alert("Rendez-vous sur l'application pour la suite de l'enquête");
+        alert("Rendez-vous sur l'application pour la suite de l'enquête")
       }
-    };
+    }
 
-    const malleOpened = document.getElementById('malle-opened');
-    malleOpened.onended = endHandle;
+    const malleOpened = document.getElementById('malle-opened')
+    malleOpened.onended = endHandle
 
-    sessionStorage.setItem('arrival_chantier', '1');
-  };
+    sessionStorage.setItem('arrival_chantier', '1')
+  }
 
-  useEffect(() => MarzipanoInit(panoRef, viewerRef, data, 'chantier'), []);
-  useEffect(chantierInit, []);
-  useEffect(songStarter, []);
+  useEffect(() => MarzipanoInit(panoRef, viewerRef, data, 'chantier'), [])
+  useEffect(chantierInit, [])
+  useEffect(songStarter, [])
 
   return (
     <div
@@ -442,11 +442,11 @@ function ChantierModal({ onClose }) {
         </button>
       </div>
     </div>
-  );
+  )
 }
 
 ChantierModal.propTypes = {
   onClose: PropTypes.func.isRequired,
-};
+}
 
-export default ChantierModal;
+export default ChantierModal

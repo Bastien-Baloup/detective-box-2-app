@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import '../../assets/fouilles/planque/style.css'
 import data from '../../assets/fouilles/planque/data'
 
-function ChantierModal({ onClose }) {
+function PlanqueModal({ onClose }) {
   const panoRef = useRef(null)
   const viewerRef = useRef(null)
   const arrivalPlanque = useRef(sessionStorage.getItem('arrival_planque'))
@@ -206,11 +206,11 @@ function ChantierModal({ onClose }) {
   )
 }
 
-ChantierModal.propTypes = {
+PlanqueModal.propTypes = {
   onClose: PropTypes.func.isRequired,
 }
 
-export default ChantierModal
+export default PlanqueModal
 
 /*
 <button

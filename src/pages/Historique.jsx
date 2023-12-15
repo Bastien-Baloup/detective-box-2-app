@@ -11,6 +11,8 @@ import Cross from "../assets/icons/Icon_Cross-white.svg";
 import { BoxContext, DataContext, AmbianceContext } from "../utils/context/fetchContext";
 import { useContext, useEffect } from "react";
 import { getHistoryByBox } from "../utils/hooks/useApi";
+import { useLieu } from '../utils/hooks/useLieu.jsx'
+
 
 function Historique() {
 	const filtersType = ["Document", "Vidéo", "Audio", "Lieu", "Archive"];
@@ -19,6 +21,12 @@ function Historique() {
 	const { currentBox } = useContext(BoxContext);
 	const { fetchPreviousStateNappe } = useContext(AmbianceContext);
 	const { toggleDataHistory } = useContext(DataContext);
+  const { renderLieu, setLieu, setLieuModalOpen } = useLieu()
+
+	const openLieu = (lieu) => {
+		setLieu(lieu)
+		setLieuModalOpen(true)
+	}
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -179,7 +187,7 @@ function Historique() {
 						<p className="modal-objectif__title">Vous êtes sur de vouloir retourner sur le lieu {clue.title} ?</p>
 						<button
 							className="modal-objectif__button button--red"
-							onClick={() => window.open(clue.src + "/?token=" + token, "_blank")}
+							onClick={() => openLieu(clue.id)}
 						>
 							Explorer de nouveau
 						</button>
@@ -245,6 +253,7 @@ function Historique() {
 	return (
 		<main className="main__history">
 			{modal ? displayCorrespondingModal(selectedClue) : null}
+			{renderLieu()}
 			<div className="filter__wrapper">
 				<div className="filter--type__container">{displayFilterType()}</div>
 				<div className="filter--box__container">{displayFilterBox()}</div>
