@@ -1,7 +1,7 @@
 import Marzipano from 'marzipano'
 import bowser from 'bowser'
 
-export const MarzipanoInit = (panoRef, viewerRef, data, placeName) => {
+const MarzipanoInit = (panoRef, viewerRef, data, placeName) => {
   // Grab elements from DOM.
   const panoElement = panoRef.current
   const sceneElements = document.querySelectorAll('#sceneList .scene')
@@ -288,3 +288,4 @@ export const MarzipanoInit = (panoRef, viewerRef, data, placeName) => {
     viewerRef.current.destroy()
   }
 }
+export default MarzipanoInit

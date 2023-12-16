@@ -1,4 +1,4 @@
-import { MarzipanoInit } from "../../utils/const/marzipanoInit";
+import MarzipanoInit from "../../utils/const/marzipanoInit";
 import { useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import "../../assets/fouilles/appartement/style.css";

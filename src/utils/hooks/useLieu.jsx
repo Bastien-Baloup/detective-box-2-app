@@ -7,6 +7,7 @@ import MasonModal from '../../components/fouilles/MasonModal.jsx'
 import AppartemenModal from '../../components/fouilles/AppartementModal.jsx'
 import PrisonModal from '../../components/fouilles/PrisonModal.jsx'
 import ForetModal from '../../components/fouilles/ForetModal.jsx'
+import CelineModal from '../../components/fouilles/CelineModal.jsx'
 
 export const useLieu = () => {
   const [LieuModalOpen, setLieuModalOpen] = useState(false)
@@ -37,15 +38,14 @@ export const useLieu = () => {
         LieuModal = ForetModal
         break
       case 'box3lieu2':
-        //LieuModal = PrisonModal
+        LieuModal = CelineModal
         break
       case 'box3lieu3':
-        //LieuModal = PrisonModal
+        //LieuModal = CaveModal
         break
     }
     return (
-      LieuModalOpen && <LieuModal onClose={() => setLieuModalOpen(false)} />
-      
+      LieuModalOpen && <LieuModal onClose={() => setLieuModalOpen(false)} /> 
     )
   }
 

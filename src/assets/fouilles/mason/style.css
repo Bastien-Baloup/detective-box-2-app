@@ -945,21 +945,21 @@
 }
 
 @media (max-width: 900px) {
-	#webcam {
+	#modal-mason #webcam {
 		top: 6%;
 		left: 61.3%;
 		height: 15%;
 		width: 10%;
 	}
 
-	#point-1 {
+	#modal-mason #point-1 {
 		height: 2px;
 		width: 2px;
 		top: 8%;
 		left: 65%;
 	}
 
-	#point-2 {
+	#modal-mason #point-2 {
 		height: 2px;
 		width: 2px;
 		top: 12%;
@@ -967,14 +967,14 @@
 
 	}
 
-	.img-vertical {
+	#modal-mason .img-vertical {
 		width: 90% !important;
 	}
 }
 
 @media only screen and (max-width: 1000px) and (min-width: 700px) {
 
-	#point-2 {
+	#modal-mason #point-2 {
 		height: 4px;
 		width: 4px;
 		top: 14%;
@@ -987,14 +987,14 @@
 
 @media only screen and (max-width: 1200px) and (min-width: 900px) {
 
-	#point-1 {
+	#modal-mason point-1 {
 		height: 4px;
 		width: 4px;
 		top: 11%;
 		left: 65%;
 	}
 
-	#point-2 {
+	#modal-mason #point-2 {
 		height: 5px;
 		width: 5px;
 		top: 18%;
