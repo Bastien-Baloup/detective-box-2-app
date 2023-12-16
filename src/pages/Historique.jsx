@@ -26,6 +26,7 @@ function Historique() {
 	const openLieu = (lieu) => {
 		setLieu(lieu)
 		setLieuModalOpen(true)
+		setModal(false)
 	}
 
 	useEffect(() => {

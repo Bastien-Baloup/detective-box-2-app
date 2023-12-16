@@ -277,6 +277,11 @@ export const MarzipanoInit = (panoRef, viewerRef, data, placeName) => {
     el.onclick = () => switchScene(scene)
   })
 
+  const reset = document.getElementById('reset-lieu')
+    if (reset) {
+      reset.onclick = () => switchScene(scenes[0])
+    }
+
   // Display the initial scene.
   switchScene(scenes[0])
   return () => {

@@ -1,4 +1,4 @@
-var APP_DATA = {
+const data = {
 	"scenes": [
 		{
 			"id": "0-prison",
@@ -58,3 +58,4 @@ var APP_DATA = {
 		"viewControlButtons": false
 	}
 };
+export default data

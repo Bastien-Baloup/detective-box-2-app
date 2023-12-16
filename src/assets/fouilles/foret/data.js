@@ -1,4 +1,4 @@
-var APP_DATA = {
+const data = {
 	"scenes": [
 		{
 			"id": "0-chapelle",
@@ -32,10 +32,10 @@ var APP_DATA = {
         }],
 			"infoHotspots": [
 				{
-					"yaw": -2.0531230933046693,
-					"pitch": 0.13003349988437236,
-					"title": "<span style='color:black !important'>Inscription</span>",
-					"text": "<span style='color:black !important'><a target=_blank href='plaque.jpg'>Observer de plus près</a></span>"
+					"yaw": -2.053123093304669,
+					"pitch": 0.1300334998843723,
+					"title": `<span style='color:black !important'>Inscription</span>`,
+					"text": `<span style='color:black !important'><a target=_blank href='${import.meta.env.BASE_URL}fouilles/foret/plaque.jpg'>Observer de plus près</a></span>`
         }
       ]
     },
@@ -87,20 +87,20 @@ var APP_DATA = {
 				{
 					"yaw": -1.2719907363353276,
 					"pitch": -0.060869570426106634,
-					"title": "<span id='see1' class='watch'><img src='img/eye.png'></span>",
-					"text": "<span id='dig1' class='dig'><img src='img/shovel.png'>Creuser</span>"
+					"title": `<span id='see1' class='watch'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/eye.png'></span>`,
+					"text": `<span id='dig1' class='dig'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/shovel.png'>Creuser</span>`
         },
 				{
 					"yaw": 0.3522955104640122,
 					"pitch": -0.10465235661252059,
-					"title": "<span id='see3' class='watch'><img src='img/eye.png'></span>",
-					"text": "<span id='dig3' class='dig'><img src='img/shovel.png'>Creuser</span>"
+					"title": `<span id='see3' class='watch'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/eye.png'></span>`,
+					"text": `<span id='dig3' class='dig'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/shovel.png'>Creuser</span>`
         },
 				{
 					"yaw": -2.9894110759813017,
 					"pitch": -0.0853269672810466,
-					"title": "<span id='see2' class='watch'><img src='img/eye.png'></span>",
-					"text": "<span id='dig2' class='dig'><img src='img/shovel.png'>Creuser</span>"
+					"title": `<span id='see2' class='watch'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/eye.png'></span>`,
+					"text": `<span id='dig2' class='dig'><img src=${import.meta.env.BASE_URL}fouilles/foret/'img/shovel.png'>Creuser</span>`
         }
       ]
     },
@@ -158,26 +158,26 @@ var APP_DATA = {
 				{
 					"yaw": -2.2190079096443576,
 					"pitch": -0.0754420925088457,
-					"title": "<span id='see4' class='watch'><img src='img/eye.png'></span>",
-					"text": "<span id='dig4' class='dig'><img src='img/shovel.png'>Creuser</span>"
+					"title": `<span id='see4' class='watch'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/eye.png'></span>`,
+					"text": `<span id='dig4' class='dig'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/shovel.png'>Creuser</span>`
         },
 				{
 					"yaw": -1.1618756929208018,
 					"pitch": -0.15055087049849014,
-					"title": "<span id='see5' class='watch'><img src='img/eye.png'></span>",
-					"text": "<span id='dig5' class='dig'><img src='img/shovel.png'>Creuser</span>"
+					"title": `<span id='see5' class='watch'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/eye.png'></span>`,
+					"text": `<span id='dig5' class='dig'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/shovel.png'>Creuser</span>`
         },
 				{
 					"yaw": 0.0991414790134506,
 					"pitch": -0.10885446312326863,
-					"title": "<span id='see6' class='watch'><img src='img/eye.png'></span>",
-					"text": "<span id='dig6' class='dig'><img src='img/shovel.png'>Creuser</span>"
+					"title": `<span id='see6' class='watch'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/eye.png'></span>`,
+					"text": `<span id='dig6' class='dig'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/shovel.png'>Creuser</span>`
         },
 				{
 					"yaw": 1.3626228366074127,
 					"pitch": -0.06843002640631823,
-					"title": "<span id='see7' class='watch'><img src='img/eye.png'></span>",
-					"text": "<span id='dig7' class='dig'><img src='img/shovel.png'>Creuser</span>"
+					"title": `<span id='see7' class='watch'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/eye.png'></span>`,
+					"text": `<span id='dig7' class='dig'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/shovel.png'>Creuser</span>`
         }
       ]
     },
@@ -225,8 +225,8 @@ var APP_DATA = {
 					"target": "15"
         },
 				{
-					"yaw": -0.21374642479518606,
-					"pitch": 0.28431438661344437,
+					"yaw": -0.2137464247951860,
+					"pitch": 0.2843143866134443,
 					"rotation": 0,
 					"target": "11"
         },
@@ -241,32 +241,32 @@ var APP_DATA = {
 				{
 					"yaw": -2.6835901456439952,
 					"pitch": -0.23298581901103255,
-					"title": "<span id='see8' class='watch'><img src='img/eye.png'></span>",
-					"text": "<span id='dig8' class='dig'><img src='img/shovel.png'>Creuser</span>"
+					"title": `<span id='see8' class='watch'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/eye.png'></span>`,
+					"text": `<span id='dig8' class='dig'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/shovel.png'>Creuser</span>`
         },
 				{
 					"yaw": 2.8107226236781315,
 					"pitch": -0.05167697629200774,
-					"title": "<span id='see9' class='watch'><img src='img/eye.png'></span>",
-					"text": "<span id='dig9' class='dig'><img src='img/shovel.png'>Creuser</span>"
+					"title": `<span id='see9' class='watch'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/eye.png'></span>`,
+					"text": `<span id='dig9' class='dig'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/shovel.png'>Creuser</span>`
         },
 				{
 					"yaw": -1.932707027546547,
 					"pitch": 0.026245301106142094,
-					"title": "<span id='see10' class='watch'><img src='img/eye.png'></span>",
-					"text": "<span id='dig10' class='dig'><img src='img/shovel.png'>Creuser</span>"
+					"title": `<span id='see10' class='watch'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/eye.png'></span>`,
+					"text": `<span id='dig10' class='dig'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/shovel.png'>Creuser</span>`
         },
 				{
 					"yaw": -0.38374642479518606,
 					"pitch": 0.08431438661344437,
-					"title": "<span id='see11' class='watch'><img src='img/eye.png'></span>",
-					"text": "<span id='dig11' class='dig'><img src='img/shovel.png'>Creuser</span>"
+					"title": `<span id='see11' class='watch'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/eye.png'></span>`,
+					"text": `<span id='dig11' class='dig'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/shovel.png'>Creuser</span>`
         },
 				{
 					"yaw": 0.9184331807098971,
 					"pitch": 0.10828677340312787,
-					"title": "<span id='see12' class='watch'><img src='img/eye.png'></span>",
-					"text": "<span id='dig12' class='dig'><img src='img/shovel.png'>Creuser</span>"
+					"title": `<span id='see12' class='watch'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/eye.png'></span>`,
+					"text": `<span id='dig12' class='dig'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/shovel.png'>Creuser</span>`
         }
       ]
     },
@@ -324,26 +324,26 @@ var APP_DATA = {
 				{
 					"yaw": 0.9389823935066186,
 					"pitch": 0.16485702351919862,
-					"title": "<span id='see13' class='watch'><img src='img/eye.png'></span>",
-					"text": "<span id='dig13' class='dig'><img src='img/shovel.png'>Creuser</span>"
+					"title": `<span id='see13' class='watch'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/eye.png'></span>`,
+					"text": `<span id='dig13' class='dig'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/shovel.png'>Creuser</span>`
         },
 				{
 					"yaw": 2.8386484567356653,
 					"pitch": 0.07922784304537345,
-					"title": "<span id='see14' class='watch'><img src='img/eye.png'></span>",
-					"text": "<span id='dig14' class='dig'><img src='img/shovel.png'>Creuser</span>"
+					"title": `<span id='see14' class='watch'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/eye.png'></span>`,
+					"text": `<span id='dig14' class='dig'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/shovel.png'>Creuser</span>`
         },
 				{
 					"yaw": -1.9354618866549362,
 					"pitch": 0.07803797845272342,
-					"title": "<span id='see15' class='watch'><img src='img/eye.png'></span>",
-					"text": "<span id='dig15' class='dig'><img src='img/shovel.png'>Creuser</span>"
+					"title": `<span id='see15' class='watch'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/eye.png'></span>`,
+					"text": `<span id='dig15' class='dig'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/shovel.png'>Creuser</span>`
         },
 				{
 					"yaw": -0.40351681328700373,
 					"pitch": 0.01894094315434991,
-					"title": "<span id='see16' class='watch'><img src='img/eye.png'></span>",
-					"text": "<span id='dig16' class='dig'><img src='img/shovel.png'>Creuser</span>"
+					"title": `<span id='see16' class='watch'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/eye.png'></span>`,
+					"text": `<span id='dig16' class='dig'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/shovel.png'>Creuser</span>`
         }
       ]
     },
@@ -401,26 +401,26 @@ var APP_DATA = {
 				{
 					"yaw": -0.8320062572081,
 					"pitch": -0.046153740125626896,
-					"title": "<span id='see17' class='watch'><img src='img/eye.png'></span>",
-					"text": "<span id='dig17' class='dig'><img src='img/shovel.png'>Creuser</span>"
+					"title": `<span id='see17' class='watch'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/eye.png'></span>`,
+					"text": `<span id='dig17' class='dig'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/shovel.png'>Creuser</span>`
         },
 				{
 					"yaw": 0.1803789858206546,
 					"pitch": -0.05478984903348305,
-					"title": "<span id='see18' class='watch'><img src='img/eye.png'></span>",
-					"text": "<span id='dig18' class='dig'><img src='img/shovel.png'>Creuser</span>"
+					"title": `<span id='see18' class='watch'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/eye.png'></span>`,
+					"text": `<span id='dig18' class='dig'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/shovel.png'>Creuser</span>`
         },
 				{
 					"yaw": 0.7802155660756682,
 					"pitch": 0.007029071664458542,
-					"title": "<span id='see19' class='watch'><img src='img/eye.png'></span>",
-					"text": "<span id='dig19' class='dig'><img src='img/shovel.png'>Creuser</span>"
+					"title": `<span id='see19' class='watch'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/eye.png'></span>`,
+					"text": `<span id='dig19' class='dig'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/shovel.png'>Creuser</span>`
         },
 				{
 					"yaw": -2.804276851829247,
 					"pitch": -0.13046676990729011,
-					"title": "<span id='see20' class='watch'><img src='img/eye.png'></span>",
-					"text": "<span id='dig21' class='dig'><img src='img/shovel.png'>Creuser</span>"
+					"title": `<span id='see20' class='watch'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/eye.png'></span>`,
+					"text": `<span id='dig21' class='dig'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/shovel.png'>Creuser</span>`
         }
       ]
     },
@@ -478,26 +478,26 @@ var APP_DATA = {
 				{
 					"yaw": -0.7199642744947656,
 					"pitch": -0.17714615761612862,
-					"title": "<span id='see22' class='watch'><img src='img/eye.png'></span>",
-					"text": "<span id='dig22' class='dig'><img src='img/shovel.png'>Creuser</span>"
+					"title": `<span id='see22' class='watch'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/eye.png'></span>`,
+					"text": `<span id='dig22' class='dig'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/shovel.png'>Creuser</span>`
         },
 				{
 					"yaw": 0.3141416770702925,
 					"pitch": -0.01983623592324335,
-					"title": "<span id='see23' class='watch'><img src='img/eye.png'></span>",
-					"text": "<span id='dig23' class='dig'><img src='img/shovel.png'>Creuser</span>"
+					"title": `<span id='see23' class='watch'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/eye.png'></span>`,
+					"text": `<span id='dig23' class='dig'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/shovel.png'>Creuser</span>`
         },
 				{
 					"yaw": 1.343390665111329,
 					"pitch": -0.08790267558482157,
-					"title": "<span id='see24' class='watch'><img src='img/eye.png'></span>",
-					"text": "<span id='dig24' class='dig'><img src='img/shovel.png'>Creuser</span>"
+					"title": `<span id='see24' class='watch'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/eye.png'></span>`,
+					"text": `<span id='dig24' class='dig'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/shovel.png'>Creuser</span>`
         },
 				{
 					"yaw": -1.9384426073408498,
 					"pitch": -0.08886039803384804,
-					"title": "<span id='see25' class='watch'><img src='img/eye.png'></span>",
-					"text": "<span id='dig25' class='dig'><img src='img/shovel.png'>Creuser</span>"
+					"title": `<span id='see25' class='watch'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/eye.png'></span>`,
+					"text": `<span id='dig25' class='dig'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/shovel.png'>Creuser</span>`
         }
       ]
     },
@@ -543,14 +543,14 @@ var APP_DATA = {
 				{
 					"yaw": -0.2511810173118292,
 					"pitch": -0.10524257644138046,
-					"title": "<span id='see26' class='watch'><img src='img/eye.png'></span>",
-					"text": "<span id='dig26' class='dig'><img src='img/shovel.png'>Creuser</span>"
+					"title": `<span id='see26' class='watch'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/eye.png'></span>`,
+					"text": `<span id='dig26' class='dig'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/shovel.png'>Creuser</span>`
         },
 				{
 					"yaw": -1.3840500270069214,
 					"pitch": 0.019370535251546528,
-					"title": "<span id='see27' class='watch'><img src='img/eye.png'></span>",
-					"text": "<span id='dig27' class='dig'><img src='img/shovel.png'>Creuser</span>"
+					"title": `<span id='see27' class='watch'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/eye.png'></span>`,
+					"text": `<span id='dig27' class='dig'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/shovel.png'>Creuser</span>`
         }
       ]
     },
@@ -608,26 +608,26 @@ var APP_DATA = {
 				{
 					"yaw": 0.11176229950946137,
 					"pitch": -0.14934108654806266,
-					"title": "<span id='see28' class='watch'><img src='img/eye.png'></span>",
-					"text": "<span id='dig28' class='dig'><img src='img/shovel.png'>Creuser</span>"
+					"title": `<span id='see28' class='watch'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/eye.png'></span>`,
+					"text": `<span id='dig28' class='dig'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/shovel.png'>Creuser</span>`
         },
 				{
 					"yaw": 1.355498620713421,
 					"pitch": -0.03969305556628022,
-					"title": "<span id='see29' class='watch'><img src='img/eye.png'></span>",
-					"text": "<span id='dig29' class='dig'><img src='img/shovel.png'>Creuser</span>"
+					"title": `<span id='see29' class='watch'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/eye.png'></span>`,
+					"text": `<span id='dig29' class='dig'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/shovel.png'>Creuser</span>`
         },
 				{
 					"yaw": -2.2092802669492553,
 					"pitch": -0.07433013069281813,
-					"title": "<span id='see30' class='watch'><img src='img/eye.png'></span>",
-					"text": "<span id='dig30' class='dig'><img src='img/shovel.png'>Creuser</span>"
+					"title": `<span id='see30' class='watch'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/eye.png'></span>`,
+					"text": `<span id='dig30' class='dig'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/shovel.png'>Creuser</span>`
         },
 				{
 					"yaw": 2.226989133383719,
 					"pitch": -0.06108119050789185,
-					"title": "<span id='see31' class='watch'><img src='img/eye.png'></span>",
-					"text": "<span id='dig31' class='dig'><img src='img/shovel.png'>Creuser</span>"
+					"title": `<span id='see31' class='watch'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/eye.png'></span>`,
+					"text": `<span id='dig31' class='dig'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/shovel.png'>Creuser</span>`
         }
       ]
     },
@@ -679,20 +679,20 @@ var APP_DATA = {
 				{
 					"yaw": -1.2719907363353276,
 					"pitch": -0.060869570426106634,
-					"title": "<span id='see1' class='watch'><img src='img/eye.png'></span>",
-					"text": "<span id='dig1' class='dig'><img src='img/shovel.png'>Creuser</span>"
+					"title": `<span id='see1' class='watch'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/eye.png'></span>`,
+					"text": `<span id='dig1' class='dig'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/shovel.png'>Creuser</span>`
         },
 				{
 					"yaw": 0.3522955104640122,
 					"pitch": -0.10465235661252059,
-					"title": "<span id='see3' class='watch'><img src='img/eye.png'></span>",
-					"text": "<span id='dig3' class='dig'><img src='img/shovel.png'>Creuser</span>"
+					"title": `<span id='see3' class='watch'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/eye.png'></span>`,
+					"text": `<span id='dig3' class='dig'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/shovel.png'>Creuser</span>`
         },
 				{
 					"yaw": -2.9894110759813017,
 					"pitch": -0.0853269672810466,
-					"title": "<span id='see2' class='watch'><img src='img/eye.png'></span>",
-					"text": "<span id='dig2' class='dig'><img src='img/shovel.png'>Creuser</span>"
+					"title": `<span id='see2' class='watch'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/eye.png'></span>`,
+					"text": `<span id='dig2' class='dig'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/shovel.png'>Creuser</span>`
         }
       ]
     },
@@ -750,26 +750,26 @@ var APP_DATA = {
 				{
 					"yaw": -2.2190079096443576,
 					"pitch": -0.0754420925088457,
-					"title": "<span id='see4' class='watch'><img src='img/eye.png'></span>",
-					"text": "<span id='dig4' class='dig'><img src='img/shovel.png'>Creuser</span>"
+					"title": `<span id='see4' class='watch'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/eye.png'></span>`,
+					"text": `<span id='dig4' class='dig'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/shovel.png'>Creuser</span>`
         },
 				{
 					"yaw": -1.1618756929208018,
 					"pitch": -0.15055087049849014,
-					"title": "<span id='see5' class='watch'><img src='img/eye.png'></span>",
-					"text": "<span id='dig5' class='dig'><img src='img/shovel.png'>Creuser</span>"
+					"title": `<span id='see5' class='watch'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/eye.png'></span>`,
+					"text": `<span id='dig5' class='dig'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/shovel.png'>Creuser</span>`
         },
 				{
 					"yaw": 0.0991414790134506,
 					"pitch": -0.10885446312326863,
-					"title": "<span id='see6' class='watch'><img src='img/eye.png'></span>",
-					"text": "<span id='dig6' class='dig'><img src='img/shovel.png'>Creuser</span>"
+					"title": `<span id='see6' class='watch'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/eye.png'></span>`,
+					"text": `<span id='dig6' class='dig'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/shovel.png'>Creuser</span>`
         },
 				{
 					"yaw": 1.3626228366074127,
 					"pitch": -0.06843002640631823,
-					"title": "<span id='see7' class='watch'><img src='img/eye.png'></span>",
-					"text": "<span id='dig7' class='dig'><img src='img/shovel.png'>Creuser</span>"
+					"title": `<span id='see7' class='watch'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/eye.png'></span>`,
+					"text": `<span id='dig7' class='dig'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/shovel.png'>Creuser</span>`
         }
       ]
     },
@@ -833,32 +833,32 @@ var APP_DATA = {
 				{
 					"yaw": -2.6835901456439952,
 					"pitch": -0.23298581901103255,
-					"title": "<span id='see8' class='watch'><img src='img/eye.png'></span>",
-					"text": "<span id='dig8' class='dig'><img src='img/shovel.png'>Creuser</span>"
+					"title": `<span id='see8' class='watch'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/eye.png'></span>`,
+					"text": `<span id='dig8' class='dig'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/shovel.png'>Creuser</span>`
         },
 				{
 					"yaw": 2.8107226236781315,
 					"pitch": -0.05167697629200774,
-					"title": "<span id='see9' class='watch'><img src='img/eye.png'></span>",
-					"text": "<span id='dig9' class='dig'><img src='img/shovel.png'>Creuser</span>"
+					"title": `<span id='see9' class='watch'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/eye.png'></span>`,
+					"text": `<span id='dig9' class='dig'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/shovel.png'>Creuser</span>`
         },
 				{
 					"yaw": -1.932707027546547,
 					"pitch": 0.026245301106142094,
-					"title": "<span id='see10' class='watch'><img src='img/eye.png'></span>",
-					"text": "<span id='dig10' class='dig'><img src='img/shovel.png'>Creuser</span>"
+					"title": `<span id='see10' class='watch'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/eye.png'></span>`,
+					"text": `<span id='dig10' class='dig'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/shovel.png'>Creuser</span>`
         },
 				{
 					"yaw": -0.38374642479518606,
 					"pitch": 0.08431438661344437,
-					"title": "<span id='see11' class='watch'><img src='img/eye.png'></span>",
-					"text": "<span id='dig11' class='dig'><img src='img/shovel.png'>Creuser</span>"
+					"title": `<span id='see11' class='watch'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/eye.png'></span>`,
+					"text": `<span id='dig11' class='dig'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/shovel.png'>Creuser</span>`
         },
 				{
 					"yaw": 0.9184331807098971,
 					"pitch": 0.10828677340312787,
-					"title": "<span id='see12' class='watch'><img src='img/eye.png'></span>",
-					"text": "<span id='dig12' class='dig'><img src='img/shovel.png'>Creuser</span>"
+					"title": `<span id='see12' class='watch'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/eye.png'></span>`,
+					"text": `<span id='dig12' class='dig'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/shovel.png'>Creuser</span>`
         }
       ]
     },
@@ -916,26 +916,26 @@ var APP_DATA = {
 				{
 					"yaw": 0.9389823935066186,
 					"pitch": 0.16485702351919862,
-					"title": "<span id='see13' class='watch'><img src='img/eye.png'></span>",
-					"text": "<span id='dig13' class='dig'><img src='img/shovel.png'>Creuser</span>"
+					"title": `<span id='see13' class='watch'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/eye.png'></span>`,
+					"text": `<span id='dig13' class='dig'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/shovel.png'>Creuser</span>`
         },
 				{
 					"yaw": 2.8386484567356653,
 					"pitch": 0.07922784304537345,
-					"title": "<span id='see14' class='watch'><img src='img/eye.png'></span>",
-					"text": "<span id='dig14' class='dig'><img src='img/shovel.png'>Creuser</span>"
+					"title": `<span id='see14' class='watch'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/eye.png'></span>`,
+					"text": `<span id='dig14' class='dig'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/shovel.png'>Creuser</span>`
         },
 				{
 					"yaw": -1.9354618866549362,
 					"pitch": 0.07803797845272342,
-					"title": "<span id='see15' class='watch'><img src='img/eye.png'></span>",
-					"text": "<span id='dig15' class='dig'><img src='img/shovel.png'>Creuser</span>"
+					"title": `<span id='see15' class='watch'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/eye.png'></span>`,
+					"text": `<span id='dig15' class='dig'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/shovel.png'>Creuser</span>`
         },
 				{
 					"yaw": -0.40351681328700373,
 					"pitch": 0.01894094315434991,
-					"title": "<span id='see16' class='watch'><img src='img/eye.png'></span>",
-					"text": "<span id='dig16' class='dig'><img src='img/shovel.png'>Creuser</span>"
+					"title": `<span id='see16' class='watch'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/eye.png'></span>`,
+					"text": `<span id='dig16' class='dig'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/shovel.png'>Creuser</span>`
         }
       ]
     },
@@ -993,26 +993,26 @@ var APP_DATA = {
 				{
 					"yaw": -0.8320062572081,
 					"pitch": -0.046153740125626896,
-					"title": "<span id='see17' class='watch'><img src='img/eye.png'></span>",
-					"text": "<span id='dig17' class='dig'><img src='img/shovel.png'>Creuser</span>"
+					"title": `<span id='see17' class='watch'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/eye.png'></span>`,
+					"text": `<span id='dig17' class='dig'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/shovel.png'>Creuser</span>`
         },
 				{
 					"yaw": 0.1803789858206546,
 					"pitch": -0.05478984903348305,
-					"title": "<span id='see18' class='watch'><img src='img/eye.png'></span>",
-					"text": "<span id='dig18' class='dig'><img src='img/shovel.png'>Creuser</span>"
+					"title": `<span id='see18' class='watch'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/eye.png'></span>`,
+					"text": `<span id='dig18' class='dig'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/shovel.png'>Creuser</span>`
         },
 				{
 					"yaw": 0.7802155660756682,
 					"pitch": 0.007029071664458542,
-					"title": "<span id='see19' class='watch'><img src='img/eye.png'></span>",
-					"text": "<span id='dig19' class='dig'><img src='img/shovel.png'>Creuser</span>"
+					"title": `<span id='see19' class='watch'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/eye.png'></span>`,
+					"text": `<span id='dig19' class='dig'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/shovel.png'>Creuser</span>`
         },
 				{
 					"yaw": -2.804276851829247,
 					"pitch": -0.13046676990729011,
-					"title": "<span id='see20' class='watch'><img src='img/eye.png'></span>",
-					"text": "<span id='dig21' class='dig'><img src='img/shovel.png'>Creuser</span>"
+					"title": `<span id='see20' class='watch'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/eye.png'></span>`,
+					"text": `<span id='dig21' class='dig'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/shovel.png'>Creuser</span>`
         }
       ]
     },
@@ -1070,28 +1070,28 @@ var APP_DATA = {
 				{
 					"yaw": 0.10228191629041916,
 					"pitch": -0.1363504680263432,
-					"title": "<span id='see28' class='watch'><img src='img/eye.png'></span>",
-					"text": "<span id='dig28' class='dig'><img src='img/shovel.png'>Creuser</span>"
+					"title": `<span id='see28' class='watch'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/eye.png'></span>`,
+					"text": `<span id='dig28' class='dig'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/shovel.png'>Creuser</span>`
 
         },
 				{
 					"yaw": 1.3696049288863144,
 					"pitch": -0.051667355276256544,
-					"title": "<span id='see12' class='watch'><img src='img/eye.png'></span>",
-					"text": "<span id='dig12' class='dig'><img src='img/shovel.png'>Creuser</span>"
-					 },
+					"title": `<span id='see12' class='watch'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/eye.png'></span>`,
+					"text": `<span id='dig12' class='dig'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/shovel.png'>Creuser</span>`
+				},
 				{
 					"yaw": 2.2437640602700215,
 					"pitch": -0.05098096978103328,
-					"title": "<span id='see3' class='watch'><img src='img/eye.png'></span>",
-					"text": "<span id='dig3' class='dig'><img src='img/shovel.png'>Creuser</span>"
+					"title": `<span id='see3' class='watch'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/eye.png'></span>`,
+					"text": `<span id='dig3' class='dig'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/shovel.png'>Creuser</span>`
 
         },
 				{
 					"yaw": -2.209282494741595,
 					"pitch": -0.0734035089533549,
-					"title": "<span id='see23' class='watch'><img src='img/eye.png'></span>",
-					"text": "<span id='dig23' class='dig'><img src='img/shovel.png'>Creuser</span>"
+					"title": `<span id='see23' class='watch'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/eye.png'></span>`,
+					"text": `<span id='dig23' class='dig'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/shovel.png'>Creuser</span>`
 
 
         }
@@ -1153,26 +1153,26 @@ var APP_DATA = {
 				{
 					"yaw": -0.7199642744947656,
 					"pitch": -0.17714615761612862,
-					"title": "<span id='see22' class='watch'><img src='img/eye.png'></span>",
-					"text": "<span id='dig22' class='dig'><img src='img/shovel.png'>Creuser</span>"
+					"title": `<span id='see22' class='watch'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/eye.png'></span>`,
+					"text": `<span id='dig22' class='dig'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/shovel.png'>Creuser</span>`
         },
 				{
 					"yaw": 0.3141416770702925,
 					"pitch": -0.01983623592324335,
-					"title": "<span id='see23' class='watch'><img src='img/eye.png'></span>",
-					"text": "<span id='dig23' class='dig'><img src='img/shovel.png'>Creuser</span>"
+					"title": `<span id='see23' class='watch'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/eye.png'></span>`,
+					"text": `<span id='dig23' class='dig'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/shovel.png'>Creuser</span>`
         },
 				{
 					"yaw": 1.343390665111329,
 					"pitch": -0.08790267558482157,
-					"title": "<span id='see24' class='watch'><img src='img/eye.png'></span>",
-					"text": "<span id='dig24' class='dig'><img src='img/shovel.png'>Creuser</span>"
+					"title": `<span id='see24' class='watch'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/eye.png'></span>`,
+					"text": `<span id='dig24' class='dig'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/shovel.png'>Creuser</span>`
         },
 				{
 					"yaw": -1.9384426073408498,
 					"pitch": -0.08886039803384804,
-					"title": "<span id='see25' class='watch'><img src='img/eye.png'></span>",
-					"text": "<span id='dig25' class='dig'><img src='img/shovel.png'>Creuser</span>"
+					"title": `<span id='see25' class='watch'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/eye.png'></span>`,
+					"text": `<span id='dig25' class='dig'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/shovel.png'>Creuser</span>`
         }
       ]
     },
@@ -1218,14 +1218,14 @@ var APP_DATA = {
 				{
 					"yaw": -0.2511810173118292,
 					"pitch": -0.10524257644138046,
-					"title": "<span id='see26' class='watch'><img src='img/eye.png'></span>",
-					"text": "<span id='dig26' class='dig'><img src='img/shovel.png'>Creuser</span>"
+					"title": `<span id='see26' class='watch'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/eye.png'></span>`,
+					"text": `<span id='dig26' class='dig'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/shovel.png'>Creuser</span>`
         },
 				{
 					"yaw": -1.3840500270069214,
 					"pitch": 0.019370535251546528,
-					"title": "<span id='see27' class='watch'><img src='img/eye.png'></span>",
-					"text": "<span id='dig27' class='dig'><img src='img/shovel.png'>Creuser</span>"
+					"title": `<span id='see27' class='watch'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/eye.png'></span>`,
+					"text": `<span id='dig27' class='dig'><img src='${import.meta.env.BASE_URL}fouilles/foret/img/shovel.png'>Creuser</span>`
         }
       ]
     }
@@ -1237,4 +1237,5 @@ var APP_DATA = {
 		"fullscreenButton": false,
 		"viewControlButtons": false
 	}
-};
+}
+export default data
