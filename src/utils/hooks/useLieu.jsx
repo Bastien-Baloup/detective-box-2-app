@@ -4,6 +4,7 @@ import ChantierModal from '../../components/fouilles/ChantierModal.jsx'
 import TerrainModal from '../../components/fouilles/TerrainModal.jsx'
 import PlanqueModal from '../../components/fouilles/PlanqueModal.jsx'
 import MasonModal from '../../components/fouilles/MasonModal.jsx'
+import AppartemenModal from '../../components/fouilles/AppartementModal.jsx'
 
 export const useLieu = () => {
   const [LieuModalOpen, setLieuModalOpen] = useState(false)
@@ -23,6 +24,9 @@ export const useLieu = () => {
         break
       case 'box2lieu1':
         LieuModal = MasonModal
+        break
+      case 'box2lieu2': 
+        LieuModal = AppartemenModal
         break
     }
     return (

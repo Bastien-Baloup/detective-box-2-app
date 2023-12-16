@@ -1,4 +1,4 @@
-* {
+#modal-appartement * {
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
@@ -16,8 +16,121 @@
 	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
-html,
-body {
+#modal-appartement .see-all {
+	width: 90%;
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+}
+
+#modal-appartement .w-50 {
+	width: 40%;
+}
+
+#modal-appartement .w-100 {
+	width: 100%;
+}
+
+#modal-appartement .w-25 {
+	width: 25%;
+}
+
+#modal-appartement .w-75 {
+	position: absolute;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+	width: 50%;
+	z-index: 10;
+}
+
+#modal-appartement .m-3 {
+	margin: 1em;
+}
+
+#modal-appartement .shadow {
+	-webkit-box-shadow: 2px 2px 2px 2px #9a9a9a;
+	box-shadow: 2px 2px 2px 2px #9a9a9a;
+}
+
+#modal-appartement .mx-auto {
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+	width: 80%;
+}
+
+#modal-appartement .w-60 {
+	width: 60%;
+}
+
+#modal-appartement .see-all {
+	width: 90%;
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+}
+
+#modal-appartement .btn,
+#message {
+	font-family: "din";
+	margin-top: 2em;
+	box-shadow: inset 0px 1px 0px 0px #cf866c;
+	background: linear-gradient(to bottom, #d0451b 5%, #bc3315 100%);
+	background-color: #d0451b;
+	border-radius: 3px;
+	border: 1px solid #942911;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	cursor: pointer;
+	color: #ffffff;
+
+	font-size: 1.5em;
+	padding: 6px 24px;
+	text-decoration: none;
+	text-shadow: 0px 1px 0px #854629;
+}
+
+#modal-appartement .btn:hover {
+	background: linear-gradient(to bottom, #bc3315 5%, #d0451b 100%);
+	background-color: #bc3315;
+}
+
+#modal-appartement .btn:active {
+	position: relative;
+	top: 1px;
+}
+
+@font-face {
+	font-family: "din";
+	src: url("../fonts/d-din-webfont.woff2") format("woff2"),
+		url("../fonts/d-din-webfont.woff") format("woff");
+	font-weight: normal;
+	font-style: normal;
+}
+
+#modal-appartement .confirm {
+	box-shadow: inset 0px 39px 0px -24px #e67a73;
+	background-color: #e4685d;
+	border-radius: 4px;
+	border: 1px solid #ffffff;
+	display: inline-block;
+	cursor: pointer;
+	color: #ffffff;
+	font-family: "din", Arial;
+	font-size: 15px;
+	padding: 6px 15px;
+	text-decoration: none;
+	text-shadow: 0px 1px 0px #b23e35;
+}
+
+#modal-appartement .confirm:hover {
+	background-color: #eb675e;
+}
+
+#modal-appartement ,
+#modal-appartement #fouille {
 	width: 100%;
 	height: 100%;
 	padding: 0;
@@ -29,15 +142,15 @@ body {
 	color: #fff;
 }
 
-a,
-a:hover,
-a:active,
-a:visited {
+#modal-appartement a,
+#modal-appartement a:hover,
+#modal-appartement a:active,
+#modal-appartement a:visited {
 	text-decoration: none;
 	color: inherit;
 }
 
-.img {
+#modal-appartement .img {
 	position: relative;
 	margin: auto;
 	position: absolute;
@@ -49,17 +162,17 @@ a:visited {
 }
 
 @media (max-width: 900px) {
-	.img {
+	#modal-appartement .img {
 		width: 60%;
 	}
 }
 
-.img-see {
+#modal-appartement .img-see {
 	width: 100%;
 	height: 100%;
 }
 
-.close-img {
+#modal-appartement .close-img {
 	position: absolute;
 	right: 0;
 	top: 0;
@@ -71,13 +184,13 @@ a:visited {
 
 }
 
-.close-img:hover {
+#modal-appartement .close-img:hover {
 	background-color: darkgoldenrod
 }
 
 
 
-#pano {
+#modal-appartement #pano {
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -86,7 +199,7 @@ a:visited {
 	overflow: hidden;
 }
 
-#titleBar {
+#modal-appartement #titleBar {
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -95,30 +208,30 @@ a:visited {
 	text-align: center;
 }
 
-.mobile #titleBar {
+#modal-appartement .mobile #titleBar {
 	height: 50px;
 	right: 50px;
 }
 
 /* If there is a fullscreen button the title bar must make space for it */
-body.fullscreen-enabled #titleBar {
+#fouille.fullscreen-enabled #titleBar {
 	right: 80px;
 }
 
-body.fullscreen-enabled.mobile #titleBar {
+#fouille.fullscreen-enabled.mobile #titleBar {
 	right: 100px;
 }
 
 /* If there are multiple scenes the title bar must make space for the scene list toggle */
-body.multiple-scenes #titleBar {
+#fouille.multiple-scenes #titleBar {
 	left: 40px;
 }
 
-body.multiple-scenes.mobile #titleBar {
+#fouille.multiple-scenes.mobile #titleBar {
 	left: 50px;
 }
 
-#titleBar .sceneName {
+#modal-appartement #titleBar .sceneName {
 	width: 100%;
 	height: 100%;
 	line-height: 30px;
@@ -135,11 +248,11 @@ body.multiple-scenes.mobile #titleBar {
 	user-select: text;
 }
 
-.mobile #titleBar .sceneName {
+#modal-appartement .mobile #titleBar .sceneName {
 	line-height: 40px;
 }
 
-#fullscreenToggle {
+#modal-appartement #fullscreenToggle {
 	display: none;
 	position: absolute;
 	top: 0;
@@ -151,16 +264,16 @@ body.multiple-scenes.mobile #titleBar {
 	background-color: rgba(103, 115, 131, 0.8);
 }
 
-.mobile #fullscreenToggle {
+#modal-appartement .mobile #fullscreenToggle {
 	width: 50px;
 	height: 50px;
 }
 
-body.fullscreen-enabled #fullscreenToggle {
+#fouille.fullscreen-enabled #fullscreenToggle {
 	display: block;
 }
 
-#fullscreenToggle .icon {
+#modal-appartement #fullscreenToggle .icon {
 	position: absolute;
 	top: 5px;
 	right: 5px;
@@ -168,28 +281,28 @@ body.fullscreen-enabled #fullscreenToggle {
 	height: 30px;
 }
 
-.mobile #fullscreenToggle .icon {
+#modal-appartement .mobile #fullscreenToggle .icon {
 	top: 10px;
 	right: 10px;
 }
 
-#fullscreenToggle .icon.on {
+#modal-appartement #fullscreenToggle .icon.on {
 	display: none;
 }
 
-#fullscreenToggle .icon.off {
+#modal-appartement #fullscreenToggle .icon.off {
 	display: block;
 }
 
-#fullscreenToggle.enabled .icon.on {
+#modal-appartement #fullscreenToggle.enabled .icon.on {
 	display: block;
 }
 
-#fullscreenToggle.enabled .icon.off {
+#modal-appartement #fullscreenToggle.enabled .icon.off {
 	display: none;
 }
 
-#autorotateToggle {
+#modal-appartement #autorotateToggle {
 	display: block;
 	position: absolute;
 	top: 0;
@@ -201,21 +314,21 @@ body.fullscreen-enabled #fullscreenToggle {
 	background-color: rgba(103, 115, 131, 0.8);
 }
 
-.mobile #autorotateToggle {
+#modal-appartement .mobile #autorotateToggle {
 	width: 50px;
 	height: 50px;
 }
 
 /* If there is a fullscreen button, autorotate must placed a bit to the left */
-body.fullscreen-enabled #autorotateToggle {
+#fouille.fullscreen-enabled #autorotateToggle {
 	right: 40px;
 }
 
-body.fullscreen-enabled.mobile #autorotateToggle {
+#fouille.fullscreen-enabled.mobile #autorotateToggle {
 	right: 50px;
 }
 
-#autorotateToggle .icon {
+#modal-appartement #autorotateToggle .icon {
 	position: absolute;
 	top: 5px;
 	right: 5px;
@@ -223,28 +336,28 @@ body.fullscreen-enabled.mobile #autorotateToggle {
 	height: 30px;
 }
 
-.mobile #autorotateToggle .icon {
+#modal-appartement .mobile #autorotateToggle .icon {
 	top: 10px;
 	right: 10px;
 }
 
-#autorotateToggle .icon.on {
+#modal-appartement #autorotateToggle .icon.on {
 	display: none;
 }
 
-#autorotateToggle .icon.off {
+#modal-appartement #autorotateToggle .icon.off {
 	display: block;
 }
 
-#autorotateToggle.enabled .icon.on {
+#modal-appartement #autorotateToggle.enabled .icon.on {
 	display: block;
 }
 
-#autorotateToggle.enabled .icon.off {
+#modal-appartement #autorotateToggle.enabled .icon.off {
 	display: none;
 }
 
-#sceneListToggle {
+#modal-appartement #sceneListToggle {
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -255,12 +368,12 @@ body.fullscreen-enabled.mobile #autorotateToggle {
 	background-color: rgba(103, 115, 131, 0.8);
 }
 
-.mobile #sceneListToggle {
+#modal-appartement .mobile #sceneListToggle {
 	width: 50px;
 	height: 50px;
 }
 
-#sceneListToggle .text {
+#modal-appartement #sceneListToggle .text {
 	position: absolute;
 	top: 5px;
 	left: 15px;
@@ -268,7 +381,7 @@ body.fullscreen-enabled.mobile #autorotateToggle {
 	line-height: 30px;
 }
 
-#sceneListToggle .icon {
+#modal-appartement #sceneListToggle .icon {
 	position: absolute;
 	top: 5px;
 	right: 5px;
@@ -276,28 +389,28 @@ body.fullscreen-enabled.mobile #autorotateToggle {
 	height: 30px;
 }
 
-.mobile #sceneListToggle .icon {
+#modal-appartement .mobile #sceneListToggle .icon {
 	top: 10px;
 	right: 10px;
 }
 
-#sceneListToggle .icon.on {
+#modal-appartement #sceneListToggle .icon.on {
 	display: none;
 }
 
-#sceneListToggle .icon.off {
+#modal-appartement #sceneListToggle .icon.off {
 	display: block;
 }
 
-#sceneListToggle.enabled .icon.on {
+#modal-appartement #sceneListToggle.enabled .icon.on {
 	display: block;
 }
 
-#sceneListToggle.enabled .icon.off {
+#modal-appartement #sceneListToggle.enabled .icon.off {
 	display: none;
 }
 
-#sceneList {
+#modal-appartement #sceneList {
 	position: absolute;
 	top: 0;
 	left: -220px;
@@ -311,45 +424,45 @@ body.fullscreen-enabled.mobile #autorotateToggle {
 	transition: margin-left 0.5s ease-in-out;
 }
 
-.mobile #sceneList {
+#modal-appartement .mobile #sceneList {
 	padding-top: 50px;
 }
 
-#sceneList .scenes {
+#modal-appartement #sceneList .scenes {
 	width: 100%;
 	background-color: rgb(58, 68, 84);
 	background-color: rgba(58, 68, 84, 0.8);
 }
 
-.mobile #sceneList {
+#modal-appartement .mobile #sceneList {
 	width: 100%;
 	height: 100%;
 	left: -100%;
 }
 
-.mobile #sceneList.enabled {
+#modal-appartement .mobile #sceneList.enabled {
 	margin-left: 100%;
 }
 
-.mobile #sceneList .scenes {
+#modal-appartement .mobile #sceneList .scenes {
 	height: 100%;
 }
 
-#sceneList.enabled {
+#modal-appartement #sceneList.enabled {
 	margin-left: 220px;
 }
 
-#sceneList .scene {
+#modal-appartement #sceneList .scene {
 	display: block;
 	width: 100%;
 	height: 30px;
 }
 
-.mobile #sceneList .scene {
+#modal-appartement .mobile #sceneList .scene {
 	height: 40px;
 }
 
-#sceneList .scene .text {
+#modal-appartement #sceneList .scene .text {
 	width: 100%;
 	height: 100%;
 	padding: 0 15px;
@@ -359,29 +472,29 @@ body.fullscreen-enabled.mobile #autorotateToggle {
 	white-space: nowrap;
 }
 
-.mobile #sceneList .scene .text {
+#modal-appartement .mobile #sceneList .scene .text {
 	line-height: 40px;
 }
 
-.no-touch #sceneList .scene:hover {
+#modal-appartement .no-touch #sceneList .scene:hover {
 	background-color: rgb(103, 115, 131);
 	background-color: rgba(103, 115, 131, 0.8);
 }
 
-#sceneList .scene.current {
+#modal-appartement #sceneList .scene.current {
 	background-color: rgb(103, 115, 131);
 	background-color: rgba(103, 115, 131, 0.8);
 }
 
 /* Hide scene list when only a single scene exists */
-body.single-scene #sceneList,
-body.single-scene #sceneListToggle {
+#fouille.single-scene #sceneList,
+#fouille.single-scene #sceneListToggle {
 	display: none;
 }
 
 /* Link hotspot */
 
-.link-hotspot {
+#modal-appartement .link-hotspot {
 	width: 60px;
 	height: 60px;
 	margin-left: -30px;
@@ -391,22 +504,22 @@ body.single-scene #sceneListToggle {
 	transition: opacity 0.2s;
 }
 
-.no-touch .link-hotspot:hover {
+#modal-appartement .no-touch .link-hotspot:hover {
 	opacity: 1;
 }
 
-.mobile .link-hotspot {
+#modal-appartement .mobile .link-hotspot {
 	width: 70px;
 	height: 70px;
 }
 
-.link-hotspot-icon {
+#modal-appartement .link-hotspot-icon {
 	width: 100%;
 	height: 100%;
 	cursor: pointer;
 }
 
-.link-hotspot-tooltip {
+#modal-appartement .link-hotspot-tooltip {
 	position: absolute;
 	left: 100%;
 	top: 14px;
@@ -443,12 +556,12 @@ body.single-scene #sceneListToggle {
 		opacity 0.3s;
 }
 
-.mobile .link-hotspot {
+#modal-appartement .mobile .link-hotspot {
 	top: 19px;
 	/* ( 70 - (16 + 2*8) ) / 2 */
 }
 
-.no-touch .link-hotspot:hover .link-hotspot-tooltip {
+#modal-appartement .no-touch .link-hotspot:hover .link-hotspot-tooltip {
 	opacity: 1;
 	-ms-transform: translateX(0);
 	-webkit-transform: translateX(0);
@@ -456,54 +569,54 @@ body.single-scene #sceneListToggle {
 }
 
 /* Prevent tooltip from triggering */
-.link-hotspot-tooltip {
+#modal-appartement .link-hotspot-tooltip {
 	pointer-events: none;
 }
 
-.no-touch .link-hotspot:hover .link-hotspot-tooltip {
+#modal-appartement .no-touch .link-hotspot:hover .link-hotspot-tooltip {
 	pointer-events: all;
 }
 
 /* Fallback mode without pointer-events (IE8-10) */
-.tooltip-fallback .link-hotspot-tooltip {
+#modal-appartement .tooltip-fallback .link-hotspot-tooltip {
 	display: none;
 }
 
-.no-touch .tooltip-fallback .link-hotspot:hover .link-hotspot-tooltip {
+#modal-appartement .no-touch .tooltip-fallback .link-hotspot:hover .link-hotspot-tooltip {
 	display: block;
 }
 
 /* Info hotspot */
 
-.info-hotspot {
+#modal-appartement .info-hotspot {
 	line-height: 1.2em;
 	opacity: 0.9;
 	-webkit-transition: opacity 0.2s 0.2s;
 	transition: opacity 0.2s 0.2s;
 }
 
-.no-touch .info-hotspot:hover {
+#modal-appartement .no-touch .info-hotspot:hover {
 	opacity: 1;
 	-webkit-transition: opacity 0.2s;
 	transition: opacity 0.2s;
 }
 
-.info-hotspot.visible {
+#modal-appartement .info-hotspot.visible {
 	opacity: 1;
 }
 
 /* Change color of all info */
 
 
-.info-hotspot .info-hotspot-header,
-.info-hotspot-close-icon,
-.info-hotspot-text,
-.info-hotspot-close-wrapper {
+#modal-appartement .info-hotspot .info-hotspot-header,
+#modal-appartement .info-hotspot-close-icon,
+#modal-appartement .info-hotspot-text,
+#modal-appartement .info-hotspot-close-wrapper {
 	background-color: rgba(227, 6, 19, 1) !important;
 }
 
 
-.info-hotspot .info-hotspot-header {
+#modal-appartement .info-hotspot .info-hotspot-header {
 	width: 40px;
 	height: 40px;
 	border-radius: 20px;
@@ -515,13 +628,13 @@ body.single-scene #sceneListToggle {
 		border-radius 0.3s ease-in-out 0.5s;
 }
 
-.mobile .info-hotspot .info-hotspot-header {
+#modal-appartement .mobile .info-hotspot .info-hotspot-header {
 	width: 50px;
 	height: 50px;
 	border-radius: 25px;
 }
 
-.desktop.no-touch .info-hotspot .info-hotspot-header:hover {
+#modal-appartement .desktop.no-touch .info-hotspot .info-hotspot-header:hover {
 	width: 260px;
 	border-radius: 5px;
 	-webkit-transition: width 0.3s ease-in-out,
@@ -530,8 +643,8 @@ body.single-scene #sceneListToggle {
 		border-radius 0.3s ease-in-out;
 }
 
-.desktop .info-hotspot.visible .info-hotspot-header,
-.desktop.no-touch .info-hotspot.visible .info-hotspot-header:hover {
+#modal-appartement .desktop .info-hotspot.visible .info-hotspot-header,
+#modal-appartement .desktop.no-touch .info-hotspot.visible .info-hotspot-header:hover {
 	width: 260px;
 	border-radius: 5px;
 	border-top-right-radius: 0;
@@ -543,23 +656,23 @@ body.single-scene #sceneListToggle {
 		border-radius 0.3s ease-in-out;
 }
 
-.info-hotspot .info-hotspot-icon-wrapper {
+#modal-appartement .info-hotspot .info-hotspot-icon-wrapper {
 	width: 40px;
 	height: 40px;
 }
 
-.mobile .info-hotspot .info-hotspot-icon-wrapper {
+#modal-appartement .mobile .info-hotspot .info-hotspot-icon-wrapper {
 	width: 50px;
 	height: 50px;
 }
 
-.info-hotspot .info-hotspot-icon {
+#modal-appartement .info-hotspot .info-hotspot-icon {
 	width: 90%;
 	height: 90%;
 	margin: 5%;
 }
 
-.info-hotspot .info-hotspot-title-wrapper {
+#modal-appartement .info-hotspot .info-hotspot-title-wrapper {
 	position: absolute;
 	left: 40px;
 	top: 0;
@@ -573,8 +686,8 @@ body.single-scene #sceneListToggle {
 		padding 0s 0.4s;
 }
 
-.desktop .info-hotspot.visible .info-hotspot-title-wrapper,
-.desktop.no-touch .info-hotspot .info-hotspot-header:hover .info-hotspot-title-wrapper {
+#modal-appartement .desktop .info-hotspot.visible .info-hotspot-title-wrapper,
+#modal-appartement .desktop.no-touch .info-hotspot .info-hotspot-header:hover .info-hotspot-title-wrapper {
 	width: 220px;
 	padding: 0 5px;
 	-webkit-transition: width 0s 0.4s,
@@ -583,14 +696,14 @@ body.single-scene #sceneListToggle {
 		padding 0s 0.4s;
 }
 
-.info-hotspot .info-hotspot-title-wrapper:before {
+#modal-appartement .info-hotspot .info-hotspot-title-wrapper:before {
 	content: '';
 	display: inline-block;
 	vertical-align: middle;
 	height: 100%;
 }
 
-.info-hotspot .info-hotspot-title {
+#modal-appartement .info-hotspot .info-hotspot-title {
 	display: inline-block;
 	vertical-align: middle;
 
@@ -600,7 +713,7 @@ body.single-scene #sceneListToggle {
 	user-select: text;
 }
 
-.info-hotspot .info-hotspot-close-wrapper {
+#modal-appartement .info-hotspot .info-hotspot-close-wrapper {
 	position: absolute;
 	left: 260px;
 	top: 0;
@@ -625,7 +738,7 @@ body.single-scene #sceneListToggle {
 		visibility 0s 0.6s;
 }
 
-.desktop .info-hotspot.visible .info-hotspot-close-wrapper {
+#modal-appartement .desktop .info-hotspot.visible .info-hotspot-close-wrapper {
 	visibility: visible;
 	-ms-transform: perspective(200px) rotateY(0deg);
 	-webkit-transform: perspective(200px) rotateY(0deg);
@@ -640,13 +753,13 @@ body.single-scene #sceneListToggle {
 		visibility 0s 0s;
 }
 
-.info-hotspot .info-hotspot-close-icon {
+#modal-appartement .info-hotspot .info-hotspot-close-icon {
 	width: 70%;
 	height: 70%;
 	margin: 15%;
 }
 
-.info-hotspot .info-hotspot-text {
+#modal-appartement .info-hotspot .info-hotspot-text {
 	position: absolute;
 	width: 300px;
 	height: auto;
@@ -681,7 +794,7 @@ body.single-scene #sceneListToggle {
 	user-select: text;
 }
 
-.desktop .info-hotspot.visible .info-hotspot-text {
+#modal-appartement .desktop .info-hotspot.visible .info-hotspot-text {
 	visibility: visible;
 	-ms-transform: perspective(200px) rotateX(0deg);
 	-webkit-transform: perspective(200px) rotateX(0deg);
@@ -698,11 +811,11 @@ body.single-scene #sceneListToggle {
 
 /* Info hotspot modal */
 
-.desktop .info-hotspot-modal {
+#modal-appartement .desktop .info-hotspot-modal {
 	display: none;
 }
 
-.info-hotspot-modal {
+#modal-appartement .info-hotspot-modal {
 	top: 0;
 	left: 0;
 	position: absolute;
@@ -720,7 +833,7 @@ body.single-scene #sceneListToggle {
 		visibility 0s 0.7s;
 }
 
-.info-hotspot-modal.visible {
+#modal-appartement .info-hotspot-modal.visible {
 	opacity: 1;
 	visibility: visible;
 	-webkit-transition: opacity 0.2s ease-in-out,
@@ -729,7 +842,7 @@ body.single-scene #sceneListToggle {
 		visibility 0s 0s;
 }
 
-.info-hotspot-modal .info-hotspot-header {
+#modal-appartement .info-hotspot-modal .info-hotspot-header {
 	position: absolute;
 	top: 60px;
 	left: 10px;
@@ -743,24 +856,24 @@ body.single-scene #sceneListToggle {
 	transition: opacity 0.3s ease-in-out 0.2s;
 }
 
-.info-hotspot-modal.visible .info-hotspot-header {
+#modal-appartement .info-hotspot-modal.visible .info-hotspot-header {
 	opacity: 1;
 	-webkit-transition: opacity 0.3s ease-in-out 0.2s;
 	transition: opacity 0.3s ease-in-out 0.2s;
 }
 
-.info-hotspot-modal .info-hotspot-icon-wrapper {
+#modal-appartement .info-hotspot-modal .info-hotspot-icon-wrapper {
 	width: 50px;
 	height: 50px;
 }
 
-.info-hotspot-modal .info-hotspot-icon {
+#modal-appartement .info-hotspot-modal .info-hotspot-icon {
 	width: 90%;
 	height: 90%;
 	margin: 5%;
 }
 
-.info-hotspot-modal .info-hotspot-title-wrapper {
+#modal-appartement .info-hotspot-modal .info-hotspot-title-wrapper {
 	position: absolute;
 	top: 0;
 	left: 50px;
@@ -770,14 +883,14 @@ body.single-scene #sceneListToggle {
 	padding: 0 10px;
 }
 
-.info-hotspot-modal .info-hotspot-title-wrapper:before {
+#modal-appartement .info-hotspot-modal .info-hotspot-title-wrapper:before {
 	content: '';
 	display: inline-block;
 	vertical-align: middle;
 	height: 100%;
 }
 
-.info-hotspot-modal .info-hotspot-title {
+#modal-appartement .info-hotspot-modal .info-hotspot-title {
 	display: inline-block;
 	vertical-align: middle;
 
@@ -787,7 +900,7 @@ body.single-scene #sceneListToggle {
 	user-select: text;
 }
 
-.info-hotspot-modal .info-hotspot-close-wrapper {
+#modal-appartement .info-hotspot-modal .info-hotspot-close-wrapper {
 	position: absolute;
 	top: 0;
 	right: 0;
@@ -797,13 +910,13 @@ body.single-scene #sceneListToggle {
 	cursor: pointer;
 }
 
-.info-hotspot-modal .info-hotspot-close-icon {
+#modal-appartement .info-hotspot-modal .info-hotspot-close-icon {
 	width: 70%;
 	height: 70%;
 	margin: 15%;
 }
 
-.info-hotspot-modal .info-hotspot-text {
+#modal-appartement .info-hotspot-modal .info-hotspot-text {
 	position: absolute;
 	top: 110px;
 	bottom: 10px;
@@ -823,7 +936,7 @@ body.single-scene #sceneListToggle {
 	user-select: text;
 }
 
-.info-hotspot-modal.visible .info-hotspot-text {
+#modal-appartement .info-hotspot-modal.visible .info-hotspot-text {
 	opacity: 1;
 	-webkit-transition: opacity 0.3s ease-in-out 0.4s;
 	transition: opacity 0.3s ease-in-out 0.4s;
@@ -831,7 +944,7 @@ body.single-scene #sceneListToggle {
 
 /* View control buttons */
 
-.viewControlButton {
+#modal-appartement .viewControlButton {
 	display: none;
 	position: absolute;
 	bottom: 0;
@@ -843,18 +956,18 @@ body.single-scene #sceneListToggle {
 	background-color: rgba(103, 115, 131, 0.8);
 }
 
-body.view-control-buttons .viewControlButton {
+#fouille.view-control-buttons .viewControlButton {
 	display: block;
 }
 
 /* Hide controls when width is too small */
 @media (max-width: 600px) {
-	body.view-control-buttons .viewControlButton {
+	#fouille.view-control-buttons .viewControlButton {
 		display: none;
 	}
 }
 
-.viewControlButton .icon {
+#modal-appartement .viewControlButton .icon {
 	position: absolute;
 	top: 5px;
 	right: 5px;
@@ -863,27 +976,27 @@ body.view-control-buttons .viewControlButton {
 }
 
 /* Center is at margin-left: -20px */
-.viewControlButton-1 {
+#modal-appartement .viewControlButton-1 {
 	margin-left: -145px;
 }
 
-.viewControlButton-2 {
+#modal-appartement .viewControlButton-2 {
 	margin-left: -95px;
 }
 
-.viewControlButton-3 {
+#modal-appartement .viewControlButton-3 {
 	margin-left: -45px;
 }
 
-.viewControlButton-4 {
+#modal-appartement .viewControlButton-4 {
 	margin-left: 5px;
 }
 
-.viewControlButton-5 {
+#modal-appartement .viewControlButton-5 {
 	margin-left: 55px;
 }
 
-.viewControlButton-6 {
+#modal-appartement .viewControlButton-6 {
 	margin-left: 105px;
 }
 
