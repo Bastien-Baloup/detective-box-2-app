@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 // EXPLICATION : Page pour faire les requêtes auprès du personnage de Raphaelle
 // EXPLICATION : Les validations des requêtes sont faites ici
 
@@ -8,16 +9,10 @@ import PropTypes from 'prop-types'
 import { urlApi } from '../utils/const/urlApi'
 import { BoxContext, DataContext } from '../utils/context/fetchContext'
 import { useContext, useState, useEffect } from 'react'
-import {
-  updateCharactersById,
-  updateHistory,
-  getCharactersById,
-  getObjectivesByBox,
-  updateHelp,
-  getHistoryByBox,
-  updateObjectives,
-} from '../utils/hooks/useApi.js'
+import useApi from '../utils/hooks/useApi.js'
 import useLieu from '../utils/hooks/useLieu.jsx'
+import useEvent from '../utils/hooks/useEvent.js';
+
 
 const Raphaelle = ({ closeAgentPage }) => {
   const { currentBox } = useContext(BoxContext)
@@ -31,6 +26,19 @@ const Raphaelle = ({ closeAgentPage }) => {
     toggleDataHistory,
     actionToggleDataObjectif,
   } = useContext(DataContext)
+
+  const {
+    updateCharactersById,
+    updateHistory,
+    getCharactersById,
+    getObjectivesByBox,
+    updateHelp,
+    getHistoryByBox,
+    updateObjectives,
+  } = useApi()
+
+	const { dispatch } = useEvent()
+
 
   //EXPLICATION : Raphaelle est le personnage '4'
 
@@ -345,18 +353,38 @@ const Raphaelle = ({ closeAgentPage }) => {
   // EXPLICATION : la visite du lieu box2lieu2 ouvre le renfort 6 et ferme le renfort 5
   const openLieu = async (answerId, asnwerAsk) => {
     await updateHistory(token, currentBox, answerId)
-    //await updateCharactersById(token, 4, currentBox, asnwerAsk)
+    await updateCharactersById(token, 4, currentBox, asnwerAsk)
 
     if (answerId == 'box2lieu1') {
       await updateHistory(token, 2, 'box2document5')
+      dispatch({
+        type: 'setEvent',
+        id: 'box2document5'
+      })
     }
     if (answerId == 'box2lieu3') {
       await updateHistory(token, 2, 'box2document7')
+      dispatch({
+        type: 'setEvent',
+        id: 'box2document7'
+      })
       await updateHistory(token, 2, 'box2document10')
+      dispatch({
+        type: 'setEvent',
+        id: 'box2document10'
+      })
     }
     if (answerId == 'box2lieu2') {
       await updateHelp(token, 2, 'box2help5', 'done')
+      dispatch({
+        type: 'setEvent',
+        id: 'box2help5'
+      })
       await updateHelp(token, 2, 'box2help6', 'open')
+      dispatch({
+        type: 'setEvent',
+        id: 'box2help6'
+      })
       actionToggleDataHelp()
     }
     if (answerId == 'box3lieu1') {
@@ -365,14 +393,38 @@ const Raphaelle = ({ closeAgentPage }) => {
       actionToggleDataObjectif()
       //await updateHelp(token, 3, 'box3help2', 'done')
       await updateHelp(token, 3, 'box3help3', 'open')
+      dispatch({
+        type: 'setEvent',
+        id: 'box3help3'
+      })
       await updateHelp(token, 3, 'box3help6', 'open')
+      dispatch({
+        type: 'setEvent',
+        id: 'box3help6'
+      })
       actionToggleDataHelp()
     }
     if (answerId == 'box3lieu2') {
       await updateHistory(token, 3, 'box3document5')
+      dispatch({
+        type: 'setEvent',
+        id: 'box3document5'
+      })
       await updateHistory(token, 3, 'box3document7')
+      dispatch({
+        type: 'setEvent',
+        id: 'box3document7'
+      })
       await updateHistory(token, 3, 'box3document8')
+      dispatch({
+        type: 'setEvent',
+        id: 'box3document8'
+      })
       await updateHistory(token, 3, 'box3document11')
+      dispatch({
+        type: 'setEvent',
+        id: 'box3document11'
+      })
     }
 
     //window.open(answer.src + '/?token=' + token, '_blank')
@@ -424,7 +476,7 @@ const Raphaelle = ({ closeAgentPage }) => {
       </audio>
       <div className='agent'>
         <div className='agent__portrait--container'>
-          <img className='agent__portrait' src={PhotoRaphaelle} />
+          <img className='agent__portrait' src={PhotoRaphaelle} alt='photo de Raphaelle'/>
         </div>
         <div className='agent__main'>
           <div className='agent__title--container'>
@@ -464,7 +516,7 @@ const Raphaelle = ({ closeAgentPage }) => {
           </form>
         </div>
         <div className='agent__closeButton--container' onClick={closeAgentPage}>
-          <img src={Cross} className='agent__closeButton' />
+          <img src={Cross} className='agent__closeButton' alt='fermer'/>
         </div>
       </div>
     </>

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 // EXPLICATION : Page pour afficher les renforts
 
 import { useState } from "react";
@@ -8,12 +9,13 @@ import LockOpen from "../assets/icons/Icon_Lock-open-black.svg";
 import { urlApi } from "../utils/const/urlApi";
 import { BoxContext, DataContext } from "../utils/context/fetchContext";
 import { useContext, useEffect } from "react";
-import { getHelpByBox } from "../utils/hooks/useApi";
+import useApi from '../utils/hooks/useApi.js';
 
 function Renfort() {
 	const { currentBox } = useContext(BoxContext);
 	const token = localStorage.getItem("token");
 	const { toggleDataHelp } = useContext(DataContext);
+	const { getHelpByBox } = useApi()
 
 	useEffect(() => {
 		const fetchData = async () => {

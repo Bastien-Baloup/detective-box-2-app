@@ -27,7 +27,7 @@ const Signin = ({
 			<div className="modal-forgot__background">
 				<div className="modal-forgot__box">
 					<button className="modal-forgot__icon--container">
-						<img className="modal-forgot__icon" src={Cross} onClick={() => setModalActive(false)} />
+						<img className="modal-forgot__icon" src={Cross} onClick={() => setModalActive(false)} alt='fermer modale' />
 					</button>
 					<h2 className="modal-forgot__title">Renseignez votre adresse email pour changer votre mot de passe</h2>
 					<div className="modal-forgot__errorMessage">{errorMessageForgot}</div>

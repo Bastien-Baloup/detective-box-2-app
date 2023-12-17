@@ -1,13 +1,20 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import MarzipanoInit from '../../utils/const/marzipanoInit'
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useContext } from 'react'
 import PropTypes from 'prop-types'
 import '../../assets/fouilles/planque/style.css'
 import data from '../../assets/fouilles/planque/data'
+import { DataContext } from "../../utils/context/fetchContext";
+import useApi from '../../utils/hooks/useApi.js'
+import useEvent from '../../utils/hooks/useEvent.js';
 
 function PlanqueModal({ onClose }) {
   const panoRef = useRef(null)
   const viewerRef = useRef(null)
   const arrivalPlanque = useRef(sessionStorage.getItem('arrival_planque'))
+  const { actionToggleDataHistory } = useContext(DataContext);
+  const { updateHistory } = useApi()
+	const { dispatch } = useEvent()
 
   const songStarter = () => {
     if (!arrivalPlanque.current) {
@@ -25,27 +32,12 @@ function PlanqueModal({ onClose }) {
       alert("Erreur de communication avec l'app détectivebox : Token vide")
       return
     }
-    const response = await fetch(
-      'https://api2.detectivebox.fr/history/1?id=box1document6',
-      {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
-        },
-        body: JSON.stringify({ status: true }),
-      }
-    )
-    console.table(response)
-    if (!response.ok) {
-      alert(
-        'Erreur de comunication avec le serveur: ' +
-          response.status +
-          (response.statusText !== '' ? ' - ' + response.statusText : '')
-      )
-    } else {
-      alert("Rendez-vous sur l'application pour la suite de l'enquête")
-    }
+    await updateHistory(token, 1, 'box1document6')
+    dispatch({
+      type: 'setEvent',
+      id: 'box1document6'
+    })
+    actionToggleDataHistory()
   }
 
   const planqueInit = () => {
@@ -72,7 +64,7 @@ function PlanqueModal({ onClose }) {
             document.getElementById('comment').play()
           }
 
-          document.getElementById('comment').onended = clicHandle
+          clicHandle()
         }
       })
     })

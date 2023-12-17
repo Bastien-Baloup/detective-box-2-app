@@ -1,6 +1,8 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import PropTypes from "prop-types";
-import {useState, createContext, useEffect} from "react";
-import {getMe} from "../hooks/useApi.js";
+import {useState, createContext, useEffect, useReducer} from "react";
+import useApi from '../hooks/useApi.js';
+import eventReducer from '../reducer/eventReducer.js';
 
 // EXPLICATION : Context pour avoir la bonne boîte utilisée
 
@@ -30,6 +32,7 @@ const getInitialLogin = () => {
 export const AuthProvider = ({ children }) => {
 	const [loggedIn, setLoggedIn] = useState(getInitialLogin);
 	const [token, setToken] = useState(getInitialState);
+	const {getMe} = useApi()
 
 	const login = (token) => {
 		localStorage.setItem("token", token);
@@ -170,6 +173,26 @@ export const DataProvider = ({ children }) => {
 	);
 };
 
+export const EventContext = createContext()
+
+const initialState = {
+	id: '',
+	toogleEvent: false
+}
+
+export const EventProvider = ({ children }) => {
+  const [state, dispatch] = useReducer(eventReducer, initialState);
+
+  return (
+    <EventContext.Provider value={{ state, dispatch }}>
+      {children}
+    </EventContext.Provider>
+  );
+};
+
+
+
+
 BoxProvider.propTypes = {
 	children: PropTypes.any,
 };
@@ -180,5 +203,8 @@ AmbianceProvider.propTypes = {
 	children: PropTypes.any,
 };
 DataProvider.propTypes = {
+	children: PropTypes.any,
+};
+EventProvider.propTypes = {
 	children: PropTypes.any,
 };

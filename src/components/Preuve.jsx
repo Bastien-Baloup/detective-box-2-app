@@ -31,13 +31,13 @@ const Preuve = ({ data, openModal }) => {
 	return (
 		<article className="clue" onClick={openModal} tabIndex="0">
 			<div className="clue__picture-wrapper">
-				<img src={urlApi.cdn() + data.poster} className="clue__picture" />
+				<img src={urlApi.cdn() + data.poster} className="clue__picture" alt='' />
 			</div>
 			<div className="clue__info">
 				<div className="clue__info--main">
 					<h2 className="clue__main__title">{data.title}</h2>
 					<div className="clue__main__icon-wrapper">
-						<img src={findIcon()} className="clue__main__icon" />
+						<img src={findIcon()} className="clue__main__icon" alt=''/>
 					</div>
 				</div>
 				<div className="clue__info--detail">{data.detail}</div>

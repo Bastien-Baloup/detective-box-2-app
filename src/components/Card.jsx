@@ -7,11 +7,11 @@ const Card = ({ srcImg, srcIcon, name, contentButton, actionButton, state }) => 
 	return (
 		<div className="card" tabIndex="0">
 			<div className={"card__contentImg" + (state == "unavailable" ? "--unavailable" : "")}>
-				<img className="card__portrait" src={srcImg} />
+				<img className="card__portrait" src={srcImg} alt='' />
 			</div>
 			<div className="card__contentText">
 				<div className="card__icon--container">
-					<img className="card__icon" src={srcIcon} />
+					<img className="card__icon" src={srcIcon} alt='' />
 				</div>
 				<p className="card__name">{name}</p>
 				<button className="card__button button--red" onClick={actionButton} tabIndex="-1">

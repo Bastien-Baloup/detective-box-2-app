@@ -2,12 +2,13 @@
 // EXPLICATION : Utilisation de wavesurfer pour avoir un style particulier sur l'audio.
 
 import PropTypes from "prop-types";
-import Play from "../assets/icons/Icon_Play.svg";
-import Pause from "../assets/icons/Icon_Pause.svg";
+// import Play from "../assets/icons/Icon_Play.svg";
+// import Pause from "../assets/icons/Icon_Pause.svg";
 //import WaveSurfer from "wavesurfer.js";
 import { AmbianceContext } from "../utils/context/fetchContext.jsx";
 //import { useEffect, useState, useRef, useContext } from "react";
-import { useState, useRef, useContext } from "react";
+// import { useState, useRef, useContext } from "react";
+import { useContext } from "react";
 
 const Audio = ({ title, srcImg1, srcImg2, srcTranscription, handleModalAudio, srcAudio }) => {
 //	const containerRef = useRef(undefined);
@@ -59,13 +60,13 @@ const Audio = ({ title, srcImg1, srcImg2, srcTranscription, handleModalAudio, sr
 				<p className="modal-audio__title">{title}</p>
 				<div className="modal-audio__portraits">
 					<div className="modal-audio__portrait-container">
-						<img className="modal-audio__portrait" src={srcImg1} />
+						<img className="modal-audio__portrait" src={srcImg1} alt='' />
 					</div>
 					{srcImg2 == null ? (
 						""
 					) : (
 						<div className="modal-audio__portrait-container">
-							<img className="modal-audio__portrait" src={srcImg2} />
+							<img className="modal-audio__portrait" src={srcImg2} alt='' />
 						</div>
 					)}
 				</div>

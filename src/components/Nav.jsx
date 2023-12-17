@@ -12,19 +12,19 @@ const Nav = () => {
 		<nav className="nav">
 			<NavLink className={"nav__container"} to="/">
 				<div className="nav__icon__container">
-					<img src={Home} className="nav__icon" />
+					<img src={Home} className="nav__icon" alt='accueil' />
 				</div>
 				<div className="nav__title">Requêtes</div>
 			</NavLink>
 			<NavLink className={"nav__container"} to="/history">
 				<div className="nav__icon__container">
-					<img src={Clue} className="nav__icon" />
+					<img src={Clue} className="nav__icon" alt='historique' />
 				</div>
 				<div className="nav__title">Historique</div>
 			</NavLink>
 			<NavLink className={"nav__container"} to="/help">
 				<div className="nav__icon__container">
-					<img src={Help} className="nav__icon" />
+					<img src={Help} className="nav__icon" alt='aide'/>
 				</div>
 				<div className="nav__title">Demander du renfort</div>
 			</NavLink>

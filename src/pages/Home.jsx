@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 // EXPLICATION : Page Home pour afficher les cartes personnages + les formulaires personnages pour les requêtes
 
 import Card from "../components/Card";
@@ -20,12 +21,13 @@ import { useState } from "react";
 import { BoxContext, DataContext } from "../utils/context/fetchContext";
 import { useContext, useEffect } from "react";
 import { urlApi } from "../utils/const/urlApi";
-import { updateEvent, getHistoryByBox } from "../utils/hooks/useApi";
+import useApi from '../utils/hooks/useApi.js';
 
 function Home() {
 	const [characterDisplayed, setCharacterDisplayed] = useState(null);
 	const [modalLaurenGone, setModalLaurenGone] = useState(false);
 	const [modalCelineGone, setModalCelineGone] = useState(false);
+	const { updateEvent, getHistoryByBox } = useApi()
 
 	const { currentBox } = useContext(BoxContext);
 	const token = localStorage.getItem("token");

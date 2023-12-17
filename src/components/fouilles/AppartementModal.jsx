@@ -1,15 +1,19 @@
 import MarzipanoInit from "../../utils/const/marzipanoInit";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useContext } from "react";
 import PropTypes from "prop-types";
 import "../../assets/fouilles/appartement/style.css";
 import data from "../../assets/fouilles/appartement/data";
+import { DataContext } from "../../utils/context/fetchContext";
+import useApi from '../../utils/hooks/useApi.js'
+import useEvent from '../../utils/hooks/useEvent.js';
 
 function AppartementModal({ onClose }) {
   const panoRef = useRef(null);
   const viewerRef = useRef(null);
-  const arrivalAppartement = useRef(
-    sessionStorage.getItem("arrival_appartement")
-  );
+  const arrivalAppartement = useRef(sessionStorage.getItem("arrival_appartement"))
+  const { actionToggleDataHistory } = useContext(DataContext);
+  const { updateHistory } = useApi()
+	const { dispatch } = useEvent()
   const clicked = useRef(false);
   const clickY = useRef(null);
 
@@ -26,27 +30,12 @@ function AppartementModal({ onClose }) {
       alert("Erreur de communication avec l'app détectivebox : Token vide");
       return;
     }
-    const response = await fetch(
-      "https://api2.detectivebox.fr/history/2?id=box2document6",
-      {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-        body: JSON.stringify({ status: true }),
-      }
-    );
-    console.table(response);
-    if (!response.ok) {
-      alert(
-        "Erreur de comunication avec le serveur: " +
-          response.status +
-          (response.statusText !== "" ? " - " + response.statusText : "")
-      );
-    } else {
-      alert("Rendez-vous sur l'application pour la suite de l'enquête");
-    }
+    await updateHistory(token, 2, 'box2document6')
+    dispatch({
+      type: 'setEvent',
+      id: 'box2document6'
+    })
+    actionToggleDataHistory()
   };
 
   const retour = () => {
@@ -91,6 +80,7 @@ function AppartementModal({ onClose }) {
         const arrivalPhoto = sessionStorage.getItem("detective_box_photo");
         document.getElementById("panel-photos").style.display = "block";
         document.getElementById("fouille").style.display = "none";
+        clicHandle();
         if (!arrivalPhoto) {
           document.getElementById("photos").play();
 
@@ -99,7 +89,6 @@ function AppartementModal({ onClose }) {
             document.getElementById("texto").style.display = "block";
             setTimeout(() => {
               document.getElementById("texto").style.display = "none";
-              clicHandle();
               document.getElementById("retour-photos").style.display = "block";
             }, 15000);
             document

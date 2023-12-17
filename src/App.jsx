@@ -10,38 +10,30 @@ import Renfort from "./pages/Renfort.jsx";
 import Historique from "./pages/Historique.jsx";
 import Layout from "./components/Layout.jsx";
 import Restrictedaccess from "./components/Restrictedaccess.jsx";
-import { BoxProvider, AuthProvider, AmbianceProvider, DataProvider } from "./utils/context/fetchContext.jsx";
-
+import ProviderPile from "./components/ProviderPile.jsx";
 
 function App() {
-
-	return (
-		<BoxProvider>
-			<AuthProvider>
-				<AmbianceProvider>
-					<DataProvider>
-						<Router>
-							<Routes>
-								<Route path="/*" element={<Error />} />
-								<Route path="/sign-in" element={<Login />} />
-								<Route path="/box-choice" element={<Choice />} />
-								<Route element={<Restrictedaccess />}>
-									<Route element={<Layout />}>
-										<Route path="/" element={<Home />} />
-										<Route path="/history" element={<Historique />} />
-										<Route path="/help" element={<Renfort />} />
-									</Route>
-									<Route path="/credits" element={<Credits />} />
-									<Route path="/legales" element={<Legales />} />
-									<Route path="/parametres" element={<Parametres />} />
-								</Route>
-							</Routes>
-						</Router>
-					</DataProvider>
-				</AmbianceProvider>
-			</AuthProvider>
-		</BoxProvider>
-	);
+  return (
+    <ProviderPile>
+      <Router>
+        <Routes>
+          <Route path="/*" element={<Error />} />
+          <Route path="/sign-in" element={<Login />} />
+          <Route path="/box-choice" element={<Choice />} />
+          <Route element={<Restrictedaccess />}>
+            <Route element={<Layout />}>
+              <Route path="/" element={<Home />} />
+              <Route path="/history" element={<Historique />} />
+              <Route path="/help" element={<Renfort />} />
+            </Route>
+            <Route path="/credits" element={<Credits />} />
+            <Route path="/legales" element={<Legales />} />
+            <Route path="/parametres" element={<Parametres />} />
+          </Route>
+        </Routes>
+      </Router>
+    </ProviderPile>
+  );
 }
 
 export default App;

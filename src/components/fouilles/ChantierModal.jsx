@@ -1,8 +1,12 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import MarzipanoInit from '../../utils/const/marzipanoInit'
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useContext } from 'react'
 import PropTypes from 'prop-types'
 import '../../assets/fouilles/chantier/style.css'
 import data from '../../assets/fouilles/chantier/data'
+import { DataContext } from "../../utils/context/fetchContext";
+import useApi from '../../utils/hooks/useApi.js'
+import useEvent from '../../utils/hooks/useEvent.js';
 
 function ChantierModal({ onClose }) {
   const panoRef = useRef(null)
@@ -12,6 +16,10 @@ function ChantierModal({ onClose }) {
   const isSongPlaying = useRef(false)
   const isArrivalPlaying = useRef(false)
   const arrivalChantier = useRef(sessionStorage.getItem('arrival_chantier'))
+
+  const { actionToggleDataHistory } = useContext(DataContext);
+  const { updateHistory } = useApi()
+	const { dispatch } = useEvent()
 
   const songStarter = () => {
     if (!arrivalChantier.current) {
@@ -115,6 +123,7 @@ function ChantierModal({ onClose }) {
       document.getElementById('malle-container').style.display = 'none'
       document.getElementById('open-malle-container').style.display = 'block'
       document.getElementById('malle-opened').play()
+      endHandle()
     }
 
     const input = (e) => {
@@ -150,31 +159,13 @@ function ChantierModal({ onClose }) {
         alert("Erreur de communication avec l'app détectivebox : Token vide")
         return
       }
-      const response = await fetch(
-        'https://api2.detectivebox.fr/history/1?id=box1document1',
-        {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify({ status: true }),
-        }
-      )
-      console.table(response)
-      if (!response.ok) {
-        alert(
-          'Erreur de communication avec le serveur: ' +
-            response.status +
-            (response.statusText !== '' ? ' - ' + response.statusText : '')
-        )
-      } else {
-        alert("Rendez-vous sur l'application pour la suite de l'enquête")
-      }
+      await updateHistory(token, 1, 'box1document1')
+      dispatch({
+        type: 'setEvent',
+        id: 'box1document1'
+      })
+      actionToggleDataHistory()
     }
-
-    const malleOpened = document.getElementById('malle-opened')
-    malleOpened.onended = endHandle
 
     sessionStorage.setItem('arrival_chantier', '1')
   }

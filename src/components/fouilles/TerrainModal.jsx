@@ -1,13 +1,22 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import MarzipanoInit from '../../utils/const/marzipanoInit'
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useContext } from 'react'
 import PropTypes from 'prop-types'
 import '../../assets/fouilles/terrain/style.css'
 import data from '../../assets/fouilles/terrain/data'
+import { DataContext } from "../../utils/context/fetchContext";
+import useApi from '../../utils/hooks/useApi.js'
+import useEvent from '../../utils/hooks/useEvent.js';
+
 
 function TerrainModal({ onClose }) {
   const panoRef = useRef(null)
   const viewerRef = useRef(null)
   const arrivalTerrain = useRef(sessionStorage.getItem('arrival_terrain'))
+  const { actionToggleDataHistory } = useContext(DataContext);
+  const { updateHistory } = useApi()
+	const { dispatch } = useEvent()
+
 
   const songStarter = () => {
     if (!arrivalTerrain.current) {
@@ -38,64 +47,22 @@ function TerrainModal({ onClose }) {
         alert("Erreur de communication avec l'app détectivebox : Token vide")
         return
     }
-
-    try {
-      const headers = {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
-      }
-
-      const response = await fetch(
-        'https://api2.detectivebox.fr/history/1?id=box1video2',
-        {
-          method: 'PUT',
-          headers,
-          body: JSON.stringify({ status: true }),
-        }
-      )
-
-      const response2 = await fetch(
-        'https://api2.detectivebox.fr/history/1?id=box1document2',
-        {
-          method: 'PUT',
-          headers,
-          body: JSON.stringify({ status: true }),
-        }
-      )
-
-      const response3 = await fetch(
-        'https://api2.detectivebox.fr/history/1?id=box1document7',
-        {
-          method: 'PUT',
-          headers,
-          body: JSON.stringify({ status: true }),
-        }
-      )
-
-      if (!response.ok) {
-        alert(
-          `Erreur de communication avec le serveur: ${response.status} - ${
-            response.statusText || 'Unknown'
-          }`
-        )
-      } else if (!response2.ok) {
-        alert(
-          `Erreur de communication avec le serveur: ${response2.status} - ${
-            response2.statusText || 'Unknown'
-          }`
-        )
-      } else if (!response3.ok) {
-        alert(
-          `Erreur de communication avec le serveur: ${response3.status} - ${
-            response3.statusText || 'Unknown'
-          }`
-        )
-      } else {
-        // alert('Rendez-vous sur l\'application pour la suite de l\'enquête')
-      }
-    } catch (error) {
-      console.error('An error occurred:', error)
-    }
+    await updateHistory(token, 1, 'box1video2')
+    dispatch({
+      type: 'setEvent',
+      id: 'box1video2'
+    })
+    await updateHistory(token, 1, 'box1document2')
+    dispatch({
+      type: 'setEvent',
+      id: 'box1document2'
+    })
+    await updateHistory(token, 1, 'box1document7')
+    dispatch({
+      type: 'setEvent',
+      id: 'box1document7'
+    })
+    actionToggleDataHistory();
   }
 
   const terrainInit = () => {

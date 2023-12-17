@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 // EXPLICATION : Page Historique qui permet d'afficher toutes les preuves + les filtres de tri pour trier ces mêmes preuves en fonction de leur type et des boxs.
 
 import { useState } from "react";
@@ -10,7 +11,7 @@ import { urlApi } from "../utils/const/urlApi";
 import Cross from "../assets/icons/Icon_Cross-white.svg";
 import { BoxContext, DataContext, AmbianceContext } from "../utils/context/fetchContext";
 import { useContext, useEffect } from "react";
-import { getHistoryByBox } from "../utils/hooks/useApi";
+import useApi from "../utils/hooks/useApi";
 import useLieu from '../utils/hooks/useLieu.jsx'
 
 function Historique() {
@@ -21,6 +22,7 @@ function Historique() {
 	const { fetchPreviousStateNappe } = useContext(AmbianceContext);
 	const { toggleDataHistory } = useContext(DataContext);
   const { renderLieu, setLieu, setLieuModalOpen } = useLieu()
+	const { getHistoryByBox } = useApi()
 
 	const openLieu = (lieu) => {
 		setLieu(lieu)

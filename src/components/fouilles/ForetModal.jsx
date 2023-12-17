@@ -1,58 +1,47 @@
-import MarzipanoInit from '../../utils/const/marzipanoInit'
-import { useEffect, useRef } from "react";
+import MarzipanoInit from "../../utils/const/marzipanoInit";
+import { useEffect, useRef, useContext } from "react";
 import PropTypes from "prop-types";
 import "../../assets/fouilles/foret/style.css";
 import data from "../../assets/fouilles/foret/data";
+import { DataContext } from "../../utils/context/fetchContext";
+import useApi from "../../utils/hooks/useApi.js";
+import useEvent from "../../utils/hooks/useEvent.js";
 
 function ForetModal({ onClose }) {
   const panoRef = useRef(null);
   const viewerRef = useRef(null);
   const arrivalForet = useRef(sessionStorage.getItem("arrival_foret"));
-  const isWatchClick = useRef(false)
+  const isWatchClick = useRef(false);
+  const {
+    actionToggleDataHistory,
+    actionToggleDataHelp,
+    actionToggleDataObjectif,
+  } = useContext(DataContext);
+  const { updateHistory, updateHelp, updateObjectives } = useApi();
+  const { dispatch } = useEvent();
 
   const clickHandle = async () => {
+    console.log('click')
     let token = localStorage.getItem("token");
 
-    const apiUrl = "https://api2.detectivebox.fr/history/3?id=";
-    const endpoints = ["box3document2", "box3document3"];
-
-    try {
-      let hasError = false;
-      const responses = await Promise.all(
-        endpoints.map(async (endpoint) => {
-          const response = await fetch(apiUrl + endpoint, {
-            method: "PUT",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${token}`,
-            },
-            body: JSON.stringify({ status: true }),
-          });
-          console.table(response);
-          return response;
-        })
-      );
-
-      for (const response of responses) {
-        if (!response.ok) {
-          alert(
-            "Erreur de communication avec le serveur: " +
-              response.status +
-              (response.statusText !== "" ? " - " + response.statusText : "")
-          );
-          hasError = true;
-          break;
-        }
-      }
-      if (!hasError) {
-        alert("Rendez-vous sur l'application pour la suite de l'enquête");
-      }
-    } catch (error) {
-      console.error("Error:", error);
-      alert(
-        "Une erreur s'est produite lors de la communication avec le serveur."
-      );
-    }
+    await updateHistory(token, 3, "box3document2");
+    dispatch({
+      type: "setEvent",
+      id: "box3document2",
+    });
+    await updateHistory(token, 3, "box3document3");
+    dispatch({
+      type: "setEvent",
+      id: "box3document3",
+    });
+    actionToggleDataHistory();
+    await updateObjectives(token, 3, 33, "open");
+    await updateObjectives(token, 3, 34, "open");
+    actionToggleDataObjectif();
+    await updateHelp(token, 3, "box3help3", "open");
+    await updateHelp(token, 3, "box3help6", "open");
+    await updateHelp(token, 3, "box3help2", "done");
+    actionToggleDataHelp();
   };
 
   const fadeIn = (element) => {
@@ -158,10 +147,9 @@ function ForetModal({ onClose }) {
       });
     });
 
-
     const imgElements = document.querySelectorAll(".img");
     imgElements.forEach((img) => {
-      fadeOut(img)
+      fadeOut(img);
       img.addEventListener("click", () => {
         if (!isWatchClick.current) {
           fadeOut(img);

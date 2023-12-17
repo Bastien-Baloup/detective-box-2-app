@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 // EXPLICATION : Ce composant est très complexe et important : il permet de rendre les objectifs
 // EXPLICATION : Il affiche egalement toute la logique de validation des objectifs
 // EXPLICATION : Il affiche egalement toute la logique des différents événements de l'application
@@ -15,29 +16,22 @@ import LockClosed from "../assets/icons/Icon_Lock-closed-red.svg";
 import LockOpen from "../assets/icons/Icon_Lock-open-black.svg";
 import Input from "./Input.jsx";
 import Cross from "../assets/icons/Icon_Cross-white.svg";
-import Video from "../components/Video";
 import Document from "../components/Document";
+import Video from "../components/Video";
 import Audio from "../components/Audio";
+
 import { urlApi } from "../utils/const/urlApi";
-import { useNavigate } from "react-router-dom";
 import {
   BoxContext,
   DataContext,
   AmbianceContext,
 } from "../utils/context/fetchContext";
 import { useContext } from "react";
-import {
-  updateHelp,
-  getEventByBox,
-  updateEvent,
-  getHistoryByBox,
-  getHelpByBox,
-  updateHistory,
-  updateObjectives,
-  updateBox,
-  getObjectivesByBox,
-  updateTimeEndBox,
-} from "../utils/hooks/useApi.js";
+import useApi from "../utils/hooks/useApi.js";
+import useEvent from "../utils/hooks/useEvent.js";
+import useLieu from '../utils/hooks/useLieu.jsx'
+
+
 
 const Objectif = ({ data }) => {
   const [modal, setModal] = useState(false);
@@ -63,25 +57,24 @@ const Objectif = ({ data }) => {
     toggleDataObjectif,
   } = useContext(DataContext);
 
-  const navigate = useNavigate();
 
   let event13 = useRef("");
   let event14 = useRef("");
   let event15 = useRef("");
   let event23 = useRef("");
+  const [event35, setEvent35] = useState("");
+
   // let event25 = useRef("");
   // let event35 = useRef("");
   // const [event13, setEvent13] = useState("");
   // const [event14, setEvent14] = useState("");
   // const [event15, setEvent15] = useState("");
   // const [event23, setEvent23] = useState("");
-  const [event25, setEvent25] = useState("");
-  const [event35, setEvent35] = useState("");
+
 
   const [box1lieu2, setBox1Lieu2] = useState(false);
   const [box2lieu1, setBox2Lieu1] = useState(false);
   const [box2lieu3, setBox2Lieu3] = useState(false);
-  const [box2video5, setBox2Video5] = useState(false);
   const [box3audio3, setBox3Audio3] = useState(false);
   const [box3lieu2, setBox3Lieu2] = useState(false);
 
@@ -98,6 +91,47 @@ const Objectif = ({ data }) => {
 
   const [toggleEvent2, setActionToggleEvent2] = useState(false);
 
+  const [modaleHacking, setModaleHacking] = useState(false);
+  const [modaleMailHacking, setModaleMailHacking] = useState(false);
+  const [displayButtonOpenMail, setDisplayButtonOpenMail] = useState(false);
+  const [telCeline, setTelCeline] = useState(false)
+
+  const [mauvaiseFin1, setMauvaiseFin1] = useState(false);
+  const [mauvaiseFin2, setMauvaiseFin2] = useState(false);
+  const [resolution, setResolution] = useState(false);
+  const [tempsEcoule, setTempsEcoule] = useState(false);
+  const [displayTextMauvaiseFin1, setDisplayTextMauvaiseFin1] = useState(false);
+  const [displayTextMauvaiseFin2, setDisplayTextMauvaiseFin2] = useState(false);
+  const [displayTextResolution, setDisplayTextResolution] = useState(false);
+  const [interrogatoireFinal, setInterrogatoireFinal] = useState(false);
+  const [audioSamuel, setAudioSamuel] = useState(false);
+  const [youveGotMail, setYouveGotMail] = useState(false);
+  const [audioBreakingNews, setAudioBreakingNews] = useState(false);
+  const [videoBreakingNews, setVideoBreakingNews] = useState(false);
+  const [audioEndBreakingNews, setAudioEndBreakingNews] = useState(false);
+  const [mailLauren2, setMailLauren2] = useState(false);
+  const [videoSauverLauren, setVideoSauverLauren] = useState(false);
+  const [debriefLauren, setDebriefLauren] = useState(false);
+
+  const {
+    updateHelp,
+    getEventByBox,
+    updateEvent,
+    getHistoryByBox,
+    getHelpByBox,
+    updateHistory,
+    updateObjectives,
+    getObjectivesByBox,
+  } = useApi();
+
+  const { dispatch } = useEvent();
+  const { renderLieu, setLieu, setLieuModalOpen } = useLieu()
+
+  const openLieu = (lieu) => {
+		setLieu(lieu)
+		setLieuModalOpen(true)
+		setModal(false)
+	}
   // EXPLICATION : Fonction pour récupérer l'état des événements
   useLayoutEffect(() => {
     const fetchData = async () => {
@@ -105,27 +139,19 @@ const Objectif = ({ data }) => {
       if (events != undefined) {
         if (currentBox === 1) {
           const event13Data = events.data.find((event) => event.id === 13);
-          // setEvent13(event13Data.status);
           event13.current = event13Data.status;
           const event14Data = events.data.find((event) => event.id === 14);
-          // setEvent14(event14Data.status);
           event14.current = event14Data.status;
           const event15Data = events.data.find((event) => event.id === 15);
-          // setEvent15(event15Data.status);
           event15.current = event15Data.status;
         }
         if (currentBox === 2) {
           const event23Data = events.data.find((event) => event.id === 23);
-          // setEvent23(event23Data.status);
           event23.current = event23Data.status;
-          const event25Data = events.data.find((event) => event.id === 25);
-          // event25.current = event25Data.status;
-          setEvent25(event25Data.status);
           setActionToggleEvent2(!toggleEvent2);
         }
         if (currentBox === 3) {
           const event35Data = events.data.find((event) => event.id === 35);
-          // event35.current = event35Data.status;
           setEvent35(event35Data.status);
           setActionToggleEvent2(!toggleEvent2);
         }
@@ -136,14 +162,6 @@ const Objectif = ({ data }) => {
 
   //EXPLICATION : UseEffect pour déclencher les evenements entre les différents composants
   useEffect(() => {
-    if (currentBox == 2) {
-      console.log(event25, box2video5);
-      // EXPLICATION : Pour faire le lien entre le composant Home (carte Lauren) et ici
-      if (event25 == "open" && box2video5 == false) {
-        setVideoBureauLauren(true);
-        fetchPreviousStateNappe();
-      }
-    }
     if (currentBox == 3) {
       // EXPLICATION : Pour faire le lien entre le composant Header (timer) et ici
       if (event35 == "open") {
@@ -171,10 +189,10 @@ const Objectif = ({ data }) => {
           (event) => event.id == "box2lieu3"
         );
         setBox2Lieu3(box2lieu3Data.status);
-        const box2video5Data = clues.data.find(
-          (event) => event.id == "box2video5"
-        );
-        setBox2Video5(box2video5Data.status);
+        // const box2video5Data = clues.data.find(
+          // (event) => event.id == "box2video5"
+        // );
+        // setBox2Video5(box2video5Data.status);
       }
       if (currentBox == 3) {
         const box3audio3Data = clues.data.find(
@@ -231,53 +249,55 @@ const Objectif = ({ data }) => {
   }, [toggleDataObjectif]);
 
   //EXPLICATION : UseEffect pour avoir les event sur les lieux de fouille
-  let es = useRef(null);
-  const setUpEventSource = () => {
-    if (es.current) {
-      return;
-    }
-    es.current = new EventSource(
-      "https://sse.detectivebox.fr/stream?token=" + token
-    );
-    console.log("ES created");
-    es.current.addEventListener("message", async (event) => {
-      const data = JSON.parse(event.data);
-      console.log("ES message received: " + data.id);
-      if (currentBox == 1 && data.id === "box1document1") {
-        setModaleMalle(true);
-      }
-      if (data.id === "box1video2") {
-        setModaleVHS(true);
-      }
-      if (currentBox == 1 && data.id === "box1document6") {
-        setModaleInterrogatoireGarraud(true);
-      }
-      if (data.id === "box2document6") {
-        actionToggleDataHistory();
-      }
-      if (data.id === "box3document2") {
-        await updateHistory(token, 3, "box3document3");
-        actionToggleDataHistory();
-        await updateObjectives(token, 3, 33, "open");
-        await updateObjectives(token, 3, 34, "open");
-        actionToggleDataObjectif();
-        await updateHelp(token, 3, "box3help3", "open");
-        await updateHelp(token, 3, "box3help6", "open");
-        await updateHelp(token, 3, "box3help2", "done");
-        actionToggleDataHelp();
-        setModaleSquelette(true);
-      }
-    });
-    es.current.addEventListener("error", () => {
-      console.log("ES disconnected");
-      es.current.close();
-      setTimeout(() => setUpEventSource(), 1000);
-    });
-  };
+  // let es = useRef(null);
+  // const setUpEventSource = () => {
+  //   if (es.current) {
+  //     return;
+  //   }
+  //   es.current = new EventSource(
+  //     "https://sse.detectivebox.fr/stream?token=" + token
+  //   );
+  //   console.log("ES created");
+  //   es.current.addEventListener("message", async (event) => {
+  //     const data = JSON.parse(event.data);
+  //     console.log("ES message received: " + data.id);
+  //     if (currentBox == 1 && data.id === "box1document1") {
+  //       setModaleMalle(true);
+  //     }
+  //     if (data.id === "box1video2") {
+  //       setModaleVHS(true);
+  //     }
+  //     if (currentBox == 1 && data.id === "box1document6") {
+  //       setModaleInterrogatoireGarraud(true);
+  //     }
+  //     if (data.id === "box2document6") {
+  //       actionToggleDataHistory();
+  //     }
+  //     if (data.id === "box3document2") {
+  //       await updateHistory(token, 3, "box3document3");
+  //       actionToggleDataHistory();
+  //       await updateObjectives(token, 3, 33, "open");
+  //       await updateObjectives(token, 3, 34, "open");
+  //       actionToggleDataObjectif();
+  //       await updateHelp(token, 3, "box3help3", "open");
+  //       await updateHelp(token, 3, "box3help6", "open");
+  //       await updateHelp(token, 3, "box3help2", "done");
+  //       actionToggleDataHelp();
+  //       setModaleSquelette(true);
+  //     }
+  //   });
+  //   es.current.addEventListener("error", () => {
+  //     console.log("ES disconnected");
+  //     es.current.close();
+  //     setTimeout(() => setUpEventSource(), 1000);
+  //   });
+  // };
 
-  useEffect(() => {
-    setUpEventSource();
-  }, []);
+  // useEffect(() => {
+  //   setUpEventSource();
+  // }, []);
+
+
 
   // --- CONDITIONS SPE OBJECTIF 14 --- //
 
@@ -454,11 +474,105 @@ const Objectif = ({ data }) => {
 
   const handleFinalStep = async () => {
     await updateHelp(token, 3, "box3help4", "done");
+    dispatch({
+      type: "setEvent",
+      id: "box3help4",
+    });
     await updateHelp(token, 3, "box3help5", "open");
+    dispatch({
+      type: "setEvent",
+      id: "box3help5",
+    });
     await updateEvent(token, 3, 33, "open");
     actionToggleDataHelp();
     actionToggleDataEvent();
     setTelCeline(false);
+  };
+
+  const displayModaleMauvaiseFin1 = () => {
+    return (
+      <div className="modal-objectif__background">
+        <div className="modal-objectif__box">
+          <audio autoPlay onEnded={() => setDisplayTextMauvaiseFin1(true)}>
+            <source
+              src={urlApi.cdn() + "sounds/308-mauvaise-fin-1.mp3"}
+              type="audio/mpeg"
+            />
+            Votre navigateur ne prend pas en charge ce format
+          </audio>
+          {displayTextMauvaiseFin1 ? (
+            <>
+              <p>
+                Ce n&apos;était pas la bonne cible, nous nous sommes trompés...
+                Céline est malheureusement dans la nature et elle a réussi son
+                grand œuvre.
+              </p>
+              <p>
+                Souhaitez-vous réessayer le dernier objectif ou passer à
+                l&apos;épilogue ?
+              </p>
+              <button
+                className="modal-objectif__button button--red"
+                onClick={handleReset}
+              >
+                Recommencer
+              </button>
+              <button
+                className="modal-objectif__button button--red"
+                onClick={handleGoToResolution}
+              >
+                Résolution de l&apos;enquête
+              </button>
+            </>
+          ) : (
+            <p>Merci Agents, je saute dans un avion !</p>
+          )}
+        </div>
+      </div>
+    );
+  };
+
+  const displayModaleMauvaiseFin2 = () => {
+    return (
+      <div className="modal-objectif__background">
+        <div className="modal-objectif__box">
+          <audio autoPlay onEnded={() => setDisplayTextMauvaiseFin2(true)}>
+            <source
+              src={urlApi.cdn() + "sounds/309-mauvaise-fin-2.mp3"}
+              type="audio/mpeg"
+            />
+            Votre navigateur ne prend pas en charge ce format
+          </audio>
+          {displayTextMauvaiseFin2 ? (
+            <>
+              <p>
+                Ce n&apos;était pas la bonne cible, nous nous sommes trompés...
+                Céline est malheureusement dans la nature et elle a réussi son
+                grand œuvre.
+              </p>
+              <p>
+                Souhaitez-vous réessayer le dernier objectif ou passer à
+                l&apos;épilogue ?
+              </p>
+              <button
+                className="modal-objectif__button button--red"
+                onClick={handleReset}
+              >
+                Recommencer
+              </button>
+              <button
+                className="modal-objectif__button button--red"
+                onClick={handleGoToResolution}
+              >
+                Résolution de l&apos;enquête
+              </button>
+            </>
+          ) : (
+            <p>Merci Agents, je saute dans un avion !</p>
+          )}
+        </div>
+      </div>
+    );
   };
 
   const handleSubmitCity = async (e) => {
@@ -507,6 +621,7 @@ const Objectif = ({ data }) => {
                 className="modal-objectif__icon"
                 src={Cross}
                 onClick={handleModal}
+                alt=""
               />
             </button>
             <h2 className="modal-objectif__title">
@@ -535,6 +650,7 @@ const Objectif = ({ data }) => {
                 className="modal-objectif__icon"
                 src={Cross}
                 onClick={handleModal}
+                alt=""
               />
             </button>
             <h2 className="modal-objectif__title">
@@ -573,6 +689,7 @@ const Objectif = ({ data }) => {
                 className="modal-objectif__icon"
                 src={Cross}
                 onClick={handleModal}
+                alt=""
               />
             </button>
             <h2 className="modal-objectif__title">
@@ -748,6 +865,10 @@ const Objectif = ({ data }) => {
     if (data.answer.includes(slugify(value))) {
       if (data.id == 11) {
         await updateHistory(token, 1, "box1document3");
+        dispatch({
+          type: "setEvent",
+          id: "box1document3",
+        });
         actionToggleDataHistory();
       }
       if (data.id == 13 && box1lieu2 == false) {
@@ -792,6 +913,10 @@ const Objectif = ({ data }) => {
           await updateHelp(token, 1, "box1help2", "done");
           actionToggleDataHelp();
           await updateHistory(token, 1, "box1document5");
+          dispatch({
+            type: "setEvent",
+            id: "box1document5",
+          });
           actionToggleDataHistory();
           setModaleHacking(true);
           return;
@@ -801,6 +926,10 @@ const Objectif = ({ data }) => {
           await updateHelp(token, 1, "box1help2", "done");
           actionToggleDataHelp();
           await updateHistory(token, 1, "box1document5");
+          dispatch({
+            type: "setEvent",
+            id: "box1document5",
+          });
           actionToggleDataHistory();
           setModaleHacking(true);
           return;
@@ -842,7 +971,15 @@ const Objectif = ({ data }) => {
         actionToggleDataObjectif();
         actionToggleDataHelp();
         await updateHistory(token, 2, "box2document9");
+        dispatch({
+          type: "setEvent",
+          id: "box2document9",
+        });
         await updateHistory(token, 2, "box2document12");
+        dispatch({
+          type: "setEvent",
+          id: "box2document12",
+        });
         actionToggleDataHistory();
         return;
       }
@@ -870,11 +1007,35 @@ const Objectif = ({ data }) => {
         await updateObjectives(token, 3, 34, "done");
         await updateHelp(token, 3, "box3help6", "done");
         await updateHistory(token, 3, "box3audio1");
+        dispatch({
+          type: "setEvent",
+          id: "box3audio1",
+        });
         await updateHistory(token, 3, "box3lieu3");
+        dispatch({
+          type: "setEvent",
+          id: "box3lieu3",
+        });
         await updateHistory(token, 3, "box3video2");
+        dispatch({
+          type: "setEvent",
+          id: "box3video2",
+        });
         await updateHistory(token, 3, "box3document10");
+        dispatch({
+          type: "setEvent",
+          id: "box3document10",
+        });
         await updateHistory(token, 3, "box3document12");
+        dispatch({
+          type: "setEvent",
+          id: "box3document12",
+        });
         await updateHistory(token, 3, "box3document9");
+        dispatch({
+          type: "setEvent",
+          id: "box3document9",
+        });
         actionToggleDataHistory();
         actionToggleDataObjectif();
         actionToggleDataHelp();
@@ -946,6 +1107,7 @@ const Objectif = ({ data }) => {
                 className="modal-objectif__icon"
                 src={Cross}
                 onClick={handleModal}
+                alt=""
               />
             </button>
             <h2 className="modal-objectif__title">
@@ -1053,6 +1215,7 @@ const Objectif = ({ data }) => {
                         <img
                           className="modal-objectif__victimes__photos"
                           src={urlApi.cdn() + el.img}
+                          alt=""
                         />
                       </div>
                       <p className="modal-objectif__victimes__nom">{el.name}</p>
@@ -1081,6 +1244,7 @@ const Objectif = ({ data }) => {
                 className="modal-objectif__icon"
                 src={Cross}
                 onClick={handleModal}
+                alt=""
               />
             </button>
             <h2 className="modal-objectif__title">
@@ -1107,6 +1271,7 @@ const Objectif = ({ data }) => {
                         }`}
                         src={urlApi.cdn() + el.img}
                         onClick={() => toggleIntVictime(el.name)}
+                        alt=""
                       />
                     </div>
                     <p className="modal-objectif__victimestri__nom">
@@ -1136,6 +1301,7 @@ const Objectif = ({ data }) => {
                 className="modal-objectif__icon"
                 src={Cross}
                 onClick={handleModal}
+                alt=""
               />
             </button>
             <h2 className="modal-objectif__title">
@@ -1162,6 +1328,7 @@ const Objectif = ({ data }) => {
                         }`}
                         src={urlApi.cdn() + el.img}
                         onClick={() => toggleFinalVictime(el.name)}
+                        alt=""
                       />
                     </div>
                     <p className="modal-objectif__victimestri__nom">
@@ -1191,6 +1358,7 @@ const Objectif = ({ data }) => {
                 className="modal-objectif__icon"
                 src={Cross}
                 onClick={handleModal}
+                alt=""
               />
             </button>
             <h2 className="modal-objectif__title">
@@ -1219,6 +1387,7 @@ const Objectif = ({ data }) => {
               className="modal-objectif__icon"
               src={Cross}
               onClick={handleModal}
+              alt=""
             />
           </button>
           <h2 className="modal-objectif__title">
@@ -1253,6 +1422,7 @@ const Objectif = ({ data }) => {
               className="modal-objectif__icon"
               src={Cross}
               onClick={handleModalBis}
+              alt=""
             />
           </button>
           <h2 className="modal-objectif__title">
@@ -1386,7 +1556,11 @@ const Objectif = ({ data }) => {
             >
               <div className="objectif__mainInfo">
                 <div className="objectif__icon-wrapper">
-                  <img src={LockOpen} className="objectif__icon" />
+                  <img
+                    src={LockOpen}
+                    className="objectif__icon"
+                    alt="objectif ouvert"
+                  />
                 </div>
                 <h3 className="objectif__title">{data.title}</h3>
               </div>
@@ -1405,7 +1579,11 @@ const Objectif = ({ data }) => {
           >
             <div className="objectif__mainInfo">
               <div className="objectif__icon-wrapper">
-                <img src={Check} className="objectif__icon" />
+                <img
+                  src={Check}
+                  className="objectif__icon"
+                  alt="objectif terminé"
+                />
               </div>
               <h3 className="objectif__title">{data.title}</h3>
             </div>
@@ -1425,7 +1603,11 @@ const Objectif = ({ data }) => {
           >
             <div className="objectif__mainInfo">
               <div className="objectif__icon-wrapper">
-                <img src={LockOpen} className="objectif__icon" />
+                <img
+                  src={LockOpen}
+                  className="objectif__icon"
+                  alt="objectif ouvert"
+                />
               </div>
               <h3 className="objectif__title">{data.title}</h3>
             </div>
@@ -1441,7 +1623,11 @@ const Objectif = ({ data }) => {
         <>
           <button className="objectif objectif--closed">
             <div className="objectif__icon-wrapper--closed">
-              <img src={LockClosed} className="objectif__icon" />
+              <img
+                src={LockClosed}
+                className="objectif__icon"
+                alt="objectif bloqué"
+              />
             </div>
             <h3 className="objectif__title--closed">
               Cet objectif est bloqué pour le moment
@@ -1453,19 +1639,6 @@ const Objectif = ({ data }) => {
   };
 
   // --- LOGIQUE EVENT BOX 1 --- //
-
-  const [modaleHacking, setModaleHacking] = useState(false);
-  const [modaleMailHacking, setModaleMailHacking] = useState(false);
-  const [modaleMalle, setModaleMalle] = useState(false);
-  const [modaleRebecca, setModaleRebecca] = useState(false);
-  const [modaleVHS, setModaleVHS] = useState(false);
-  const [modaleInterrogatoireGarraud, setModaleInterrogatoireGarraud] =
-    useState(false);
-  const [videoInterrogatoireGarraud, setVideoInterrogatoireGarraud] =
-    useState(false);
-  const [displayButtonOpenMail, setDisplayButtonOpenMail] = useState(false);
-  const [endGameModale, setEndGameModale] = useState(false);
-
   const displayHacking = () => {
     return (
       <div className="modal-objectif__background">
@@ -1525,288 +1698,7 @@ const Objectif = ({ data }) => {
     );
   };
 
-  const displayEndGameModale = () => {
-    return (
-      <div className="modal-objectif__background">
-        <div className="modal-objectif__box modal-objectif__endGame">
-          {renderEndText()}
-          {currentBox == 3 ? (
-            <button
-              className="modal-objectif__button button--red"
-              onClick={handleEndGameModale}
-            >
-              Classer l&apos;affaire
-            </button>
-          ) : (
-            <button
-              className="modal-objectif__button button--red"
-              onClick={handleEndGameModale}
-            >
-              Clore cette partie de l&apos;enquête
-            </button>
-          )}
-        </div>
-      </div>
-    );
-  };
 
-  const renderEndText = () => {
-    if (currentBox == 1) {
-      return (
-        <div className="modal-objectif__endGame--text">
-          <p>Vous avez fini la première partie</p>
-          <p>Rendez-vous en box 2 pour la suite de l&apos;enquête</p>
-        </div>
-      );
-    }
-    if (currentBox == 2) {
-      return (
-        <div className="modal-objectif__endGame--text">
-          <p>Vous avez fini la seconde partie</p>
-          <p>Rendez-vous en box 3 pour clore cette affaire</p>
-        </div>
-      );
-    }
-    if (currentBox == 3) {
-      return (
-        <div className="modal-objectif__endGame--text">
-          <p>
-            Vous avez définitivement clôturé le dossier du Tueur au Tarot, bravo
-            Agents !
-          </p>
-          <p>Au plaisir de vous retrouver sur de prochaines enquêtes.</p>
-        </div>
-      );
-    }
-  };
-
-  const displayContentMalle = () => {
-    return (
-      <div className="modal-objectif__background">
-        <div className="modal-objectif__box">
-          <p>
-            Je vous transmets l&apos;enregistrement qu&apos;on a trouvé dans la
-            malle pour que vous puissiez l&apos;écouter.
-          </p>
-          <p> Tim nous confirme que c&apos;est bien la voix de Rebecca.</p>
-          <p>
-            Attention, j&apos;ai écouté l&apos;enregistrement et il est assez
-            dur. Pour les âmes sensibles, cliquez sur la transcription.
-          </p>
-          <p> On a aussi un médaillon, difficile de dire à quoi il sert. </p>
-          <p>
-            Quant aux inscriptions, je vous laisse me dire ce que ça vous
-            inspire... tous les éléments sont dans l&apos;historique
-          </p>
-          <button
-            className="modal-objectif__button button--red"
-            onClick={handleOpenRebeccaAudio}
-          >
-            Ecouter l&apos;enregistrement
-          </button>
-        </div>
-      </div>
-    );
-  };
-
-  const handleOpenRebeccaAudio = () => {
-    fetchPreviousStateNappe();
-    setModaleMalle(false);
-    setModaleRebecca(true);
-  };
-
-  const displayAudioRebecca = () => {
-    return (
-      <Audio
-        title="Derniers mots de Rebecca"
-        srcImg1={urlApi.cdn() + "assets/photos-personnages/rebecca_dumont.jpg"}
-        srcImg2={null}
-        srcTranscription={
-          urlApi.cdn() +
-          "assets/transcripts/102_Derniers_mots_Rebecca_transcript.pdf"
-        }
-        handleModalAudio={closeAudioRebecca}
-        srcAudio={urlApi.cdn() + "sounds/102-derniers-mots-rebecca.mp3"}
-      />
-    );
-  };
-
-  const closeAudioRebecca = async () => {
-    await updateEvent(token, 1, 13, "done");
-    actionToggleDataEvent();
-    await updateHistory(token, 1, "box1audio1");
-    actionToggleDataHistory();
-    setModaleRebecca(false);
-  };
-
-  const displayModaleVHS = () => {
-    return (
-      <div className="modal-objectif__background">
-        <div className="modal-objectif__box">
-          <p>Voilà ce qu&apos;on a retrouvé dans le coffre:</p>
-          <p>LETTRE</p>
-          <p>La lettre est disponible dans l&apos;onglet Historique</p>
-          <p>VHS</p>
-          <p>
-            Il y a deux passages intéressants dans la video: un vers 15min où on
-            voit Charles Garraud et un autre à la fin... La VHS est entre les
-            mains de Tim pour de plus amples analyses. N&apos;hésitez pas à le
-            solliciter pour accéder au contenu.
-          </p>
-          <p>PLAN</p>
-          <p>
-            Il y avait aussi ce plan étrange, il n&apos;a pas l&apos;air bien
-            vieux, il a dû être accroché à la maison il n&apos;y a pas
-            longtemps.
-          </p>
-          <p>
-            Ça ne correspond à aucune des adresses qu&apos;on a trouvées
-            jusqu&apos;ici...
-          </p>
-          <p>Vous pouvez l&apos;étudier depuis l&apos;Historique</p>
-          <button
-            className="modal-objectif__button button--red"
-            onClick={handleCloseModaleVHS}
-          >
-            Continuer l&apos;enquête
-          </button>
-        </div>
-      </div>
-    );
-  };
-
-  const handleCloseModaleVHS = async () => {
-    await updateEvent(token, 1, 14, "done");
-    actionToggleDataEvent();
-    setModaleVHS(false);
-  };
-
-  const displayModaleInterrogatoireGarraud = () => {
-    return (
-      <div className="modal-objectif__background">
-        <div className="modal-objectif__box">
-          <p>
-            Ça fait de sacrées révélations tout ça... Je pense qu&apos;avec ce
-            qu&apos;on a là, on devrait pouvoir interroger Charles Garraud.
-          </p>
-          <button
-            className="modal-objectif__button button--red"
-            onClick={handleOpenInterrogatoire}
-          >
-            Passer à l&apos;interrogatoire
-          </button>
-        </div>
-      </div>
-    );
-  };
-
-  const handleOpenInterrogatoire = () => {
-    setModaleInterrogatoireGarraud(false);
-    setVideoInterrogatoireGarraud(true);
-    fetchPreviousStateNappe();
-  };
-
-  const displayVideoInterrogatoireGarraud = () => {
-    return (
-      <Video
-        title="Interrogatoire de Charles Garraud"
-        srcVideo={urlApi.cdn() + "videos/db-s02-104-vdef.mp4"}
-        handleModalVideo={handleCloseVideoInterrogatoire}
-      />
-    );
-  };
-
-  const handleCloseVideoInterrogatoire = async () => {
-    setVideoInterrogatoireGarraud(false);
-    setEndGameModale(true);
-  };
-
-  const handleEndGameModale = async () => {
-    if (currentBox == 1) {
-      // await updateHistory(token, 1, "box1video4");
-      await updateEvent(token, 1, 15, "done");
-      await updateBox(token, 1, "done");
-      await updateBox(token, 2, "open");
-      await updateTimeEndBox(token, 1);
-    }
-    if (currentBox == 2) {
-      // await updateHistory(token, 2, "box2video5");
-      await updateEvent(token, 2, 25, "done");
-      await updateBox(token, 2, "done");
-      await updateBox(token, 3, "open");
-      await updateTimeEndBox(token, 2);
-    }
-    if (currentBox == 3) {
-      updateHistory(token, 3, "box3video3");
-      //await updateBox(token, 3, "done");
-      await updateTimeEndBox(token, 3);
-    }
-    navigate("/box-choice");
-  };
-
-  // --- LOGIQUE EVENT BOX 2 --- //
-
-  const [youveGotMail, setYouveGotMail] = useState(false);
-  const [mailLauren2, setMailLauren2] = useState(false);
-  const [audioSamuel, setAudioSamuel] = useState(false);
-  const [audioBreakingNews, setAudioBreakingNews] = useState(false);
-  const [videoBreakingNews, setVideoBreakingNews] = useState(false);
-  const [videoBureauLauren, setVideoBureauLauren] = useState(false);
-  const [audioEndBreakingNews, setAudioEndBreakingNews] = useState(false);
-
-  const displayVideoBureauLauren = () => {
-    return (
-      <Video
-        title="Bureau de Lauren Fraser"
-        srcVideo={urlApi.cdn() + "videos/db-s02-209-vdef.mp4"}
-        handleModalVideo={handleCloseVideoBureau}
-      />
-    );
-  };
-
-  const handleCloseVideoBureau = async () => {
-    setVideoBureauLauren(false);
-    setEndGameModale(true);
-  };
-
-  const displayYouveGotMail = () => {
-    return (
-      <div className="modal-objectif__background">
-        <div className="modal-objectif__box">
-          <audio autoPlay>
-            <source src={urlApi.cdn() + "sounds/ding.mp3"} type="audio/mpeg" />
-            Votre navigateur ne prend pas en charge ce format
-          </audio>
-          <div>Vous avez un mail</div>
-          <button
-            className="modal-objectif__button button--red"
-            onClick={handleCloseYouveGotMail}
-          >
-            Valider
-          </button>
-        </div>
-      </div>
-    );
-  };
-
-  const handleCloseYouveGotMail = () => {
-    setMailLauren2(true);
-    setYouveGotMail(false);
-  };
-
-  const displayMailLauren2 = () => {
-    return (
-      <Document
-        title="Email de Lauren Fraser"
-        srcElement={urlApi.cdn() + "assets/document/220_Message_Lauren_2.jpg"}
-        handleModalDocument={handleCloseMail2}
-      />
-    );
-  };
-
-  const handleCloseMail2 = async () => {
-    setMailLauren2(false);
-  };
 
   const displayAudioSamuel = () => {
     return (
@@ -1892,8 +1784,20 @@ const Objectif = ({ data }) => {
     setAudioEndBreakingNews(true);
     fetchPreviousStateNappe();
     await updateHistory(token, 2, "box2video3");
+    dispatch({
+      type: "setEvent",
+      id: "box2video3",
+    });
     await updateHistory(token, 2, "box2audio3");
+    dispatch({
+      type: "setEvent",
+      id: "box2audio3",
+    });
     await updateHistory(token, 2, "box2document11");
+    dispatch({
+      type: "setEvent",
+      id: "box2document11",
+    });
     await updateObjectives(token, 2, 22, "open");
     await updateHelp(token, 2, "box2help2", "open");
     await updateObjectives(token, 2, 21, "done");
@@ -1903,48 +1807,45 @@ const Objectif = ({ data }) => {
     actionToggleDataHelp();
   };
 
-  // --- LOGIQUE EVENT BOX 3 --- //
+  const handleCloseYouveGotMail = () => {
+    setMailLauren2(true);
+    setYouveGotMail(false);
+  };
 
-  const [videoSauverLauren, setVideoSauverLauren] = useState(false);
-  const [modaleSquelette, setModaleSquelette] = useState(false);
-  const [debriefLauren, setDebriefLauren] = useState(false);
-  const [telCeline, setTelCeline] = useState(false);
-  const [tempsEcoule, setTempsEcoule] = useState(false);
-  const [displayTextMauvaiseFin1, setDisplayTextMauvaiseFin1] = useState(false);
-  const [displayTextMauvaiseFin2, setDisplayTextMauvaiseFin2] = useState(false);
-  const [displayTextResolution, setDisplayTextResolution] = useState(false);
-  const [mauvaiseFin1, setMauvaiseFin1] = useState(false);
-  const [mauvaiseFin2, setMauvaiseFin2] = useState(false);
-  const [resolution, setResolution] = useState(false);
-  const [interrogatoireFinal, setInterrogatoireFinal] = useState(false);
-
-  const displayModaleSquelette = () => {
+  const displayYouveGotMail = () => {
     return (
       <div className="modal-objectif__background">
         <div className="modal-objectif__box">
-          <p>Bon travail, regardons ce qu&apos;il y a dans ce coffre :</p>
-          <p>
-            Un squelette entier, je ne sais pas de quand il date, mais
-            c&apos;est sacrément bien conservé, sauf la tête.
-          </p>
-          <p>
-            Vous devriez demander à Adèle ce qu&apos;elle peut trouver dessus.{" "}
-          </p>
-          <p>Et une vieille photo…</p>
-          <p>Vous trouverez tout ça dans l&apos;Historique.</p>
+          <audio autoPlay>
+            <source src={urlApi.cdn() + "sounds/ding.mp3"} type="audio/mpeg" />
+            Votre navigateur ne prend pas en charge ce format
+          </audio>
+          <div>Vous avez un mail</div>
           <button
             className="modal-objectif__button button--red"
-            onClick={handleCloseModaleSquelette}
+            onClick={handleCloseYouveGotMail}
           >
-            Continuer l&apos;enquête
+            Valider
           </button>
         </div>
       </div>
     );
   };
 
-  const handleCloseModaleSquelette = () => {
-    setModaleSquelette(false);
+
+
+  const handleCloseMail2 = async () => {
+    setMailLauren2(false);
+  };
+
+  const displayMailLauren2 = () => {
+    return (
+      <Document
+        title="Email de Lauren Fraser"
+        srcElement={urlApi.cdn() + "assets/document/220_Message_Lauren_2.jpg"}
+        handleModalDocument={handleCloseMail2}
+      />
+    );
   };
 
   const displayVideoSauverLauren = () => {
@@ -1981,10 +1882,7 @@ const Objectif = ({ data }) => {
 
   const closeDebriefLauren = () => {
     setDebriefLauren(false);
-    window.open(
-      "https://fouille.cave.detectivebox.fr/?token=" + token,
-      "_blank"
-    );
+    openLieu('box3lieu3')
   };
 
   const displayModaleTempsEcoule = () => {
@@ -2081,6 +1979,8 @@ const Objectif = ({ data }) => {
     );
   };
 
+
+
   const handleInterrogatoireFinal = () => {
     setResolution(false);
     setInterrogatoireFinal(true);
@@ -2095,102 +1995,25 @@ const Objectif = ({ data }) => {
         handleModalVideo={handleEndBox3}
       />
     );
-  };
+  }
 
   const handleEndBox3 = () => {
     setInterrogatoireFinal(false);
-    setEndGameModale(true);
+    updateHistory(token, 3, 'box3video3')
+    actionToggleDataHistory()
+    dispatch({
+      type: "setEvent",
+      id: "box3video3",
+    });
+    //setEndGameModale(true);
   };
 
-  const displayModaleMauvaiseFin1 = () => {
-    return (
-      <div className="modal-objectif__background">
-        <div className="modal-objectif__box">
-          <audio autoPlay onEnded={() => setDisplayTextMauvaiseFin1(true)}>
-            <source
-              src={urlApi.cdn() + "sounds/308-mauvaise-fin-1.mp3"}
-              type="audio/mpeg"
-            />
-            Votre navigateur ne prend pas en charge ce format
-          </audio>
-          {displayTextMauvaiseFin1 ? (
-            <>
-              <p>
-                Ce n&apos;était pas la bonne cible, nous nous sommes trompés...
-                Céline est malheureusement dans la nature et elle a réussi son
-                grand œuvre.
-              </p>
-              <p>
-                Souhaitez-vous réessayer le dernier objectif ou passer à
-                l&apos;épilogue ?
-              </p>
-              <button
-                className="modal-objectif__button button--red"
-                onClick={handleReset}
-              >
-                Recommencer
-              </button>
-              <button
-                className="modal-objectif__button button--red"
-                onClick={handleGoToResolution}
-              >
-                Résolution de l&apos;enquête
-              </button>
-            </>
-          ) : (
-            <p>Merci Agents, je saute dans un avion !</p>
-          )}
-        </div>
-      </div>
-    );
-  };
 
-  const displayModaleMauvaiseFin2 = () => {
-    return (
-      <div className="modal-objectif__background">
-        <div className="modal-objectif__box">
-          <audio autoPlay onEnded={() => setDisplayTextMauvaiseFin2(true)}>
-            <source
-              src={urlApi.cdn() + "sounds/309-mauvaise-fin-2.mp3"}
-              type="audio/mpeg"
-            />
-            Votre navigateur ne prend pas en charge ce format
-          </audio>
-          {displayTextMauvaiseFin2 ? (
-            <>
-              <p>
-                Ce n&apos;était pas la bonne cible, nous nous sommes trompés...
-                Céline est malheureusement dans la nature et elle a réussi son
-                grand œuvre.
-              </p>
-              <p>
-                Souhaitez-vous réessayer le dernier objectif ou passer à
-                l&apos;épilogue ?
-              </p>
-              <button
-                className="modal-objectif__button button--red"
-                onClick={handleReset}
-              >
-                Recommencer
-              </button>
-              <button
-                className="modal-objectif__button button--red"
-                onClick={handleGoToResolution}
-              >
-                Résolution de l&apos;enquête
-              </button>
-            </>
-          ) : (
-            <p>Merci Agents, je saute dans un avion !</p>
-          )}
-        </div>
-      </div>
-    );
-  };
 
   return (
     <>
       {renderObjectif()}
+      {renderLieu()}
       {modal ? renderModal() : ""}
       {modalBis ? renderModalBis() : ""}
       {modalAnswer ? renderModalAnswer() : ""}
@@ -2198,29 +2021,19 @@ const Objectif = ({ data }) => {
       {doneObjectifModal ? renderDoneObjectifModal() : ""}
       {modaleHacking ? displayHacking() : null}
       {modaleMailHacking ? displayMailHacking() : null}
-      {modaleMalle ? displayContentMalle() : null}
-      {modaleRebecca ? displayAudioRebecca() : null}
-      {modaleVHS ? displayModaleVHS() : null}
-      {modaleInterrogatoireGarraud
-        ? displayModaleInterrogatoireGarraud()
-        : null}
-      {videoInterrogatoireGarraud ? displayVideoInterrogatoireGarraud() : null}
       {youveGotMail ? displayYouveGotMail() : null}
       {mailLauren2 ? displayMailLauren2() : null}
       {audioSamuel ? displayAudioSamuel() : null}
       {audioBreakingNews ? displayAudioBreakingNews() : null}
       {videoBreakingNews ? displayVideoBreakingNews() : null}
-      {videoBureauLauren ? displayVideoBureauLauren() : null}
       {videoSauverLauren ? displayVideoSauverLauren() : null}
-      {modaleSquelette ? displayModaleSquelette() : null}
       {debriefLauren ? displayDebriefLauren() : null}
-      {telCeline ? displayTelCeline() : null}
-      {tempsEcoule ? displayModaleTempsEcoule() : null}
       {mauvaiseFin1 ? displayModaleMauvaiseFin1() : null}
       {mauvaiseFin2 ? displayModaleMauvaiseFin2() : null}
+      {telCeline ? displayTelCeline() : null}
       {resolution ? displayModaleResolution() : null}
+      {tempsEcoule ? displayModaleTempsEcoule() : null}
       {interrogatoireFinal ? displayInterrogatoireFinal() : null}
-      {endGameModale ? displayEndGameModale() : null}
     </>
   );
 };

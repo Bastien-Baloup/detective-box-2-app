@@ -37,7 +37,7 @@ const BoxChoice = ({ data }) => {
 			<div className="modal-boxdone__background">
 				<div className="modal-boxdone__box">
 					<button className="modal-boxdone__icon--container">
-						<img className="modal-boxdone__icon" src={Cross} onClick={handleModal} />
+						<img className="modal-boxdone__icon" src={Cross} onClick={handleModal} alt='' />
 					</button>
 					{data.id == 3 ? (
 						<p className="modal-boxdone__text">
@@ -81,12 +81,12 @@ const BoxChoice = ({ data }) => {
 					<>
 						<article className="boxchoice boxchoice--done" onClick={handleModal}>
 							<div className="boxchoice__picture-wrapper">
-								<img src={renderCover()} className="boxchoice__picture" />
+								<img src={renderCover()} className="boxchoice__picture" alt='' />
 							</div>
 							<div className="boxchoice__info">
 								<h2 className="boxchoice__info__title">Box {data.id}</h2>
 								<div className="boxchoice__info__icon-wrapper">
-									<img src={Check} className="boxchoice__info__icon" />
+									<img src={Check} className="boxchoice__info__icon" alt='boite terminée'/>
 								</div>
 							</div>
 						</article>
@@ -98,12 +98,12 @@ const BoxChoice = ({ data }) => {
 					<article className="boxchoice boxchoice--open" onClick={() => fetchCurrentBox(data.id)}>
 						<Link to={"/"} className="boxchoice__link"></Link>
 						<div className="boxchoice__picture-wrapper">
-							<img src={renderCover()} className="boxchoice__picture" />
+							<img src={renderCover()} className="boxchoice__picture" alt=''/>
 						</div>
 						<div className="boxchoice__info">
 							<h2 className="boxchoice__info__title">Box {data.id}</h2>
 							<div className="boxchoice__info__icon-wrapper">
-								<img src={Lockopen} className="boxchoice__info__icon" />
+								<img src={Lockopen} className="boxchoice__info__icon" alt='boite ouverte'/>
 							</div>
 						</div>
 					</article>
@@ -114,12 +114,12 @@ const BoxChoice = ({ data }) => {
 					<>
 						<article className="boxchoice boxchoice--closed">
 							<div className="boxchoice__picture-wrapper">
-								<img src={renderCover()} className="boxchoice__picture" />
+								<img src={renderCover()} className="boxchoice__picture" alt=''/>
 							</div>
 							<div className="boxchoice__info">
 								<h2 className="boxchoice__info__title">Box {data.id}</h2>
 								<div className="boxchoice__info__icon-wrapper">
-									<img src={Lockclosed} className="boxchoice__info__icon" />
+									<img src={Lockclosed} className="boxchoice__info__icon" alt='boite fermée'/>
 								</div>
 							</div>
 							<div className="boxchoice__greyFilter"></div>

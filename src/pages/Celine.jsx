@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 // EXPLICATION : Page pour faire les requêtes auprès du personnage de Céline
 // EXPLICATION : Les validations des requêtes sont faites ici
 
@@ -9,12 +10,16 @@ import PropTypes from "prop-types";
 import { urlApi } from "../utils/const/urlApi";
 import { BoxContext, DataContext } from "../utils/context/fetchContext";
 import { useContext, useState, useEffect } from "react";
-import { updateCharactersById, updateHistory, getCharactersById, getHistoryByBox } from "../utils/hooks/useApi.js";
+import useApi from '../utils/hooks/useApi.js';
+import useEvent from '../utils/hooks/useEvent.js';
 
 const Celine = ({ closeAgentPage }) => {
 	const { currentBox } = useContext(BoxContext);
 	const token = localStorage.getItem("token");
 	const { actionToggleDataCeline, toggleDataCeline, toggleDataHistory } = useContext(DataContext);
+	const { updateCharactersById, updateHistory, getCharactersById, getHistoryByBox } = useApi()
+	const { dispatch } = useEvent()
+
 
 	//EXPLICATION : Celine est le personnage "3"
 
@@ -179,8 +184,16 @@ const Celine = ({ closeAgentPage }) => {
 	const closeModalMedia = async (answerId, asnwerAsk) => {
 		await updateCharactersById(token, 3, currentBox, asnwerAsk);
 		await updateHistory(token, currentBox, answerId);
+		dispatch({
+			type: 'setEvent',
+			id: answerId
+		})
 		if (answerId == "box1archive23") {
 			await updateHistory(token, 1, "box1document4");
+			dispatch({
+				type: 'setEvent',
+				id: 'box1document4'
+			})
 		}
 		actionToggleDataCeline();
 		setModalMedia(false);
@@ -208,7 +221,7 @@ const Celine = ({ closeAgentPage }) => {
 			</audio>
 			<div className="agent">
 				<div className="agent__portrait--container">
-					<img className="agent__portrait" src={PhotoCeline} />
+					<img className="agent__portrait" src={PhotoCeline} alt='photo de celine' />
 				</div>
 				<div className="agent__main">
 					<div className="agent__title--container">
@@ -228,7 +241,7 @@ const Celine = ({ closeAgentPage }) => {
 					</form>
 				</div>
 				<button className="agent__closeButton--container" onClick={closeAgentPage}>
-					<img src={Cross} className="agent__closeButton" />
+					<img src={Cross} className="agent__closeButton" alt='fermer'/>
 				</button>
 			</div>
 		</>

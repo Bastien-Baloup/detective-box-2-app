@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 // EXPLICATION : Page pour afficher les cartes de choix des boxs + le bouton reset pour recommencer le jeu depuis 0
 // EXPLICATION : Attention, dans la BDD, une box "Generic" a été créé (utilise pour les requêtes personnages qui sont multi-boxs). Ne pas l'afficher ici !
 
@@ -11,7 +12,7 @@ import { useContext, useState } from "react";
 import { Navigate } from "react-router-dom";
 import { urlApi } from "../utils/const/urlApi.js";
 import { useEffect } from "react";
-import { getBox, resetAll } from "../utils/hooks/useApi.js";
+import useApi from '../utils/hooks/useApi.js';
 
 function Choice() {
 	const { loggedIn } = useContext(AuthContext);
@@ -21,6 +22,7 @@ function Choice() {
 	const [loader, setLoader] = useState(true);
 	const [dataBox, setDataBox] = useState(null);
 	const token = localStorage.getItem("token");
+	const { getBox, resetAll } = useApi()
 
 	useEffect(() => {
 		const fetchData = async () => {
