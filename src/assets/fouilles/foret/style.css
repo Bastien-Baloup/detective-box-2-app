@@ -85,25 +85,19 @@
 	margin: auto;
 	z-index: 1;
 	width: 60%;
-	top: 0;
-	left: 0;
-	bottom: 0;
-	right: 0;
-
+	top: 50dvh;
+	left: 50dvw;
+	transform: translate(-50%, -50%);
 }
 
 #modal-foret .img-see,
 #modal-foret .dig-see,
+#modal-foret .dig-rien,
 #modal-foret .dig-see-2 {
-	position: absolute;
+	position: relative;
 	margin: auto;
-	z-index: 1;
-
-	top: 0;
-	left: 0;
-	bottom: 0;
-	right: 0;
-	width: 100%
+	z-index: 1000;
+	width: 100%;
 }
 
 #modal-foret .dig-see-2 {
@@ -135,6 +129,25 @@
 	margin-left: auto;
 	margin-right: auto;
 	width: 80%;
+}
+
+#modal-foret .close-img {
+	display: block;
+	position: absolute;
+	top: 0;
+	right: 0;
+	padding: 0.5em;
+	cursor: pointer;
+	transition: all 0.3s ease-in;
+	font-size: 1.3em;
+	background-color: rgba(227, 6, 19, 1);
+	height: min-content;
+	width: min-content;
+	z-index: 10000;
+}
+
+#modal-foret .close-img:hover {
+	background-color: #eb675e !important;
 }
 
 #modal-foret #pano {

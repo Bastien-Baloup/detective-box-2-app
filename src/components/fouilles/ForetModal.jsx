@@ -201,11 +201,14 @@ function ForetModal({ onClose }) {
       <div id="fouille" className="multiple-scenes">
         <div id="pano" ref={panoRef}>
           <div className="dig-img" style={{ display: "none" }}>
-            <img
-              src={`${import.meta.env.BASE_URL}fouilles/foret/rien.jpg`}
-              className="dig-see"
-              style={{ display: "none", opacity: 0 }}
-            />
+            <div className="dig-see" style={{ display: "none", opacity: 0 }} >
+              <img
+                src={`${import.meta.env.BASE_URL}fouilles/foret/rien.jpg`}
+                className="dig-rien"
+              />
+              <span className='close-img'>X</span>
+            </div>
+            
             <div className="dig-see-2" style={{ display: "none", opacity: 0 }}>
               <img
                 src={`${import.meta.env.BASE_URL}fouilles/foret/os.jpg`}
@@ -224,6 +227,7 @@ function ForetModal({ onClose }) {
               }fouilles/foret/gravures/bande25.jpg`}
               className="img-see"
             />
+            <span className='close-img'>X</span>
           </div>
 
           <div className="img" id="img-see20" style={{ display: "none" }}>
@@ -233,6 +237,7 @@ function ForetModal({ onClose }) {
               }fouilles/foret/gravures/bande25.jpg`}
               className="img-see"
             />
+            <span className='close-img'>X</span>
           </div>
 
           <div className="img" id="img-see3" style={{ display: "none" }}>
@@ -242,6 +247,7 @@ function ForetModal({ onClose }) {
               }fouilles/foret/gravures/bande2.jpg`}
               className="img-see"
             />
+            <span className='close-img'>X</span>
           </div>
 
           <div className="img" id="img-see25" style={{ display: "none" }}>
@@ -251,6 +257,7 @@ function ForetModal({ onClose }) {
               }fouilles/foret/gravures/bande3.jpg`}
               className="img-see"
             />
+            <span className='close-img'>X</span>
           </div>
 
           <div className="img" id="img-see2" style={{ display: "none" }}>
@@ -260,6 +267,7 @@ function ForetModal({ onClose }) {
               }fouilles/foret/gravures/bande4.jpg`}
               className="img-see"
             />
+            <span className='close-img'>X</span>
           </div>
 
           <div className="img" id="img-see10" style={{ display: "none" }}>
@@ -269,6 +277,7 @@ function ForetModal({ onClose }) {
               }fouilles/foret/gravures/bande5.jpg`}
               className="img-see"
             />
+            <span className='close-img'>X</span>
           </div>
 
           <div className="img" id="img-see11" style={{ display: "none" }}>
@@ -278,6 +287,7 @@ function ForetModal({ onClose }) {
               }fouilles/foret/gravures/bande6.jpg`}
               className="img-see"
             />
+            <span className='close-img'>X</span>
           </div>
 
           <div className="img" id="img-see12" style={{ display: "none" }}>
@@ -287,6 +297,7 @@ function ForetModal({ onClose }) {
               }fouilles/foret/gravures/bande7.jpg`}
               className="img-see"
             />
+            <span className='close-img'>X</span>
           </div>
 
           <div className="img" id="img-see9" style={{ display: "none" }}>
@@ -296,6 +307,7 @@ function ForetModal({ onClose }) {
               }fouilles/foret/gravures/bande8.jpg`}
               className="img-see"
             />
+            <span className='close-img'>X</span>
           </div>
 
           <div className="img" id="img-see5" style={{ display: "none" }}>
@@ -305,6 +317,7 @@ function ForetModal({ onClose }) {
               }fouilles/foret/gravures/bande9.jpg`}
               className="img-see"
             />
+            <span className='close-img'>X</span>
           </div>
 
           <div className="img" id="img-see6" style={{ display: "none" }}>
@@ -314,6 +327,7 @@ function ForetModal({ onClose }) {
               }fouilles/foret/gravures/bande10.jpg`}
               className="img-see"
             />
+            <span className='close-img'>X</span>
           </div>
 
           <div className="img" id="img-see7" style={{ display: "none" }}>
@@ -323,6 +337,7 @@ function ForetModal({ onClose }) {
               }fouilles/foret/gravures/bande11.jpg`}
               className="img-see"
             />
+            <span className='close-img'>X</span>
           </div>
 
           <div className="img" id="img-see14" style={{ display: "none" }}>
@@ -332,6 +347,7 @@ function ForetModal({ onClose }) {
               }fouilles/foret/gravures/bande12.jpg`}
               className="img-see"
             />
+            <span className='close-img'>X</span>
           </div>
 
           <div className="img" id="img-see22" style={{ display: "none" }}>
@@ -341,6 +357,7 @@ function ForetModal({ onClose }) {
               }fouilles/foret/gravures/bande13.jpg`}
               className="img-see"
             />
+            <span className='close-img'>X</span>
           </div>
 
           <div className="img" id="img-see22" style={{ display: "none" }}>
@@ -350,6 +367,7 @@ function ForetModal({ onClose }) {
               }fouilles/foret/gravures/bande9.jpg`}
               className="img-see"
             />
+            <span className='close-img'>X</span>
           </div>
 
           <div className="img" id="img-see24" style={{ display: "none" }}>
@@ -359,6 +377,7 @@ function ForetModal({ onClose }) {
               }fouilles/foret/gravures/bande8.jpg`}
               className="img-see"
             />
+            <span className='close-img'>X</span>
           </div>
 
           <div className="img" id="img-see15" style={{ display: "none" }}>
@@ -368,6 +387,7 @@ function ForetModal({ onClose }) {
               }fouilles/foret/gravures/bande14.jpg`}
               className="img-see"
             />
+            <span className='close-img'>X</span>
           </div>
 
           <div className="img" id="img-see16" style={{ display: "none" }}>
@@ -377,6 +397,7 @@ function ForetModal({ onClose }) {
               }fouilles/foret/gravures/bande15.jpg`}
               className="img-see"
             />
+            <span className='close-img'>X</span>
           </div>
 
           <div className="img" id="img-see12" style={{ display: "none" }}>
@@ -386,6 +407,7 @@ function ForetModal({ onClose }) {
               }fouilles/foret/gravures/bande16.jpg`}
               className="img-see"
             />
+            <span className='close-img'>X</span>
           </div>
 
           <div className="img" id="img-see18" style={{ display: "none" }}>
@@ -395,6 +417,7 @@ function ForetModal({ onClose }) {
               }fouilles/foret/gravures/bande16.jpg`}
               className="img-see"
             />
+            <span className='close-img'>X</span>
           </div>
 
           <div className="img" id="img-see19" style={{ display: "none" }}>
@@ -404,6 +427,7 @@ function ForetModal({ onClose }) {
               }fouilles/foret/gravures/bande17.jpg`}
               className="img-see"
             />
+            <span className='close-img'>X</span>
           </div>
 
           <div className="img" id="img-see16" style={{ display: "none" }}>
@@ -413,6 +437,7 @@ function ForetModal({ onClose }) {
               }fouilles/foret/gravures/bande18.jpg`}
               className="img-see"
             />
+            <span className='close-img'>X</span>
           </div>
 
           <div className="img" id="img-see19" style={{ display: "none" }}>
@@ -422,6 +447,7 @@ function ForetModal({ onClose }) {
               }fouilles/foret/gravures/bande19.jpg`}
               className="img-see"
             />
+            <span className='close-img'>X</span>
           </div>
 
           <div className="img" id="img-see8" style={{ display: "none" }}>
@@ -431,6 +457,7 @@ function ForetModal({ onClose }) {
               }fouilles/foret/gravures/bande20.jpg`}
               className="img-see"
             />
+            <span className='close-img'>X</span>
           </div>
 
           <div className="img" id="img-see21" style={{ display: "none" }}>
@@ -440,6 +467,7 @@ function ForetModal({ onClose }) {
               }fouilles/foret/gravures/bande21.jpg`}
               className="img-see"
             />
+            <span className='close-img'>X</span>
           </div>
 
           <div className="img" id="img-see13" style={{ display: "none" }}>
@@ -449,6 +477,7 @@ function ForetModal({ onClose }) {
               }fouilles/foret/gravures/bande1.jpg`}
               className="img-see"
             />
+            <span className='close-img'>X</span>
           </div>
 
           <div className="img" id="img-see23" style={{ display: "none" }}>
@@ -458,6 +487,7 @@ function ForetModal({ onClose }) {
               }fouilles/foret/gravures/bande23.jpg`}
               className="img-see"
             />
+            <span className='close-img'>X</span>
           </div>
 
           <div className="img" id="img-see17" style={{ display: "none" }}>
@@ -467,6 +497,7 @@ function ForetModal({ onClose }) {
               }fouilles/foret/gravures/bande24.jpg`}
               className="img-see"
             />
+            <span className='close-img'>X</span>
           </div>
 
           <div className="img" id="img-see4" style={{ display: "none" }}>
@@ -476,6 +507,7 @@ function ForetModal({ onClose }) {
               }fouilles/foret/gravures/bande22.jpg`}
               className="img-see"
             />
+            <span className='close-img'>X</span>
           </div>
 
           <div className="img" id="img-see25" style={{ display: "none" }}>
@@ -485,6 +517,7 @@ function ForetModal({ onClose }) {
               }fouilles/foret/gravures/bande7.jpg`}
               className="img-see"
             />
+            <span className='close-img'>X</span>
           </div>
 
           <div className="img" id="img-see26" style={{ display: "none" }}>
@@ -494,6 +527,7 @@ function ForetModal({ onClose }) {
               }fouilles/foret/gravures/bande12.jpg`}
               className="img-see"
             />
+            <span className='close-img'>X</span>
           </div>
 
           <div className="img" id="img-see27" style={{ display: "none" }}>
@@ -503,6 +537,7 @@ function ForetModal({ onClose }) {
               }fouilles/foret/gravures/bande21.jpg`}
               className="img-see"
             />
+            <span className='close-img'>X</span>
           </div>
 
           <div className="img" id="img-see28" style={{ display: "none" }}>
@@ -512,6 +547,7 @@ function ForetModal({ onClose }) {
               }fouilles/foret/gravures/bande19.jpg`}
               className="img-see"
             />
+            <span className='close-img'>X</span>
           </div>
 
           <div className="img" id="img-see29" style={{ display: "none" }}>
@@ -521,6 +557,7 @@ function ForetModal({ onClose }) {
               }fouilles/foret/gravures/bande9.jpg`}
               className="img-see"
             />
+            <span className='close-img'>X</span>
           </div>
 
           <div className="img" id="img-see30" style={{ display: "none" }}>
@@ -530,6 +567,7 @@ function ForetModal({ onClose }) {
               }fouilles/foret/gravures/bande23.jpg`}
               className="img-see"
             />
+            <span className='close-img'>X</span>
           </div>
 
           <div className="img" id="img-see31" style={{ display: "none" }}>
@@ -539,6 +577,7 @@ function ForetModal({ onClose }) {
               }fouilles/foret/gravures/bande2.jpg`}
               className="img-see"
             />
+            <span className='close-img'>X</span>
           </div>
         </div>
         <div id="sceneList" style={{ display: "none" }}>
