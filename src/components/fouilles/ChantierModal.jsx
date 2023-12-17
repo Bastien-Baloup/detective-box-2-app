@@ -272,6 +272,7 @@ function ChantierModal({ onClose }) {
               marginLeft: 'auto',
               marginRight: 'auto',
               display: 'block',
+              maxHeight: 'calc(100dvh - 2em)'
             }}
           />
           <div
@@ -398,7 +399,7 @@ function ChantierModal({ onClose }) {
             src={`${
               import.meta.env.BASE_URL
             }fouilles/chantier/assets/opened-malle.jpg`}
-            style={{ width: '100%' }}
+            style={{ width: '100%', maxHeight: 'calc(100dvh - 2em)' }}
           />
         </div>
         <a
