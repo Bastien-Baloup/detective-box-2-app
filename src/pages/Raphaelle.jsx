@@ -17,7 +17,7 @@ import {
   getHistoryByBox,
   updateObjectives,
 } from '../utils/hooks/useApi.js'
-import { useLieu } from '../utils/hooks/useLieu.jsx'
+import useLieu from '../utils/hooks/useLieu.jsx'
 
 const Raphaelle = ({ closeAgentPage }) => {
   const { currentBox } = useContext(BoxContext)

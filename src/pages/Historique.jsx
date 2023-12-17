@@ -11,8 +11,7 @@ import Cross from "../assets/icons/Icon_Cross-white.svg";
 import { BoxContext, DataContext, AmbianceContext } from "../utils/context/fetchContext";
 import { useContext, useEffect } from "react";
 import { getHistoryByBox } from "../utils/hooks/useApi";
-import { useLieu } from '../utils/hooks/useLieu.jsx'
-
+import useLieu from '../utils/hooks/useLieu.jsx'
 
 function Historique() {
 	const filtersType = ["Document", "Vidéo", "Audio", "Lieu", "Archive"];

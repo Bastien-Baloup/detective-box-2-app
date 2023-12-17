@@ -1,4 +1,4 @@
-var APP_DATA = {
+const data = {
 	"scenes": [
 		{
 			"id": "0-302_planque_celine_cave_1",
@@ -130,7 +130,7 @@ var APP_DATA = {
 				{
 					"yaw": 1.5420188960494023,
 					"pitch": 0.24832707855773606,
-					"title": "<a href='assets/board.jpg' class='watch' target='_blank'>Voir plus près</a>",
+					"title": `<a id='board' href='${import.meta.env.BASE_URL}fouilles/cave/assets/board.jpg' class='watch' target='_blank'>Voir plus près</a>`,
 					"text": ""
         }
       ]
@@ -143,4 +143,5 @@ var APP_DATA = {
 		"fullscreenButton": false,
 		"viewControlButtons": false
 	}
-};
+}
+export default data

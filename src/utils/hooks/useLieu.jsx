@@ -8,8 +8,9 @@ import AppartemenModal from '../../components/fouilles/AppartementModal.jsx'
 import PrisonModal from '../../components/fouilles/PrisonModal.jsx'
 import ForetModal from '../../components/fouilles/ForetModal.jsx'
 import CelineModal from '../../components/fouilles/CelineModal.jsx'
+import CaveModal from '../../components/fouilles/CaveModal.jsx'
 
-export const useLieu = () => {
+const useLieu = () => {
   const [LieuModalOpen, setLieuModalOpen] = useState(false)
   const [Lieu, setLieu] = useState('')
 
@@ -41,7 +42,7 @@ export const useLieu = () => {
         LieuModal = CelineModal
         break
       case 'box3lieu3':
-        //LieuModal = CaveModal
+        LieuModal = CaveModal
         break
     }
     return (
@@ -51,3 +52,5 @@ export const useLieu = () => {
 
   return { renderLieu, setLieu, setLieuModalOpen }
 }
+
+export default useLieu
