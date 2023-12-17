@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import MarzipanoInit from '../../utils/const/marzipanoInit'
-import { useEffect, useRef, useContext } from 'react'
+import { useEffect, useRef, useContext, useState } from 'react'
 import PropTypes from 'prop-types'
 import '../../assets/fouilles/planque/style.css'
 import data from '../../assets/fouilles/planque/data'
@@ -11,6 +11,7 @@ import useEvent from '../../utils/hooks/useEvent.js';
 function PlanqueModal({ onClose }) {
   const panoRef = useRef(null)
   const viewerRef = useRef(null)
+  const [commentPlayed, setCommentPlayed] = useState(false)
   const arrivalPlanque = useRef(sessionStorage.getItem('arrival_planque'))
   const { actionToggleDataHistory } = useContext(DataContext);
   const { updateHistory } = useApi()
@@ -60,8 +61,9 @@ function PlanqueModal({ onClose }) {
         if (id == 'see6') {
           document.getElementById('arrival').volume = 0
 
-          if (document.getElementById('comment').getAttribute('src') !== '') {
+          if (!commentPlayed) {
             document.getElementById('comment').play()
+            setCommentPlayed(true)
           }
 
           clicHandle()
