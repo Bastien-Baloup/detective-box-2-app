@@ -272,7 +272,6 @@ function ChantierModal({ onClose }) {
               marginLeft: 'auto',
               marginRight: 'auto',
               display: 'block',
-              maxHeight: 'calc(100dvh - 2em)'
             }}
           />
           <div
@@ -402,20 +401,6 @@ function ChantierModal({ onClose }) {
             style={{ width: '100%', maxHeight: 'calc(100dvh - 2em)' }}
           />
         </div>
-        <a
-          id='labo'
-          className='btn-red'
-          style={{
-            display: 'none',
-            fontSize: '1.5em',
-            position: 'fixed',
-            top: '10px',
-            right: '10px',
-          }}
-          href='#'
-        >
-          Continuer l’enquête sur l’interface
-        </a>
 
         <div style={{ display: 'none' }}>
           <audio
@@ -428,6 +413,12 @@ function ChantierModal({ onClose }) {
         </div>
         <button
           className='modal-objectif__button button--red'
+          style={{
+            position: 'fixed',
+            bottom: '0.5rem',
+            left: '0.5rem',
+            zIndex: 10000,
+          }}
           onClick={onClose}
         >
           fermer
