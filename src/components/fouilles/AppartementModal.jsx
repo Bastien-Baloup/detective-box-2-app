@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import MarzipanoInit from "../../utils/const/marzipanoInit";
 import { useEffect, useRef, useContext } from "react";
 import PropTypes from "prop-types";

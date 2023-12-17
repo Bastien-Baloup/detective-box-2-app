@@ -1,4 +1,4 @@
-const url = import.meta.env.VITE_API_STREAM
+const url = import.meta.env.VITE_API
 
 const useApi = () => {
 	const apiFunctions = {
