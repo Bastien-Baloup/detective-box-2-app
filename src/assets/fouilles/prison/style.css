@@ -1,4 +1,4 @@
-* {
+#modal-prison * {
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
@@ -16,8 +16,8 @@
 	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
-html,
-body {
+#modal-prison ,
+#modal-prison #fouille {
 	width: 100%;
 	padding: 0;
 	margin: 0;
@@ -29,15 +29,15 @@ body {
 	overflow: scroll;
 }
 
-a,
-a:hover,
-a:active,
-a:visited {
+#modal-prison a,
+#modal-prison a:hover,
+#modal-prison a:active,
+#modal-prison a:visited {
 	text-decoration: none;
 	color: inherit;
 }
 
-.img {
+#modal-prison .img {
 	position: relative;
 	margin: auto;
 	position: absolute;
@@ -49,18 +49,18 @@ a:visited {
 }
 
 @media (max-width: 900px) {
-	.img {
+	#modal-prison .img {
 		width: 60%;
 	}
 }
 
 
-.img-see {
+#modal-prison .img-see {
 	width: 100%;
 	height: 100%;
 }
 
-.close-img {
+#modal-prison .close-img {
 	position: absolute;
 	right: 0;
 	top: 0;
@@ -72,11 +72,11 @@ a:visited {
 
 }
 
-.close-img:hover {
+#modal-prison .close-img:hover {
 	background-color: darkgoldenrod
 }
 
-#pano {
+#modal-prison #pano {
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -85,7 +85,7 @@ a:visited {
 	overflow: hidden;
 }
 
-#titleBar {
+#modal-prison #titleBar {
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -95,30 +95,30 @@ a:visited {
 	display: none;
 }
 
-.mobile #titleBar {
+#modal-prison .mobile #titleBar {
 	height: 50px;
 	right: 50px;
 }
 
 /* If there is a fullscreen button the title bar must make space for it */
-body.fullscreen-enabled #titleBar {
+#modal-prison #fouille.fullscreen-enabled #titleBar {
 	right: 80px;
 }
 
-body.fullscreen-enabled.mobile #titleBar {
+#modal-prison #fouille.fullscreen-enabled.mobile #titleBar {
 	right: 100px;
 }
 
 /* If there are multiple scenes the title bar must make space for the scene list toggle */
-body.multiple-scenes #titleBar {
+#modal-prison #fouille.multiple-scenes #titleBar {
 	left: 40px;
 }
 
-body.multiple-scenes.mobile #titleBar {
+#modal-prison #fouille.multiple-scenes.mobile #titleBar {
 	left: 50px;
 }
 
-#titleBar .sceneName {
+#modal-prison #titleBar .sceneName {
 	width: 100%;
 	height: 100%;
 	line-height: 30px;
@@ -135,11 +135,11 @@ body.multiple-scenes.mobile #titleBar {
 	user-select: text;
 }
 
-.mobile #titleBar .sceneName {
+#modal-prison .mobile #titleBar .sceneName {
 	line-height: 40px;
 }
 
-#fullscreenToggle {
+#modal-prison #fullscreenToggle {
 	display: none;
 	position: absolute;
 	top: 0;
@@ -151,16 +151,16 @@ body.multiple-scenes.mobile #titleBar {
 	background-color: rgba(103, 115, 131, 0.8);
 }
 
-.mobile #fullscreenToggle {
+#modal-prison .mobile #fullscreenToggle {
 	width: 50px;
 	height: 50px;
 }
 
-body.fullscreen-enabled #fullscreenToggle {
+#modal-prison #fouille.fullscreen-enabled #fullscreenToggle {
 	display: block;
 }
 
-#fullscreenToggle .icon {
+#modal-prison #fullscreenToggle .icon {
 	position: absolute;
 	top: 5px;
 	right: 5px;
@@ -168,28 +168,28 @@ body.fullscreen-enabled #fullscreenToggle {
 	height: 30px;
 }
 
-.mobile #fullscreenToggle .icon {
+#modal-prison .mobile #fullscreenToggle .icon {
 	top: 10px;
 	right: 10px;
 }
 
-#fullscreenToggle .icon.on {
+#modal-prison #fullscreenToggle .icon.on {
 	display: none;
 }
 
-#fullscreenToggle .icon.off {
+#modal-prison #fullscreenToggle .icon.off {
 	display: block;
 }
 
-#fullscreenToggle.enabled .icon.on {
+#modal-prison #fullscreenToggle.enabled .icon.on {
 	display: block;
 }
 
-#fullscreenToggle.enabled .icon.off {
+#modal-prison #fullscreenToggle.enabled .icon.off {
 	display: none;
 }
 
-#autorotateToggle {
+#modal-prison #autorotateToggle {
 	display: none;
 	position: absolute;
 	top: 0;
@@ -202,21 +202,21 @@ body.fullscreen-enabled #fullscreenToggle {
 
 }
 
-.mobile #autorotateToggle {
+#modal-prison .mobile #autorotateToggle {
 	width: 50px;
 	height: 50px;
 }
 
 /* If there is a fullscreen button, autorotate must placed a bit to the left */
-body.fullscreen-enabled #autorotateToggle {
+#modal-prison #fouille.fullscreen-enabled #autorotateToggle {
 	right: 40px;
 }
 
-body.fullscreen-enabled.mobile #autorotateToggle {
+#modal-prison #fouille.fullscreen-enabled.mobile #autorotateToggle {
 	right: 50px;
 }
 
-#autorotateToggle .icon {
+#modal-prison #autorotateToggle .icon {
 	position: absolute;
 	top: 5px;
 	right: 5px;
@@ -224,28 +224,28 @@ body.fullscreen-enabled.mobile #autorotateToggle {
 	height: 30px;
 }
 
-.mobile #autorotateToggle .icon {
+#modal-prison .mobile #autorotateToggle .icon {
 	top: 10px;
 	right: 10px;
 }
 
-#autorotateToggle .icon.on {
+#modal-prison #autorotateToggle .icon.on {
 	display: none;
 }
 
-#autorotateToggle .icon.off {
+#modal-prison #autorotateToggle .icon.off {
 	display: block;
 }
 
-#autorotateToggle.enabled .icon.on {
+#modal-prison #autorotateToggle.enabled .icon.on {
 	display: block;
 }
 
-#autorotateToggle.enabled .icon.off {
+#modal-prison #autorotateToggle.enabled .icon.off {
 	display: none;
 }
 
-#sceneListToggle {
+#modal-prison #sceneListToggle {
 	display: none;
 	position: absolute;
 	top: 0;
@@ -257,12 +257,12 @@ body.fullscreen-enabled.mobile #autorotateToggle {
 	background-color: rgba(103, 115, 131, 0.8);
 }
 
-.mobile #sceneListToggle {
+#modal-prison .mobile #sceneListToggle {
 	width: 50px;
 	height: 50px;
 }
 
-#sceneListToggle .text {
+#modal-prison #sceneListToggle .text {
 	position: absolute;
 	top: 5px;
 	left: 15px;
@@ -270,7 +270,7 @@ body.fullscreen-enabled.mobile #autorotateToggle {
 	line-height: 30px;
 }
 
-#sceneListToggle .icon {
+#modal-prison #sceneListToggle .icon {
 	position: absolute;
 	top: 5px;
 	right: 5px;
@@ -278,28 +278,28 @@ body.fullscreen-enabled.mobile #autorotateToggle {
 	height: 30px;
 }
 
-.mobile #sceneListToggle .icon {
+#modal-prison .mobile #sceneListToggle .icon {
 	top: 10px;
 	right: 10px;
 }
 
-#sceneListToggle .icon.on {
+#modal-prison #sceneListToggle .icon.on {
 	display: none;
 }
 
-#sceneListToggle .icon.off {
+#modal-prison #sceneListToggle .icon.off {
 	display: block;
 }
 
-#sceneListToggle.enabled .icon.on {
+#modal-prison #sceneListToggle.enabled .icon.on {
 	display: block;
 }
 
-#sceneListToggle.enabled .icon.off {
+#modal-prison #sceneListToggle.enabled .icon.off {
 	display: none;
 }
 
-#sceneList {
+#modal-prison #sceneList {
 	position: absolute;
 	top: 0;
 	left: -220px;
@@ -313,47 +313,47 @@ body.fullscreen-enabled.mobile #autorotateToggle {
 	transition: margin-left 0.5s ease-in-out;
 }
 
-.mobile #sceneList {
+#modal-prison .mobile #sceneList {
 	padding-top: 50px;
 }
 
-#sceneList .scenes {
+#modal-prison #sceneList .scenes {
 	width: 100%;
 	background-color: rgb(58, 68, 84);
 	background-color: rgba(58, 68, 84, 0.8);
 	display: none;
 }
 
-.mobile #sceneList {
+#modal-prison .mobile #sceneList {
 	width: 100%;
 	height: 100%;
 	left: -100%;
 }
 
-.mobile #sceneList.enabled {
+#modal-prison .mobile #sceneList.enabled {
 	margin-left: 100%;
 }
 
-.mobile #sceneList .scenes {
+#modal-prison .mobile #sceneList .scenes {
 	height: 100%;
 }
 
-#sceneList.enabled {
+#modal-prison #sceneList.enabled {
 	margin-left: 220px;
 
 }
 
-#sceneList .scene {
+#modal-prison #sceneList .scene {
 	display: block;
 	width: 100%;
 	height: 30px;
 }
 
-.mobile #sceneList .scene {
+#modal-prison .mobile #sceneList .scene {
 	height: 40px;
 }
 
-#sceneList .scene .text {
+#modal-prison #sceneList .scene .text {
 	width: 100%;
 	height: 100%;
 	padding: 0 15px;
@@ -363,29 +363,29 @@ body.fullscreen-enabled.mobile #autorotateToggle {
 	white-space: nowrap;
 }
 
-.mobile #sceneList .scene .text {
+#modal-prison .mobile #sceneList .scene .text {
 	line-height: 40px;
 }
 
-.no-touch #sceneList .scene:hover {
+#modal-prison .no-touch #sceneList .scene:hover {
 	background-color: rgb(103, 115, 131);
 	background-color: rgba(103, 115, 131, 0.8);
 }
 
-#sceneList .scene.current {
+#modal-prison #sceneList .scene.current {
 	background-color: rgb(103, 115, 131);
 	background-color: rgba(103, 115, 131, 0.8);
 }
 
 /* Hide scene list when only a single scene exists */
-body.single-scene #sceneList,
-body.single-scene #sceneListToggle {
+#modal-prison #fouille.single-scene #sceneList,
+#modal-prison #fouille.single-scene #sceneListToggle {
 	display: none;
 }
 
 /* Link hotspot */
 
-.link-hotspot {
+#modal-prison .link-hotspot {
 	width: 60px;
 	height: 60px;
 	margin-left: -30px;
@@ -395,22 +395,22 @@ body.single-scene #sceneListToggle {
 	transition: opacity 0.2s;
 }
 
-.no-touch .link-hotspot:hover {
+#modal-prison .no-touch .link-hotspot:hover {
 	opacity: 1;
 }
 
-.mobile .link-hotspot {
+#modal-prison .mobile .link-hotspot {
 	width: 70px;
 	height: 70px;
 }
 
-.link-hotspot-icon {
+#modal-prison .link-hotspot-icon {
 	width: 100%;
 	height: 100%;
 	cursor: pointer;
 }
 
-.link-hotspot-tooltip {
+#modal-prison .link-hotspot-tooltip {
 	position: absolute;
 	left: 100%;
 	top: 14px;
@@ -447,12 +447,12 @@ body.single-scene #sceneListToggle {
 		opacity 0.3s;
 }
 
-.mobile .link-hotspot {
+#modal-prison .mobile .link-hotspot {
 	top: 19px;
 	/* ( 70 - (16 + 2*8) ) / 2 */
 }
 
-.no-touch .link-hotspot:hover .link-hotspot-tooltip {
+#modal-prison .no-touch .link-hotspot:hover .link-hotspot-tooltip {
 	opacity: 1;
 	-ms-transform: translateX(0);
 	-webkit-transform: translateX(0);
@@ -460,54 +460,54 @@ body.single-scene #sceneListToggle {
 }
 
 /* Prevent tooltip from triggering */
-.link-hotspot-tooltip {
+#modal-prison .link-hotspot-tooltip {
 	pointer-events: none;
 }
 
-.no-touch .link-hotspot:hover .link-hotspot-tooltip {
+#modal-prison .no-touch .link-hotspot:hover .link-hotspot-tooltip {
 	pointer-events: all;
 }
 
 /* Fallback mode without pointer-events (IE8-10) */
-.tooltip-fallback .link-hotspot-tooltip {
+#modal-prison .tooltip-fallback .link-hotspot-tooltip {
 	display: none;
 }
 
-.no-touch .tooltip-fallback .link-hotspot:hover .link-hotspot-tooltip {
+#modal-prison .no-touch .tooltip-fallback .link-hotspot:hover .link-hotspot-tooltip {
 	display: block;
 }
 
 /* Info hotspot */
 
-.info-hotspot {
+#modal-prison .info-hotspot {
 	line-height: 1.2em;
 	opacity: 0.9;
 	-webkit-transition: opacity 0.2s 0.2s;
 	transition: opacity 0.2s 0.2s;
 }
 
-.no-touch .info-hotspot:hover {
+#modal-prison .no-touch .info-hotspot:hover {
 	opacity: 1;
 	-webkit-transition: opacity 0.2s;
 	transition: opacity 0.2s;
 }
 
-.info-hotspot.visible {
+#modal-prison .info-hotspot.visible {
 	opacity: 1;
 }
 
 /* Change color of all info */
 
 
-.info-hotspot .info-hotspot-header,
-.info-hotspot-close-icon,
-.info-hotspot-text,
-.info-hotspot-close-wrapper {
+#modal-prison .info-hotspot .info-hotspot-header,
+#modal-prison .info-hotspot-close-icon,
+#modal-prison .info-hotspot-text,
+#modal-prison .info-hotspot-close-wrapper {
 	background-color: rgba(227, 6, 19, 1) !important;
 }
 
 
-.info-hotspot .info-hotspot-header {
+#modal-prison .info-hotspot .info-hotspot-header {
 	width: 40px;
 	height: 40px;
 	border-radius: 20px;
@@ -519,13 +519,13 @@ body.single-scene #sceneListToggle {
 		border-radius 0.3s ease-in-out 0.5s;
 }
 
-.mobile .info-hotspot .info-hotspot-header {
+#modal-prison .mobile .info-hotspot .info-hotspot-header {
 	width: 50px;
 	height: 50px;
 	border-radius: 25px;
 }
 
-.desktop.no-touch .info-hotspot .info-hotspot-header:hover {
+#modal-prison .desktop.no-touch .info-hotspot .info-hotspot-header:hover {
 	width: 260px;
 	border-radius: 5px;
 	-webkit-transition: width 0.3s ease-in-out,
@@ -534,8 +534,8 @@ body.single-scene #sceneListToggle {
 		border-radius 0.3s ease-in-out;
 }
 
-.desktop .info-hotspot.visible .info-hotspot-header,
-.desktop.no-touch .info-hotspot.visible .info-hotspot-header:hover {
+#modal-prison .desktop .info-hotspot.visible .info-hotspot-header,
+#modal-prison .desktop.no-touch .info-hotspot.visible .info-hotspot-header:hover {
 	width: 260px;
 	border-radius: 5px;
 	border-top-right-radius: 0;
@@ -547,23 +547,23 @@ body.single-scene #sceneListToggle {
 		border-radius 0.3s ease-in-out;
 }
 
-.info-hotspot .info-hotspot-icon-wrapper {
+#modal-prison .info-hotspot .info-hotspot-icon-wrapper {
 	width: 40px;
 	height: 40px;
 }
 
-.mobile .info-hotspot .info-hotspot-icon-wrapper {
+#modal-prison .mobile .info-hotspot .info-hotspot-icon-wrapper {
 	width: 50px;
 	height: 50px;
 }
 
-.info-hotspot .info-hotspot-icon {
+#modal-prison .info-hotspot .info-hotspot-icon {
 	width: 90%;
 	height: 90%;
 	margin: 5%;
 }
 
-.info-hotspot .info-hotspot-title-wrapper {
+#modal-prison .info-hotspot .info-hotspot-title-wrapper {
 	position: absolute;
 	left: 40px;
 	top: 0;
@@ -578,8 +578,8 @@ body.single-scene #sceneListToggle {
 
 }
 
-.desktop .info-hotspot.visible .info-hotspot-title-wrapper,
-.desktop.no-touch .info-hotspot .info-hotspot-header:hover .info-hotspot-title-wrapper {
+#modal-prison .desktop .info-hotspot.visible .info-hotspot-title-wrapper,
+#modal-prison .desktop.no-touch .info-hotspot .info-hotspot-header:hover .info-hotspot-title-wrapper {
 	width: 220px;
 	padding: 0 5px;
 	-webkit-transition: width 0s 0.4s,
@@ -588,14 +588,14 @@ body.single-scene #sceneListToggle {
 		padding 0s 0.4s;
 }
 
-.info-hotspot .info-hotspot-title-wrapper:before {
+#modal-prison .info-hotspot .info-hotspot-title-wrapper:before {
 	content: '';
 	display: inline-block;
 	vertical-align: middle;
 	height: 100%;
 }
 
-.info-hotspot .info-hotspot-title {
+#modal-prison .info-hotspot .info-hotspot-title {
 	display: inline-block;
 	vertical-align: middle;
 
@@ -605,7 +605,7 @@ body.single-scene #sceneListToggle {
 	user-select: text;
 }
 
-.info-hotspot .info-hotspot-close-wrapper {
+#modal-prison .info-hotspot .info-hotspot-close-wrapper {
 	position: absolute;
 	left: 260px;
 	top: 0;
@@ -630,7 +630,7 @@ body.single-scene #sceneListToggle {
 		visibility 0s 0.6s;
 }
 
-.desktop .info-hotspot.visible .info-hotspot-close-wrapper {
+#modal-prison .desktop .info-hotspot.visible .info-hotspot-close-wrapper {
 	visibility: visible;
 	-ms-transform: perspective(200px) rotateY(0deg);
 	-webkit-transform: perspective(200px) rotateY(0deg);
@@ -645,13 +645,13 @@ body.single-scene #sceneListToggle {
 		visibility 0s 0s;
 }
 
-.info-hotspot .info-hotspot-close-icon {
+#modal-prison .info-hotspot .info-hotspot-close-icon {
 	width: 70%;
 	height: 70%;
 	margin: 15%;
 }
 
-.info-hotspot .info-hotspot-text {
+#modal-prison .info-hotspot .info-hotspot-text {
 
 	position: absolute;
 	width: 300px;
@@ -687,7 +687,7 @@ body.single-scene #sceneListToggle {
 	user-select: text;
 }
 
-.desktop .info-hotspot.visible .info-hotspot-text {
+#modal-prison .desktop .info-hotspot.visible .info-hotspot-text {
 	visibility: visible;
 	-ms-transform: perspective(200px) rotateX(0deg);
 	-webkit-transform: perspective(200px) rotateX(0deg);
@@ -704,11 +704,11 @@ body.single-scene #sceneListToggle {
 
 /* Info hotspot modal */
 
-.desktop .info-hotspot-modal {
+#modal-prison .desktop .info-hotspot-modal {
 	display: none;
 }
 
-.info-hotspot-modal {
+#modal-prison .info-hotspot-modal {
 	top: 0;
 	left: 0;
 	position: absolute;
@@ -727,7 +727,7 @@ body.single-scene #sceneListToggle {
 
 }
 
-.info-hotspot-modal.visible {
+#modal-prison .info-hotspot-modal.visible {
 	opacity: 1;
 	visibility: visible;
 	-webkit-transition: opacity 0.2s ease-in-out,
@@ -737,7 +737,7 @@ body.single-scene #sceneListToggle {
 
 }
 
-.info-hotspot-modal .info-hotspot-header {
+#modal-prison .info-hotspot-modal .info-hotspot-header {
 	position: absolute;
 	top: 60px;
 	left: 10px;
@@ -752,24 +752,24 @@ body.single-scene #sceneListToggle {
 	background-color: rgba(227, 6, 19, 1) !important;
 }
 
-.info-hotspot-modal.visible .info-hotspot-header {
+#modal-prison .info-hotspot-modal.visible .info-hotspot-header {
 	opacity: 1;
 	-webkit-transition: opacity 0.3s ease-in-out 0.2s;
 	transition: opacity 0.3s ease-in-out 0.2s;
 }
 
-.info-hotspot-modal .info-hotspot-icon-wrapper {
+#modal-prison .info-hotspot-modal .info-hotspot-icon-wrapper {
 	width: 50px;
 	height: 50px;
 }
 
-.info-hotspot-modal .info-hotspot-icon {
+#modal-prison .info-hotspot-modal .info-hotspot-icon {
 	width: 90%;
 	height: 90%;
 	margin: 5%;
 }
 
-.info-hotspot-modal .info-hotspot-title-wrapper {
+#modal-prison .info-hotspot-modal .info-hotspot-title-wrapper {
 	position: absolute;
 	top: 0;
 	left: 50px;
@@ -779,14 +779,14 @@ body.single-scene #sceneListToggle {
 	padding: 0 10px;
 }
 
-.info-hotspot-modal .info-hotspot-title-wrapper:before {
+#modal-prison .info-hotspot-modal .info-hotspot-title-wrapper:before {
 	content: '';
 	display: inline-block;
 	vertical-align: middle;
 	height: 100%;
 }
 
-.info-hotspot-modal .info-hotspot-title {
+#modal-prison .info-hotspot-modal .info-hotspot-title {
 	display: inline-block;
 	vertical-align: middle;
 
@@ -796,7 +796,7 @@ body.single-scene #sceneListToggle {
 	user-select: text;
 }
 
-.info-hotspot-modal .info-hotspot-close-wrapper {
+#modal-prison .info-hotspot-modal .info-hotspot-close-wrapper {
 	position: absolute;
 	top: 0;
 	right: 0;
@@ -806,13 +806,13 @@ body.single-scene #sceneListToggle {
 	cursor: pointer;
 }
 
-.info-hotspot-modal .info-hotspot-close-icon {
+#modal-prison .info-hotspot-modal .info-hotspot-close-icon {
 	width: 70%;
 	height: 70%;
 	margin: 15%;
 }
 
-.info-hotspot-modal .info-hotspot-text {
+#modal-prison .info-hotspot-modal .info-hotspot-text {
 	position: absolute;
 	top: 110px;
 	left: 10px;
@@ -831,7 +831,7 @@ body.single-scene #sceneListToggle {
 	user-select: text;
 }
 
-.info-hotspot-modal.visible .info-hotspot-text {
+#modal-prison .info-hotspot-modal.visible .info-hotspot-text {
 	opacity: 1;
 	-webkit-transition: opacity 0.3s ease-in-out 0.4s;
 	transition: opacity 0.3s ease-in-out 0.4s;
@@ -839,7 +839,7 @@ body.single-scene #sceneListToggle {
 
 /* View control buttons */
 
-.viewControlButton {
+#modal-prison .viewControlButton {
 	display: none;
 	position: absolute;
 	bottom: 0;
@@ -851,18 +851,18 @@ body.single-scene #sceneListToggle {
 	background-color: rgba(103, 115, 131, 0.8);
 }
 
-body.view-control-buttons .viewControlButton {
+#modal-prison #fouille.view-control-buttons .viewControlButton {
 	display: block;
 }
 
 /* Hide controls when width is too small */
 @media (max-width: 600px) {
-	body.view-control-buttons .viewControlButton {
+	#fouille.view-control-buttons .viewControlButton {
 		display: none;
 	}
 }
 
-.viewControlButton .icon {
+#modal-prison .viewControlButton .icon {
 	position: absolute;
 	top: 5px;
 	right: 5px;
@@ -871,27 +871,27 @@ body.view-control-buttons .viewControlButton {
 }
 
 /* Center is at margin-left: -20px */
-.viewControlButton-1 {
+#modal-prison .viewControlButton-1 {
 	margin-left: -145px;
 }
 
-.viewControlButton-2 {
+#modal-prison .viewControlButton-2 {
 	margin-left: -95px;
 }
 
-.viewControlButton-3 {
+#modal-prison .viewControlButton-3 {
 	margin-left: -45px;
 }
 
-.viewControlButton-4 {
+#modal-prison .viewControlButton-4 {
 	margin-left: 5px;
 }
 
-.viewControlButton-5 {
+#modal-prison .viewControlButton-5 {
 	margin-left: 55px;
 }
 
-.viewControlButton-6 {
+#modal-prison .viewControlButton-6 {
 	margin-left: 105px;
 }
 
@@ -909,7 +909,7 @@ body.view-control-buttons .viewControlButton {
 /* SPECIAL FOR THIS SCENE */
 
 
-.btn-red {
+#modal-prison .btn-red {
 	margin-top: 1em;
 	margin-bottom: 1em;
 	box-shadow: inset 0px 1px 0px 0px #cf866c;
@@ -927,7 +927,7 @@ body.view-control-buttons .viewControlButton {
 	transition: all 0.3s ease-in;
 }
 
-.btn-red:hover {
+#modal-prison .btn-red:hover {
 	background: linear-gradient(to bottom, #bc3315 5%, #d0451b 100%);
 	background-color: #bc3315;
 }

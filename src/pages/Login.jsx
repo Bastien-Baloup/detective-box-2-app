@@ -7,7 +7,7 @@ import Signin from "../components/Signin";
 import Signup from "../components/Signup";
 import Logo from "../assets/img/DB-Logo-DetectiveBox_DetectiveBlanc.png";
 import { Navigate } from "react-router-dom";
-import { getToken, createUser, forgotPassword } from "../utils/hooks/useApi.js";
+import useApi from '../utils/hooks/useApi.js';
 
 function Login() {
 	const [isSigninActive, setIsSigninActive] = useState(true);
@@ -22,6 +22,7 @@ function Login() {
 	const credentials = { email: email, password: password };
 	const newaccount = { email: email, password: password, name: username };
 	const { login, loggedIn } = useContext(AuthContext);
+	const { getToken, createUser, forgotPassword } = useApi()
 
 	// EXPLICATION : Si le joueur est connecté, alors redirection sur le choix des boxs
 	if (loggedIn) {
@@ -125,7 +126,7 @@ function Login() {
 			<a className="login__link" href="https://app.detectivebox.fr/connexion">
 				&lt; Retour aux choix des scénarios
 			</a>
-			<img className="login__logo" src={Logo} />
+			<img className="login__logo" src={Logo} alt='' />
 			{modalNewUser ? displayModalConfirmNewUser() : ""}
 			{isSigninActive ? (
 				<Signin

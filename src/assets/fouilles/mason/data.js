@@ -1,4 +1,4 @@
-var APP_DATA = {
+const data = {
 	"scenes": [
 		{
 			"id": "0-avancer",
@@ -93,3 +93,5 @@ var APP_DATA = {
 		"viewControlButtons": false
 	}
 };
+
+export default data

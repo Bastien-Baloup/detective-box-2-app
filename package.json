@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@simbathesailor/use-what-changed": "^2.0.0",
     "bowser": "^2.11.0",
     "marzipano": "^0.10.2",
     "prop-types": "^15.8.1",

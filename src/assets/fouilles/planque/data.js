@@ -1,4 +1,4 @@
-var APP_DATA = {
+const data = {
 	"scenes": [
 		{
 			"id": "0-103_planque_grnier_1",
@@ -51,7 +51,7 @@ var APP_DATA = {
 				"fov": 1.4599726663201706
 			},
 			"linkHotspots": [{
-					"yaw": 1.6855938185488196,
+					"yaw": 1.685593818548819,
 					"pitch": 2.6267400046949234,
 					"rotation": 0,
 					"target": "0-103_planque_grnier_1"
@@ -59,33 +59,33 @@ var APP_DATA = {
 				],
 			"infoHotspots": [
 				{
-					"yaw": 1.0305819338059212,
-					"pitch": 0.07204137471544314,
+					"yaw": 0.97,
+					"pitch": 0.12,
 					"title": "<span id='see1' class='watch'>Voir plus près</span>",
 					"text": ""
         },
 				{
-					"yaw": 1.1995317491935271,
-					"pitch": 0.0313368028347432,
+					"yaw": 1.15,
+					"pitch": 0.02,
 					"title": "<span id='see2' class='watch'>Voir plus près</span>",
 					"text": ""
         },
 				{
-					"yaw": 1.92081487535164,
-					"pitch": 0.07976786686342763,
-					"title": "<span id='see3' class='watch'>Voir plus près</span>",
+					"yaw": 1.375,
+					"pitch": -0.323,
+					"title": "<span id='see5' class='watch'>Voir plus près</span>",
 					"text": ""
         },
 				{
-					"yaw": 1.6124778273626443,
-					"pitch": 0.025893803514961178,
+					"yaw": 1.6,
+					"pitch": -0.22,
 					"title": "<span id='see4' class='watch'>Voir plus près</span>",
 					"text": ""
         },
 				{
-					"yaw": 1.388036760499773,
-					"pitch": -0.0628051898751032,
-					"title": "<span id='see5' class='watch'>Voir plus près</span>",
+					"yaw": 1.9,
+					"pitch": -0.1,
+					"title": "<span id='see3' class='watch'>Voir plus près</span>",
 					"text": ""
         },
 				{
@@ -105,3 +105,5 @@ var APP_DATA = {
 		"viewControlButtons": false
 	}
 };
+
+export default data

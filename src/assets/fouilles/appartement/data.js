@@ -1,4 +1,4 @@
-var APP_DATA = {
+const data = {
 	"scenes": [
 		{
 			"id": "0-image-jpeg-9e2b05ece620-1-copie",
@@ -31,7 +31,7 @@ var APP_DATA = {
 					"yaw": 2.1962421575683493,
 					"pitch": 0.23478659414040045,
 					"title": "Voir plus près",
-					"text": "<a target=_blank href='assets/5.png'>Regarder</a>"
+					"text": `<a target=_blank href="${import.meta.env.BASE_URL}fouilles/appartement/assets/5.png">Regarder</a>`
         },
 				{
 					"yaw": -2.6302068866423234,
@@ -49,4 +49,6 @@ var APP_DATA = {
 		"fullscreenButton": false,
 		"viewControlButtons": false
 	}
-};
+}
+
+export default data

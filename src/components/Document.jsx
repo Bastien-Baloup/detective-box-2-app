@@ -12,9 +12,9 @@ const Document = ({ title, srcElement, handleModalDocument }) => {
 	const mediaFactory = (src) => {
 		const extension = src.slice(((src.lastIndexOf(".") - 1) >>> 0) + 2);
 		if (extension == "pdf") {
-			return <iframe className="modal-document__element" src={src} allowfullscreen={true} border="0"></iframe>;
+			return <iframe title='document' className="modal-document__element" src={src} allowfullscreen={true} border="0"></iframe>;
 		} else {
-			return <img className="modal-document__element" src={src} />;
+			return <img className="modal-document__element" src={src} alt='document' />;
 		}
 	};
 

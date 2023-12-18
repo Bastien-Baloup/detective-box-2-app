@@ -1,92 +1,4 @@
-const openDoor = async () => {
-  const fouilleElement = document.getElementById("fouille");
-  const videoContainerElement = document.getElementById("video-container");
-  const videoElement = document.getElementById("video");
-
-  const commentAudio = document.getElementById("comment");
-  if (commentAudio) {
-    commentAudio.pause();
-  }
-  const arrivalAudio = document.getElementById("arrival");
-  if (arrivalAudio) {
-    arrivalAudio.pause();
-  }
-
-  fouilleElement.style.display = "none";
-  videoContainerElement.style.display = "block";
-  videoElement.play();
-
-  let token = localStorage.getItem("token");
-  if (!token || token === "null") {
-    token = new URLSearchParams(window.location.search).get("token");
-    if (!token || token === "null") {
-      alert("Erreur de communication avec l'app détectivebox : Token vide");
-      return;
-    }
-  }
-
-  try {
-    const headers = {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
-    };
-
-    const response = await fetch(
-      "https://api2.detectivebox.fr/history/1?id=box1video2",
-      {
-        method: "PUT",
-        headers,
-        body: JSON.stringify({ status: true }),
-      }
-    );
-
-    const response2 = await fetch(
-      "https://api2.detectivebox.fr/history/1?id=box1document2",
-      {
-        method: "PUT",
-        headers,
-        body: JSON.stringify({ status: true }),
-      }
-    );
-
-    const response3 = await fetch(
-      "https://api2.detectivebox.fr/history/1?id=box1document7",
-      {
-        method: "PUT",
-        headers,
-        body: JSON.stringify({ status: true }),
-      }
-    );
-
-    if (!response.ok) {
-      alert(
-        `Erreur de communication avec le serveur: ${response.status} - ${
-          response.statusText || "Unknown"
-        }`
-      );
-    } else if (!response2.ok) {
-      alert(
-        `Erreur de communication avec le serveur: ${response2.status} - ${
-          response2.statusText || "Unknown"
-        }`
-      );
-    } else if (!response3.ok) {
-      alert(
-        `Erreur de communication avec le serveur: ${response3.status} - ${
-          response3.statusText || "Unknown"
-        }`
-      );
-    } else {
-      // alert('Rendez-vous sur l\'application pour la suite de l\'enquête');
-    }
-  } catch (error) {
-    console.error("An error occurred:", error);
-  }
-};
-
-// You can call the openDoor function as needed
-
-var APP_DATA = {
+const data = {
   scenes: [
     {
       id: "0-102_terrain_1",
@@ -229,7 +141,7 @@ var APP_DATA = {
         {
           yaw: -2.524421954506195,
           pitch: -0.05765499545532293,
-          title: "<a href='#' onclick='openDoor()'>Ouvrir la porte</a>",
+          title: "<span id='door' class='watch'>Ouvrir la porte</span>",
           text: "",
         },
 
@@ -250,3 +162,5 @@ var APP_DATA = {
     viewControlButtons: false,
   },
 };
+
+export default data

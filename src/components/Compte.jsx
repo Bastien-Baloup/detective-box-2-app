@@ -46,7 +46,7 @@ const Compte = () => {
 	return (
 		<div className="dropdown">
 			<button className="dropdown__icon-container" onClick={activeDrop}>
-				<img className="dropdown__icon" src={IconAccount} />
+				<img className="dropdown__icon" src={IconAccount} alt='dropdown' />
 			</button>
 			<div className={"dropdown__childs" + (active ? "--active" : "")}>
 				<button className="dropdown__child" onClick={handleNappe}>

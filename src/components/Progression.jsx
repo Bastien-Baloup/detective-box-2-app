@@ -11,12 +11,13 @@ import CrossRed from "../assets/icons/Icon_Cross-red.png";
 import Flag from "../assets/icons/Icon_Flag.png";
 import { BoxContext, DataContext } from "../utils/context/fetchContext";
 import { useContext, useState, useEffect } from "react";
-import { getObjectivesByBox } from "../utils/hooks/useApi.js";
+import useApi from '../utils/hooks/useApi.js';
 
 const Progression = () => {
 	const { currentBox } = useContext(BoxContext);
 	const token = localStorage.getItem("token");
 	const { toggleDataObjectif } = useContext(DataContext);
+	const { getObjectivesByBox } = useApi()
 
 	useEffect(() => {
 		const fetchData = async () => {

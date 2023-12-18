@@ -107,7 +107,7 @@ const Quizz = ({ data, handleEndQuizz, url }) => {
 				<div className="quizz__question__choices">{renderChoices()}</div>
 				<div className="quizz__question__img--container">
 					{data.questions[index].image != null ? (
-						<img className="quizz__question__img" src={url + data.questions[index].image} />
+						<img className="quizz__question__img" src={url + data.questions[index].image} alt='' />
 					) : null}
 				</div>
 				<button className="quizz__question__button button--red" onClick={handleQuestionForm}>
@@ -142,7 +142,7 @@ const Quizz = ({ data, handleEndQuizz, url }) => {
 				<div className="quizz__answer__subtitle">{renderAnswerText()}</div>
 				<div className="quizz__answer__img--container">
 					{data.answers[index].image != null ? (
-						<img className="quizz__answer__img" src={url + data.answers[index].image} />
+						<img className="quizz__answer__img" src={url + data.answers[index].image} alt='reponse quizz' />
 					) : null}
 				</div>
 				<button className="quizz__question__button button--red" onClick={handleAnswerForm}>

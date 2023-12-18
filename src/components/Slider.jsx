@@ -83,7 +83,7 @@ const Slider = ({ data, handleModal, url }) => {
 					{data.title}
 				</div>
 				<button className="slider__header__icon--container">
-					<img className="slider__header__icon" src={Cross} onClick={handleModal} />
+					<img className="slider__header__icon" src={Cross} onClick={handleModal} alt='' />
 				</button>
 			</div>
 			<div className="slider__main">
@@ -92,7 +92,7 @@ const Slider = ({ data, handleModal, url }) => {
 					<div className="slider__content__text">{renderText()}</div>
 					<div className="slider__content__img--container">
 						{data.hints[index].image != null ? (
-							<img className="slider__content__img" src={url + data.hints[index].image} />
+							<img className="slider__content__img" src={url + data.hints[index].image} alt='' />
 						) : null}
 					</div>
 				</div>

@@ -1,4 +1,4 @@
-var APP_DATA = {
+const data = {
 	"scenes": [
 		{
 			"id": "0-302_planque3_celine_1",
@@ -125,7 +125,7 @@ var APP_DATA = {
 					"title": "<span id='see3' class='watch'>Voir plus près</span>",
 					"text": ""
         }, {
-					"yaw": 2.7378723379573934,
+					"yaw": 2.737872337957393,
 					"pitch": -0.3,
 					"title": "<span id='see6' class='watch'>Voir plus près</span>",
 					"text": ""
@@ -183,4 +183,5 @@ var APP_DATA = {
 		"fullscreenButton": false,
 		"viewControlButtons": false
 	}
-};
+}
+export default data

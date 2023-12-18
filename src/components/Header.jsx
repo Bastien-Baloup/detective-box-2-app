@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 // EXPLICATION : Ce composant permet de rendre le header de l'application.
 // EXPLICATION : Le header comprend le logo / le composant Progression / le composant Compte / le composant Nav
 // EXPLICATION : Il contient aussi le timer de fin de 30 minutes
@@ -15,20 +16,25 @@ import { Link } from "react-router-dom";
 import { urlApi } from "../utils/const/urlApi";
 import { AmbianceContext, BoxContext, DataContext } from "../utils/context/fetchContext.jsx";
 import { useEffect, useState, useRef, useContext } from "react";
-import {
-	getQuizzByBox,
-	getEventByBox,
-	updateEvent,
-	updateQuizz,
-	updateHistory,
-	getHistoryByBox,
-} from "../utils/hooks/useApi.js";
+import useApi from '../utils/hooks/useApi.js';
+import useEvent from '../utils/hooks/useEvent.js';
+
 
 const Header = () => {
 	const { fetchNappeMute, nappeMute } = useContext(AmbianceContext);
 	const { currentBox } = useContext(BoxContext);
 	const token = localStorage.getItem("token");
 	const { actionToggleDataEvent, toggleDataEvent } = useContext(DataContext);
+	const {
+		getQuizzByBox,
+		getEventByBox,
+		updateEvent,
+		updateQuizz,
+		updateHistory,
+		getHistoryByBox,
+	} = useApi()
+	const { dispatch } = useEvent()
+
 
 	const [tutorialModalIsActive, setTutorialModalIsActive] = useState(true);
 	const [tutorialIsActive, setTutorialIsActive] = useState(false);
@@ -112,12 +118,24 @@ const Header = () => {
 	const handleModalVideoBrief = async () => {
 		if (currentBox == 1) {
 			await updateHistory(token, 1, "box1video1");
+			dispatch({
+        type: 'setEvent',
+        id: 'box1video1'
+      })
 		}
 		if (currentBox == 2) {
 			await updateHistory(token, 2, "box2video1");
+			dispatch({
+        type: 'setEvent',
+        id: 'box2video1'
+      })
 		}
 		if (currentBox == 3) {
 			await updateHistory(token, 3, "box3video1");
+			dispatch({
+        type: 'setEvent',
+        id: 'box3video1'
+      })
 		}
 		setModaleVideo(false);
 		setNappeModalIsActive(true);
@@ -165,7 +183,7 @@ const Header = () => {
 				return <></>;
 			}
 			if (dataQuizz && dataQuizz.status == false) {
-				return <Quizz data={dataQuizz} handleEndQuizz={handleCloseQuizz} url={urlApi.apiRemi()} />;
+				return <Quizz data={dataQuizz} handleEndQuizz={handleCloseQuizz} url={urlApi.cdn()} />;
 			}
 		}
 	};
@@ -306,7 +324,7 @@ const Header = () => {
 			) : (
 				<div className="header__topSection">
 					<Link className="header__logo--container" to="/">
-						<img className="header__logo" src={Logo} />
+						<img className="header__logo" src={Logo} alt='' />
 					</Link>
 					<Progression />
 					<Compte />
