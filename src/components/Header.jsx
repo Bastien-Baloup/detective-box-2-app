@@ -183,7 +183,7 @@ const Header = () => {
 				return <></>;
 			}
 			if (dataQuizz && dataQuizz.status == false) {
-				return <Quizz data={dataQuizz} handleEndQuizz={handleCloseQuizz} url={urlApi.apiRemi()} />;
+				return <Quizz data={dataQuizz} handleEndQuizz={handleCloseQuizz} url={urlApi.cdn()} />;
 			}
 		}
 	};

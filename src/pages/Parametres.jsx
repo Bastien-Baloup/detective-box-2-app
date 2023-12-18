@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 // EXPLICATION : Page pour permettre aux joueurs de changer leur identifiant et leur mot de passe
 
 import Input from "../components/Input";
