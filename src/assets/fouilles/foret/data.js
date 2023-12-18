@@ -34,8 +34,8 @@ const data = {
 				{
 					"yaw": -2.053123093304669,
 					"pitch": 0.1300334998843723,
-					"title": `<span style='color:black !important'>Inscription</span>`,
-					"text": `<span style='color:black !important'><a target=_blank href='${import.meta.env.BASE_URL}fouilles/foret/plaque.jpg'>Observer de plus près</a></span>`
+					"title": `<span>Inscription</span>`,
+					"text": `<span><a target=_blank href='${import.meta.env.BASE_URL}fouilles/foret/plaque.jpg'>Observer de plus près</a></span>`
         }
       ]
     },
