@@ -215,7 +215,7 @@ function ForetModal({ onClose }) {
                 className="dig-see-3"
               />
               <br />
-              <a href="#" className="confirm" onClick={clickHandle}>
+              <a href="#" className="confirm" onClick={() => {clickHandle();onClose()}}>
                 Ouvrir le coffre
               </a>
             </div>
