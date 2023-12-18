@@ -148,10 +148,11 @@ function TerrainModal({ onClose }) {
             </a>
           </ul>
         </div>
-        <div className='img' id='img-see1' style={{ display: 'none' }}>
+        <div className='img' id='img-see1' style={{ display: 'none', height: '100dvh', maxWidth: '100%', width: 'fit-content' }}>
           <span className='close-img'>X</span>
           <img
             src={`${import.meta.env.BASE_URL}fouilles/terrain/assets/bal.jpg`}
+            style={{ maxHeight: '80dvh', height: 'auto', width: 'auto', maxWidth: '100%' }}
             className='img-see'
           />
         </div>
