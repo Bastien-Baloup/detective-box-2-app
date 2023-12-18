@@ -131,12 +131,13 @@ function CelineModal({ onClose }) {
           </div>
         </div>
 
-        <div className="img" id="img-see3" style={{ display: "none" }}>
+        <div className="img" id="img-see3" style={{ display: "none", height: '100dvh', maxWidth: '100%', width: 'fit-content' }}>
           <span className="close-img">X</span>
           <img
             src={`${
               import.meta.env.BASE_URL
             }fouilles/celine/assets/dossier.jpg`}
+            style={{ maxHeight: '75dvh', height: 'auto', width: 'auto', maxWidth: '100%' }}
             className="img-see"
           />
           <div
