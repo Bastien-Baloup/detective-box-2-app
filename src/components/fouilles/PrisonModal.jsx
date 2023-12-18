@@ -64,10 +64,11 @@ function PrisonModal({ onClose }) {
           </ul>
         </div>
 
-        <div className="img" id="img-see1" style={{ display: "none" }}>
+        <div className="img" id="img-see1" style={{ display: "none", height: '100dvh', maxWidth: '100%', width: 'fit-content' }}>
           <span className="close-img">X</span>
           <img
             src={`${import.meta.env.BASE_URL}fouilles/prison/assets/1.png`}
+            style={{ maxHeight: '80dvh', height: 'auto', width: 'auto', maxWidth: '100%' }}
             className="img-see"
           />
           <div style={{ textAlign: "center" }}>
@@ -77,18 +78,20 @@ function PrisonModal({ onClose }) {
           </div>
         </div>
 
-        <div className="img" id="img-see2" style={{ display: "none" }}>
+        <div className="img" id="img-see2" style={{ display: "none", height: '100dvh', maxWidth: '100%', width: 'fit-content' }}>
           <span className="close-img">X</span>
           <img
             src={`${import.meta.env.BASE_URL}fouilles/prison/assets/2.png`}
+            style={{ maxHeight: '80dvh', height: 'auto', width: 'auto', maxWidth: '100%' }}
             className="img-see"
           />
         </div>
 
-        <div className="img" id="img-see3" style={{ display: "none" }}>
+        <div className="img" id="img-see3" style={{ display: "none", height: '100dvh', maxWidth: '100%', width: 'fit-content'}}>
           <span className="close-img">X</span>
           <img
             src={`${import.meta.env.BASE_URL}fouilles/prison/assets/3.png`}
+            style={{ maxHeight: '80dvh', height: 'auto', width: 'auto', maxWidth: '100%' }}
             className="img-see"
           />
           <div style={{ textAlign: "center" }}>
