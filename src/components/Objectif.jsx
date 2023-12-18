@@ -73,6 +73,7 @@ const Objectif = ({ data }) => {
 
 
   const [box1lieu2, setBox1Lieu2] = useState(false);
+	const [box1video3, setBox1Video3] = useState(false)
   const [box2lieu1, setBox2Lieu1] = useState(false);
   const [box2lieu3, setBox2Lieu3] = useState(false);
   const [box3audio3, setBox3Audio3] = useState(false);
@@ -179,6 +180,8 @@ const Objectif = ({ data }) => {
           (event) => event.id == "box1lieu2"
         );
         setBox1Lieu2(box1lieu2Data.status);
+				const box1video3Data = clues.data.find((event) => event.id == "box1video3");
+				setBox1Video3(box1video3Data.status);
       }
       if (currentBox == 2) {
         const box2lieu1Data = clues.data.find(
@@ -878,6 +881,11 @@ const Objectif = ({ data }) => {
         setValue("");
         return;
       }
+			if (data.id == 13 && box1video3 == false) {
+				setErrorMessage("Je pense que nous avons trop peu d'éléments pour tirer une conclusion pour cette piste");
+				setValue("");
+				return;
+			}
       if (data.id == 22 && box2lieu3 == false) {
         setErrorMessage(
           "Allez d'abord récolter des preuves dans la cellule de Garraud !"

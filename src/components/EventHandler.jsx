@@ -137,6 +137,9 @@ const EventHandler = () => {
     ) {
       openModaleInterrogatoireGarraud();
     }
+    if (state.id === "box1video3") {
+      actionToggleDataHistory();
+    }
     if (state.id === "box3document2" && !modaleSquelette) {
       openModaleSquelette();
     }
