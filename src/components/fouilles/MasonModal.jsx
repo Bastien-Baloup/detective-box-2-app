@@ -91,7 +91,11 @@ function MasonModal({ onClose }) {
 
         <div className='img' id='img-see4' style={{ display: 'none', height: '100dvh', maxWidth: '100%', width: 'fit-content !important' }}>
           <span className='close-img'>X</span>
-          <img src={`${import.meta.env.BASE_URL}fouilles/mason/assets/lettre.jpg`} className='img-see' />
+          <img 
+            src={`${import.meta.env.BASE_URL}fouilles/mason/assets/lettre.jpg`} 
+            style={{ maxHeight: '80dvh', height: 'auto', width: 'auto', maxWidth: '100%' }}
+            className='img-see' 
+          />
 
           <div
             style={{
