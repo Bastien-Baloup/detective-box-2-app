@@ -26,8 +26,6 @@ function PlanqueModal({ onClose }) {
   }
 
   const clicHandle = async () => {
-    document.getElementById('comment').setAttribute('src', '')
-
     const token = localStorage.getItem('token')
     if (!token) {
       alert("Erreur de communication avec l'app détectivebox : Token vide")
