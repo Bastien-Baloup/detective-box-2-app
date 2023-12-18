@@ -82,6 +82,7 @@ function AppartementModal({ onClose }) {
         document.getElementById("panel-photos").style.display = "block";
         document.getElementById("fouille").style.display = "none";
         clicHandle();
+        
         if (!arrivalPhoto) {
           document.getElementById("photos").play();
 
@@ -90,7 +91,6 @@ function AppartementModal({ onClose }) {
             document.getElementById("texto").style.display = "block";
             setTimeout(() => {
               document.getElementById("texto").style.display = "none";
-              document.getElementById("retour-photos").style.display = "block";
             }, 15000);
             document
               .getElementById("photos")
@@ -102,8 +102,6 @@ function AppartementModal({ onClose }) {
             .addEventListener("ended", photosEndedHandler);
 
           sessionStorage.setItem("detective_box_photo", "1");
-        } else {
-          document.getElementById("retour-photos").style.display = "block";
         }
       });
     }
@@ -241,7 +239,6 @@ function AppartementModal({ onClose }) {
               zIndex: 100,
               top: "2%",
               right: "2%",
-              display: "none",
             }}
           >
             Retour à la pièce
