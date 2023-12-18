@@ -352,10 +352,15 @@ const Raphaelle = ({ closeAgentPage }) => {
   // EXPLICATION : la visite du lieu box2lieu3 ouvre l'objectif 2 de la box 2 et le renfort 2
   // EXPLICATION : la visite du lieu box2lieu2 ouvre le renfort 6 et ferme le renfort 5
   const openLieu = async (answerId, asnwerAsk) => {
-    await updateHistory(token, currentBox, answerId);
-    await updateCharactersById(token, 4, currentBox, asnwerAsk);
-    if (answerId == "box1lieu1") {
-      //setChantierModalOpen(true);
+    await updateHistory(token, currentBox, answerId)
+    await updateCharactersById(token, 4, currentBox, asnwerAsk)
+
+    if (answerId == 'box2lieu1') {
+      await updateHistory(token, 2, 'box2document5')
+      dispatch({
+        type: 'setEvent',
+        id: 'box2document5'
+      })
     }
     if (answerId == 'box2lieu3') {
       await updateHistory(token, 2, 'box2document7')
@@ -422,12 +427,14 @@ const Raphaelle = ({ closeAgentPage }) => {
       })
     }
 
-    window.open(answer.src + "/?token=" + token, "_blank");
-    actionToggleDataHistory();
-    actionToggleDataRaphaelle();
-    // actionTogglePolling(true);
-    validateModal();
-  };
+    //window.open(answer.src + '/?token=' + token, '_blank')
+    setLieu(answerId)
+    setLieuModalOpen(true)
+    actionToggleDataHistory()
+    actionToggleDataRaphaelle()
+    // actionTogglePolling(true)
+    validateModal()
+  }
 
   const renderText = () => {
     const text = answer.text.map((el, i) => {
