@@ -9,7 +9,7 @@ import Audio from "../components/Audio.jsx";
 import Cross from "../assets/icons/Icon_Cross-white.svg";
 import PropTypes from "prop-types";
 import { urlApi } from "../utils/const/urlApi";
-import { BoxContext, DataContext, AmbianceContext } from "../utils/context/fetchContext";
+import { BoxContext, DataContext, AmbianceContext, CompteContext } from "../utils/context/fetchContext";
 import { useContext, useState, useEffect } from "react";
 // import { dataLauren } from "../utils/const/dataLauren";
 import useApi from '../utils/hooks/useApi.js';
@@ -23,6 +23,7 @@ const Lauren = ({ closeAgentPage }) => {
 		useContext(DataContext);
 	const { updateCharactersById, updateHistory, getCharactersById, getHistoryByBox } = useApi()
 	const { dispatch } = useEvent()
+	const { closeCompte } = useContext(CompteContext);
 
 	//EXPLICATION : Lauren est le personnage "2"
 
@@ -127,6 +128,7 @@ const Lauren = ({ closeAgentPage }) => {
 	};
 
 	const renderModal = () => {
+		closeCompte()
 		return (
 			<div className="modal-objectif__background">
 				<div className="modal-objectif__box">
@@ -175,6 +177,7 @@ const Lauren = ({ closeAgentPage }) => {
 	};
 
 	const renderModalMedia = () => {
+		closeCompte()
 		return (
 			<Audio
 				title={answer.title}

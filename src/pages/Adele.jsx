@@ -8,7 +8,7 @@ import Document from "../components/Document.jsx";
 import Cross from "../assets/icons/Icon_Cross-white.svg";
 import PropTypes from "prop-types";
 import { urlApi } from "../utils/const/urlApi";
-import { BoxContext, DataContext } from "../utils/context/fetchContext";
+import { BoxContext, DataContext, CompteContext } from "../utils/context/fetchContext";
 import { useContext, useState, useEffect } from "react";
 import useApi from '../utils/hooks/useApi.js';
 import useEvent from '../utils/hooks/useEvent.js';
@@ -22,6 +22,7 @@ const Adele = ({ closeAgentPage }) => {
 	const [mailLauren1, setMailLauren1] = useState(false);
 	const { updateCharactersById, updateHistory, getCharactersById } = useApi()
 	const { dispatch } = useEvent()
+	const { closeCompte } = useContext(CompteContext);
 
 	//EXPLICATION : Adele est le personnage "1"
 
@@ -93,6 +94,7 @@ const Adele = ({ closeAgentPage }) => {
 	};
 
 	const renderModal = () => {
+		closeCompte()
 		return (
 			<div className="modal-objectif__background">
 				<div className="modal-objectif__box">
@@ -140,6 +142,7 @@ const Adele = ({ closeAgentPage }) => {
 	};
 
 	const renderModalMedia = () => {
+		closeCompte()
 		return (
 			<Document
 				title={answer.title}
@@ -170,6 +173,7 @@ const Adele = ({ closeAgentPage }) => {
 	};
 
 	const displayYouveGotMail = () => {
+		closeCompte()
 		return (
 			<div className="modal-objectif__background">
 				<div className="modal-objectif__box">
@@ -192,6 +196,7 @@ const Adele = ({ closeAgentPage }) => {
 	};
 
 	const displayMailLauren1 = () => {
+		closeCompte()
 		return (
 			<Document
 				title="Email de Lauren Fraser"

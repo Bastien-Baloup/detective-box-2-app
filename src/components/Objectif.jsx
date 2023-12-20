@@ -25,6 +25,7 @@ import {
   BoxContext,
   DataContext,
   AmbianceContext,
+  CompteContext
 } from "../utils/context/fetchContext";
 import { useContext } from "react";
 import useApi from "../utils/hooks/useApi.js";
@@ -56,7 +57,7 @@ const Objectif = ({ data }) => {
     actionToggleDataObjectif,
     toggleDataObjectif,
   } = useContext(DataContext);
-
+  const { closeCompte } = useContext(CompteContext);
 
   let event13 = useRef("");
   let event14 = useRef("");
@@ -251,7 +252,7 @@ const Objectif = ({ data }) => {
     fetchData();
   }, [toggleDataObjectif]);
 
-  //EXPLICATION : UseEffect pour avoir les event sur les lieux de fouille
+  ////EXPLICATION : UseEffect pour avoir les event sur les lieux de fouille
   // let es = useRef(null);
   // const setUpEventSource = () => {
   //   if (es.current) {
@@ -320,7 +321,7 @@ const Objectif = ({ data }) => {
       victime5,
       victime6,
     ];
-    setValue(allVictimes);
+    setValue(allVictimes);setModal
   }, [victime1, victime2, victime3, victime4, victime5, victime6]);
 
   useEffect(() => {
@@ -493,6 +494,7 @@ const Objectif = ({ data }) => {
   };
 
   const displayModaleMauvaiseFin1 = () => {
+    closeCompte()
     return (
       <div className="modal-objectif__background">
         <div className="modal-objectif__box">
@@ -536,6 +538,7 @@ const Objectif = ({ data }) => {
   };
 
   const displayModaleMauvaiseFin2 = () => {
+    closeCompte()
     return (
       <div className="modal-objectif__background">
         <div className="modal-objectif__box">
@@ -615,6 +618,7 @@ const Objectif = ({ data }) => {
   };
 
   const renderLastStep = () => {
+    closeCompte()
     if (objectif34 == "open") {
       return (
         <div className="modal-objectif__background">
@@ -726,6 +730,7 @@ const Objectif = ({ data }) => {
   };
 
   const displayTelCeline = () => {
+    closeCompte()
     return (
       <div className="modal-objectif__background">
         <div className="modal-objectif__box">
@@ -775,12 +780,14 @@ const Objectif = ({ data }) => {
   // -- GENERIQUE -- //
 
   const handleModal = () => {
+    if (!modal) { closeCompte() }
     setModal(!modal);
     setErrorMessage("");
     setValue("");
   };
 
   const handleModalBis = () => {
+    if (!modalBis) { closeCompte() }
     setModalBis(!modalBis);
     setErrorMessage("");
     setValue("");
@@ -1106,6 +1113,7 @@ const Objectif = ({ data }) => {
   };
 
   const renderModal = () => {
+    closeCompte()
     if (data.id == 14) {
       return (
         <div className="modal-objectif__background">
@@ -1422,6 +1430,7 @@ const Objectif = ({ data }) => {
   };
 
   const renderModalBis = () => {
+    closeCompte()
     return (
       <div className="modal-objectif__background">
         <div className="modal-objectif__box">
@@ -1457,6 +1466,7 @@ const Objectif = ({ data }) => {
   };
 
   const renderModalAnswer = () => {
+    closeCompte()
     return (
       <div className="modal-objectif__background">
         <div className="modal-objectif__box">
@@ -1484,6 +1494,7 @@ const Objectif = ({ data }) => {
   };
 
   const renderModalAnswerBis = () => {
+    closeCompte()
     return (
       <div className="modal-objectif__background">
         <div className="modal-objectif__box">
@@ -1525,10 +1536,12 @@ const Objectif = ({ data }) => {
   };
 
   const handleDoneObjectifModal = () => {
+    if(!doneObjectifModal){ closeCompte() }
     setDoneObjectifModal(!doneObjectifModal);
   };
 
   const renderDoneObjectifModal = () => {
+    closeCompte()
     return (
       <div className="modal-objectif__background">
         <div className="modal-objectif__box">

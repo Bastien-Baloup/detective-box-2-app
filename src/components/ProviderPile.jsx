@@ -5,6 +5,7 @@ import {
   AmbianceProvider,
   DataProvider,
   EventProvider,
+  CompteProvider
 } from "../utils/context/fetchContext.jsx";
 
 const ProviderPile = ({ children }) => {
@@ -14,7 +15,9 @@ const ProviderPile = ({ children }) => {
         <AmbianceProvider>
           <DataProvider>
             <EventProvider>
-              {children}
+              <CompteProvider>
+                {children}
+              </CompteProvider>
             </EventProvider>
           </DataProvider>
         </AmbianceProvider>

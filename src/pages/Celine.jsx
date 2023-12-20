@@ -8,7 +8,7 @@ import Document from "../components/Document.jsx";
 import Cross from "../assets/icons/Icon_Cross-white.svg";
 import PropTypes from "prop-types";
 import { urlApi } from "../utils/const/urlApi";
-import { BoxContext, DataContext } from "../utils/context/fetchContext";
+import { BoxContext, DataContext, CompteContext } from "../utils/context/fetchContext";
 import { useContext, useState, useEffect } from "react";
 import useApi from '../utils/hooks/useApi.js';
 import useEvent from '../utils/hooks/useEvent.js';
@@ -19,6 +19,7 @@ const Celine = ({ closeAgentPage }) => {
 	const { actionToggleDataCeline, toggleDataCeline, toggleDataHistory } = useContext(DataContext);
 	const { updateCharactersById, updateHistory, getCharactersById, getHistoryByBox } = useApi()
 	const { dispatch } = useEvent()
+	const { closeCompte } = useContext(CompteContext);
 
 
 	//EXPLICATION : Celine est le personnage "3"
@@ -124,6 +125,7 @@ const Celine = ({ closeAgentPage }) => {
 	};
 
 	const renderModal = () => {
+		closeCompte()
 		return (
 			<div className="modal-objectif__background">
 				<div className="modal-objectif__box">
@@ -171,6 +173,7 @@ const Celine = ({ closeAgentPage }) => {
 	};
 
 	const renderModalMedia = () => {
+		closeCompte()
 		return (
 			<Document
 				title={answer.title}

@@ -9,7 +9,7 @@ import Video from "../components/Video.jsx";
 import Cross from "../assets/icons/Icon_Cross-white.svg";
 import PropTypes from "prop-types";
 import { urlApi } from "../utils/const/urlApi";
-import { BoxContext, DataContext, AmbianceContext } from "../utils/context/fetchContext";
+import { BoxContext, DataContext, AmbianceContext, CompteContext } from "../utils/context/fetchContext";
 import { useContext, useState, useEffect } from "react";
 import useApi from '../utils/hooks/useApi.js';
 import useEvent from '../utils/hooks/useEvent.js';
@@ -21,6 +21,8 @@ const Tim = ({ closeAgentPage }) => {
 	const { fetchPreviousStateNappe } = useContext(AmbianceContext);
 	const { updateCharactersById, updateHistory, getCharactersById } = useApi()
 	const { dispatch } = useEvent()
+	const { closeCompte } = useContext(CompteContext);
+
 
 	//EXPLICATION : Tim est le personnage "5"
 	useEffect(() => {
@@ -99,6 +101,7 @@ const Tim = ({ closeAgentPage }) => {
 	};
 
 	const renderModal = () => {
+		closeCompte()
 		return (
 			<div className="modal-objectif__background">
 				<div className="modal-objectif__box">
@@ -164,6 +167,7 @@ const Tim = ({ closeAgentPage }) => {
 	};
 
 	const renderModalMedia = () => {
+		closeCompte()
 		if (answer.id.includes("document")) {
 			return (
 				<Document

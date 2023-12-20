@@ -190,8 +190,20 @@ export const EventProvider = ({ children }) => {
   );
 };
 
+export const CompteContext = createContext()
 
+export const CompteProvider = ({ children }) => {
+	const [active, setActive] = useState(false);
+	const closeCompte = () => {
+    setActive(false)
+  }
 
+	return(
+		<CompteContext.Provider value={{ active, setActive, closeCompte }}>
+			{children}
+		</CompteContext.Provider>
+	)
+}
 
 BoxProvider.propTypes = {
 	children: PropTypes.any,
@@ -206,5 +218,8 @@ DataProvider.propTypes = {
 	children: PropTypes.any,
 };
 EventProvider.propTypes = {
+	children: PropTypes.any,
+};
+CompteProvider.propTypes = {
 	children: PropTypes.any,
 };

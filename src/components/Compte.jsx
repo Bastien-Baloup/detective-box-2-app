@@ -6,15 +6,14 @@
 // EXPLICATION : + de déconnecter l'utilisateur
 // EXPLICATION : Ce composant est utilisé dans le header
 
-import { useState } from "react";
 import PropTypes from "prop-types";
 import IconAccount from "../assets/icons/Icon_Account.svg";
 import { Link } from "react-router-dom";
-import { AuthContext, AmbianceContext } from "../utils/context/fetchContext.jsx";
+import { AuthContext, AmbianceContext, CompteContext } from "../utils/context/fetchContext.jsx";
 import { useContext } from "react";
 
 const Compte = () => {
-	const [active, setActive] = useState(false);
+	const { active, setActive } = useContext(CompteContext);
 	const { logout } = useContext(AuthContext);
 	const { fetchNappeMute, nappeMute } = useContext(AmbianceContext);
 

@@ -7,7 +7,7 @@ import Input from '../components/Input.jsx'
 import Cross from '../assets/icons/Icon_Cross-white.svg'
 import PropTypes from 'prop-types'
 import { urlApi } from '../utils/const/urlApi'
-import { BoxContext, DataContext } from '../utils/context/fetchContext'
+import { BoxContext, DataContext, CompteContext } from '../utils/context/fetchContext'
 import { useContext, useState, useEffect } from 'react'
 import useApi from '../utils/hooks/useApi.js'
 import useLieu from '../utils/hooks/useLieu.jsx'
@@ -16,6 +16,7 @@ import useEvent from '../utils/hooks/useEvent.js';
 
 const Raphaelle = ({ closeAgentPage }) => {
   const { currentBox } = useContext(BoxContext)
+  const { closeCompte } = useContext(CompteContext);
   const token = localStorage.getItem('token')
   const {
     actionToggleDataRaphaelle,
@@ -325,6 +326,7 @@ const Raphaelle = ({ closeAgentPage }) => {
   }
 
   const renderModal = () => {
+    closeCompte()
     return (
       <div className='modal-objectif__background'>
         <div className='modal-objectif__box'>

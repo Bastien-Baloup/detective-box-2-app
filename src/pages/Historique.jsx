@@ -9,7 +9,7 @@ import Audio from "../components/Audio";
 import Video from "../components/Video";
 import { urlApi } from "../utils/const/urlApi";
 import Cross from "../assets/icons/Icon_Cross-white.svg";
-import { BoxContext, DataContext, AmbianceContext } from "../utils/context/fetchContext";
+import { BoxContext, DataContext, AmbianceContext, CompteContext } from "../utils/context/fetchContext";
 import { useContext, useEffect } from "react";
 import useApi from "../utils/hooks/useApi";
 import useLieu from '../utils/hooks/useLieu.jsx'
@@ -23,6 +23,7 @@ function Historique() {
 	const { toggleDataHistory } = useContext(DataContext);
   const { renderLieu, setLieu, setLieuModalOpen } = useLieu()
 	const { getHistoryByBox } = useApi()
+	const { closeCompte } = useContext(CompteContext);
 
 	const openLieu = (lieu) => {
 		setLieu(lieu)
@@ -156,7 +157,8 @@ function Historique() {
 
 	// EXPLICATION : cette fonction indique quelle modale afficher au clic d'une preuve en fonction de sa catégorie
 	const displayCorrespondingModal = (clue) => {
-		console.log(clue)
+		closeCompte()
+		//console.log(clue)
 		if (clue.category == "Archive") {
 			return (
 				<Document title={clue.title} srcElement={urlApi.cdn() + clue.src} handleModalDocument={() => setModal(false)} />
