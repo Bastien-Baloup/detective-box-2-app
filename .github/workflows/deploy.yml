@@ -21,7 +21,7 @@ jobs:
         uses: bahmutov/npm-install@v1
 
       - name: Create .env
-        run: echo "VITE_API_URL=https://api2.detectivebox.fr" > .env.local
+        run: echo "VITE_API_URL=https://app2.detectivebox.fr/api" > .env.local
 
       - name: Build project
         run: npm run build
