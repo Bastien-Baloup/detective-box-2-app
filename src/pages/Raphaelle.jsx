@@ -481,7 +481,7 @@ const Raphaelle = ({ closeAgentPage }) => {
         <div className="agent__portrait--container">
           <img
             className="agent__portrait"
-            src="https://db2cdn.fra1.cdn.digitaloceanspaces.com/assets/photos-personnages/raphaelle.png"
+            src="https://db2cdn.fra1.cdn.digitaloceanspaces.com/assets/photos-personnages/raphaelle.jpg"
             alt="photo de Raphaelle"
           />
         </div>

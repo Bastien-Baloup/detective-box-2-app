@@ -262,7 +262,7 @@ const Adele = ({ closeAgentPage }) => {
         <div className="agent__portrait--container">
           <img
             className="agent__portrait"
-            src="https://db2cdn.fra1.cdn.digitaloceanspaces.com/assets/photos-personnages/adele.png"
+            src="https://db2cdn.fra1.cdn.digitaloceanspaces.com/assets/photos-personnages/adele.jpg"
             alt="photo d'adèle"
           />
         </div>

@@ -256,7 +256,7 @@ const Tim = ({ closeAgentPage }) => {
         <div className="agent__portrait--container">
           <img
             className="agent__portrait"
-            src="https://db2cdn.fra1.cdn.digitaloceanspaces.com/assets/photos-personnages/tim.png"
+            src="https://db2cdn.fra1.cdn.digitaloceanspaces.com/assets/photos-personnages/tim.jpg"
             alt="photo de tim"
           />
         </div>

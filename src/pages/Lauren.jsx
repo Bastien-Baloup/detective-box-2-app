@@ -289,8 +289,8 @@ const Lauren = ({ closeAgentPage }) => {
             className="agent__portrait"
             src={
               currentBox == 3
-                ? "https://db2cdn.fra1.cdn.digitaloceanspaces.com/assets/photos-personnages/raphaelle.png"
-                : "https://db2cdn.fra1.cdn.digitaloceanspaces.com/assets/photos-personnages/lauren.png"
+                ? "https://db2cdn.fra1.cdn.digitaloceanspaces.com/assets/photos-personnages/raphaelle.jpg"
+                : "https://db2cdn.fra1.cdn.digitaloceanspaces.com/assets/photos-personnages/lauren.jpg"
             }
             alt={currentBox == 3 ? "Photo de Raphaelle" : "Photo de Lauren"}
           />

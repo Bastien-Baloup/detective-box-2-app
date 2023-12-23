@@ -134,7 +134,7 @@ function Home() {
     if (currentBox == 3) {
       return (
         <Card
-          srcImg="https://db2cdn.fra1.cdn.digitaloceanspaces.com/assets/photos-personnages/raphaelle.png"
+          srcImg="https://db2cdn.fra1.cdn.digitaloceanspaces.com/assets/photos-personnages/raphaelle.jpg"
           srcIcon={IconLauren}
           name="Raphaëlle Sanchez"
           contentButton="Demander un interrogatoire"
@@ -146,7 +146,7 @@ function Home() {
     if (currentBox == 2 && box2document6 == true) {
       return (
         <Card
-          srcImg="https://db2cdn.fra1.cdn.digitaloceanspaces.com/assets/photos-personnages/lauren.png"
+          srcImg="https://db2cdn.fra1.cdn.digitaloceanspaces.com/assets/photos-personnages/lauren.jpg"
           srcIcon={IconLauren}
           name="Lauren Fraser"
           contentButton="Demander un interrogatoire"
@@ -157,7 +157,7 @@ function Home() {
     } else {
       return (
         <Card
-          srcImg="https://db2cdn.fra1.cdn.digitaloceanspaces.com/assets/photos-personnages/lauren.png"
+          srcImg="https://db2cdn.fra1.cdn.digitaloceanspaces.com/assets/photos-personnages/lauren.jpg"
           srcIcon={IconLauren}
           name="Lauren Fraser"
           contentButton="Demander un interrogatoire"
@@ -172,7 +172,7 @@ function Home() {
     if (currentBox == 3 && box3audio3 == true) {
       return (
         <Card
-          srcImg="https://db2cdn.fra1.cdn.digitaloceanspaces.com/assets/photos-personnages/celine.png"
+          srcImg="https://db2cdn.fra1.cdn.digitaloceanspaces.com/assets/photos-personnages/celine.jpg"
           srcIcon={IconCeline}
           name="Céline Valluy"
           contentButton="Demander un dossier de police"
@@ -183,7 +183,7 @@ function Home() {
     } else {
       return (
         <Card
-          srcImg="https://db2cdn.fra1.cdn.digitaloceanspaces.com/assets/photos-personnages/celine.png"
+          srcImg="https://db2cdn.fra1.cdn.digitaloceanspaces.com/assets/photos-personnages/celine.jpg"
           srcIcon={IconCeline}
           name="Céline Valluy"
           contentButton="Demander un dossier de police"
@@ -200,7 +200,7 @@ function Home() {
       <>
         <div className="card__wrapper">
           <Card
-            srcImg="https://db2cdn.fra1.cdn.digitaloceanspaces.com/assets/photos-personnages/raphaelle.png"
+            srcImg="https://db2cdn.fra1.cdn.digitaloceanspaces.com/assets/photos-personnages/raphaelle.jpg"
             srcIcon={IconRaphaelle}
             name="Raphaëlle Sanchez"
             contentButton="Explorer un lieu"
@@ -210,7 +210,7 @@ function Home() {
           {renderLaurenCard()}
           {renderCelineCard()}
           <Card
-            srcImg="https://db2cdn.fra1.cdn.digitaloceanspaces.com/assets/photos-personnages/tim.png"
+            srcImg="https://db2cdn.fra1.cdn.digitaloceanspaces.com/assets/photos-personnages/tim.jpg"
             srcIcon={IconTim}
             name="Tim Lonewood"
             contentButton="Demander une analyse informatique"
@@ -218,7 +218,7 @@ function Home() {
             state=""
           />
           <Card
-            srcImg="https://db2cdn.fra1.cdn.digitaloceanspaces.com/assets/photos-personnages/adele.png"
+            srcImg="https://db2cdn.fra1.cdn.digitaloceanspaces.com/assets/photos-personnages/adele.jpg"
             srcIcon={IconAdele}
             name="Adèle Leinu"
             contentButton="Demander une analyse scientifique"
