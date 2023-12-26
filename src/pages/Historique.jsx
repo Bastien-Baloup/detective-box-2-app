@@ -20,7 +20,7 @@ function Historique() {
 	const token = localStorage.getItem("token");
 	const { currentBox } = useContext(BoxContext);
 	const { fetchPreviousStateNappe } = useContext(AmbianceContext);
-	const { toggleDataHistory } = useContext(DataContext);
+	const { toggleDataHistory, actionToggleDataHistory } = useContext(DataContext);
   const { renderLieu, setLieu, setLieuModalOpen } = useLieu()
 	const { getHistoryByBox } = useApi()
 	const { closeCompte } = useContext(CompteContext);
@@ -35,21 +35,46 @@ function Historique() {
 		const fetchData = async () => {
 			if (currentBox === 1) {
 				const result = await getHistoryByBox(token, currentBox);
-				setDataHistory1(result.data);
+				if (result) {
+					setDataHistory1(result.data);
+				} else {
+					setDataHistory1([])
+				}
 			}
 			if (currentBox === 2) {
 				const result = await getHistoryByBox(token, currentBox);
-				setDataHistory2(result.data);
+				if (result) {
+					setDataHistory2(result.data);
+				} else {
+					setDataHistory2([])
+				}
 				const resultbox1 = await getHistoryByBox(token, 1);
-				setDataHistory1(resultbox1.data);
+				if (resultbox1) {
+					setDataHistory1(resultbox1.data);
+				} else {
+					setDataHistory1([])
+				}
 			}
 			if (currentBox === 3) {
 				const result = await getHistoryByBox(token, currentBox);
-				setDataHistory3(result.data);
+				if (result) {
+					setDataHistory3(result.data);
+				} else {
+					setDataHistory3([])
+				}
 				const resultbox1 = await getHistoryByBox(token, 1);
 				setDataHistory1(resultbox1.data);
+				if (resultbox1) {
+					setDataHistory1(resultbox1.data);
+				} else {
+					setDataHistory1([])
+				}
 				const resultbox2 = await getHistoryByBox(token, 2);
-				setDataHistory2(resultbox2.data);
+				if (resultbox2) {
+					setDataHistory2(resultbox2.data);
+				} else {
+					setDataHistory2([])
+				}
 			}
 		};
 		fetchData();
@@ -102,7 +127,7 @@ function Historique() {
 
 	// EXPLICATION : cette fonction va filtrer les data en fonction des arrays filtres créés plus haut
 	const filterClues = (data) => {
-		if (data.length > 1) {
+		if (data.length > 0) {
 			if (selectedCategory.length == 0 && selectedBox.length == 0) {
 				return data.map((clue, index) => <Preuve data={clue} key={`clueKey-${index}`} openModal={() => openModal(clue)} />);
 			}
@@ -129,7 +154,13 @@ function Historique() {
 		if (currentBox == 1) {
 			let cluesCurrentBoxTrue = dataHistory1?.filter((clue) => clue.status == true);
 			let allClues = [cluesCurrentBoxTrue].flat();
-			return filterClues(allClues);
+			if (!dataHistory1) {
+				//actionToggleDataHistory()
+				return []
+			} else {
+				//console.log(filterClues(allClues))
+				return filterClues(allClues);
+			}
 		}
 		if (currentBox == 2 && dataHistory1) {
 			let cluesCurrentBoxTrue = dataHistory2?.filter((clue) => clue.status == true);

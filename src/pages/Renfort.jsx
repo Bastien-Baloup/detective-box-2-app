@@ -51,10 +51,11 @@ function Renfort() {
 	// EXPLICATION : Afficher le choix des renforts (etat en fonction de leur statut)
 	const displayMenu = () => {
 		const menuChoices = dataHelp?.map((help, index) => {
+
 			if (help.status == "done") {
 				return (
 					<>
-						<button className="menu__choice menu__choice--done" key={`helpKey1-${index}`}>
+						<button className="menu__choice menu__choice--done" key={`helpKey1-${index}-${help.id}`}>
 							<div className="menu__choice__content">
 								<div className="menu__choice__icon-wrapper">
 									<img src={Check} className="menu__choice__icon" />

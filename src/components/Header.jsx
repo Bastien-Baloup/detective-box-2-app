@@ -24,7 +24,7 @@ const Header = () => {
 	const { fetchNappeMute, nappeMute } = useContext(AmbianceContext);
 	const { currentBox } = useContext(BoxContext);
 	const token = localStorage.getItem("token");
-	const { actionToggleDataEvent, toggleDataEvent } = useContext(DataContext);
+	const { actionToggleDataEvent, toggleDataEvent, actionToggleDataHistory } = useContext(DataContext);
 	const {
 		getQuizzByBox,
 		getEventByBox,
@@ -137,6 +137,7 @@ const Header = () => {
         id: 'box3video1'
       })
 		}
+		actionToggleDataHistory()
 		setModaleVideo(false);
 		setNappeModalIsActive(true);
 	};
