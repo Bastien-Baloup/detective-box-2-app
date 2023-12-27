@@ -19,8 +19,8 @@ function Login() {
 	const [email, setEmail] = useState("");
 	const [emailForgot, setEmailForgot] = useState("");
 	const [modalNewUser, setModalNewUser] = useState(false);
-	const credentials = { email: email, password: password };
-	const newaccount = { email: email, password: password, name: username };
+	const credentials = { email: email.toLowerCase(), password: password };
+	const newaccount = { email: email.toLowerCase(), password: password, name: username };
 	const { login, loggedIn } = useContext(AuthContext);
 	const { getToken, createUser, forgotPassword } = useApi()
 
@@ -75,7 +75,7 @@ function Login() {
 			setErrorMessageForgot("Merci de rentrer une adresse mail");
 			return;
 		}
-		await forgotPassword(emailForgot);
+		await forgotPassword(emailForgot.toLowerCase());
 		setEmailForgot("");
 		setErrorMessageForgot("");
 		alert("Un nouveau mot de passe vous a été envoyé par mail !");
