@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import MarzipanoInit from '../../utils/const/marzipanoInit'
-import { useEffect, useRef, useContext } from 'react'
+import { useEffect, useRef, useContext, useState } from 'react'
 import PropTypes from 'prop-types'
 import '../../assets/fouilles/terrain/style.css'
 import data from '../../assets/fouilles/terrain/data'
@@ -12,6 +12,7 @@ import useEvent from '../../utils/hooks/useEvent.js';
 function TerrainModal({ onClose }) {
   const panoRef = useRef(null)
   const viewerRef = useRef(null)
+  const [commentPlayed, setCommentPlayed] = useState(false)
   const arrivalTerrain = useRef(sessionStorage.getItem('arrival_terrain'))
   const { actionToggleDataHistory } = useContext(DataContext);
   const { updateHistory } = useApi()
@@ -76,35 +77,25 @@ function TerrainModal({ onClose }) {
       }
     })
 
-    const watchClick = (e) => {
-      document.querySelectorAll('.img').forEach((imgElement) => {
-        imgElement.style.display = 'none'
-      })
-
-      const id = e.target.getAttribute('id')
-      if (id == 'door') {
-        openDoor() 
-      } else {
-        document.getElementById('img-' + id).style.display = 'block'
-        if (id == 'see2') {
-          const arrivalAudio = document.getElementById('arrival')
-          if (arrivalAudio) {
-            arrivalAudio.volume = 0
+    document.querySelectorAll('.watch').forEach((element) => {
+      element.addEventListener('click', () => {
+        document.querySelectorAll('.img').forEach((imgElement) => {
+          imgElement.style.display = 'none'
+        })
+        const id = element.getAttribute('id')
+        if (id == 'door') {
+          openDoor() 
+        } else {
+          document.getElementById('img-' + id).style.display = 'block'
+          if (id == 'see2') {
+            document.getElementById('arrival').volume = 0
+            if (!commentPlayed) {
+              document.getElementById('comment').play()
+              setCommentPlayed(true)
+            }
           }
-          const commentAudio = document.getElementById('comment')
-          if (commentAudio && commentAudio.getAttribute('src') !== '') {
-            commentAudio.play()
-          }
-          commentAudio.addEventListener('ended', () => {
-            commentAudio.setAttribute('src', '')
-          })
         }
-      }
-    }
-
-    const watchElements = document.querySelectorAll('.watch')
-    watchElements.forEach((element) => {
-      element.onclick = watchClick
+      })
     })
 
     sessionStorage.setItem('arrival_terrain', '1')
