@@ -55,7 +55,7 @@ function Renfort() {
 			if (help.status == "done") {
 				return (
 					<>
-						<button className="menu__choice menu__choice--done" key={`helpKey1-${index}-${help.id}`}>
+						<button className="menu__choice menu__choice--done" onClick={() => openSlider(help)} key={`helpKey1-${index}-${help.id}`}>
 							<div className="menu__choice__content">
 								<div className="menu__choice__icon-wrapper">
 									<img src={Check} className="menu__choice__icon" />
