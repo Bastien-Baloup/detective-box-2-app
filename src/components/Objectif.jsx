@@ -873,14 +873,6 @@ const Objectif = ({ data }) => {
       }
     }
     if (data.answer.includes(slugify(value))) {
-      if (data.id == 11) {
-        await updateHistory(token, 1, "box1document3");
-        dispatch({
-          type: "setEvent",
-          id: "box1document3",
-        });
-        actionToggleDataHistory();
-      }
       if (data.id == 13 && box1lieu2 == false) {
         setErrorMessage(
           "Je pense que nous avons trop peu d'éléments pour tirer une conclusion pour cette piste"
@@ -1086,6 +1078,12 @@ const Objectif = ({ data }) => {
     setModalAnswerBis(false);
     setNextStep(false);
     if (data.id == 11) {
+      await updateHistory(token, 1, "box1document3");
+      dispatch({
+        type: "setEvent",
+        id: "box1document3",
+      });
+      actionToggleDataHistory();
       if (objectif12 == "done" && objectif13 == "done") {
         await updateObjectives(token, 1, 14, "open");
         await updateObjectives(token, 1, 11, "done");
