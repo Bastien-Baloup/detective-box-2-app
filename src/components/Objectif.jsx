@@ -905,6 +905,15 @@ const Objectif = ({ data }) => {
 
   const handleModalAnswer = async () => {
     if (data.newdetail) {
+      if (data.id == 11) {
+        console.log('test')
+        await updateHistory(token, 1, "box1document3");
+        dispatch({
+          type: "setEvent",
+          id: "box1document3",
+        });
+        actionToggleDataHistory();
+      }
       setModalAnswer(false);
       setModalBis(true);
       setNextStep(true);
@@ -1078,12 +1087,6 @@ const Objectif = ({ data }) => {
     setModalAnswerBis(false);
     setNextStep(false);
     if (data.id == 11) {
-      await updateHistory(token, 1, "box1document3");
-      dispatch({
-        type: "setEvent",
-        id: "box1document3",
-      });
-      actionToggleDataHistory();
       if (objectif12 == "done" && objectif13 == "done") {
         await updateObjectives(token, 1, 14, "open");
         await updateObjectives(token, 1, 11, "done");
