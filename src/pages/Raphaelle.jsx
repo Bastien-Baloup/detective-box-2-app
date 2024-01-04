@@ -42,6 +42,8 @@ const Raphaelle = ({ closeAgentPage }) => {
 
   const { dispatch } = useEvent();
 
+  const [CurrentBoxdataHistory, setCurrentBoxDataHistory] = useState(null);
+
   //EXPLICATION : Raphaelle est le personnage '4'
 
   useEffect(() => {
@@ -78,6 +80,11 @@ const Raphaelle = ({ closeAgentPage }) => {
   useEffect(() => {
     const fetchData = async () => {
       const clues = await getHistoryByBox(token, currentBox);
+      if (clues) {
+        setCurrentBoxDataHistory(clues.data)
+      } else {
+        setCurrentBoxDataHistory([])
+      }
       if (currentBox == 3) {
         const box3audio3Data = clues.data.find(
           (event) => event.id == "box3audio3"
@@ -137,8 +144,13 @@ const Raphaelle = ({ closeAgentPage }) => {
     const answerInThisBox = (value) => {
       return thisBox.find((element) => element.ask.includes(value));
     };
+    const documentInHistory = (value) => {
+      //console.log(CurrentBoxdataHistory.find(element => element.id == answerInThisBox(value).id))
+      return answerInThisBox(value) && CurrentBoxdataHistory.find(element => element.id == answerInThisBox(value).id).status
+    } 
     const previouslyAnsweredInThisBox = (value) => {
-      return answerInThisBox(value) && answerInThisBox(value).status;
+      // return answerInThisBox(value) && answerInThisBox(value).status;
+      return answerInThisBox(value) && documentInHistory(value)
     };
     const answerInBox1 = (value) =>
       box1.some((element) => element.ask.includes(value));

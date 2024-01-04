@@ -20,7 +20,7 @@ function Historique() {
 	const token = localStorage.getItem("token");
 	const { currentBox } = useContext(BoxContext);
 	const { fetchPreviousStateNappe } = useContext(AmbianceContext);
-	const { toggleDataHistory, actionToggleDataHistory } = useContext(DataContext);
+	const { toggleDataHistory } = useContext(DataContext);
   const { renderLieu, setLieu, setLieuModalOpen } = useLieu()
 	const { getHistoryByBox } = useApi()
 	const { closeCompte } = useContext(CompteContext);
