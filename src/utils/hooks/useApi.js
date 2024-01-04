@@ -1,3 +1,4 @@
+import { logError } from '../const/logtail.js';
 const url = import.meta.env.VITE_API
 
 const useApi = () => {
@@ -9,7 +10,7 @@ const useApi = () => {
 					"Content-Type": "application/json",
 					Authorization: `Bearer ${token}`,
 				},
-			})
+			}).catch(error => logError(error))
 		},
 		
 		updateTimeEndBox : (token, id) => {
@@ -19,7 +20,7 @@ const useApi = () => {
 					"Content-Type": "application/json",
 					Authorization: `Bearer ${token}`,
 				},
-			})
+			}).catch(error => logError(error))
 		},
 		
 		getMe : (token) => {
@@ -29,7 +30,7 @@ const useApi = () => {
 					"Content-Type": "application/json",
 					Authorization: `Bearer ${token}`,
 				},
-			})
+			}).catch(error => logError(error))
 		},
 		
 		getToken : (credentials) => {
@@ -39,7 +40,7 @@ const useApi = () => {
 					"Content-Type": "application/json",
 				},
 				body: JSON.stringify(credentials),
-			})
+			}).catch(error => logError(error))
 		},
 		
 		createUser : (newaccount) => {
@@ -49,13 +50,14 @@ const useApi = () => {
 					"Content-Type": "application/json",
 				},
 				body: JSON.stringify(newaccount),
-			})
+			}).catch(error => logError(error))
 			// .then((response) => response.json())
 			// .then((data) => {
 			// 	return data
 			// })
 			// .catch((error) => {
 			// 	console.error(error)
+					// logError(error)
 			// })
 		},
 		
@@ -73,6 +75,7 @@ const useApi = () => {
 				})
 				.catch((error) => {
 					console.error(error)
+					logError(error)
 				})
 		},
 		
@@ -90,6 +93,7 @@ const useApi = () => {
 				})
 				.catch((error) => {
 					console.error(error)
+					logError(error)
 				})
 		},
 		
@@ -110,6 +114,7 @@ const useApi = () => {
 				})
 				.catch((error) => {
 					console.error(error)
+					logError(error)
 				})
 		},
 		
@@ -128,6 +133,7 @@ const useApi = () => {
 				})
 				.catch((error) => {
 					console.error(error)
+					logError(error)
 				})
 		},
 		
@@ -145,6 +151,7 @@ const useApi = () => {
 				})
 				.catch((error) => {
 					console.error(error)
+					logError(error)
 				})
 		},
 		
@@ -162,6 +169,7 @@ const useApi = () => {
 				})
 				.catch((error) => {
 					console.error(error)
+					logError(error)
 				})
 		},
 		
@@ -182,6 +190,7 @@ const useApi = () => {
 				})
 				.catch((error) => {
 					console.error(error)
+					logError(error)
 				})
 		},
 		
@@ -199,6 +208,7 @@ const useApi = () => {
 				})
 				.catch((error) => {
 					console.error(error)
+					logError(error)
 				})
 		},
 		
@@ -216,6 +226,7 @@ const useApi = () => {
 				})
 				.catch((error) => {
 					console.error(error)
+					logError(error)
 				})
 		},
 		
@@ -236,6 +247,7 @@ const useApi = () => {
 				})
 				.catch((error) => {
 					console.error(error)
+					logError(error)
 				})
 		},
 		
@@ -253,6 +265,7 @@ const useApi = () => {
 				})
 				.catch((error) => {
 					console.error(error)
+					logError(error)
 				})
 		},
 		
@@ -267,6 +280,7 @@ const useApi = () => {
 		// 		})
 		// 		.catch((error) => {
 		// 			console.error(error)
+					// logError(error)
 		// 		})
 		// }
 		
@@ -284,6 +298,7 @@ const useApi = () => {
 				})
 				.catch((error) => {
 					console.error(error)
+					logError(error)
 				})
 		},
 		
@@ -304,6 +319,7 @@ const useApi = () => {
 				})
 				.catch((error) => {
 					console.error(error)
+					logError(error)
 				})
 		},
 		
@@ -321,6 +337,7 @@ const useApi = () => {
 				})
 				.catch((error) => {
 					console.error(error)
+					logError(error)
 				})
 		},
 		
@@ -338,6 +355,7 @@ const useApi = () => {
 				})
 				.catch((error) => {
 					console.error(error)
+					logError(error)
 				})
 		},
 		
@@ -358,6 +376,7 @@ const useApi = () => {
 				})
 				.catch((error) => {
 					console.error(error)
+					logError(error)
 				})
 		},
 		
@@ -375,6 +394,7 @@ const useApi = () => {
 				})
 				.catch((error) => {
 					console.error(error)
+					logError(error)
 				})
 		},
 		
@@ -392,6 +412,7 @@ const useApi = () => {
 				})
 				.catch((error) => {
 					console.error(error)
+					logError(error)
 				})
 		},
 		
@@ -412,6 +433,7 @@ const useApi = () => {
 				})
 				.catch((error) => {
 					console.error(error)
+					logError(error)
 				})
 		},
 		
@@ -429,6 +451,7 @@ const useApi = () => {
 				})
 				.catch((error) => {
 					console.error(error)
+					logError(error)
 				})
 		},
 		
@@ -443,6 +466,7 @@ const useApi = () => {
 		// 		})
 		// 		.catch((error) => {
 		// 			console.error(error)
+					// logError(error)
 		// 		})
 		// }
 		
@@ -460,6 +484,7 @@ const useApi = () => {
 				})
 				.catch((error) => {
 					console.error(error)
+					logError(error)
 				})
 		},
 		
@@ -477,6 +502,7 @@ const useApi = () => {
 				})
 				.catch((error) => {
 					console.error(error)
+					logError(error)
 				})
 		},
 		
@@ -494,6 +520,7 @@ const useApi = () => {
 				})
 				.catch((error) => {
 					console.error(error)
+					logError(error)
 				})
 		},
 		
@@ -511,6 +538,7 @@ const useApi = () => {
 				})
 				.catch((error) => {
 					console.error(error)
+					logError(error)
 				})
 		},
 		
@@ -531,6 +559,7 @@ const useApi = () => {
 				})
 				.catch((error) => {
 					console.error(error)
+					logError(error)
 				})
 		},
 		
@@ -548,6 +577,7 @@ const useApi = () => {
 				})
 				.catch((error) => {
 					console.error(error)
+					logError(error)
 				})
 		}
 		
