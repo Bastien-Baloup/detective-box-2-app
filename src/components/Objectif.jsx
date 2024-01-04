@@ -252,57 +252,6 @@ const Objectif = ({ data }) => {
     fetchData();
   }, [toggleDataObjectif]);
 
-  ////EXPLICATION : UseEffect pour avoir les event sur les lieux de fouille
-  // let es = useRef(null);
-  // const setUpEventSource = () => {
-  //   if (es.current) {
-  //     return;
-  //   }
-  //   es.current = new EventSource(
-  //     "https://sse.detectivebox.fr/stream?token=" + token
-  //   );
-  //   console.log("ES created");
-  //   es.current.addEventListener("message", async (event) => {
-  //     const data = JSON.parse(event.data);
-  //     console.log("ES message received: " + data.id);
-  //     if (currentBox == 1 && data.id === "box1document1") {
-  //       setModaleMalle(true);
-  //     }
-  //     if (data.id === "box1video2") {
-  //       setModaleVHS(true);
-  //     }
-  //     if (currentBox == 1 && data.id === "box1document6") {
-  //       setModaleInterrogatoireGarraud(true);
-  //     }
-  //     if (data.id === "box2document6") {
-  //       actionToggleDataHistory();
-  //     }
-  //     if (data.id === "box3document2") {
-  //       await updateHistory(token, 3, "box3document3");
-  //       actionToggleDataHistory();
-  //       await updateObjectives(token, 3, 33, "open");
-  //       await updateObjectives(token, 3, 34, "open");
-  //       actionToggleDataObjectif();
-  //       await updateHelp(token, 3, "box3help3", "open");
-  //       await updateHelp(token, 3, "box3help6", "open");
-  //       await updateHelp(token, 3, "box3help2", "done");
-  //       actionToggleDataHelp();
-  //       setModaleSquelette(true);
-  //     }
-  //   });
-  //   es.current.addEventListener("error", () => {
-  //     console.log("ES disconnected");
-  //     es.current.close();
-  //     setTimeout(() => setUpEventSource(), 1000);
-  //   });
-  // };
-
-  // useEffect(() => {
-  //   setUpEventSource();
-  // }, []);
-
-
-
   // --- CONDITIONS SPE OBJECTIF 14 --- //
 
   const [victime1, setVictime1] = useState("");
@@ -880,11 +829,11 @@ const Objectif = ({ data }) => {
         setValue("");
         return;
       }
-			if (data.id == 13 && box1video3 == false) {
-				setErrorMessage("Je pense que nous avons trop peu d'éléments pour tirer une conclusion pour cette piste");
-				setValue("");
-				return;
-			}
+			// if (data.id == 13 && box1video3 == false) {
+			// 	setErrorMessage("Je pense que nous avons trop peu d'éléments pour tirer une conclusion pour cette piste");
+			// 	setValue("");
+			// 	return;
+			// }
       if (data.id == 22 && box2lieu3 == false) {
         setErrorMessage(
           "Allez d'abord récolter des preuves dans la cellule de Garraud !"
