@@ -192,12 +192,12 @@ function Historique() {
 		//console.log(clue)
 		if (clue.category == "Archive") {
 			return (
-				<Document title={clue.title} srcElement={urlApi.cdn() + clue.src} handleModalDocument={() => setModal(false)} />
+				<Document title={clue.title} srcElement={urlApi.cdn() + clue.src} message={clue?.message} handleModalDocument={() => setModal(false)} />
 			);
 		}
 		if (clue.category == "Document") {
 			return (
-				<Document title={clue.title} srcElement={urlApi.cdn() + clue.src} handleModalDocument={() => setModal(false)} />
+				<Document title={clue.title} srcElement={urlApi.cdn() + clue.src} message={clue?.message} handleModalDocument={() => setModal(false)} />
 			);
 		}
 		if (clue.category == "Audio") {
