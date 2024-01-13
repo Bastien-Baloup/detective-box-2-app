@@ -14,17 +14,45 @@ import Cross from "../assets/icons/Icon_Cross-white.svg";
 import Saison1 from "../assets/img/Facing-episode1.jpg";
 import Saison2 from "../assets/img/Facing-episode2.jpg";
 import Saison3 from "../assets/img/Facing-episode3.jpg";
-import { BoxContext } from "../utils/context/fetchContext.jsx";
+import { BoxContext, DataContext } from "../utils/context/fetchContext.jsx";
 import { useContext } from "react";
 
 const BoxChoice = ({ data }) => {
 	const { fetchCurrentBox } = useContext(BoxContext);
+	const { 
+		actionToggleDataAdele,
+		actionToggleDataCeline,
+		actionToggleDataLauren,
+		actionToggleDataRaphaelle,
+		actionToggleDataTim,
+		actionToggleDataEvent,
+		actionToggleDataHelp,
+		actionToggleDataHistory,
+		actionToggleDataObjectif,
+	} = useContext(DataContext);
 
 	const [modal, setModal] = useState(false);
 
 	const handleModal = () => {
 		setModal(!modal);
 	};
+
+	const load = () =>{
+		actionToggleDataAdele(),
+		actionToggleDataCeline(),
+		actionToggleDataLauren(),
+		actionToggleDataRaphaelle(),
+		actionToggleDataTim(),
+		actionToggleDataEvent(),
+		actionToggleDataHelp(),
+		actionToggleDataHistory(),
+		actionToggleDataObjectif()
+	}
+
+	const openBox = () => {
+		fetchCurrentBox(data.id)
+		load()
+	}
 
 	// EXPLICATION : Cette fonction permet d'ouvrir le site dans un nouvel onglet
 	const openWebsite = () => {
@@ -95,7 +123,7 @@ const BoxChoice = ({ data }) => {
 			}
 			if (data.status == "open") {
 				return (
-					<article className="boxchoice boxchoice--open" onClick={() => fetchCurrentBox(data.id)}>
+					<article className="boxchoice boxchoice--open" onClick={openBox}>
 						<Link to={"/"} className="boxchoice__link"></Link>
 						<div className="boxchoice__picture-wrapper">
 							<img src={renderCover()} className="boxchoice__picture" alt=''/>

@@ -24,7 +24,12 @@ const Header = () => {
 	const { fetchNappeMute, nappeMute } = useContext(AmbianceContext);
 	const { currentBox } = useContext(BoxContext);
 	const token = localStorage.getItem("token");
-	const { actionToggleDataEvent, actionToggleDataHistory, dataEvent, dataHistory } = useContext(DataContext);
+	const { 
+		actionToggleDataEvent,
+		actionToggleDataHistory,
+		dataEvent, 
+		dataHistory 
+	} = useContext(DataContext);
 	const {
 		getQuizzByBox,
 		updateEvent,
@@ -61,6 +66,8 @@ const Header = () => {
 		};
 		fetchData();
 	}, []);
+
+	
 
 	const event33 	 = useMemo(() => currentBox === 3 && dataEvent[currentBox]?.data && dataEvent[currentBox]?.data.find((event) => event.id == 33)?.status, [currentBox, dataEvent])
 

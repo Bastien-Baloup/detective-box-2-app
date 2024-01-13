@@ -39,7 +39,7 @@ function Renfort() {
 
 	// EXPLICATION : Afficher le choix des renforts (etat en fonction de leur statut)
 	const displayMenu = () => {
-		const menuChoices = clues.map((help, index) => {
+		const menuChoices = clues && clues.map((help, index) => {
 
 			if (help.status == "done") {
 				return (

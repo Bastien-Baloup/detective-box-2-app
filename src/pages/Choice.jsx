@@ -23,6 +23,9 @@ function Choice() {
 	const [dataBox, setDataBox] = useState(null);
 	const token = localStorage.getItem("token");
 	const { getBox, resetAll } = useApi()
+	
+
+	
 
 	useEffect(() => {
 		const fetchData = async () => {
