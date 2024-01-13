@@ -32,7 +32,7 @@ const Raphaelle = ({ closeAgentPage }) => {
   } = useContext(DataContext);
 
   const {
-    updateCharactersById,
+    // updateCharactersById,
     updateHistory,
     updateHelp,
     updateObjectives,
@@ -281,9 +281,10 @@ const Raphaelle = ({ closeAgentPage }) => {
 
   // EXPLICATION : la visite du lieu box2lieu3 ouvre l'objectif 2 de la box 2 et le renfort 2
   // EXPLICATION : la visite du lieu box2lieu2 ouvre le renfort 6 et ferme le renfort 5
+  // eslint-disable-next-line no-unused-vars
   const openLieu = async (answerId, asnwerAsk) => {
     await updateHistory(token, currentBox, answerId);
-    await updateCharactersById(token, 4, currentBox, asnwerAsk);
+    //await updateCharactersById(token, 4, currentBox, asnwerAsk);
 
     if (answerId == "box2lieu1") {
       await updateHistory(token, 2, "box2document5");

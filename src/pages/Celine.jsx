@@ -21,7 +21,10 @@ const Celine = ({ closeAgentPage }) => {
   const { currentBox } = useContext(BoxContext);
   const token = localStorage.getItem("token");
   const { actionToggleDataCeline, dataCeline, dataHistory } = useContext(DataContext);
-  const {updateCharactersById, updateHistory} = useApi()
+  const {
+    // updateCharactersById, 
+    updateHistory
+  } = useApi()
   const { dispatch } = useEvent()
   const { closeCompte } = useContext(CompteContext)
 
@@ -37,6 +40,8 @@ const Celine = ({ closeAgentPage }) => {
   if (box3audio3) {
     closeAgentPage();
   }
+
+  const CurrentBoxdataHistory = useMemo(() => dataHistory[currentBox]?.data ? dataHistory[currentBox]?.data : [], [currentBox, dataHistory])
   const thisBox = useMemo(() => dataCeline.find((element) => element.box_id == currentBox)?.data, [currentBox, dataCeline])
   const box1    = useMemo(() => dataCeline.find((element) => element.box_id == 1)?.data, [dataCeline])
   const box2    = useMemo(() => dataCeline.find((element) => element.box_id == 2)?.data, [dataCeline])
@@ -49,7 +54,8 @@ const Celine = ({ closeAgentPage }) => {
     e.preventDefault();
     
     const answerInThisBox = thisBox.find((element) => element.ask.includes(slugify(value)))
-    const previouslyAnsweredInThisBox = answerInThisBox && answerInThisBox.status
+    const documentInHistory           = answerInThisBox && CurrentBoxdataHistory.find(element => element.id == answerInThisBox.id)?.status
+    const previouslyAnsweredInThisBox = answerInThisBox && documentInHistory
     const answerInFailedInterview = generic.find((element) => element.ask.includes(slugify(value)))
     const answerInBox1 = box1.some((element) => element.ask.includes(slugify(value)))
     const answerInBox2 = box2.some((element) => element.ask.includes(slugify(value)))
@@ -156,8 +162,9 @@ const Celine = ({ closeAgentPage }) => {
   };
 
   // EXPLICATION : Précision particuilère pour le personnage de Xavier Monrency (archive 23) qui fait apparaitre un deuxième document dans l'historique
+  // eslint-disable-next-line no-unused-vars
   const closeModalMedia = async (answerId, asnwerAsk) => {
-    await updateCharactersById(token, 3, currentBox, asnwerAsk);
+    // await updateCharactersById(token, 3, currentBox, asnwerAsk);
     await updateHistory(token, currentBox, answerId);
     dispatch({
       type: "setEvent",

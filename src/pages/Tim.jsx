@@ -22,9 +22,12 @@ import useEvent from "../utils/hooks/useEvent.js";
 const Tim = ({ closeAgentPage }) => {
   const { currentBox } = useContext(BoxContext);
   const token = localStorage.getItem("token");
-  const { actionToggleDataTim, dataTim, actionToggleDataHistory } = useContext(DataContext)
+  const { actionToggleDataTim, dataTim, actionToggleDataHistory, dataHistory } = useContext(DataContext)
   const { fetchPreviousStateNappe } = useContext(AmbianceContext);
-  const { updateCharactersById, updateHistory } = useApi();
+  const { 
+    // updateCharactersById, 
+    updateHistory 
+  } = useApi();
   const { dispatch } = useEvent();
   const { closeCompte } = useContext(CompteContext);
 
@@ -33,6 +36,8 @@ const Tim = ({ closeAgentPage }) => {
   const [modal, setModal] = useState(false);
   const [modalMedia, setModalMedia] = useState(false);
   const [answer, setAnswer] = useState("");
+
+  const CurrentBoxdataHistory = useMemo(() => dataHistory[currentBox]?.data ? dataHistory[currentBox]?.data : [], [currentBox, dataHistory])
 
   const thisBox = useMemo(() => dataTim.find((element) => element.box_id == currentBox)?.data, [currentBox, dataTim])
   const box1 = useMemo(() => dataTim.find((element) => element.box_id == 1)?.data, [dataTim])
@@ -44,7 +49,8 @@ const Tim = ({ closeAgentPage }) => {
     e.preventDefault()    
     
     const answerInThisBox = thisBox.find((element) => element.ask.includes(slugify(value)))
-    const previouslyAnsweredInThisBox = answerInThisBox && answerInThisBox.status
+    const documentInHistory           = answerInThisBox && CurrentBoxdataHistory.find(element => element.id == answerInThisBox.id)?.status
+    const previouslyAnsweredInThisBox = answerInThisBox && documentInHistory
     const answerInBox1 = box1.some((element) => element.ask.includes(slugify(value)))
     const answerInBox2 = box2.some((element) => element.ask.includes(slugify(value)))
 
@@ -166,8 +172,9 @@ const Tim = ({ closeAgentPage }) => {
     }
   };
 
+  // eslint-disable-next-line no-unused-vars
   const closeModalMedia = async (answerId, asnwerAsk) => {
-    await updateCharactersById(token, 5, currentBox, asnwerAsk);
+    // await updateCharactersById(token, 5, currentBox, asnwerAsk);
     await updateHistory(token, currentBox, answerId);
     dispatch({
       type: "setEvent",

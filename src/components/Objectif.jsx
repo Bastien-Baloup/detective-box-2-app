@@ -727,7 +727,6 @@ const Objectif = ({ data }) => {
   const handleModalAnswer = async () => {
     if (data.newdetail) {
       if (data.id == 11) {
-        console.log('test')
         await updateHistory(token, 1, "box1document3");
         dispatch({
           type: "setEvent",
@@ -920,6 +919,7 @@ const Objectif = ({ data }) => {
         await updateObjectives(token, 1, 11, "done");
         actionToggleDataObjectif();
         await updateHelp(token, 1, "box1help1", "done");
+        actionToggleDataHelp()
         return;
       }
     }

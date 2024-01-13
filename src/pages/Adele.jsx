@@ -20,12 +20,15 @@ import { slugify, renderText } from "../utils"
 const Adele = ({ closeAgentPage }) => {
   const { currentBox } = useContext(BoxContext);
   const token = localStorage.getItem("token");
-  const { actionToggleDataAdele, dataAdele, actionToggleDataHistory } =
+  const { actionToggleDataAdele, dataAdele, actionToggleDataHistory, dataHistory } =
     useContext(DataContext);
   // EXPLICATION : state spécifique pour afficher le mail de Lauren
   const [youveGotMail, setYouveGotMail] = useState(false);
   const [mailLauren1, setMailLauren1] = useState(false);
-  const { updateCharactersById, updateHistory } = useApi();
+  const { 
+    // updateCharactersById,
+    updateHistory 
+  } = useApi();
   const { dispatch } = useEvent();
   const { closeCompte } = useContext(CompteContext);
 
@@ -36,6 +39,8 @@ const Adele = ({ closeAgentPage }) => {
   const [modalMedia, setModalMedia] = useState(false);
   const [answer, setAnswer] = useState("");
 
+  const CurrentBoxdataHistory = useMemo(() => dataHistory[currentBox]?.data ? dataHistory[currentBox]?.data : [], [currentBox, dataHistory])
+
   const box2 = useMemo(() => dataAdele.find((element) => element.box_id == 2)?.data, [dataAdele])
   const thisBox = useMemo(() => dataAdele.find((element) => element.box_id == currentBox)?.data, [currentBox, dataAdele])
 
@@ -45,9 +50,10 @@ const Adele = ({ closeAgentPage }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     
-    const answerInThisBox = thisBox.find((element) => element.ask.includes(slugify(value)))
-    const answerInBox2 = box2.some((element) => element.ask.includes(slugify(value)))
-    const previouslyAnsweredInThisBox = answerInThisBox && answerInThisBox.status
+    const answerInThisBox             = thisBox.find((element) => element.ask.includes(slugify(value)))
+    const answerInBox2                = box2.some((element) => element.ask.includes(slugify(value)))
+    const documentInHistory           = answerInThisBox && CurrentBoxdataHistory.find(element => element.id == answerInThisBox.id)?.status
+    const previouslyAnsweredInThisBox = answerInThisBox && documentInHistory
     
     if (value == "") {
       setErrorMessage("Je dois bien analyser quelque chose !");
@@ -136,8 +142,9 @@ const Adele = ({ closeAgentPage }) => {
     );
   };
 
+  // eslint-disable-next-line no-unused-vars
   const closeModalMedia = async (answerId, asnwerAsk) => {
-    await updateCharactersById(token, 1, currentBox, asnwerAsk);
+    // await updateCharactersById(token, 1, currentBox, asnwerAsk);
     await updateHistory(token, currentBox, answerId);
     dispatch({
       type: "setEvent",

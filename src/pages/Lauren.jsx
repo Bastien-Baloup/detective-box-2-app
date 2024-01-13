@@ -30,7 +30,7 @@ const Lauren = ({ closeAgentPage }) => {
     dataHistory
   } = useContext(DataContext);
   const {
-    updateCharactersById,
+    // updateCharactersById,
     updateHistory,
   } = useApi();
   const { dispatch } = useEvent();
@@ -49,6 +49,7 @@ const Lauren = ({ closeAgentPage }) => {
     closeAgentPage();
   }
 
+  const CurrentBoxdataHistory = useMemo(() => dataHistory[currentBox]?.data ? dataHistory[currentBox]?.data : [], [currentBox, dataHistory])
   const thisBox = useMemo(() => dataLauren.find((element) => element.box_id == currentBox)?.data, [currentBox, dataLauren])
   const box1    = useMemo(() => dataLauren.find((element) => element.box_id == 1)?.data, [dataLauren])
   const box2    = useMemo(() => dataLauren.find((element) => element.box_id == 2)?.data, [dataLauren])
@@ -61,7 +62,8 @@ const Lauren = ({ closeAgentPage }) => {
     e.preventDefault();
     
     const answerInThisBox             = thisBox.find((element) => element.ask.includes(slugify(value)))
-    const previouslyAnsweredInThisBox = answerInThisBox && answerInThisBox.status
+    const documentInHistory           = answerInThisBox && CurrentBoxdataHistory.find(element => element.id == answerInThisBox.id)?.status
+    const previouslyAnsweredInThisBox = answerInThisBox && documentInHistory
     const answerInFailedInterview     = generic.find((element) => element.ask.includes(slugify(value)))
     const answerInBox1                = box1.some((element) => element.ask.includes(slugify(value)))
     const answerInBox2                = box2.some((element) => element.ask.includes(slugify(value)))
@@ -170,8 +172,9 @@ const Lauren = ({ closeAgentPage }) => {
     );
   };
 
+  // eslint-disable-next-line no-unused-vars
   const closeModalMedia = async (answerId, asnwerAsk) => {
-    await updateCharactersById(token, 2, currentBox, asnwerAsk);
+    // await updateCharactersById(token, 2, currentBox, asnwerAsk);
     await updateHistory(token, currentBox, answerId);
     dispatch({
       type: "setEvent",
