@@ -8,36 +8,25 @@ import Video from "../components/Video.jsx";
 import Cross from "../assets/icons/Icon_Cross-white.svg";
 import PropTypes from "prop-types";
 import { urlApi } from "../utils/const/urlApi";
+import { slugify, renderText } from "../utils"
 import {
   BoxContext,
   DataContext,
   AmbianceContext,
   CompteContext,
 } from "../utils/context/fetchContext";
-import { useContext, useState, useEffect } from "react";
+import { useContext, useMemo, useState } from "react";
 import useApi from "../utils/hooks/useApi.js";
 import useEvent from "../utils/hooks/useEvent.js";
 
 const Tim = ({ closeAgentPage }) => {
   const { currentBox } = useContext(BoxContext);
   const token = localStorage.getItem("token");
-  const { actionToggleDataTim, toggleDataTim, actionToggleDataHistory } =
-    useContext(DataContext);
+  const { actionToggleDataTim, dataTim, actionToggleDataHistory } = useContext(DataContext)
   const { fetchPreviousStateNappe } = useContext(AmbianceContext);
-  const { updateCharactersById, updateHistory, getCharactersById } = useApi();
+  const { updateCharactersById, updateHistory } = useApi();
   const { dispatch } = useEvent();
   const { closeCompte } = useContext(CompteContext);
-
-  //EXPLICATION : Tim est le personnage "5"
-  useEffect(() => {
-    const fetchData = async () => {
-      const result = await getCharactersById(token, 5);
-      setDataTim(result);
-    };
-    fetchData();
-  }, [toggleDataTim]);
-
-  const [dataTim, setDataTim] = useState(null);
 
   const [value, setValue] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
@@ -45,37 +34,20 @@ const Tim = ({ closeAgentPage }) => {
   const [modalMedia, setModalMedia] = useState(false);
   const [answer, setAnswer] = useState("");
 
-  // EXPLICATION : Fonction pour slugifier l'input des joueurs
-  const slugify = (input) => {
-    let inputSlugified = input
-      .replace(/\s/g, "")
-      .toLowerCase()
-      .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "")
-      .replace(/[^a-z0-9]/g, "");
-    return inputSlugified;
-  };
+  const thisBox = useMemo(() => dataTim.find((element) => element.box_id == currentBox)?.data, [currentBox, dataTim])
+  const box1 = useMemo(() => dataTim.find((element) => element.box_id == 1)?.data, [dataTim])
+  const box2 = useMemo(() => dataTim.find((element) => element.box_id == 2)?.data, [dataTim])
 
   // EXPLICATION : Les réponses peuvent être trouvées dans la box actuelle ou les boxs précédentes
   // EXPLICATION : Les réponses du personnage dépendent de la location de la réponse (box précedente ou box actuelle) et du status de la réponse (déjà demandé ou pas)
   const handleSubmit = (e) => {
-    const thisBox = dataTim.find(
-      (element) => element.box_id == currentBox
-    ).data;
-    const box1 = dataTim.find((element) => element.box_id == 1).data;
-    const box2 = dataTim.find((element) => element.box_id == 2).data;
-    const answerInThisBox = thisBox.find((element) =>
-      element.ask.includes(slugify(value))
-    );
-    const previouslyAnsweredInThisBox =
-      answerInThisBox && answerInThisBox.status;
-    const answerInBox1 = box1.some((element) =>
-      element.ask.includes(slugify(value))
-    );
-    const answerInBox2 = box2.some((element) =>
-      element.ask.includes(slugify(value))
-    );
-    e.preventDefault();
+    e.preventDefault()    
+    
+    const answerInThisBox = thisBox.find((element) => element.ask.includes(slugify(value)))
+    const previouslyAnsweredInThisBox = answerInThisBox && answerInThisBox.status
+    const answerInBox1 = box1.some((element) => element.ask.includes(slugify(value)))
+    const answerInBox2 = box2.some((element) => element.ask.includes(slugify(value)))
+
     if (value == "") {
       setErrorMessage(
         "Vous n'avez rien à me faire analyser ? Je retourne gamer alors."
@@ -131,7 +103,7 @@ const Tim = ({ closeAgentPage }) => {
           ) : (
             ""
           )}
-          <div>{renderText()}</div>
+          <div>{renderText(answer.text)}</div>
           {answer.id ? (
             <button
               className="modal-objectif__button button--red"
@@ -150,30 +122,6 @@ const Tim = ({ closeAgentPage }) => {
         </div>
       </div>
     );
-  };
-
-  const renderText = () => {
-    const text = answer.text.map((el, i) => {
-      if (el.startsWith("https://")) {
-        return (
-          <a
-            className="modal-objectif__subtitle--link"
-            key={i}
-            href={el}
-            target="_blank"
-            rel="noreferrer noopener"
-          >
-            {el}
-          </a>
-        );
-      }
-      return (
-        <p className="modal-objectif__subtitle" key={i}>
-          {el}
-        </p>
-      );
-    });
-    return text;
   };
 
   const validateModal = async () => {

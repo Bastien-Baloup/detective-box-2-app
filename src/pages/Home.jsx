@@ -12,9 +12,8 @@ import Adele from "./Adele";
 import Lauren from "./Lauren";
 import Raphaelle from "./Raphaelle";
 import Celine from "./Celine";
-import { useState } from "react";
 import { BoxContext, DataContext } from "../utils/context/fetchContext";
-import { useContext, useEffect } from "react";
+import { useState, useContext, useEffect } from "react";
 import { urlApi } from "../utils/const/urlApi";
 import useApi from "../utils/hooks/useApi.js";
 
@@ -26,7 +25,10 @@ function Home() {
 
   const { currentBox } = useContext(BoxContext);
   const token = localStorage.getItem("token");
-  const { toggleDataHistory, actionToggleDataEvent } = useContext(DataContext);
+  const { 
+    toggleDataHistory, 
+    actionToggleDataEvent,
+  } = useContext(DataContext);
 
   useEffect(() => {
     const fetchData = async () => {

@@ -107,6 +107,8 @@ export const AmbianceProvider = ({ children }) => {
 export const DataContext = createContext("");
 
 export const DataProvider = ({ children }) => {
+	const { getCharactersById, getHistoryByBox, getObjectivesByBox, getEventByBox, getHelpByBox } = useApi()
+
 	const [toggleDataAdele, setToggleDataAdele] = useState(true);
 	const [toggleDataCeline, setToggleDataCeline] = useState(true);
 	const [toggleDataLauren, setToggleDataLauren] = useState(true);
@@ -116,6 +118,15 @@ export const DataProvider = ({ children }) => {
 	const [toggleDataHelp, setToggleDataHelp] = useState(true);
 	const [toggleDataHistory, setToggleDataHistory] = useState(true);
 	const [toggleDataObjectif, setToggleDataObjectif] = useState(true);
+	const [dataAdele, setDataAdele] = useState([])
+	const [dataCeline, setDataCeline] = useState([])
+	const [dataLauren, setDataLauren] = useState([])
+	const [dataRaphaelle, setDataRaphaelle] = useState([])
+	const [dataTim, setDataTim] = useState([])
+	const [dataHistory, setDataHistory] = useState([])
+	const [dataObjectif, setDataObjectif] = useState([])
+	const [dataEvent, setDataEvent] = useState([])
+	const [dataHelp, setDataHelp] = useState([])
 
 	const actionToggleDataAdele = () => {
 		setToggleDataAdele(!toggleDataAdele);
@@ -145,27 +156,126 @@ export const DataProvider = ({ children }) => {
 		setToggleDataObjectif(!toggleDataObjectif);
 	};
 
+	const token = localStorage.getItem("token");
+
+	//EXPLICATION : Adele est le personnage "1"
+	useEffect(() =>{
+		const fetchDataAdele = async () => {
+      const result = await getCharactersById(token, 1)
+      setDataAdele(result)
+    }
+    fetchDataAdele()
+	},[toggleDataAdele])
+
+  //EXPLICATION : Celine est le personnage "3"
+	useEffect(() => {
+		const fetchDataCeline = async () => {
+      const result = await getCharactersById(token, 3)
+      setDataCeline(result)
+    }
+    fetchDataCeline()
+	},[toggleDataCeline])
+
+	useEffect(() => {
+		const fetchDataLauren = async () => {
+      const result = await getCharactersById(token, 2)
+      setDataLauren(result)
+    }
+    fetchDataLauren()
+	},[toggleDataLauren])
+
+  //EXPLICATION : Raphaelle est le personnage '4'
+	useEffect(() => {
+		const fetchDataRaphaelle = async () => {
+      const result = await getCharactersById(token, 4)
+			setDataRaphaelle(result)
+    }
+    fetchDataRaphaelle()
+	},[toggleDataRaphaelle])
+
+  //EXPLICATION : Tim est le personnage "5"
+	useEffect(() => {
+		const fetchDataTim = async () => {
+      const result = await getCharactersById(token, 5)
+      setDataTim(result)
+    }
+    fetchDataTim()
+	},[toggleDataTim])
+
+	useEffect(() => {
+		const fetchDataHistory = async () => {
+			const result = []
+			result[1] = await getHistoryByBox(token, 1)
+			result[2] = await getHistoryByBox(token, 2)
+			result[3] = await getHistoryByBox(token, 3)
+			setDataHistory(result)
+		}
+		fetchDataHistory()
+	}, [toggleDataHistory])
+
+	useEffect(() => {
+		const fetchDataObjectif = async () => {
+			const result = []
+			result[1] = await getObjectivesByBox(token, 1)
+			result[2] = await getObjectivesByBox(token, 2)
+			result[3] = await getObjectivesByBox(token, 3)
+			setDataObjectif(result)
+		}
+		fetchDataObjectif()
+	}, [toggleDataObjectif])
+
+	useEffect(() => {
+		const fetchDataEvent = async () => {
+			const result = []
+			result[1] = await getEventByBox(token, 1)
+			result[2] = await getEventByBox(token, 2)
+			result[3] = await getEventByBox(token, 3)
+			setDataEvent(result)
+		}
+		fetchDataEvent()
+	}, [toggleDataEvent])
+
+	useEffect(() => {
+		const fetchDataHelp = async () => {
+			const result = []
+			result[1] = await getHelpByBox(token, 1)
+			result[2] = await getHelpByBox(token, 2)
+			result[3] = await getHelpByBox(token, 3)
+			setDataHelp(result)
+		}
+		fetchDataHelp()
+	}, [toggleDataHelp])
+
 	return (
 		<DataContext.Provider
 			value={{
 				actionToggleDataAdele,
 				toggleDataAdele,
+				dataAdele,
 				actionToggleDataCeline,
 				toggleDataCeline,
+				dataCeline,
 				actionToggleDataLauren,
 				toggleDataLauren,
+				dataLauren,
 				actionToggleDataRaphaelle,
 				toggleDataRaphaelle,
+				dataRaphaelle,
 				actionToggleDataTim,
 				toggleDataTim,
+				dataTim,
 				actionToggleDataEvent,
 				toggleDataEvent,
+				dataEvent,
 				actionToggleDataHelp,
 				toggleDataHelp,
+				dataHelp,
 				actionToggleDataHistory,
 				toggleDataHistory,
+				dataHistory,
 				actionToggleDataObjectif,
 				toggleDataObjectif,
+				dataObjectif
 			}}
 		>
 			{children}

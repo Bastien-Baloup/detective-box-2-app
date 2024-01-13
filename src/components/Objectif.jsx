@@ -7,9 +7,9 @@ import PropTypes from "prop-types";
 import {
   useState,
   useEffect,
-  useRef,
   useLayoutEffect,
   useCallback,
+  useMemo,
 } from "react";
 import Check from "../assets/icons/Icon_Check-green.svg";
 import LockClosed from "../assets/icons/Icon_Lock-closed-red.svg";
@@ -31,6 +31,7 @@ import { useContext } from "react";
 import useApi from "../utils/hooks/useApi.js";
 import useEvent from "../utils/hooks/useEvent.js";
 import useLieu from '../utils/hooks/useLieu.jsx'
+import { slugify, renderText } from "../utils"
 
 
 
@@ -50,46 +51,15 @@ const Objectif = ({ data }) => {
   const {
     actionToggleDataEvent,
     toggleDataEvent,
+    dataEvent,
     actionToggleDataHelp,
-    toggleDataHelp,
+    dataHelp,
     actionToggleDataHistory,
-    toggleDataHistory,
+    dataHistory,
     actionToggleDataObjectif,
-    toggleDataObjectif,
+    dataObjectif
   } = useContext(DataContext);
   const { closeCompte } = useContext(CompteContext);
-
-  let event13 = useRef("");
-  let event14 = useRef("");
-  let event15 = useRef("");
-  let event23 = useRef("");
-  const [event35, setEvent35] = useState("");
-
-  // let event25 = useRef("");
-  // let event35 = useRef("");
-  // const [event13, setEvent13] = useState("");
-  // const [event14, setEvent14] = useState("");
-  // const [event15, setEvent15] = useState("");
-  // const [event23, setEvent23] = useState("");
-
-
-  const [box1lieu2, setBox1Lieu2] = useState(false);
-	// const [box1video3, setBox1Video3] = useState(false)
-  const [box2lieu1, setBox2Lieu1] = useState(false);
-  const [box2lieu3, setBox2Lieu3] = useState(false);
-  const [box3audio3, setBox3Audio3] = useState(false);
-  const [box3lieu2, setBox3Lieu2] = useState(false);
-
-  const [box3lieu3, setBox3Lieu3] = useState(false);
-
-  const [box3help4, setBox3Help4] = useState("");
-
-  let objectif33 = useRef("");
-  const [objectif11, setObjectif11] = useState("");
-  const [objectif12, setObjectif12] = useState("");
-  const [objectif13, setObjectif13] = useState("");
-  // const [objectif33, setObjectif33] = useState("");
-  const [objectif34, setObjectif34] = useState("");
 
   const [toggleEvent2, setActionToggleEvent2] = useState(false);
 
@@ -117,13 +87,9 @@ const Objectif = ({ data }) => {
 
   const {
     updateHelp,
-    getEventByBox,
     updateEvent,
-    getHistoryByBox,
-    getHelpByBox,
     updateHistory,
     updateObjectives,
-    getObjectivesByBox,
   } = useApi();
 
   const { dispatch } = useEvent();
@@ -136,31 +102,11 @@ const Objectif = ({ data }) => {
 	}
   // EXPLICATION : Fonction pour récupérer l'état des événements
   useLayoutEffect(() => {
-    const fetchData = async () => {
-      const events = await getEventByBox(token, currentBox);
-      if (events != undefined) {
-        if (currentBox === 1) {
-          const event13Data = events.data.find((event) => event.id === 13);
-          event13.current = event13Data.status;
-          const event14Data = events.data.find((event) => event.id === 14);
-          event14.current = event14Data.status;
-          const event15Data = events.data.find((event) => event.id === 15);
-          event15.current = event15Data.status;
-        }
-        if (currentBox === 2) {
-          const event23Data = events.data.find((event) => event.id === 23);
-          event23.current = event23Data.status;
-          setActionToggleEvent2(!toggleEvent2);
-        }
-        if (currentBox === 3) {
-          const event35Data = events.data.find((event) => event.id === 35);
-          setEvent35(event35Data.status);
-          setActionToggleEvent2(!toggleEvent2);
-        }
-      }
-    };
-    fetchData();
+    if (currentBox === 2 || currentBox === 3) {
+      setActionToggleEvent2(!toggleEvent2);
+    }
   }, [toggleDataEvent]);
+
 
   //EXPLICATION : UseEffect pour déclencher les evenements entre les différents composants
   useEffect(() => {
@@ -172,85 +118,21 @@ const Objectif = ({ data }) => {
     }
   }, [toggleEvent2]);
 
-  // EXPLICATION : Fonction pour récupérer l'état de l'historique
-  useEffect(() => {
-    const fetchData = async () => {
-      const clues = await getHistoryByBox(token, currentBox);
-      if (currentBox == 1) {
-        const box1lieu2Data = clues.data.find(
-          (event) => event.id == "box1lieu2"
-        );
-        setBox1Lieu2(box1lieu2Data.status);
-				// const box1video3Data = clues.data.find((event) => event.id == "box1video3");
-				// setBox1Video3(box1video3Data.status);
-      }
-      if (currentBox == 2) {
-        const box2lieu1Data = clues.data.find(
-          (event) => event.id == "box2lieu1"
-        );
-        setBox2Lieu1(box2lieu1Data.status);
-        const box2lieu3Data = clues.data.find(
-          (event) => event.id == "box2lieu3"
-        );
-        setBox2Lieu3(box2lieu3Data.status);
-        // const box2video5Data = clues.data.find(
-          // (event) => event.id == "box2video5"
-        // );
-        // setBox2Video5(box2video5Data.status);
-      }
-      if (currentBox == 3) {
-        const box3audio3Data = clues.data.find(
-          (event) => event.id == "box3audio3"
-        );
-        setBox3Audio3(box3audio3Data.status);
-        const box3lieu2Data = clues.data.find(
-          (event) => event.id == "box3lieu2"
-        );
-        setBox3Lieu2(box3lieu2Data.status);
-        const box3lieu3Data = clues.data.find(
-          (event) => event.id == "box3lieu3"
-        );
-        setBox3Lieu3(box3lieu3Data.status);
-      }
-    };
-    fetchData();
-  }, [toggleDataHistory]);
+  const event35     = useMemo(() => currentBox === 3 && dataEvent?.data.find((event) => event.id === 35)?.status, [currentBox, dataEvent])
 
-  // EXPLICATION : Fonction pour récupérer l'état des renforts (help)
-  useEffect(() => {
-    const fetchData = async () => {
-      const help = await getHelpByBox(token, currentBox);
-      if (currentBox == 3) {
-        const box3help4Data = help.data.find(
-          (event) => event.id == "box3help4"
-        );
-        setBox3Help4(box3help4Data.status);
-      }
-    };
-    fetchData();
-  }, [toggleDataHelp]);
+  const box1lieu2   = useMemo(() => currentBox === 1 && dataHistory?.data && dataHistory?.data.find((event) => event.id == "box1lieu2")?.status, [currentBox, dataHistory])
+  const box2lieu1   = useMemo(() => currentBox === 2 && dataHistory?.data && dataHistory?.data.find((event) => event.id == "box2lieu1")?.status, [currentBox, dataHistory])
+  const box2lieu3   = useMemo(() => currentBox === 2 && dataHistory?.data && dataHistory?.data.find((event) => event.id == "box2lieu3")?.status, [currentBox, dataHistory])
+  const box3audio3  = useMemo(() => currentBox === 3 && dataHistory?.data && dataHistory?.data.find((event) => event.id == "box3audio3")?.status, [currentBox, dataHistory])
+  const box3lieu2   = useMemo(() => currentBox === 3 && dataHistory?.data && dataHistory?.data.find((event) => event.id == "box3lieu2")?.status, [currentBox, dataHistory])
+  const box3lieu3   = useMemo(() => currentBox === 3 && dataHistory?.data && dataHistory?.data.find((event) => event.id == "box3lieu3")?.status, [currentBox, dataHistory])
 
-  // EXPLICATION : UseEffect pour récupérer l'état des objectifs
-  useEffect(() => {
-    const fetchData = async () => {
-      const objectifs = await getObjectivesByBox(token, currentBox);
-      if (currentBox == 1) {
-        const objectif12Data = objectifs.data.find((event) => event.id == 12);
-        setObjectif12(objectif12Data.status);
-        const objectif11Data = objectifs.data.find((event) => event.id == 11);
-        setObjectif11(objectif11Data.status);
-        const objectif13Data = objectifs.data.find((event) => event.id == 13);
-        setObjectif13(objectif13Data.status);
-      }
-      if (currentBox == 3) {
-        const objectif33Data = objectifs.data.find((event) => event.id == 33);
-        objectif33.current = objectif33Data.status;
-        const objectif34Data = objectifs.data.find((event) => event.id == 34);
-        setObjectif34(objectif34Data.status);
-      }
-    };
-    fetchData();
-  }, [toggleDataObjectif]);
+  const box3help4   = useMemo(() => currentBox === 3 && dataHelp?.data && dataHelp?.data.find((event) => event.id == "box3help4")?.status, [currentBox, dataHelp])
+
+  const objectif11  = useMemo(() => currentBox === 1 && dataObjectif?.data && dataObjectif?.data.find((event) => event.id == 11)?.status, [currentBox, dataObjectif])
+  const objectif12  = useMemo(() => currentBox === 1 && dataObjectif?.data && dataObjectif?.data.find((event) => event.id == 12)?.status, [currentBox, dataObjectif])
+  const objectif13  = useMemo(() => currentBox === 1 && dataObjectif?.data && dataObjectif?.data.find((event) => event.id == 13)?.status, [currentBox, dataObjectif])
+  const objectif34  = useMemo(() => currentBox === 3 && dataObjectif?.data && dataObjectif?.data.find((event) => event.id == 34)?.status, [currentBox, dataObjectif])
 
   // --- CONDITIONS SPE OBJECTIF 14 --- //
 
@@ -740,16 +622,6 @@ const Objectif = ({ data }) => {
     setModalBis(!modalBis);
     setErrorMessage("");
     setValue("");
-  };
-
-  const slugify = (input) => {
-    let inputSlugified = input
-      .replace(/\s/g, "")
-      .toLowerCase()
-      .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "")
-      .replace(/[^a-z0-9]/g, "");
-    return inputSlugified;
   };
 
   const handleSubmit = async (e) => {
@@ -1474,17 +1346,6 @@ const Objectif = ({ data }) => {
     );
   };
 
-  const renderText = (data) => {
-    const text = data.map((el, i) => {
-      return (
-        <p className="modal-objectif__subtitle" key={i}>
-          {el}
-        </p>
-      );
-    });
-    return text;
-  };
-
   const handleDoneObjectifModal = () => {
     if(!doneObjectifModal){ closeCompte() }
     setDoneObjectifModal(!doneObjectifModal);
@@ -1669,8 +1530,6 @@ const Objectif = ({ data }) => {
     );
   };
 
-
-
   const displayAudioSamuel = () => {
     return (
       <Audio
@@ -1802,8 +1661,6 @@ const Objectif = ({ data }) => {
       </div>
     );
   };
-
-
 
   const handleCloseMail2 = async () => {
     setMailLauren2(false);
@@ -1950,8 +1807,6 @@ const Objectif = ({ data }) => {
     );
   };
 
-
-
   const handleInterrogatoireFinal = () => {
     setResolution(false);
     setInterrogatoireFinal(true);
@@ -1978,8 +1833,6 @@ const Objectif = ({ data }) => {
     });
     //setEndGameModale(true);
   };
-
-
 
   return (
     <>

@@ -13,10 +13,11 @@ import {
   AmbianceContext,
   CompteContext,
 } from "../utils/context/fetchContext";
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState, useMemo } from "react";
 // import { dataLauren } from "../utils/const/dataLauren";
 import useApi from "../utils/hooks/useApi.js";
 import useEvent from "../utils/hooks/useEvent.js";
+import { slugify, renderText } from "../utils"
 
 const Lauren = ({ closeAgentPage }) => {
   const { currentBox } = useContext(BoxContext);
@@ -24,42 +25,18 @@ const Lauren = ({ closeAgentPage }) => {
   const token = localStorage.getItem("token");
   const {
     actionToggleDataLauren,
-    toggleDataLauren,
-    toggleDataHistory,
+    dataLauren,
     actionToggleDataHistory,
+    dataHistory
   } = useContext(DataContext);
   const {
     updateCharactersById,
     updateHistory,
-    getCharactersById,
-    getHistoryByBox,
   } = useApi();
   const { dispatch } = useEvent();
   const { closeCompte } = useContext(CompteContext);
 
-  //EXPLICATION : Lauren est le personnage "2"
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const result = await getCharactersById(token, 2);
-      setDataLauren(result);
-    };
-    fetchData();
-  }, [toggleDataLauren]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const result = await getHistoryByBox(token, 2);
-      const box2document6Data = result.data.find(
-        (event) => event.id == "box2document6"
-      );
-      setBox2Document6(box2document6Data.status);
-    };
-    fetchData();
-  }, [toggleDataHistory]);
-
-  const [dataLauren, setDataLauren] = useState(null);
-  const [box2document6, setBox2Document6] = useState(false);
+  const box2document6 = useMemo(() => currentBox == 2 && dataHistory?.data.find((event) => event.id == "box2document6")?.status, [currentBox, dataHistory])
 
   const [value, setValue] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
@@ -72,42 +49,22 @@ const Lauren = ({ closeAgentPage }) => {
     closeAgentPage();
   }
 
-  // EXPLICATION : Fonction pour slugifier l'input des joueurs
-  const slugify = (input) => {
-    let inputSlugified = input
-      .replace(/\s/g, "")
-      .toLowerCase()
-      .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "")
-      .replace(/[^a-z0-9]/g, "");
-    return inputSlugified;
-  };
+  const thisBox = useMemo(() => dataLauren.find((element) => element.box_id == currentBox)?.data, [currentBox, dataLauren])
+  const box1    = useMemo(() => dataLauren.find((element) => element.box_id == 1)?.data, [dataLauren])
+  const box2    = useMemo(() => dataLauren.find((element) => element.box_id == 2)?.data, [dataLauren])
+  const generic = useMemo(() => dataLauren.find((element) => element.box_id == 4)?.data, [dataLauren])
 
   // EXPLICATION : Les réponses peuvent être trouvées dans la box actuelle ou les boxs précédentes
   // EXPLICATION : Les réponses du personnage dépendent de la location de la réponse (générique, box précedente ou box actuelle) et du status de la réponse (déjà demandé ou pas)
   // EXPLICATION : Celine et Lauren sont les seules à avoir des boxs génériques
   const handleSubmit = (e) => {
-    const thisBox = dataLauren.find(
-      (element) => element.box_id == currentBox
-    ).data;
-    const box1 = dataLauren.find((element) => element.box_id == 1).data;
-    const box2 = dataLauren.find((element) => element.box_id == 2).data;
-    const generic = dataLauren.find((element) => element.box_id == 4).data;
-    const answerInThisBox = thisBox.find((element) =>
-      element.ask.includes(slugify(value))
-    );
-    const previouslyAnsweredInThisBox =
-      answerInThisBox && answerInThisBox.status;
-    const answerInFailedInterview = generic.find((element) =>
-      element.ask.includes(slugify(value))
-    );
-    const answerInBox1 = box1.some((element) =>
-      element.ask.includes(slugify(value))
-    );
-    const answerInBox2 = box2.some((element) =>
-      element.ask.includes(slugify(value))
-    );
     e.preventDefault();
+    
+    const answerInThisBox             = thisBox.find((element) => element.ask.includes(slugify(value)))
+    const previouslyAnsweredInThisBox = answerInThisBox && answerInThisBox.status
+    const answerInFailedInterview     = generic.find((element) => element.ask.includes(slugify(value)))
+    const answerInBox1                = box1.some((element) => element.ask.includes(slugify(value)))
+    const answerInBox2                = box2.some((element) => element.ask.includes(slugify(value)))
     if (value == "") {
       setErrorMessage("Il me faut l'identité de la personne à interroger");
       setValue("");
@@ -187,17 +144,6 @@ const Lauren = ({ closeAgentPage }) => {
         </div>
       </div>
     );
-  };
-
-  const renderText = () => {
-    const text = answer.text.map((el, i) => {
-      return (
-        <p className="modal-objectif__subtitle" key={i}>
-          {el}
-        </p>
-      );
-    });
-    return text;
   };
 
   const validateModal = () => {

@@ -11,10 +11,11 @@ import {
   DataContext,
   CompteContext,
 } from "../utils/context/fetchContext";
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState, useMemo } from "react";
 import useApi from "../utils/hooks/useApi.js";
 import useLieu from "../utils/hooks/useLieu.jsx";
 import useEvent from "../utils/hooks/useEvent.js";
+import { slugify, slugifyNumbers, renderText } from "../utils"
 
 const Raphaelle = ({ closeAgentPage }) => {
   const { currentBox } = useContext(BoxContext);
@@ -22,78 +23,31 @@ const Raphaelle = ({ closeAgentPage }) => {
   const token = localStorage.getItem("token");
   const {
     actionToggleDataRaphaelle,
-    actionToggleDataHistory,
-    toggleDataRaphaelle,
-    toggleDataObjectif,
-    actionToggleDataHelp,
-    toggleDataHistory,
+    dataRaphaelle,
     actionToggleDataObjectif,
+    dataObjectif,
+    actionToggleDataHelp,
+    actionToggleDataHistory,
+    dataHistory
   } = useContext(DataContext);
 
   const {
     updateCharactersById,
     updateHistory,
-    getCharactersById,
-    getObjectivesByBox,
     updateHelp,
-    getHistoryByBox,
     updateObjectives,
   } = useApi();
 
   const { dispatch } = useEvent();
 
-  const [CurrentBoxdataHistory, setCurrentBoxDataHistory] = useState(null);
+  const objectif14 = useMemo(() => currentBox == 1 && dataObjectif[currentBox]?.data.find((event) => event.id == 14)?.status, [currentBox, dataObjectif])
+  const objectif21 = useMemo(() => currentBox == 2 && dataObjectif[currentBox]?.data.find((event) => event.id == 21)?.status, [currentBox, dataObjectif])
+  const objectif24 = useMemo(() => currentBox == 2 && dataObjectif[currentBox]?.data.find((event) => event.id == 24)?.status, [currentBox, dataObjectif])
+  const objectif31 = useMemo(() => currentBox == 3 && dataObjectif[currentBox]?.data.find((event) => event.id == 31)?.status, [currentBox, dataObjectif])
+  const objectif32 = useMemo(() => currentBox == 3 && dataObjectif[currentBox]?.data.find((event) => event.id == 32)?.status, [currentBox, dataObjectif])
 
-  //EXPLICATION : Raphaelle est le personnage '4'
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const result = await getCharactersById(token, 4);
-      setDataRaphaelle(result);
-    };
-    fetchData();
-  }, [toggleDataRaphaelle]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const objectifs = await getObjectivesByBox(token, currentBox);
-      if (currentBox == 1) {
-        const objectif14Data = objectifs.data.find((event) => event.id == 14);
-        setObjectif14(objectif14Data.status);
-      }
-      if (currentBox == 2) {
-        const objectif21Data = objectifs.data.find((event) => event.id == 21);
-        setObjectif21(objectif21Data.status);
-        const objectif24Data = objectifs.data.find((event) => event.id == 24);
-        setObjectif24(objectif24Data.status);
-      }
-      if (currentBox == 3) {
-        const objectif31Data = objectifs.data.find((event) => event.id == 31);
-        setObjectif31(objectif31Data.status);
-        const objectif32Data = objectifs.data.find((event) => event.id == 32);
-        setObjectif32(objectif32Data.status);
-      }
-    };
-    fetchData();
-  }, [toggleDataObjectif]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const clues = await getHistoryByBox(token, currentBox);
-      if (clues) {
-        setCurrentBoxDataHistory(clues.data)
-      } else {
-        setCurrentBoxDataHistory([])
-      }
-      if (currentBox == 3) {
-        const box3audio3Data = clues.data.find(
-          (event) => event.id == "box3audio3"
-        );
-        setBox3Audio3(box3audio3Data.status);
-      }
-    };
-    fetchData();
-  }, [toggleDataHistory]);
+  const CurrentBoxdataHistory = useMemo(() => dataHistory[currentBox]?.data ? dataHistory[currentBox]?.data : [], [currentBox, dataHistory])
+  const box3audio3 = useMemo(() => currentBox == 3 && CurrentBoxdataHistory.find((event) => event.id == "box3audio3")?.status, [CurrentBoxdataHistory])
 
   const [valueAdresse, setValueAdresse] = useState("");
   const [valueLatitude, setValueLatitude] = useState("");
@@ -101,63 +55,24 @@ const Raphaelle = ({ closeAgentPage }) => {
   const [errorMessage, setErrorMessage] = useState("");
   const [modal, setModal] = useState(false);
   const [answer, setAnswer] = useState("");
-  const [dataRaphaelle, setDataRaphaelle] = useState(null);
-  const [objectif14, setObjectif14] = useState("");
-  const [objectif21, setObjectif21] = useState("");
-  const [objectif24, setObjectif24] = useState("");
-  const [objectif31, setObjectif31] = useState("");
-  const [objectif32, setObjectif32] = useState("");
-  const [box3audio3, setBox3Audio3] = useState(false);
   const { renderLieu, setLieu, setLieuModalOpen } = useLieu();
 
-  // EXPLICATION : Fonction pour slugifier l'input Adresse des joueurs (lettre et chiffres ok)
-  const slugifyAdresse = (input) => {
-    let inputSlugified = input
-      .replace(/\s/g, "")
-      .toLowerCase()
-      .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "")
-      .replace(/[^a-z0-9]/g, "");
-    return inputSlugified;
-  };
-
-  // EXPLICATION : Fonction pour slugifier l'input GPS des joueurs (seulement )
-  const slugifyGPS = (input) => {
-    let inputSlugified = input
-      .replace(/\s/g, "")
-      .toLowerCase()
-      .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "")
-      .replace(/[^0-9]/g, "");
-    return inputSlugified;
-  };
+  const thisBox = useMemo(() => dataRaphaelle.find((element) => element.box_id == currentBox)?.data, [currentBox, dataRaphaelle])
+  const box1    = useMemo(() => dataRaphaelle.find((element) => element.box_id == 1)?.data, [dataRaphaelle])
+  const box2    = useMemo(() => dataRaphaelle.find((element) => element.box_id == 2)?.data, [dataRaphaelle])
 
   // EXPLICATION : Les réponses peuvent être trouvées dans la box actuelle ou les boxs précédentes
   // EXPLICATION : Les réponses du personnage dépendent de la location de la réponse (box précedente ou box actuelle) et du status de la réponse (déjà demandé ou pas)
   // EXPLICATION : Pour rappel, Raphaëlle est le seul personnage qui a deux champs (adresse et GPS(latitude et longitude))
   const handleSubmit = (e) => {
-    const thisBox = dataRaphaelle.find(
-      (element) => element.box_id == currentBox
-    ).data;
-    const box1 = dataRaphaelle.find((element) => element.box_id == 1).data;
-    const box2 = dataRaphaelle.find((element) => element.box_id == 2).data;
-    const answerInThisBox = (value) => {
-      return thisBox.find((element) => element.ask.includes(value));
-    };
-    const documentInHistory = (value) => {
-      //console.log(CurrentBoxdataHistory.find(element => element.id == answerInThisBox(value).id))
-      return answerInThisBox(value) && CurrentBoxdataHistory.find(element => element.id == answerInThisBox(value).id).status
-    } 
-    const previouslyAnsweredInThisBox = (value) => {
-      // return answerInThisBox(value) && answerInThisBox(value).status;
-      return answerInThisBox(value) && documentInHistory(value)
-    };
-    const answerInBox1 = (value) =>
-      box1.some((element) => element.ask.includes(value));
-    const answerInBox2 = (value) =>
-      box2.some((element) => element.ask.includes(value));
-
     e.preventDefault();
+    
+    const answerInThisBox             = (value) => thisBox.find((element) => element.ask.includes(value))
+    const documentInHistory           = (value) => answerInThisBox(value) && CurrentBoxdataHistory.find(element => element.id == answerInThisBox(value).id)?.status
+    const previouslyAnsweredInThisBox = (value) => answerInThisBox(value) && documentInHistory(value)
+    const answerInBox1                = (value) => box1.some((element) => element.ask.includes(value))
+    const answerInBox2                = (value) => box2.some((element) => element.ask.includes(value))
+
     // EXPLICATION : si les deux champs sont remplis, message d'erreur
     if (valueAdresse != "" && (valueLatitude != "" || valueLongitude != "")) {
       setErrorMessage(
@@ -180,7 +95,7 @@ const Raphaelle = ({ closeAgentPage }) => {
     }
     // EXPLICATION : si uniquement le champ adresse est rempli
     if (valueAdresse != "" && valueLatitude == "" && valueLongitude == "") {
-      let slugifiedAdresse = slugifyAdresse(valueAdresse);
+      let slugifiedAdresse = slugify(valueAdresse);
       // EXPLICATION : Verifie que l'adresse contient au moins une lettre, sinon les joueurs peuvent rentrer les coordonnées GPS dans le champ adresse
       let regex = /[a-zA-Z]/;
       const doesItHaveLetters = regex.test(slugifiedAdresse);
@@ -293,7 +208,7 @@ const Raphaelle = ({ closeAgentPage }) => {
     // EXPLICATION : si uniquement les champs latitude et longitude sont remplis
     if ((valueLatitude != "" || valueLongitude != "") && valueAdresse == "") {
       let GPS = valueLatitude.concat(valueLongitude);
-      let slugifiedGPS = slugifyGPS(GPS);
+      let slugifiedGPS = slugifyNumbers(GPS);
       if (previouslyAnsweredInThisBox(slugifiedGPS)) {
         setValueAdresse("");
         setValueLongitude("");
@@ -449,17 +364,6 @@ const Raphaelle = ({ closeAgentPage }) => {
     actionToggleDataRaphaelle();
     // actionTogglePolling(true)
     validateModal();
-  };
-
-  const renderText = () => {
-    const text = answer.text.map((el, i) => {
-      return (
-        <p className="modal-objectif__subtitle" key={i}>
-          {el}
-        </p>
-      );
-    });
-    return text;
   };
 
   const validateModal = () => {

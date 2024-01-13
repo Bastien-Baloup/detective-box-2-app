@@ -12,33 +12,23 @@ import {
   DataContext,
   CompteContext,
 } from "../utils/context/fetchContext";
-import { useContext, useState, useEffect } from "react";
+import { useContext, useMemo, useState } from "react";
 import useApi from "../utils/hooks/useApi.js";
 import useEvent from "../utils/hooks/useEvent.js";
+import { slugify, renderText } from "../utils"
 
 const Adele = ({ closeAgentPage }) => {
   const { currentBox } = useContext(BoxContext);
   const token = localStorage.getItem("token");
-  const { actionToggleDataAdele, toggleDataAdele, actionToggleDataHistory } =
+  const { actionToggleDataAdele, dataAdele, actionToggleDataHistory } =
     useContext(DataContext);
   // EXPLICATION : state spécifique pour afficher le mail de Lauren
   const [youveGotMail, setYouveGotMail] = useState(false);
   const [mailLauren1, setMailLauren1] = useState(false);
-  const { updateCharactersById, updateHistory, getCharactersById } = useApi();
+  const { updateCharactersById, updateHistory } = useApi();
   const { dispatch } = useEvent();
   const { closeCompte } = useContext(CompteContext);
 
-  //EXPLICATION : Adele est le personnage "1"
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const result = await getCharactersById(token, 1);
-      setDataAdele(result);
-    };
-    fetchData();
-  }, [toggleDataAdele]);
-
-  const [dataAdele, setDataAdele] = useState(null);
 
   const [value, setValue] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
@@ -46,34 +36,19 @@ const Adele = ({ closeAgentPage }) => {
   const [modalMedia, setModalMedia] = useState(false);
   const [answer, setAnswer] = useState("");
 
-  // EXPLICATION : Fonction pour slugifier l'input des joueurs
-  const slugify = (input) => {
-    let inputSlugified = input
-      .replace(/\s/g, "")
-      .toLowerCase()
-      .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "")
-      .replace(/[^a-z0-9]/g, "");
-    return inputSlugified;
-  };
+  const box2 = useMemo(() => dataAdele.find((element) => element.box_id == 2)?.data, [dataAdele])
+  const thisBox = useMemo(() => dataAdele.find((element) => element.box_id == currentBox)?.data, [currentBox, dataAdele])
 
   // EXPLICATION : Les réponses peuvent être trouvées dans la box actuelle ou les boxs précédentes
   // EXPLICATION : Les réponses du personnage dépendent de la location de la réponse (box précedente ou box actuelle) et du status de la réponse (déjà demandé ou pas)
   // EXPLICATION : Pour rappel, Adèle n'apparait pas en box 1
   const handleSubmit = (e) => {
-    const thisBox = dataAdele.find(
-      (element) => element.box_id == currentBox
-    ).data;
-    const box2 = dataAdele.find((element) => element.box_id == 2).data;
-    const answerInThisBox = thisBox.find((element) =>
-      element.ask.includes(slugify(value))
-    );
-    const previouslyAnsweredInThisBox =
-      answerInThisBox && answerInThisBox.status;
-    const answerInBox2 = box2.some((element) =>
-      element.ask.includes(slugify(value))
-    );
     e.preventDefault();
+    
+    const answerInThisBox = thisBox.find((element) => element.ask.includes(slugify(value)))
+    const answerInBox2 = box2.some((element) => element.ask.includes(slugify(value)))
+    const previouslyAnsweredInThisBox = answerInThisBox && answerInThisBox.status
+    
     if (value == "") {
       setErrorMessage("Je dois bien analyser quelque chose !");
       setValue("");
@@ -139,17 +114,6 @@ const Adele = ({ closeAgentPage }) => {
         </div>
       </div>
     );
-  };
-
-  const renderText = () => {
-    const text = answer.text.map((el, i) => {
-      return (
-        <p className="modal-objectif__subtitle" key={i}>
-          {el}
-        </p>
-      );
-    });
-    return text;
   };
 
   const validateModal = () => {

@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 // EXPLICATION : Page Historique qui permet d'afficher toutes les preuves + les filtres de tri pour trier ces mêmes preuves en fonction de leur type et des boxs.
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import Filter from "../components/Filter";
 import Preuve from "../components/Preuve";
 import Document from "../components/Document";
@@ -10,19 +10,16 @@ import Video from "../components/Video";
 import { urlApi } from "../utils/const/urlApi";
 import Cross from "../assets/icons/Icon_Cross-white.svg";
 import { BoxContext, DataContext, AmbianceContext, CompteContext } from "../utils/context/fetchContext";
-import { useContext, useEffect } from "react";
-import useApi from "../utils/hooks/useApi";
+import { useContext } from "react";
 import useLieu from '../utils/hooks/useLieu.jsx'
 
 function Historique() {
 	const filtersType = ["Document", "Vidéo", "Audio", "Lieu", "Archive"];
 	const filterBox = ["Box 1", "Box 2", "Box 3"];
-	const token = localStorage.getItem("token");
 	const { currentBox } = useContext(BoxContext);
 	const { fetchPreviousStateNappe } = useContext(AmbianceContext);
-	const { toggleDataHistory } = useContext(DataContext);
+	const { dataHistory } = useContext(DataContext);
   const { renderLieu, setLieu, setLieuModalOpen } = useLieu()
-	const { getHistoryByBox } = useApi()
 	const { closeCompte } = useContext(CompteContext);
 
 	const openLieu = (lieu) => {
@@ -31,54 +28,9 @@ function Historique() {
 		setModal(false)
 	}
 
-	useEffect(() => {
-		const fetchData = async () => {
-			if (currentBox === 1) {
-				const result = await getHistoryByBox(token, currentBox);
-				if (result) {
-					setDataHistory1(result.data);
-				} else {
-					setDataHistory1([])
-				}
-			}
-			if (currentBox === 2) {
-				const result = await getHistoryByBox(token, currentBox);
-				if (result) {
-					setDataHistory2(result.data);
-				} else {
-					setDataHistory2([])
-				}
-				const resultbox1 = await getHistoryByBox(token, 1);
-				if (resultbox1) {
-					setDataHistory1(resultbox1.data);
-				} else {
-					setDataHistory1([])
-				}
-			}
-			if (currentBox === 3) {
-				const result = await getHistoryByBox(token, currentBox);
-				if (result) {
-					setDataHistory3(result.data);
-				} else {
-					setDataHistory3([])
-				}
-				const resultbox1 = await getHistoryByBox(token, 1);
-				setDataHistory1(resultbox1.data);
-				if (resultbox1) {
-					setDataHistory1(resultbox1.data);
-				} else {
-					setDataHistory1([])
-				}
-				const resultbox2 = await getHistoryByBox(token, 2);
-				if (resultbox2) {
-					setDataHistory2(resultbox2.data);
-				} else {
-					setDataHistory2([])
-				}
-			}
-		};
-		fetchData();
-	}, [toggleDataHistory]);
+	const dataHistory1 = useMemo(() => dataHistory[1]?.data ? dataHistory[1].data : [], [dataHistory])
+	const dataHistory2 = useMemo(() => dataHistory[2]?.data ? dataHistory[2].data : [], [dataHistory])
+	const dataHistory3 = useMemo(() => dataHistory[3]?.data ? dataHistory[3].data : [], [dataHistory])
 
 	const initialFilterBox = () => {
 		if (currentBox == 1) {
@@ -94,9 +46,6 @@ function Historique() {
 		}
 	};
 
-	const [dataHistory1, setDataHistory1] = useState(null);
-	const [dataHistory2, setDataHistory2] = useState(null);
-	const [dataHistory3, setDataHistory3] = useState(null);
 	const [selectedCategory, setSelectedCategory] = useState([]);
 	const [selectedBox, setselectedBox] = useState(() => initialFilterBox());
 

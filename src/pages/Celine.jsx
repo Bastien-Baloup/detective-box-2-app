@@ -12,47 +12,20 @@ import {
   DataContext,
   CompteContext,
 } from "../utils/context/fetchContext";
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState, useMemo } from "react";
 import useApi from "../utils/hooks/useApi.js";
 import useEvent from "../utils/hooks/useEvent.js";
+import { slugify, renderText } from "../utils"
 
 const Celine = ({ closeAgentPage }) => {
   const { currentBox } = useContext(BoxContext);
   const token = localStorage.getItem("token");
-  const { actionToggleDataCeline, toggleDataCeline, toggleDataHistory } =
-    useContext(DataContext);
-  const {
-    updateCharactersById,
-    updateHistory,
-    getCharactersById,
-    getHistoryByBox,
-  } = useApi();
-  const { dispatch } = useEvent();
-  const { closeCompte } = useContext(CompteContext);
+  const { actionToggleDataCeline, dataCeline, dataHistory } = useContext(DataContext);
+  const {updateCharactersById, updateHistory} = useApi()
+  const { dispatch } = useEvent()
+  const { closeCompte } = useContext(CompteContext)
 
-  //EXPLICATION : Celine est le personnage "3"
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const result = await getCharactersById(token, 3);
-      setDataCeline(result);
-    };
-    fetchData();
-  }, [toggleDataCeline]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const result = await getHistoryByBox(token, 3);
-      const box3audio3Data = result.data.find(
-        (event) => event.id == "box3audio3"
-      );
-      setBox3Audio3(box3audio3Data.status);
-    };
-    fetchData();
-  }, [toggleDataHistory]);
-
-  const [dataCeline, setDataCeline] = useState(null);
-  const [box3audio3, setBox3Audio3] = useState(false);
+  const box3audio3 = useMemo(() => currentBox == 3 && dataHistory[currentBox]?.data.find((event) => event.id == "box3audio3")?.status, [currentBox, dataHistory])
 
   const [value, setValue] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
@@ -61,89 +34,69 @@ const Celine = ({ closeAgentPage }) => {
   const [answer, setAnswer] = useState("");
 
   //EXPLICATION : Fonction pour sortir les joueurs de la page de Celine si elle vient de se faire enlever (box3audio3 dans historique)
-  if (currentBox == 3 && box3audio3) {
+  if (box3audio3) {
     closeAgentPage();
   }
-
-  // EXPLICATION : Fonction pour slugifier l'input des joueurs
-  const slugify = (input) => {
-    let inputSlugified = input
-      .replace(/\s/g, "")
-      .toLowerCase()
-      .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "")
-      .replace(/[^a-z0-9]/g, "");
-    return inputSlugified;
-  };
+  const thisBox = useMemo(() => dataCeline.find((element) => element.box_id == currentBox)?.data, [currentBox, dataCeline])
+  const box1    = useMemo(() => dataCeline.find((element) => element.box_id == 1)?.data, [dataCeline])
+  const box2    = useMemo(() => dataCeline.find((element) => element.box_id == 2)?.data, [dataCeline])
+  const generic = useMemo(() => dataCeline.find((element) => element.box_id == 4)?.data, [dataCeline])
 
   // EXPLICATION : Les réponses peuvent être trouvées dans la box actuelle ou les boxs précédentes
   // EXPLICATION : Les réponses du personnage dépendent de la location de la réponse (générique, box précedente ou box actuelle) et du status de la réponse (déjà demandé ou pas)
   // EXPLICATION : Celine et Lauren sont les seules à avoir des boxs génériques
   const handleSubmit = (e) => {
-    const thisBox = dataCeline.find(
-      (element) => element.box_id == currentBox
-    ).data;
-    const box1 = dataCeline.find((element) => element.box_id == 1).data;
-    const box2 = dataCeline.find((element) => element.box_id == 2).data;
-    const generic = dataCeline.find((element) => element.box_id == 4).data;
-    const answerInThisBox = thisBox.find((element) =>
-      element.ask.includes(slugify(value))
-    );
-    const previouslyAnsweredInThisBox =
-      answerInThisBox && answerInThisBox.status;
-    const answerInFailedInterview = generic.find((element) =>
-      element.ask.includes(slugify(value))
-    );
-    const answerInBox1 = box1.some((element) =>
-      element.ask.includes(slugify(value))
-    );
-    const answerInBox2 = box2.some((element) =>
-      element.ask.includes(slugify(value))
-    );
     e.preventDefault();
+    
+    const answerInThisBox = thisBox.find((element) => element.ask.includes(slugify(value)))
+    const previouslyAnsweredInThisBox = answerInThisBox && answerInThisBox.status
+    const answerInFailedInterview = generic.find((element) => element.ask.includes(slugify(value)))
+    const answerInBox1 = box1.some((element) => element.ask.includes(slugify(value)))
+    const answerInBox2 = box2.some((element) => element.ask.includes(slugify(value)))
+
     if (value == "") {
       setErrorMessage("Je ne peux pas fouiller les archives sans un nom !");
       setValue("");
       return;
     }
     if (previouslyAnsweredInThisBox) {
-      setValue("");
+      setValue("")
       setErrorMessage(
         "Vous m'avez dejà demandé le dossier cette personne. Rendez-vous dans l'Historique pour le consulter de nouveau."
-      );
-      return;
+      )
+      return
     }
     if (answerInThisBox) {
-      setAnswer(answerInThisBox);
-      setModal(true);
-      setValue("");
-      setErrorMessage("");
-      return;
+      setAnswer(answerInThisBox)
+      setModal(true)
+      setValue("")
+      setErrorMessage("")
+      return
     }
     if (answerInFailedInterview) {
-      setAnswer(answerInFailedInterview);
-      setModal(true);
-      setValue("");
-      setErrorMessage("");
-      return;
+      setAnswer(answerInFailedInterview)
+      setModal(true)
+      setValue("")
+      setErrorMessage("")
+      return
     }
     if (currentBox == 2 && answerInBox1) {
-      setValue("");
+      setValue("")
       setErrorMessage(
         "Vous avez déjà demandé le dossier de cette personne lors d'une box précédente. Rendez-vous dans l'Historique pour le consulter de nouveau."
-      );
-      return;
+      )
+      return
     }
     if (currentBox == 3 && (answerInBox2 || answerInBox1)) {
-      setValue("");
+      setValue("")
       setErrorMessage(
         "Vous avez déjà demandé le dossier de cette personne lors d'une box précédente. Rendez-vous dans l'Historique pour le consulter de nouveau."
-      );
-      return;
+      )
+      return
     }
-    setValue("");
-    setErrorMessage("Je ne trouve pas cette personne.");
-  };
+    setValue("")
+    setErrorMessage("Je ne trouve pas cette personne.")
+  }
 
   const renderModal = () => {
     closeCompte();
@@ -180,17 +133,6 @@ const Celine = ({ closeAgentPage }) => {
         </div>
       </div>
     );
-  };
-
-  const renderText = () => {
-    const text = answer.text.map((el, i) => {
-      return (
-        <p className="modal-objectif__subtitle" key={i}>
-          {el}
-        </p>
-      );
-    });
-    return text;
   };
 
   const validateModal = () => {
