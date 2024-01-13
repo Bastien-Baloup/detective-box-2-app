@@ -28,7 +28,7 @@ const Celine = ({ closeAgentPage }) => {
   const { dispatch } = useEvent()
   const { closeCompte } = useContext(CompteContext)
 
-  const box3audio3 = useMemo(() => currentBox == 3 && dataHistory[currentBox]?.data.find((event) => event.id == "box3audio3")?.status, [currentBox, dataHistory])
+  const box3audio3 = useMemo(() => currentBox == 3 && dataHistory[currentBox]?.data && dataHistory[currentBox]?.data.find((event) => event.id == "box3audio3")?.status, [currentBox, dataHistory])
 
   const [value, setValue] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
@@ -42,10 +42,10 @@ const Celine = ({ closeAgentPage }) => {
   }
 
   const CurrentBoxdataHistory = useMemo(() => dataHistory[currentBox]?.data ? dataHistory[currentBox]?.data : [], [currentBox, dataHistory])
-  const thisBox = useMemo(() => dataCeline.find((element) => element.box_id == currentBox)?.data, [currentBox, dataCeline])
-  const box1    = useMemo(() => dataCeline.find((element) => element.box_id == 1)?.data, [dataCeline])
-  const box2    = useMemo(() => dataCeline.find((element) => element.box_id == 2)?.data, [dataCeline])
-  const generic = useMemo(() => dataCeline.find((element) => element.box_id == 4)?.data, [dataCeline])
+  const thisBox = useMemo(() => dataCeline && dataCeline.find((element) => element.box_id == currentBox)?.data, [currentBox, dataCeline])
+  const box1    = useMemo(() => dataCeline && dataCeline.find((element) => element.box_id == 1)?.data, [dataCeline])
+  const box2    = useMemo(() => dataCeline && dataCeline.find((element) => element.box_id == 2)?.data, [dataCeline])
+  const generic = useMemo(() => dataCeline && dataCeline.find((element) => element.box_id == 4)?.data, [dataCeline])
 
   // EXPLICATION : Les réponses peuvent être trouvées dans la box actuelle ou les boxs précédentes
   // EXPLICATION : Les réponses du personnage dépendent de la location de la réponse (générique, box précedente ou box actuelle) et du status de la réponse (déjà demandé ou pas)

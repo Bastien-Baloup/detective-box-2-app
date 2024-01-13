@@ -41,8 +41,8 @@ const Adele = ({ closeAgentPage }) => {
 
   const CurrentBoxdataHistory = useMemo(() => dataHistory[currentBox]?.data ? dataHistory[currentBox]?.data : [], [currentBox, dataHistory])
 
-  const box2 = useMemo(() => dataAdele.find((element) => element.box_id == 2)?.data, [dataAdele])
-  const thisBox = useMemo(() => dataAdele.find((element) => element.box_id == currentBox)?.data, [currentBox, dataAdele])
+  const box2    = useMemo(() => dataAdele && dataAdele.find((element) => element.box_id == 2)?.data, [dataAdele])
+  const thisBox = useMemo(() => dataAdele && dataAdele.find((element) => element.box_id == currentBox)?.data, [currentBox, dataAdele])
 
   // EXPLICATION : Les réponses peuvent être trouvées dans la box actuelle ou les boxs précédentes
   // EXPLICATION : Les réponses du personnage dépendent de la location de la réponse (box précedente ou box actuelle) et du status de la réponse (déjà demandé ou pas)

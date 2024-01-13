@@ -40,11 +40,11 @@ const Raphaelle = ({ closeAgentPage }) => {
 
   const { dispatch } = useEvent();
 
-  const objectif14 = useMemo(() => currentBox == 1 && dataObjectif[currentBox]?.data.find((event) => event.id == 14)?.status, [currentBox, dataObjectif])
-  const objectif21 = useMemo(() => currentBox == 2 && dataObjectif[currentBox]?.data.find((event) => event.id == 21)?.status, [currentBox, dataObjectif])
-  const objectif24 = useMemo(() => currentBox == 2 && dataObjectif[currentBox]?.data.find((event) => event.id == 24)?.status, [currentBox, dataObjectif])
-  const objectif31 = useMemo(() => currentBox == 3 && dataObjectif[currentBox]?.data.find((event) => event.id == 31)?.status, [currentBox, dataObjectif])
-  const objectif32 = useMemo(() => currentBox == 3 && dataObjectif[currentBox]?.data.find((event) => event.id == 32)?.status, [currentBox, dataObjectif])
+  const objectif14 = useMemo(() => currentBox == 1 && dataObjectif[currentBox]?.data && dataObjectif[currentBox]?.data.find((event) => event.id == 14)?.status, [currentBox, dataObjectif])
+  const objectif21 = useMemo(() => currentBox == 2 && dataObjectif[currentBox]?.data && dataObjectif[currentBox]?.data.find((event) => event.id == 21)?.status, [currentBox, dataObjectif])
+  const objectif24 = useMemo(() => currentBox == 2 && dataObjectif[currentBox]?.data && dataObjectif[currentBox]?.data.find((event) => event.id == 24)?.status, [currentBox, dataObjectif])
+  const objectif31 = useMemo(() => currentBox == 3 && dataObjectif[currentBox]?.data && dataObjectif[currentBox]?.data.find((event) => event.id == 31)?.status, [currentBox, dataObjectif])
+  const objectif32 = useMemo(() => currentBox == 3 && dataObjectif[currentBox]?.data && dataObjectif[currentBox]?.data.find((event) => event.id == 32)?.status, [currentBox, dataObjectif])
 
   const CurrentBoxdataHistory = useMemo(() => dataHistory[currentBox]?.data ? dataHistory[currentBox]?.data : [], [currentBox, dataHistory])
   const box3audio3 = useMemo(() => currentBox == 3 && CurrentBoxdataHistory.find((event) => event.id == "box3audio3")?.status, [CurrentBoxdataHistory])
@@ -57,9 +57,9 @@ const Raphaelle = ({ closeAgentPage }) => {
   const [answer, setAnswer] = useState("");
   const { renderLieu, setLieu, setLieuModalOpen } = useLieu();
 
-  const thisBox = useMemo(() => dataRaphaelle.find((element) => element.box_id == currentBox)?.data, [currentBox, dataRaphaelle])
-  const box1    = useMemo(() => dataRaphaelle.find((element) => element.box_id == 1)?.data, [dataRaphaelle])
-  const box2    = useMemo(() => dataRaphaelle.find((element) => element.box_id == 2)?.data, [dataRaphaelle])
+  const thisBox = useMemo(() => dataRaphaelle && dataRaphaelle.find((element) => element.box_id == currentBox)?.data, [currentBox, dataRaphaelle])
+  const box1    = useMemo(() => dataRaphaelle && dataRaphaelle.find((element) => element.box_id == 1)?.data, [dataRaphaelle])
+  const box2    = useMemo(() => dataRaphaelle && dataRaphaelle.find((element) => element.box_id == 2)?.data, [dataRaphaelle])
 
   // EXPLICATION : Les réponses peuvent être trouvées dans la box actuelle ou les boxs précédentes
   // EXPLICATION : Les réponses du personnage dépendent de la location de la réponse (box précedente ou box actuelle) et du status de la réponse (déjà demandé ou pas)

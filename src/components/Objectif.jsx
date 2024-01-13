@@ -118,21 +118,21 @@ const Objectif = ({ data }) => {
     }
   }, [toggleEvent2]);
 
-  const event35     = useMemo(() => currentBox === 3 && dataEvent[currentBox]?.data.find((event) => event.id === 35)?.status, [currentBox, dataEvent])
+  const event35     = useMemo(() => currentBox === 3 && dataEvent[currentBox]?.data && dataEvent[currentBox]?.data.find((event) => event.id === 35)?.status, [currentBox, dataEvent])
 
-  const box1lieu2   = useMemo(() => currentBox === 1 && dataHistory[currentBox]?.data.find((event) => event.id == "box1lieu2")?.status, [currentBox, dataHistory])
-  const box2lieu1   = useMemo(() => currentBox === 2 && dataHistory[currentBox]?.data.find((event) => event.id == "box2lieu1")?.status, [currentBox, dataHistory])
-  const box2lieu3   = useMemo(() => currentBox === 2 && dataHistory[currentBox]?.data.find((event) => event.id == "box2lieu3")?.status, [currentBox, dataHistory])
-  const box3audio3  = useMemo(() => currentBox === 3 && dataHistory[currentBox]?.data.find((event) => event.id == "box3audio3")?.status, [currentBox, dataHistory])
-  const box3lieu2   = useMemo(() => currentBox === 3 && dataHistory[currentBox]?.data.find((event) => event.id == "box3lieu2")?.status, [currentBox, dataHistory])
-  const box3lieu3   = useMemo(() => currentBox === 3 && dataHistory[currentBox]?.data.find((event) => event.id == "box3lieu3")?.status, [currentBox, dataHistory])
+  const box1lieu2   = useMemo(() => currentBox === 1 && dataHistory[currentBox]?.data && dataHistory[currentBox]?.data.find((event) => event.id == "box1lieu2")?.status, [currentBox, dataHistory])
+  const box2lieu1   = useMemo(() => currentBox === 2 && dataHistory[currentBox]?.data && dataHistory[currentBox]?.data.find((event) => event.id == "box2lieu1")?.status, [currentBox, dataHistory])
+  const box2lieu3   = useMemo(() => currentBox === 2 && dataHistory[currentBox]?.data && dataHistory[currentBox]?.data.find((event) => event.id == "box2lieu3")?.status, [currentBox, dataHistory])
+  const box3audio3  = useMemo(() => currentBox === 3 && dataHistory[currentBox]?.data && dataHistory[currentBox]?.data.find((event) => event.id == "box3audio3")?.status, [currentBox, dataHistory])
+  const box3lieu2   = useMemo(() => currentBox === 3 && dataHistory[currentBox]?.data && dataHistory[currentBox]?.data.find((event) => event.id == "box3lieu2")?.status, [currentBox, dataHistory])
+  const box3lieu3   = useMemo(() => currentBox === 3 && dataHistory[currentBox]?.data && dataHistory[currentBox]?.data.find((event) => event.id == "box3lieu3")?.status, [currentBox, dataHistory])
 
-  const box3help4   = useMemo(() => currentBox === 3 && dataHelp[currentBox]?.data.find((event) => event.id == "box3help4")?.status, [currentBox, dataHelp])
+  const box3help4   = useMemo(() => currentBox === 3 && dataHelp[currentBox]?.data && dataHelp[currentBox]?.data.find((event) => event.id == "box3help4")?.status, [currentBox, dataHelp])
 
-  const objectif11  = useMemo(() => currentBox === 1 && dataObjectif[currentBox]?.data.find((event) => event.id == 11)?.status, [currentBox, dataObjectif])
-  const objectif12  = useMemo(() => currentBox === 1 && dataObjectif[currentBox]?.data.find((event) => event.id == 12)?.status, [currentBox, dataObjectif])
-  const objectif13  = useMemo(() => currentBox === 1 && dataObjectif[currentBox]?.data.find((event) => event.id == 13)?.status, [currentBox, dataObjectif])
-  const objectif34  = useMemo(() => currentBox === 3 && dataObjectif[currentBox]?.data.find((event) => event.id == 34)?.status, [currentBox, dataObjectif])
+  const objectif11  = useMemo(() => currentBox === 1 && dataObjectif[currentBox]?.data && dataObjectif[currentBox]?.data.find((event) => event.id == 11)?.status, [currentBox, dataObjectif])
+  const objectif12  = useMemo(() => currentBox === 1 && dataObjectif[currentBox]?.data && dataObjectif[currentBox]?.data.find((event) => event.id == 12)?.status, [currentBox, dataObjectif])
+  const objectif13  = useMemo(() => currentBox === 1 && dataObjectif[currentBox]?.data && dataObjectif[currentBox]?.data.find((event) => event.id == 13)?.status, [currentBox, dataObjectif])
+  const objectif34  = useMemo(() => currentBox === 3 && dataObjectif[currentBox]?.data && dataObjectif[currentBox]?.data.find((event) => event.id == 34)?.status, [currentBox, dataObjectif])
 
   // --- CONDITIONS SPE OBJECTIF 14 --- //
 

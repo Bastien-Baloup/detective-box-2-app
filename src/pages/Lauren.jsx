@@ -36,7 +36,7 @@ const Lauren = ({ closeAgentPage }) => {
   const { dispatch } = useEvent();
   const { closeCompte } = useContext(CompteContext);
 
-  const box2document6 = useMemo(() => currentBox == 2 && dataHistory?.data.find((event) => event.id == "box2document6")?.status, [currentBox, dataHistory])
+  const box2document6 = useMemo(() => currentBox == 2 && dataHistory?.data && dataHistory?.data.find((event) => event.id == "box2document6")?.status, [currentBox, dataHistory])
 
   const [value, setValue] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
@@ -50,10 +50,10 @@ const Lauren = ({ closeAgentPage }) => {
   }
 
   const CurrentBoxdataHistory = useMemo(() => dataHistory[currentBox]?.data ? dataHistory[currentBox]?.data : [], [currentBox, dataHistory])
-  const thisBox = useMemo(() => dataLauren.find((element) => element.box_id == currentBox)?.data, [currentBox, dataLauren])
-  const box1    = useMemo(() => dataLauren.find((element) => element.box_id == 1)?.data, [dataLauren])
-  const box2    = useMemo(() => dataLauren.find((element) => element.box_id == 2)?.data, [dataLauren])
-  const generic = useMemo(() => dataLauren.find((element) => element.box_id == 4)?.data, [dataLauren])
+  const thisBox = useMemo(() => dataLauren && dataLauren.find((element) => element.box_id == currentBox)?.data, [currentBox, dataLauren])
+  const box1    = useMemo(() => dataLauren && dataLauren.find((element) => element.box_id == 1)?.data, [dataLauren])
+  const box2    = useMemo(() => dataLauren && dataLauren.find((element) => element.box_id == 2)?.data, [dataLauren])
+  const generic = useMemo(() => dataLauren && dataLauren.find((element) => element.box_id == 4)?.data, [dataLauren])
 
   // EXPLICATION : Les réponses peuvent être trouvées dans la box actuelle ou les boxs précédentes
   // EXPLICATION : Les réponses du personnage dépendent de la location de la réponse (générique, box précedente ou box actuelle) et du status de la réponse (déjà demandé ou pas)

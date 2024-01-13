@@ -48,9 +48,9 @@ const EventHandler = () => {
     }
   }, [toggleDataEvent]);
 
-  const event25    = useMemo(() => currentBox === 2 && dataEvent[currentBox]?.data.find((event) => event.id === 25)?.status, [currentBox, dataEvent])
+  const event25    = useMemo(() => currentBox === 2 && dataEvent[currentBox]?.data && dataEvent[currentBox]?.data.find((event) => event.id === 25)?.status, [currentBox, dataEvent])
   
-  const box2video5 = useMemo(() => currentBox === 2 && dataHistory[currentBox]?.data.find((event) => event.id == "box2video5")?.status, [currentBox, dataHistory])
+  const box2video5 = useMemo(() => currentBox === 2 && dataEvent[currentBox]?.data &&  dataHistory[currentBox]?.data.find((event) => event.id == "box2video5")?.status, [currentBox, dataHistory])
 
   const token = localStorage.getItem("token");
 

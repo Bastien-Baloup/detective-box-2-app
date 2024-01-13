@@ -62,11 +62,11 @@ const Header = () => {
 		fetchData();
 	}, []);
 
-	const event33 	 = useMemo(() => currentBox === 3 && dataEvent[currentBox]?.data.find((event) => event.id == 33)?.status, [currentBox, dataEvent])
+	const event33 	 = useMemo(() => currentBox === 3 && dataEvent[currentBox]?.data && dataEvent[currentBox]?.data.find((event) => event.id == 33)?.status, [currentBox, dataEvent])
 
-	const box1video1 = useMemo(() => currentBox === 1 && dataHistory[currentBox]?.data.find((event) => event.id == "box1video1")?.status, [currentBox, dataHistory])
-	const box2video1 = useMemo(() => currentBox === 2 && dataHistory[currentBox]?.data.find((event) => event.id == "box2video1")?.status, [currentBox, dataHistory])
-	const box3video1 = useMemo(() => currentBox === 3 && dataHistory[currentBox]?.data.find((event) => event.id == "box3video1")?.status, [currentBox, dataHistory])
+	const box1video1 = useMemo(() => currentBox === 1 && dataHistory[currentBox]?.data && dataHistory[currentBox]?.data.find((event) => event.id == "box1video1")?.status, [currentBox, dataHistory])
+	const box2video1 = useMemo(() => currentBox === 2 && dataHistory[currentBox]?.data && dataHistory[currentBox]?.data.find((event) => event.id == "box2video1")?.status, [currentBox, dataHistory])
+	const box3video1 = useMemo(() => currentBox === 3 && dataHistory[currentBox]?.data && dataHistory[currentBox]?.data.find((event) => event.id == "box3video1")?.status, [currentBox, dataHistory])
 
 	const [dataQuizz, setDataQuizz] = useState("");
 

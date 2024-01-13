@@ -39,9 +39,9 @@ const Tim = ({ closeAgentPage }) => {
 
   const CurrentBoxdataHistory = useMemo(() => dataHistory[currentBox]?.data ? dataHistory[currentBox]?.data : [], [currentBox, dataHistory])
 
-  const thisBox = useMemo(() => dataTim.find((element) => element.box_id == currentBox)?.data, [currentBox, dataTim])
-  const box1 = useMemo(() => dataTim.find((element) => element.box_id == 1)?.data, [dataTim])
-  const box2 = useMemo(() => dataTim.find((element) => element.box_id == 2)?.data, [dataTim])
+  const thisBox = useMemo(() => dataTim && dataTim.find((element) => element.box_id == currentBox)?.data, [currentBox, dataTim])
+  const box1 = useMemo(() => dataTim && dataTim.find((element) => element.box_id == 1)?.data, [dataTim])
+  const box2 = useMemo(() => dataTim && dataTim.find((element) => element.box_id == 2)?.data, [dataTim])
 
   // EXPLICATION : Les réponses peuvent être trouvées dans la box actuelle ou les boxs précédentes
   // EXPLICATION : Les réponses du personnage dépendent de la location de la réponse (box précedente ou box actuelle) et du status de la réponse (déjà demandé ou pas)

@@ -30,8 +30,8 @@ function Home() {
     dataHistory
   } = useContext(DataContext);
 
-  const box2document6 = useMemo(() => currentBox === 2 && dataHistory[currentBox]?.data.find((event) => event.id == "box2document6")?.status, [currentBox, dataHistory])
-  const box3audio3 = useMemo(() => currentBox === 3 && dataHistory[currentBox]?.data.find((event) => event.id == "box3audio3")?.status, [currentBox, dataHistory])
+  const box2document6 = useMemo(() => currentBox === 2 && dataHistory[currentBox]?.data && dataHistory[currentBox]?.data.find((event) => event.id == "box2document6")?.status, [currentBox, dataHistory])
+  const box3audio3    = useMemo(() => currentBox === 3 && dataHistory[currentBox]?.data && dataHistory[currentBox]?.data.find((event) => event.id == "box3audio3")?.status, [currentBox, dataHistory])
 
   const specificCardActionLauren = () => {
     setModalLaurenGone(!modalLaurenGone);
