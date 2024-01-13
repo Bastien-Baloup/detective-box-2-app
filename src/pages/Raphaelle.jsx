@@ -258,7 +258,7 @@ const Raphaelle = ({ closeAgentPage }) => {
     return (
       <div className="modal-objectif__background">
         <div className="modal-objectif__box">
-          <div>{renderText()}</div>
+          <div>{renderText(answer.text)}</div>
           {answer.id ? (
             <button
               className="modal-objectif__button button--red"

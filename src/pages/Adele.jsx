@@ -95,7 +95,7 @@ const Adele = ({ closeAgentPage }) => {
           ) : (
             ""
           )}
-          <div>{renderText()}</div>
+          <div>{renderText(answer.text)}</div>
           {answer.id ? (
             <button
               className="modal-objectif__button button--red"
