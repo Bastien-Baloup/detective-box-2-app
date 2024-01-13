@@ -18,6 +18,7 @@ const Signin = ({
 	valueEmail,
 	setValueEmail,
 	switchToSignup,
+	emailForgotButtonIsDisabled
 }) => {
 	const [modalActive, setModalActive] = useState(false);
 
@@ -40,7 +41,7 @@ const Signin = ({
 							value={valueEmailForgot}
 							setValue={setValueEmailForgot}
 						/>
-						<button className="modal-password__button button--red">Valider</button>
+						<button className="modal-password__button button--red" disabled={emailForgotButtonIsDisabled}>Valider</button>
 					</form>
 				</div>
 			</div>
@@ -98,6 +99,7 @@ Signin.propTypes = {
 	setValueEmailForgot: PropTypes.func,
 	valueEmailForgot: PropTypes.string,
 	switchToSignup: PropTypes.func,
+	emailForgotButtonIsDisabled: PropTypes.bool
 };
 
 export default Signin;
