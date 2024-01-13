@@ -13,7 +13,7 @@ import Lauren from "./Lauren";
 import Raphaelle from "./Raphaelle";
 import Celine from "./Celine";
 import { BoxContext, DataContext } from "../utils/context/fetchContext";
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext, useMemo } from "react";
 import { urlApi } from "../utils/const/urlApi";
 import useApi from "../utils/hooks/useApi.js";
 
@@ -21,37 +21,17 @@ function Home() {
   const [characterDisplayed, setCharacterDisplayed] = useState(null);
   const [modalLaurenGone, setModalLaurenGone] = useState(false);
   const [modalCelineGone, setModalCelineGone] = useState(false);
-  const { updateEvent, getHistoryByBox } = useApi();
+  const { updateEvent } = useApi();
 
   const { currentBox } = useContext(BoxContext);
   const token = localStorage.getItem("token");
   const { 
-    toggleDataHistory, 
     actionToggleDataEvent,
+    dataHistory
   } = useContext(DataContext);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      if (currentBox == 2) {
-        const result = await getHistoryByBox(token, 2);
-        const box2document6Data = result.data.find(
-          (event) => event.id == "box2document6"
-        );
-        setBox2Document6(box2document6Data.status);
-      }
-      if (currentBox == 3) {
-        const result = await getHistoryByBox(token, 3);
-        const box3audio3Data = result.data.find(
-          (event) => event.id == "box3audio3"
-        );
-        setBox3Audio3(box3audio3Data.status);
-      }
-    };
-    fetchData();
-  }, [toggleDataHistory]);
-
-  const [box3audio3, setBox3Audio3] = useState(false);
-  const [box2document6, setBox2Document6] = useState(false);
+  const box2document6 = useMemo(() => currentBox === 2 && dataHistory[currentBox]?.data.find((event) => event.id == "box2document6")?.status, [currentBox, dataHistory])
+  const box3audio3 = useMemo(() => currentBox === 3 && dataHistory[currentBox]?.data.find((event) => event.id == "box3audio3")?.status, [currentBox, dataHistory])
 
   const specificCardActionLauren = () => {
     setModalLaurenGone(!modalLaurenGone);

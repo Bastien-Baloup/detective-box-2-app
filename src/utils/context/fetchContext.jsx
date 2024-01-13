@@ -250,31 +250,23 @@ export const DataProvider = ({ children }) => {
 		<DataContext.Provider
 			value={{
 				actionToggleDataAdele,
-				toggleDataAdele,
 				dataAdele,
 				actionToggleDataCeline,
-				toggleDataCeline,
 				dataCeline,
 				actionToggleDataLauren,
-				toggleDataLauren,
 				dataLauren,
 				actionToggleDataRaphaelle,
-				toggleDataRaphaelle,
 				dataRaphaelle,
 				actionToggleDataTim,
-				toggleDataTim,
 				dataTim,
 				actionToggleDataEvent,
 				toggleDataEvent,
 				dataEvent,
 				actionToggleDataHelp,
-				toggleDataHelp,
 				dataHelp,
 				actionToggleDataHistory,
-				toggleDataHistory,
 				dataHistory,
 				actionToggleDataObjectif,
-				toggleDataObjectif,
 				dataObjectif
 			}}
 		>

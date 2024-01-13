@@ -4,30 +4,14 @@
 import Paper from "../assets/img/Paper.png";
 import Objectif from "./Objectif";
 import { BoxContext, DataContext } from "../utils/context/fetchContext.jsx";
-import { useContext, useEffect, useState } from "react";
-import useApi from "../utils/hooks/useApi.js";
+import { useContext, useMemo } from "react";
 import EventHandler from './EventHandler.jsx';
 
 const Footer = () => {
   const { currentBox } = useContext(BoxContext);
-  const token = localStorage.getItem("token");
-  const { toggleDataObjectif } = useContext(DataContext);
+  const { dataObjectif } = useContext(DataContext);
 
-  const { getObjectivesByBox } = useApi();
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const result = await getObjectivesByBox(token, currentBox);
-      setDataObjectif(result.data);
-    };
-    fetchData();
-  }, [toggleDataObjectif, currentBox, token]);
-
-  // EXPLICATION : CurrentBox est utilisé pour fetcher uniquement les objectifs de la boite en cours.
-
-  const [dataObjectif, setDataObjectif] = useState(null);
-
-
+  const dataObjectif_ = useMemo(() => dataObjectif[currentBox]?.data, [currentBox, dataObjectif])
 
   return (
     <footer>
@@ -42,7 +26,7 @@ const Footer = () => {
       </div>
       <div className="footer__bottomSection">
         <div className="objectif__wrapper">
-          {dataObjectif?.map((objectif, index) => (
+          {dataObjectif_?.map((objectif, index) => (
             <Objectif data={objectif} key={`objectifKey-${index}`} />
           ))}
         </div>

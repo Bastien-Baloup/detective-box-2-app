@@ -10,25 +10,13 @@ import CheckWhite from "../assets/icons/Icon_Check-white.png";
 import CrossRed from "../assets/icons/Icon_Cross-red.png";
 import Flag from "../assets/icons/Icon_Flag.png";
 import { BoxContext, DataContext } from "../utils/context/fetchContext";
-import { useContext, useState, useEffect } from "react";
-import useApi from '../utils/hooks/useApi.js';
+import { useContext, useMemo } from "react";
 
 const Progression = () => {
 	const { currentBox } = useContext(BoxContext);
-	const token = localStorage.getItem("token");
-	const { toggleDataObjectif } = useContext(DataContext);
-	const { getObjectivesByBox } = useApi()
+	const { dataObjectif } = useContext(DataContext);
 
-	useEffect(() => {
-		const fetchData = async () => {
-			const result = await getObjectivesByBox(token, currentBox);
-			setDataObjectif(result.data);
-		};
-		fetchData();
-	}, [toggleDataObjectif]);
-
-	const [dataObjectif, setDataObjectif] = useState(null);
-	const currentStep = dataObjectif?.filter((element) => element.status == "done").length;
+	const currentStep = useMemo(() => dataObjectif[currentBox]?.data?.filter((element) => element.status == "done").length, [currentBox, dataObjectif])
 
 	const trackBox = (box) => {
 		const boxPlayed = box < currentBox;

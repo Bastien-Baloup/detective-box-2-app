@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useContext, useState, useCallback, useEffect, useLayoutEffect } from 'react';
+import { useContext, useState, useCallback, useEffect, useLayoutEffect, useMemo } from 'react';
 import { useNavigate } from "react-router-dom";
 
 import { DataContext, AmbianceContext, BoxContext } from '../utils/context/fetchContext';
@@ -14,16 +14,18 @@ import Video from "../components/Video";
 
 
 const EventHandler = () => {
-  const { actionToggleDataEvent, actionToggleDataHistory, toggleDataEvent, toggleDataHistory } = useContext(DataContext);
+  const { 
+    actionToggleDataEvent, 
+    actionToggleDataHistory, 
+    toggleDataEvent, 
+    dataEvent,
+    dataHistory
+  } = useContext(DataContext);
 	const { fetchPreviousStateNappe } = useContext(AmbianceContext);
   const { currentBox } = useContext(BoxContext);
 
-  const { updateEvent, updateHistory, getHistoryByBox, getEventByBox, updateBox, updateTimeEndBox} = useApi();
+  const { updateEvent, updateHistory, updateBox, updateTimeEndBox} = useApi();
   const { state, dispatch } = useEvent();
-
-  const [event25, setEvent25] = useState("");
-
-  const [box2video5, setBox2Video5] = useState(false);
 
   const [toggleEvent2, setActionToggleEvent2] = useState(false);
 
@@ -39,68 +41,18 @@ const EventHandler = () => {
 
   const navigate = useNavigate();
 
+  // EXPLICATION : Fonction pour récupérer l'état des événements
+  useLayoutEffect(() => {
+    if (currentBox === 2) {
+      setActionToggleEvent2(!toggleEvent2);
+    }
+  }, [toggleDataEvent]);
 
-
-    // EXPLICATION : Fonction pour récupérer l'état des événements
-    useLayoutEffect(() => {
-      const fetchData = async () => {
-        const events = await getEventByBox(token, currentBox);
-        if (events != undefined) {
-          if (currentBox === 2) {
-            const event25Data = events.data.find((event) => event.id === 25);
-            setEvent25(event25Data.status);
-            setActionToggleEvent2(!toggleEvent2);
-          }
-          
-        }
-      };
-      fetchData();
-    }, [toggleDataEvent]);
-
-    useEffect(() => {
-      const fetchData = async () => {
-        const clues = await getHistoryByBox(token, currentBox);
-        // if (currentBox == 1) {
-        //   const box1lieu2Data = clues.data.find(
-        //     (event) => event.id == "box1lieu2"
-        //   );
-        //   setBox1Lieu2(box1lieu2Data.status);
-        // }
-        if (currentBox == 2) {
-        // const box2lieu1Data = clues.data.find(
-        //   (event) => event.id == "box2lieu1"
-        // );
-        // setBox2Lieu1(box2lieu1Data.status);
-        // const box2lieu3Data = clues.data.find(
-        //   (event) => event.id == "box2lieu3"
-        // );
-        // setBox2Lieu3(box2lieu3Data.status);
-        const box2video5Data = clues.data.find(
-          (event) => event.id == "box2video5"
-        );
-          setBox2Video5(box2video5Data.status);
-        }
-        // if (currentBox == 3) {
-        //   const box3audio3Data = clues.data.find(
-        //     (event) => event.id == "box3audio3"
-        //   );
-        //   setBox3Audio3(box3audio3Data.status);
-        //   const box3lieu2Data = clues.data.find(
-        //     (event) => event.id == "box3lieu2"
-        //   );
-        //   setBox3Lieu2(box3lieu2Data.status);
-        //   const box3lieu3Data = clues.data.find(
-        //     (event) => event.id == "box3lieu3"
-        //   );
-        //   setBox3Lieu3(box3lieu3Data.status);
-        // }
-      };
-      fetchData();
-    }, [toggleDataHistory]);
+  const event25    = useMemo(() => currentBox === 2 && dataEvent[currentBox]?.data.find((event) => event.id === 25)?.status, [currentBox, dataEvent])
+  
+  const box2video5 = useMemo(() => currentBox === 2 && dataHistory[currentBox]?.data.find((event) => event.id == "box2video5")?.status, [currentBox, dataHistory])
 
   const token = localStorage.getItem("token");
-
-  
 
   const openModaleMalle = useCallback(
     () => setModaleMalle(true),

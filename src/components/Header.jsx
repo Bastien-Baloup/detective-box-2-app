@@ -15,7 +15,7 @@ import Video from "../components/Video.jsx";
 import { Link } from "react-router-dom";
 import { urlApi } from "../utils/const/urlApi";
 import { AmbianceContext, BoxContext, DataContext } from "../utils/context/fetchContext.jsx";
-import { useEffect, useState, useRef, useContext } from "react";
+import { useEffect, useState, useRef, useContext, useMemo } from "react";
 import useApi from '../utils/hooks/useApi.js';
 import useEvent from '../utils/hooks/useEvent.js';
 
@@ -24,14 +24,12 @@ const Header = () => {
 	const { fetchNappeMute, nappeMute } = useContext(AmbianceContext);
 	const { currentBox } = useContext(BoxContext);
 	const token = localStorage.getItem("token");
-	const { actionToggleDataEvent, toggleDataEvent, actionToggleDataHistory } = useContext(DataContext);
+	const { actionToggleDataEvent, actionToggleDataHistory, dataEvent, dataHistory } = useContext(DataContext);
 	const {
 		getQuizzByBox,
-		getEventByBox,
 		updateEvent,
 		updateQuizz,
 		updateHistory,
-		getHistoryByBox,
 	} = useApi()
 	const { dispatch } = useEvent()
 
@@ -64,44 +62,13 @@ const Header = () => {
 		fetchData();
 	}, []);
 
-	// EXPLICATION : Cette fonction récupère les événements
-	useEffect(() => {
-		const fetchData = async () => {
-			const events = await getEventByBox(token, currentBox);
-			if (currentBox == 3) {
-				const event33Data = events.data.find((event) => event.id == 33);
-				setEvent33(event33Data.status);
-			}
-		};
-		fetchData();
-	}, [toggleDataEvent]);
+	const event33 	 = useMemo(() => currentBox === 3 && dataEvent[currentBox]?.data.find((event) => event.id == 33)?.status, [currentBox, dataEvent])
 
-	// EXPLICATION : Cette fonction récupère l'état des vidéos de brief dans l'historique (il ne se joue qu'une fois par box)
-	useEffect(() => {
-		const fetchData = async () => {
-			const clues = await getHistoryByBox(token, currentBox);
-			if (currentBox == 1) {
-				const box1video1Data = clues.data.find((event) => event.id == "box1video1");
-				setBox1Video1(box1video1Data.status);
-			}
-			if (currentBox == 2) {
-				const box2video1Data = clues.data.find((event) => event.id == "box2video1");
-				setBox2Video1(box2video1Data.status);
-			}
-			if (currentBox == 3) {
-				const box3video1Data = clues.data.find((event) => event.id == "box3video1");
-				setBox3Video1(box3video1Data.status);
-			}
-		};
-		fetchData();
-	}, []);
+	const box1video1 = useMemo(() => currentBox === 1 && dataHistory[currentBox]?.data.find((event) => event.id == "box1video1")?.status, [currentBox, dataHistory])
+	const box2video1 = useMemo(() => currentBox === 2 && dataHistory[currentBox]?.data.find((event) => event.id == "box2video1")?.status, [currentBox, dataHistory])
+	const box3video1 = useMemo(() => currentBox === 3 && dataHistory[currentBox]?.data.find((event) => event.id == "box3video1")?.status, [currentBox, dataHistory])
 
-	const [box1video1, setBox1Video1] = useState(false);
-	const [box2video1, setBox2Video1] = useState(false);
-	const [box3video1, setBox3Video1] = useState(false);
 	const [dataQuizz, setDataQuizz] = useState("");
-
-	const [event33, setEvent33] = useState("");
 
 	// EXPLICATION : Le joueur choisi d'activer la musique d'ambiance > son état se met à jour dans le context > ferme la modale.
 	const activateNappe = () => {
