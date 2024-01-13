@@ -5,24 +5,27 @@ import {
   AmbianceProvider,
   DataProvider,
   EventProvider,
-  CompteProvider
+  CompteProvider, 
+  ErrorProvider
 } from "../utils/context/fetchContext.jsx";
 
 const ProviderPile = ({ children }) => {
   return (
-    <BoxProvider>
-      <AuthProvider>
-        <AmbianceProvider>
-          <DataProvider>
-            <EventProvider>
-              <CompteProvider>
-                {children}
-              </CompteProvider>
-            </EventProvider>
-          </DataProvider>
-        </AmbianceProvider>
-      </AuthProvider>
-    </BoxProvider>
+    <ErrorProvider>
+      <BoxProvider>
+        <AuthProvider>
+          <AmbianceProvider>
+            <DataProvider>
+              <EventProvider>
+                <CompteProvider>
+                  {children}
+                </CompteProvider>
+              </EventProvider>
+            </DataProvider>
+          </AmbianceProvider>
+        </AuthProvider>
+      </BoxProvider>
+    </ErrorProvider>
   )
 }
 

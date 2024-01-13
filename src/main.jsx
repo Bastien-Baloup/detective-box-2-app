@@ -19,22 +19,22 @@ window.onerror = function(message, source, lineno, colno, error) {
 	return true
 }
 
-window.addEventListener('unhandledrejection', event => {
-  // Access the error details from the event
-  const { reason, promise } = event;
+// window.addEventListener('unhandledrejection', event => {
+//   // Access the error details from the event
+//   const { reason, promise } = event;
 
-  // Log or handle the error here
-  const errorDetails = {
-    message: reason.message,
-    stack: reason.stack,
-    promise: promise
-  };
+//   // Log or handle the error here
+//   const errorDetails = {
+//     message: reason.message,
+//     stack: reason.stack,
+//     promise: promise
+//   };
 
-	logError(errorDetails)
+// 	logError(errorDetails)
 
-  // Prevent the default browser behavior
-  event.preventDefault();
-});
+//   // Prevent the default browser behavior
+//   event.preventDefault();
+// });
 ReactDOM.createRoot(document.getElementById("root")).render(
 	<React.StrictMode>
 		<App />

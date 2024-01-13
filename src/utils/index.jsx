@@ -20,6 +20,9 @@ export const slugifyNumbers = (input) => {
 };
 
 export const renderText = (data) => {
+  if (typeof data === 'string') {
+    return data
+  }
   const text = data.map((el, i) => {
     if (el.startsWith("https://")) {
       return (

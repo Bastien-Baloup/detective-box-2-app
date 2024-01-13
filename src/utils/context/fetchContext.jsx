@@ -219,7 +219,7 @@ export const DataProvider = ({ children }) => {
   useEffect(() => {
     fetchInitialData(); // Call fetchInitialData when the token changes
   }, [token]);
-	
+
 	//EXPLICATION : Adele est le personnage "1"
 	useEffect(() =>{
 		const fetchDataAdele = async () => {
@@ -369,6 +369,36 @@ export const CompteProvider = ({ children }) => {
 	)
 }
 
+export const ErrorContext = createContext()
+
+export const ErrorProvider = ({ children }) =>{
+	const [errorPopup, setErrorPopup] = useState(false)
+	const [errorMsg, setErrorMsg] = useState([])
+
+	const setError = msg => {
+		setErrorMsg(msg)
+		setErrorPopup(true)
+	}
+
+	const setApiError = msg => {
+		console.log('setError')
+		const error = ["Erreur lors de la connexion à l'API :", ...msg]
+		setErrorMsg(error)
+		setErrorPopup(true)
+	}
+
+	const clearError = () => {
+		setErrorPopup(false)
+		setErrorMsg([])
+	}
+
+	return (
+		<ErrorContext.Provider value={{ errorPopup, errorMsg, setError, setApiError, clearError }}>
+			{children}
+		</ErrorContext.Provider>
+	)
+}
+
 BoxProvider.propTypes = {
 	children: PropTypes.any,
 };
@@ -385,5 +415,8 @@ EventProvider.propTypes = {
 	children: PropTypes.any,
 };
 CompteProvider.propTypes = {
+	children: PropTypes.any,
+};
+ErrorProvider.propTypes = {
 	children: PropTypes.any,
 };

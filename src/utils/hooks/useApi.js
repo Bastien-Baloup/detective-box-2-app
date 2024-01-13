@@ -1,588 +1,560 @@
-import { logError } from '../const/logtail.js';
-const url = import.meta.env.VITE_API
+import { logError } from "../const/logtail.js";
+import { useError } from "./useError.js";
+const url = import.meta.env.VITE_API;
 
 const useApi = () => {
-	const apiFunctions = {
-		getHistories : (token, ids) => {
-			return fetch(url + `/history?ids=${ids.join(",")}`, {
-				method: "GET",
-				headers: {
-					"Content-Type": "application/json",
-					Authorization: `Bearer ${token}`,
-				},
-			}).catch(error => logError(error))
-		},
-		
-		updateTimeEndBox : (token, id) => {
-			return fetch(url + `/users/end_box/` + id, {
-				method: "PUT",
-				headers: {
-					"Content-Type": "application/json",
-					Authorization: `Bearer ${token}`,
-				},
-			}).catch(error => logError(error))
-		},
-		
-		getMe : (token) => {
-			return fetch(url + "/users/me", {
-				method: "GET",
-				headers: {
-					"Content-Type": "application/json",
-					Authorization: `Bearer ${token}`,
-				},
-			}).catch(error => logError(error))
-		},
-		
-		getToken : (credentials) => {
-			return fetch(url + "/users/login", {
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify(credentials),
-			}).catch(error => logError(error))
-		},
-		
-		createUser : (newaccount) => {
-			return fetch(url + "/users/", {
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify(newaccount),
-			}).catch(error => logError(error))
-			// .then((response) => response.json())
-			// .then((data) => {
-			// 	return data
-			// })
-			// .catch((error) => {
-			// 	console.error(error)
-					// logError(error)
-			// })
-		},
-		
-		getUser : (token) => {
-			return fetch(url + "/users/me", {
-				method: "GET",
-				headers: {
-					"Content-Type": "application/json",
-					Authorization: `Bearer ${token}`,
-				},
-			})
-				.then((response) => response.json())
-				.then((data) => {
-					return data
-				})
-				.catch((error) => {
-					console.error(error)
-					logError(error)
-				})
-		},
-		
-		forgotPassword : (email) => {
-			return fetch(url + "/users/forgot_password", {
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify({ email }),
-			})
-				.then((response) => response.json())
-				.then((data) => {
-					return data
-				})
-				.catch((error) => {
-					console.error(error)
-					logError(error)
-				})
-		},
-		
-		updatePassword : (token, newpassword) => {
-			return fetch(url + "/users/password", {
-				method: "PUT",
-				headers: {
-					"Content-Type": "application/json",
-					Authorization: `Bearer ${token}`,
-				},
-				body: JSON.stringify({
-					password: newpassword,
-				}),
-			})
-				.then((response) => response.json())
-				.then((data) => {
-					return data
-				})
-				.catch((error) => {
-					console.error(error)
-					logError(error)
-				})
-		},
-		
-		updateName : (token, id, newinfos) => {
-			return fetch(url + "/users/" + id, {
-				method: "PUT",
-				headers: {
-					"Content-Type": "application/json",
-					Authorization: `Bearer ${token}`,
-				},
-				body: JSON.stringify(newinfos),
-			})
-				.then((response) => response.json())
-				.then((data) => {
-					return data
-				})
-				.catch((error) => {
-					console.error(error)
-					logError(error)
-				})
-		},
-		
-		resetAll : (token) => {
-			return fetch(url + "/game/reset", {
-				method: "PUT",
-				headers: {
-					"Content-Type": "application/json",
-					Authorization: `Bearer ${token}`,
-				},
-			})
-				.then((response) => response.json())
-				.then((data) => {
-					return data
-				})
-				.catch((error) => {
-					console.error(error)
-					logError(error)
-				})
-		},
-		
-		getBox : (token) => {
-			return fetch(url + "/box/", {
-				method: "GET",
-				headers: {
-					"Content-Type": "application/json",
-					Authorization: `Bearer ${token}`,
-				},
-			})
-				.then((response) => response.json())
-				.then((data) => {
-					return data
-				})
-				.catch((error) => {
-					console.error(error)
-					logError(error)
-				})
-		},
-		
-		updateBox : (token, boxid, newstatus) => {
-			return fetch(url + `/box/` + boxid, {
-				method: "PUT",
-				headers: {
-					"Content-Type": "application/json",
-					Authorization: `Bearer ${token}`,
-				},
-				body: JSON.stringify({
-					status: newstatus,
-				}),
-			})
-				.then((response) => response.json())
-				.then((data) => {
-					return data
-				})
-				.catch((error) => {
-					console.error(error)
-					logError(error)
-				})
-		},
-		
-		resetBox : (token) => {
-			return fetch(url + "/box/reset", {
-				method: "PUT",
-				headers: {
-					"Content-Type": "application/json",
-					Authorization: `Bearer ${token}`,
-				},
-			})
-				.then((response) => response.json())
-				.then((data) => {
-					return data
-				})
-				.catch((error) => {
-					console.error(error)
-					logError(error)
-				})
-		},
-		
-		getQuizzByBox : (token, boxid) => {
-			return fetch(url + "/quizz/" + boxid, {
-				method: "GET",
-				headers: {
-					"Content-Type": "application/json",
-					Authorization: `Bearer ${token}`,
-				},
-			})
-				.then((response) => response.json())
-				.then((data) => {
-					return data
-				})
-				.catch((error) => {
-					console.error(error)
-					logError(error)
-				})
-		},
-		
-		updateQuizz : (token, boxid) => {
-			return fetch(url + "/quizz/" + boxid, {
-				method: "PUT",
-				headers: {
-					"Content-Type": "application/json",
-					Authorization: `Bearer ${token}`,
-				},
-				body: JSON.stringify({
-					status: true,
-				}),
-			})
-				.then((response) => response.json())
-				.then((data) => {
-					return data
-				})
-				.catch((error) => {
-					console.error(error)
-					logError(error)
-				})
-		},
-		
-		resetQuizz : (token) => {
-			return fetch(url + "/quizz/reset", {
-				method: "PUT",
-				headers: {
-					"Content-Type": "application/json",
-					Authorization: `Bearer ${token}`,
-				},
-			})
-				.then((response) => response.json())
-				.then((data) => {
-					return data
-				})
-				.catch((error) => {
-					console.error(error)
-					logError(error)
-				})
-		},
-		
-		// getHelp : () => {
-		// 	return fetch(url + "/help/", {
-		// 		method: "GET",
-		// 	})
-		// 		.then((response) => response.json())
-		// 		.then((data) => {
-		// 			console.log(data)
-		// 			return data
-		// 		})
-		// 		.catch((error) => {
-		// 			console.error(error)
-					// logError(error)
-		// 		})
-		// }
-		
-		getHelpByBox : (token, boxid) => {
-			return fetch(url + "/help/" + boxid, {
-				method: "GET",
-				headers: {
-					"Content-Type": "application/json",
-					Authorization: `Bearer ${token}`,
-				},
-			})
-				.then((response) => response.json())
-				.then((data) => {
-					return data
-				})
-				.catch((error) => {
-					console.error(error)
-					logError(error)
-				})
-		},
-		
-		updateHelp : (token, boxid, helpid, newstatus) => {
-			return fetch(url + "/help/" + boxid + "/?id=" + helpid, {
-				method: "PUT",
-				headers: {
-					"Content-Type": "application/json",
-					Authorization: `Bearer ${token}`,
-				},
-				body: JSON.stringify({
-					status: newstatus,
-				}),
-			})
-				.then((response) => response.json())
-				.then((data) => {
-					return data
-				})
-				.catch((error) => {
-					console.error(error)
-					logError(error)
-				})
-		},
-		
-		resetHelp : (token) => {
-			return fetch(url + "/help/reset", {
-				method: "PUT",
-				headers: {
-					"Content-Type": "application/json",
-					Authorization: `Bearer ${token}`,
-				},
-			})
-				.then((response) => response.json())
-				.then((data) => {
-					return data
-				})
-				.catch((error) => {
-					console.error(error)
-					logError(error)
-				})
-		},
-		
-		getObjectivesByBox : (token, boxid) => {
-			return fetch(url + "/objectives/" + boxid, {
-				method: "GET",
-				headers: {
-					"Content-Type": "application/json",
-					Authorization: `Bearer ${token}`,
-				},
-			})
-				.then((response) => response.json())
-				.then((data) => {
-					return data
-				})
-				.catch((error) => {
-					console.error(error)
-					logError(error)
-				})
-		},
-		
-		updateObjectives : (token, boxid, objectiveid, newstatus) => {
-			return fetch(url + "/objectives/" + boxid + "/?id=" + objectiveid, {
-				method: "PUT",
-				headers: {
-					"Content-Type": "application/json",
-					Authorization: `Bearer ${token}`,
-				},
-				body: JSON.stringify({
-					status: newstatus,
-				}),
-			})
-				.then((response) => response.json())
-				.then((data) => {
-					return data
-				})
-				.catch((error) => {
-					console.error(error)
-					logError(error)
-				})
-		},
-		
-		resetObjectives : (token) => {
-			return fetch(url + "/objectives/reset", {
-				method: "PUT",
-				headers: {
-					"Content-Type": "application/json",
-					Authorization: `Bearer ${token}`,
-				},
-			})
-				.then((response) => response.json())
-				.then((data) => {
-					return data
-				})
-				.catch((error) => {
-					console.error(error)
-					logError(error)
-				})
-		},
-		
-		getHistoryByBox : (token, boxid) => {
-			return fetch(url + "/history/" + boxid, {
-				method: "GET",
-				headers: {
-					"Content-Type": "application/json",
-					Authorization: `Bearer ${token}`,
-				},
-			})
-				.then((response) => response.json())
-				.then((data) => {
-					return data
-				})
-				.catch((error) => {
-					console.error(error)
-					logError(error)
-				})
-		},
-		
-		updateHistory : (token, boxid, objectiveid) => {
-			return fetch(url + "/history/" + boxid + "/?id=" + objectiveid, {
-				method: "PUT",
-				headers: {
-					"Content-Type": "application/json",
-					Authorization: `Bearer ${token}`,
-				},
-				body: JSON.stringify({
-					status: true,
-				}),
-			})
-				.then((response) => response.json())
-				.then((data) => {
-					return data
-				})
-				.catch((error) => {
-					console.error(error)
-					logError(error)
-				})
-		},
-		
-		resetHistory : (token) => {
-			return fetch(url + "/history/reset", {
-				method: "PUT",
-				headers: {
-					"Content-Type": "application/json",
-					Authorization: `Bearer ${token}`,
-				},
-			})
-				.then((response) => response.json())
-				.then((data) => {
-					return data
-				})
-				.catch((error) => {
-					console.error(error)
-					logError(error)
-				})
-		},
-		
-		// getCharacters : () => {
-		// 	return fetch(url + "/characters/", {
-		// 		method: "GET",
-		// 	})
-		// 		.then((response) => response.json())
-		// 		.then((data) => {
-		// 			console.log(data)
-		// 			return data
-		// 		})
-		// 		.catch((error) => {
-		// 			console.error(error)
-					// logError(error)
-		// 		})
-		// }
-		
-		getCharactersById : (token, personnage) => {
-			return fetch(url + "/characters/" + personnage, {
-				method: "GET",
-				headers: {
-					"Content-Type": "application/json",
-					Authorization: `Bearer ${token}`,
-				},
-			})
-				.then((response) => response.json())
-				.then((data) => {
-					return data
-				})
-				.catch((error) => {
-					console.error(error)
-					logError(error)
-				})
-		},
-		
-		updateCharactersById : (token, personnage, boxid, answer) => {
-			return fetch(url + "/characters/" + personnage + "/" + boxid + "/?answer=" + answer, {
-				method: "PUT",
-				headers: {
-					"Content-Type": "application/json",
-					Authorization: `Bearer ${token}`,
-				},
-			})
-				.then((response) => response.json())
-				.then((data) => {
-					return data
-				})
-				.catch((error) => {
-					console.error(error)
-					logError(error)
-				})
-		},
-		
-		resetCharacters : (token) => {
-			return fetch(url + "/characters/reset", {
-				method: "PUT",
-				headers: {
-					"Content-Type": "application/json",
-					Authorization: `Bearer ${token}`,
-				},
-			})
-				.then((response) => response.json())
-				.then((data) => {
-					return data
-				})
-				.catch((error) => {
-					console.error(error)
-					logError(error)
-				})
-		},
-		
-		getEventByBox : (token, boxid) => {
-			return fetch(url + "/events/" + boxid, {
-				method: "GET",
-				headers: {
-					"Content-Type": "application/json",
-					Authorization: `Bearer ${token}`,
-				},
-			})
-				.then((response) => response.json())
-				.then((data) => {
-					return data
-				})
-				.catch((error) => {
-					console.error(error)
-					logError(error)
-				})
-		},
-		
-		updateEvent : (token, boxid, id, newstatus) => {
-			return fetch(url + "/events/" + boxid + "/?id=" + id, {
-				method: "PUT",
-				headers: {
-					"Content-Type": "application/json",
-					Authorization: `Bearer ${token}`,
-				},
-				body: JSON.stringify({
-					status: newstatus,
-				}),
-			})
-				.then((response) => response.json())
-				.then((data) => {
-					return data
-				})
-				.catch((error) => {
-					console.error(error)
-					logError(error)
-				})
-		},
-		
-		resetEvent : (token) => {
-			return fetch(url + "/events/reset", {
-				method: "PUT",
-				headers: {
-					"Content-Type": "application/json",
-					Authorization: `Bearer ${token}`,
-				},
-			})
-				.then((response) => response.json())
-				.then((data) => {
-					return data
-				})
-				.catch((error) => {
-					console.error(error)
-					logError(error)
-				})
-		}
-		
-	}
-	return apiFunctions
-}
+  const { setApiError } = useError();
 
-export default useApi
+  const handleResponse = async (response) => {
+    console.log(response.ok);
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.detail);
+    }
+    return response;
+  };
+
+  const handleError = async (error) => {
+    console.log("handleError");
+    setApiError([error.message]);
+    await logError(error);
+  };
+
+  const apiFunctions = {
+    getHistories: async (token, ids) => {
+      try {
+        let response = await fetch(url + `/history?ids=${ids.join(",")}`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        await handleResponse(response);
+        return response;
+      } catch (error) {
+        await handleError(error);
+      }
+    },
+
+    updateTimeEndBox: async (token, id) => {
+      try {
+        let response = await fetch(url + `/users/end_box/` + id, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        await handleResponse(response);
+        return response;
+      } catch (error) {
+        await handleError(error);
+      }
+    },
+
+    getMe: async (token) => {
+      try {
+        let response = await fetch(url + "/users/me", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        await handleResponse(response);
+        return response;
+      } catch (error) {
+        await handleError(error);
+      }
+    },
+
+    getToken: async (credentials) => {
+      try {
+        let response = await fetch(url + "/users/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(credentials),
+        });
+        await handleResponse(response);
+        return response;
+      } catch (error) {
+        await handleError(error);
+      }
+    },
+
+    createUser: async (newaccount) => {
+      try {
+        let response = await fetch(url + "/users/", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(newaccount),
+        });
+        await handleResponse(response);
+        return response;
+      } catch (error) {
+        await handleError(error);
+      }
+    },
+
+    getUser: async (token) => {
+      try {
+        let response = await fetch(url + "/users/me", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        await handleResponse(response);
+        return response.json();
+      } catch (error) {
+        handleError(error);
+      }
+    },
+
+    forgotPassword: async (email) => {
+      try {
+        let response = await fetch(url + "/users/forgot_password", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email }),
+        });
+        await handleResponse(response);
+        return response.json();
+      } catch (error) {
+        handleError(error);
+      }
+    },
+
+    updatePassword: async (token, newpassword) => {
+      try {
+        let response = await fetch(url + "/users/password", {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            password: newpassword,
+          }),
+        });
+        await handleResponse(response);
+        return response.json();
+      } catch (error) {
+        handleError(error);
+      }
+    },
+
+    updateName: async (token, id, newinfos) => {
+      try {
+        let response = await fetch(url + "/users/" + id, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify(newinfos),
+        });
+        await handleResponse(response);
+        return response.json();
+      } catch (error) {
+        handleError(error);
+      }
+    },
+
+    resetAll: async (token) => {
+      try {
+        let response = await fetch(url + "/game/reset", {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        await handleResponse(response);
+        return response.json();
+      } catch (error) {
+        handleError(error);
+      }
+    },
+
+    getBox: async (token) => {
+      try {
+        let response = await fetch(url + "/box/", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        await handleResponse(response);
+        return response.json();
+      } catch (error) {
+        handleError(error);
+      }
+    },
+
+    updateBox: async (token, boxid, newstatus) => {
+      try {
+        let response = await fetch(url + `/box/` + boxid, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            status: newstatus,
+          }),
+        });
+        await handleResponse(response);
+        return response.json();
+      } catch (error) {
+        handleError(error);
+      }
+    },
+
+    resetBox: async (token) => {
+      try {
+        let response = await fetch(url + "/box/reset", {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        await handleResponse(response);
+        return response.json();
+      } catch (error) {
+        handleError(error);
+      }
+    },
+
+    getQuizzByBox: async (token, boxid) => {
+      try {
+        let response = await fetch(url + "/quizz/" + boxid, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        await handleResponse(response);
+        return response.json();
+      } catch (error) {
+        handleError(error);
+      }
+    },
+
+    updateQuizz: async (token, boxid) => {
+      try {
+        let response = await fetch(url + "/quizz/" + boxid, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            status: true,
+          }),
+        });
+        await handleResponse(response);
+        return response.json();
+      } catch (error) {
+        handleError(error);
+      }
+    },
+
+    resetQuizz: async (token) => {
+      try {
+        let response = await fetch(url + "/quizz/reset", {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        await handleResponse(response);
+        return response.json();
+      } catch (error) {
+        handleError(error);
+      }
+    },
+
+    getHelpByBox: async (token, boxid) => {
+      try {
+        let response = await fetch(url + "/help/" + boxid, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        await handleResponse(response);
+        return response.json();
+      } catch (error) {
+        handleError(error);
+      }
+    },
+
+    updateHelp: async (token, boxid, helpid, newstatus) => {
+      try {
+        let response = await fetch(url + "/help/" + boxid + "/?id=" + helpid, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            status: newstatus,
+          }),
+        });
+        await handleResponse(response);
+        return response.json();
+      } catch (error) {
+        handleError(error);
+      }
+    },
+
+    resetHelp: async (token) => {
+      try {
+        let response = await fetch(url + "/help/reset", {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        await handleResponse(response);
+        return response.json();
+      } catch (error) {
+        handleError(error);
+      }
+    },
+
+    getObjectivesByBox: async (token, boxid) => {
+      try {
+        let response = await fetch(url + "/objectives/" + boxid, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        await handleResponse(response);
+        return response.json();
+      } catch (error) {
+        handleError(error);
+      }
+    },
+
+    updateObjectives: async (token, boxid, objectiveid, newstatus) => {
+      try {
+        let response = await fetch(
+          url + "/objectives/" + boxid + "/?id=" + objectiveid,
+          {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify({
+              status: newstatus,
+            }),
+          }
+        );
+        await handleResponse(response);
+        return response.json();
+      } catch (error) {
+        handleError(error);
+      }
+    },
+
+    resetObjectives: async (token) => {
+      try {
+        let response = await fetch(url + "/objectives/reset", {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        await handleResponse(response);
+        return response.json();
+      } catch (error) {
+        handleError(error);
+      }
+    },
+
+    getHistoryByBox: async (token, boxid) => {
+      try {
+        let response = await fetch(url + "/history/" + boxid, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        await handleResponse(response);
+        return response.json();
+      } catch (error) {
+        handleError(error);
+      }
+    },
+
+    updateHistory: async (token, boxid, objectiveid) => {
+      try {
+        let response = await fetch(
+          url + "/history/" + boxid + "/?id=" + objectiveid,
+          {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify({
+              status: true,
+            }),
+          }
+        );
+        await handleResponse(response);
+        return response.json();
+      } catch (error) {
+        handleError(error);
+      }
+    },
+
+    resetHistory: async (token) => {
+      try {
+        let response = await fetch(url + "/history/reset", {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        await handleResponse(response);
+        return response.json();
+      } catch (error) {
+        handleError(error);
+      }
+    },
+
+    getCharactersById: async (token, personnage) => {
+      try {
+        let response = await fetch(url + "/characters/" + personnage, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        await handleResponse(response);
+        return response.json();
+      } catch (error) {
+        handleError(error);
+      }
+    },
+
+    updateCharactersById: async (token, personnage, boxid, answer) => {
+      try {
+        let response = await fetch(
+          url +
+            "/characters/" +
+            personnage +
+            "/" +
+            boxid +
+            "/?answer=" +
+            answer,
+          {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        await handleResponse(response);
+        return response.json();
+      } catch (error) {
+        handleError(error);
+      }
+    },
+
+    resetCharacters: async (token) => {
+      try {
+        let response = await fetch(url + "/characters/reset", {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        await handleResponse(response);
+        return response.json();
+      } catch (error) {
+        handleError(error);
+      }
+    },
+
+    getEventByBox: async (token, boxid) => {
+      try {
+        let response = await fetch(url + "/events/" + boxid, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        await handleResponse(response);
+        return response.json();
+      } catch (error) {
+        handleError(error);
+      }
+    },
+
+    updateEvent: async (token, boxid, id, newstatus) => {
+      try {
+        let response = await fetch(url + "/events/" + boxid + "/?id=" + id, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            status: newstatus,
+          }),
+        });
+        await handleResponse(response);
+        return response.json();
+      } catch (error) {
+        handleError(error);
+      }
+    },
+
+    resetEvent: async (token) => {
+      try {
+        let response = await fetch(url + "/events/reset", {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        await handleResponse(response);
+        return response.json();
+      } catch (error) {
+        handleError(error);
+      }
+    },
+  };
+  return apiFunctions;
+};
+
+export default useApi;

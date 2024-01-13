@@ -11,10 +11,12 @@ import Historique from "./pages/Historique.jsx";
 import Layout from "./components/Layout.jsx";
 import Restrictedaccess from "./components/Restrictedaccess.jsx";
 import ProviderPile from "./components/ProviderPile.jsx";
+import ErrorPopup from './components/ErrorPopup.jsx';
 
 function App() {
   return (
     <ProviderPile>
+      <ErrorPopup/>
       <Router>
         <Routes>
           <Route path="/*" element={<Error />} />
