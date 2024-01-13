@@ -181,6 +181,7 @@ const Tim = ({ closeAgentPage }) => {
       id: answerId,
     });
     actionToggleDataTim();
+    actionToggleDataHistory()
     setModalMedia(false);
   };
 

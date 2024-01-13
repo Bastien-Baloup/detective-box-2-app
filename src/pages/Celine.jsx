@@ -20,7 +20,7 @@ import { slugify, renderText } from "../utils"
 const Celine = ({ closeAgentPage }) => {
   const { currentBox } = useContext(BoxContext);
   const token = localStorage.getItem("token");
-  const { actionToggleDataCeline, dataCeline, dataHistory } = useContext(DataContext);
+  const { actionToggleDataHistory, dataCeline, dataHistory } = useContext(DataContext);
   const {
     // updateCharactersById, 
     updateHistory
@@ -177,7 +177,8 @@ const Celine = ({ closeAgentPage }) => {
         id: "box1document4",
       });
     }
-    actionToggleDataCeline();
+    // actionToggleDataCeline();
+    actionToggleDataHistory()
     setModalMedia(false);
   };
 
