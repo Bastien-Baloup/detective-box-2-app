@@ -65,7 +65,7 @@ const useApi = () => {
         await handleResponse(response);
         return response;
       } catch (error) {
-        await handleError(error);
+        //await handleError(error);
       }
     },
 
@@ -81,7 +81,7 @@ const useApi = () => {
         await handleResponse(response);
         return response;
       } catch (error) {
-        await handleError(error);
+        // await handleError(error);
       }
     },
 
