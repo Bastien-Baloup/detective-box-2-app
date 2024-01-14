@@ -156,10 +156,10 @@ export const DataProvider = ({ children }) => {
 		setToggleDataObjectif(!toggleDataObjectif);
 	};
 
-	const { token } = useContext(AuthContext); // Access the token from the AuthContext
+	const { token, loggedIn } = useContext(AuthContext); // Access the token from the AuthContext
 
   const fetchInitialData = async () => {
-    if (!token) {
+    if (!token || !loggedIn) {
       return; // Exit early if no token is available
     }
 
@@ -222,6 +222,9 @@ export const DataProvider = ({ children }) => {
 
 	//EXPLICATION : Adele est le personnage "1"
 	useEffect(() =>{
+		if (!token || !loggedIn) {
+      return; // Exit early if no token is available
+    }
 		const fetchDataAdele = async () => {
       const result = await getCharactersById(token, 1)
       setDataAdele(result)
@@ -231,6 +234,9 @@ export const DataProvider = ({ children }) => {
 
   //EXPLICATION : Celine est le personnage "3"
 	useEffect(() => {
+		if (!token || !loggedIn) {
+      return; // Exit early if no token is available
+    }
 		const fetchDataCeline = async () => {
       const result = await getCharactersById(token, 3)
       setDataCeline(result)
@@ -239,6 +245,9 @@ export const DataProvider = ({ children }) => {
 	},[toggleDataCeline])
 
 	useEffect(() => {
+		if (!token || !loggedIn) {
+      return; // Exit early if no token is available
+    }
 		const fetchDataLauren = async () => {
       const result = await getCharactersById(token, 2)
       setDataLauren(result)
@@ -248,6 +257,9 @@ export const DataProvider = ({ children }) => {
 
   //EXPLICATION : Raphaelle est le personnage '4'
 	useEffect(() => {
+		if (!token || !loggedIn) {
+      return; // Exit early if no token is available
+    }
 		const fetchDataRaphaelle = async () => {
       const result = await getCharactersById(token, 4)
 			setDataRaphaelle(result)
@@ -257,6 +269,9 @@ export const DataProvider = ({ children }) => {
 
   //EXPLICATION : Tim est le personnage "5"
 	useEffect(() => {
+		if (!token || !loggedIn) {
+      return; // Exit early if no token is available
+    }
 		const fetchDataTim = async () => {
       const result = await getCharactersById(token, 5)
       setDataTim(result)
@@ -265,6 +280,9 @@ export const DataProvider = ({ children }) => {
 	},[toggleDataTim])
 
 	useEffect(() => {
+		if (!token || !loggedIn) {
+      return; // Exit early if no token is available
+    }
 		const fetchDataHistory = async () => {
 			const result = []
 			result[1] = await getHistoryByBox(token, 1)
@@ -276,6 +294,9 @@ export const DataProvider = ({ children }) => {
 	}, [toggleDataHistory])
 
 	useEffect(() => {
+		if (!token || !loggedIn) {
+      return; // Exit early if no token is available
+    }
 		const fetchDataObjectif = async () => {
 			const result = []
 			result[1] = await getObjectivesByBox(token, 1)
@@ -287,6 +308,9 @@ export const DataProvider = ({ children }) => {
 	}, [toggleDataObjectif])
 
 	useEffect(() => {
+		if (!token || !loggedIn) {
+      return; // Exit early if no token is available
+    }
 		const fetchDataEvent = async () => {
 			const result = []
 			result[1] = await getEventByBox(token, 1)
@@ -298,6 +322,9 @@ export const DataProvider = ({ children }) => {
 	}, [toggleDataEvent])
 
 	useEffect(() => {
+		if (!token || !loggedIn) {
+      return; // Exit early if no token is available
+    }
 		const fetchDataHelp = async () => {
 			const result = []
 			result[1] = await getHelpByBox(token, 1)

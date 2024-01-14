@@ -6,7 +6,6 @@ const useApi = () => {
   const { setApiError } = useError();
 
   const handleResponse = async (response) => {
-    console.log(response.ok);
     if (!response.ok) {
       const errorData = await response.json();
       throw new Error(errorData.detail);
@@ -15,7 +14,6 @@ const useApi = () => {
   };
 
   const handleError = async (error) => {
-    console.log("handleError");
     setApiError([error.message]);
     await logError(error);
   };
@@ -55,15 +53,16 @@ const useApi = () => {
 
     getMe: async (token) => {
       // try {
-        let response = await fetch(url + "/users/me", {
+        // let response = await fetch(url + "/users/me", {
+        return await fetch(url + "/users/me", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
           },
         });
-        await handleResponse(response);
-        return response;
+        // await handleResponse(response);
+        // return response;
       // } catch (error) {
       //   await handleError(error);
       // }
@@ -78,7 +77,7 @@ const useApi = () => {
           },
           body: JSON.stringify(credentials),
         });
-        await handleResponse(response);
+        // await handleResponse(response);
         return response;
       // } catch (error) {
       //   await handleError(error);
@@ -110,7 +109,7 @@ const useApi = () => {
             Authorization: `Bearer ${token}`,
           },
         });
-        await handleResponse(response);
+        // await handleResponse(response);
         return response.json();
       // } catch (error) {
       //   handleError(error);

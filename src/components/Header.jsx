@@ -61,6 +61,7 @@ const Header = () => {
 		const fetchData = async () => {
 			if (currentBox != 1) {
 				const quizz = await getQuizzByBox(token, currentBox);
+				console.log(quizz)
 				setDataQuizz(quizz);
 			}
 		};
@@ -148,6 +149,8 @@ const Header = () => {
 
 	// EXPLICATION : On affiche le Quizz en fonction de la box. Box 1 pas de quizz !
 	const displayQuizz = () => {
+		console.log('currentBox: ' + currentBox)
+		console.log(dataQuizz)
 		if (currentBox == 1) {
 			handleCloseQuizz();
 			return <></>;
