@@ -49,7 +49,7 @@ const Lauren = ({ closeAgentPage }) => {
     closeAgentPage();
   }
 
-  const CurrentBoxdataHistory = useMemo(() => dataHistory[currentBox]?.data ? dataHistory[currentBox]?.data : [], [currentBox, dataHistory])
+  const CurrentBoxdataHistory = useMemo(() => dataHistory && dataHistory[currentBox]?.data ? dataHistory[currentBox]?.data : [], [currentBox, dataHistory])
   const thisBox = useMemo(() => dataLauren && dataLauren.find((element) => element.box_id == currentBox)?.data, [currentBox, dataLauren])
   const box1    = useMemo(() => dataLauren && dataLauren.find((element) => element.box_id == 1)?.data, [dataLauren])
   const box2    = useMemo(() => dataLauren && dataLauren.find((element) => element.box_id == 2)?.data, [dataLauren])
@@ -127,7 +127,7 @@ const Lauren = ({ closeAgentPage }) => {
           ) : (
             ""
           )}
-          <div>{renderText()}</div>
+          <div>{renderText(answer.text)}</div>
           {answer.id ? (
             <button
               className="modal-objectif__button button--red"
