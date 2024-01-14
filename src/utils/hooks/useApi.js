@@ -54,7 +54,7 @@ const useApi = () => {
     },
 
     getMe: async (token) => {
-      try {
+      // try {
         let response = await fetch(url + "/users/me", {
           method: "GET",
           headers: {
@@ -64,13 +64,13 @@ const useApi = () => {
         });
         await handleResponse(response);
         return response;
-      } catch (error) {
-        //await handleError(error);
-      }
+      // } catch (error) {
+      //   await handleError(error);
+      // }
     },
 
     getToken: async (credentials) => {
-      try {
+      // try {
         let response = await fetch(url + "/users/login", {
           method: "POST",
           headers: {
@@ -80,9 +80,9 @@ const useApi = () => {
         });
         await handleResponse(response);
         return response;
-      } catch (error) {
-        // await handleError(error);
-      }
+      // } catch (error) {
+      //   await handleError(error);
+      // }
     },
 
     createUser: async (newaccount) => {
@@ -102,7 +102,7 @@ const useApi = () => {
     },
 
     getUser: async (token) => {
-      try {
+      // try {
         let response = await fetch(url + "/users/me", {
           method: "GET",
           headers: {
@@ -112,9 +112,9 @@ const useApi = () => {
         });
         await handleResponse(response);
         return response.json();
-      } catch (error) {
-        handleError(error);
-      }
+      // } catch (error) {
+      //   handleError(error);
+      // }
     },
 
     forgotPassword: async (email) => {
