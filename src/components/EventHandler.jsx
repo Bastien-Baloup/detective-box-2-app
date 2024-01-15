@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useContext, useState, useCallback, useEffect, useLayoutEffect, useMemo } from 'react';
+import { useContext, useState, useCallback, useEffect, useLayoutEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 
 import { DataContext, AmbianceContext, BoxContext } from '../utils/context/fetchContext';
