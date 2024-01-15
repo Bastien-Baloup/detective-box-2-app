@@ -17,9 +17,7 @@ const EventHandler = () => {
   const { 
     actionToggleDataEvent, 
     actionToggleDataHistory, 
-    toggleDataEvent, 
-    dataEvent,
-    dataHistory
+    toggleDataEvent
   } = useContext(DataContext);
 	const { fetchPreviousStateNappe } = useContext(AmbianceContext);
   const { currentBox } = useContext(BoxContext);
@@ -47,10 +45,6 @@ const EventHandler = () => {
       setActionToggleEvent2(!toggleEvent2);
     }
   }, [toggleDataEvent]);
-
-  const event25    = useMemo(() => currentBox === 2 && dataEvent[currentBox]?.data && dataEvent[currentBox]?.data.find((event) => event.id === 25)?.status, [currentBox, dataEvent])
-  
-  const box2video5 = useMemo(() => currentBox === 2 && dataEvent[currentBox]?.data &&  dataHistory[currentBox]?.data.find((event) => event.id == "box2video5")?.status, [currentBox, dataHistory])
 
   const token = localStorage.getItem("token");
 
