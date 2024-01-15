@@ -16,12 +16,15 @@ import { BoxContext, DataContext } from "../utils/context/fetchContext";
 import { useState, useContext, useMemo } from "react";
 import { urlApi } from "../utils/const/urlApi";
 import useApi from "../utils/hooks/useApi.js";
+import useEvent from '../utils/hooks/useEvent.js';
 
 function Home() {
   const [characterDisplayed, setCharacterDisplayed] = useState(null);
   const [modalLaurenGone, setModalLaurenGone] = useState(false);
   const [modalCelineGone, setModalCelineGone] = useState(false);
   const { updateEvent } = useApi();
+  const { dispatch } = useEvent();
+
 
   const { currentBox } = useContext(BoxContext);
   const token = localStorage.getItem("token");
@@ -34,12 +37,16 @@ function Home() {
   const box3audio3    = useMemo(() => currentBox === 3 && dataHistory[currentBox]?.data && dataHistory[currentBox]?.data.find((event) => event.id == "box3audio3")?.status, [currentBox, dataHistory])
 
   const specificCardActionLauren = () => {
-    setModalLaurenGone(!modalLaurenGone);
+    setModalLaurenGone(true);
   };
 
   const launchEventGoToDB = async () => {
-    setModalLaurenGone(!modalLaurenGone);
+    setModalLaurenGone(false);
     await updateEvent(token, 2, 25, "open");
+    dispatch({
+      type: "setEvent",
+      id: "event25",
+    })
     actionToggleDataEvent();
   };
 
@@ -210,8 +217,8 @@ function Home() {
             state={currentBox == 1 ? "unavailable" : ""}
           />
         </div>
-        {modalLaurenGone ? displayModalLaurenGone() : null}
-        {modalCelineGone ? displayModalCelineGone() : null}
+        {modalLaurenGone && displayModalLaurenGone()}
+        {modalCelineGone && displayModalCelineGone()}
       </>
     );
   };

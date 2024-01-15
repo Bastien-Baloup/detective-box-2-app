@@ -92,6 +92,10 @@ const EventHandler = () => {
     if (state.id === "box1video3") {
       actionToggleDataHistory();
     }
+    if (state.id === "event25") {
+      setVideoBureauLauren(true);
+      fetchPreviousStateNappe();
+    }
     if (state.id === "box3document2" && !modaleSquelette) {
       openModaleSquelette();
     }
@@ -103,17 +107,6 @@ const EventHandler = () => {
       reset();
     };
   }, [state.toogleEvent]);
-
-  useEffect(() => {
-    if (currentBox == 2) {
-      console.log(event25, box2video5);
-      // EXPLICATION : Pour faire le lien entre le composant Home (carte Lauren) et ici
-      if (event25 == "open" && box2video5 == false) {
-        setVideoBureauLauren(true);
-        fetchPreviousStateNappe();
-      }
-    }
-  }, [toggleEvent2]);
 
   const handleOpenRebeccaAudio = () => {
     fetchPreviousStateNappe();
