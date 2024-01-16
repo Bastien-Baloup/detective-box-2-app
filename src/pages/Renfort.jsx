@@ -10,7 +10,7 @@ import { urlApi } from "../utils/const/urlApi";
 import { BoxContext, DataContext } from "../utils/context/fetchContext";
 
 function Renfort() {
-	const { currentBox } = useContext(BoxContext);
+	const { currentBox, currentBoxStatus } = useContext(BoxContext);
 	const { dataHelp } = useContext(DataContext);
 
 	const clues = useMemo(() => dataHelp ? dataHelp[currentBox]?.data : [], [dataHelp, currentBox])
@@ -41,7 +41,7 @@ function Renfort() {
 	const displayMenu = () => {
 		const menuChoices = clues && clues.map((help, index) => {
 
-			if (help.status == "done") {
+			if (help.status == "done" || currentBoxStatus == 'done') {
 				return (
 					<>
 						<button className="menu__choice menu__choice--done" onClick={() => openSlider(help)} key={`helpKey1-${index}-${help.id}`}>

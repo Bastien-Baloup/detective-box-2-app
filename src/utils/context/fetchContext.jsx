@@ -10,11 +10,9 @@ export const BoxContext = createContext("");
 
 export const BoxProvider = ({ children }) => {
 	const [currentBox, setCurrentBox] = useState(null);
-	const fetchCurrentBox = (value) => {
-		setCurrentBox(value);
-	};
+	const [currentBoxStatus, setCurrentBoxStatus] = useState('')
 
-	return <BoxContext.Provider value={{ fetchCurrentBox, currentBox }}>{children}</BoxContext.Provider>;
+	return <BoxContext.Provider value={{ setCurrentBox, currentBox, currentBoxStatus, setCurrentBoxStatus }}>{children}</BoxContext.Provider>;
 };
 
 export const AuthContext = createContext("");

@@ -45,7 +45,7 @@ const Objectif = ({ data }) => {
   const [value, setValue] = useState("");
   const [nextStep, setNextStep] = useState(false);
 
-  const { currentBox } = useContext(BoxContext);
+  const { currentBox, currentBoxStatus } = useContext(BoxContext);
   const token = localStorage.getItem("token");
   const { fetchPreviousStateNappe } = useContext(AmbianceContext);
   const {
@@ -1387,8 +1387,8 @@ const Objectif = ({ data }) => {
   // -- RENDER DES BOUTONS OBJECTIFS -- //
 
   const renderObjectif = () => {
-    if (data.status == "done") {
-      if (data.id == 14 || data.id == 24) {
+    if (data.status == "done" || currentBoxStatus == 'done') {
+      if (currentBoxStatus == 'open' && (data.id == 14 || data.id == 24)) {
         return (
           <>
             <button

@@ -22,7 +22,7 @@ const EventHandler = () => {
 	const { fetchPreviousStateNappe } = useContext(AmbianceContext);
   const { currentBox } = useContext(BoxContext);
 
-  const { updateEvent, updateHistory, updateBox, updateTimeEndBox} = useApi();
+  const { updateEvent, updateHistory, updateBox, updateTimeEndBox, updateObjectives} = useApi();
   const { state, dispatch } = useEvent();
 
   const [toggleEvent2, setActionToggleEvent2] = useState(false);
@@ -300,6 +300,7 @@ const EventHandler = () => {
   const handleEndGameModale = async () => {
     if (currentBox == 1) {
       // await updateHistory(token, 1, "box1video4");
+      await updateObjectives(token, 1, 14, 'done')
       await updateEvent(token, 1, 15, "done");
       await updateBox(token, 1, "done");
       await updateBox(token, 2, "open");
@@ -318,7 +319,8 @@ const EventHandler = () => {
         type: "setEvent",
         id: "box3video3",
       });
-      //await updateBox(token, 3, "done");
+      await updateObjectives(token, 3, 33, 'done')
+      await updateBox(token, 3, "done");
       await updateTimeEndBox(token, 3);
     }
     navigate("/box-choice");
