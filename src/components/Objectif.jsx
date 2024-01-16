@@ -633,6 +633,15 @@ const Objectif = ({ data }) => {
         return;
       }
     }
+    if (data.id == 22) {
+      if (slugify(value).includes('lilith') && slugify(value).includes('equilibre')) {
+        setErrorMessage("");
+        setValue("");
+        setModal(false);
+        setModalAnswer(true);
+        return;
+      }
+    }
     if (data.id == 31) {
       if (
         slugify(value) == "aussichtspavillion" ||

@@ -262,6 +262,8 @@ const EventHandler = () => {
     const handleCloseVideoBureau = async () => {
       setVideoBureauLauren(false);
       setEndGameModale(true);
+      await updateHistory(token, 1, "box2video5")
+      actionToggleDataHistory()
     };
   
       // --- LOGIQUE EVENT BOX 3 --- //
