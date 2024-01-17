@@ -63,6 +63,9 @@ const Compte = () => {
 				<Link className="dropdown__child" to="/credits" target="_blank">
 					Crédits
 				</Link>
+				<Link className="dropdown__child" to="/box-choice">
+					Changer de box
+				</Link>
 				<button className="dropdown__child" onClick={hangleLogout}>
 					Déconnexion
 				</button>

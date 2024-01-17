@@ -301,7 +301,7 @@ const Header = () => {
 				<></>
 			) : (
 				<div className="header__topSection">
-					<Link className="header__logo--container" to="/">
+					<Link className="header__logo--container" to="/box-choice">
 						<img className="header__logo" src={Logo} alt='' />
 					</Link>
 					<Progression />
