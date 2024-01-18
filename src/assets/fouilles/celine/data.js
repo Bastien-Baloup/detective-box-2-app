@@ -70,12 +70,12 @@ const data = {
         }
       ],
 			"infoHotspots": [
-				{
-					"yaw": 0.8342075611295332,
-					"pitch": 0.5932355767125372,
-					"title": "<span class='grenier'>Ouvrir</span>",
-					"text": "<span class='grenier'>Hmm... c'est fermé</span>"
-        },
+				// {
+				// 	"yaw": 0.8342075611295332,
+				// 	"pitch": 0.5932355767125372,
+				// 	"title": "<span class='grenier'>Ouvrir</span>",
+				// 	"text": "<span class='grenier'>Hmm... c'est fermé</span>"
+        // },
 				{
 					"yaw": -3.0912304201129928,
 					"pitch": -0.3323204982498815,
