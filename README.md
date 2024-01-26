@@ -2,19 +2,19 @@
 
 ## Requirements
 
-- Node >= 18
-- NPM >= 8
+- Node >= 
+- Yarn >= 1.22
 
 ## Installation & Start
 ```
-npm i
-npm run dev
+yarn install
+yarn dev
 ```
 
 ## Build
 
 ```
-npm run build
+yarn build
 ```
 
 This will create a dist folder with all static assets that you can serve

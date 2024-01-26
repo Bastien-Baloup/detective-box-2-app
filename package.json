@@ -11,13 +11,11 @@
   },
   "dependencies": {
     "@simbathesailor/use-what-changed": "^2.0.0",
-    "bowser": "^2.11.0",
     "marzipano": "^0.10.2",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.16.0",
-    "screenfull": "^6.0.2",
     "wavesurfer.js": "^7.3.3"
   },
   "devDependencies": {
