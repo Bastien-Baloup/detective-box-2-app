@@ -5,6 +5,7 @@
   },
   "linter": {
     "enabled": true,
+    "ignore": ["node_modules", "assets", "dist", "public", "fouilles", "marzipanoInit.js"],
     "rules": {
       "all": true,
       "style": {
@@ -12,10 +13,26 @@
       },
       "nursery": {
         "useImportRestrictions": "off"
+      },
+      "correctness": {
+        "useExhaustiveDependencies": "off"
+      },
+      "suspicious": {
+        "noArrayIndexKey": "off"
+      },
+      "a11y": {
+        "useKeyWithClickEvents": "off",
+        "useMediaCaption": "off",
+        "noSvgWithoutTitle": "off"
+      },
+      "complexity": {
+        "noExcessiveCognitiveComplexity": "off",
+        "noForEach": "off"
       }
     }
   },
   "formatter": {
+    "ignore": ["node_modules", "assets", "dist", "public", "fouilles", "marzipanoInit.js"],
     "formatWithErrors": true
   },
   "javascript": {
