@@ -32,8 +32,8 @@ function CelineModal({ onClose }) {
           img.style.display = "none";
         });
         const id = event.currentTarget.id;
-        document.getElementById("img-" + id).style.opacity = 1;
-        document.getElementById("img-" + id).style.display = "block";
+        document.getElementById(`img-${id}`).style.opacity = 1;
+        document.getElementById(`img-${id}`).style.display = "block";
       });
     });
 
@@ -81,7 +81,7 @@ function CelineModal({ onClose }) {
       }}
     >
       <div id="fouille" className="multiple-scenes">
-        <div id="pano" ref={panoRef}></div>
+        <div id="pano" ref={panoRef} />
 
         <div id="sceneList">
           <ul className="scenes">

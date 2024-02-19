@@ -43,7 +43,7 @@ function TerrainModal({ onClose }) {
     videoContainerElement.style.display = 'block'
     videoElement.play()
 
-    let token = localStorage.getItem('token')
+    const token = localStorage.getItem('token')
     if (!token || token === 'null') {
         alert("Erreur de communication avec l'app détectivebox : Token vide")
         return
@@ -83,11 +83,11 @@ function TerrainModal({ onClose }) {
           imgElement.style.display = 'none'
         })
         const id = element.getAttribute('id')
-        if (id == 'door') {
+        if (id === 'door') {
           openDoor() 
         } else {
-          document.getElementById('img-' + id).style.display = 'block'
-          if (id == 'see2') {
+          document.getElementById(`img-${id}`).style.display = 'block'
+          if (id === 'see2') {
             document.getElementById('arrival').volume = 0
             if (!commentPlayed) {
               document.getElementById('comment').play()
@@ -119,7 +119,7 @@ function TerrainModal({ onClose }) {
       }}
     >
       <div id='fouille' className='multiple-scenes'>
-        <div id='pano' ref={panoRef}></div>
+        <div id='pano' ref={panoRef} />
         <div id='sceneList'>
           <ul className='scenes'>
             <a href='#' className='scene' data-id='0-102_terrain_1'>

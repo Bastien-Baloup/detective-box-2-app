@@ -30,7 +30,7 @@ function MasonModal({ onClose }) {
           imgElement.style.display = 'none'
         })
         const id = element.getAttribute('id')
-        document.getElementById('img-' + id).style.display = 'block'
+        document.getElementById(`img-${id}`).style.display = 'block'
       })
     })
 
@@ -55,7 +55,7 @@ function MasonModal({ onClose }) {
       }}
     >
       <div id='fouille' className='multiple-scenes'>
-        <div id='pano' ref={panoRef}></div>
+        <div id='pano' ref={panoRef} />
 
         <div id='sceneList'>
           <ul className='scenes'>
@@ -126,14 +126,14 @@ function MasonModal({ onClose }) {
         </div>
 
         <div className='img' id='img-see5' style={{ display: 'none' }}>
-          <div id='point-1' className='blink_me'></div>
-          <span className='watch' id='webcam'></span>
+          <div id='point-1' className='blink_me' />
+          <span className='watch' id='webcam' />
           <span className='close-img'>X</span>
           <img src={`${import.meta.env.BASE_URL}fouilles/mason/assets/webcam-1.jpg`} className='img-see' />
         </div>
 
         <div className='img' id='img-webcam' style={{ display: 'none' }}>
-          <div id='point-2' className='blink_me'></div>
+          <div id='point-2' className='blink_me' />
           <span className='close-img'>X</span>
           <img src={`${import.meta.env.BASE_URL}fouilles/mason/assets/webcam-2.jpg`} className='img-see' />
         </div>

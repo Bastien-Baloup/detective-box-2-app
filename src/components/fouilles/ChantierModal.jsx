@@ -52,8 +52,8 @@ function ChantierModal({ onClose }) {
           img.style.display = 'none'
         })
         const id = watch.id
-        document.getElementById('img-' + id).style.opacity = 1
-        document.getElementById('img-' + id).style.visibility = 'visible'
+        document.getElementById(`img-${id}`).style.opacity = 1
+        document.getElementById(`img-${id}`).style.visibility = 'visible'
       }
     })
 
@@ -61,7 +61,6 @@ function ChantierModal({ onClose }) {
       const location = document
         .querySelector('.current')
         .getAttribute('data-id')
-      console.log(location)
 
       const songElement = document.getElementById('song')
 
@@ -80,7 +79,6 @@ function ChantierModal({ onClose }) {
     const linkHotspots = document.querySelectorAll('.link-hotspot')
     linkHotspots.forEach((linkHotspot) => {
       linkHotspot.addEventListener('click', updateSongVolume)
-      console.log(linkHotspot.onclick)
     })
 
     const lienMalle = document.getElementById('lien-malle')
@@ -145,7 +143,6 @@ function ChantierModal({ onClose }) {
     }
 
     items.forEach((item) => {
-      console.log(item)
       if (item.id === 'reset') {
         item.onclick = reset
       } else {
@@ -188,7 +185,7 @@ function ChantierModal({ onClose }) {
       }}
     >
       <div id='fouille' className='multiple-scenes'>
-        <div id='pano' ref={panoRef}></div>
+        <div id='pano' ref={panoRef} />
         <div id='sceneList'>
           <ul className='scenes'>
             <a href='#' className='scene' data-id='0-101---chantier1'>
@@ -283,7 +280,7 @@ function ChantierModal({ onClose }) {
               width: '3%',
               height: '6%',
             }}
-          ></div>
+          />
           <div
             id='left'
             className='item'
@@ -293,7 +290,7 @@ function ChantierModal({ onClose }) {
               width: '3%',
               height: '6%',
             }}
-          ></div>
+          />
 
           <div
             id='up'
@@ -304,7 +301,7 @@ function ChantierModal({ onClose }) {
               width: '3%',
               height: '6%',
             }}
-          ></div>
+          />
 
           <div
             id='down'
@@ -315,7 +312,7 @@ function ChantierModal({ onClose }) {
               width: '3%',
               height: '6%',
             }}
-          ></div>
+          />
 
           <div
             id='reset'
@@ -326,7 +323,7 @@ function ChantierModal({ onClose }) {
               width: '3%',
               height: '6%',
             }}
-          ></div>
+          />
         </div>
         <button
           className='modal-objectif__button button--red'
@@ -348,7 +345,7 @@ function ChantierModal({ onClose }) {
               import.meta.env.BASE_URL
             }fouilles/chantier/assets/click.wav`}
             type='audio/wav'
-          ></audio>
+          />
           <audio
             id='reset-sound'
             className='interupted'
@@ -356,21 +353,21 @@ function ChantierModal({ onClose }) {
               import.meta.env.BASE_URL
             }fouilles/chantier/assets/reset.wav`}
             type='audio/wav'
-          ></audio>
+          />
           <audio
             id='malle-opened'
             src={`${
               import.meta.env.BASE_URL
             }fouilles/chantier/assets/comment-2.mp3`}
             type='audio/mpeg'
-          ></audio>
+          />
           <audio
             id='malle-mp3'
             src={`${
               import.meta.env.BASE_URL
             }fouilles/chantier/assets/comment-1.mp3`}
             type='audio/mpeg'
-          ></audio>
+          />
           <audio
             id='open-malle'
             className='interupted'
@@ -378,7 +375,7 @@ function ChantierModal({ onClose }) {
               import.meta.env.BASE_URL
             }fouilles/chantier/assets/open-malle.mp3`}
             type='audio/mpeg'
-          ></audio>
+          />
         </div>
       </div>
       <div
@@ -409,7 +406,7 @@ function ChantierModal({ onClose }) {
               import.meta.env.BASE_URL
             }fouilles/chantier/assets/comment-2.mp3`}
             type='audio/mpeg'
-          ></audio>
+          />
         </div>
         <button
           className='modal-objectif__button button--red'

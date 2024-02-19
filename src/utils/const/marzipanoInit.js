@@ -32,7 +32,7 @@ const MarzipanoInit = (panoRef, viewerRef, data, placeName) => {
 
     // Create image element.
     const icon = document.createElement('img')
-    icon.src = import.meta.env.BASE_URL + 'fouilles/'+placeName+'/img/link.png'
+    icon.src = `${import.meta.env.BASE_URL}fouilles/${placeName}/img/link.png`
     icon.classList.add('link-hotspot-icon')
 
     // Set rotation transform.
@@ -43,7 +43,7 @@ const MarzipanoInit = (panoRef, viewerRef, data, placeName) => {
     ]
     for (let i = 0; i < transformProperties.length; i++) {
       const property = transformProperties[i]
-      icon.style[property] = 'rotate(' + hotspot.rotation + 'rad)'
+      icon.style[property] = `rotate(${hotspot.rotation}rad)`
     }
 
     // Add click event handler.
@@ -81,7 +81,7 @@ const MarzipanoInit = (panoRef, viewerRef, data, placeName) => {
     const iconWrapper = document.createElement('div')
     iconWrapper.classList.add('info-hotspot-icon-wrapper')
     const icon = document.createElement('img')
-    icon.src = import.meta.env.BASE_URL + 'fouilles/'+placeName+'/img/info.png'
+    icon.src = `${import.meta.env.BASE_URL}fouilles/${placeName}/img/info.png`
     icon.classList.add('info-hotspot-icon')
     iconWrapper.appendChild(icon)
 
@@ -98,7 +98,7 @@ const MarzipanoInit = (panoRef, viewerRef, data, placeName) => {
     closeWrapper.classList.add('info-hotspot-close-wrapper')
     const closeIcon = document.createElement('img')
     closeIcon.src =
-      import.meta.env.BASE_URL + 'fouilles/'+placeName+'/img/close.png'
+      `${import.meta.env.BASE_URL}fouilles/${placeName}/img/close.png`
     closeIcon.classList.add('info-hotspot-close-icon')
     closeWrapper.appendChild(closeIcon)
 
@@ -218,11 +218,11 @@ const MarzipanoInit = (panoRef, viewerRef, data, placeName) => {
 
   // Create scenes.
   const scenes = data.scenes.map((data) => {
-    const urlPrefix = import.meta.env.BASE_URL + 'fouilles/'+placeName+'/tiles'
+    const urlPrefix = `${import.meta.env.BASE_URL}fouilles/${placeName}/tiles`
     const source = Marzipano.ImageUrlSource.fromString(
-      urlPrefix + '/' + data.id + '/{z}/{f}/{y}/{x}.jpg',
+      `${urlPrefix}/${data.id}/{z}/{f}/{y}/{x}.jpg`,
       {
-        cubeMapPreviewUrl: urlPrefix + '/' + data.id + '/preview.jpg',
+        cubeMapPreviewUrl: `${urlPrefix}/${data.id}/preview.jpg`,
       }
     )
     const geometry = new Marzipano.CubeGeometry(data.levels)
@@ -272,7 +272,7 @@ const MarzipanoInit = (panoRef, viewerRef, data, placeName) => {
   // Set handler for scene switch.
   scenes.forEach((scene) => {
     const el = document.querySelector(
-      '#sceneList .scene[data-id="' + scene.data.id + '"]'
+      `#sceneList .scene[data-id="${scene.data.id}"]`
     )
     el.onclick = () => switchScene(scene)
   })

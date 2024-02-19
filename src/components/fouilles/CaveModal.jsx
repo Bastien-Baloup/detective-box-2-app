@@ -40,8 +40,8 @@ function CaveModal({ onClose }) {
         });
         const id = watch.id;
         if (id !== 'board') { 
-          document.getElementById("img-" + id).style.opacity = 1;
-          document.getElementById("img-" + id).style.display = "block";        
+          document.getElementById(`img-${id}`).style.opacity = 1;
+          document.getElementById(`img-${id}`).style.display = "block";        
         }
 
        
@@ -90,7 +90,7 @@ function CaveModal({ onClose }) {
       }}
     >
       <div id="fouille" className="multiple-scenes">
-        <div id="pano" ref={panoRef}></div>
+        <div id="pano" ref={panoRef} />
 
         <div id="sceneList">
           <ul className="scenes">

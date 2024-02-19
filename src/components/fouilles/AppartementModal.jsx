@@ -165,7 +165,7 @@ function AppartementModal({ onClose }) {
             pointerEvents: "none",
           }}
         />
-        <div id="pano" ref={panoRef}></div>
+        <div id="pano" ref={panoRef} />
         <div id="sceneList" style={{ display: "none" }}>
           <ul className="scenes">
             <a
@@ -359,7 +359,7 @@ function AppartementModal({ onClose }) {
             display: "block",
             maxHeight: "calc(100dvh - 40px)",
           }}
-        ></video>
+        />
         <div
           style={{
             width: "100%",

@@ -21,8 +21,7 @@ function ForetModal({ onClose }) {
   const { dispatch } = useEvent();
 
   const clickHandle = async () => {
-    console.log('click')
-    let token = localStorage.getItem("token");
+    const token = localStorage.getItem("token");
 
     await updateHistory(token, 3, "box3document2");
     dispatch({
@@ -173,7 +172,7 @@ function ForetModal({ onClose }) {
         isWatchClick.current = true;
 
         const id = watch.id;
-        const imgElement = document.getElementById("img-" + id);
+        const imgElement = document.getElementById(`img-${id}`);
         fadeIn(imgElement);
       });
     });

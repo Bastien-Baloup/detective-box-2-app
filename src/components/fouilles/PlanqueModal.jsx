@@ -54,9 +54,9 @@ function PlanqueModal({ onClose }) {
           imgElement.style.display = 'none'
         })
         const id = element.getAttribute('id')
-        document.getElementById('img-' + id).style.display = 'block'
+        document.getElementById(`img-${id}`).style.display = 'block'
 
-        if (id == 'see6') {
+        if (id === 'see6') {
           document.getElementById('arrival').volume = 0
 
           if (!commentPlayed) {
@@ -90,7 +90,7 @@ function PlanqueModal({ onClose }) {
       }}
     >
       <div id='fouille' className='multiple-scenes'>
-        <div id='pano' ref={panoRef}></div>
+        <div id='pano' ref={panoRef} />
         <div id='sceneList'>
           <ul className='scenes'>
             <a href='#' className='scene' data-id='0-103_planque_grnier_1'>

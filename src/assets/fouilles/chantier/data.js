@@ -1,4 +1,4 @@
-let data = {
+const data = {
   scenes: [
     {
       id: "0-101---chantier1",

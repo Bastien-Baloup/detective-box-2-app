@@ -22,7 +22,7 @@ function PrisonModal({ onClose }) {
           imgElement.style.display = "none";
         });
         const id = element.getAttribute("id");
-        document.getElementById("img-" + id).style.display = "block";
+        document.getElementById(`img-${id}`).style.display = "block";
       });
     });
 
@@ -54,7 +54,7 @@ function PrisonModal({ onClose }) {
       }}
     >
       <div id="fouille" className="single-scenes">
-        <div id="pano" ref={panoRef}></div>
+        <div id="pano" ref={panoRef} />
 
         <div id="sceneList">
           <ul className="scenes">
