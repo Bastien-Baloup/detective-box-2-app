@@ -27,7 +27,7 @@ const Header = () => {
 	const { getQuizzByBox, updateEvent, updateQuizz, updateHistory } = useApi()
 	const { dispatch } = useEvent()
 
-	const [tutorialModalIsActive, setTutorialModalIsActive] = useState(true)
+	const [tutorialModalIsActive, setTutorialModalIsActive] = useState(false)
 	const [tutorialIsActive, setTutorialIsActive] = useState(false)
 	const [quizzIsActive, setQuizzIsActive] = useState(false)
 	const [nappeModalIsActive, setNappeModalIsActive] = useState(false)
@@ -54,6 +54,8 @@ const Header = () => {
 		}
 		fetchData()
 	}, [])
+
+
 
 	const event33 = useMemo(
 		() =>
@@ -84,6 +86,22 @@ const Header = () => {
 			dataHistory[currentBox]?.data.find((event) => event.id === 'box3video1')?.status,
 		[currentBox, dataHistory]
 	)
+
+	// ouvre la popup du tutoriel seulement quand si on à pas encore vu le brief de la box en cours
+	useEffect(() => {
+		if (currentBox === 1 && box1video1 === false) {
+			setTutorialModalIsActive(true)
+			return
+		}
+		if (currentBox === 2 && box2video1 === false) {
+			setTutorialModalIsActive(true)
+			return
+		}
+		if (currentBox === 3 && box3video1 === false) {
+			setTutorialModalIsActive(true)
+			return
+		}
+	}, [currentBox, box1video1, box2video1, box3video1])
 
 	const [dataQuizz, setDataQuizz] = useState('')
 
@@ -191,7 +209,7 @@ const Header = () => {
 			setModaleVideo(true)
 			return
 		}
-		setNappeModalIsActive(true)
+		// setNappeModalIsActive(true)
 	}
 
 	// EXPLICATION : On affiche une modale qui propose aux joueurs d'afficher le tutoriel ou non
