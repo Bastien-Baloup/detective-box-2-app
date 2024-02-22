@@ -14,12 +14,13 @@ import Timer from './Timer.jsx'
 import Video from '../components/Video.jsx'
 import { Link } from 'react-router-dom'
 import { urlApi } from '../utils/const/urlApi'
-import { AmbianceContext, BoxContext, DataContext } from '../utils/context/fetchContext.jsx'
+import { AmbianceContext, BoxContext, DataContext, CompteContext } from '../utils/context/fetchContext.jsx'
 import { useEffect, useState, useRef, useContext, useMemo } from 'react'
 import useApi from '../utils/hooks/useApi.js'
 import useEvent from '../utils/hooks/useEvent.js'
 
 const Header = () => {
+	const { closeCompte } = useContext(CompteContext)
 	const { fetchNappeMute, nappeMute } = useContext(AmbianceContext)
 	const { currentBox } = useContext(BoxContext)
 	const token = localStorage.getItem('token')
@@ -90,20 +91,30 @@ const Header = () => {
 	// ouvre la popup du tutoriel seulement quand si on à pas encore vu le brief de la box en cours
 	useEffect(() => {
 		if (currentBox === 1 && box1video1 === false) {
-			setTutorialModalIsActive(true)
+			openTutorialModal()
 			return
 		}
 		if (currentBox === 2 && box2video1 === false) {
-			setTutorialModalIsActive(true)
+			openTutorialModal()
 			return
 		}
 		if (currentBox === 3 && box3video1 === false) {
-			setTutorialModalIsActive(true)
+			openTutorialModal()
 			return
 		}
 	}, [currentBox, box1video1, box2video1, box3video1])
 
 	const [dataQuizz, setDataQuizz] = useState('')
+
+	const openTutorialModal = () => {
+		closeCompte()
+		setTutorialModalIsActive(true)
+	}
+
+	const openTutorial = () => {
+		closeCompte()
+		setTutorialIsActive(true)
+	}
 
 	// EXPLICATION : Le joueur choisi d'activer la musique d'ambiance > son état se met à jour dans le context > ferme la modale.
 	const activateNappe = () => {
@@ -233,7 +244,7 @@ const Header = () => {
 
 	// EXPLICATION : On affiche le tutorial en video et on ferme la modale de choix d'affichage du tutorial
 	const handleOpenTutorial = () => {
-		setTutorialIsActive(true)
+		openTutorial()
 		setTutorialModalIsActive(false)
 	}
 
@@ -330,7 +341,7 @@ const Header = () => {
 						<img className='header__logo' src={Logo} alt='' />
 					</Link>
 					<Progression />
-					<Compte />
+					<Compte openTutorial={openTutorial} />
 				</div>
 			)}
 			<div className='header__bottomSection'>

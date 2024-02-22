@@ -12,7 +12,7 @@ import { Link } from 'react-router-dom'
 import { AuthContext, AmbianceContext, CompteContext } from '../utils/context/fetchContext.jsx'
 import { useContext } from 'react'
 
-const Compte = () => {
+const Compte = ({ openTutorial }) => {
 	const { active, setActive } = useContext(CompteContext)
 	const { logout } = useContext(AuthContext)
 	const { fetchNappeMute, nappeMute } = useContext(AmbianceContext)
@@ -54,6 +54,9 @@ const Compte = () => {
 				<Link className='dropdown__child' to='/parametres' target='_blank'>
 					Paramètres
 				</Link>
+				<button type='button' className='dropdown__child' onClick={openTutorial}>
+					Tutoriel
+				</button>
 				<button type='button' className='dropdown__child' onClick={openWebsite2}>
 					Aide
 				</button>
@@ -75,7 +78,7 @@ const Compte = () => {
 }
 
 Compte.propTypes = {
-	handleNappe: PropTypes.func
+	openTutorial: PropTypes.func
 }
 
 export default Compte
