@@ -318,24 +318,20 @@ const Header = () => {
 	// EXPLICATION : PUIS affichage de la modale de choix de l'activation de la musique d'ambiance
 	return (
 		<header>
-			{tutorialModalIsActive ? displayTutorial() : <></>}
-			{tutorialIsActive ? (
+			{tutorialModalIsActive && displayTutorial()}
+			{tutorialIsActive && (
 				<Video
 					title='Vidéo du tutoriel'
 					srcVideo={`${urlApi.cdn()}videos/tutoriel.mp4`}
 					handleModalVideo={handleCloseTutorial}
 				/>
-			) : (
-				<></>
 			)}
-			{quizzIsActive ? displayQuizz() : <></>}
-			{modaleVideo ? displayBrief() : null}
-			{nappeModalIsActive ? <Nappe activateNappe={activateNappe} desactivateNappe={desactivateNappe} /> : <></>}
+			{quizzIsActive && displayQuizz()}
+			{modaleVideo && displayBrief()}
+			{nappeModalIsActive && <Nappe activateNappe={activateNappe} desactivateNappe={desactivateNappe} />}
 			{displayAudio()}
-			{event33 === 'open' ? displayTimer() : <></>}
-			{event33 === 'open' ? (
-				<></>
-			) : (
+			{event33 === 'open' && displayTimer()}
+			{event33 !== 'open' && (
 				<div className='header__topSection'>
 					<Link className='header__logo--container' to='/box-choice'>
 						<img className='header__logo' src={Logo} alt='' />
